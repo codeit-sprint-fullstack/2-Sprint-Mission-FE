@@ -222,3 +222,7 @@ footer img{
     cursor: pointer;
     margin-left: 10px;
 }
+
+.icon {
+    display: flex;
+}
