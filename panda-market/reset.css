@@ -1,3 +1,42 @@
+:root {
+  /* Text size (Responsive font-size) */
+  --text-4xl: 2.5rem; /* 40px */
+  --text-3xl: 2rem; /* 32px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2lg: 1.125rem; /* 18px */
+  --text-lg: 1rem; /* 16px */
+  --text-md: 0.875rem; /* 14px */
+  --text-sm: 0.8125rem; /* 13px */
+  --text-xs: 0.75rem; /* 12px */
+
+  /* Colors */
+  --primary-color-100: #3692FF;
+  --primary-color-200: #1967D6;
+  --primary-color-300: #1251AA;
+  --error-color: #F74747;
+  --secondary-color-gray900: #111827;
+  --secondary-color-gray800: #1F2937;
+  --secondary-color-gray700: #374151;
+  --secondary-color-gray600: #4B5563;
+  --secondary-color-gray500: #6B7280;
+  --secondary-color-gray400: #9CA3AF;
+  --secondary-color-gray200: #E5E7EB;
+  --secondary-color-gray100: #F3F4F6;
+  --secondary-color-gray50: #F9FAFB;
+  --background-color: #CFE5FF;
+  --background-color-light-blue: #E6F2FF;
+  --border-color: #DFDFDF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  box-sizing: content-box;
+}
+
 @media (max-width:1200px) {
   html, body {
     font-size: 14px;
