@@ -1,0 +1,226 @@
+html {
+    font-size: clamp(5px,0.6vw,10px);
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    padding: clamp(3px,0.36vw,6px) clamp(100px,20vw,200px) 0;
+    background-color: white;
+    height: clamp(30px,3.6vw,60px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+#headerBox {
+    max-width: 1110px;
+    margin: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#headerLogo {
+    width: clamp(75px,9vw,150px);
+}
+
+.titleMenu {
+    font-size: 2rem;
+    color: #4b5563;
+    text-decoration: none;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 700;
+}
+
+
+#headerLoginBtn {
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    background-color: #3692FF;
+    padding: clamp(6px,0.72vw,12px) clamp(25px,3vw,50px);
+    border-radius: clamp(7px,0.9vw,15px);
+
+}
+
+#mainSign {
+    height: clamp(270px,32.4vw,540px);
+    padding: 0 clamp(100px,20vw,200px);
+    margin-top: clamp(30px,3.6vw,60px);
+    background-color: #cfe5ff;
+}
+
+#mainSignBox {
+    max-width: 1110px;
+    height: clamp(270px,32.4vw,540px);
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: auto;
+    background-image: url("img/mainimg.png");
+    background-size: clamp(150px,45vw,750px);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+#signText {
+    font-family: "Noto Sans KR", sans-serif;
+    color: #374151;
+    font-size: 4rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+#signText > a {
+    text-decoration: none;
+}
+
+#signTextBtn {
+    font-size: 2rem;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    background-color: #3692FF;
+    width: 100%;
+    padding: clamp(8px,0.9vw,15px);
+    border-radius: clamp(15px,1.8vw,30px);
+}
+
+main {
+    padding: 0 clamp(100px,20vw,200px);
+}
+
+.mainContents {
+    max-width: 1110px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainContentsBox {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Noto Sans KR", sans-serif;
+    white-space: nowrap;
+    margin: clamp(25px,3vw,50px) 0;
+}
+
+.mainContentsBox > div {
+    margin: 0 clamp(5px,0.6vw,10px);
+}
+
+#mainContentsBox01 {
+    justify-content: left;
+}
+
+#mainContentsBox02 {
+    justify-content: right;
+    text-align: right;
+}
+
+#mainContentsBox03 {
+    justify-content: left;
+}
+
+.mainContentsImg {
+    width: clamp(70px,31vw,580px);
+}
+
+.mainContentsTextSimple {
+    color: #3692FF;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.mainContentsText {
+    color: #374151;
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.mainContentsText02 {
+    color: #374151;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+#bottomSign {
+    height: clamp(270px,32.4vw,540px);
+    padding: 0 clamp(100px,20vw,200px);
+    background-color: #cfe5ff;
+}
+
+#bottomSignbox {
+    max-width: 1110px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url("img/mainimg.png");
+    background-size: clamp(150px,45vw,750px);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+#bottomText {
+    font-family: "Noto Sans KR", sans-serif;
+    color: #374151;
+    font-size: 4rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+footer {
+    height: clamp(60px,7.2vw,120px);
+    padding: 0 clamp(100px,20vw,200px) clamp(20px,2.4vw,40px);
+    background-color: #111827;
+}
+
+.footerBox {
+    max-width: 1110px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 1.8rem;
+    white-space: nowrap;
+}
+
+.footerText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footerIcon {
+    width: clamp(10px,1.2vw,20px);
+    margin-left: clamp(5px,0.6vw,10px);
+}
+
+#privacyBtn {
+    color: white;
+    text-decoration: none;
+    margin-right: clamp(5px,0.6vw,10px);
+}
+
+#faqBtn {
+    color: white;
+    text-decoration: none;
+}
