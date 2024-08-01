@@ -8,7 +8,7 @@
 
 [x]  PC사이즈만 고려해 주어진 디자인으로 구현합니다.
 
-[x]  HTML, CSS 파일을 [Netlify](https://www.netlify.com/)로 배포해 주세요. (참고: https://www.codeit.kr/learn/5309)
+[x]  HTML, CSS 파일을 [Netlify](https://www.netlify.com/)로 배포해 주세요. (참고: https://www.codeit.kr/learn/5309) :: https://panda-market-by-kipid.netlify.app/
 
 [x]  랜딩 페이지의 url path는 루트(‘/’)로 설정합니다.
 
