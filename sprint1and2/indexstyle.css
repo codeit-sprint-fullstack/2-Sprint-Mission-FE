@@ -1,5 +1,8 @@
 html {
-    font-size: clamp(5px,0.6vw,10px);
+    --mySize:clamp(5px,0.6vw,10px);
+    --blueBtnColor:#3692FF;
+    font-size: var(--mySize);
+    margin: 0;
 }
 
 body {
@@ -7,9 +10,8 @@ body {
 }
 
 header {
-    padding: clamp(3px,0.36vw,6px) clamp(100px,20vw,200px) 0;
+    height: calc(var(--mySize) * 6);
     background-color: white;
-    height: clamp(30px,3.6vw,60px);
     position: fixed;
     top: 0;
     left: 0;
@@ -17,181 +19,168 @@ header {
     z-index: 2;
 }
 
-#headerBox {
-    max-width: 1110px;
+nav {
     margin: auto;
-    padding: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
-#headerLogo {
-    width: clamp(75px,9vw,150px);
+
+.contentsWidth {
+    max-width: 1110px;
+    width: 100%;
+    margin: auto;
 }
 
-.titleMenu {
-    font-size: 2rem;
-    color: #4b5563;
-    text-decoration: none;
+.contentsPadding {
+    padding: calc(var(--mySize) * 0.6) clamp(100px,20vw,200px) 0;
+}
+
+#headerLogo {
+    width: calc(var(--mySize) * 15);
+}
+
+.titleText {
     font-family: "Noto Sans KR", sans-serif;
+    color: #374151;
+    font-size: 4rem;
     font-weight: 700;
 }
 
-
-#headerLoginBtn {
-    font-size: 1.2rem;
-    color: white;
-    text-decoration: none;
-    background-color: #3692FF;
-    padding: clamp(6px,0.72vw,12px) clamp(25px,3vw,50px);
-    border-radius: clamp(7px,0.9vw,15px);
-
+.grayText {
+    color: #4b5563;
+    font-family: "Noto Sans KR", sans-serif;
+    white-space: nowrap;
 }
 
-#mainSign {
-    height: clamp(270px,32.4vw,540px);
-    padding: 0 clamp(100px,20vw,200px);
-    margin-top: clamp(30px,3.6vw,60px);
+.blueBtn {
+    color: white;
+    text-decoration: none;
+    background-color: var(--blueBtnColor);
+    font-family: "Noto Sans KR", sans-serif;
+    text-align: center;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.navBtn {
+    font-size: 2rem;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+#headerLoginBtn {
+    padding: calc(var(--mySize) * 1.2) calc(var(--mySize) * 5);
+    border-radius: calc(var(--mySize) * 1.5);
+}
+
+
+
+.mainSign {
+    padding-top: calc(var(--mySize) * 6);
+    height: calc(var(--mySize) * 54);
     background-color: #cfe5ff;
 }
 
-#mainSignBox {
-    max-width: 1110px;
-    height: clamp(270px,32.4vw,540px);
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    margin: auto;
+#mainSignImg {
     background-image: url("img/mainimg.png");
     background-size: clamp(150px,45vw,750px);
     background-repeat: no-repeat;
     background-position: right bottom;
 }
 
-#signText {
-    font-family: "Noto Sans KR", sans-serif;
-    color: #374151;
-    font-size: 4rem;
-    font-weight: 700;
-    white-space: nowrap;
+.signBox {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
 }
 
-#signText > a {
-    text-decoration: none;
-}
-
-#signTextBtn {
+.signBtn {
     font-size: 2rem;
     font-weight: 500;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    background-color: #3692FF;
     width: 100%;
-    padding: clamp(8px,0.9vw,15px);
-    border-radius: clamp(15px,1.8vw,30px);
+    padding: calc(var(--mySize) * 1.5);
+    border-radius: calc(var(--mySize) * 3);
+    box-sizing: border-box;
 }
 
 main {
-    padding: 0 clamp(100px,20vw,200px);
-}
-
-.mainContents {
-    max-width: 1110px;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.mainContentsBox {
-    width: 100%;
+.mainContents {
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.contentsBox {
+    margin: calc(var(--mySize) * 10) auto;
     cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-family: "Noto Sans KR", sans-serif;
-    white-space: nowrap;
-    margin: clamp(25px,3vw,50px) 0;
 }
 
-.mainContentsBox > div {
-    margin: 0 clamp(5px,0.6vw,10px);
-}
-
-#mainContentsBox01 {
+#contentsBoxLeft {
     justify-content: left;
+    text-align: left;
 }
 
-#mainContentsBox02 {
+#contentsBoxRight {
     justify-content: right;
     text-align: right;
-}
-
-#mainContentsBox03 {
-    justify-content: left;
 }
 
 .mainContentsImg {
     width: clamp(70px,31vw,580px);
 }
 
-.mainContentsTextSimple {
-    color: #3692FF;
-    font-size: 1.8rem;
-    font-weight: 500;
+.mainTextBox {
+    margin: 0 calc(var(--mySize) * 2.5);
 }
 
-.mainContentsText {
-    color: #374151;
+.blueText {
+    color: var(--blueBtnColor);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.mainText {
     font-size: 3rem;
     font-weight: 500;
 }
 
-.mainContentsText02 {
-    color: #374151;
+.mainTextSub {
     font-size: 2rem;
     font-weight: 400;
 }
 
-#bottomSign {
-    height: clamp(270px,32.4vw,540px);
-    padding: 0 clamp(100px,20vw,200px);
-    background-color: #cfe5ff;
+footer {
+    background-color: #111827;
+    height: calc(var(--mySize) * 12);
+    padding: 0 calc(var(--mySize) * 20) calc(var(--mySize) * 4);
 }
 
-#bottomSignbox {
-    max-width: 1110px;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-image: url("img/mainimg.png");
+#bottomSignImg {
+    background-image: url("img/bottomimg.png");
     background-size: clamp(150px,45vw,750px);
     background-repeat: no-repeat;
     background-position: right bottom;
 }
 
-#bottomText {
-    font-family: "Noto Sans KR", sans-serif;
-    color: #374151;
-    font-size: 4rem;
-    font-weight: 700;
-    white-space: nowrap;
-}
 
-footer {
-    height: clamp(60px,7.2vw,120px);
-    padding: 0 clamp(100px,20vw,200px) clamp(20px,2.4vw,40px);
-    background-color: #111827;
-}
 
 .footerBox {
-    max-width: 1110px;
     height: 100%;
     margin: auto;
     display: flex;
@@ -210,8 +199,8 @@ footer {
 }
 
 .footerIcon {
-    width: clamp(10px,1.2vw,20px);
-    margin-left: clamp(5px,0.6vw,10px);
+    width: calc(var(--mySize) * 2);
+    margin-left: var(--mySize);
 }
 
 #privacyBtn {
