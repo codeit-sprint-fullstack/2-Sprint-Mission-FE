@@ -1,0 +1,204 @@
+@import "header.css";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Pretendard Variable";
+    /* margin: 0 auto; */
+}
+
+h1 {
+    /* font-size: 40px; */
+    font-size: 2.5rem;
+    font-weight: 700;
+    /* line-height: 56px; */
+    line-height: 3.5rem;
+}
+
+/* 헤더 부분 */
+header {
+    position: sticky;
+    background-color: #ffffff;
+    top: 0;
+    height: 70px;
+    z-index: 1;
+}
+
+header .sectionWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header button {
+    background: url('/Part1/PandaMarket/src/image/btn_small_48.png') no-repeat;
+    /* width: 128px; */
+    width: 8rem;
+    /* height: 48px; */
+    height: 3rem;
+}
+
+/* 메인 부분 */
+main {
+    color: var(--gray-700);
+}
+
+.topSection,
+.bottomSection {
+    /* height: 540px; */
+    height: 33.75rem;
+    background-color: #CFE5FF;
+}
+
+/* 1920픽셀 최대치를 만들기 위해 */
+.sectionWrap {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: max(200px, 15%);
+    margin-right: max(200px, 15%);
+    /* margin: 0 auto; */
+    max-width: 1920px;
+    height: 100%;
+}
+
+.topSection .sectionWrap,
+.bottomSection .sectionWrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    overflow: hidden;
+    gap: 0;
+}
+
+.topSection .detail,
+.bottomSection .detail {
+    /* margin: 40px auto; */
+    margin: 2.5rem auto;
+}
+
+.topSection .detail button {
+    width: 100%;
+    /* height: 56px; */
+    /* font-size: 20px; */
+    /* line-height: 32px; */
+    font-size: 1.25rem;
+    line-height: 2rem;
+    font-weight: 600;
+    height: 3.5rem;
+    background-color: var(--Primary-100);
+    border: 0;
+    border-radius: 40px;
+    color:var(--gray-50);
+    /* margin: 32px 0 60px; */
+    margin: 2rem 0 3.75rem;
+}
+
+.topSection .detail button:hover {
+    cursor: pointer;
+}
+
+/* 중앙의 카드형 부분 */
+.hotItem,
+.search,
+.register {
+    /* height: 720px; */
+    height: 45rem;
+}
+
+.hotItem .sectionWrap,
+.search .sectionWrap,
+.register .sectionWrap {
+    display: flex;
+    align-items: center;
+}
+
+.search .sectionWrap,
+.search .card {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.card {
+    background-color: #fcfcfc;
+    display: flex;
+    align-items: center;
+}
+
+.cardDetail {
+    display: flex;
+    flex-direction: column;
+    /* margin: 103px 29px 103px 64px; */
+    margin: 6.4375rem 1.8125rem 6.4375rem 4rem;
+}
+
+.search .cardDetail {
+    /* margin: 103px 64px 103px 29px; */
+    margin: 6.4375rem 4rem 6.4375rem 1.8125rem;
+}
+
+.cardDetail p {
+    /* font-size: 24px; */
+    font-size: 1.5rem;
+    font-weight: 500;
+    /* line-height: 32px; */
+    line-height: 2rem;
+}
+
+.cardName {
+    /* font-size: 18px; */
+    font-size: 1.125rem;
+    font-weight: 700;
+    /* line-height: 26px; */
+    line-height: 1.625rem;
+    color: var(--Primary-100);
+}
+
+.bottomSection .detail {
+    /* margin: 112.5px 69px 112.5px 0; */
+    margin: 7rem 4.3125rem 7rem 0;
+}
+
+/* 푸터 부분 */
+footer {
+    /* height: 160px; */
+    height: 10rem;
+    background-color: var(--gray-900);
+    /* padding-top: 32px; */
+    padding-top: 2rem;
+}
+
+footer p {
+    /* font-size: 16px; */
+    font-size: 1rem;
+    font-weight: 400;
+    /* line-height: 19.09px; */
+    line-height: 1.2rem;
+    color: var(--gray-400);
+    margin : 0;
+}
+
+footer .footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .documents {
+    display: flex;
+    justify-content: space-between;
+    /* gap: 30px; */
+    gap: 1.875rem;
+}
+
+footer .documents a {
+    color: var(--gray-200);
+    text-decoration: none;
+}
+
+footer .sns {
+    display: flex;
+    justify-content: space-between;
+    /* gap: 12px; */
+    gap: 0.75rem
+}
