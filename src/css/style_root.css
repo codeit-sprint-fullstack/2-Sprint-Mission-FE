@@ -66,6 +66,7 @@ main {
     margin: 0 auto;
     max-width: 1920px;
     height: 100%;
+    padding: 0 200px;
 }
 
 .top-section .section-wrap,
