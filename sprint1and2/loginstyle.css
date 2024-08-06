@@ -1,3 +1,9 @@
+html {
+    --mySize:clamp(5px,0.6vw,10px);
+    --blueBtnColor:#3692ff;
+    font-size: var(--mySize);
+}
+
 body {
     margin: 0;
     display: flex;
@@ -38,7 +44,7 @@ main {
 }
 
 #emailInput:focus {
-    outline: 1px solid #3692ff;
+    outline: 1px solid var(--blueBtnColor);
 }
 
 #emailInput::placeholder {
