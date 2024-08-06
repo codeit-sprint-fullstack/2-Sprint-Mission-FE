@@ -17,6 +17,14 @@ h1 {
     line-height: 3.5rem;
 }
 
+header,
+main,
+footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 /* 헤더 부분 */
 header {
     position: sticky;
@@ -30,6 +38,7 @@ header .section-wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 header button {
@@ -54,11 +63,7 @@ main {
 
 /* 1920픽셀 최대치를 만들기 위해 */
 .section-wrap {
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: max(200px, 20%);
-    margin-right: max(200px, 15%);
-    /* margin: 0 auto; */
+    margin: 0 auto;
     max-width: 1920px;
     height: 100%;
 }
@@ -169,6 +174,13 @@ footer {
     padding-top: 2rem;
 }
 
+footer .section-wrap,
+footer .footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 footer p {
     /* font-size: 16px; */
     font-size: 1rem;
@@ -177,11 +189,6 @@ footer p {
     line-height: 1.2rem;
     color: var(--gray-400);
     margin : 0;
-}
-
-footer .footer {
-    display: flex;
-    justify-content: space-between;
 }
 
 footer .documents {
