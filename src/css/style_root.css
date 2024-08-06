@@ -56,7 +56,7 @@ main {
 .section-wrap {
     margin-top: 0;
     margin-bottom: 0;
-    margin-left: max(200px, 15%);
+    margin-left: max(200px, 20%);
     margin-right: max(200px, 15%);
     /* margin: 0 auto; */
     max-width: 1920px;
