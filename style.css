@@ -216,18 +216,18 @@ footer {
   color: #9CA3AF;
 }
 
-.footer-Q {
+.footer-customer-service {
   display: flex;
   gap: 30px;
 
   color: #E5E7EB;
 }
 
-.footer-Q a {
+.footer-customer-service a {
   font-weight: 400;
 }
 
-.SNS {
+.sns {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,11 +235,11 @@ footer {
   gap: 12px;
 }
 
-.SNS a {
+.sns a {
   line-height: 0;
 }
 
-.SNS-logo {
+.sns-logo {
   width: 100%;
   height: 100%;
   width: 18px;
