@@ -1,12 +1,12 @@
+@import "./reset.css";
+
 html {
     --mySize:clamp(5px,0.6vw,10px);
     --blueBtnColor:#3692FF;
     font-size: var(--mySize);
-    margin: 0;
 }
 
 body {
-    margin: 0;
 }
 
 header {
@@ -152,16 +152,19 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
+
 }
 
-#contentsBoxLeft {
+.contentsBoxLeft {
     justify-content: left;
     text-align: left;
+    text-decoration: none;
 }
 
 #contentsBoxRight {
     justify-content: right;
     text-align: right;
+    text-decoration: none;
 }
 
 .mainContentsImg {
