@@ -33,8 +33,14 @@ nav {
     margin: auto;
 }
 
+/*
 .contentsPadding {
     padding: calc(var(--mySize) * 0.6) clamp(100px,20vw,200px) 0;
+}
+*/
+.contentsPadding {
+    padding-left: clamp(100px,20vw,200px);
+    padding-right: clamp(100px,20vw,200px);
 }
 
 #headerLogo {
@@ -108,10 +114,19 @@ nav {
 }
 
 main {
+	min-height: calc(100vh - 30px);
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+}
+
+#test {
+	min-height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
 }
 
 .mainContents {
