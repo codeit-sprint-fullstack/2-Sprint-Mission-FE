@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Pretendard-Regular";
+  color: #1F2937;
+  font-size: 18px;
+}
+
+form {
+  width: 640px;
+  margin: 0 auto;
+}
+
+.logo-img {
+ height: 132px;
+ margin: 60px auto 24px;
+ display: block;
+}
+
+label {
+  display: block;
+  margin: 16px 0;
+  font-weight: 700;
+}
+
+input {
+  display: block;
+  border: none;
+  color: #1F2937;
+  background-color: #F3F4F6;
+  font-size: 16px;
+  width: 100%;
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px 24px;
+}
+
+input::placeholder {
+  color: #9CA3AF;
+}
+
+.focused {
+  border: 1px solid #3692FF;
+}
+
+.pw {
+  position: relative;
+}
+
+.eye {
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 24px;
+}
+
+button {
+  background: #9CA3AF;
+  border: none;
+  color: #FFFFFF;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  border-radius: 40px;
+  padding: 16px 24px;
+  margin: 24px 0;
+}
+
+.easy-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #E6F2FF;
+  border-radius: 8px;
+  width: 100%;
+  height: 74px;
+  padding: 0 23px;
+  font-weight: 500;
+}
+
+.icons {
+  display: flex;
+  gap: 16px;
+}
+
+.ask {
+  margin: 24px 0;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.signup {
+  color: #3182F6;
+}
