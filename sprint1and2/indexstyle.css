@@ -11,6 +11,7 @@ body {
 
 header {
     height: calc(var(--mySize) * 6);
+    padding-top: calc(var(--mySize)*0.5);
     background-color: white;
     position: fixed;
     top: 0;
@@ -24,6 +25,13 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+}
+
+.headerLogoBox {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
