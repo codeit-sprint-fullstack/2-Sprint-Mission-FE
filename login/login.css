@@ -1,11 +1,19 @@
+:root {
+    --color-coolGray800: #1F2937;
+    --color-coolGray400: #9CA3AF;
+    --color-coolGray100: #F3F4F6;
+    --color-white: #ffffff;
+    --color-oauth-background: #E6F2FF;
+    --color-panda-market: #3692FF;
+}
+
 * {
     box-sizing: border-box;
 }
 
-html,
-body {
+html {
     margin: 0;
-    color: #1F2937;
+    color: var(--color-coolGray800);
     font-size: 16px;
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
@@ -38,15 +46,15 @@ input {
     border-radius: 12px;
     border: none;
 
-    color: #9CA3AF;
+    color: var(--color-coolGray400);
     font-size: 1rem;
     font-weight: 400;
     line-height: 24px;
-    background-color: #F3F4F6;
+    background-color: var(--color-coolGray100);
 }
 
 input:focus {
-    outline: 1px solid #3692FF;
+    outline: 1px solid var(--color-panda-market);
 }
 
 .password-bar {
@@ -61,11 +69,11 @@ button {
     border-radius: 40px;
     border: none;
 
-    color: #ffffff;
+    color: var(--color-white);
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 24px;
-    background-color: #9CA3AF;
+    background-color: var(--color-coolGray400);
 }
 
 .oauth {
@@ -82,7 +90,7 @@ button {
     font-size: 1rem;
     font-weight: 500;
     line-height: 24px;
-    background-color: #E6F2FF;
+    background-color: var(--color-oauth-background);
 }
 
 .oauth a {
@@ -96,12 +104,13 @@ button {
     gap: 16px;
 }
 
-.sign-up {
+.signup-content {
     font-size: 0.9375rem;
     font-weight: 500;
     line-height: 17.9px;
+    gap: 4px;
 }
 
-.sign-up a {
-    color: #3182F6;
+.signup content a {
+    color: var(--color-panda-market);
 }

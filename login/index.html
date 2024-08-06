@@ -7,12 +7,22 @@
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
     <link rel="stylesheet" href="login.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-39PZ8G6WKX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-39PZ8G6WKX');
+    </script>
+
 </head>
 
 <body>
     <main>
         <a href="../"><img class="login-logo" src="../images/logo.png" alt="로그인 로고"></a>
-        <form action="./login/index.html">
+        <form action="../login">
             <label for="useremail">이메일</label>
             <input id="useremail" name="useremail" type="email" placeholder="이메일을 입력해주세요">
             <label for="password">비밀번호</label>
@@ -20,7 +30,7 @@
                 <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
                 <img src="../images/btn_visibility_on_24px.svg" alt="눈 아이콘">
             </div>
-            <button class="login-btn" type="submit">로그인</button>
+            <button class="login-btn" type="button" onclick="location.href='../login'">로그인</button>
         </form>
         <div class="oauth">
             <span>간편 로그인하기</span>
@@ -33,9 +43,9 @@
                 </a>
             </div>
         </div>
-        <div class="signup">
+        <div class="signup-content">
             <span>판다마켓이 처음이신가요?</span>
-            <a href="../signup/index.html">회원가입</a>
+            <a href="../signup">회원가입</a>
         </div>
     </main>
 </body>

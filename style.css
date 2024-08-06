@@ -9,7 +9,7 @@ html, body {
 
   font-size: 16px;
   color: #374151;
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
 }
 
 /* --- a 태그 기본 설정 --- */
