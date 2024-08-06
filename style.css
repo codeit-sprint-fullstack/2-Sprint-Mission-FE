@@ -59,6 +59,7 @@ header {
 section {
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 /* --- 상위 배너 설정 --- */
