@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'ROKAF';
+    src: url('./assets/fonts/ROKAFSans.ttf') format('truetype');
+}
+
+:root {
+    --blue: #3692FF;
+    --main: #FCFCFC;
+    --gray: #1F2937;
+    --cool-gray: #F3F4F6;
+    --dark-gray: #9CA3AF;
+    --sky-blue: #E6F2FF;
+    --text: #1F2937;
+    --btext: #3182F6;
+}
+
+html {
+    /* 10px */
+    font-size: 62.5%;  
+    font-family: Pretendard;
+}
+
+body {
+    background-color: var(--main);
+    margin: 0;
+    padding: 60px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 103.53px;
+    height: 103.53px;
+}
+
+.title {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 66.34px;
+    font-family: ROKAF;
+    line-height: 89.56px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.password-input {
+    position: relative;
+}
+
+.password-input .eyes {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    right: 20px;
+    margin: auto 2px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.input-title {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
+    color: var(--gray);
+}
+
+.input-area {
+    width: 620px;
+    height: 56px;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--cool-gray);
+    resize: none;
+    outline-color: var(--blue);
+    padding: 0 20px;
+}
+
+.input-area::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.login-btn {
+    width: 640px;
+    height: 56px;
+    border-radius: 40px;
+    border: none;
+    background-color: var(--dark-gray);
+    padding: 16px, 124px, 16px, 124px;
+}
+
+.login-text {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.easy-login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 620px;
+    height: 74px;
+    background-color: var(--sky-blue);
+    border-radius: 8px;
+    border: none;
+    padding: 0 20px;
+}
+
+.easy-login p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}
+
+.google-icon {
+    background-color: white;
+    border-radius: 70%;
+    margin-right: 10px;
+}
+
+.sign-in {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sign-in p {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.sign-in a {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 500;
+    color: var(--btext);
+    text-decoration: underline;
+}
