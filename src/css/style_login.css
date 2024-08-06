@@ -24,7 +24,7 @@ form {
     width: 100%;
 }
 
-.labelWrap {
+.label-wrap {
     /* margin-bottom: 24px; */
     margin-bottom: 1.5rem;
 }
@@ -46,11 +46,11 @@ form input:focus {
     border-color: var(--Primary-100);
 }
 
-.inputPW > div {
+.input__pw > div {
     position: relative;
 }
 
-.inputPW img {
+.input__pw img {
     position: absolute;
     /* right: 24px; */
     /* bottom: 16px; */
@@ -73,7 +73,7 @@ form button {
     font-weight: 600;
 }
 
-.snsLogin {
+.sns-login {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -88,7 +88,7 @@ form button {
     padding: 1.5625rem 1.4375rem;
 }
 
-.snsLogin > div {
+.sns-login > div {
     display: flex;
     /* gap: 16px; */
     gap: 1rem;

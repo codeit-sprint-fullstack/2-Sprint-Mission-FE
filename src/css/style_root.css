@@ -26,14 +26,14 @@ header {
     z-index: 1;
 }
 
-header .sectionWrap {
+header .section-wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 header button {
-    background: url('/Part1/PandaMarket/src/image/btn_small_48.png') no-repeat;
+    background: url('../../src/image/btn_small_48.png') no-repeat;
     /* width: 128px; */
     width: 8rem;
     /* height: 48px; */
@@ -45,15 +45,15 @@ main {
     color: var(--gray-700);
 }
 
-.topSection,
-.bottomSection {
+.top-section,
+.bottom-section {
     /* height: 540px; */
     height: 33.75rem;
     background-color: #CFE5FF;
 }
 
 /* 1920픽셀 최대치를 만들기 위해 */
-.sectionWrap {
+.section-wrap {
     margin-top: 0;
     margin-bottom: 0;
     margin-left: max(200px, 15%);
@@ -63,8 +63,8 @@ main {
     height: 100%;
 }
 
-.topSection .sectionWrap,
-.bottomSection .sectionWrap {
+.top-section .section-wrap,
+.bottom-section .section-wrap {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: end;
@@ -72,13 +72,13 @@ main {
     gap: 0;
 }
 
-.topSection .detail,
-.bottomSection .detail {
+.top-section .detail,
+.bottom-section .detail {
     /* margin: 40px auto; */
     margin: 2.5rem auto;
 }
 
-.topSection .detail button {
+.top-section .detail button {
     width: 100%;
     /* height: 56px; */
     /* font-size: 20px; */
@@ -95,26 +95,26 @@ main {
     margin: 2rem 0 3.75rem;
 }
 
-.topSection .detail button:hover {
+.top-section .detail button:hover {
     cursor: pointer;
 }
 
 /* 중앙의 카드형 부분 */
-.hotItem,
+.hot-item,
 .search,
 .register {
     /* height: 720px; */
     height: 45rem;
 }
 
-.hotItem .sectionWrap,
-.search .sectionWrap,
-.register .sectionWrap {
+.hot-item .section-wrap,
+.search .section-wrap,
+.register .section-wrap {
     display: flex;
     align-items: center;
 }
 
-.search .sectionWrap,
+.search .section-wrap,
 .search .card {
     flex-direction: row-reverse;
     text-align: right;
@@ -126,19 +126,19 @@ main {
     align-items: center;
 }
 
-.cardDetail {
+.card-detail {
     display: flex;
     flex-direction: column;
     /* margin: 103px 29px 103px 64px; */
     margin: 6.4375rem 1.8125rem 6.4375rem 4rem;
 }
 
-.search .cardDetail {
+.search .card-detail {
     /* margin: 103px 64px 103px 29px; */
     margin: 6.4375rem 4rem 6.4375rem 1.8125rem;
 }
 
-.cardDetail p {
+.card-detail p {
     /* font-size: 24px; */
     font-size: 1.5rem;
     font-weight: 500;
@@ -146,7 +146,7 @@ main {
     line-height: 2rem;
 }
 
-.cardName {
+.card__name {
     /* font-size: 18px; */
     font-size: 1.125rem;
     font-weight: 700;
@@ -155,7 +155,7 @@ main {
     color: var(--Primary-100);
 }
 
-.bottomSection .detail {
+.bottom-section .detail {
     /* margin: 112.5px 69px 112.5px 0; */
     margin: 7rem 4.3125rem 7rem 0;
 }
