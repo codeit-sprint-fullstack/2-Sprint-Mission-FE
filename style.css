@@ -1,11 +1,9 @@
-html, body {
+html,
+body {
   margin: 0 auto;
   padding: 0;
 
   width: 100%;
-  max-width: 1920px;
-
-  background-color: #CFE5FF;
 
   font-size: 16px;
   color: #374151;
@@ -30,26 +28,48 @@ header {
   top: 0;
   z-index: 1;
 
-  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   background-color: #ffffff;
 }
 
-.top-bar {    /* 상단 네비게이션 바 */
+.top-bar {
+  /* 상단 네비게이션 바 */
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 200px;
+
+  width: 100%;
+  max-width: 1920px;
+  height: 70px;
+}
+
+.top-bar-elements {
+  position: absolute;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 9px;
-  margin: 0 200px;
+  padding: 9px 0;
+
+  width: 100%;
 }
 
-.site-logo {  /* 사이트 로고 */
+.site-logo {
+  /* 사이트 로고 */
   width: 153px;
   height: 51px;
 }
 
-.auth {       /* 로그인 버튼 */
+.auth {
+  /* 로그인 버튼 */
   background-color: #3292FF;
   padding: 12px 50px;
   border-radius: 8px;
@@ -58,27 +78,36 @@ header {
 /* --- section 기본 설정 --- */
 section {
   display: flex;
+  justify-content: center;
   align-items: center;
+
   white-space: nowrap;
+}
+
+.banner {
+  background-color: #CFE5FF;
 }
 
 /* --- 상위 배너 설정 --- */
 .banner-top {
   position: relative;
 
+  display: flex;
   justify-content: center;
 
   padding: 150px 0 0;
 
-  height: 540px;
   width: 100%;
+  max-width: 1920px;
+  height: 540px;
 }
 
-.banner-element {
+.banner-elements {
   position: absolute;
   bottom: 0;
 
   display: flex;
+  justify-content: center;
 }
 
 .banner-top-button {
@@ -86,6 +115,9 @@ section {
   border-radius: 20px;
 
   padding: 10px 35px;
+
+  font-size: 1.25rem;
+  line-height: 32px;
 }
 
 .banner-top-img {
@@ -111,11 +143,13 @@ section {
 .banner-bottom {
   position: relative;
 
+  display: flex;
   justify-content: center;
-  
+
   padding: 100px 0 0;
 
   width: 100%;
+  max-width: 1920px;
   height: 540px;
 }
 
@@ -131,11 +165,8 @@ main {
   flex-direction: column;
   justify-content: center;
 
-  padding: 180px 0;
-
-  gap: 200px;
-
-  background-color: #ffffff;
+  padding: 100px 0;
+  gap: 100px;
 }
 
 .main-content {
@@ -176,26 +207,82 @@ main {
   line-height: 32px;
 }
 
+.main-area { 
+  background-color: #ffffff;
+}
+
 .main-top {
-  justify-content: flex-start;
-  padding-left: 360px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-right: 300px;
+
+  width: 100%;
+  max-width: 1920px;
+  height: 720px;
+}
+
+.main-top-elements {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-middle {
-  justify-content: flex-end;
-  padding-right: 360px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-left: 300px;
+
+  width: 100%;
+  max-width: 1920px;
+  height: 720px;
 
   text-align: right;
 }
 
+.main-middle-elements {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-bottom {
-  justify-content: flex-start;
-  padding-left: 360px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-right: 300px;
+
+  width: 100%;
+  max-width: 1920px;
+  height: 720px;
+}
+
+.main-bottom-elements {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* --- footer 기본 설정 --- */
 footer {
-  height: 160px;
+  display: flex;
+  justify-content: center;
 
   background-color: #111827;
   font-size: 1rem;
@@ -205,12 +292,29 @@ footer {
 }
 
 .footer-content {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 1920px;
+  height: 160px;
+}
+
+.footer-elements {
+  position: absolute;
+  top: 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   padding: 32px 200px;
-  gap: 10px;
+
+  width: 100%;
+
+  gap: 30px;
 }
 
 .footer-info {
@@ -219,7 +323,7 @@ footer {
 
 .footer-customer-service {
   display: flex;
-  gap: 30px;
+  gap: 20px;
 
   color: #E5E7EB;
 }
