@@ -1,3 +1,3 @@
-* # README
+# * WARNING *
 
 ## Nuclear Launch Detected
