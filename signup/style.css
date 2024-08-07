@@ -1,0 +1,177 @@
+/* 기본 설정 */
+
+@font-face {
+  font-family: 'ROKAF';
+  src: url('../ROKAF Sans.ttf') format('truetype');
+}
+
+@import "../reset.css";
+
+:root {
+  --blue-color: #3692FF;
+  --black-color: #1F2937;
+  --gray-color: #9CA3AF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* 기본 폰트 크기를 16px로 설정 = 1rem */
+  font-weight: 400;
+}
+
+body {
+  font-family: Pretendard;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 회원가입 */
+
+.signup {
+  margin: 3.75rem auto;
+  width: 40rem;
+}
+
+/* 회원가입 타이틀 */
+
+.signup-title {
+  margin-bottom: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  margin-right: 1.39rem;
+}
+
+.title {
+  color: var(--blue-color);
+  font-weight: 700;
+  font-family: ROKAF;
+  font-size: 4.146rem;
+  line-height: 1.35;
+}
+
+/* 회원가입 기능 */
+
+label {
+  margin-top: 0.5rem;
+  display: block;
+  color: var(--black-color);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.19;
+}
+
+input {
+  color: var(--black-color);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #F3F4F6;
+  margin: 1rem 0;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  gap: 0.625;
+  border-radius: 0.75rem;
+  border:none;
+}
+
+input::placeholder {
+  color: var(--gray-color);
+}
+
+input:focus {
+  border-color: var(--blue-color);
+}
+
+/* 눈 아이콘 설정 */
+
+.input-container input {
+  padding-right: 3rem;
+}
+
+.input-container {
+  position: relative;
+}
+
+.toggle-password {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* 로그인 버튼 */
+button {
+  margin-top: 0.5rem;
+  background-color: var(--gray-color);
+  border: none;
+  color: white;
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 1rem 7.75rem;
+  gap: 0.625rem;
+  border-radius: 2.5rem;
+  width: 100%;
+}
+
+/* 간편 로그인 */
+.easy-login {
+  margin: 1.5rem 0;
+  padding: 0 1.438rem;
+  background-color: #E6F2FF;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--black-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.625rem;
+}
+
+.icon {
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.icon a {
+  width: 2.625rem;
+  height: 2.625rem;
+}
+
+.icon img {
+  width: 100%;
+}
+
+/* 맨 아래 문구 */
+.signup-login {
+  text-align: center;
+  gap: 0.25rem;
+  color: var(--black-color);
+  font-size: 0.938rem;
+  font-weight: 500;
+  line-height: 1.19;
+}
+
+.signup-login-link {
+  color: #3182F6;
+  text-decoration: underline;
+}

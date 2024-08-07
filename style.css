@@ -1,0 +1,283 @@
+@font-face {
+    font-family: 'ROKAF';
+    src: url('ROKAF Sans.ttf') format('truetype');
+}
+
+@import "reset.css";
+
+:root {
+  --top-bottom-color: #CFE5FF;
+  --blue-color: #3692FF;
+  --article-bg: #FCFCFC;
+  --script-color: #374151;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%; /* 기본 폰트 크기를 16px로 설정 = 1rem */
+}
+
+body {
+    font-family: Pretendard;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    height: 4.375rem;
+    z-index: 1;
+    position: sticky;
+    top:0;
+    padding: 0.5625rem 12.5rem;
+    border-bottom: 0.0625rem solid #DFDFDF;
+    background-color: white;
+    gap: 0.625rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.logo-title {
+    cursor: pointer;
+}
+
+.logo-title a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+.title {
+    color: var(--blue-color);
+    font-size: 1.6rem;
+    line-height: 1.35;
+    font-weight: 700;
+    margin: 0 0 0 0.5rem;
+    font-family: ROKAF;
+}
+
+.login {
+    width: 8rem;
+    hegith: 3rem;
+    text-align: center;
+    padding: 0.75rem 1.4375rem;
+    border-radius: 0.5rem;
+    gap: 0.625rem;
+    background-color: var(--blue-color);
+    color: #F3F4F6;
+
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.625;
+
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* panda */
+.panda {
+    width: 100%;
+    height: 33.75rem;
+    background-color: var(--top-bottom-color);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.top {
+    display: flex;
+    gap: 0.4375rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 0 3.75rem 0;
+    justify-content: center;
+}
+
+.main-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #374151;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.go-button {
+    padding: 1rem 7.75rem;
+    border-radius: 2.5rem;
+    background: var(--blue-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #F9FAFB;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* section */
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 45rem;
+}
+
+.article-1,
+.article-3 {
+    display: flex;
+    justify-content: center;
+    background: var(--article-bg);
+    margin-right: 14.4375rem;
+    height: 27.75rem;
+}
+
+.article-2 {
+    background: var(--article-bg);
+    display: flex;
+    margin-left: 14.4375rem;
+    justify-content: flex-end;
+    height: 27.75rem;
+}
+
+.content-1,
+.content-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    white-space: nowrap;
+}
+
+.content-1 {
+    margin-left: 4rem;
+    margin-right: 2rem;
+}
+
+.content-3 {
+    margin-left: 4rem;
+}
+
+.content-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: end;
+    margin-right: 4rem;
+    margin-left: 2rem;
+    gap: 1.5rem;
+    white-space: nowrap;
+}
+
+.section-img {
+    width: 36.75rem;
+    height: 27.75rem;
+    border-radius: 0.75rem;
+}
+
+/* section content 글꼴 */
+section h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    color: var(--script-color);
+}
+
+.description {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--script-color);
+}
+
+.keyword {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--blue-color);
+}
+
+/* panda-2 */
+.panda-2 {
+    width: 100%;
+    height: 33.75rem;
+    background-color: var(--top-bottom-color);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.bottom {
+    display: flex;
+    gap: 4.3125rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* footer */
+footer {
+    height: 10rem;
+    background-color: #111827;
+    padding: 2rem 12.5rem
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.container p {
+    font-size: 1rem
+    font-weight: 400;
+    line-height: 1.2;
+    color: #9CA3AF;
+}
+
+.mid {
+    display: flex;
+    gap: 1.875rem
+}
+
+.mid a {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #E5E7EB;
+    cursor: pointer;
+}
+
+.social-icons {
+    display: flex;
+    gap: 0.75rem
+}
+
+.social-icons img {
+    padding: 0.1156rem 0.125rem;
+    cursor: pointer;
+}
+
