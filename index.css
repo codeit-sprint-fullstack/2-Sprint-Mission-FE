@@ -1,14 +1,26 @@
+@import "./reset.css";
+
 @media screen and (min-width: 1920px) {
-  .purchase {width: 100%;}
-  .up_footer {width: 100%;}
-  header {width: 100%;}
-  body {background-color: #CFE5FF;}
+  .purchase, .up_footer, header {
+    width: 100%;
+  }
+  body {
+    background-color: #CFE5FF;
+  }
 }
 @media screen and (max-width: 1919px) {
   .header div {margin-left: 200px;}
-  .header button {margin-right: 200px;}
-  .footerbox p {margin-left: 200px;}
-  .a2box {margin-right: 200px;}
+  .header .login_btn {margin-right: 200px;}
+  .footerbox h4{
+    margin-left: 200px;
+  }
+  .a2box {
+    margin-right: 200px;
+  }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -20,21 +32,23 @@ body {
   align-items: center;
 }
 
+/*header*/
+
 header {
   width: 1920px;
   height: 70px;
-  background-color: white;
+  background-color: #FFFFFF;
   position: fixed;
   top: 0;
   display: flex;
   justify-content: center;
   z-index: 2;
+  border-bottom: 1px solid #DFDFDF
 }
 
 .header {
   width: 1120px;
-  height: 51px;
-  padding: 9px 400px;
+  margin: 9px 400px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -47,7 +61,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-shrink: 1;
 }
 
 header a, .purchase a, .footerbox a, .a2box a {
@@ -55,7 +68,7 @@ header a, .purchase a, .footerbox a, .a2box a {
   cursor: pointer;
 }
 
-header img {
+header img {  
   width: 40px;
   height: 40.14px;
   cursor: pointer;
@@ -90,6 +103,8 @@ header button {
   justify-content: center;
 }
 
+/*main*/
+
 .purchase > div {
   width: 1110px;
   height: 340px;
@@ -109,7 +124,7 @@ header button {
   line-height: 56px;
   text-align: left; 
   position: relative;
-  bottom: 10px;
+  bottom: 25px;
 }
 
 .perdiv button {
@@ -132,11 +147,15 @@ header button {
 .purchase img {
   width: 746px;
   height: 340px;
+  position: relative;
+  left: 10px;
 }
 
 .perdiv {
   width: 357px;
   height: 260px;
+  position: relative;
+  top: 30px;
 }
 
 .section {
@@ -158,7 +177,6 @@ header button {
 
 .bigbox {
   width: 955px;
-  height: 444px;
   background-color: #FCFCFC;
   display: flex;
   flex-direction: row;
@@ -173,10 +191,18 @@ header button {
   height: 444px;
 }
 
+.smallbox {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  gap: 20px;
+}
+
 .onetext {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 20px;
 }
 
 .section1 h5 {
@@ -187,8 +213,7 @@ header button {
   font-family: Pretendard;
   color: #3692FF;
   position: relative;
-  top: 56px;
-  right: 20px;
+  bottom: 20px;
 }
 
 .section1 h2 {
@@ -200,8 +225,6 @@ header button {
   letter-spacing: 0.02em;
   color: #374151;
   position: relative;
-  top: 10px;
-  right: 20px;
 }
 
 .section1 h4 {
@@ -212,8 +235,6 @@ header button {
   text-align: left;
   color: #374151;
   position: relative;
-  bottom: 24px;
-  right: 24px;
 }
 
 .section2 {
@@ -242,23 +263,30 @@ header button {
   height: 444px;
 }
 
+.smallbox2 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  gap: 20px;
+}
+
 .onetext2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 20px;
 }
 
 .section2 h5 {
-  position: relative;
-  text-align: right;
-  top: 56px;
-  left: 20px;
   font-size: 18px;
   font-weight: 700;
   line-height: 26px;
   font-family: Pretendard;
   color: #3692FF;
+  position: relative;
+  text-align: right;
+  bottom: 20px;
 }
 
 .section2 h2 {
@@ -270,8 +298,6 @@ header button {
   letter-spacing: 0.02em;
   color: #374151;
   position: relative;
-  left: 24px;
-  top: 10px;
 }
 
 .section2 h4 {
@@ -282,8 +308,6 @@ header button {
   line-height: 32px;
   color: #374151;
   position: relative;
-  bottom: 24px;
-  left: 24px;
 }
 
 .section3 {
@@ -313,6 +337,13 @@ header button {
   border-radius: 12px;
 }
 
+.smallbox3 {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  gap: 20px;
+}
+
 .onetext3 {
   width: 335px;
   height: 238px;
@@ -320,16 +351,18 @@ header button {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 20px;
 }
 
 .section3 h5 {
-  position: relative;
-  text-align: left;
   font-size: 18px;
   font-weight: 700;
   line-height: 26px;
   font-family: Pretendard;
   color: #3692FF;
+  position: relative;
+  text-align: left;
+  bottom: 20px;
 }
 
 .section3 h2 {
@@ -351,7 +384,6 @@ header button {
   line-height: 32px;
   color: #374151;
   position: relative;
-  bottom: 24px;
 }
 
 .block {
@@ -366,6 +398,8 @@ header button {
   width: 1120px;
   height: 150px;
 }
+
+/*footer*/
 
 .up_footer {
   width: 100%;
@@ -385,6 +419,7 @@ header button {
   justify-content: center;
   position: relative;
   top: 143px;
+  gap: 50px;
 }
 
 .up_footer h1 {
@@ -406,31 +441,29 @@ header button {
   height: 172px;
   padding: 0px 0px 60px 0px;
   gap: 10px;
+  margin-top: 60px;
 }
 
 footer {
-  width: 100%;
-  max-width: 1920px;
+  width: 1920px;
   height: 160px;
   gap: 10px;
   background-color: #111827;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  
 }
 
 .footerbox {
   width: 1120px;
-  height: 20px;
-  padding: 32px 400px 32px 400px;
+  margin: 32px 400px 32px 400px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.footerbox h5{
+.a0box h4{
   font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
