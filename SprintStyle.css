@@ -14,11 +14,13 @@ header {
     height: 70px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: white;
     z-index: 1;
+    justify-content: space-between;
+    padding: 0 200px;
 }
+
 main {
     display: flex;
     flex-direction: column;
@@ -29,7 +31,6 @@ main {
 .panda {
     width: 153px;
     height: 51px;
-    margin-left: 200px;
 }
 .login {
     font-size: 16px;
@@ -45,8 +46,6 @@ main {
     padding: 12px, 23px;
     gap: 10px;
     background: #3692FF;
-
-    margin-right: 200px;
 }
 .letsgo {
    
