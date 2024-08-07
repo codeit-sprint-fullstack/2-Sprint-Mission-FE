@@ -163,22 +163,14 @@ a.logo,
   height: 21.25rem;
 }
 
-/* center */
-
-.full-center {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-color-white);
-  width: 100%;
-  align-items: center;
-}
-
+/* center 공통  */
 .mainsection {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 45rem;
+  background-color: var(--background-color-white);
 }
 
 .text-section {
@@ -192,7 +184,6 @@ a.logo,
   font-size: var(--text-2lg-18);
   font-weight: 700;
   line-height: 1.625rem;
-
   color: var(--primary-color-100);
 }
 
@@ -216,6 +207,8 @@ a.logo,
   line-height: 2rem;
   color: var(--secondary-color-gray700);
 }
+
+/* center 개별 */
 
 #item.text-section,
 #register.text-section {
@@ -263,10 +256,8 @@ a.logo,
 /* bottom */
 
 .full-bottom {
-  display: flex;
   background-color: var(--background-color);
-  width: 100%;
-  justify-content: center;
+  margin-top: 8.625rem;
 }
 
 .bottom-section {
@@ -302,35 +293,30 @@ a.logo,
 .footer-section {
   display: flex;
   width: 120rem;
-  height: 10rem;
   justify-content: space-between;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.193125rem;
-  text-align: center;
   padding: 2rem 25rem;
   gap: 0.625rem;
-  position: relative;
 }
 
-.company-name {
+.company-name,
+.footer-link-section a {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.193125rem;
   text-align: center;
   color: var(--secondary-color-gray200);
+  height: 1.1875rem;
 }
 
-.footer-text-section {
+.footer-link-section {
   display: flex;
   gap: 1.875rem;
   width: 9.9375rem;
   height: 1.1875rem;
 }
 
-.footer-text-section a {
+.footer-link-section a {
   text-decoration: none;
-  color: var(--secondary-color-gray200);
 }
 
 .link-icon {
@@ -347,22 +333,9 @@ a.logo,
     padding: 0.5625rem 12.5rem;
   }
   
-  .full-footer {
-    width: 100%;
-  }
 
   .footer-section {
-    width: 100%;
     padding: 2rem 12.5rem;
   }
 }
 
-@media (width > 1920px) {
-  .full-top,
-  .full-center,
-  .full-bottom,
-  .full-footer,
-  .full-main  {
-    width: 100%;
-  }
-}
