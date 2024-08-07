@@ -1,0 +1,249 @@
+:root {
+  --primary-color: #3692FF;
+  --background-color: #FFFFFF;
+  --section-text-color: #374151;
+  --gnb-bg: #ffffff;
+  --text-color: #333;
+  --content-box-gray-bg: #FCFCFC;
+  --button-text-color: #FFFFFF;
+  --footer-text-color: #9CA3AF;
+  --footer-bg: #111827;
+  --banner-bg: #CFE5FF;
+  --input-background-color: #F3F4F6;
+  --focus-border-color: #3694FF;
+  --submit-button-bg: #9CA3AF;
+  --social-login-bg: #E6F2FF;
+  --link-color: #3182F6;
+}
+/* 공통 영역 */
+html {
+  font-size: 100%; /* 1rem = 16px */
+}
+
+body {
+  font-family: 'Pretendard', Poppins, "Noto Sans KR", sans-serif;
+  color: var(--text-color);       /* 기본 글꼴 색상 */
+  background: var(--banner-bg);   /* 기본 배경 색상 */
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;                /* 16px */
+}
+a {
+  text-decoration:none;
+}
+
+/* 상단 gnb 영역 */
+.gnb-wrapper {
+  display: flex;
+  justify-content: center;        /* 가로 정렬: 가운데 */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;                   /* 70px */
+  z-index: 1000;
+}
+.gnb {
+  display: flex;
+  align-items: center;            /* 세로 정렬: 가운데 */
+  justify-content: space-between; /* 가로 정렬: 양쪽 끝에 배치하고 균등 분배 */
+  width: 100%;
+  max-width: 120rem;            /* 1920px */
+  min-width: 42.5rem;           /* 680px */              /* 작은 화면에서 보기 좋게 */
+  background-color: var(--gnb-bg);
+  padding: 0 12.5rem;           /* 200px */               /* 왼쪽과 오른쪽에 각각 패딩 추가하여 간격 조절 */
+  box-sizing: border-box;
+}
+.btn_login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: var(--button-text-color);
+  width: 8rem;                  /* 128px */
+  height: 3rem;                 /* 48px */
+  font-size: 1rem;              /* 16px */
+  font-weight: 600;
+  border-radius: 0.5rem;        /* 8px */
+  border: none; 
+  cursor: pointer; 
+}
+
+/* 상단 배너 영역 */
+.banner {
+  display: flex;
+  align-items: flex-end;        /* 세로 정렬: 하단 */
+  justify-content: center;      /* 가로 정렬: 가운데 */
+  width: 100%;
+  max-width: 120rem;            /* 1920px */
+  min-width: 50rem;             /* 800px */              /* 작은 화면에서 보기 좋게 */
+  height: 540px;             /* 540px */
+  box-sizing: border-box;
+  margin: 4.375rem auto 0;      /* 70px */          /* 헤더의 높이만큼 마진 추가하고 가로로 가운데 위치, 하단 마진은 0으로 주어야 함*/
+  background-color: var(--banner-bg);
+}
+.banner-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 1100px;              /* 1100px */
+  height: 340px;             /* 340px */
+  background-image: url('/images/img_home_top.png');   /* 화면이 작아지면 왼쪽 컨텐츠에 살짝 겹치도록 백그라운드 이미지로 설정 */
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  box-sizing: border-box;
+}
+.banner-top-message {
+  width: 22.3125rem;            /* 357px */
+  height: 16.25rem;             /* 260px */
+  font-size: 2.5rem;            /* 40px */
+  font-weight: 700;
+  line-height: 3.5rem;          /* 56px */
+}
+.btn_items {                    /* 구경하러 가기 버튼 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: var(--button-text-color);
+  width: 22.3125rem;            /* 357px */
+  height: 3.5rem;               /* 56px */
+  font-size: 1.25rem;           /* 20px */
+  font-weight: 600;
+  line-height: 2rem;            /* 32px */
+  border-radius: 2.5rem;        /* 40px */
+  border: none; 
+  cursor: pointer; 
+}
+
+/* 섹션 영역 */
+.section-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  margin: 0 auto;
+}
+.section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 120rem;            /* 1920px */
+  height: 720px;                /* 720px */
+  box-sizing: border-box;
+}
+.section-left {
+  justify-content: flex-start;
+  padding-left: 12.5rem;        /* 200px */         /* margin 대신 padding 을 주어 내부 요소의 width 가 줄어들어도 최대한 보여지는 영역의 width를 높여 줌 */
+  text-align: left;
+}
+.section-right {
+  justify-content: flex-end;
+  padding-right: 12.5rem;       /* 200px */    
+  text-align: right;  
+}
+.contents-box-left, .contents-box-right {
+  display: flex;
+  align-items: center;
+  gap: 1.875rem;                /* 30px */
+  width: 100%;
+  min-height: 44px;             /* 444px */          /* 내부 요소의 높이가 늘어날 경우 자동으로 증가될 수 있도록 height 대신 min-height 로 설정 */
+  background-color: var(--content-box-gray-bg);
+}
+.contents-box-left {
+  justify-content: flex-start;  
+  max-width: 59.6875rem;        /* 955px */
+}
+.contents-box-right {
+  justify-content: flex-end;
+  max-width: 59.6875rem;        /* 955px */
+}
+.section-message {
+  min-height: 14.875rem;        /* 238px */
+  height: auto;                 /* 높이를 auto로 설정해 세로로 확장되도록 설정 */
+  min-width: 5rem;           /* 80px */          /* 세로 확장시 secetion-left 의 높이를 벗어나지 않게 하기 위해 적당한 min-width 설정 */
+}
+.section-message1 {
+  max-width: 17.125rem;         /* 274px */
+}
+.section-message2 {
+  max-width: 19.8125rem;        /* 317px */
+}
+.section-message3 {
+  max-width: 20.9375rem;        /* 335px */
+}
+.section-wrapper span {
+  display: block;
+  margin-bottom: 1.25rem;       /* 20px */
+}
+.section-title {
+  font-size: 1.125rem;          /* 18px */
+  font-weight: 700;
+  line-height: 1.625rem;        /* 26px */
+  color: var(--primary-color);
+}
+.section-subtitle {
+  font-size: 2.5rem;            /* 40px */
+  font-weight: 700;
+  line-height: 3.5rem;          /* 56px */
+  color: var(--section-text-color); 
+}
+.section-description {
+  font-size: 1.5rem;            /* 24px */
+  font-weight: 500;
+  line-height: 2rem;            /* 32px */
+  color: var(--section-text-color); 
+}
+
+/* 하단 배너 영역 */
+.banner-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 1100px;              /* 1100px */
+  height: 397px;              /* 397px */
+  background-image: url('/images/img_home_bottom.png');   /* 화면이 작아지면 왼쪽 컨텐츠에 살짝 겹치도록 백그라운드 이미지 설정 */
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  box-sizing: border-box;
+}
+.banner-bottom-message {
+  width: 18.4375rem;            /* 295px */
+  height: 7rem;                 /* 112px */
+  font-size: 2.5rem;            /* 40px */
+  font-weight: 700;
+  line-height: 3.5rem;          /* 56px */
+}
+
+/* 푸터 영역 */
+.footer-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 120rem;            /* 1920px */
+  height: 10rem;                /* 160px */
+  padding: 1.875rem;            /* 30px */
+  margin: 0 auto; /* 가로 가운데 정렬 */
+  color: var(--footer-text-color);
+  background-color: var(--footer-bg);
+}
+.footer-contents {
+  width: 70rem;                 /* 1120px */
+  height: 1.25rem;              /* 20px */
+  min-width: 25rem;             /* 400px */               /* 화면이 작아져도 한줄로 표시되도록 적당한 min-width 지정 */
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;              /* 16px */
+  font-weight: 400;
+  padding: 0 12.5rem;           /* 200px */               /* 왼쪽과 오른쪽에 각각 패딩 추가하여 간격 조절 */
+}
+.footer-contents a {
+  color: var(--footer-text-color);               /* 링크 글자색 설정 */
+  text-decoration: none;        /* 밑줄 제거 */
+}
+.footer-privacy-faq {
+  list-style: none;             /* <ul> 태그의 기호 삭제 */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.25rem;                 /* 20px */
+}
