@@ -1,0 +1,122 @@
+* {
+  font-family: Poppins, "Nato Sans KR", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+/*-------- 글씨체 -------*/
+
+
+/* 첫번째 글씨체 */
+.first-line {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 700;
+  color: #3692FF;
+}
+
+/* 두번째 글씨체 */
+.second-line {
+  font-size: 40px;
+  line-height: 56px;
+  font-weight: 700;
+  color: #374151;
+}
+
+
+
+/* 세번째 글씨체 */
+.third-line {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  color: #374151;
+}
+
+
+/*-------- 버튼 -------*/
+
+
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+
+/* 헤더 스타일 */
+header {
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70px;
+  padding: 9px, 400px, 9px, 400px;
+  background-color: white;
+  z-index: 1;
+}
+
+
+
+/* 바디 스타일 */
+
+body {
+  margin: 0;
+  word-break: keep-all;
+  font-family: Poppins, "Nato Sans KR", sans-serif;
+  }
+
+
+
+/* 풋터 스타일 */
+footer{
+
+  justify-content:space-between;
+  display:flex;
+  background-color:  #000000;
+  color: #9ca3af;
+  display: flex;
+  padding: 3rem 2rem 10rem 5rem;
+  font-size: 1rem;
+  gap: 10rem;
+  box-sizing: border-box;
+  align-items: center;
+
+}
+
+#footer1{
+  display: flex;
+  gap: 3rem;
+  margin-left:200px;
+  align-items: center;
+}
+
+#footer2{
+  display: flex;
+  gap: 1.4rem;
+  color:#ffffff;
+  /* margin-left:100px */
+}
+#footer3{
+  
+  display: flex;
+  gap: 1rem;
+  margin-left: 200px
+  
+}
