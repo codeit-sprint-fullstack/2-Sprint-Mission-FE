@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #374151;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;  /* 심화 요구사항 1rem = 10px */
+}
+
+nav {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    height: 7rem;
+}
+
+a {
+    text-decoration: none;
+    text-align:center;
+}
+
+.logo img{
+    width: 15rem;
+    margin-left: 20rem;
+}
+
+.button{
+    background-color: #3692FF;
+    color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+#loginbtn {
+    width: 10rem;
+    height: 4rem;
+    border-radius: 1rem;
+    margin-right: 20rem;
+}
+
+#lookforbtn{
+    width: 30rem;
+    height: 5rem;
+    border-radius: 99.9rem;
+    margin-top: 2rem;
+}
+
+/*main*/
+
+.banner {
+    background-color: #CFE5FF;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: 70% bottom;
+    height: 57rem; /*nav 만큼 더 줌*/
+    background-size: 50%;
+    font-size: 2.5rem;
+}
+
+.wrapper{
+    margin-top: 2rem;
+    margin-left: 15rem;
+}
+
+#top {
+    background-image: url("../images/home/top_banner.png");
+}
+
+.feature{
+    font-size: 2rem;
+    padding: 10rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%; /* 컨텐츠들 사이 띄울 때 좋음 */
+}
+
+.feature-content{
+    background-color: #FCFCFC;
+}
+
+section h5 {
+    color: #3692FF;
+    margin-bottom: 1rem;
+}
+
+section h2 {
+    margin-bottom: 2rem;
+}
+
+#second{    /*여러개인 경우 자손 선택자인 nth를 사용해도 됨*/
+    text-align: right;
+}
+
+#bottom{
+    background-image: url("../images/home/bottom_banner.png");
+}
+
+/*footer*/
+
+footer {
+    font-size: 2rem;
+    background-color: #111827;
+    padding: 5rem 0;
+    
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-around;
+}
+
+.copyright{
+    color: #9CA3AF;
+    margin-left: 20rem;
+}
+
+.snsicon{
+    margin-right: 20rem;
+}
+.footerlink a {
+    color: #E5E7EB;
+    text-decoration: none;
+}
+
