@@ -6,6 +6,7 @@ body {
   width: 100%;
 
   font-size: 16px;
+
   color: #374151;
   font-family: "Pretendard Variable", Pretendard, sans-serif;
 }
@@ -16,7 +17,7 @@ a {
 
   font-weight: 600;
   font-size: 1rem;
-  line-height: 26px;
+  line-height: 1.625rem;
   color: #F3F4F6;
   text-decoration: none;
   text-align: center;
@@ -43,11 +44,11 @@ header {
   justify-content: center;
   align-items: center;
 
-  margin: 0 200px;
+  margin: 0 12.5rem;
 
   width: 100%;
-  max-width: 1920px;
-  height: 70px;
+  max-width: 120rem;
+  height: 4.375rem;
 }
 
 .top-bar-elements {
@@ -57,22 +58,22 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  padding: 9px 0;
+  padding: 0.5625rem 0;
 
   width: 100%;
 }
 
 .site-logo {
   /* 사이트 로고 */
-  width: 153px;
-  height: 51px;
+  width: 9.5625rem;
+  height: 3.1875rem;
 }
 
 .auth {
   /* 로그인 버튼 */
   background-color: #3292FF;
-  padding: 12px 50px;
-  border-radius: 8px;
+  padding: 0.75rem 3.125rem;
+  border-radius: 0.5rem;
 }
 
 /* --- section 기본 설정 --- */
@@ -95,11 +96,11 @@ section {
   display: flex;
   justify-content: center;
 
-  padding: 150px 0 0;
+  padding: 9.375rem 0 0;
 
   width: 100%;
-  max-width: 1920px;
-  height: 540px;
+  max-width: 120rem;
+  height: 33.75rem;
 }
 
 .banner-elements {
@@ -112,17 +113,17 @@ section {
 
 .banner-top-button {
   background-color: #3292FF;
-  border-radius: 20px;
+  border-radius: 1.25rem;
 
-  padding: 10px 35px;
+  padding: 0.625rem 2.1875rem;
 
   font-size: 1.25rem;
-  line-height: 32px;
+  line-height: 2rem;
 }
 
 .banner-top-img {
-  Width: 746px;
-  Height: 340px;
+  Width: 46.625rem;
+  Height: 21.25rem;
 }
 
 /* --- 배너 기본 설정 --- */
@@ -130,13 +131,13 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 32px;
+  gap: 2rem;
 }
 
 .banner-heading {
   font-size: 2.5rem;
   font-weight: 700;
-  line-height: 56px;
+  line-height: 3.5rem;
 }
 
 /* --- 하위 배너 설정 --- */
@@ -146,16 +147,16 @@ section {
   display: flex;
   justify-content: center;
 
-  padding: 100px 0 0;
+  padding: 6.25rem 0 0;
 
   width: 100%;
-  max-width: 1920px;
-  height: 540px;
+  max-width: 120rem;
+  height: 33.75rem;
 }
 
 .banner-bottom-img {
-  width: 746px;
-  height: 397px;
+  width: 46.625rem;
+  height: 24.8125rem;
 }
 
 
@@ -165,37 +166,37 @@ main {
   flex-direction: column;
   justify-content: center;
 
-  padding: 100px 0;
-  gap: 100px;
+  padding: 6.25rem 0;
+  gap: 6.25rem;
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
 
-  padding: 64px;
+  padding: 4rem;
 }
 
 .main-bg {
   font-size: 1.125rem;
   font-weight: 700;
-  line-height: 26px;
+  line-height: 1.625rem;
   color: #3692FF;
 }
 
 .main-img {
-  width: 588px;
-  height: 444px;
-  border-radius: 12px;
+  width: 36.75rem;
+  height: 27.75rem;
+  border-radius: 0.75rem;
 }
 
 .main-heading {
   margin: 0;
-  padding: 10px 0;
+  padding: 0.625rem 0;
 
   font-size: 2.5rem;
   font-weight: 700;
-  line-height: 56px;
+  line-height: 3.5rem;
 }
 
 .main-description {
@@ -204,7 +205,7 @@ main {
 
   font-size: 1.5rem;
   font-weight: 500;
-  line-height: 32px;
+  line-height: 2rem;
 }
 
 .main-area { 
@@ -218,11 +219,11 @@ main {
   justify-content: center;
   align-items: center;
 
-  padding-right: 300px;
+  padding-right: 18.75rem;
 
   width: 100%;
-  max-width: 1920px;
-  height: 720px;
+  max-width: 120rem;
+  height: 45rem;
 }
 
 .main-top-elements {
@@ -240,11 +241,11 @@ main {
   justify-content: center;
   align-items: center;
 
-  padding-left: 300px;
+  padding-left: 18.75rem;
 
   width: 100%;
-  max-width: 1920px;
-  height: 720px;
+  max-width: 120rem;
+  height: 45rem;
 
   text-align: right;
 }
@@ -264,11 +265,11 @@ main {
   justify-content: center;
   align-items: center;
 
-  padding-right: 300px;
+  padding-right: 18.75rem;
 
   width: 100%;
-  max-width: 1920px;
-  height: 720px;
+  max-width: 120rem;
+  height: 45rem;
 }
 
 .main-bottom-elements {
@@ -287,7 +288,7 @@ footer {
   background-color: #111827;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 19.09px;
+  line-height: 1.1875rem;
   text-align: center;
 }
 
@@ -298,8 +299,8 @@ footer {
   justify-content: center;
 
   width: 100%;
-  max-width: 1920px;
-  height: 160px;
+  max-width: 120rem;
+  height: 10rem;
 }
 
 .footer-elements {
@@ -310,11 +311,11 @@ footer {
   justify-content: space-between;
   align-items: center;
 
-  padding: 32px 200px;
+  padding: 2rem 12.5rem;
 
   width: 100%;
 
-  gap: 30px;
+  gap: 1.875rem;
 }
 
 .footer-info {
@@ -323,7 +324,7 @@ footer {
 
 .footer-customer-service {
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
 
   color: #E5E7EB;
 }
@@ -337,7 +338,7 @@ footer {
   justify-content: center;
   align-items: center;
 
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .sns a {
@@ -347,6 +348,6 @@ footer {
 .sns-logo {
   width: 100%;
   height: 100%;
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
