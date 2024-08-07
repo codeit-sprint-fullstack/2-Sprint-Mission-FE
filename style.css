@@ -1,0 +1,189 @@
+@import "reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --primary-100: #3692FF;
+  --primary-200: #1967D6;
+  --primary-300: #1251AA;
+  --gray-900: #111827;
+  --gray-800: #1F2937;
+  --gray-700: #374151;
+  --gray-600: #4B5563;
+  --gray-500: #6B7280;
+  --gray-400: #9CA3AF;
+  --gray-200: #E5E7EB;
+  --gray-100: #F3F4F6;
+  --gray-50: #F9FAFB;
+  --error-red: #F74747;
+}
+body {
+  font-family: "Pretendard-Regular";
+  color: var(--gray-700);
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: #FFFFFF;
+}
+
+.header-imgs {
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+  max-width: 1520px;
+  justify-content: space-between;
+}
+
+.logo-img {
+  height: 51px;
+  cursor: pointer;
+  margin-left: 200px;
+}
+
+.login-button-img {
+  height: 48px;
+  margin-right: 200px;
+}
+
+.main-banner {
+  background-color: #CFE5FF;
+  height: 540px;
+  margin: 72px 0 0;
+  position: relative;
+}
+
+.main-contents {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.main-ban-img {
+  height: 340px;
+  position: absolute;
+  bottom: -200px;
+  left: 364px;
+}
+
+.main-text {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  position: absolute;
+  bottom: 200px;
+}
+
+.shop-button-img {
+  position: absolute;
+  bottom: 100px;
+}
+
+.mid-banner {
+  margin: 138px auto;
+  max-width: 1120px;
+}
+
+.banners {
+  display: flex;
+  align-items: center;
+  margin-right: 165px;
+  background-color: #FCFCFC;
+}
+
+#banner1 {
+  margin: 138px 165px 138px 0;
+}
+
+#banner2 {
+  margin: 276px 0 276px 165px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ban-img {
+  width: 588px;  
+}
+
+.leftsided {
+  margin-left: 30px;
+}
+
+.rightsided {
+  text-align: right;
+  padding-right: 30px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-100);
+}
+
+.subtitle {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  margin: 15px 0;
+}
+
+.text {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.bottom-ban-img {
+  height: 397px;
+  position: absolute;
+  bottom: -200px;
+  left: 364px;
+}
+
+footer {
+  background-color: var(--gray-900);
+  height: 160px;
+  font-size: 16px;
+  padding: 20px 0 0;
+}
+
+.footer-contents {
+  max-width: 1520px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-version {
+  color: var(--gray-400);
+  margin-left: 200px;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 30px;
+}
+
+.footer-button-text {
+  text-decoration: none;
+  color: var(--gray-200);
+}
+
+.footer-icons {
+  display: flex;
+  gap: 12px;
+  margin-right: 200px;
+}
