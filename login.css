@@ -57,6 +57,13 @@ a {
     gap: 20px;
 }
 
+.password-input, 
+.label-input {
+    display: flex;
+    flex-direction: column;
+    /* margin: 10px 0; */
+}
+
 .password-input {
     position: relative;
 }
@@ -77,6 +84,7 @@ a {
     line-height: 22px;
     font-weight: 700;
     color: var(--gray);
+    margin: 20px 0;
 }
 
 .input-area {
@@ -103,6 +111,7 @@ a {
     border: none;
     background-color: var(--dark-gray);
     padding: 16px, 124px, 16px, 124px;
+    margin: 10px 0;
 }
 
 .login-text {

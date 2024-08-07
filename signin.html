@@ -16,39 +16,44 @@
                 <a href="/"><h1 class="title">판다마켓</h1></a>
             </div>
             <div class="input">
-                <div>
-                    <p class="input-title">이메일</p>
-                    <input class="input-area" placeholder="이메일을 입력해주세요" type="email"></input>
+                <div class="label-input">
+                    <label class="input-title" for="email">이메일</label>
+                    <input id="email" class="input-area" placeholder="이메일을 입력해주세요" type="email"/>
                 </div>
-                <div>
-                    <p class="input-title">닉네임</p>
-                    <input class="input-area" placeholder="닉네임을 입력해주세요" type="email"></input>
+                <div class="label-input">
+                    <label class="input-title" for="nickname">닉네임</label>
+                    <input id="nickname"class="input-area" placeholder="닉네임을 입력해주세요" type="text"/>
                 </div>
                 <div class="password-input">
-                    <p class="input-title">비밀번호</p>
+                    <label class="input-title" for="password-field">비밀번호</label>
                     <input id="password-field" class="input-area" placeholder="비밀번호를 입력해주세요" type="password"></input>
                     <div class="eyes">
                         <img id="toggle" class="eye" src="/assets/img/login/btn_visibility_on.png"></img>
                     </div>
                 </div>
                 <div class="password-input">
-                    <p class="input-title">비밀번호 확인</p>
-                    <input id="password-field" class="input-area" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password"></input>
+                    <label class="input-title" for="password-check">비밀번호 확인</label>
+                    <input id="password-check" class="input-area" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password"></input>
                     <div class="eyes">
-                        <img id="toggle" class="eye" src="/assets/img/login/btn_visibility_on.png"></img>
+                        <img id="toggle-check" class="eye" src="/assets/img/login/btn_visibility_on.png"></img>
                     </div>
                 </div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const passwordField = document.getElementById('password-field');
+                        const passwordCheck = document.getElementById('password-check');
                         const toggle = document.getElementById('toggle');
-                        
+                        const toggleCheck = document.getElementById('toggle-check');
+                        const typeSwitch = Object.freeze({
+                            password: 'text',
+                            text: 'password'
+                        });
                         toggle.addEventListener('click', function() {
-                            if (passwordField.type === 'password') {
-                                passwordField.type = 'text';
-                            } else {
-                                passwordField.type = 'password';
-                            }
+                            passwordField.type = typeSwitch[passwordField.type];
+                           
+                        });
+                        toggleCheck.addEventListener('click', function() {
+                            passwordCheck.type = typeSwitch[passwordCheck.type];                           
                         });
                     });
                 </script>
