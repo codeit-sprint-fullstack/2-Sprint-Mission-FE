@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+html {
+    font-family: Pretendard;
+}
+body {
+    background-color: #fcfcfc;
+    margin: 0;
+}
+header {
+    position: fixed;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    z-index: 1;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 138px;
+}
+.panda {
+    width: 153px;
+    height: 51px;
+    margin-left: 200px;
+}
+.login {
+    font-size: 16px;
+    text-decoration: none;
+    color: #F3F4F6;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 128px;
+    height: 48px;
+    border-radius: 8px;
+    padding: 12px, 23px;
+    gap: 10px;
+    background: #3692FF;
+
+    margin-right: 200px;
+}
+.letsgo {
+   
+    width: 100%;
+    height: 540px;
+    background-color: #CFE5FF;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.구경하러가기 {
+    margin-bottom: 80px;
+    width: 357px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.toppanda {
+    width: 746px;
+    height: 340px;
+    display: block;
+}
+.popular {
+    width: 955px;
+    height: 444px;
+    margin-right: 270px;
+}
+.search {
+    width: 969px;
+    height: 444px;
+    margin-left: 270px;
+}
+.sellproduct {
+    margin-bottom: 100px;
+    width: 987px;
+    height: 444px;
+    margin-right: 270px;
+}
+.중고거래글자 {
+    margin-bottom: 150px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #374151;
+}
+.중고거래 {
+    width: 100%;
+    height: 540px;
+    background-color: #CFE5FF;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.중고거래판다 {
+    width: 746px;
+    height: 397px;
+    display: flex;
+}
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.faq {
+    
+    display: flex;
+    gap: 30px;
+}
+.faq a {
+    color: #E5E7EB;
+    text-decoration: none;
+}
+.SNS {
+    display: flex;
+    gap: 12px;
+    flex-direction: row;
+    align-items: center;
+}
