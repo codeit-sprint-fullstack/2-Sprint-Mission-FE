@@ -1,0 +1,265 @@
+html {
+    font-family: Pretendard;
+}
+
+body {
+    margin: auto;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+ }
+
+header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left:0;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    width: 100%;
+    height: 70px;
+    z-index: 1;
+}
+
+.gnb-area{
+    width: 1520px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    cursor: pointer;
+    margin-left: 200px;
+    width: 153px;
+    height: 51px;
+}
+
+.login {
+    cursor: pointer;
+    background-color: #3692FF;
+    width: 128px;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 23px;
+    margin-right: 200px;
+}
+
+.login a {
+    color: #F3F4F6;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: Pretendard;
+}
+
+.login:hover {
+    color: #F3F4F6;
+    background-color: #1967D6;
+    transition: 0.3s;
+}
+
+.kv {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    margin-top: 70px;
+    width: 100%;
+    height: 540px;
+    background-color: #CFE5FF; 
+}
+
+.bottom-container, .kv-container{
+    width: 1120px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.kv-img {
+    align-self: flex-end; 
+    width: 746px;
+    height: 340px;
+}
+
+.kv-text, .bottom-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 60px;
+}
+
+.view {
+    cursor: pointer;
+    background-color: #3692FF;
+    width: 357px;
+    height: 56px;
+    border: none;
+    border-radius: 40px;
+    padding: 16px 124px;
+    gap: 10px;
+}
+
+.view a {
+    color: #F9FAFB;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: Pretendard;
+    text-decoration: none;
+}
+
+.view:hover {
+    color: #F3F4F6;
+    font-weight: 600;
+    font-size: 17px;
+    background-color: #1967D6;
+    transition: 0.3s;
+}
+
+.bluetag {
+    color: #3692FF;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.headline-heading {
+    color: #374151;
+    line-height: 56px;
+    font-weight: 700;
+    font-size: 40px;
+    margin-top: 0;
+}
+
+.headline-description {
+    color: #374151;
+    line-height: 32px;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.body-image {
+    width: 588px;
+    height: 444px;
+}
+
+.section{
+    display: flex;
+    width: 1120px;
+}
+
+.section-reverse{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    width: 1120px;
+}
+
+.hot-item-section, .search-section, .register-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 720px;
+    background-color: #FFFFFF;  
+}
+
+.hot-item, .register {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    width: 969px;
+    height: 444px;
+    top: 138px;
+    background-color: #FCFCFC;  
+}
+
+.search {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 40px;
+    justify-items: center;
+    align-items: center;
+    width: 969px;
+    height: 444px;
+    top: 138px;
+    background-color: #FCFCFC;  
+}
+
+.bottom {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 540px;
+    background-color: #CFE5FF; 
+}
+
+.bottom-img {
+    width: 746px;
+    height: 397px;
+    align-self: flex-end;
+}
+
+.footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 32px;
+    width: 100%;
+    height: 160px;
+    background-color: #111827;
+}
+
+.footer-area{
+    width: 1520px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.footer-copyright {
+    color: #9CA3AF;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 200px;
+}
+
+.footer-copyright p{
+    margin: 0; /*기본 p태그 margin 16px 삭제*/
+}
+
+.externalpages {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.footer-external {
+    cursor: pointer;
+    color: #E5E7EB;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none; 
+}
+
+.social {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+    margin-right: 200px;
+}
