@@ -92,7 +92,7 @@ footer{
   background-color:  #000000;
   color: #9ca3af;
   display: flex;
-  padding: 3rem 2rem 10rem 5rem;
+  padding: 32px 200px 100px 200px;
   font-size: 1rem;
   gap: 10rem;
   box-sizing: border-box;
@@ -103,7 +103,7 @@ footer{
 #footer1{
   display: flex;
   gap: 3rem;
-  margin-left:200px;
+  margin-left:;
   align-items: center;
 }
 
@@ -117,6 +117,6 @@ footer{
   
   display: flex;
   gap: 1rem;
-  margin-left: 200px
+  margin-left:;
   
 }

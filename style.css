@@ -94,10 +94,20 @@ img {
   height: 440px;
   justify-content: center;
   flex-direction: row;
-  align-items: end;
-  vertical-align: bottom;
+  align-items: self-end;
+  
 
 }
+
+/* #lastLine{
+   align-items:center;
+  justify-content: center;
+} */
+
+/* #fifth-box{
+  align-items:center;
+  justify-content: center;
+} */
 
 
 /* 두번째 네번째 섹션 레이아웃 */
@@ -107,7 +117,8 @@ img {
   display: flex;
   justify-content: center;
   gap: 40px;
-  margin: 200px
+  margin: 200px;
+  align-items:center;
 }
 
 /* 3번째 섹션 레이아웃 */
@@ -122,3 +133,4 @@ img {
   height: 540px;
   vertical-align: bottom;
 }
+
