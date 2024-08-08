@@ -141,3 +141,7 @@ input:focus {
     color: #1F2937;
     gap: 4px;
 }
+
+.banner, .blind-eye, .login, .google-icon, .kakao-icon, .login-text {
+    cursor: pointer;
+}

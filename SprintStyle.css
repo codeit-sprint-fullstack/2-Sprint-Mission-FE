@@ -160,3 +160,7 @@ main {
     width: 20px;
     height: 20px;
 }
+
+.panda, .login, .items, .codeit, .faq, .sns {
+    cursor: pointer;
+}
