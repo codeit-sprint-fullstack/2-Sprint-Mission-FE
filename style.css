@@ -2,15 +2,15 @@
 
 :root {
   /* font-size */
-  --text-4xl-40: 2.5rem; /* 40px */
-  --text-3xl-32: 2rem; /* 32px */
-  --text-2xl-24: 1.5rem; /* 24px */
-  --text-xl-20: 1.25rem; /* 20px */
-  --text-2lg-18: 1.125rem; /* 18px */
-  --text-lg-16: 1rem; /* 16px */
-  --text-md-14: 0.875rem; /* 14px */
-  --text-sm-13: 0.8125rem; /* 13px */
-  --text-xs-12: 0.75rem; /* 12px */
+  --text-4xl-40: 4rem; /* 40px */
+  --text-3xl-32: 3.2rem; /* 32px */
+  --text-2xl-24: 2.4rem; /* 24px */
+  --text-xl-20: 2rem; /* 20px */
+  --text-2lg-18: 1.8rem; /* 18px */
+  --text-lg-16: 1.6rem; /* 16px */
+  --text-md-14: 1.4rem; /* 14px */
+  --text-sm-13: 1.3rem; /* 13px */
+  --text-xs-12: 1.2rem; /* 12px */
 
   /* color */
   --primary-color-100: #3692FF;
@@ -36,7 +36,7 @@
 /* 공통 */
 
 html {
-	font-size: 100%;
+	font-size: 62.5%;
 }
 
 * {
@@ -68,7 +68,7 @@ a.logo,
 .top-bottom-text {
   font-size: var(--text-4xl-40);
   font-weight: 700;
-  line-height: 3.5rem;
+  line-height: 5.6rem;
   text-align: left;
   color: var(--secondary-color-gray700);
 }
@@ -78,37 +78,42 @@ a.logo,
 .full-nav {
   display: flex;
   width: 100%;
-  height: 4.375rem;
+  height: 7rem;
   justify-content: center;
   position: fixed;
   top: 0;
   background-color: var(--background-color-white);
-  border: 0.0625rem solid var(--border-color);
+  border: 0.1rem solid var(--border-color);
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
-  width: 120rem;
-  height: 4.375rem;
+  width: 192rem;
+  height: 7rem;
   align-items: center;
   position: fixed;
   top: 0;
-  padding: 0.5625rem 25rem;
+  padding: 0.9rem 40rem;
+}
+
+.logo {
+  width : 15.3rem; /*153px*/
+  height: 5.1rem; /*51px*/
 }
 
 .login-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 8rem;
-  height: 3rem;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1.4375rem;
+  width: 12.8rem;
+  height: 4.8rem;
+  border-radius: 0.8rem;
+  padding: 1.2rem 2.3rem;
   background-color: var(--primary-color-100);
   color: var(--secondary-color-gray100);
-  font-size: 1rem;
-  line-height: 1.625rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
   text-decoration: none;
   font-weight: 600;
   cursor: pointer;
@@ -120,47 +125,47 @@ a.logo,
   display: flex;
   background-color: var(--background-color);
   width: 100%;
-  margin-top: 4.375rem;
+  margin-top: 7rem;
   justify-content: center;
 }
 
 .top-section {
   display: flex;
-  width: 69.375rem;
-  height: 21.25rem;
-  margin: 12.5rem auto 0;
+  width: 111rem;
+  height: 34rem;
+  margin: 20rem auto 0;
   align-items: center;
 }
 
 .top-text-section {
   display: flex;
   flex-direction: column;
-  width: 22.3125rem;
-  height: 16.25rem;
-  padding: 0 0 3.75rem 0;
-  gap: 2rem;
+  width: 35.7rem;
+  height: 26rem;
+  padding: 0 0 6rem 0;
+  gap: 3.2rem;
 }
 
 .items-button {
   display: flex;
   align-items: center;
-  width: 22.3125rem;
-  height: 3.5rem;
-  padding: 1rem 7.75rem;
-  border-radius: 2.5rem;
+  width: 35.7rem;
+  height: 5.6rem;
+  padding: 1.6rem 12.4rem;
+  border-radius: 4rem;
   background-color: var(--primary-color-100);
   font-size: var(--text-xl-20);
   font-weight: 600;
   color: var(--secondary-color-gray50);
-  line-height: 2rem;
+  line-height: 3.2rem;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
 }
 
 .top-picture {
-  width: 46.625rem;
-  height: 21.25rem;
+  width: 74.6rem;
+  height: 34rem;
 }
 
 /* center 공통  */
@@ -169,34 +174,39 @@ a.logo,
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 45rem;
+  height: 72rem;
   background-color: var(--background-color-white);
+}
+
+.main-img {
+  width: 58.8rem; /*588px*/
+  height: 44.4rem; /*444px*/
 }
 
 .text-section {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  height: 14.875rem;
+  gap: 1.2rem;
+  height: 23.8rem;
 }
 
 .topic {
   font-size: var(--text-2lg-18);
   font-weight: 700;
-  line-height: 1.625rem;
+  line-height: 2.6rem;
   color: var(--primary-color-100);
 }
 
 .text {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.4rem;
 }
 
 .maintext {
   font-size: var(--text-4xl-40);
   font-weight: 700;
-  line-height: 3.5rem;
+  line-height: 5.6rem;
   letter-spacing: 0.02em;
   color: var(--secondary-color-gray700);
 }
@@ -204,7 +214,7 @@ a.logo,
 .subtext {
   font-size: var(--text-2xl-24);
   font-weight: 500;
-  line-height: 2rem;
+  line-height: 3.2rem;
   color: var(--secondary-color-gray700);
 }
 
@@ -222,10 +232,10 @@ a.logo,
 .hotitem-section {
   display: flex;
   align-items: center;
-  width: 59.6875rem;
-  height: 27.75rem;
-  gap: 4rem;
-  margin: 8.625rem 37.8125rem 8.625rem 22.5rem;
+  width: 95.5rem;
+  height: 43.6rem;
+  gap: 6.4rem;
+  margin: 13.8rem 60.5rem 13.8rem 36rem;
   background-color: var(--background-color-gray10);
   /* cursor: pointer; */
 }
@@ -233,10 +243,10 @@ a.logo,
 .search-section {
   display: flex;
   align-items: center;
-  width: 60.5625rem;
-  height: 27.75rem;
-  gap: 4rem;
-  margin: 8.625rem 22.5rem 8.625rem 36.9375rem;
+  width: 96.9rem;
+  height: 44.4rem;
+  gap: 6.4rem;
+  margin: 13.8rem 36rem 13.8rem 59.1rem;
   background-color: var(--background-color-gray10);
   /* cursor: pointer; */
   
@@ -245,10 +255,10 @@ a.logo,
 .register-section {
   display: flex;
   align-items: center;
-  width: 61.6875rem;
-  height: 27.75rem;
-  gap: 4rem;
-  margin: 8.625rem 35.8125rem 8.625rem 22.5rem;
+  width: 98.7rem;
+  height: 44.4rem;
+  gap: 6.4rem;
+  margin: 13.8rem 57.3rem 13.8rem 36rem;
   background-color: var(--background-color-gray10);
   /* cursor: pointer; */
 }
@@ -257,27 +267,27 @@ a.logo,
 
 .full-bottom {
   background-color: var(--background-color);
-  margin-top: 8.625rem;
+  margin-top: 13.8rem;
 }
 
 .bottom-section {
   display: flex;
   align-items: center;
-  width: 69.375rem;
-  height: 24.8125rem;
-  margin: 8.9375rem auto 0;
-  gap: 4.3125rem;
+  width: 111rem;
+  height: 39.7rem;
+  margin: 14.3rem auto 0;
+  gap: 6.9rem;
 }
 
 .bottom-text-section {
-  width: 18.4375rem;
-  height: 10.75rem;
-  padding: 0 0 3.75rem 0;
+  width: 29.5rem;
+  height: 17.2rem;
+  padding: 0 0 6rem 0;
 }
 
 .bottom-picture {
-  width: 46.625rem;
-  height: 24.8125rem;
+  width: 74.6rem;
+  height: 39.7rem;
 }
 
 /* footer */
@@ -287,22 +297,22 @@ a.logo,
   justify-content: center;
   background: #111827;
   width: 100%;
-  height: 10rem;
+  height: 16rem;
 }
 
 .footer-section {
   display: flex;
-  width: 120rem;
+  width: 192rem;
   justify-content: space-between;
-  padding: 2rem 25rem;
-  gap: 0.625rem;
+  padding: 3.2rem 40rem;
+  gap: 1rem;
 }
 
 .company-name,
 .footer-link-section a {
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 400;
-  line-height: 1.193125rem;
+  line-height: 1.909rem;
   text-align: center;
   color: var(--secondary-color-gray200);
   height: 1.1875rem;
@@ -312,7 +322,7 @@ a.logo,
   display: flex;
   gap: 1.875rem;
   width: 9.9375rem;
-  height: 1.1875rem;
+  height: 1.9rem;
 }
 
 .footer-link-section a {
@@ -321,21 +331,21 @@ a.logo,
 
 .link-icon {
   display: flex;
-  width: 7.25rem;
-  height: 1.25rem;
-  gap: 0.75rem;
+  width: 11.6rem;
+  height: 2rem;
+  gap: 1.2rem;
 }
 
 
 @media (width < 1920px) {
+
   .nav {
     width: 100%;
-    padding: 0.5625rem 12.5rem;
+    padding: 0.9rem 20rem;
   }
   
-
   .footer-section {
-    padding: 2rem 12.5rem;
+    padding: 3.2rem 20rem;
   }
 }
 
