@@ -56,13 +56,23 @@ main {
     align-items: flex-end;
     justify-content: center;
 }
-.구경하러가기 {
+.lets-see {
     margin-bottom: 80px;
     width: 357px;
     height: 260px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.products {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #374151
+}
+.lets-see img {
+    width: 357px ;
+    height: 56px
 }
 .toppanda {
     width: 746px;
@@ -105,11 +115,19 @@ main {
     height: 397px;
     display: flex;
 }
+.footer {
+    background-color: #111827;
+    width: 100%;
+    height: 160px;
+}
 .footercontent {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
+}
+.codeit {
+    color: #9CA3AF
 }
 .faq {
     
@@ -125,4 +143,9 @@ main {
     gap: 12px;
     flex-direction: row;
     align-items: center;
+}
+
+.sns img {
+    width: 20px;
+    height: 20px;
 }
