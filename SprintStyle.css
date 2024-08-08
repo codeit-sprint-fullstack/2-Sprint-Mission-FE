@@ -105,7 +105,7 @@ main {
     height: 397px;
     display: flex;
 }
-.footer-content {
+.footercontent {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -120,7 +120,7 @@ main {
     color: #E5E7EB;
     text-decoration: none;
 }
-.SNS {
+.sns {
     display: flex;
     gap: 12px;
     flex-direction: row;
