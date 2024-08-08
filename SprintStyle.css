@@ -47,7 +47,7 @@ main {
     gap: 10px;
     background: #3692FF;
 }
-.letsgo {
+.lets-go {
    
     width: 100%;
     height: 540px;
@@ -74,7 +74,7 @@ main {
     width: 357px ;
     height: 56px
 }
-.toppanda {
+.top-panda {
     width: 746px;
     height: 340px;
     display: block;
@@ -89,7 +89,7 @@ main {
     height: 444px;
     margin-left: 270px;
 }
-.sellproduct {
+.sell-product {
     margin-bottom: 100px;
     width: 987px;
     height: 444px;
@@ -120,7 +120,7 @@ main {
     width: 100%;
     height: 160px;
 }
-.footercontent {
+.footer-content {
     display: flex;
     flex-direction: row;
     justify-content: space-around;

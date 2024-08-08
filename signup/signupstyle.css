@@ -66,16 +66,16 @@ input:focus {
     flex-direction: column;
 }
 
-.pwcontainer {
+.pw-container {
     margin-top: 16px;
     display: inline-block;
     position: relative;
 }
-#pwbox {
+#pw-box {
     position: relative;
     padding-right: 40px;
 }
-.blindeye {
+.blind-eye {
     position: absolute;
     right: 16px;
     width: 24px;
@@ -110,7 +110,7 @@ input:focus {
     background-color: #E6F2FF;
 }
 
-.easylogin {
+.easy-login {
     flex-grow: 1;
     font-size: 16px;
     line-height: 24px;
@@ -118,13 +118,13 @@ input:focus {
     color: #1F2937;
 }
 
-.googleicon {
+.google-icon {
     margin-right: 16px;
     width: 42px;
     height: 42px;
 }
 
-.kakaoicon {
+.kakao-icon {
     margin-right: 23px;
     width: 42px;
     height: 42px;
