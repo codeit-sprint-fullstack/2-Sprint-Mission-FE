@@ -17,10 +17,16 @@ header {
     align-items: center;
     background-color: white;
     z-index: 1;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 200px;
 }
-
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 200px;
+    max-width: 1920px;
+}
 main {
     display: flex;
     flex-direction: column;
@@ -119,12 +125,17 @@ main {
     background-color: #111827;
     width: 100%;
     height: 160px;
+    display: flex;
+    justify-content: center;
 }
 .footer-content {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    padding: 0 200px;
+    justify-content: space-between;
     align-items: flex-start;
+    max-width: 1920px;
+    width: 100%;
 }
 .codeit {
     color: #9CA3AF
