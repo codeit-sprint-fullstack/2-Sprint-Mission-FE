@@ -46,3 +46,32 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+:root {
+  /* font-size */
+  --font-4xl: 2.5rem; /* 40px */
+  --font-3xl: 2rem; /* 32px */
+  --font-2xl: 1.5rem; /* 24px */
+  --font-xl: 1.25rem; /* 20px */
+  --font-2lg: 1.125rem; /* 18px */
+  --font-lg: 1rem; /* 16px */
+  --font-md: 0.875rem; /* 14px */
+  --font-sm: 0.8125rem; /* 13px */
+  --font-xs: 0.75rem; /* 12px */
+
+	/* colors */
+	--background-color: #CFE5FF;
+	--white-color: #FFFFFF;
+	--blute-color: #3692FF;
+	--secondary-color-white: #F3F4F6;
+	--gray-color: #374151;
+	--secondary-color-gray: #FCFCFC;
+	--black-color: #111827;
+	--secondary-color-gray100: #9CA3AF;
+	--secondary-color-gray200: #E5E7EB;
+	--secondary-color-gray300: #E6F2FF;
+	--secondary-color-black: #1F2937;
+	--secondary-color-gray400: #F9FAFB;
+	--yellyow-color: #F5E14B;
+	--secondary-color-blue: #3182F6;
+}

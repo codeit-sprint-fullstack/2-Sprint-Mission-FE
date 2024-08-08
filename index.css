@@ -166,7 +166,7 @@ header button {
 
 }
 
-.section1 {
+.check {
   width: 1920px;
   height: 720px;
   display: flex;
@@ -186,7 +186,7 @@ header button {
   margin-right: 360px;
 }
 
-.section1 img {
+.check img {
   width: 588px;
   height: 444px;
 }
@@ -205,7 +205,7 @@ header button {
   gap: 20px;
 }
 
-.section1 h5 {
+.check h5 {
   text-align: left;
   font-size: 18px;
   font-weight: 700;
@@ -216,7 +216,7 @@ header button {
   bottom: 20px;
 }
 
-.section1 h2 {
+.check h2 {
   font-family: Pretendard;
   font-size: 40px;
   font-weight: 700;
@@ -227,7 +227,7 @@ header button {
   position: relative;
 }
 
-.section1 h4 {
+.check h4 {
   font-family: Pretendard;
   font-size: 24px;
   font-weight: 500;
@@ -237,7 +237,7 @@ header button {
   position: relative;
 }
 
-.section2 {
+.search {
   width: 1920px;
   height: 720px;
   display: flex;
@@ -258,7 +258,7 @@ header button {
   margin-bottom: 138px;
 }
 
-.section2 img {
+.search img {
   width: 588px;
   height: 444px;
 }
@@ -278,7 +278,7 @@ header button {
   gap: 20px;
 }
 
-.section2 h5 {
+.search h5 {
   font-size: 18px;
   font-weight: 700;
   line-height: 26px;
@@ -289,7 +289,7 @@ header button {
   bottom: 20px;
 }
 
-.section2 h2 {
+.search h2 {
   font-family: Pretendard;
   text-align: right;
   font-size: 40px;
@@ -300,7 +300,7 @@ header button {
   position: relative;
 }
 
-.section2 h4 {
+.search h4 {
   font-family: Pretendard;
   text-align: right;
   font-size: 24px;
@@ -310,7 +310,7 @@ header button {
   position: relative;
 }
 
-.section3 {
+.register {
   width: 1920px;
   height: 720px;
   display: flex;
@@ -331,7 +331,7 @@ header button {
   margin-right: 360px;
 }
 
-.section3 img {
+.register img {
   width: 588px;
   height: 444px;
   border-radius: 12px;
@@ -354,7 +354,7 @@ header button {
   gap: 20px;
 }
 
-.section3 h5 {
+.register h5 {
   font-size: 18px;
   font-weight: 700;
   line-height: 26px;
@@ -365,7 +365,7 @@ header button {
   bottom: 20px;
 }
 
-.section3 h2 {
+.register h2 {
   font-family: Pretendard;
   text-align: left;
   font-size: 40px;
@@ -376,7 +376,7 @@ header button {
   position: relative;
 }
 
-.section3 h4 {
+.register h4 {
   font-family: Pretendard;
   text-align: left;
   font-size: 24px;
