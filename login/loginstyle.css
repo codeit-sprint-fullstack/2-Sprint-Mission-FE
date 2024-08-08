@@ -44,16 +44,21 @@ input:focus {
     flex-direction: column;
     margin-top: 40px;
 }
+#email {
+    margin-top: 16px;
+}
 .password {
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
 }
 
 .pwcontainer {
+    margin-top: 16px;
     display: inline-block;
     position: relative;
 }
-.pwbox {
+#pwbox {
     position: relative;
     padding-right: 40px;
 }
