@@ -39,6 +39,11 @@ input:focus {
     width: 396px;
     height: 132px;
 }
+.id-label {
+    font-size: 18px; 
+    line-height: 21.48px; 
+    font-weight: 700;
+}
 .id {
     display: flex;
     flex-direction: column;

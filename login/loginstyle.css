@@ -44,6 +44,11 @@ input:focus {
     flex-direction: column;
     margin-top: 40px;
 }
+.id-label {
+    font-size: 18px;
+    line-height: 21.48px; 
+    font-weight: 700;
+}
 #email {
     margin-top: 16px;
 }
