@@ -90,7 +90,7 @@ input:focus {
     background-color: #9CA3AF;
 }
 
-.간편로그인 {
+.sns-login {
     padding-left: 23px;
     display: flex;
     flex-direction: row;
