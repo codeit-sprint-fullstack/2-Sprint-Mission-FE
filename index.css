@@ -12,9 +12,6 @@
   .header {
     padding: 0 12.5rem;
   }
-  .footerbox {
-    padding: 0 12.5rem;
-  }
 }
 
 body {
@@ -25,11 +22,6 @@ body {
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
-}
-
-header a, .purchase a, .footerbox a {
-  text-decoration: none;
-  cursor: pointer;
 }
 
 /*header*/
@@ -276,12 +268,13 @@ header button {
 }
 
 .up_footer > div {
+  height: 24.8125rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   position: relative;
-  top: 4.5rem;
+  top: 8.9375rem;
 }
 
 .up_footer h1 {
@@ -334,22 +327,22 @@ footer {
   color: var(--secondary-color-gray100);
 }
 
-.footer_abox {
+.footer_a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 1rem;
-  cursor: pointer;
 }
 
-.footer_abox a {
+.footer_a a {
   font-family: Pretendard;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.193125rem;
   text-align: center;
   color: var(--secondary-color-gray200);
-  text-decoration : none;
+  text-decoration : none; 
+  cursor: pointer;
 }
 
 .sns_a {
@@ -357,5 +350,8 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+sns_a img {
   cursor: pointer;
 }
