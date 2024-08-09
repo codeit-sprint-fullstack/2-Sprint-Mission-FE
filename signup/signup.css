@@ -1,0 +1,129 @@
+:root {
+    --color-coolGray800: #1F2937;
+    --color-coolGray400: #9CA3AF;
+    --color-coolGray100: #F3F4F6;
+    --color-white: #ffffff;
+    --color-oauth-background: #E6F2FF;
+    --color-panda-market: #3692FF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    color: var(--color-coolGray800);
+    font-size: 16px;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 70px 0;
+    gap: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    width: 640px;
+    gap: 24px;
+}
+
+label {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 21.48px;
+}
+
+input {
+    width: 640px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: none;
+
+    color: var(--color-coolGray400);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 24px;
+    background-color: var(--color-coolGray100);
+}
+
+input:focus {
+    outline: 1px solid var(--color-panda-market);
+}
+
+.password-bar {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+button {
+    padding: 16px 124px;
+    gap: 10px;
+    border-radius: 40px;
+    border: none;
+
+    color: var(--color-white);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: var(--color-coolGray100);
+}
+
+.signup-btn {
+    padding: 16px 124px;
+    gap: 10px;
+    border-radius: 40px;
+    border: none;
+
+    color: var(--color-white);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: var(--color-coolGray400);
+}
+
+.oauth {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 30px;
+
+    width: 640px;
+    height: 74px;
+    border-radius: 8px;
+
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 24px;
+    background-color: var(--color-oauth-background);
+}
+
+.oauth a {
+    text-decoration: none;
+}
+
+.oauth-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.login-content {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 17.9px;
+    gap: 4px;
+}
+
+.login-content a {
+    color: var(--color-panda-market);
+}

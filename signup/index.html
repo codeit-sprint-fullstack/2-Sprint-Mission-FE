@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>판다마켓 회원가입</title>
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+    <main>
+        <a href="../"><img class="login-logo" src="../images/logo.png" alt="로그인 로고"></a>
+        <form action="../signup">
+            <label for="useremail">이메일</label>
+            <input id="useremail" name="useremail" type="email" placeholder="이메일을 입력해주세요">
+            <label for="nickname">닉네임</label>
+            <input id="nickname" name="nickname" type="text" placeholder="닉네임을 입력해주세요">
+
+            <label for="password">비밀번호</label>
+            <div class="password-bar">
+                <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+                <img src="../images/btn_visibility_on_24px.svg" alt="눈 아이콘">
+            </div>
+
+            <label for="password-repeat">비밀번호 확인</label>
+            <div class="password-bar">
+                <input id="password-repeat" name="password-repeat" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
+                <img src="../images/btn_visibility_on_24px.svg" alt="눈 아이콘">
+            </div>
+
+            <button class="signup-btn" type="button" onclick="location.href='../signup'">회원가입</button>
+        </form>
+        <div class="oauth">
+            <span>간편 로그인하기</span>
+            <div class="oauth-logo">
+                <a href="https://www.google.com/">
+                    <img src="../images/google_logo.png" alt="구글 로고">
+                </a>
+                <a href="https://www.kakaocorp.com/page/">
+                    <img src="../images/kakaotalk_logo.png" alt="카카오톡 로고">
+                </a>
+            </div>
+        </div>
+        <div class="login-content">
+            <span>이미 회원이신가요?</span>
+            <a href="../login">로그인</a>
+        </div>
+    </main>
+</body>
+
+</html>
