@@ -67,6 +67,10 @@ input:focus {
     position: relative;
     padding-right: 40px;
 }
+#pw-check {
+    position: relative;
+    padding-right: 40px;
+}
 .blind-eye {
     position: absolute;
     right: 16px;
