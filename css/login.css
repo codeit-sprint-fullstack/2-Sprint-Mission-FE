@@ -18,12 +18,15 @@
 /* 공통 영역 */
 html {
   font-size: 100%; /* 1rem = 16px */
+  box-sizing: border-box;
 }
-
+*, *::before, *::after {
+  box-sizing: inherit;
+}
 body {
   font-family: 'Pretendard', Poppins, "Noto Sans KR", sans-serif;
   color: var(--text-color);                  /* 기본 글꼴 색상 */
-  background: var(--background-color);          /* 기본 배경 색상 */
+  background: var(--background-color);       /* 기본 배경 색상 */
   margin: 0;
   padding: 0;
   font-size: 1rem;              
@@ -33,6 +36,7 @@ body {
   justify-content: center;
 }
 
+/* 상단 로고 영역 */
 header {
   margin-top: 6.25rem;            /* 100px */
   margin-bottom: 3.125rem;        /* 50px */
@@ -42,15 +46,17 @@ header {
   height: 8.25rem;                /* 132px */
 }
 
-/* 로그인/회원가입 페이지 스타일 */
+/* 로그인/회원가입 공통 */
 .container {
   display: flex;
   flex-direction: column;
+
   align-items: center;
   background-color: var(--background-color);
   text-align: center;
   width: 100%;
   max-width: 40rem;               /* 640px */
+  margin-bottom: 3.125rem;        /* 50px */
 }
 
 /* 로그인 */
@@ -110,7 +116,6 @@ input {
   border: none;
   border-radius: 0.75rem;         /* 12px */
   font-size: 1rem; 
-  box-sizing: border-box; 
 }
 input:focus {
   border: 0.0625rem solid var(--focus-border-color);  /* 1px */
@@ -150,6 +155,7 @@ input:focus {
   font-weight: 500;
   line-height: 1.5rem;            /* 24px */
 }
+
 .signup-link {
   font-size: 0.9375rem;           /* 15px */
   font-weight: 500;
