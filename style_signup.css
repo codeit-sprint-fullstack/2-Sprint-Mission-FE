@@ -34,6 +34,12 @@ main {
     gap: 24px;
  }
 
+ label {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+ }
+
  .login_area{
     display: flex;
     flex-direction: column;
@@ -41,6 +47,8 @@ main {
  }
 
  .login_zone{
+    display: flex;
+    flex-direction: column;
     gap: 24px;
  }
 

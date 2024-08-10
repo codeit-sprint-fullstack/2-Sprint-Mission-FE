@@ -28,6 +28,7 @@ main {
  }
 
  .overall_area {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +41,15 @@ main {
     gap: 24px;
  }
 
+ label {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+ }
+
  .login_zone{
+    display: flex;
+    flex-direction: column;
     gap: 24px;
  }
 
