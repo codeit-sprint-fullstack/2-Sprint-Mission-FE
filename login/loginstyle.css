@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+html {
+    font-family: Pretendard;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+input {
+    width: 640px;
+    height: 56px;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid transparent;
+    outline: none;
+    color: #9CA3AF;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;  
+}
+
+input:focus {
+    border-color: #3692FF;
+    color: #1F2937;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+.banner {
+    display: flex;
+    width: 396px;
+    height: 132px;
+}
+.id {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+.id-label {
+    font-size: 18px;
+    line-height: 21.48px; 
+    font-weight: 700;
+}
+#email {
+    margin-top: 16px;
+}
+.password {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pw-container {
+    margin-top: 16px;
+    display: inline-block;
+    position: relative;
+}
+#pw-box {
+    position: relative;
+    padding-right: 40px;
+}
+#pw-check {
+    position: relative;
+    padding-right: 40px;
+}
+.blind-eye {
+    position: absolute;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    top: 16px;
+}
+
+.login {
+    width: 640px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFFFFF;
+    align-items: center;
+    padding: 16px 124px;
+    border-radius: 40px;
+    margin-top: 24px;
+    background-color: #9CA3AF;
+}
+
+.sns-login {
+    padding-left: 23px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 24px;
+    width: 640px;
+    height: 74px;
+    border-radius: 8px;
+    background-color: #E6F2FF;
+}
+
+.easy-login {
+    flex-grow: 1;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #1F2937;
+}
+
+.google-icon {
+    margin-right: 16px;
+    width: 42px;
+    height: 42px;
+}
+
+.kakao-icon {
+    margin-right: 23px;
+    width: 42px;
+    height: 42px;
+}
+
+.signup {
+    display: flex;
+    margin-top: 24px;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 17.9px;
+    color: #1F2937;
+    gap: 4px;
+}
+
+.banner, .blind-eye, .google-icon, .kakao-icon, .signup-text, .login{
+    cursor: pointer;
+}
