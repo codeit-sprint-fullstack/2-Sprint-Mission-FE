@@ -1,0 +1,331 @@
+html {
+  font-family: Pretendard;
+}
+body {
+  background-color: #FCFCFC;
+  margin: 0;
+}
+
+
+header {
+  position: fixed;  /* 배너위치 고정*/
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+a {
+  text-decoration: none;
+  color:white;
+}
+
+
+.logo {
+  margin-left: 200px;
+  width:153px; 
+  height: 51px;
+  cursor: pointer;
+}
+
+.login_button {
+
+  width: 128px;
+  height: 48px;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 600;
+  background-color: #3692FF;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-right: 200px;
+ 
+}
+
+section{
+  display:flex;
+  background-color: #CFE5FF;
+  margin-top: 70px;
+  height: 540px;
+  width: 100%;
+  align-items: end;
+  justify-content: center;
+  white-space: nowrap; /*너비 초과해도 그냥 글자 안넘치게*/
+  
+}
+.contents_section{
+  width: 357px;
+  height: 260px;
+  
+
+}
+
+.panda_secton{
+  width: 746px;
+  height: 340px;
+  
+}
+
+.ment_section{
+  color:#374151;
+  ;
+  font-size: 40px;
+  font-weight: 700;
+  padding-top: 60px;
+  
+}
+
+.button_section{
+  font-size: 20px;
+  background-color: #3692FF;
+  border: none;
+  border-radius: 40px;
+  width: 357px;
+  height: 56px;
+  padding: 16px 124px 16px 124px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.all_section{
+  display: flex;
+}
+
+main{
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  width: 100%;
+  height: 720px;
+  align-items: center;
+  
+}
+
+.main_1{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contents1_main{
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 444px;
+  display: flex;
+  background-color:#FCFCFC;
+}
+
+.img1_main{
+  width: 588px;
+  height: 444px;
+}
+
+.text1_main{
+  
+  flex-direction: column; 
+  margin-left: 50px;
+}
+
+.hot_item{
+  color: #3692FF;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.title1_main{
+  font-weight: 700;
+  font-size: 40px;
+  color: #374151;
+
+}
+
+.detail1_main{
+  font-weight: 500;
+  font-size: 24px;
+  color: #374151;
+
+}
+
+
+.main_2{
+  position: relative;
+  top: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contents2_main{
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 444px;
+  display: flex;
+  background-color:#FCFCFC;
+  
+}
+
+.img2_main{
+  width: 588px;
+  height: 444px;
+}
+
+
+.text2_main{
+  
+  flex-direction: column; 
+  margin-right: 50px;
+}
+
+.search{
+  display: flex;
+  color: #3692FF;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.title2_main{
+  font-weight: 700;
+  font-size: 40px;
+  color: #374151;
+
+}
+
+.detail2_main{
+  font-weight: 500;
+  font-size: 24px;
+  color: #374151;
+
+}
+
+.main_3{
+  position: relative;
+  top: 1600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contents3_main{
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 444px;
+  display: flex;
+  background-color:#FCFCFC;
+}
+
+.img3_main{
+  width: 588px;
+  height: 444px;
+}
+
+.text3_main{
+  
+  flex-direction: column; 
+  margin-left: 50px;
+}
+
+.register{
+  color: #3692FF;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.title3_main{
+  font-weight: 700;
+  font-size: 40px;
+  color: #374151;
+
+}
+
+.detail3_main{
+  font-weight: 500;
+  font-size: 24px;
+  color: #374151;
+
+}
+
+.footer_section{
+  position: relative;
+  width: 100%;
+  height: 540px;
+  top: 1600px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+
+
+}
+
+.contents2_section{
+
+  display: flex;
+  justify-content: center;
+  
+}
+
+.ment2_section{
+  margin-bottom: 200px;
+  font-size: 40px;
+  font-weight: 700;
+  color:#374151 ;
+  
+}
+
+footer{
+  position: relative;
+  display: flex;
+  top : 1600px;
+  justify-content: center;
+  background-color: #111827;
+  height: 160px;
+  white-space: nowrap;
+  align-items: center;
+
+}
+
+.contents_footer{
+  display: flex;
+  position: relative;
+  height: 20px;
+  width: 100%;
+  justify-content: space-between;
+
+}
+
+
+.codeit{
+  margin-left: 200px;
+  display: flex;
+  position: relative;
+  bottom: 15px;
+  color:#9CA3AF;
+  font-size: 16px;
+}
+
+.mid_footer{
+  display: flex;
+  gap: 40px;
+  color: white;
+  font-size: 16px;
+}
+
+.sns{
+  margin-right: 200px;
+  position: relative;
+  display: flex;
+  height: 20px;
+  width: 20px;
+  gap: 10px;
+}
