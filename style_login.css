@@ -16,7 +16,7 @@ main {
     flex-direction: column;
     justify-content: center;
     min-height: 100%;
-    max-width: 600px;
+    max-width: 1920px;
     margin: 0 auto;
  }
 

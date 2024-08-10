@@ -1,3 +1,20 @@
+:root {
+    --color-footer-black: #111827;
+    --color-dark-gray: #1F2937;
+    --color-headline-gray: #374151;
+    --color-gray: #9CA3AF;
+    --color-light-gray: #DFDFDF;
+    --color-blue: #3692FF;
+    --color-darker-blue: #1967D6;
+    --color-background-skyblue: #CFE5FF;
+    --color-light-skyblue: #E6F2FF;
+    --color-grayish-white: #F3F4F6;
+    --color-footer-white: #E5E7EB;
+    --color-view-white: #F9FAFB;
+    --color-section-white: #FCFCFC;
+    --color-white: #FFFFFF;
+}
+
 html {
     font-family: Pretendard;
 }
@@ -18,8 +35,8 @@ header {
     left:0;
     justify-content: center;
     align-items: center;
-    background-color: #FFFFFF;
-    border: 1px solid #DFDFDF;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-light-gray);
     width: 100%;
     height: 70px;
     z-index: 1;
@@ -41,13 +58,13 @@ header {
 
 .login {
     cursor: pointer;
-    background-color: #3692FF;
+    background-color: var(--color-blue);
     width: 128px;
     height: 48px;
     border: none;
     border-radius: 8px;
     margin-right: 200px;
-    color: #F3F4F6;
+    color: var(--color-grayish-white);
     font-weight: 600;
     font-size: 16px;
     text-decoration: none;
@@ -55,7 +72,7 @@ header {
 }
 
 .login a {
-    color: #F3F4F6;
+    color: var(--color-grayish-white);
     font-weight: 600;
     font-size: 16px;
     text-decoration: none;
@@ -63,8 +80,8 @@ header {
 }
 
 .login:hover {
-    color: #F3F4F6;
-    background-color: #1967D6;
+    color: var(--color-grayish-white);
+    background-color: var(--color-darker-blue);
     transition: 0.3s;
 }
 
@@ -77,7 +94,7 @@ header {
     margin-top: 70px;
     width: 100%;
     height: 540px;
-    background-color: #CFE5FF; 
+    background-color: var(--color-background-skyblue); 
 }
 
 .bottom-container, .kv-container{
@@ -104,13 +121,13 @@ header {
 
 .view {
     cursor: pointer;
-    background-color: #3692FF;
+    background-color: var(--color-blue);
     width: 357px;
     height: 56px;
     border: none;
     border-radius: 40px;
     gap: 10px;
-    color: #F9FAFB;
+    color: var(--color-view-white);
     font-weight: 600;
     font-size: 20px;
     font-family: Pretendard;
@@ -118,22 +135,22 @@ header {
 }
 
 .view:hover {
-    color: #F3F4F6;
+    color: var(--color-grayish-white);
     font-weight: 600;
-    font-size: 17px;
-    background-color: #1967D6;
+    font-size: 20px;
+    background-color: var(--color-darker-blue);
     transition: 0.3s;
 }
 
 .bluetag {
-    color: #3692FF;
+    color: var(--color-blue);
     font-weight: 700;
     font-size: 18px;
     margin-bottom: 12px;
 }
 
 .headline-heading {
-    color: #374151;
+    color: var(--color-headline-gray);
     line-height: 56px;
     font-weight: 700;
     font-size: 40px;
@@ -144,7 +161,7 @@ header {
 }
 
 .headline-description {
-    color: #374151;
+    color: var(--color-headline-gray);
     line-height: 32px;
     font-weight: 500;
     font-size: 24px;
@@ -174,7 +191,7 @@ header {
     justify-content: center;
     width: 100%;
     height: 720px;
-    background-color: #FFFFFF;  
+    background-color: var(--color-white);  
 }
 
 .hot-item, .register {
@@ -185,7 +202,7 @@ header {
     width: 969px;
     height: 444px;
     top: 138px;
-    background-color: #FCFCFC;  
+    background-color: var(--color-section-white);  
 }
 
 .search {
@@ -198,7 +215,7 @@ header {
     width: 969px;
     height: 444px;
     top: 138px;
-    background-color: #FCFCFC;  
+    background-color: var(--color-section-white);  
 }
 
 .bottom {
@@ -209,7 +226,7 @@ header {
     flex-direction: row-reverse;
     width: 100%;
     height: 540px;
-    background-color: #CFE5FF; 
+    background-color: var(--color-background-skyblue); 
 }
 
 .bottom-img {
@@ -225,7 +242,7 @@ header {
     padding-top: 32px;
     width: 100%;
     height: 160px;
-    background-color: #111827;
+    background-color: var(--color-footer-black);
 }
 
 .footer-area{
@@ -235,7 +252,7 @@ header {
 }
 
 .footer-copyright {
-    color: #9CA3AF;
+    color: var(--color-gray);
     font-weight: 400;
     font-size: 16px;
     margin-left: 200px;
@@ -250,7 +267,7 @@ header {
 
 .footer-external {
     cursor: pointer;
-    color: #E5E7EB;
+    color: var(--color-footer-white);
     font-weight: 400;
     font-size: 16px;
     text-decoration: none; 
