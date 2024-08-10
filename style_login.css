@@ -5,6 +5,7 @@
     --color-blue: #3692FF;
     --color-light-skyblue: #E6F2FF;
     --color-white: #FFFFFF;
+    --color-create-account-blue: #3182F6;
 }
 
 html {
@@ -25,6 +26,7 @@ main {
     align-items: center;
     justify-content: center;
     margin-top: 60px;
+    margin-bottom: 40px; /*232px-(132+60)*/
  }
 
  .overall_area {
@@ -145,4 +147,8 @@ main {
     font-weight: 500;
     font-size: 15px;
     color: var(--color-dark-gray);
+ }
+
+ .create-account a{
+   color: var(--color-create-account-blue);
  }
