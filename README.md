@@ -75,10 +75,20 @@
 
 - https://codeitmission12panda.netlify.app (스프린트 미션 1 & 2 사이트)
 
+  
+1. 판다 이미지 전체화면 시 확대됨. -> css background-image에서 html img로 첨부함
+2. features design requirement -> 짝수, 홀수 컨텐츠에 따라 (even-feature, odd-feature) 배너 옆 빈공간 생성 & 전체 배너 배경색 채움
+3. #second id 포괄적 x -> 미래에 feature들이 생성되는 것을 고려하여 odd-feature / odd-feature-content class로 변경
+4. 눈모양 이름 모호함 -> btnpassword.png를 password-active-toggle.png로 / class명도 password-active-toggle로 변경
+5. login btn은 다른 단어 -> login-btn으로 변경
+6. 간편 로그인 box 모호함 -> easy-login-section으로 변경
+7. login.html 모호함 -> 5, 6을 통해 해결
+8. 자손 선택자 혼동 -> h5, h2, p 태그를 각 feature-subtitle, feature-title, feature-description으로 class 명명함.
+
 ## 스크린샷
 
 #### 랜딩 페이지
-![image](https://github.com/user-attachments/assets/3b6d27a5-fbc3-470c-b4f3-7db68f1c435b)
+![image](https://github.com/user-attachments/assets/7e0135d3-f3f3-422b-baf3-355a71431627)
 #### 로그인 페이지
 ![image](https://github.com/user-attachments/assets/edf795a6-bbf5-4eb9-9fbc-fce8f1be4576)
 #### 회원가입 페이지
@@ -86,7 +96,9 @@
 
 
 ## 멘토에게
-- 코드가 깔끔한 지 궁금합니다!
-- 매운 맛으로 리뷰해주세요 ㅎㅎ
+- 리뷰 반영하여 수정하였습니다!
+- 창크기 작아질 때 고려하여 background-image를 사용하였는데 변경사항 1번에서 img로 변경하면서 창크기가 작아지면 wrapper랑 겹쳐지는 데 어떻게 해결해야할까요?
+- 변경사항 2번: 창크기가 가장 클 때를 기준으로 feature-content 박스 크기를 정했으나 작아지면 사이즈가 그대로입니다. 옆 image와 height를 똑같이 하여 고정하고 싶습니다.
+  
   
 

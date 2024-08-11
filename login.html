@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7VX69ZQDL"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-G7VX69ZQDL');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>판다마켓</title>
@@ -23,21 +14,20 @@
         </a>
     </header>
     <main>
-        <div class="login">
+        <div class="login-container">
             <form>
                 <label for="email" >이메일</label>
-                <input id="email" name="email" class="input" placeholder="이메일을 입력해주세요">
+                <input id="email" name="email" class="input" placeholder="이메일을 입력해주세요">        
                 <label for="password">비밀번호</label>
-
-                <div class="input-container">
+                <div class="input-password-container">
                     <input id="password" class="input" type="password" placeholder="비밀번호를 입력해주세요">
-                    <img src="images/sign/btnpassword.png" alt="비밀번호보기" class="eyebtn">
+                    <img src="images/sign/password-active-toggle.png" alt="비밀번호보기" class="password-active-toggle">
                 </div>
-                <button class="loginbtn">로그인</button>
+                <button class="login-btn">로그인</button>
             </form>
         </div>
  
-        <div class="easylogin">
+        <div class="easy-login-section">
             <p>간편 로그인 하기</p>
             <div class="social">
                 <a href="https://www.google.com/">
@@ -49,7 +39,7 @@
             </div>
         </div>
 
-        <div class="signup">
+        <div class="signup-container">
             <p>판다마켓이 처음이신가요? &nbsp</p>
             <a href="signup.html">회원가입</a>
         </div>

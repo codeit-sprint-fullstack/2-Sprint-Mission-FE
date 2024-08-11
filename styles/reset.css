@@ -17,6 +17,7 @@ nav {
     align-items: center;
     background-color: white;
     height: 7rem;
+    z-index: 2;
 }
 
 a {
@@ -60,20 +61,25 @@ a {
     background-color: #CFE5FF;
     display: flex;
     align-items: center;
-    background-repeat: no-repeat;
-    background-position: 70% bottom;
     height: 57rem; /*nav 만큼 더 줌*/
-    background-size: 50%;
     font-size: 2.5rem;
+    position: relative;
 }
 
 .wrapper{
     margin-top: 2rem;
     margin-left: 15rem;
+    z-index: 1;
 }
 
-#top {
-    background-image: url("../images/home/top_banner.png");
+.banner-img{
+    position: absolute;
+    right: 20rem;
+    bottom: -0.6rem;
+}
+
+#features{
+    padding-bottom: 130px;
 }
 
 .feature{
@@ -82,28 +88,44 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5%; /* 컨텐츠들 사이 띄울 때 좋음 */
+    flex-wrap: wrap;
+
 }
 
 .feature-content{
     background-color: #FCFCFC;
+    width: auto;
 }
 
-section h5 {
+.feature-subtitle {
     color: #3692FF;
     margin-bottom: 1rem;
+    font-size: 2rem;
 }
 
-section h2 {
+.feature-title {
     margin-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: 800;
 }
 
-#second{    /*여러개인 경우 자손 선택자인 nth를 사용해도 됨*/
+.feature-description {
+    font-size: 2rem;
+}
+.even-feature{
+    margin-left: 20rem;
+}
+
+.odd-feature{
+    margin-right: 20rem;
+}
+.even-feature-content { 
     text-align: right;
+    padding: 10rem 5rem 10rem 1rem;
 }
 
-#bottom{
-    background-image: url("../images/home/bottom_banner.png");
+.odd-feature-content {
+    padding: 10rem 1rem 10rem 5rem;
 }
 
 /*footer*/
