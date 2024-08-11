@@ -55,6 +55,12 @@ main {
     gap: 24px;
  }
 
+ .letter-box {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
  .letter{
     font-weight: 700;
     font-size: 18px;

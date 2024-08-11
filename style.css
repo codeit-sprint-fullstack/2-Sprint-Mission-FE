@@ -113,6 +113,7 @@ header {
 }
 
 .kv-text, .bottom-text {
+    width: 345px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -198,6 +199,7 @@ header {
     position: relative;
     display: flex;
     gap: 40px;
+    justify-items: center;
     align-items: center;
     width: 969px;
     height: 444px;
@@ -247,8 +249,10 @@ header {
 
 .footer-area{
     width: 1520px;
+    height: 20px;
     display:flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .footer-copyright {
