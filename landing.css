@@ -93,7 +93,6 @@ footer{
   display:flex;
   background-color:  #000000;
   color: #9ca3af;
-  display: flex;
   padding: 32px 200px 100px 200px;
   font-size: 1rem;
   gap: 10rem;
@@ -102,12 +101,6 @@ footer{
 
 }
 
-#footer1{
-  display: flex;
-  gap: 3rem;
-  margin-left:;
-  align-items: center;
-}
 
 #footer2{
   display: flex;
@@ -168,59 +161,15 @@ img {
 
 
 
-
-
-
-
-
-/* #0 섹션  헤더 스타일 */
-/* header {
-  text-align: center;
-  background-color: #fff;
-  justify-content: space-around;
-  
-  width: 100%;
-  position: fixed;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  
-} */
-
-/* .nav{
-  display: flex;  
-  height: 50px;
-} */
-
-
 /* #1 섹션  일상의 모든 물건을 거래해 보아요    */
 #firstSection{
   height: 440px;
 }
 
-/* # last 섹션 믿을 수 있는 판다마켓 중고거래    */
-/*v1 #lastSection {
-  height: 370px;
-  align-items: center;
-  
-} */
+
 
 #lastSection{
   height: 370px;
 } 
 
-
-/* #lastLine 중간 정렬할려고 뭔짓을 해봤지만..  
-.first-last-section 에  end도 빼고
- lastSection을 독립시킨 뒤 센터를 줘도 왜 안먹히는지.. .. 
-
-/* #lastLine{
-  text-align: center;
-  background-color: aqua;
-  align-items: center;
-  
-}
-
-#lastPanda{
-  background-color: blue;
-align-items: ;
-} */
 
