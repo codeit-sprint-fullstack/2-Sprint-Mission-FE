@@ -43,13 +43,13 @@ main {
    gap: 16px;
  }
 
- .login_area{
+ .signup_area{
     display: flex;
     flex-direction: column;
     gap: 24px;
  }
 
- .login_zone{
+ .signup_fillup_zone{
     display: flex;
     flex-direction: column;
     gap: 24px;

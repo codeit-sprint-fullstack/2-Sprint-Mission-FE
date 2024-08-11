@@ -49,7 +49,7 @@ main {
    gap: 16px;
 }
 
-.login_zone{
+.login_fillup_zone{
    display: flex;
    flex-direction: column;
    gap: 24px;
