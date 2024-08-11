@@ -2,40 +2,38 @@
   box-sizing: border-box;
 }
 body{
-
+  width: 100%;
 }
 .top{
-  width: 1120px;
   height: 51px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-}
-#mainlogo.top{
-  position: fixed;
-  left: 200px;
+  margin: 0 200px 0 200px;
 }
 .maintop{
-  padding: 9px 400px 9px 400px;
-  margin: 0;
+  width: 100%;
   height: 70px;
-  position: sticky;
+  padding: 9.5px 0 9.5px 0;
+  position: fixed;
   top: 0;
+  left: 0;
   background-color: #FFFFFF;
 }
-.article1{
+.article1{ 
+  /* 가장큰 테두리 */
   background-color:#CFE5FF;
+  width: 100%;
   height: 540px;
-  border: 1px solid red;
+  padding: 5px 0 5px 0;
 }
 .articletop1{
   width: 1110px;
   height: 340px;
-  padding: 200px 0;
-  margin: 0px 405px;
   display: flex;
-  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  margin: 200px 400px 0 400px;
 }
 .top1_1{
   margin: 32px 0 0 0;
@@ -49,7 +47,6 @@ body{
   justify-content: space-between;
   line-height: 56px;
   gap: 32px;
-
 }
 
 .buybutton{
@@ -74,11 +71,12 @@ body{
   border-radius: 8px;
   background-color: #3692FF;
   cursor: pointer;
+  position: sticky;
+  right: 200px;
 }
 
 #toplogin.top{
-  position: fixed;
-  right: 200px;
+
 }
 
 .article2{
@@ -98,7 +96,7 @@ body{
   width: 274px;
   height: 238px;
   gap: 12px;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   color: #3692FF;
   font-size: 18px;
@@ -181,31 +179,29 @@ body{
   height: 238px;
 
   margin:  103px 0 103px 64px;
-  gap: 24px;
 }
 .article5{
+  /* 믿을수 있는 판다마켓 중고 거래 */
   background-color:#CFE5FF;
+  width: auto;
   height: 540px;
-  padding: 1px;
+  padding: 3px 0 0 5px;
 }
 
 .down{
   width: 1110px;
   height: 397px;
+  margin: 140px 0 0 400px;
   display: flex;
-  margin: 142px 405px;
-  border: 1px solid red;
   font-size: 40px;
   font-weight: 700;
   color: #374151;
   align-items: center;
-  gap: 69px;
 }
 
 footer{
   width: 1920px;
   height: 160px;
-  border: 1px solid red;
   padding: 32px 400px 32px 400px;
   background-color: #111827;
 }
@@ -213,7 +209,6 @@ footer{
 .footer{
   
   height: 20px;
-  border: 1px solid red;
   display: flex;
   justify-content: space-between;
 }
