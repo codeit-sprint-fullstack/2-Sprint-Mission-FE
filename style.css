@@ -95,6 +95,7 @@ a.logo,
   position: fixed;
   top: 0;
   padding: 0.9rem 40rem;
+  gap: 1rem;
 }
 
 .logo {
@@ -119,6 +120,11 @@ a.logo,
   cursor: pointer;
 }
 
+.login-button span {
+  width: 4.2rem;
+  height: 2.6rem;
+}
+
 /* top */
 
 .full-top {
@@ -126,15 +132,15 @@ a.logo,
   background-color: var(--background-color);
   width: 100%;
   margin-top: 7rem;
-  justify-content: center;
 }
 
 .top-section {
   display: flex;
+  align-items: center;
   width: 111rem;
   height: 34rem;
   margin: 20rem auto 0;
-  align-items: center;
+  gap: 0.7rem;
 }
 
 .top-text-section {
@@ -315,13 +321,13 @@ a.logo,
   line-height: 1.909rem;
   text-align: center;
   color: var(--secondary-color-gray200);
-  height: 1.1875rem;
+  height: 1.9rem;
 }
 
 .footer-link-section {
   display: flex;
-  gap: 1.875rem;
-  width: 9.9375rem;
+  gap: 3rem;
+  width: 15.9rem;
   height: 1.9rem;
 }
 
@@ -336,6 +342,13 @@ a.logo,
   gap: 1.2rem;
 }
 
+.facebook,
+.twitter,
+.youtube,
+.instagram {
+  width: 2rem;
+  height: 2rem;
+}
 
 @media (width < 1920px) {
 

@@ -141,7 +141,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   background-color: var(--background-color-light-blue);
   width: 100%; /*640px*/
   height: 7.4rem; /*74px*/
@@ -190,4 +190,3 @@ a.ic-img {
   color: #3182F6;
   cursor: pointer;
 }
-
