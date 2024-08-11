@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.LoginForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  height: 210px;
+  gap: 24px;
+}
+
+.LoginForm label {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.48px;
+  text-align: left;
+  color: #1F2937;
+}
+
+input {
+  align-items: center;
+  width: 592px;
+  height: 24px;
+  padding: 16px 24px;
+  gap: 10px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: #F3F4F6;
+  color: #9CA3AF;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.password {
+  position: relative;
+}
+
+.BlindEye {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  bottom: 16px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+input:focus {
+  outline-color: #3692FF;
+}
+
+button {
+  width: 640px;
+  height: 56px;
+  border: 0;
+  padding: 16px 124px;
+  gap: 10px;
+  border-radius: 40px;
+  background: #9CA3AF;
+  color: #ffffff;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+.SnsLogin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #E6F2FF;
+  width: 640px;
+  height: 74px;
+  gap: 0px;
+  border-radius: 8px;
+}
+
+.SnsLogin p {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: #1F2937;
+  margin-left:23px;
+}
+
+.sns {
+  gap: 16px;
+  margin-right: 16px;
+}
+
+.signup {
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 17.9px;
+  text-align: left;
+  
+}
+
+a.signup {
+  display: flex;
+  justify-content: center;
+}
