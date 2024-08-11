@@ -23,7 +23,7 @@ html {
 body {
     background-color: var(--main);
     margin: 0;
-    padding: 60px;
+    padding: 6rem;
 }
 
 a {
@@ -34,27 +34,27 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
 }
 
 .logo {
-    width: 103.53px;
-    height: 103.53px;
+    width: 10.353rem;
+    height: 10.353rem;
 }
 
 .title {
     color: var(--blue);
     font-weight: 700;
-    font-size: 66.34px;
+    font-size: 6.634rem;
     font-family: ROKAF;
-    line-height: 89.56px;
+    line-height: 8.956rem;
 }
 
 .input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
 }
 
 .password-input, 
@@ -70,55 +70,55 @@ a {
 
 .password-input .eyes {
     position: absolute;
-    top: 60px;
+    top: 6rem;
     bottom: 0;
-    right: 20px;
-    margin: auto 2px;
-    height: 24px;
-    width: 24px;
+    right: 2rem;
+    margin: auto 0.2rem;
+    height: 2.4rem;
+    width: 2.4rem;
     cursor: pointer;
 }
 
 .input-title {
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
     font-weight: 700;
     color: var(--gray);
-    margin: 20px 0;
+    margin: 2rem 0;
 }
 
 .input-area {
-    width: 620px;
-    height: 56px;
-    border-radius: 12px;
+    width: 62rem;
+    height: 5.6rem;
+    border-radius: 1.2rem;
     border: none;
     background-color: var(--cool-gray);
     resize: none;
     outline-color: var(--blue);
-    padding: 0 20px;
+    padding: 0 2rem;
 }
 
 .input-area::placeholder {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     font-weight: 400;
 }
 
 .login-btn {
-    width: 640px;
-    height: 56px;
-    border-radius: 40px;
+    width: 64rem;
+    height: 5.6rem;
+    border-radius: 4rem;
     border: none;
     background-color: var(--dark-gray);
-    padding: 16px, 124px, 16px, 124px;
-    margin: 10px 0;
+    padding: 1.6rem, 12.4rem, 1.6rem, 12.4rem;
+    margin: 1rem 0;
 }
 
 .login-text {
     text-align: center;
     color: white;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 2rem;
+    line-height: 2.4rem;
     font-weight: 600;
 }
 
@@ -126,17 +126,17 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 620px;
-    height: 74px;
+    width: 62rem;
+    height: 7.4rem;
     background-color: var(--sky-blue);
-    border-radius: 8px;
+    border-radius: 0.8rem;
     border: none;
-    padding: 0 20px;
+    padding: 0 2rem;
 }
 
 .easy-login p {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     font-weight: 500;
     color: var(--text);
 }
@@ -149,25 +149,25 @@ a {
 .google-icon {
     background-color: white;
     border-radius: 70%;
-    margin-right: 10px;
+    margin-right: 1rem;
 }
 
 .sign-in {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
 }
 
 .sign-in p {
-    font-size: 15px;
-    line-height: 18px;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
     font-weight: 500;
     color: var(--text);
 }
 
 .sign-in a {
-    font-size: 15px;
-    line-height: 18px;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
     font-weight: 500;
     color: var(--btext);
     text-decoration: underline;

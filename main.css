@@ -4,6 +4,8 @@
 }
 
 html {
+    /* 10px */
+    font-size: 62.5%;
     font-family: Pretendard;
 }
 
@@ -26,15 +28,15 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 70px;
+    height: 7rem;
     background-color: white;
     z-index: 1;
 }
 
 .nav {
     justify-content: space-between;
-    width: 1920px;
-    height: 70px;
+    width: 192rem;
+    height: 7rem;
     background-color: white;
     display: flex;
     align-items: center;
@@ -49,35 +51,35 @@ header {
 
 .title {
     color: #3692FF;
-    font-size: 25.63px;
-    line-height: 34.6px;
+    font-size: 2.563rem;
+    line-height: 3.46rem;
     font-weight: 700;
-    margin-left: 8px;
+    margin-left: 0.8rem;
     font-family: ROKAF;
 }
 
 .login {
-    width: 128px;
-    height: 48px;
-    font-size: 16px;
-    line-height: 26px;
+    width: 12.8rem;
+    height: 4.8rem;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
     font-weight: 600;
     background-color: #3692FF;
-    border-radius: 8px;
+    border-radius: 0.8rem;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 .home-top {
-    margin-top: 70px;
+    margin-top: 7rem;
 }
 
 .home-top,
 .home-bottom {
     display: flex;
     width: 100%;
-    height: 540px;
+    height: 54rem;
     background-color: #CFE5FF;
     justify-content: center;
     align-items: end;
@@ -85,23 +87,23 @@ header {
 
 .home-top h1,
 .home-bottom h1 {
-    font-size: 40px;
-    line-height: 56px;
+    font-size: 4rem;
+    line-height: 5.6rem;
     font-weight: 700;
     color: #374151;
 }
 
 .item-btn {
     background-color: #3692FF;
-    width: 357px;
-    height: 56px;
-    border-radius: 40px;
+    width: 35.7rem;
+    height: 5.6rem;
+    border-radius: 4rem;
     border: none;
-    padding: 16px auto;
-    gap: 10px;
+    padding: 1.6rem 0;
+    gap: 1rem;
     color: #F9FAFB;
-    font-size: 20px;
-    line-height: 32px;
+    font-size: 2rem;
+    line-height: 3.2rem;
     font-weight: 600;
     cursor: pointer;
 }
@@ -122,27 +124,27 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 720px;
+    height: 72rem;
     background-color: white;
 }
 
 .section-category {
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
     font-weight: 700;
     color: #3692FF;
 }
 
 .section-title {
-    font-size: 40px;
-    line-height: 56px;
+    font-size: 4rem;
+    line-height: 5.6rem;
     font-weight: 700;
     color: #374151;
 }
 
 .section-description {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
     font-weight: 500;
     color: #374151;
 }
@@ -157,25 +159,25 @@ header {
 
 .hot-item,
 .register {
-    margin-left: 32px;
+    margin-left: 3.2rem;
 }
 
 .search {
     text-align: end;
-    margin-right: 32px;
+    margin-right: 3.2rem;
 }
 
 .section {
     display: flex;
-    width: 1200px;
+    width: 120rem;
 }
 
 .section1-hot-item,
 .section2-search,
 .section3-register {
     display: flex;
-    width: 969px;
-    height: 444px;
+    width: 96.9rem;
+    height: 44.4rem;
     background-color: #FCFCFC;
     cursor: pointer;
 }
@@ -186,7 +188,7 @@ header {
 }
 
 .section2-search {
-    margin-left: 231px;
+    margin-left: 23.1rem;
     justify-content: flex-end;
 }
 
@@ -196,15 +198,18 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 32px 400px;
-    gap: 10px;
+    margin: 3.2rem 12.5rem;
+    gap: 1rem;
+    width: 192rem;
 }
 
 footer {
+    display: flex;
+    justify-content: center;
     background-color: #111827;
     width: 100%;
-    height: 160px;
-    border: 1px solid;
+    height: 16rem;
+    border: 0.1rem solid;
     border-color: #111827;
 }
 
@@ -217,12 +222,12 @@ footer {
 
 .PF {
     display: flex;
-    gap: 32px;
+    gap: 3.2rem;
 }
 
 footer img{
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 
 .icon {
