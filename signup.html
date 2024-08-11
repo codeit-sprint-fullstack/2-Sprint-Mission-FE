@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <link rel="icon" href="img/판다 얼굴.png">
+  <link rel="stylesheet" href="/style/reset.css">
+  <link rel="stylesheet" href="/style/variables.css">
+  <link rel="stylesheet" href="/style/signup.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+<body>
+  <header>
+    <a href="/" target="_self">
+      <img class="logo" rel="logo" src="img/logo.png">
+    </a>
+  </header>
+  <main>
+    <form>
+      <div class="login_id">
+        <label for="email">이메일</label>
+        <div class="id_container">
+          <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
+        </div>
+      </div>
+      <div class="login_nickname">
+        <label for="niciname">닉네임</label>
+        <div class="nickname_container">
+          <input type="text" id="nickname" name="niciname" placeholder="닉네임을 입력해주세요" required>
+        </div>
+      </div>
+      <div class="login_password">
+        <label for="password">비밀번호</label>
+        <div class="password_container">
+          <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+          <button type="button" id="togglePassword">
+            <img src="img/btn_visibility_off_24px.svg" alt="ShowPassword">
+          </button>
+        </div>
+      </div>
+      <div class="login_confirm_password">
+        <label for="confirm_password">비밀번호 확인</label>
+        <div class="confirm_password_container">
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+          <button type="button" id="togglePassword">
+            <img src="img/btn_visibility_off_24px.svg" alt="ShowPassword">
+          </button>
+        </div>
+      </div>
+      <button class="login_btn" type="submit">회원가입</button>
+    </form>
+    <section class="SNS_login">
+      <h1>간편 로그인하기</h1>
+      <article class="SNS_icon">
+        <a href="https://www.google.com/" target="_blank">
+          <img class="SNS_icon_google" src="img/Component 2.png">
+        </a>
+        <a href="https://www.kakaocorp.com/page/" target="_blank">
+          <img class="SNS_icon_kakao" src="img/Component 3.png">
+        </a>
+      </article>
+    </section>
+    <article class="login">
+      <div class="login_div">
+        <p>이미 회원이시가요?</p>
+        <a href="/login" target="_self">로그인</a>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
