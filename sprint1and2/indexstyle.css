@@ -60,6 +60,8 @@ nav {
     color: #374151;
     font-size: 4rem;
     font-weight: 700;
+    line-height: 5.6rem;
+    margin-bottom: calc(var(--mySize) * 2);
 }
 
 .grayText {
@@ -168,7 +170,7 @@ main {
 }
 
 .mainContentsImg {
-    width: clamp(70px,31vw,580px);
+    width: clamp(70px,31vw,588px);
 }
 
 .mainTextBox {
@@ -182,13 +184,17 @@ main {
 }
 
 .mainText {
-    font-size: 3rem;
-    font-weight: 500;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 5.6rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
 }
 
 .mainTextSub {
-    font-size: 2rem;
-    font-weight: 400;
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 3.2rem;
 }
 
 footer {
