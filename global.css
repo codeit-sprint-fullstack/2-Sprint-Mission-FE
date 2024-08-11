@@ -1,4 +1,6 @@
 
+@import "/reset.css"
+
 * {
   font-family: Poppins, "Nato Sans KR", sans-serif;
   box-sizing: border-box;
@@ -7,10 +9,6 @@
   
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
 
 img {
   vertical-align: bottom;

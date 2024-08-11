@@ -1,8 +1,24 @@
 
 
+/*--------피드백 -------*/
+.adjustImage{
+  width:50%
+}
+
+.adjustImageB{
+  width:20px;
+}
+
 
 
 /*--------웹페이지 -------*/
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 
 
 
