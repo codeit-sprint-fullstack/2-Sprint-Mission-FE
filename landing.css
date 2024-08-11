@@ -1,19 +1,5 @@
-* {
-  font-family: Poppins, "Nato Sans KR", sans-serif;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  
-}
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
 
-img {
-  vertical-align: bottom;
-}
 
 
 /*--------웹페이지 -------*/
@@ -122,45 +108,103 @@ footer{
 }
 
 
-/*-------- 글씨체 -------*/
 
 
-/* 첫번째 글씨체 */
-.first-line {
-  font-size: 18px;
-  line-height: 26px;
-  font-weight: 700;
-  color: #3692FF;
-}
 
-/* 두번째 글씨체 */
-.second-line {
-  font-size: 40px;
-  line-height: 56px;
-  font-weight: 700;
-  color: #374151;
+/*수정라인0------00000000000000*/
+
+img {
+  width: 500px;
 }
 
 
-
-/* 세번째 글씨체 */
-.third-line {
-  font-size: 24px;
-  line-height: 32px;
-  font-weight: 500;
-  color: #374151;
+/* 헤더 로그인 버튼*/
+.login-Button {
+  background-color: #2196f3; 
+  color: #fff; 
+  padding: 15px 20px;
+  border-radius: 10px; 
+  font-size: 18px; 
+  text-align: center; 
+  width: 100px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-left: 50px;
+  
 }
 
 
-/*-------- 버튼 -------*/
 
+/* 구경하러가기 버튼*/
+.look-up-button{
+  background-color: #2196f3; 
+  color: #fff; 
+  padding: 15px 30px;
+  border-radius: 25px; 
+  font-size: 18px; 
+  text-align: center; 
+  margin-bottom: 100px;
 
-
-button {
-  background: none;
-  border: none;
-  outline: none;
-  box-shadow: none;
-  cursor: pointer;
 }
+
+
+
+
+
+
+
+
+/* #0 섹션  헤더 스타일 */
+/* header {
+  text-align: center;
+  background-color: #fff;
+  justify-content: space-around;
+  
+  width: 100%;
+  position: fixed;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  
+} */
+
+/* .nav{
+  display: flex;  
+  height: 50px;
+} */
+
+
+/* #1 섹션  일상의 모든 물건을 거래해 보아요    */
+#firstSection{
+  height: 440px;
+}
+
+/* # last 섹션 믿을 수 있는 판다마켓 중고거래    */
+/*v1 #lastSection {
+  height: 370px;
+  align-items: center;
+  
+} */
+
+#lastSection{
+  height: 370px;
+} 
+
+
+/* #lastLine 중간 정렬할려고 뭔짓을 해봤지만..  
+.first-last-section 에  end도 빼고
+ lastSection을 독립시킨 뒤 센터를 줘도 왜 안먹히는지.. .. 
+
+/* #lastLine{
+  text-align: center;
+  background-color: aqua;
+  align-items: center;
+  
+}
+
+#lastPanda{
+  background-color: blue;
+align-items: ;
+} */
 
