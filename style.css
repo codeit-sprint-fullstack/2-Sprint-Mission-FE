@@ -26,6 +26,7 @@
   --gray-50: #F9FAFB;
   --error-red: #F74747;
 }
+
 body {
   font-family: "Pretendard-Regular";
   color: var(--gray-700);
@@ -91,24 +92,34 @@ header {
   bottom: 100px;
 }
 
-.mid-banner {
-  margin: 138px auto;
-  max-width: 1120px;
-}
-
 .banners {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-right: 165px;
+  width: 100%;
+}
+.mid-banner {
+  margin: 138px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  max-width: 1120px;
+  gap: 276px;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  width: 969px;
   background-color: #FCFCFC;
 }
 
-#banner1 {
-  margin: 138px 165px 138px 0;
+.left-aligned {
+  justify-content: flex-start;
 }
 
-#banner2 {
-  margin: 276px 0 276px 165px;
+.right-aligned {
   display: flex;
   justify-content: flex-end;
 }
@@ -118,7 +129,7 @@ header {
 }
 
 .leftsided {
-  margin-left: 30px;
+  padding-left: 30px;
 }
 
 .rightsided {
