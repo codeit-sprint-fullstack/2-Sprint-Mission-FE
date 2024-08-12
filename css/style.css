@@ -132,8 +132,8 @@ a {
   height: 45rem;                /* 720px */
 }
 .section img {
-  width: 36.75rem;              /* 588px */
-  height: 27.75rem;             /* 444px */
+  max-width: 100%;              /* 부모 요소의 너비에 맞게 이미지 크기를 조정 */
+  height: auto;                 /* 이미지의 비율을 유지하면서 높이를 자동으로 조정 */
 }
 .section-left {
   justify-content: flex-start;
