@@ -43,7 +43,7 @@ form input {
 }
 
 form input:focus {
-    border-color: var(--Primary-100);
+    outline-color: var(--Primary-100);
 }
 
 .input__pw > div {
