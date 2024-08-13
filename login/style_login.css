@@ -1,0 +1,101 @@
+.main{
+  display: flex;
+  width: 640px;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.panda{
+  align-items: center;
+  display: flex;
+  width: 396px;
+  height: 132px;
+  margin-top: 60px;
+  margin-left: 762px;
+}
+
+form{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  height: 430px;
+  margin-left: 640px;
+  gap: 24px;
+  
+
+}
+
+label{
+  font-size: 18px;
+    font-weight: 700;
+    line-height: 21.48px;
+}
+
+input{
+  width: 640px;
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px, 24px, 16px, 24px;
+  gap: 10px;
+  background-color: #F3F4F6;
+  outline: none;   /*원래 아웃라인 제거*/
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+input:focus {
+  border-color: #3692FF; /* 포커스 시 테두리 색상 변경 */
+}
+
+.login-button{
+  width: 640px;
+  height: 56px;
+  border-radius: 40px;
+  color: white;
+  background-color: #9CA3AF;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.simple-box{
+  display: flex;
+  align-items: center;
+  margin-left: 640px;
+  width: 640px;
+  background-color: #E6F2FF;
+  border-radius: 8px;
+  height: 74px;
+  justify-content: space-between;
+}
+
+.simple-login{
+  margin-left: 23px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+
+}
+
+.simple-logo{
+  width: 100px;
+  height: 42px;
+  justify-content: space-between;
+  margin-right: 23px;
+
+}
+
+.signup-contents{
+  display: flex;
+  align-items: center;
+  margin-left: 640px;
+  width: 640px;
+  text-align: center;
+  justify-content: center;
+  gap: 4px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17.9px;
+  }
