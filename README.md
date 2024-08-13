@@ -1,0 +1,3 @@
+# * WARNING *
+
+## Nuclear Launch Detected

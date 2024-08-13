@@ -1,0 +1,247 @@
+@import "./reset.css";
+
+html {
+    --mySize:clamp(5px,0.6vw,10px);
+    --blueBtnColor:#3692FF;
+    font-size: var(--mySize);
+}
+
+body {
+}
+
+header {
+    height: calc(var(--mySize) * 6);
+    padding-top: calc(var(--mySize)*0.5);
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+nav {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerLogoBox {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contentsWidth {
+    max-width: 1110px;
+    width: 100%;
+    margin: auto;
+}
+
+/*
+.contentsPadding {
+    padding: calc(var(--mySize) * 0.6) clamp(100px,20vw,200px) 0;
+}
+*/
+.contentsPadding {
+    padding-left: clamp(100px,20vw,200px);
+    padding-right: clamp(100px,20vw,200px);
+}
+
+#headerLogo {
+    width: calc(var(--mySize) * 15);
+}
+
+.titleText {
+    font-family: "Noto Sans KR", sans-serif;
+    color: #374151;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 5.6rem;
+    margin-bottom: calc(var(--mySize) * 2);
+}
+
+.grayText {
+    color: #4b5563;
+    font-family: "Noto Sans KR", sans-serif;
+    white-space: nowrap;
+}
+
+.blueBtn {
+    color: white;
+    text-decoration: none;
+    background-color: var(--blueBtnColor);
+    font-family: "Noto Sans KR", sans-serif;
+    text-align: center;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.navBtn {
+    font-size: 2rem;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+#headerLoginBtn {
+    padding: calc(var(--mySize) * 1.2) calc(var(--mySize) * 5);
+    border-radius: calc(var(--mySize) * 1.5);
+}
+
+
+
+.mainSign {
+    padding-top: calc(var(--mySize) * 6);
+    height: calc(var(--mySize) * 54);
+    background-color: #cfe5ff;
+}
+
+#mainSignImg {
+    background-image: url("img/mainimg.png");
+    background-size: clamp(150px,45vw,750px);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+.signBox {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.signBtn {
+    font-size: 2rem;
+    font-weight: 500;
+    width: 100%;
+    padding: calc(var(--mySize) * 1.5);
+    border-radius: calc(var(--mySize) * 3);
+    box-sizing: border-box;
+}
+
+main {
+	min-height: calc(100vh - 30px);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#test {
+	min-height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+}
+
+.mainContents {
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.contentsBox {
+    margin: calc(var(--mySize) * 10) auto;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.contentsBoxLeft {
+    justify-content: left;
+    text-align: left;
+    text-decoration: none;
+}
+
+#contentsBoxRight {
+    justify-content: right;
+    text-align: right;
+    text-decoration: none;
+}
+
+.mainContentsImg {
+    width: clamp(70px,31vw,588px);
+}
+
+.mainTextBox {
+    margin: 0 calc(var(--mySize) * 2.5);
+}
+
+.blueText {
+    color: var(--blueBtnColor);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.mainText {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 5.6rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+}
+
+.mainTextSub {
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 3.2rem;
+}
+
+footer {
+    background-color: #111827;
+    height: calc(var(--mySize) * 12);
+    padding: 0 calc(var(--mySize) * 20) calc(var(--mySize) * 4);
+}
+
+#bottomSignImg {
+    background-image: url("img/bottomimg.png");
+    background-size: clamp(150px,45vw,750px);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+
+
+.footerBox {
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 1.8rem;
+    white-space: nowrap;
+}
+
+.footerText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footerIcon {
+    width: calc(var(--mySize) * 2);
+    margin-left: var(--mySize);
+}
+
+#privacyBtn {
+    color: white;
+    text-decoration: none;
+    margin-right: clamp(5px,0.6vw,10px);
+}
+
+#faqBtn {
+    color: white;
+    text-decoration: none;
+}
