@@ -105,6 +105,11 @@ input {
   border: none;
 }
 
+/* 자동완성시 배경색 바뀌는거 막아줌 */ 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 500px whitesmoke inset !important;
+}
+
 input:focus {
   outline: 0.1rem solid var(--primary-color-100);
 } 

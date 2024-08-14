@@ -104,6 +104,11 @@ input {
   border: none;
 }
 
+/* 자동완성시 배경색 바뀌는거 막아줌 */ 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 500px whitesmoke inset !important;
+}
+
 input:focus {
   outline: 0.1rem solid var(--primary-color-100);
 } 
@@ -128,13 +133,17 @@ button {
   padding: 1.6rem 12.4rem; /*16px 124px*/
   border-radius: 4rem;
   border: none;
-  background-color: var(--secondary-color-gray400);
+  background-color: var(--primary-color-100);
   font-size: var(--text-xl-20);
   font-weight: 600;
   line-height: 2.4rem; /*24px*/
   text-align: center;
   color: var(--background-color-white);
   cursor: pointer;
+}
+
+#login-button:disabled {
+  background-color: var(--secondary-color-gray400);
 }
 
 .easy-login {
