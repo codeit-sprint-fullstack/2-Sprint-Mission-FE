@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="/images/판다-얼굴.png">
+	<link rel="stylesheet" href="/reset.css">
+	<link rel="stylesheet" href="/login.css">
+	<title>판다마켓 (Panda Market) 로그인하기</title>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBGJGRHF74"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-HBGJGRHF74');
+	</script>
+</head>
+<body>
+	<main>
+		<a href="/"><img class="logo" src="/images/Property-1=lg.png" alt="판다마켓 logo"></a>
+		<form action="/login" type="post">
+			<label for="email">이메일</label>
+			<input id="email" name="email" placeholder="이메일을 입력해주세요" type="email" autocomplete="on" required>
+			<label for="password">비밀번호</label>
+			<div class="pwd-container">
+				<input id="password" name="password" placeholder="비밀번호를 입력해주세요" type="password" required>
+				<img src="/images/btn_visibility_off_24px.svg" alt="Button visibility off">
+			</div>
+			<button type="submit">로그인</button>
+		</form>
+		<div class="oauth">
+			<span>간편 로그인하기</span>
+			<div class="oauth-images">
+				<a href="https://www.google.com/"><img src="/images/oauth-Google.png" alt="구글로 로그인하기" class="img-oauth"></a>
+				<a href="https://www.kakaocorp.com/page/"><img src="/images/oauth-Kakao.png" alt="카카오로 로그인하기" class="img-oauth"></a>
+			</div>
+		</div>
+		<div class="check-description">
+			판다마켓이 처음이신가요?
+			<a href="/signup">회원가입</a>
+		</div>
+	</main>
+</body>
+</html>
