@@ -24,11 +24,15 @@
   </header>
 
   <main>  
-    <form>
+    <form id="signup-form">
 
       <div class="signup-wrapper">
         <label for="email">이메일</label>
-        <input id="email" name="email" placeholder="이메일을 입력해주세요" autocomplete="on" required>
+        <div>
+          <input id="email" name="email" placeholder="이메일을 입력해주세요" autocomplete="on" required>
+          <div class="blank-email-error hide">이메일을 입력해주세요.</div>
+          <div class="email-error hide">잘못된 이메일 형식입니다.</div>
+        </div>
       </div>
 
       <div class="signup-wrapper">
@@ -38,21 +42,29 @@
 
       <div class="signup-wrapper">
         <label for="password">비밀번호</label>
-        <div class="pw-container">
-          <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" required>
-          <img class="toggle-password" src="../image/closed-eyes.png">
+        <div>
+          <div class="pw-container">
+            <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" required>
+            <img class="toggle-password" src="../image/closed-eyes.png">
+          </div>
+          <div class="blank-password-error hide">비밀번호를 입력해주세요.</div>
+          <div class="password-error hide">비밀번호 8자 이상 입력해주세요.</div>
         </div>
       </div>
-
+      
       <div class="signup-wrapper">
         <label for="confirm-password">비밀번호 확인</label>
-        <div class="pw-container">
-          <input id="confirm-password" name="confirm-password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
-          <img class="toggle-password" src="../image/closed-eyes.png">
+        <div>
+          <div class="pw-container">
+            <input id="confirm-password" name="confirm-password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+            <img class="toggle-password" src="../image/closed-eyes.png">
+          </div>
+          <div class="rewrite-password-error hide">비밀번호를 다시 한 번 입력해주세요.</div>
+          <div class="confirm-password-error hide">비밀번호가 일치하지 않습니다.</div>
         </div>
       </div>
-
-      <button>회원가입</button>
+      
+      <button id="signup-button" type="submit" disabled>회원가입</button>
 
     </form>
 
@@ -70,5 +82,6 @@
     </section>
 
   </main>
+  <script src="index.js"></script>
 </body>
 </html>

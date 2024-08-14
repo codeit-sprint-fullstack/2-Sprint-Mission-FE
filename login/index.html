@@ -29,18 +29,26 @@
 
       <div class="login-wrapper">
         <label for="email">이메일</label>
-        <input id="email" name="email" placeholder="이메일을 입력해주세요" autocomplete="on" required>
+        <div>
+          <input id="email" name="email" placeholder="이메일을 입력해주세요" autocomplete="on" required>
+          <div class="blank-email-error hide">이메일을 입력해주세요.</div>
+          <div class="email-error hide">잘못된 이메일 형식입니다.</div>
+        </div>
       </div>
 
       <div class="login-wrapper">
         <label for="password">비밀번호</label>
-        <div class="pw-container">
-          <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
-          <img class="toggle-password" src="../image/closed-eyes.png">
+        <div>
+          <div class="pw-container">
+            <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+            <img class="toggle-password" src="../image/closed-eyes.png">
+          </div>
+          <div class="blank-password-error hide">비밀번호를 입력해주세요.</div>
+          <div class="password-error hide">비밀번호 8자 이상 입력해주세요.</div>
         </div>
       </div>
 
-      <button>로그인</button>
+      <button id="login-button" type="submit" disabled>로그인</button>
 
     </form>
 
@@ -58,5 +66,7 @@
     </section>
 
   </main>
+<script src="index.js"></script>
 </body>
+
 </html>

@@ -68,7 +68,7 @@ main {
   width: 100%;
 }
 
-form {
+#signup-form {
   display: flex;
   flex-direction: column;
   gap: 2.4rem; /*24px*/
@@ -79,6 +79,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  position: relative;
 }
 
 label {
@@ -124,17 +125,22 @@ input::placeholder {
   height: 2.4rem;
 }
 
-button {
+#signup-button {
   padding: 1.6rem 12.4rem; /*16px 124px*/
   border-radius: 4rem;
   border: none;
-  background-color: var(--secondary-color-gray400);
+  background-color: var(--primary-color-100);
   font-size: var(--text-xl-20);
   font-weight: 600;
   line-height: 2.4rem; /*24px*/
   text-align: center;
   color: var(--background-color-white);
   cursor: pointer;
+}
+
+#signup-button:disabled {
+ background-color: var(--secondary-color-gray400);
+ cursor: default;
 }
 
 .easy-login {
@@ -187,4 +193,15 @@ a.ic-img {
   display: block;
   color: #3182F6;
   cursor: pointer;
+}
+
+.hide {
+  display: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.79rem;
+  color: var(--error-color);
+  position: relative;
+  top: 0.8rem;
+  left: 1.6rem;
 }
