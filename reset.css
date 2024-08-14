@@ -46,26 +46,3 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-* {
-  box-sizing: border-box;
-}
-
-	/* colors */
-:root {
-	--background-color: #CFE5FF;
-	--white-color: #FFFFFF;
-	--blue-color: #3692FF;
-	--gray-color: #374151;
-	--black-color: #111827;
-	--secondary-color-white: #F3F4F6;
-	--secondary-color-gray: #FCFCFC;
-	--secondary-color-gray100: #9CA3AF;
-	--secondary-color-gray200: #E5E7EB;
-	--secondary-color-gray300: #E6F2FF;
-	--secondary-color-gray400: #F9FAFB;
-	--secondary-color-gray500: #DFDFDF;
-	--secondary-color-black: #1F2937;
-	--yellyow-color: #F5E14B;
-	--secondary-color-blue: #3182F6;
-}

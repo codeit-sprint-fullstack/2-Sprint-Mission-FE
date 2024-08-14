@@ -1,4 +1,25 @@
-@import "./reset.css";
+* {
+  box-sizing: border-box;
+}
+
+	/* colors */
+:root {
+	--background-color: #CFE5FF;
+	--white-color: #FFFFFF;
+	--blue-color: #3692FF;
+	--gray-color: #374151;
+	--black-color: #111827;
+	--secondary-color-white: #F3F4F6;
+	--secondary-color-gray: #FCFCFC;
+	--secondary-color-gray100: #9CA3AF;
+	--secondary-color-gray200: #E5E7EB;
+	--secondary-color-gray300: #E6F2FF;
+	--secondary-color-gray400: #F9FAFB;
+	--secondary-color-gray500: #DFDFDF;
+	--secondary-color-black: #1F2937;
+	--yellyow-color: #F5E14B;
+	--secondary-color-blue: #3182F6;
+}
 
 body {
   margin: 0 auto;
@@ -41,7 +62,7 @@ header {
   gap: 0.625rem;
 }
 
-header img {  
+.pandaImg {  
   width: 2.5rem;
   height: 2.50875rem;
   cursor: pointer;
@@ -367,7 +388,9 @@ footer {
   header, footer {
     width: 120rem;
   }
-  
+  .header {
+    gap: 52rem;
+  }
 }
 
 @media screen and (max-width: 1919px) {
