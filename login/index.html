@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>판다마켓-로그인</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://unpkg.com/pretendard@1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SMWTEL41B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-6SMWTEL41B');
+  </script>
+</head>
+
+<body>
+  <header>
+    <a href="/"><img class="logo" src="../image/loginpage-logo.png"></a>
+  </header>
+
+  <main>  
+    <form>
+
+      <div class="login-wrapper">
+        <label for="email">이메일</label>
+        <input id="email" name="email" placeholder="이메일을 입력해주세요" autocomplete="on" required>
+      </div>
+
+      <div class="login-wrapper">
+        <label for="password">비밀번호</label>
+        <div class="pw-container">
+          <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+          <img class="toggle-password" src="../image/closed-eyes.png">
+        </div>
+      </div>
+
+      <button>로그인</button>
+
+    </form>
+
+    <section class="easy-login">
+      <p class="easy-login-text">간편 로그인하기</p>
+      <div class="sns-ic">
+        <a class="ic-img" href="https://www.google.com/"><img class="ic-link" src="../image/ic_google.png"></a>
+        <a class="ic-img" href="https://www.kakaocorp.com/page/"><img class="ic-link" src="../image/ic_kakao.png"></a>
+      </div>
+    </section>
+
+    <section class="signup">
+      <span class="signup-text">판다마켓이 처음이신가요?</span>
+      <a class="signup-link" href="../signup">회원가입</a>
+    </section>
+
+  </main>
+</body>
+</html>
