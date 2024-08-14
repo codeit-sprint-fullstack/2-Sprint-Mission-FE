@@ -1,0 +1,197 @@
+*{
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  font-family: pretendard;
+  font-size: 16px;
+  background-color: #fcfcfc;
+  height: 1080px;
+}
+
+header {
+  margin-top: 3.75rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.5rem;
+  gap: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  color: var(--secondary-800);
+  font-weight: 700;
+  font-size: 1.125rem;
+  gap: 1.5rem;
+}
+
+.login_id {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.id_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  padding: 1rem 1.5rem;
+  background-color: var(--secondary-100);
+  border: 0;
+  border-radius: 0.75rem;
+  gap: 10px;
+}
+
+.id_container input {
+  flex : 1;
+  color: var(--secondary-400);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.id_container:focus-within {
+  outline: 1px solid #3692ff;
+}
+
+.id_container input:focus {
+  outline: none;
+  color: var(--secondary-800);
+}
+
+.login_id input::placeholder {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: var(--secondary-400);
+}
+
+.login_password {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.password_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  padding: 1rem 1.5rem;
+  background-color: var(--secondary-100);
+  border: 0;
+  border-radius: 0.75rem;
+  gap: 10px;
+}
+
+.password_container input {
+  flex : 1;
+  color: var(--secondary-400);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.password_container:focus-within {
+  outline: 1px solid #3692ff;
+}
+
+.password_container input:focus {
+  outline: none;
+  color: var(--secondary-800);
+}
+
+.login_password input::placeholder {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: var(--secondary-400);
+}
+
+#togglePassword {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.login_btn {
+  width: 100%;
+  background-color: #9ca3af;
+  border: 0;
+  border-radius: 2.5rem;
+  padding: 1rem 7.75rem;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  left: 1.5rem;
+  cursor: pointer;
+}
+
+.SNS_login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e6f2ff;
+  width: 640px;
+  height: 74px;
+  border-radius: 0.5rem;
+  padding: 0 1.4375rem;
+}
+
+.SNS_login h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: var(--secondary-800);
+}
+
+.SNS_icon {
+  display: flex;
+  gap: 1rem;
+}
+
+.signup_div {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.signup_div p {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.11875rem;
+  color: var(--secondary-800);
+}
+
+.signup_div a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.11875rem;
+  color: #3182f6;
+}
