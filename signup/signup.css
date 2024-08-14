@@ -1,0 +1,101 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Pretendard";
+}
+
+.bigLogo {
+  margin-top: 40px;
+}
+
+form {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+input {
+  width: 615px;
+  height: 56px;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  border: 1px solid #ffffff;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  margin-top: 15px;
+  padding-left: 25px;
+  font-size: 16px;
+}
+
+input::placeholder {
+  font-size: 16px;
+  color: #9ca3af;
+  margin-left: 15px;
+  font-weight: 350;
+}
+
+input:focus {
+  border: 1px solid #3692ff;
+}
+
+.login {
+  background-color: #9ca3af;
+  border: 0;
+  border-radius: 40px;
+  width: 640px;
+  height: 56px;
+  margin-top: 20px;
+}
+
+.login a {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.easyLogin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f2ff;
+  width: 640px;
+  height: 74px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.easyLogin a {
+  margin-left: 25px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.easyIcon {
+  display: flex;
+  width: 100px;
+  margin-right: 60px;
+ }
+
+span {
+  font-size: 15px;
+}
+
+span a:link {
+  color: #3182f6;
+}
+
+form i {
+  margin-left: -30px;
+  cursor: pointer;
+}
