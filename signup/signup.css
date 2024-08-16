@@ -122,6 +122,8 @@ form button {
   line-height: 1.5625rem;
   text-align: center;
   color: var(--white-color);
+  position: relative;
+  bottom: 4rem;
 }
 
 .imgbox {
@@ -134,6 +136,8 @@ form button {
   justify-content: space-between;
   align-items: center;
   background-color: var(--secondary-color-gray300);
+  position: relative;
+  bottom: 3.5rem;
 }
 
 .imgbox h4 {
@@ -198,5 +202,24 @@ footer a {
 
 .password_check {
   position: relative;
-  bottom: 1.25rem;
+  bottom: 2rem;
+}
+
+/* js */
+.borderRed {
+  outline: none;
+  border: solid 2px;
+  border-color: red;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 0.8rem;
+  font-family: Pretendard;
+  display: none;
+}
+
+.passwordBottom {
+  position: relative;
+  bottom: 2.5rem;
 }
