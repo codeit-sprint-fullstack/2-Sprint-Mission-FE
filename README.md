@@ -6,3 +6,7 @@
 ##Mission 2
 - Log-in page(Panda Market)
 - Sign-up page(Panda Market)
+----------------------------------------------------------------
+##Mission 3
+- Log-in page feated javascript
+- Sign-up page feated javascript
