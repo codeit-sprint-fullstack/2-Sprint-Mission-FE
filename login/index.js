@@ -1,3 +1,8 @@
+document.querySelector('#email').addEventListener('focusout',validateEmail); // 이메일 입력상태 호출
+document.querySelector('#password').addEventListener('focusout',validatePassword); // 비밀번호 입력상태 호출
+document.querySelector('#password').addEventListener('focusout',buttonActivation);
+document.querySelector('#login-button').addEventListener('click',checkUserData); // USER_DATA 확인 후 'alert' 및 페이지 이동기능
+
 // 이메일 입력상태 함수
 function validateEmail() {
   const elInputEmail = document.querySelector('#email');
@@ -67,9 +72,27 @@ function goUrl() {
   location.href = '/items';
 }
 
-document.querySelector('#email').addEventListener('focusout',validateEmail);// 이메일 입력상태 호출
-document.querySelector('#password').addEventListener('focusout',validatePassword); // 비밀번호 입력상태 호출
-document.querySelector('#password').addEventListener('focusout',buttonActivation);
-document.querySelector('#login-button').addEventListener('click',goUrl);
+const USER_DATA = [
+  { email: 'codeit1@codeit.com', password: "codeit101!" },
+  { email: 'codeit2@codeit.com', password: "codeit202!" },
+  { email: 'codeit3@codeit.com', password: "codeit303!" },
+  { email: 'codeit4@codeit.com', password: "codeit404!" },
+  { email: 'codeit5@codeit.com', password: "codeit505!" },
+  { email: 'codeit6@codeit.com', password: "codeit606!" },
+];
 
+// USER_DATA 확인 후 'alert' 및 페이지이동 기능
+function checkUserData() {
+  const inputEmail = document.querySelector('#email').value;
+  const inputpassword = document.querySelector('#password').value;
+  const checkEmail = USER_DATA.some(user => user.email === inputEmail);
+  const checkPassword = USER_DATA.some(user => user.password === inputpassword);
 
+  if (!checkEmail) {
+    alert('이메일 혹은 비밀번호가 잘못 되었습니다.');
+  } else if (checkEmail && !checkPassword) {
+    alert('비밀번호가 일치하지 않습니다.');
+  } else {
+    document.querySelector('#login-button').addEventListener('click',goUrl);
+  }
+}

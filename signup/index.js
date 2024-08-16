@@ -1,4 +1,11 @@
 // 이메일 입력상태 함수
+document.querySelector('#email').addEventListener('focusout',validateEmail);// 이메일 입력상태 호출
+document.querySelector('#password').addEventListener('focusout',validatePassword); // 비밀번호 입력상태 호출
+document.querySelector('#confirm-password').addEventListener('focusout',validateConfirmPassword);// 비밀번호확인 입력상태 호출
+document.querySelector('#confirm-password').addEventListener('focusout',buttonActivation); // 버튼 활성화
+document.querySelector('#signup-button').addEventListener('click',checkUserData); // USER_DATA 이메일 유무 체크
+
+
 function validateEmail() {
   const elInputEmail = document.querySelector('#email');
   const blankEmailError = document.querySelector('.blank-email-error');
@@ -89,16 +96,28 @@ function buttonActivation() {
 
 // 회원가입버튼 클릭시 login페이지로 이동
 function goUrl() {
-  location.href = '/login';
+  location.href = '../login';
 }
 
-document.querySelector('#email').addEventListener('focusout',validateEmail);// 이메일 입력상태 호출
-document.querySelector('#password').addEventListener('focusout',validatePassword); // 비밀번호 입력상태 호출
-document.querySelector('#confirm-password').addEventListener('focusout',validateConfirmPassword);// 비밀번호확인 입력상태 호출
-document.querySelector('#signup-button').addEventListener('click',goUrl);
+const USER_DATA = [
+  { email: 'codeit1@codeit.com', password: "codeit101!" },
+  { email: 'codeit2@codeit.com', password: "codeit202!" },
+  { email: 'codeit3@codeit.com', password: "codeit303!" },
+  { email: 'codeit4@codeit.com', password: "codeit404!" },
+  { email: 'codeit5@codeit.com', password: "codeit505!" },
+  { email: 'codeit6@codeit.com', password: "codeit606!" },
+];
 
+// USER_DATA 이메일 유무 체크 후 기능
+function checkUserData() {
+  const inputEmail = document.querySelector('#email').value;
+  const checkEmail = USER_DATA.some(user => user.email === inputEmail);
 
-
-
+  if (checkEmail) {
+    alert('사용 중인 이메일입니다');
+  } else {
+    document.querySelector('#signup-button').addEventListener('click',goUrl);
+  }
+}
 
 
