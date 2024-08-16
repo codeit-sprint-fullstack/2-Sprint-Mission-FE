@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../src/css/style_login.css">
+    <link rel="stylesheet" href="../src/css/login.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />  
     <title>판다마켓</title>
 </head>
@@ -14,23 +14,25 @@
         </a>
     </header>
     <main>
-        <form action="">
+        <form id="login-field">
             <div class="label-wrap">
                 <label class="input__id">
                     이메일<br>
-                    <input type="email" placeholder="이메일을 입력해주세요">
+                    <input type="email" placeholder="이메일을 입력해주세요" class="js-input__id">
+                    <p class="error-msg js-error-msg"></p>
                 </label>
             </div>
             <div class="label-wrap">
                 <label class="input__pw">
                     비밀번호<br>
                     <div>
-                        <input type="password" placeholder="비밀번호를 입력해주세요">
+                        <input type="password" placeholder="비밀번호를 입력해주세요" class="js-input__pw">
                         <img src="../src/Image/btn_visibility_off_24px.png" alt="비밀번호 표시 꺼짐">
                     </div>
+                    <p class="error-msg js-error-msg"></p>
                 </label>
             </div>
-            <button>로그인</button>
+            <button type="button" disabled>로그인</button>
         </form>
         <section class="sns-login">
             <span>간편 로그인하기</span>
@@ -43,5 +45,6 @@
     <footer>
         <p>판다마켓이 처음이신가요? <a href="../signup/">회원가입</a></p>
     </footer>
+    <script type="module" src="../src/js/login.mjs"></script>
 </body>
 </html>
