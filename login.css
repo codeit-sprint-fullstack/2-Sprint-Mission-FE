@@ -12,6 +12,7 @@
     --sky-blue: #E6F2FF;
     --text: #1F2937;
     --btext: #3182F6;
+    --red: #F74747;
 }
 
 html {
@@ -73,7 +74,7 @@ a {
     top: 6rem;
     bottom: 0;
     right: 2rem;
-    margin: auto 0.2rem;
+    margin: 1.7rem 0.2rem;
     height: 2.4rem;
     width: 2.4rem;
     cursor: pointer;
@@ -171,4 +172,18 @@ a {
     font-weight: 500;
     color: var(--btext);
     text-decoration: underline;
+}
+
+.error {
+    outline-color: var(--red);
+}
+
+.err-message,
+.Perr-message {
+    display:none;
+    color: var(--red);
+    margin: 1rem 0 0 0;
+    font-size: 1.5rem;
+    line-height: 1.79rem;
+    font-weight: 600;
 }
