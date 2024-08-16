@@ -1,12 +1,5 @@
-:root {
-   --color-light-gray: #F3F4F6;
-   --color-dark-gray: #1F2937;
-   --color-gray: #9CA3AF;
-   --color-blue: #3692FF;
-   --color-light-skyblue: #E6F2FF;
-   --color-white: #FFFFFF;
-   --color-create-account-blue: #3182F6;
-}
+@charset "UTF-8";
+@import url("color.css");
 
 html {
    font-family: Pretendard;
@@ -29,7 +22,7 @@ main {
    margin-bottom: 40px; /*232px-(132+60)*/
 }
 
-.overall_area {
+.overall-area {
    width: 100%;
    display: flex;
    flex-direction: column;
@@ -37,7 +30,7 @@ main {
    gap: 24px;
 }
 
-.login_area{
+.login-area{
    display: flex;
    flex-direction: column;
    gap: 24px;
@@ -49,7 +42,7 @@ main {
    gap: 16px;
 }
 
-.login_fillup_zone{
+.login-fillup-zone{
    display: flex;
    flex-direction: column;
    gap: 24px;
@@ -62,7 +55,7 @@ main {
    font-family: Pretendard;
 }
 
-.gray_box{
+.gray-box{
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -74,41 +67,58 @@ main {
    border: 2px solid transparent;
 }
 
-.gray_box input::placeholder{
+.gray-box input::placeholder{
    font-weight: 400;
    font-size: 16px;
    color: var(--color-gray);
    margin-left: 24px;
 }
 
-.gray_box:focus-within {
+.gray-box:focus-within {
    border-color: var(--color-blue);
    outline: none;
 }
 
-.gray_box input:focus {
+.gray-box-outer {
+   border-color: var(--error-red);
+   outline: none;
+}
+
+.gray-box input:focus {
    border-color: none;
    outline: none;
 }
 
-.gray_box input {
+.gray-box input {
    flex-grow: 1;
    height: 100%;
    border: 2px solid transparent;
    background: none;
 }
 
-.vis_password{
+.vis-password{
    cursor: pointer;
    margin-right: 24px;
 }
 
-.button{
+.login-button:disabled{
    width: 640px;
    height: 56px;
    border-radius: 40px;
    border: none;
    background-color: var(--color-gray);
+   font-weight: 600;
+   font-size: 20px;
+   color: var(--color-white);
+}
+
+.login-button{
+   cursor: pointer;
+   width: 640px;
+   height: 56px;
+   border-radius: 40px;
+   border: none;
+   background-color: var(--color-blue);
    font-weight: 600;
    font-size: 20px;
    color: var(--color-white);
@@ -152,4 +162,11 @@ main {
 
 .create-account a{
   color: var(--color-create-account-blue);
+}
+
+.errorRed {
+   color: var(--error-red);
+   font-size: 15px;
+   font-weight: 600;
+   margin-left: 16px;
 }
