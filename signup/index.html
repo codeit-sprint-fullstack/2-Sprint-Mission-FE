@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>판다마켓</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../panda-img.png">
+</head>
+<body>
+  <div class="main">
+    <a href="/">
+      <img class="pandamarket" src="pandamarket.png">
+    </a>
+    <div class="signup">
+      <div class="email">
+        <label class="label-email" for="email">이메일</label>
+        <input class="input-email" id="email" placeholder="이메일을 입력해주세요" type="email" required>
+      </div>
+      <div class="nickname">
+        <label class="label-nick" for="nickname">닉네임</label>
+        <input class="input-nick" id="nickname" placeholder="닉네임을 입력해주세요" type="text" required>
+      </div>
+      <div class="password">
+        <label class="label-pw" for="password">비밀번호</label>
+        <input class="input-pw" id="password" placeholder="비밀번호를 입력해주세요" type="password" required>
+        <img class="visibility" src="visibility.png">
+      </div>
+      <div class="password-check">
+        <label class="label-checkpw" for="pw-check">비밀번호 확인</label>
+        <input class="input-checkpw" id="pw-check" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password" required>
+        <img class="visibility" src="visibility.png">
+      </div>
+      <button class="sign-up" type="submit">회원가입</button>
+      <div class="simple">
+        <p class="simple-login">간편 로그인하기</p>
+        <div class="icon">
+          <a href="https://www.google.com" target="_blank" title="google">
+            <img class="google" src="icon-google.png">
+          </a>
+          <a href="https://www.kakaocorp.com/page/" target="_blank" title="kakao">
+            <img class="kakao" src="icon-kakao.png">
+          </a>
+        </div>
+      </div>
+      <div class="already">
+        <p class="panda-already">
+          이미 회원이신가요?
+          <a href="/login">로그인</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
