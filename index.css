@@ -403,3 +403,15 @@ footer {
     padding: 0 12.5rem;
   }
 }
+
+@media screen and (min-width: 1200px) {
+
+}
+
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+
+}
+
+@media screen and (min-width: 375px) and (max-width: 743px) {
+
+}
