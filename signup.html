@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="signup.css" />
+    <title>판다마켓</title>
+  </head>
+
+  <body>
+    <main id="frame">
+      <a id="logo-title" href="/"> <img src="image-sprint2/logo.png" /></a>
+      <div id="sign-up-entire">
+        <form id="sign-up-box">
+          <div class="sign-up-input">
+            <label for="username">이메일</label>
+            <input
+              id="username"
+              name="username"
+              type="email"
+              placeholder="이메일을 입력해주세요"
+            />
+          </div>
+          <div class="sign-up-input">
+            <label for="nickname">닉네임</label>
+            <input
+              id="nickname"
+              name="nickname"
+              placeholder="닉네임을 입력해주세요"
+            />
+          </div>
+          <div class="sign-up-input">
+            <label for="password">비밀번호</label>
+            <div class="password-frame">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="비밀번호를 입력해주세요"
+              />
+              <img id="watch-toggle" src="image/btn_visibility_off_24px.svg" />
+            </div>
+          </div>
+          <div class="sign-up-input">
+            <label for="password-check">비밀번호 확인</label>
+            <div class="password-frame">
+              <input
+                id="password-check"
+                name="password-check"
+                type="password"
+                placeholder="비밀번호를 다시 한 번 입력해주세요"
+              />
+              <img
+                id="watch-toggle-check"
+                src="image/btn_visibility_off_24px.svg"
+              />
+            </div>
+          </div>
+          <button id="sign-up-button">회원가입</button>
+        </form>
+        <div id="easy-login-frame">
+          <div id="easy-login-text">간편 로그인하기</div>
+          <div id="easy-login-iconbox">
+            <a class="icon" href="https://www.google.com" target="_blank">
+              <img src="image-sprint2/Component_2.png"
+            /></a>
+            <a
+              class="icon"
+              href="https://www.kakaocorp.com/page"
+              target="_blank"
+            >
+              <img src="image-sprint2/Component_3.png"
+            /></a>
+          </div>
+        </div>
+        <div id="general-login-frame">
+          <div id="general-login-text">이미 회원이신가요?</div>
+          <a id="login-link" href="login.html">로그인</a>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="signup.js"></script>
+</html>
