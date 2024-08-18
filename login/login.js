@@ -1,3 +1,12 @@
+const USER_DATA = [
+  { email: 'codeit1@codeit.com', password: "codeit101!" },
+  { email: 'codeit2@codeit.com', password: "codeit202!" },
+  { email: 'codeit3@codeit.com', password: "codeit303!" },
+  { email: 'codeit4@codeit.com', password: "codeit404!" },
+  { email: 'codeit5@codeit.com', password: "codeit505!" },
+  { email: 'codeit6@codeit.com', password: "codeit606!" },
+];
+
 /* getting element */
 const formEl = document.querySelector('form');
 const labelEl = document.querySelectorAll('label')
@@ -76,8 +85,21 @@ function clickLink(){
   location.href = '../items/index.html';
 } 
 
+function conditionalBtn() {
+  const emailCheck = USER_DATA.some(e => emailEl.value === e.email);
+  const passwordCheck = USER_DATA.some(e => passwordEl.value === e.password);
+  
+  if(!emailCheck){
+    alert('이메일이 존재하지 않습니다.');
+  } else if(emailCheck && !passwordCheck){
+    alert('비밀번호가 일치하지 않습니다.');
+  } else {
+    btnEl.addEventListener('click', clickLink);
+  } 
+}
+
 /* event handling */ 
 emailEl.addEventListener('focusout', focusoutEmail);
 passwordEl.addEventListener('focusout', focusoutPassword);
 formEl.addEventListener('focusout', btnDisabled);
-btnEl.addEventListener('click', clickLink);
+btnEl.addEventListener('click', conditionalBtn);

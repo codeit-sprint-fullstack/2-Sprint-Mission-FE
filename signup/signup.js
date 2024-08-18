@@ -1,11 +1,22 @@
+const USER_DATA = [
+  { email: 'codeit1@codeit.com', password: "codeit101!" },
+  { email: 'codeit2@codeit.com', password: "codeit202!" },
+  { email: 'codeit3@codeit.com', password: "codeit303!" },
+  { email: 'codeit4@codeit.com', password: "codeit404!" },
+  { email: 'codeit5@codeit.com', password: "codeit505!" },
+  { email: 'codeit6@codeit.com', password: "codeit606!" },
+];
+
 /* getting element */
 const formEl = document.querySelector('form');
 const labelEl = document.querySelectorAll('label')
 const emailLabelEl = labelEl[0];
+const nicknameLabelEl = labelEl[1];
 const passwordLabelEl = labelEl[2];
 const passwordCheckLabelEl = labelEl[3];
 const emailEl = document.querySelector('#email');
 const passwordEl = document.querySelector('#password');
+const nicknameEl = document.querySelector('#nickname');
 const passwordCheckEl = document.querySelector('#passwordCheck');
 const btnEl = document.querySelector('#signUpBtn');
 
@@ -23,6 +34,10 @@ const passwordCheckNewP = document.createElement('p');
 passwordCheckNewP.classList.add('errorMsg');
 passwordCheckNewP.classList.add('passwordBottom');
 passwordCheckLabelEl.append(passwordCheckNewP);
+
+const nicknameNewP = document.createElement('p');
+nicknameNewP.classList.add('errorMsg');
+nicknameLabelEl.append(nicknameNewP);
 
 btnEl.setAttribute('disabled', true);
 
@@ -81,11 +96,25 @@ function focusoutPasswordCheck() {
   }
 }
 
+function foucusoutNickname(){
+  if(nicknameEl.value === ""){
+    nicknameEl.classList.add('borderRed');
+    nicknameNewP.textContent = '닉네임을 입력해주세요.';
+    nicknameNewP.style.display = 'block';
+    return false;
+  } else {
+    nicknameEl.classList.remove('borderRed');
+    nicknameNewP.style.display = 'none';
+    return true;
+  }
+}
+
 function btnDisabled() {
   const emailFunc = focusoutEmail();
   const passwordFunc = focusoutPassword();
   const passwordCheckFunc = focusoutPasswordCheck();
-  if(emailFunc && passwordFunc && passwordCheckFunc) {
+  const nicknameFunc = foucusoutNickname();
+  if(emailFunc && passwordFunc && passwordCheckFunc && nicknameFunc) {
     btnEl.disabled = false;
     btnEl.classList.add('btnColor');
   } else{
@@ -93,13 +122,24 @@ function btnDisabled() {
   }
 }
 
-function clickLink(){
-  location.href = '../items/index.html';
-} 
+function loginLink(){
+  location.href = '../login/login.html'
+}
+
+function conditionalBtn(){
+  const emailCheck = USER_DATA.some(e => emailEl.value === e.email);
+
+  if(emailCheck) {
+    alert('사용 중인 이메일입니다.')
+  } else {
+    btnEl.addEventListener('click', loginLink);
+  }
+}
 
 /* event handling */ 
 emailEl.addEventListener('focusout', focusoutEmail);
 passwordEl.addEventListener('focusout', focusoutPassword);
+nicknameEl.addEventListener('focusout', foucusoutNickname);
 passwordCheckEl.addEventListener('focusout', focusoutPasswordCheck);
 formEl.addEventListener('focusout', btnDisabled);
-btnEl.addEventListener('click', clickLink);
+btnEl.addEventListener('click', conditionalBtn);
