@@ -116,15 +116,17 @@ loginBtn.addEventListener('click', (e) => {
     const userEmail = document.querySelector('#email').value;
     const userPassword = document.querySelector('#password').value;
     if (!loginBtn.disabled) {
-        const emailList = USER_DATA.map(id => id.email);
-        const passwordList = USER_DATA.map(pw => pw.password);
-        if (emailList.includes(userEmail)) {
-            if (passwordList.includes(userPassword)){
+        let loginSuccess = false;
+
+        for (const user of USER_DATA) {
+            if (userEmail === user.email && userPassword === user.password) {
+                alert('로그인 성공.');
                 location.href = '/items';
-            } else {
-                alert('비밀번호가 일치하지 않습니다.');
+                loginSuccess = true;
+                break;
             }
-        } else {
+        }
+        if (!loginSuccess) {
             alert('비밀번호가 일치하지 않습니다.');
         }
     }

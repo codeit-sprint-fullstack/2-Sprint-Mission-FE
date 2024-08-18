@@ -1,10 +1,18 @@
 :root {
-    --color-light-gray: #F3F4F6;
+    --color-footer-black: #111827;
     --color-dark-gray: #1F2937;
-    --color-gray: #9CA3AF;
+    --color-headline-gray: #374151;
+    --cool-gray-400: #9CA3AF;
+    --color-light-gray: #DFDFDF;
     --color-blue: #3692FF;
+    --color-darker-blue: #1967D6;
+    --color-background-skyblue: #CFE5FF;
     --color-light-skyblue: #E6F2FF;
+    --cool-gray-100: #F3F4F6;
+    --color-footer-white: #E5E7EB;
+    --color-view-white: #F9FAFB;
+    --color-section-white: #FCFCFC;
     --color-white: #FFFFFF;
-    --color-create-account-blue: #3182F6;
     --error-red:#F74747;
+    --signin-blue: #3182f6;
 }

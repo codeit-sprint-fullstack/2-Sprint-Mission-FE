@@ -62,7 +62,7 @@ main {
    width: 616px;
    height: 56px;
    border-radius: 12px;
-   background-color: var(--color-light-gray);
+   background-color: var(--cool-gray-100);
    padding-left: 24px;
    border: 2px solid transparent;
 }
@@ -70,7 +70,7 @@ main {
 .gray-box input::placeholder{
    font-weight: 400;
    font-size: 16px;
-   color: var(--color-gray);
+   color: var(--cool-gray-400);
    margin-left: 24px;
 }
 
@@ -106,7 +106,7 @@ main {
    height: 56px;
    border-radius: 40px;
    border: none;
-   background-color: var(--color-gray);
+   background-color: var(--cool-gray-400);
    font-weight: 600;
    font-size: 20px;
    color: var(--color-white);
@@ -161,7 +161,7 @@ main {
 }
 
 .create-account a{
-  color: var(--color-create-account-blue);
+  color: var(--signin-blue);
 }
 
 .errorRed {
