@@ -9,6 +9,14 @@ body {
     /* margin: 0 auto; */
 }
 
+/* 1920픽셀 최대치를 만들기 위해 */
+.section-wrap {
+    margin: 0 auto;
+    max-width: 1920px;
+    height: 100%;
+    padding: 0 200px;
+}
+
 h1 {
     /* font-size: 40px; */
     font-size: 2.5rem;
@@ -61,14 +69,6 @@ main {
     background-color: #CFE5FF;
 }
 
-/* 1920픽셀 최대치를 만들기 위해 */
-.section-wrap {
-    margin: 0 auto;
-    max-width: 1920px;
-    height: 100%;
-    padding: 0 200px;
-}
-
 .top-section .section-wrap,
 .bottom-section .section-wrap {
     display: grid;
@@ -85,10 +85,11 @@ main {
 }
 
 .top-section .detail button {
-    width: 100%;
+    /* width: 357px; */
     /* height: 56px; */
     /* font-size: 20px; */
     /* line-height: 32px; */
+    width: 22.3125rem;
     font-size: 1.25rem;
     line-height: 2rem;
     font-weight: 600;
@@ -127,7 +128,7 @@ main {
 }
 
 .card {
-    background-color: #fcfcfc;
+    /* background-color: #fcfcfc; */
     display: flex;
     align-items: center;
 }
@@ -209,4 +210,151 @@ footer .sns {
     justify-content: space-between;
     /* gap: 12px; */
     gap: 0.75rem
+}
+
+/* Tablet */
+@media (max-width: 1199px) { 
+    .section-wrap {
+        padding: 0 24px;
+    }
+    
+    /* 메인 부분 */
+    .top-section,
+    .bottom-section {
+        /* height: 771px; */
+        height: 48.1875rem;
+    }
+    
+    .top-section .section-wrap,
+    .bottom-section .section-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .top-section .detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* 중앙의 카드형 부분 */
+    .hot-item,
+    .search,
+    .register {
+        /* height: 758px; */
+        height: 47.375rem;
+    }
+    
+    .hot-item .section-wrap,
+    .search .section-wrap,
+    .register .section-wrap {
+        margin: 40px 24px;
+    }
+    
+    .search .section-wrap,
+    .search .card {
+        flex-direction: column;
+        text-align: right;
+    }
+    
+    .card {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card-detail {
+        display: flex;
+        flex-direction: column;
+        /* margin: 103px 29px 103px 64px; */
+        margin: 6.4375rem 1.8125rem 6.4375rem 4rem;
+    }
+    
+    .search .card-detail {
+        /* margin: 103px 64px 103px 29px; */
+        margin: 6.4375rem 4rem 6.4375rem 1.8125rem;
+    }
+    
+    .card-detail p {
+        /* font-size: 24px; */
+        font-size: 1.5rem;
+        font-weight: 500;
+        /* line-height: 32px; */
+        line-height: 2rem;
+    }
+    
+    .card__name {
+        /* font-size: 18px; */
+        font-size: 1.125rem;
+        font-weight: 700;
+        /* line-height: 26px; */
+        line-height: 1.625rem;
+        color: var(--Primary-100);
+    }
+    
+    .bottom-section .detail {
+        /* margin: 112.5px 69px 112.5px 0; */
+        margin: 7rem 4.3125rem 7rem 0;
+    }
+    
+    /* 푸터 부분 */
+    footer {
+        /* height: 160px; */
+        height: 10rem;
+        background-color: var(--gray-900);
+        /* padding-top: 32px; */
+        padding-top: 2rem;
+    }
+    
+    footer .section-wrap,
+    footer .footer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    footer p {
+        /* font-size: 16px; */
+        font-size: 1rem;
+        font-weight: 400;
+        /* line-height: 19.09px; */
+        line-height: 1.2rem;
+        color: var(--gray-400);
+        margin : 0;
+    }
+    
+    footer .documents {
+        display: flex;
+        justify-content: space-between;
+        /* gap: 30px; */
+        gap: 1.875rem;
+    }
+    
+    footer .documents a {
+        color: var(--gray-200);
+        text-decoration: none;
+    }
+    
+    footer .sns {
+        display: flex;
+        justify-content: space-between;
+        /* gap: 12px; */
+        gap: 0.75rem
+    }
+}
+
+/* Mobile */
+@media (max-width: 743px) { 
+    .section-wrap {
+        padding: 0 16px;
+    }
+
+    .top-section,
+    .bottom-section {
+        /* height: 540px; */
+        height: 33.75rem;
+    }
 }
