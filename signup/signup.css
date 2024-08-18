@@ -40,6 +40,32 @@ label {
     line-height: 21.48px;
 }
 
+.none-email-value,
+.none-password-value,
+.email-format-error,
+.password-format-error,
+.none-nickname-value,
+.none-password-repeat-value,
+.miss-match-password {
+    position: relative;
+    top: -15px;
+    color: red;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 17.9px;
+    text-align: left;
+    
+    padding-left: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+.error {
+    outline: 1px solid red;
+}
+
 input {
     width: 640px;
     padding: 16px 24px;
@@ -73,20 +99,11 @@ button {
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 24px;
-    background-color: var(--color-coolGray100);
+    background-color: var(--color-coolGray400);
 }
 
-.signup-btn {
-    padding: 16px 124px;
-    gap: 10px;
-    border-radius: 40px;
-    border: none;
-
-    color: var(--color-white);
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    background-color: var(--color-coolGray400);
+.button-abled {
+    background-color: var(--color-panda-market);
 }
 
 .oauth {
