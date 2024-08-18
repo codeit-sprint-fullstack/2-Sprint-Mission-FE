@@ -79,7 +79,7 @@ img{
   justify-content: center;
 }
 
-.section{
+section{
   display: flex;
   width: 1200px;
 }
