@@ -164,7 +164,7 @@ main {
   color: var(--signin-blue);
 }
 
-.errorRed {
+.error-red {
    color: var(--error-red);
    font-size: 15px;
    font-weight: 600;
