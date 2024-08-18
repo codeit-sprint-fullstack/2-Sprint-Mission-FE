@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>판다마켓-로그인</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" as="style" crossorigin href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css" />
-  <link rel="stylesheet" as="style" crossorigin href="https://unpkg.com/pretendard@1.3.9/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="style.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SMWTEL41B"></script>
@@ -25,44 +23,44 @@
   </header>
 
   <main>  
-    <form id="login-form">
+    <form id="loginForm">
 
-      <div class="login-wrapper">
+      <div class="loginWrapper">
         <label for="email">이메일</label>
         <div>
           <input id="email" name="email" placeholder="이메일을 입력해주세요" autocomplete="on" required>
-          <div class="blank-email-error hide">이메일을 입력해주세요.</div>
-          <div class="email-error hide">잘못된 이메일 형식입니다.</div>
+          <div class="blankEmailError hide">이메일을 입력해주세요.</div>
+          <div class="emailError hide">잘못된 이메일 형식입니다.</div>
         </div>
       </div>
 
-      <div class="login-wrapper">
+      <div class="loginWrapper">
         <label for="password">비밀번호</label>
         <div>
-          <div class="pw-container">
+          <div class="pwContainer">
             <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
-            <img class="toggle-password" src="../image/closed-eyes.png">
+            <img class="togglePassword" src="../image/closed-eyes.png">
           </div>
-          <div class="blank-password-error hide">비밀번호를 입력해주세요.</div>
-          <div class="password-error hide">비밀번호 8자 이상 입력해주세요.</div>
+          <div class="blankPasswordError hide">비밀번호를 입력해주세요.</div>
+          <div class="passwordError hide">비밀번호 8자 이상 입력해주세요.</div>
         </div>
       </div>
 
-      <button id="login-button" type="button" disabled>로그인</button>
+      <button id="loginButton" type="button" disabled>로그인</button>
 
     </form>
 
-    <section class="easy-login">
-      <p class="easy-login-text">간편 로그인하기</p>
-      <div class="sns-ic">
-        <a class="ic-img" href="https://www.google.com/"><img class="ic-link" src="../image/ic_google.png"></a>
-        <a class="ic-img" href="https://www.kakaocorp.com/page/"><img class="ic-link" src="../image/ic_kakao.png"></a>
+    <section class="easyLogin">
+      <p class="easyLoginText">간편 로그인하기</p>
+      <div class="snsIc">
+        <a class="icImg" href="https://www.google.com/"><img class="icLink" src="../image/ic_google.png"></a>
+        <a class="icImg" href="https://www.kakaocorp.com/page/"><img class="icLink" src="../image/ic_kakao.png"></a>
       </div>
     </section>
 
     <section class="signup">
-      <span class="signup-text">판다마켓이 처음이신가요?</span>
-      <a class="signup-link" href="../signup">회원가입</a>
+      <span class="signupText">판다마켓이 처음이신가요?</span>
+      <a class="signupLink" href="../signup">회원가입</a>
     </section>
 
   </main>

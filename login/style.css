@@ -75,7 +75,7 @@ form {
   width: 100%;
 }
 
-.login-wrapper {
+.loginWrapper {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
@@ -89,7 +89,7 @@ label {
   color: var(--secondary-color-gray800);
 }
 
-.pw-container {
+.pwContainer {
   display: flex;
   position: relative;
   align-items: center;
@@ -121,7 +121,7 @@ input::placeholder {
   color: var(--secondary-color-gray400);
 }
 
-.toggle-password {
+.togglePassword {
   position: absolute;
   right: 2.4rem; /*24px*/
   cursor: pointer;
@@ -142,11 +142,11 @@ button {
   cursor: pointer;
 }
 
-#login-button:disabled {
+#loginButton:disabled {
   background-color: var(--secondary-color-gray400);
 }
 
-.easy-login {
+.easyLogin {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -157,24 +157,24 @@ button {
   padding: 0 2.3rem;
 }
 
-.easy-login-text {
+.easyLoginText {
 font-size: var(--text-lg-16);
 font-weight: 500;
 line-height: 2.4rem; /*24px*/
 }
 
-.sns-ic {
+.snsIc {
   display: flex;
   gap: 1.6rem;
 }
 
-a.ic-img {
+a.icImg {
   width: 4.2rem; /*42px*/
   height: 4.2rem; /*42px*/
   cursor: pointer;
 }
 
-.ic-link {
+.icLink {
   width: 4.2rem;
   height: 4.2rem;
 }
@@ -190,11 +190,11 @@ a.ic-img {
   width: 100%;
 }
 
-.signup-text {
+.signupText {
   color: var(--secondary-color-gray800);
 }
 
-.signup-link {
+.signupLink {
   display: block;
   color: #3182F6;
   cursor: pointer;
@@ -209,4 +209,8 @@ a.ic-img {
   position: relative;
   top: 0.8rem;
   left: 1.6rem;
+}
+
+.borderRed{
+  outline: 0.1rem solid var(--error-color);
 }

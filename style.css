@@ -59,13 +59,13 @@ a.logo,
   cursor: pointer;
 }
 
-.full-main {
+.fullMain {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.top-bottom-text {
+.topBottomText {
   font-size: var(--text-4xl-40);
   font-weight: 700;
   line-height: 5.6rem;
@@ -75,7 +75,7 @@ a.logo,
 
 /* 네비게이션바 */
 
-.full-nav {
+.fullNav {
   display: flex;
   width: 100%;
   height: 7rem;
@@ -103,7 +103,7 @@ a.logo,
   height: 5.1rem; /*51px*/
 }
 
-.login-button {
+.loginButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,21 +120,21 @@ a.logo,
   cursor: pointer;
 }
 
-.login-button span {
+.loginButton span {
   width: 4.2rem;
   height: 2.6rem;
 }
 
 /* top */
 
-.full-top {
+.fullTop {
   display: flex;
   background-color: var(--background-color);
   width: 100%;
   margin-top: 7rem;
 }
 
-.top-section {
+.topSection {
   display: flex;
   align-items: center;
   width: 111rem;
@@ -143,7 +143,7 @@ a.logo,
   gap: 0.7rem;
 }
 
-.top-text-section {
+.topTextSection {
   display: flex;
   flex-direction: column;
   width: 35.7rem;
@@ -152,7 +152,7 @@ a.logo,
   gap: 3.2rem;
 }
 
-.items-button {
+.itemsButton {
   display: flex;
   align-items: center;
   width: 35.7rem;
@@ -169,13 +169,13 @@ a.logo,
   cursor: pointer;
 }
 
-.top-picture {
+.topPicture {
   width: 74.6rem;
   height: 34rem;
 }
 
 /* center 공통  */
-.mainsection {
+.mainSection {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,12 +184,12 @@ a.logo,
   background-color: var(--background-color-white);
 }
 
-.main-img {
+.mainImg {
   width: 58.8rem; /*588px*/
   height: 44.4rem; /*444px*/
 }
 
-.text-section {
+.textSection {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -209,7 +209,7 @@ a.logo,
   gap: 2.4rem;
 }
 
-.maintext {
+.mainText {
   font-size: var(--text-4xl-40);
   font-weight: 700;
   line-height: 5.6rem;
@@ -217,7 +217,7 @@ a.logo,
   color: var(--secondary-color-gray700);
 }
 
-.subtext {
+.subText {
   font-size: var(--text-2xl-24);
   font-weight: 500;
   line-height: 3.2rem;
@@ -226,16 +226,16 @@ a.logo,
 
 /* center 개별 */
 
-#item.text-section,
-#register.text-section {
+#item.textSection,
+#register.textSection {
   text-align: left;
 }
 
-#search.text-section {
+#search.textSection {
   text-align: right;
 }
 
-.hotitem-section {
+.hotItemSection {
   display: flex;
   align-items: center;
   width: 95.5rem;
@@ -246,7 +246,7 @@ a.logo,
   /* cursor: pointer; */
 }
 
-.search-section {
+.searchSection {
   display: flex;
   align-items: center;
   width: 96.9rem;
@@ -258,7 +258,7 @@ a.logo,
   
 }
 
-.register-section {
+.registerSection {
   display: flex;
   align-items: center;
   width: 98.7rem;
@@ -271,12 +271,12 @@ a.logo,
 
 /* bottom */
 
-.full-bottom {
+.fullBottom {
   background-color: var(--background-color);
   margin-top: 13.8rem;
 }
 
-.bottom-section {
+.bottomSection {
   display: flex;
   align-items: center;
   width: 111rem;
@@ -285,20 +285,20 @@ a.logo,
   gap: 6.9rem;
 }
 
-.bottom-text-section {
+.bottomTextSection {
   width: 29.5rem;
   height: 17.2rem;
   padding: 0 0 6rem 0;
 }
 
-.bottom-picture {
+.bottomPicture {
   width: 74.6rem;
   height: 39.7rem;
 }
 
 /* footer */
 
-.full-footer {
+.fullFooter {
   display: flex;
   justify-content: center;
   background: #111827;
@@ -306,7 +306,7 @@ a.logo,
   height: 16rem;
 }
 
-.footer-section {
+.footerSection {
   display: flex;
   width: 192rem;
   justify-content: space-between;
@@ -314,8 +314,8 @@ a.logo,
   gap: 1rem;
 }
 
-.company-name,
-.footer-link-section a {
+.companyName,
+.footerLinkSection a {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.909rem;
@@ -324,28 +324,28 @@ a.logo,
   height: 1.9rem;
 }
 
-.footer-link-section {
+.footerLinkSection {
   display: flex;
   gap: 3rem;
   width: 15.9rem;
   height: 1.9rem;
 }
 
-.footer-link-section a {
+.footerLinkSection a {
   text-decoration: none;
 }
 
-.link-icon {
+.linkIcon {
   display: flex;
   width: 11.6rem;
   height: 2rem;
   gap: 1.2rem;
 }
 
-.facebook,
-.twitter,
-.youtube,
-.instagram {
+#facebook,
+#twitter,
+#youtube,
+#instagram {
   width: 2rem;
   height: 2rem;
 }
@@ -357,7 +357,7 @@ a.logo,
     padding: 0.9rem 20rem;
   }
   
-  .footer-section {
+  .footerSection {
     padding: 3.2rem 20rem;
   }
 }
