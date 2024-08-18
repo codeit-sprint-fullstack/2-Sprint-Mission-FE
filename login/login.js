@@ -38,8 +38,8 @@ function nonePasswordChecker() {
 const emailFormat =
   /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
-function emailFormatChecker() {
-  if (emailFormat.test(inputEmail.value)) {
+function emailFormatChecker(email) {
+  if (emailFormat.test(email)) {
     formatErrorEmail.classList.add('hide');
     inputEmail.classList.remove('error');
   } else {
@@ -82,12 +82,12 @@ function matchLogin() {
     (value) => value.password === inputPassword.value
   );
 
-  if (emailMatch && passwordMatch) {
-    alert('로그인에 성공하였습니다!');
-    location.href = '../items';
-  } else {
-    alert('이메일 또는 비밀번호가 일치하지 않습니다.');
+  if (!(emailMatch && passwordMatch)) {
+    return alert('이메일 또는 비밀번호가 일치하지 않습니다.');
   }
+
+  alert('로그인에 성공하였습니다!');
+  location.href = '../items';
 }
 
 inputEmail.addEventListener('keyup', loginChecker);
@@ -96,7 +96,9 @@ inputPassword.addEventListener('keyup', loginChecker);
 inputEmail.addEventListener('focusout', noneEmailChecker);
 inputPassword.addEventListener('focusout', nonePasswordChecker);
 
-inputEmail.addEventListener('focusout', emailFormatChecker);
+inputEmail.addEventListener('focusout', () =>
+  emailFormatChecker(inputEmail.value)
+);
 inputPassword.addEventListener('focusout', passwordFormatChecker);
 
 loginBtn.addEventListener('click', matchLogin);

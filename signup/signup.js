@@ -119,10 +119,12 @@ function matchSignup() {
     (value) => value.email === inputEmail.value
   );
 
-  if (!emailMatch) {
+  if (emailMatch) {
+    return alert('사용 중인 이메일입니다.');
+  }
+
+  if (inputEmail.value !== '') {
     location.href = '../login';
-  } else {
-    alert('사용 중인 이메일입니다.');
   }
 }
 
