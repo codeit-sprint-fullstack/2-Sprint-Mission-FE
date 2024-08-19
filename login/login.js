@@ -18,13 +18,24 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: 'codeit606!' }
 ];
 
-function noneEmailChecker() {
-  if (inputEmail.value !== '') {
+const emailFormat =
+  /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
+function isEmailVailed(email) {
+  if (email !== '') {
     noneEmail.classList.add('hide');
     inputEmail.classList.remove('error');
+
+    if (!emailFormat.test(email)) {
+      formatErrorEmail.classList.remove('hide');
+      inputEmail.classList.add('error');
+    }
   } else {
     noneEmail.classList.remove('hide');
     inputEmail.classList.add('error');
+
+    formatErrorEmail.classList.add('hide');
+    inputEmail.classList.remove('error');
   }
 }
 
@@ -35,19 +46,6 @@ function nonePasswordChecker() {
   } else {
     nonePassword.classList.remove('hide');
     inputPassword.classList.add('error');
-  }
-}
-
-const emailFormat =
-  /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-
-function emailFormatChecker(email) {
-  if (emailFormat.test(email)) {
-    formatErrorEmail.classList.add('hide');
-    inputEmail.classList.remove('error');
-  } else {
-    formatErrorEmail.classList.remove('hide');
-    inputEmail.classList.add('error');
   }
 }
 
@@ -100,12 +98,9 @@ function closeModal() {
 inputEmail.addEventListener('keyup', loginChecker);
 inputPassword.addEventListener('keyup', loginChecker);
 
-inputEmail.addEventListener('focusout', noneEmailChecker);
+inputEmail.addEventListener('focusout', () => isEmailVailed(inputEmail.value));
 inputPassword.addEventListener('focusout', nonePasswordChecker);
 
-inputEmail.addEventListener('focusout', () =>
-  emailFormatChecker(inputEmail.value)
-);
 inputPassword.addEventListener('focusout', passwordFormatChecker);
 
 loginBtn.addEventListener('click', matchLogin);
