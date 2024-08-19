@@ -20,22 +20,26 @@
 <body>
 	<main>
 		<a href="/"><img class="logo" src="/images/Property-1=lg.png" alt="판다마켓 logo"></a>
-		<form action="/signup" type="post">
+		<form action="/items" type="get">
 			<label for="email">이메일</label>
 			<input id="email" name="email" placeholder="이메일을 입력해주세요" type="email" autocomplete="on" required>
+			<div class="email-error"></div>
 			<label for="nickname">닉네임</label>
 			<input id="nickname" name="nickname" placeholder="닉네임을 입력해주세요" type="text" autocomplete="on" required>
+			<div class="nickname-error"></div>
 			<label for="password">비밀번호</label>
 			<div class="pwd-container">
 				<input id="password" name="password" placeholder="비밀번호를 입력해주세요" type="password" required>
 				<img src="/images/btn_visibility_off_24px.svg" alt="Button visibility off">
 			</div>
+			<div class="pwd-error"></div>
 			<label for="password-confirm">비밀번호 확인</label>
 			<div class="pwd-container">
 				<input id="password-confirm" name="password-confirm" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password" required>
 				<img src="/images/btn_visibility_off_24px.svg" alt="Button visibility off">
 			</div>
-			<button type="submit">회원가입</button>
+			<div class="pwd-cfm-error"></div>
+			<button id="button-signup" type="submit" disabled>회원가입</button>
 		</form>
 		<div class="oauth">
 			<span>간편 로그인하기</span>
@@ -50,4 +54,5 @@
 		</div>
 	</main>
 </body>
+<script src="./script.js" charset="UTF-8"></script>
 </html>
