@@ -173,3 +173,54 @@ main {
    font-weight: 600;
    margin-left: 16px;
 }
+
+.modal {
+   position: relative;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   width: 540px;
+   height: 250px;
+   background-color: var(--color-white);
+   border-radius: 8px;
+   font-weight: 500;
+   font-size: 16px;
+   color: var(--color-dark-gray);
+   font-family: Pretendard;
+}
+
+.modal-bg {
+   top: 0;
+   left: 0;
+   position: fixed;
+   height: 100%;
+   width: 100%;
+   background-color: rgba(0, 0, 0, 0.5); /* opacity를 rgba로 설정 */
+   margin: auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.button-close {
+   cursor: pointer;
+   position: absolute; /* 절대 위치 지정 */
+   bottom: 30px; /* 모달의 아래쪽 여백 */
+   right: 30px; /* 모달의 오른쪽 여백 */
+   width: 120px;
+   height: 48px;
+   background-color: var(--color-blue);
+   border-radius: 8px;
+   font-weight: 500;
+   font-size: 16px;
+   color: var(--color-white);
+   font-family: Pretendard;
+}
+
+.visible {
+   visibility: visible;
+}
+
+.hidden {
+   visibility: hidden;
+}

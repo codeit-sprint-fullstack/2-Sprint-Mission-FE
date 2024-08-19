@@ -262,3 +262,30 @@ header {
     gap: 12px;
     margin-right: 200px;
 }
+
+
+/*반응형 웹 만들어보기*/
+@media (min-width: 1200px) {
+    body {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    body {
+        max-width: 100%;
+    }
+
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+    body {
+        max-width: 100%;
+    }
+    .kv-container{
+        max-width: 10%
+    }
+    .kv-img, .kv-text, .view{
+        max-width: 10%
+    }
+}

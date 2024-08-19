@@ -5,6 +5,8 @@ const passwordBox = document.querySelector('#password-box');
 const passwordInput = document.querySelector('#password')
 const toggleIcon = document.querySelector('#toggle-icon');
 const pwInvisible = document.querySelector('.vis-password');
+const alertModal = document.querySelector('.modal-bg');
+const modalOk = document.querySelector('.button-close');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const USER_DATA = [
@@ -106,17 +108,33 @@ function loginResult () {
         //로그인 성공
         for (const user of USER_DATA) {
             if (userEmail === user.email && userPassword === user.password) {
-                alert('로그인 성공');
-                location.href = '/items';
+                modalOn('로그인 성공');
+                modalOk.addEventListener('click', modalLoginSuccess);
                 loginSuccess = true;
                 break;
             }
         }
         //로그인 실패
         if (!loginSuccess) {
-            alert('비밀번호가 일치하지 않습니다.');
+            modalOn('비밀번호가 일치하지 않습니다.');
+            modalOk.addEventListener('click', modalLoginFail);
         }
     }
+}
+
+function modalOn (msg) {
+    alertModal.classList.remove("hidden");
+    alertModal.classList.add("visible");
+    document.querySelector(".modal-text").innerText = msg;
+}
+
+function modalLoginSuccess () {
+    location.href = '/items';
+}
+
+function modalLoginFail () {
+    alertModal.classList.remove("visible");
+    alertModal.classList.add("hidden");
 }
 
 //눈 아이콘 토글

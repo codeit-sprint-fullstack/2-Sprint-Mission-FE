@@ -9,6 +9,8 @@ const nicknameBox = document.querySelector('#nickname-area');
 const nicknameInput = document.querySelector('#nickname');
 const toggleIconPw = document.querySelector('#toggle-icon-pw');
 const toggleIconPwDbl = document.querySelector('#toggle-icon-dbl');
+const alertModal = document.querySelector('.modal-bg');
+const modalOk = document.querySelector('.button-close');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
@@ -139,15 +141,31 @@ function signupResult () {
     if (!signupBtn.disabled) {
         const emailExists = USER_DATA.some(user => user.email === userEmail); //some 메서드: 베열의 요소 중 조건을 만족하는 값이 있는지 찾는 메서드
         if (emailExists) {
-            alert('사용 중인 이메일입니다.');
+            modalOn('사용 중인 이메일입니다.');
+            modalOk.addEventListener('click', modalSignupFail);
         } else {
-            alert('회원가입 성공');
+            modalOn('회원가입 성공');
             USER_DATA.push({ email: userEmail, password: userPassword });
-            location.href = '/login';
+            modalOk.addEventListener('click', modalSignupSuccess);
         }
     }
 }
 
+//alert 모달
+function modalOn (msg) {
+    alertModal.classList.remove("hidden");
+    alertModal.classList.add("visible");
+    document.querySelector(".modal-text").innerText = msg;
+}
+
+function modalSignupSuccess () {
+    location.href = '/login';
+}
+
+function modalSignupFail () {
+    alertModal.classList.remove("visible");
+    alertModal.classList.add("hidden");
+}
 
 //눈 아이콘 토글
 function togglePasswordVisibility(inputElement, iconElement) {
@@ -167,7 +185,7 @@ nicknameBox.addEventListener('keyup', validateInputs);
 emailBox.addEventListener('focusout', loginFocusOut);
 passwordBox.addEventListener('focusout', passwordFocusOut);
 passwordDblBox.addEventListener('focusout', passwordDblFocusOut);
-signupBtn.addEventListener('click', signupResult)
+signupBtn.addEventListener('click', signupResult);
 
 toggleIconPw.addEventListener('click', () => {
     togglePasswordVisibility(passwordInput, toggleIconPw);
