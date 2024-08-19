@@ -1,9 +1,9 @@
 const inputEmail = document.querySelector('#useremail');
 const inputPassword = document.querySelector('#password');
 const loginBtn = document.querySelector('.login-btn');
-const modal = document.querySelector('.error-modal');
-const okBtn = document.querySelector('.ok');
-const overlay = document.querySelector('.overlay');
+const errorModal = document.querySelector('.error-modal');
+const errorOkBtn = document.querySelector('.error-ok');
+const errorOverlay = document.querySelector('.modal-overlay');
 const noneEmail = document.querySelector('.none-email-value');
 const nonePassword = document.querySelector('.none-password-value');
 const formatErrorEmail = document.querySelector('.email-format-error');
@@ -72,12 +72,12 @@ function loginBtnActivation(email, password) {
 }
 
 // 유저 데이터 확인 함수
-function matchUserData(email, password) {
+function isLoginValid(email, password) {
   const emailMatch = USER_DATA.find((value) => value.email === email);
   const passwordMatch = USER_DATA.find((value) => value.password === password);
 
   if (!(emailMatch && passwordMatch)) {
-    return modal.classList.remove('hide');
+    return errorModal.classList.remove('hide');
   }
 
   alert('로그인에 성공하였습니다!');
@@ -86,7 +86,7 @@ function matchUserData(email, password) {
 
 // 모달 닫는 함수
 function closeModal() {
-  modal.classList.add('hide');
+  errorModal.classList.add('hide');
 }
 
 // 로그인 버튼 활성화 이벤트 생성
@@ -105,7 +105,7 @@ inputPassword.addEventListener('focusout', () =>
 
 // 유저 데이터 확인 이벤트 생성
 loginBtn.addEventListener('click', () =>
-  matchUserData(inputEmail.value, inputPassword.value)
+  isLoginValid(inputEmail.value, inputPassword.value)
 );
-overlay.addEventListener('click', closeModal);
-okBtn.addEventListener('click', closeModal);
+errorOverlay.addEventListener('click', closeModal);
+errorOkBtn.addEventListener('click', closeModal);

@@ -3,6 +3,9 @@ const inputPassword = document.querySelector('#password');
 const inputName = document.querySelector('#nickname');
 const inputPasswordRepeat = document.querySelector('#password-repeat');
 const signupBtn = document.querySelector('.signup-btn');
+const errorModal = document.querySelector('.error-modal');
+const errorOkBtn = document.querySelector('.error-ok');
+const errorOverlay = document.querySelector('.modal-overlay');
 const noneEmail = document.querySelector('.none-email-value');
 const nonePassword = document.querySelector('.none-password-value');
 const noneName = document.querySelector('.none-nickname-value');
@@ -22,23 +25,44 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: 'codeit606!' }
 ];
 
-function noneEmailChecker() {
-  if (inputEmail.value !== '') {
+const emailFormat =
+  /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
+// 이메일 유효성 검증 함수
+function isEmailValid(email) {
+  if (email !== '') {
     noneEmail.classList.add('hide');
     inputEmail.classList.remove('error');
+    formatErrorEmail.classList.add('hide');
+
+    if (!emailFormat.test(email)) {
+      formatErrorEmail.classList.remove('hide');
+      inputEmail.classList.add('error');
+      noneEmail.classList.add('hide');
+    }
   } else {
     noneEmail.classList.remove('hide');
     inputEmail.classList.add('error');
+    formatErrorEmail.classList.add('hide');
   }
 }
 
-function nonePasswordChecker() {
-  if (inputPassword.value !== '') {
+// 비밀번호 유효성 검증 함수
+function isPasswordValid(password) {
+  if (password !== '') {
     nonePassword.classList.add('hide');
     inputPassword.classList.remove('error');
+    formatErrorPassword.classList.add('hide');
+
+    if (password.length < 8) {
+      formatErrorPassword.classList.remove('hide');
+      inputPassword.classList.add('error');
+      nonePassword.classList.add('hide');
+    }
   } else {
     nonePassword.classList.remove('hide');
     inputPassword.classList.add('error');
+    formatErrorPassword.classList.add('hide');
   }
 }
 
@@ -59,29 +83,6 @@ function nonePasswordRepeatChecker() {
   } else {
     nonePasswordRepeat.classList.remove('hide');
     inputPasswordRepeat.classList.add('error');
-  }
-}
-
-const emailFormat =
-  /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-
-function emailFormatChecker() {
-  if (emailFormat.test(inputEmail.value)) {
-    formatErrorEmail.classList.add('hide');
-    inputEmail.classList.remove('error');
-  } else {
-    formatErrorEmail.classList.remove('hide');
-    inputEmail.classList.add('error');
-  }
-}
-
-function passwordFormatChecker() {
-  if (inputPassword.value.length >= 8) {
-    formatErrorPassword.classList.add('hide');
-    inputPassword.classList.remove('error');
-  } else {
-    formatErrorPassword.classList.remove('hide');
-    inputPassword.classList.add('error');
   }
 }
 
@@ -114,13 +115,11 @@ function signupChecker() {
   }
 }
 
-function matchSignup() {
-  const emailMatch = USER_DATA.find(
-    (value) => value.email === inputEmail.value
-  );
+function isSignupValid(email) {
+  const emailMatch = USER_DATA.find((value) => value.email === email);
 
   if (emailMatch) {
-    return alert('사용 중인 이메일입니다.');
+    return errorModal.classList.remove('hide');
   }
 
   if (inputEmail.value !== '') {
@@ -128,18 +127,25 @@ function matchSignup() {
   }
 }
 
+// 모달 닫는 함수
+function closeModal() {
+  errorModal.classList.add('hide');
+}
+
 inputEmail.addEventListener('keyup', signupChecker);
 inputPassword.addEventListener('keyup', signupChecker);
 inputName.addEventListener('keyup', signupChecker);
 inputPasswordRepeat.addEventListener('keyup', signupChecker);
 
-inputEmail.addEventListener('focusout', noneEmailChecker);
-inputPassword.addEventListener('focusout', nonePasswordChecker);
+inputEmail.addEventListener('focusout', () => isEmailValid(inputEmail.value));
+inputPassword.addEventListener('focusout', () =>
+  isPasswordValid(inputPassword.value)
+);
+
 inputName.addEventListener('focusout', noneNameChecker);
 inputPasswordRepeat.addEventListener('focusout', nonePasswordRepeatChecker);
-
-inputEmail.addEventListener('focusout', emailFormatChecker);
-inputPassword.addEventListener('focusout', passwordFormatChecker);
-
 inputPasswordRepeat.addEventListener('focusout', matchPassword);
-signupBtn.addEventListener('click', matchSignup);
+
+signupBtn.addEventListener('click', () => isSignupValid(inputEmail.value));
+errorOverlay.addEventListener('click', closeModal);
+errorOkBtn.addEventListener('click', closeModal);

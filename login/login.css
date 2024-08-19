@@ -68,7 +68,7 @@ label {
     bottom: 0;
 }
 
-.overlay {
+.modal-overlay {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
@@ -93,7 +93,7 @@ label {
     font-weight: 500;
 }
 
-.ok {
+.error-ok {
     position: absolute;
 
     right: 20px;

@@ -58,12 +58,60 @@ label {
     padding-left: 10px;
 }
 
-.hide {
-    display: none;
+.error-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
 }
 
-.error {
-    outline: 1px solid red;
+.modal-overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.error-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    text-align: center;
+    padding: 115px 135px;
+    border-radius: 8px;
+    background-color: var(--color-white);
+}
+
+.error-message {
+    color: var(--color-coolGray800);
+    font-weight: 500;
+}
+
+.error-ok {
+    position: absolute;
+
+    right: 20px;
+    bottom: 20px;
+
+    padding: 12px 23px;
+
+    width: 120px;
+    height: 48px;
+
+    font-weight: 600;
+    background-color: var(--color-panda-market);
+    border-radius: 8px;
+
+    cursor: pointer;
 }
 
 input {
@@ -104,6 +152,14 @@ button {
 
 .button-abled {
     background-color: var(--color-panda-market);
+}
+
+.hide {
+    display: none;
+}
+
+.error {
+    outline: 1px solid red;
 }
 
 .oauth {
