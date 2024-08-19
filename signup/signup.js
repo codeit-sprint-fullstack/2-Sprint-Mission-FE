@@ -15,6 +15,10 @@ const nonePasswordRepeat = document.querySelector(
 const formatErrorEmail = document.querySelector('.email-format-error');
 const formatErrorPassword = document.querySelector('.password-format-error');
 const missMatchPassword = document.querySelector('.miss-match-password');
+const hidePasswordIcon = document.querySelector('.password-hide');
+const showPasswordIcon = document.querySelector('.password-show');
+const hidePasswordRepeatIcon = document.querySelector('.password-repeat-hide');
+const showPasswordRepeatIcon = document.querySelector('.password-repeat-show');
 
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: 'codeit101!' },
@@ -66,6 +70,24 @@ function isPasswordValid(password) {
   }
 }
 
+// 비밀번호 표시 함수
+function showPassword() {
+  if (inputPassword.type == 'password') {
+    inputPassword.type = 'text';
+    showPasswordIcon.classList.remove('hide');
+    hidePasswordIcon.classList.add('hide');
+  }
+}
+
+// 비밀번호 숨기기 함수
+function hidePassword() {
+  if (inputPassword.type == 'text') {
+    inputPassword.type = 'password';
+    hidePasswordIcon.classList.remove('hide');
+    showPasswordIcon.classList.add('hide');
+  }
+}
+
 // 닉네임 유효성 검사 함수
 function noneNameChecker(name) {
   if (name !== '') {
@@ -93,6 +115,24 @@ function isPasswordRepeatValid(password, rePassword) {
     nonePasswordRepeat.classList.remove('hide');
     inputPasswordRepeat.classList.add('error');
     missMatchPassword.classList.add('hide');
+  }
+}
+
+// 비밀번호 표시 함수
+function showPasswordRepeat() {
+  if (inputPasswordRepeat.type == 'password') {
+    inputPasswordRepeat.type = 'text';
+    showPasswordRepeatIcon.classList.remove('hide');
+    hidePasswordRepeatIcon.classList.add('hide');
+  }
+}
+
+// 비밀번호 숨기기 함수
+function hidePasswordRepeat() {
+  if (inputPasswordRepeat.type == 'text') {
+    inputPasswordRepeat.type = 'password';
+    hidePasswordRepeatIcon.classList.remove('hide');
+    showPasswordRepeatIcon.classList.add('hide');
   }
 }
 
@@ -185,3 +225,10 @@ inputPasswordRepeat.addEventListener('focusout', () =>
 signupBtn.addEventListener('click', () => isSignupValid(inputEmail.value));
 errorOverlay.addEventListener('click', closeModal);
 errorOkBtn.addEventListener('click', closeModal);
+
+// 비밀번호 표시/숨기기 설정
+hidePasswordIcon.addEventListener('click', showPassword);
+showPasswordIcon.addEventListener('click', hidePassword);
+
+hidePasswordRepeatIcon.addEventListener('click', showPasswordRepeat);
+showPasswordRepeatIcon.addEventListener('click', hidePasswordRepeat);
