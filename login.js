@@ -2,11 +2,9 @@ function availability_id() {
   let error;
   try {
     if (id_input.value === "") {
-      id_input.classList.add("fail");
       error = new TypeError("이메일을 입력해주세요.");
       throw error;
     } else if (!id_input.checkValidity()) {
-      id_input.classList.add("fail");
       error = new TypeError("잘못된 이메일 형식입니다.");
       throw error;
     } else {
@@ -16,8 +14,8 @@ function availability_id() {
     }
   } catch {
     id_input.classList.remove("pass");
-    id_guide.value = error.message;
     id_input.classList.add("fail");
+    id_guide.value = error.message;
   } finally {
     availability_button();
   }

@@ -40,7 +40,7 @@ body {
 
 #sign-up-entire {
     width: 64rem;
-    height: 66.4rem;
+    height: 74.2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,15 +49,16 @@ body {
 
 #sign-up-box {
     width: 64rem;
-    height: 52rem;
+    height: 60.2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+ 
 }
 
 .sign-up-input {
     width: 64rem;
-    height: 9.3rem;
+    height: 11.9rem;
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 2.148rem;
@@ -177,5 +178,25 @@ body {
     position: absolute;
     right: 2.4rem;
     cursor: pointer;
+}
+.guide {
+    height: 1.8rem;
+    color: red;
+    margin-left: 1.6rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.79rem;
+    text-align: left;
+    background: #FCFCFC;
+}
+.deactivate{
+    pointer-events: none;
+}
+.fail {
+    border-style: 0.2rem solid red;
+}
 
+.fail:not(:focus) {
+    border: 0.2rem solid red;
+    outline: none;
 }

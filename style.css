@@ -498,3 +498,15 @@ button {
   width: 1.7rem;
   height: 1.7rem;
 }
+@media(max-width: 1199px){
+  #nav-main{
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+@media(max-width: 743px){
+  #nav-main{
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
