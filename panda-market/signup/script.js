@@ -43,7 +43,7 @@ nickname.addEventListener("input", function (e) {
     allCfmed[1]=true;
     buttonLogInSignUp.disabled=!(allCfmed[0]&&allCfmed[1]&&allCfmed[2]&&allCfmed[3]);
   }
-})
+});
 
 pwd.addEventListener("input", function (e) {
   if (!pwd.value) {
@@ -79,4 +79,21 @@ pwdCfm.addEventListener("input", function (e) {
     allCfmed[3]=true;
     buttonLogInSignUp.disabled=!(allCfmed[0]&&allCfmed[1]&&allCfmed[2]&&allCfmed[3]);
   }
-})
+});
+
+buttonLogInSignUp.addEventListener("click", function (e) {
+	if (USER_DATA[email.value]) {
+		popupText.innerHTML = `이메일 ${email.value} 은 이미 가입되어 있습니다.`;
+		popupCon.classList.remove("none");
+		popupOK.focus();
+	}
+  else {
+    popupText.innerHTML = `회원가입 되었습니다.`;
+		popupCon.classList.remove("none");
+		setTimeout(function () {
+			window.location.href = "/login";
+		}, 512);
+  }
+});
+
+
