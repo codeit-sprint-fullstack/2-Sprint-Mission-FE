@@ -12,7 +12,7 @@ const checkpw_error = document.querySelector('#checkpw-error');
 
 const loginBtn = document.querySelector('.sign-up');
 
-export const USER_DATA = [
+const USER_DATA = [
   { email: 'codeit1@codeit.com', password: "codeit101!" },
   { email: 'codeit2@codeit.com', password: "codeit202!" },
   { email: 'codeit3@codeit.com', password: "codeit303!" },
@@ -172,7 +172,6 @@ function clickBtn() {
 
   else {
     alert('회원가입 성공');
-    USER_DATA.push(new_data);
     window.location.href = "/login";
   }
 }
