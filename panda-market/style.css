@@ -14,6 +14,7 @@ h1, h2, h3, p {
 header,
 main,
 footer {
+  width: 100%;
   max-width: 1920px;
   margin: 0 auto;
   display: flex;
@@ -35,14 +36,36 @@ header {
   border-color: var(--border-color);
 }
 
-header .sub-header {
+header .sub {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+header .sub-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 header img.logo {
   height: 40px;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  padding-left: 1em;
+  margin: 0;
+}
+
+header nav ul li {
+  padding: .2em 1em;
+  font-size: var(--text-2xl);
+  font-weight: 700;
 }
 
 a.button {
@@ -84,8 +107,16 @@ section.left {
   justify-content: flex-start;
 }
 
+section.left img {
+  float: left;
+}
+
 section.right {
   justify-content: flex-end;
+}
+
+section.right img {
+  float: right;
 }
 
 section.left .description {
@@ -107,9 +138,12 @@ section h3 {
 }
 
 section.sec-top {
-  height: 540px;
-  padding: 12.5rem 0 0;
+  height: 420px;
+  padding: 5rem 0 0;
   background-color: transparent;
+  background-image: url(/images/Img_home_top.png);
+  background-repeat: no-repeat;
+  background-position: bottom 0 right 8rem;
 }
 
 .sec-bottom-divider {
@@ -122,6 +156,9 @@ section.sec-bottom {
   height: 540px;
   padding: 143px 0 0;
   background-color: transparent;
+  background-image: url(/images/Img_home_bottom.png);
+  background-repeat: no-repeat;
+  background-position: bottom 0 right 8rem;
 }
 
 section h2 {
@@ -142,6 +179,7 @@ section h2 {
 .sec-top .description,
 .sec-bottom .description {
   background-color: transparent;
+  margin-right: -3em;
 }
 
 .img-home-top {
