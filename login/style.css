@@ -72,7 +72,7 @@ input::placeholder {
   position: relative;
 }
 
-.show-password {
+.toggle-show-password {
   height: 24px;
   position: absolute;
   top: 50%;
