@@ -11,6 +11,11 @@ h1, h2, h3, p {
   margin: 0;
 }
 
+.cBoth.no-float {
+  float: none;
+  clear: both;
+}
+
 header,
 main,
 footer {
@@ -95,11 +100,10 @@ main a.button {
 
 section {
   margin: 0 -12.5rem;
-  padding: 0 12.5rem;
-  display: flex;
+  padding: 5rem 12.5rem;
   justify-content: center;
   align-items: center;
-  height: 720px;
+  height: auto;
   background-color: white;
 }
 
@@ -107,7 +111,7 @@ section.left {
   justify-content: flex-start;
 }
 
-section.left img {
+section.left * {
   float: left;
 }
 
@@ -115,16 +119,8 @@ section.right {
   justify-content: flex-end;
 }
 
-section.right img {
+section.right * {
   float: right;
-}
-
-section.left .description {
-  align-items: flex-start;
-}
-
-section.right .description {
-  align-items: flex-end;
 }
 
 section.right .description * {
@@ -138,6 +134,7 @@ section h3 {
 }
 
 section.sec-top {
+  display: flex;
   height: 420px;
   padding: 5rem 0 0;
   background-color: transparent;
@@ -147,12 +144,13 @@ section.sec-top {
 }
 
 .sec-bottom-divider {
-  height: 80px;
+  padding: 4rem;
   margin: 0 -12.5rem;
   background-color: var(--secondary-color-gray100);
 }
 
 section.sec-bottom {
+  display: flex;
   height: 540px;
   padding: 143px 0 0;
   background-color: transparent;
@@ -163,6 +161,10 @@ section.sec-bottom {
 
 section h2 {
   font-size: var(--text-4xl);
+}
+
+.sec-bottom h2{
+  padding: var(--text-4xl);
 }
 
 .description {
@@ -183,6 +185,7 @@ section h2 {
 }
 
 .img-home-top {
+  max-width: 100%;
   width: 746px;
   height: 340px;
 }
@@ -194,6 +197,7 @@ section h2 {
 }
 
 .img-home-bottom {
+  max-width: 100%;
   width: 746px;
   height: 397px;
 }

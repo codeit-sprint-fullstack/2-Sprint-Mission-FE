@@ -35,11 +35,37 @@
 
 img {
   box-sizing: content-box;
+  max-width: 100%;
 }
 
 @media (max-width:1200px) {
   html, body {
     font-size: 14px;
+  }
+
+  main a {
+    padding: 12px 80px;
+  }
+
+  section.sec-top,
+  section.sec-bottom {
+    height: unset;
+  }
+
+  .img-home-top,
+  .img-home-bottom {
+    width: unset;
+  }
+
+  .img-home-middle {
+    height: auto;
+  }
+
+  .sec-top .description,
+  .sec-bottom .description,
+  .sec-bottom h2 {
+    height: unset;
+    padding: var(--text-4xl) 0;
   }
 
   header .sub,
@@ -56,6 +82,10 @@ img {
     margin: 0 auto;
     padding: 0 24px;
   }
+
+  .sec-bottom-divider {
+    margin: 0;
+  }
 }
 
 @media (max-width:744px) {
@@ -65,15 +95,20 @@ img {
 
   header .sub,
   footer .sub {
-    margin:0 16px;
+    margin: 0 16px;
   }
 
   .sub {
-    margin:0 auto;
+    margin: 0 auto;
   }
 
   section {
     margin: 0 auto;
     padding: 0 16px;
+  }
+
+  section.sec-top,
+  section.sec-bottom {
+    background-position: bottom 0 right 0;
   }
 }
