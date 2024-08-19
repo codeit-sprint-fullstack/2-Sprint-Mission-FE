@@ -29,6 +29,7 @@ This is a personal project mission for Codeit Full Stack SPRINT program.
 - HTML
 - CSS
 - GIT / VIM
+- JS
 ```
 
 </br></br></br>
