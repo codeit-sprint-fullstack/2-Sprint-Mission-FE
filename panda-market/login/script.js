@@ -32,3 +32,22 @@ pwd.addEventListener("input", function (e) {
 	}
 });
 
+buttonLogInSignUp.addEventListener("click", function (e) {
+	if (!USER_DATA[email.value]) {
+		popupText.innerHTML = `이메일 ${email.value} 은 가입되어 있지 않습니다.`;
+		popupCon.classList.remove("none");
+		popupOK.focus();
+	}
+	else if (USER_DATA[email.value].password !== pwd.value) {
+		popupText.innerHTML = `비밀번호가 일치하지 않습니다.`;
+		popupCon.classList.remove("none");
+		popupOK.focus();
+	}
+	else {
+		popupText.innerHTML = `로그인 되었습니다.`;
+		popupCon.classList.remove("none");
+		setTimeout(function () {
+			window.location.href = "/items";
+		}, 512);
+	}
+});
