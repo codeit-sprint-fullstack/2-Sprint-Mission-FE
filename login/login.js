@@ -1,6 +1,9 @@
 const inputEmail = document.querySelector('#useremail');
 const inputPassword = document.querySelector('#password');
 const loginBtn = document.querySelector('.login-btn');
+const modal = document.querySelector('.error-modal');
+const okBtn = document.querySelector('.ok');
+const overlay = document.querySelector('.overlay');
 const noneEmail = document.querySelector('.none-email-value');
 const nonePassword = document.querySelector('.none-password-value');
 const formatErrorEmail = document.querySelector('.email-format-error');
@@ -83,11 +86,15 @@ function matchLogin() {
   );
 
   if (!(emailMatch && passwordMatch)) {
-    return alert('이메일 또는 비밀번호가 일치하지 않습니다.');
+    return modal.classList.remove('hide');
   }
 
   alert('로그인에 성공하였습니다!');
   location.href = '../items';
+}
+
+function closeModal() {
+  modal.classList.add('hide');
 }
 
 inputEmail.addEventListener('keyup', loginChecker);
@@ -102,3 +109,5 @@ inputEmail.addEventListener('focusout', () =>
 inputPassword.addEventListener('focusout', passwordFormatChecker);
 
 loginBtn.addEventListener('click', matchLogin);
+overlay.addEventListener('click', closeModal);
+okBtn.addEventListener('click', closeModal);

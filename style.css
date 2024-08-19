@@ -349,3 +349,18 @@ footer {
   width: 1.125rem;
   height: 1.125rem;
 }
+
+/* -- Mobile -- */
+@media screen and (min-width:375px) {
+  
+}
+
+/* -- Tablet -- */
+@media screen and (min-width:744px) {
+ 
+}
+
+/* -- PC -- */
+@media screen and (min-width:1200px) {
+  
+}
