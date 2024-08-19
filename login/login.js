@@ -8,6 +8,8 @@ const noneEmail = document.querySelector('.none-email-value');
 const nonePassword = document.querySelector('.none-password-value');
 const formatErrorEmail = document.querySelector('.email-format-error');
 const formatErrorPassword = document.querySelector('.password-format-error');
+const hidePasswordIcon = document.querySelector('.password-hide');
+const showPasswordIcon = document.querySelector('.password-show');
 
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: 'codeit101!' },
@@ -56,6 +58,24 @@ function isPasswordValid(password) {
     nonePassword.classList.remove('hide');
     inputPassword.classList.add('error');
     formatErrorPassword.classList.add('hide');
+  }
+}
+
+// 비밀번호 표시 함수
+function showPassword() {
+  if (inputPassword.type == 'password') {
+    inputPassword.type = 'text';
+    showPasswordIcon.classList.remove('hide');
+    hidePasswordIcon.classList.add('hide');
+  }
+}
+
+// 비밀번호 숨기기 함수
+function hidePassword() {
+  if (inputPassword.type == 'text') {
+    inputPassword.type = 'password';
+    hidePasswordIcon.classList.remove('hide');
+    showPasswordIcon.classList.add('hide');
   }
 }
 
@@ -109,3 +129,7 @@ loginBtn.addEventListener('click', () =>
 );
 errorOverlay.addEventListener('click', closeModal);
 errorOkBtn.addEventListener('click', closeModal);
+
+// 비밀번호 표시/숨기기 설정
+hidePasswordIcon.addEventListener('click', showPassword);
+showPasswordIcon.addEventListener('click', hidePassword);
