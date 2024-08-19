@@ -1,17 +1,17 @@
-# Panda Market
+# Panda Market (Sprint 3)
 ***
 </br>
 
 ### Introduction
 ***
 
-This is the first personal project mission for Codeit Full Stack SPRINT program.
+This is a personal project mission for Codeit Full Stack SPRINT program.
 </br></br></br>
 
 ### Files
 ***
 
-`HTML` `CSS` and *etc*.
+`HTML` `CSS` and `JS`
 </br></br></br>
 
 ### Feature
@@ -19,8 +19,7 @@ This is the first personal project mission for Codeit Full Stack SPRINT program.
 
 | Requirements | Link |
 | :----------: | ---- |
-| Mission 1 | https://www.codeit.kr/topics/fs-sprint-mission-1/lessons/8733 |
-| Mission 2 | https://www.codeit.kr/topics/fs-sprint-mission-2/lessons/8732 |
+| Mission 3 | https://www.codeit.kr/topics/fs-sprint-mission-3/lessons/8750 |
 
 
 ### What I Learned
