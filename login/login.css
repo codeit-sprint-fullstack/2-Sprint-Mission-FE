@@ -111,14 +111,6 @@ label {
     cursor: pointer;
 }
 
-.hide {
-    display: none;
-}
-
-.error {
-    outline: 1px solid red;
-}
-
 input {
     width: 640px;
     padding: 16px 24px;
@@ -157,6 +149,14 @@ button {
 
 .button-abled {
     background-color: var(--color-panda-market);
+}
+
+.hide {
+    display: none;
+}
+
+.error {
+    outline: 1px solid red;
 }
 
 .oauth {

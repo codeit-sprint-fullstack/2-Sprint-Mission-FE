@@ -25,37 +25,35 @@ function isEmailVailed(email) {
   if (email !== '') {
     noneEmail.classList.add('hide');
     inputEmail.classList.remove('error');
+    formatErrorEmail.classList.add('hide');
 
     if (!emailFormat.test(email)) {
       formatErrorEmail.classList.remove('hide');
       inputEmail.classList.add('error');
+      noneEmail.classList.add('hide');
     }
   } else {
     noneEmail.classList.remove('hide');
     inputEmail.classList.add('error');
-
     formatErrorEmail.classList.add('hide');
-    inputEmail.classList.remove('error');
   }
 }
 
-function nonePasswordChecker() {
-  if (inputPassword.value !== '') {
+function isPasswordVailed(password) {
+  if (password !== '') {
     nonePassword.classList.add('hide');
     inputPassword.classList.remove('error');
+    formatErrorPassword.classList.add('hide');
+
+    if (password.length < 8) {
+      formatErrorPassword.classList.remove('hide');
+      inputPassword.classList.add('error');
+      nonePassword.classList.add('hide');
+    }
   } else {
     nonePassword.classList.remove('hide');
     inputPassword.classList.add('error');
-  }
-}
-
-function passwordFormatChecker() {
-  if (inputPassword.value.length >= 8) {
     formatErrorPassword.classList.add('hide');
-    inputPassword.classList.remove('error');
-  } else {
-    formatErrorPassword.classList.remove('hide');
-    inputPassword.classList.add('error');
   }
 }
 
@@ -99,9 +97,9 @@ inputEmail.addEventListener('keyup', loginChecker);
 inputPassword.addEventListener('keyup', loginChecker);
 
 inputEmail.addEventListener('focusout', () => isEmailVailed(inputEmail.value));
-inputPassword.addEventListener('focusout', nonePasswordChecker);
-
-inputPassword.addEventListener('focusout', passwordFormatChecker);
+inputPassword.addEventListener('focusout', () =>
+  isPasswordVailed(inputPassword.value)
+);
 
 loginBtn.addEventListener('click', matchLogin);
 overlay.addEventListener('click', closeModal);
