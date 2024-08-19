@@ -126,9 +126,8 @@ input:focus{
 }
 
 .error {
-  width: 154px;
   height: 18px;
-  color: red;
+  color: #F72727;
   background-color: #FCFCFC;
   font-size: 15px;
   font-weight: 600;
@@ -146,6 +145,6 @@ input:focus{
 }
 
 .fail:not(:focus) {
-  border: 1px solid #F74747;
+  border: 1px solid #F72727;
   outline: none;
 }

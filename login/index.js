@@ -6,14 +6,7 @@ const pw_error = document.querySelector('#pw-error');
 
 const loginBtn = document.querySelector('.log-in');
 
-const USER_DATA = [
-  { email: 'codeit1@codeit.com', password: "codeit101!" },
-  { email: 'codeit2@codeit.com', password: "codeit202!" },
-  { email: 'codeit3@codeit.com', password: "codeit303!" },
-  { email: 'codeit4@codeit.com', password: "codeit404!" },
-  { email: 'codeit5@codeit.com', password: "codeit505!" },
-  { email: 'codeit6@codeit.com', password: "codeit606!" },
-]
+import { USER_DATA } from '../signup/index.js';
 
 function validity_email() {
   let error;
@@ -56,7 +49,7 @@ function validity_pw() {
       error = new TypeError('비밀번호를 입력해주세요.');
       throw error;
     }
-    else if (pw_input.length() < 8) {
+    else if (pw_input.value.length < 8) {
       pw_input.classList.add('fail');
       error = new TypeError('비밀번호를 8자 이상 입력해주세요.');
       throw error;
@@ -112,3 +105,4 @@ function clickBtn() {
 
 email_input.addEventListener('focusout', validity_email);
 pw_input.addEventListener('focusout', validity_pw);
+loginBtn.addEventListener('click', clickBtn);

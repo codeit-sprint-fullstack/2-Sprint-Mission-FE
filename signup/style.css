@@ -1,3 +1,12 @@
+html{
+  font-family: Pretendard;
+}
+
+body{
+  background-color: #fcfcfc;
+  margin: 0;
+}
+
 .main{
   display: flex;
   width: 640px;
@@ -119,4 +128,28 @@ input:focus{
 .panda-already a{
   color: #3182F6;
   cursor: pointer;
+}
+
+.error {
+  height: 18px;
+  color: #F72727;
+  background-color: #FCFCFC;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 17.9px;
+  text-align: left;
+  margin-top: 1px;
+}
+
+.inactive {
+  pointer-events: none;
+}
+
+.fail {
+  border-style: 1px solid #F72727;
+}
+
+.fail:not(:focus) {
+  border: 1px solid #F72727;
+  outline: none;
 }
