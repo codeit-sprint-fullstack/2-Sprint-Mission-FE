@@ -21,6 +21,7 @@ main {
     align-items: center;
     gap: 24px;
     justify-content: space-between;
+    
    
 }
 
@@ -67,7 +68,7 @@ input:focus {
     gap: 10px;
     border-radius: 40px;
     border: none;
-
+    
     color: white;
     font-size: 1rem;
     font-weight: 400;
@@ -79,16 +80,15 @@ input:focus {
 
 
 .sns-login {
+    width: 100%;
     display: flex;
     align-items: center;
     border-radius: 8px;
     background-color: #e6f2ff;
-    width: 600px;
     padding: 1.5625rem 1.4375rem;
     text-align: center;
     justify-content: space-between;
-    
-    
+    box-sizing: border-box;
 }
 
 
