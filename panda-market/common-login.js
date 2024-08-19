@@ -35,6 +35,19 @@ pwd.addEventListener("input", function (e) {
 	}
 });
 
+const handleVisPwd = function (e) {
+	if (e.target.previousElementSibling.getAttribute("type") === "password") {
+		e.target.setAttribute("src", "/images/btn_visibility_on_24px.svg");
+		e.target.previousElementSibling.setAttribute("type", "text");
+	}
+	else {
+		e.target.setAttribute("src", "/images/btn_visibility_off_24px.svg");
+		e.target.previousElementSibling.setAttribute("type", "password");
+	}
+};
+const visPwd = pwd.nextElementSibling;
+visPwd.addEventListener("click", handleVisPwd);
+
 ///////////////////////////////////
 //  Popup module
 ///////////////////////////////////
