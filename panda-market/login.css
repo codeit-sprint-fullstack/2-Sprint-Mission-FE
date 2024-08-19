@@ -1,5 +1,6 @@
 main {
   width: 640px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 0 120px;
   display: flex;
@@ -10,9 +11,10 @@ main {
 }
 
 main img.logo {
-  padding: 80px 0;
+  padding: 40px 0;
   width: 396px;
-  height: 132px;
+  max-width: 100%;
+  height: auto;
 }
 
 form {
@@ -34,6 +36,19 @@ form input {
   line-height: 24px;
   padding: 16px 24px;
   width: 100%;
+}
+
+form input.alert {
+  border: 2px solid rgb(218, 59, 59);
+}
+
+.email-error,
+.nickname-error,
+.pwd-error,
+.pwd-cfm-error {
+  color: rgb(139, 47, 47);
+  font-size: var(--text-lg);
+  margin-top: -12px;
 }
 
 form input::placeholder {
@@ -61,13 +76,18 @@ form button {
   border-radius: 9999px;
   font-size: var(--text-xl);
   font-weight: 600;
-  background-color: var(--secondary-color-gray400);
+  background-color: rgb(59, 92, 59);
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 0;
+}
+
+button:disabled {
+  background-color: var(--secondary-color-gray400);
+  color: white;
 }
 
 .oauth {
