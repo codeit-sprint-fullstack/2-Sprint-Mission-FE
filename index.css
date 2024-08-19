@@ -24,11 +24,11 @@
 body {
   margin: 0 auto;
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
 }
 
 /*header*/
@@ -103,15 +103,14 @@ header button {
 .panda_1 {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   position: relative;
-  top: 6.25rem;
 }
 
 .perdiv {
   position: relative;
-  bottom: 1rem;
+  bottom: 7rem;
 }
 
 .perdiv h1 {
@@ -153,7 +152,7 @@ header button {
 /* section */
 
 .section {
-  width: 120rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,6 +162,7 @@ header button {
 }
 
 .check, .register, .search {
+  width: 1920px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -176,7 +176,6 @@ header button {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8.625rem;
   margin-right: 22.5rem;
 }
 
@@ -189,7 +188,7 @@ header button {
 .smallbox, .smallbox2, .smallbox3 {
   display: flex;
   flex-direction: column;
-  margin-right: 1.25rem;
+  margin-right: 1.7rem;
   gap: 1.25rem;
 }
 
@@ -242,7 +241,7 @@ header button {
 }
 
 .bigbox2 {
-  margin: 0 0 0 36.9375rem;;
+  margin: 0 0 0 35.3rem;;
 }
 
 .search h5, .search h2, .search h4 {
@@ -250,15 +249,17 @@ header button {
 }
 
 /* register add-element */
-
+.register{
+  margin-bottom: 8.625rem;
+}
 .smallbox3 {
-  padding-left: 2.5rem;
+  padding-left: 1.3rem;
 }
 
 /* block */
 
 .block {
-  width: 120rem;
+  width: 100%;
   height: 9.375rem;
   background-color: var(--secondary-color-gray);
   display: flex;
@@ -281,14 +282,12 @@ header button {
   justify-content: center;
 }
 
-.up_footer > div {
-  height: 24.8125rem;
+.upFooterIn {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   position: relative;
-  top: 8.9375rem;
 }
 
 .up_footer h1 {
@@ -304,10 +303,13 @@ header button {
 .up_footer img {
   width: 46.625rem;
   height: 24.8125rem;
+  position: relative;
+  top: 0.1rem;
 }
 
 .trustdiv {
-  padding-bottom: 3.75rem;
+  position: relative;
+  bottom: 11rem;
   gap: 10px;
   margin-top: 3.75rem;
 }
@@ -382,8 +384,13 @@ footer {
   body {
     background-color: var(--background-color);
   }
-  .section {
+  .section{
+    width: 120rem;
     background-color: var(--white-color);
+  }
+  .block{
+    width: 120rem;
+    
   }
   header, footer {
     width: 120rem;
@@ -394,6 +401,9 @@ footer {
 }
 
 @media screen and (max-width: 1919px) {
+  body {
+    padding: auto;
+  }
   .header {
     width: 100%;
     padding: 0 12.5rem;
@@ -405,13 +415,145 @@ footer {
 }
 
 @media screen and (min-width: 1200px) {
-
-}
+  .header img{
+    width: 40px;
+    height: 40.14px;
+  }
+  .purchase img{
+    width: 746px;
+    height: 340px;
+  }
+  .check img, .search img, .register img{
+    width: 588px;
+    height: 444px;
+  }
+  .up_footer img{
+    width: 746px;
+    height: 397px;
+  }
+  .sns_a img{
+    width: 20px;
+    height: 20px;
+  }
+} /* PC */
 
 @media screen and (min-width: 744px) and (max-width: 1199px) {
-
-}
+  .header{
+    width: 100%;
+    padding: 0 1.5rem;
+  }
+  .footerbox {
+    width: 100%;
+    padding: 0 1.5rem;
+  }
+} /* Tablet */
 
 @media screen and (min-width: 375px) and (max-width: 743px) {
+  .header{
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .footerbox {
+    width: 100%;
+    padding: 0 1rem;
+  }
+  /* panda 1 */
+  .purchase{
+    width: 100%;
+    height: 16rem;
+    display: flex;
+  }
+  .panda1, .perdiv {
+    width: 100%;
+    padding: 0 2rem;
+    position: relative;
+    bottom: 1rem;
+  }
+  .purchase img {
+    padding: 0 2rem 0 0;
+    width: 100%;
+    height: auto;
+  }
+  .perdiv h1 {
+    position: relative;
+    left: 3rem;
+    width: 100%;
+    font-size: 1.5rem;
+  }
+  .perdiv button {
+    position: relative;
+    left: 2rem;
+    width: 80%;
+    font-size: 1rem;
+    position: relative;
+    bottom: 1rem;
+  }
 
-}
+  /* section */
+  .section {
+    position: relative;
+    bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .check, .search, .register{
+    width: 100%;
+  }
+  .check img, .search img, .register img {
+    width: 50%;
+    height: auto;
+    padding: 0 2rem;
+  }
+  .bigbox, .bigbox2, .bigbox3 {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .smallbox, .smallbox2, .smallbox3{
+    width: 100%;
+  }
+  .onetext h2, .onetext2 h2, .onetext3 h2 {
+    font-size: 1.5rem;
+  }
+  .onetext h4, .onetext2 h4, .onetext3 h4{
+    font-size: 0.9rem;
+  }
+  .smallbox h5, .smallbox2 h5, .smallbox3 h5{
+    position: relative;
+    top: 0.7rem;
+  }
+
+  /* panda2 */
+  .up_footer{
+    height: 16rem;
+  }
+  .upFooterIn{
+    position: relative;
+    padding: 0 2rem;
+  }
+  .trustdiv{
+    width: 100%;
+    position: relative;
+    left: 1rem;
+    bottom: 2rem;
+  }
+  .trustdiv h1 {
+    font-size: 1.5rem;
+  }
+  .upFooterIn{
+    width: 100%;
+    height: auto;
+  }
+  .up_footer img{
+    padding: 0 0 0 2rem;
+    width: 100%;
+    height: auto;
+  }
+  /* footer */
+  .footerbox {
+    font-size: 0.7rem;
+  }
+  .sns_a img {
+    width: 100%;
+  }
+} /* Mobile */
