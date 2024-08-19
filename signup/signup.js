@@ -71,7 +71,7 @@ function isPasswordValid(password) {
 }
 
 // 비밀번호 표시 함수
-function showPassword() {
+function showPassword(type) {
   if (inputPassword.type == 'password') {
     inputPassword.type = 'text';
     showPasswordIcon.classList.remove('hide');
@@ -80,9 +80,9 @@ function showPassword() {
 }
 
 // 비밀번호 숨기기 함수
-function hidePassword() {
-  if (inputPassword.type == 'text') {
-    inputPassword.type = 'password';
+function hidePassword(type) {
+  if (type == 'text') {
+    type = 'password';
     hidePasswordIcon.classList.remove('hide');
     showPasswordIcon.classList.add('hide');
   }
@@ -119,18 +119,18 @@ function isPasswordRepeatValid(password, rePassword) {
 }
 
 // 비밀번호 표시 함수
-function showPasswordRepeat() {
-  if (inputPasswordRepeat.type == 'password') {
-    inputPasswordRepeat.type = 'text';
+function showPasswordRepeat(type) {
+  if (type == 'password') {
+    type = 'text';
     showPasswordRepeatIcon.classList.remove('hide');
     hidePasswordRepeatIcon.classList.add('hide');
   }
 }
 
 // 비밀번호 숨기기 함수
-function hidePasswordRepeat() {
-  if (inputPasswordRepeat.type == 'text') {
-    inputPasswordRepeat.type = 'password';
+function hidePasswordRepeat(type) {
+  if (type == 'text') {
+    type = 'password';
     hidePasswordRepeatIcon.classList.remove('hide');
     showPasswordRepeatIcon.classList.add('hide');
   }
@@ -227,8 +227,16 @@ errorOverlay.addEventListener('click', closeModal);
 errorOkBtn.addEventListener('click', closeModal);
 
 // 비밀번호 표시/숨기기 설정
-hidePasswordIcon.addEventListener('click', showPassword);
-showPasswordIcon.addEventListener('click', hidePassword);
+hidePasswordIcon.addEventListener('click', () =>
+  showPassword(inputPassword.type)
+);
+showPasswordIcon.addEventListener('click', () =>
+  hidePassword(inputPassword.type)
+);
 
-hidePasswordRepeatIcon.addEventListener('click', showPasswordRepeat);
-showPasswordRepeatIcon.addEventListener('click', hidePasswordRepeat);
+hidePasswordRepeatIcon.addEventListener('click', () =>
+  showPasswordRepeat(inputPasswordRepeat.type)
+);
+showPasswordRepeatIcon.addEventListener('click', () =>
+  hidePasswordRepeat(inputPasswordRepeat.type)
+);
