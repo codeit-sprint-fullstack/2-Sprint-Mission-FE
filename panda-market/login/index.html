@@ -20,7 +20,7 @@
 <body>
 	<main>
 		<a href="/"><img class="logo" src="/images/Property-1=lg.png" alt="판다마켓 logo"></a>
-		<form action="/items" type="get">
+		<form>
 			<label for="email">이메일</label>
 			<input id="email" name="email" placeholder="이메일을 입력해주세요" type="email" autocomplete="on" required>
 			<div class="email-error"></div>
@@ -30,7 +30,7 @@
 				<img src="/images/btn_visibility_off_24px.svg" alt="Button visibility off">
 			</div>
 			<div class="pwd-error"></div>
-			<button id="button-login" type="submit" disabled>로그인</button>
+			<button id="button-login" type="button" disabled>로그인</button>
 		</form>
 		<div class="oauth">
 			<span>간편 로그인하기</span>
@@ -44,7 +44,7 @@
 			<a href="/signup">회원가입</a>
 		</div>
 	</main>
-	<div class="popup-container"><div class="popup"><div class="button-ok"></div></div></div>
+	<div class="popup-container none"><div class="popup"><div class="popup-text"></div><button class="popup-button-ok">확인</button></div></div>
 </body>
 <script src="/data.js" charset="UTF-8"></script>
 <script src="/common-login.js" charset="UTF-8"></script>
