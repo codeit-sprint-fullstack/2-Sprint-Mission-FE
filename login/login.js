@@ -21,7 +21,8 @@ const USER_DATA = [
 const emailFormat =
   /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
-function isEmailVailed(email) {
+// 이메일 유효성 검증 함수
+function isEmailValid(email) {
   if (email !== '') {
     noneEmail.classList.add('hide');
     inputEmail.classList.remove('error');
@@ -39,7 +40,8 @@ function isEmailVailed(email) {
   }
 }
 
-function isPasswordVailed(password) {
+// 비밀번호 유효성 검증 함수
+function isPasswordValid(password) {
   if (password !== '') {
     nonePassword.classList.add('hide');
     inputPassword.classList.remove('error');
@@ -57,13 +59,9 @@ function isPasswordVailed(password) {
   }
 }
 
-function loginChecker() {
-  if (
-    inputEmail.value &&
-    inputPassword.value &&
-    emailFormat.test(inputEmail.value) &&
-    inputPassword.value.length >= 8
-  ) {
+// 로그인 버튼 활성화 함수
+function loginBtnActivation(email, password) {
+  if (email && password && emailFormat.test(email) && password.length >= 8) {
     loginBtn.classList.add('button-abled');
     loginBtn.disabled = false;
     loginBtn.style.cursor = 'pointer';
@@ -73,13 +71,10 @@ function loginChecker() {
   }
 }
 
-function matchLogin() {
-  const emailMatch = USER_DATA.find(
-    (value) => value.email === inputEmail.value
-  );
-  const passwordMatch = USER_DATA.find(
-    (value) => value.password === inputPassword.value
-  );
+// 유저 데이터 확인 함수
+function matchUserData(email, password) {
+  const emailMatch = USER_DATA.find((value) => value.email === email);
+  const passwordMatch = USER_DATA.find((value) => value.password === password);
 
   if (!(emailMatch && passwordMatch)) {
     return modal.classList.remove('hide');
@@ -89,18 +84,28 @@ function matchLogin() {
   location.href = '../items';
 }
 
+// 모달 닫는 함수
 function closeModal() {
   modal.classList.add('hide');
 }
 
-inputEmail.addEventListener('keyup', loginChecker);
-inputPassword.addEventListener('keyup', loginChecker);
-
-inputEmail.addEventListener('focusout', () => isEmailVailed(inputEmail.value));
-inputPassword.addEventListener('focusout', () =>
-  isPasswordVailed(inputPassword.value)
+// 로그인 버튼 활성화 이벤트 생성
+inputEmail.addEventListener('keyup', () =>
+  loginBtnActivation(inputEmail.value, inputPassword.value)
+);
+inputPassword.addEventListener('keyup', () =>
+  loginBtnActivation(inputEmail.value, inputPassword.value)
 );
 
-loginBtn.addEventListener('click', matchLogin);
+// 포커스 아웃 시 유효성 검증 이벤트 생성
+inputEmail.addEventListener('focusout', () => isEmailValid(inputEmail.value));
+inputPassword.addEventListener('focusout', () =>
+  isPasswordValid(inputPassword.value)
+);
+
+// 유저 데이터 확인 이벤트 생성
+loginBtn.addEventListener('click', () =>
+  matchUserData(inputEmail.value, inputPassword.value)
+);
 overlay.addEventListener('click', closeModal);
 okBtn.addEventListener('click', closeModal);
