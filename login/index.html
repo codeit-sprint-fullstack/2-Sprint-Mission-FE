@@ -16,16 +16,15 @@
       <div class="email">
         <label class="label-email" for="email">이메일</label>
         <input class="input-email" id="email" placeholder="이메일을 입력해주세요" type="email" autocomplete="on" required>
-        <div class="email-error">잘못된 이메일 형식입니다.</div>
+        <input id="email-error" class="error" type="text" disabled>
       </div>
       <div class="password">
         <label class="label-pw" for="password">비밀번호</label>
         <input class="input-pw" id="password" placeholder="비밀번호를 입력해주세요" type="password" autocomplete="on" required>
         <img class="visibility" src="visibility.png">
-        <div class="password-error hide">비밀번호를 8자 이상 입력해주세요.</div>
+        <input id="pw-error" class="error" type="text" disabled>
       </div>
-      <button>로그인</button>
-      <button class="log-in" type="submit" disabled>로그인</button>
+      <button class="log-in" type="submit">로그인</button>
       <div class="simple">
         <p class="simple-login">간편 로그인하기</p>
         <div class="icon">
@@ -45,6 +44,6 @@
       </div>
     </div>
   </div>
-  <script src="indes.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
