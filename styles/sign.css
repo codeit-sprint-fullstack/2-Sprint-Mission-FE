@@ -1,0 +1,161 @@
+:root {
+  --background-input: #F3F4F6;
+  --text-input: #9CA3AF;
+  --outline-input-focus: #3692FF;
+  --background-button: #9CA3AF;
+  --text-button: #FFFFFF; /* White */
+  --background-easylogin: #E6F2FF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+html {
+  font-size: 62.5%;
+}
+  /* 판다마켓 사진용*/
+header img { 
+    display: flex;
+    margin: 4rem auto;
+    max-width: 40rem;
+    width: 100%;
+  }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-container, .signup-container, .easy-login-section, form {
+    width: 100%;
+    max-width: 64rem;
+  }
+  
+input, button{
+    display: flex;
+    justify-content: center;
+    border-style: none;
+    font-size: 1.6rem;
+    margin: 2rem 0;
+    padding: 1.6rem 2rem;
+    width: 100%;
+}
+
+input {
+    background-color: var(--background-input);
+    color: var(--text-input);
+    border-radius: 1rem;
+    outline-color: var(--outline-input-focus); /*focus in 일 때*/
+    
+  }
+
+button{
+    background-color: var(--background-button);
+    color: var(--text-button);
+    font-weight: 600;
+    border-radius: 3rem;
+  }
+
+label, p, a {
+    font-size: 1.5rem;  
+  }
+
+.easy-login-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-easylogin);
+    border-radius: 1rem;
+    margin: 2rem 0;
+    padding: 0.5rem 2rem;
+}
+
+label {
+  font-weight: 700;
+}
+
+p{
+  font-weight: 500;
+}
+
+.input-password-container{
+  position: relative;
+}
+
+.password-active-toggle { 
+  position: absolute;
+  right: 2rem;
+  top: 1.5rem;
+}
+
+.social {
+    display: flex; 
+    justify-content: space-between;
+    width: 10rem;
+}
+
+.login-container , .signup-container{
+    display: flex;
+    justify-content: center;
+}
+
+/* sprint3 이후 추가 css */
+
+.error-message {
+  color: red;
+  font-size: 1.2rem;
+  display: none;
+  margin: -1rem 0 1rem 0;
+}
+
+.input-error-box {
+  /* js에서 add remove 이용 */
+  border: 2px solid red; 
+}
+
+.signup-btn:disabled {
+  background-color: #9CA3AF;
+  cursor: not-allowed;
+}
+
+/* mobile 용 */
+
+@media (max-width: 743px) { 
+
+  main {
+    padding: 0 1.6rem /* 좌우 여백*/
+  }
+
+  .login-container, .signup-container, .easy-login-section {
+    max-width: 100%;
+    padding: 0; /* 내부 요소들이 너비를 모두 차지*/
+  }
+
+  .login-container, .signup-container, .easy-login-section {
+    width: 100%;
+    max-width: 400px; /* 최대 너비 400px로 제한 */
+  }
+
+  /* 아래 코드부터 모바일을 위한 추가 css */
+  input, button {
+      font-size: 1.4rem; 
+      padding: 1.4rem 1.6rem; 
+  }
+
+  .easy-login-section {
+      padding: 1rem 1rem; 
+      flex-direction: column;
+  }
+
+  .social {
+      width: 100%;
+      max-width: 15rem;
+      padding-top: 1rem;
+      justify-content: space-around; 
+  }
+
+}
