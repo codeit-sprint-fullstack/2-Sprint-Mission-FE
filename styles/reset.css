@@ -181,8 +181,6 @@ footer {
     .feature {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
         margin: 0 auto;
     }
     .feature-img {
@@ -192,9 +190,23 @@ footer {
     .feature-content{
         order: 1;
         padding: 1rem 0;
+    }
+
+    .banner {
+        flex-direction: column;
+        height: 800px;
 
     }
+    .wrapper {
+        margin: 0;
+        padding-top: 15rem;
+    }
+    .banner-img {
+
+    }
+
 }
+
 
 /* tablet 용*/
 
@@ -207,6 +219,7 @@ footer {
     #loginbtn {
         margin-right: 24px;
     }
+
 
 }
 
@@ -231,5 +244,14 @@ footer {
         width: calc(100% - 32px); /* 이미지와 동일한 가로 크기 */
     }
 
+    .space {
+        display: block;
+    }
+}
 
+/* PC 화면에서 띄어쓰기 추가 */
+@media (min-width: 1200px) {
+    .space {
+        display: block;
+    }
 }
