@@ -63,7 +63,7 @@ function isPasswordValid(password) {
 
 // 비밀번호 표시 함수
 function showPassword(type) {
-  if (type == 'password') {
+  if (type === 'password') {
     type = 'text';
     showPasswordIcon.classList.remove('hide');
     hidePasswordIcon.classList.add('hide');
@@ -72,7 +72,7 @@ function showPassword(type) {
 
 // 비밀번호 숨기기 함수
 function hidePassword(type) {
-  if (type == 'text') {
+  if (type === 'text') {
     type = 'password';
     hidePasswordIcon.classList.remove('hide');
     showPasswordIcon.classList.add('hide');
