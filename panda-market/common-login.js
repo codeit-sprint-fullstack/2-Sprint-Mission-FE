@@ -35,3 +35,14 @@ pwd.addEventListener("input", function (e) {
 	}
 });
 
+///////////////////////////////////
+//  Popup module
+///////////////////////////////////
+const popupCon = document.querySelector(`.popup-container`);
+const popup = document.querySelector(`.popup`);
+const popupOK = document.querySelector(`.popup-button-ok`);
+const popupText = document.querySelector(`.popup-text`);
+
+popupOK.addEventListener("click", function (e) {
+  popupCon.classList.add("none");
+});
