@@ -81,6 +81,9 @@ pwdCfm.addEventListener("input", function (e) {
   }
 });
 
+const visPwdCfm = pwdCfm.nextElementSibling;
+visPwdCfm.addEventListener("click", handleVisPwd);
+
 buttonLogInSignUp.addEventListener("click", function (e) {
 	if (USER_DATA[email.value]) {
 		popupText.innerHTML = `이메일 ${email.value} 은 이미 가입되어 있습니다.`;
