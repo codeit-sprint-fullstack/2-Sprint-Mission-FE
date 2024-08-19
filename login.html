@@ -27,14 +27,16 @@
   <form class="form">
     <div>
     <label for="username">이메일</label>
-    <input id="username" name="user" type="email" placeholder="이메일을 입력해주세요">
-  </div>
+    <input  class='input' id="username" name="user" type="email" placeholder="이메일을 입력해주세요">
+       <div id="error_email"></div>
+    </div>
   
     <label for="password">비밀번호</label>
     <div id="password_box">
-    <input id="password" name="userpsw" type="password" iconUrl="판다마켓 그림/Input/btn_visibility_on_24px.svg" placeholder="비밀번호를 입력해주세요">
+    <input class="input" id="password" name="userpsw" type="password" iconUrl="판다마켓 그림/Input/btn_visibility_on_24px.svg" placeholder="비밀번호를 입력해주세요">
     <img class="eyes" src="판다마켓 그림/btn_visibility_on_24px.png">
-  </div>
+    <div id="error_pass"></div>
+    </div>
     <button>
       로그인
     </button>

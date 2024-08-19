@@ -120,3 +120,15 @@ form {
 #sign{
     color:var(--skyblue);
 }
+
+.hide {
+  display: none;
+  }
+
+  .invalid {
+    border: 1px solid #f74747;
+  }
+
+  #error_email, #error_pass{
+    color: #f74747;
+  }
