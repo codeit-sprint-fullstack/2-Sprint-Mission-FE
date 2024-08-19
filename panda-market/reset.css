@@ -41,10 +41,39 @@ img {
   html, body {
     font-size: 14px;
   }
+
+  header .sub,
+  footer .sub {
+    margin:0 24px;
+  }
+
+  .sub {
+    margin:0 auto;
+  }
+
+  section {
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 }
 
-@media (max-width:900px) {
+@media (max-width:744px) {
   html, body {
     font-size: 12px;
+  }
+
+  header .sub,
+  footer .sub {
+    margin:0 16px;
+  }
+
+  .sub {
+    margin:0 auto;
+  }
+
+  section {
+    margin: 0 auto;
+    padding: 0 16px;
   }
 }
