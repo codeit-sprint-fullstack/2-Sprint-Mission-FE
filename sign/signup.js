@@ -136,3 +136,32 @@ modalClose.addEventListener('click',function(){
    //display 속성을 none으로 변경
     modal.style.display = 'none';
 });
+
+// 눈모양 보이기/안보이기
+const openEyes = document.querySelector('.open_eyes');
+const closedEyes = document.querySelector('.eyes');
+
+closedEyes.addEventListener('click',function(){
+  closedEyes.classList.toggle('hide');
+  password.type = 'text';
+  openEyes.classList.toggle('hide');
+})
+openEyes.addEventListener('click',function(){
+  openEyes.classList.toggle('hide')
+  password.type = 'password';
+  closedEyes.classList.toggle('hide')
+})
+
+const openEyes2 = document.querySelector('.open_eyes2');
+const closedEyes2 = document.querySelector('.eyes2');
+
+closedEyes2.addEventListener('click',function(){
+  closedEyes2.classList.toggle('hide');
+  verPass.type = 'text';
+  openEyes2.classList.toggle('hide');
+})
+openEyes2.addEventListener('click',function(){
+  openEyes2.classList.toggle('hide')
+  verPass.type = 'password';
+  closedEyes2.classList.toggle('hide')
+})

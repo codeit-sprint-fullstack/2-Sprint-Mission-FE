@@ -127,3 +127,18 @@ modalClose.addEventListener('click',function(){
     modal.style.display = 'none';
 });
 
+// 눈모양 아이콘으로 비밀번호 보이기/안보이기
+
+const openEyes = document.querySelector('.open_eyes');
+const closedEyes = document.querySelector('.eyes');
+
+closedEyes.addEventListener('click',function(){
+  closedEyes.classList.toggle('hide');
+  password.type = 'text';
+  openEyes.classList.toggle('hide');
+})
+openEyes.addEventListener('click',function(){
+  openEyes.classList.toggle('hide')
+  password.type = 'password';
+  closedEyes.classList.toggle('hide')
+})

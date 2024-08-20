@@ -78,7 +78,7 @@ input:focus{
   
 }
 
-.eyes{
+.eyes, .open_eyes, .eyes2, .open_eyes2{
   position: absolute;
     width: 1.5rem;
     height: 1.5rem;
@@ -137,7 +137,7 @@ input:focus{
     font-size: 15px;
     line-height: 17.9px;
     font-weight: 600;
-    margin: auto;
+    position:relative;
   }
   .modal {
     /*팝업 배경*/
