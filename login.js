@@ -13,75 +13,65 @@ const USER_DATA = [
     {email: 'codeit6@codeit.com', password: 'codeit06!'},
 ]; 
 
-function emailType() {
-    const email = checkEmail.value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email) ;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function isEmailValid(email) {
+    return emailPattern.test(email);
+}
+
+function isPasswordValid(password) {
+    return password.length >= 8;
 }
 
 function isUser() {
-    const user = USER_DATA.some((user) => user.email === checkEmail.value && user.password === checkPW.value);
-    if (!user) {
-        alert('이메일 또는 비밀번호가 일치하지 않습니다.');
-    } else {
-        window.location.href = 'items.html';
-    }
+    return USER_DATA.some((user) => user.email === checkEmail.value && user.password === checkPW.value);
 }
 
-function validate() {
-    const isEmailValid = emailType() && checkEmail.value.trim() !== '';
-    const isPasswordValid = checkPW.value.trim() !== '' && checkPW.value.length >= 8;
+function validForm(email, password) {
+    return isEmailValid(email) && isPasswordValid(password);
+}
 
-    if (isEmailValid && isPasswordValid) {
+function isValid() {
+    const email = checkEmail.value;
+    const password = checkPW.value;
+
+    if (!isEmailValid(email)) {
+        checkEmail.classList.add('error');
+        errMessage.style.display = 'block';
+        checkEmail.focus();
+    } else {
+        checkEmail.classList.remove('error');
+        errMessage.style.display = 'none';
+    }
+    if (!isPasswordValid(password)) {
+        checkPW.classList.add('error');
+        PerrMessage.style.display = 'block';
+        checkPW.focus();
+    } else {
+        checkPW.classList.remove('error');
+        PerrMessage.style.display = 'none';
+    }
+    if (validForm(email, password)) {
         loginBtn.classList.remove('disabled');
-        // loginBtn.setAttribute('href', 'items.html');
     } else {
         loginBtn.classList.add('disabled');
-        // loginBtn.setAttribute('href', '#');
     }
 }
 
-function emailCheck() {
-    checkEmail.addEventListener('focusout', () => {
-        if (checkEmail.value.trim() === '') {
-            checkEmail.classList.add('error');
-            errMessage.style.display = 'block';
-            checkEmail.focus();
-        } else if (!emailType()) {
-            checkEmail.classList.add('error');
-            errMessage.style.display = 'block';
-            checkEmail.focus();
-        } else {
-            checkEmail.classList.remove('error');
-            errMessage.style.display = 'none';
-        }
-        validate();
-    });
-    checkEmail.addEventListener('input', validate);
-}
-
-function passwordCheck() {
-    checkPW.addEventListener('focusout', () => {
-        if (checkPW.value.trim() === '' || checkPW.value.length < 8) {
-            checkPW.classList.add('error');
-            PerrMessage.style.display = 'block';
-            checkPW.focus();
-        } else {
-            checkPW.classList.remove('error');
-            PerrMessage.style.display = 'none';
-        }
-        validate();
-    });
-    checkPW.addEventListener('input', validate);
-}
+checkEmail.addEventListener('focusout', isValid);
+checkEmail.addEventListener('input', isValid);
+checkPW.addEventListener('focusout', isValid);
+checkPW.addEventListener('input', isValid);
 
 loginBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    const email = checkEmail.value;
+    const password = checkPW.value;
     if (!loginBtn.classList.contains('disabled')) {
-        isUser();
+        if (isUser(email, password)) {
+            window.location.href = 'items.html';
+        } else {
+            alert('비밀번호가 일치하지 않습니다.');
+        }
     }
 });
-
-emailCheck();
-passwordCheck();
-validate();

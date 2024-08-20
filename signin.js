@@ -14,11 +14,7 @@ const USER_DATA = [
     {email: 'codeit6@codeit.com', password: 'codeit06!'},
 ]; 
 
-function emailType() {
-    const email = checkEmail.value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email) ;
-}
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function isUser() {
     const user = USER_DATA.some((user) => user.email === checkEmail.value);
@@ -42,11 +38,7 @@ function validate() {
 
 function emailCheck() {
     checkEmail.addEventListener('focusout', () => {
-        if (checkEmail.value.trim() === '') {
-            checkEmail.classList.add('error');
-            errMessage.style.display = 'block';
-            checkEmail.focus();
-        } else if (!emailType()) {
+        if (checkEmail.value.trim() === '' || !emailPattern.test(email)) {
             checkEmail.classList.add('error');
             errMessage.style.display = 'block';
             checkEmail.focus();
