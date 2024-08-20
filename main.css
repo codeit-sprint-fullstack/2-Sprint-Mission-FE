@@ -19,8 +19,6 @@ a {
     color:#E5E7EB;
 }
 
-
-
 header {
     position: fixed;
     top: 0;
@@ -87,6 +85,7 @@ header {
 
 .home-top h1,
 .home-bottom h1 {
+    width: 30rem;
     font-size: 4rem;
     line-height: 5.6rem;
     font-weight: 700;
@@ -150,8 +149,9 @@ header {
 }
 
 .hot-item,
-.search,
+.search, 
 .register {
+    width: 35rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -213,11 +213,15 @@ footer {
     border-color: #111827;
 }
 
-.codeit,
 .privacy,
 .FAQ {
     color: #E5E7EB;
     cursor: pointer;
+}
+
+.codeit {
+  color: #9CA3AF;
+  cursor: pointer;
 }
 
 .PF {
@@ -232,4 +236,235 @@ footer img{
 
 .icon {
     display: flex;
+}
+
+@media (max-width: 1199px) {
+    .nav {
+        width: 100%;        
+        margin: 0 2.4rem;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      line-height: 3.5rem;
+    }
+
+    .login {
+      font-size: 1.6rem;
+      height: 4.2 rem;
+      width: 8.8rem;
+    }
+
+    .home-top,
+    .home-bottom {
+        height: 77.4rem;
+    }
+
+    .home-top h1,
+    .home-bottom h1 {
+      font-size: 4rem;
+      line-height: 5.6rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .home-top-img,
+    .home-bottom-img {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top,
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+        margin: 15rem;
+        text-align: center;
+    }
+
+    .section1,
+    .section2,
+    .section3 {
+        height: 87rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .section1-hot-item,
+    .section2-search,
+    .section3-register {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .section {
+      display: flex;
+      justify-content: center;
+      width:69.6rem;
+      height: 77rem;
+    }
+
+    .hot-image,
+    .search-image,
+    .register-image {
+        height: 52.4rem;
+        width: 69.6rem;
+    }
+
+    .hot-item,
+    .search,
+    .register {
+        width: 100%;
+        margin: 0;
+    }
+
+    .section-category {
+        font-size: 1.8rem;
+        margin: 1rem 0;
+    }
+
+    .section-title {
+        font-size: 3.2rem;
+        line-height: 4.48rem;
+        margin: 0;
+    }
+
+    .section-description {
+        font-size: 1.8rem;
+        line-height: 2.16rem;
+        margin: 1rem 0;
+    }
+
+    .section2-search {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0;
+    }
+
+    .footer-icon {
+      margin: 2.4rem;
+    }
+}
+
+
+@media (max-width: 743px) {
+    .nav {
+        width: 100%;
+        margin: 0 1.6rem;
+    }
+
+    .logo {
+      display: none;
+    }
+
+    .title {
+      font-size: 2rem;
+      line-height: 2.7rem;
+    }
+
+    .login {
+      font-size: 1.6rem;
+      height: 4.2rem;
+      width: 8.8rem;
+    }
+
+    .home-top,
+    .home-bottom {
+        height: 77.4rem;
+    }
+
+    .home-top h1 ,
+    .home-bottom h1 {
+        width: 100%;
+        font-size: 3.2rem;
+        line-height: 4.48rem;
+        text-align: center;
+    }
+
+    .home-top-img,
+    .home-bottom-img {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top,
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+        margin: 15rem;
+        text-align: center;
+    }
+
+    .section1,
+    .section2,
+    .section3 {
+        height: 55rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .section1-hot-item,
+    .section2-search,
+    .section3-register {
+        display: flex;
+        flex-direction: column;
+        width: 34.4rem;
+        height: 25.9rem;
+    }
+
+    .section {
+      display: flex;
+      justify-content: center;
+      width: 37.5rem;
+      height: 43rem;
+    }
+
+    .hot-image,
+    .search-image,
+    .register-image {
+        height: 52.4rem;
+        width: 69.6rem;
+    }
+
+    .hot-item,
+    .search,
+    .register {
+        width: 100%;
+        margin: 0;
+    }
+
+    .section-category {
+        font-size: 1.6rem;
+        line-height: 2.24rem;
+        margin: 1rem 0;
+    }
+
+    .section-title {
+        font-size: 2.4rem;
+        line-height: 3.36rem;
+        margin: 0;
+    }
+
+    .section-description {
+        font-size: 1.6rem;
+        line-height: 1.92rem;
+        margin: 1rem 0;
+    }
+
+    .section2-search {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0;
+    }
+
+    .footer-icon {
+      margin: 1.6rem;
+    }
+
+    .footer-icon p {
+      font-size: 1.6rem;
+      line-height: 2rem;
+    }
 }
