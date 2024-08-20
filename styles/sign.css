@@ -158,3 +158,108 @@ p{
       justify-content: space-around; 
   }
 }
+=======
+:root {
+  --background-input: #F3F4F6;
+  --text-input: #9CA3AF;
+  --outline-input-focus: #3692FF;
+  --background-button: #9CA3AF;
+  --text-button: #FFFFFF; /* White */
+  --background-easylogin: #E6F2FF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+html {
+  font-size: 62.5%;
+}
+  /* 판다마켓 사진용*/
+header img { 
+    display: flex;
+    margin: 4rem auto;
+    max-width: 40rem;
+    width: 100%;
+  }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-container, .signup-container, .easy-login-section, form {
+    width: 100%;
+    max-width: 64rem;
+  }
+  
+input, button{
+    display: flex;
+    justify-content: center;
+    border-style: none;
+    font-size: 1.6rem;
+    margin: 2rem 0;
+    padding: 1.6rem 2rem;
+    width: 100%;
+}
+
+input {
+    background-color: var(--background-input);
+    color: var(--text-input);
+    border-radius: 1rem;
+    outline-color: var(--outline-input-focus); /*focus in 일 때*/
+    
+  }
+
+button{
+    background-color: var(--background-button);
+    color: var(--text-button);
+    font-weight: 600;
+    border-radius: 3rem;
+  }
+
+label, p, a {
+    font-size: 1.5rem;  
+  }
+
+.easy-login-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-easylogin);
+    border-radius: 1rem;
+    margin: 2rem 0;
+    padding: 0.5rem 2rem;
+}
+
+label {
+  font-weight: 700;
+}
+
+p{
+  font-weight: 500;
+}
+
+.input-password-container{
+  position: relative;
+}
+
+.password-active-toggle { /*심화 요구사항 js는 반영 안 됨*/
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+
+.social {
+    display: flex; 
+    justify-content: space-between;
+    width: 10rem;
+}
+
+.login-container , .signup-container{
+    display: flex;
+    justify-content: center;
+}
