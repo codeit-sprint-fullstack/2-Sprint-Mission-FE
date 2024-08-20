@@ -16,8 +16,6 @@ const USER_DATA = [
     {email: 'codeit6@codeit.com', password: 'codeit06!'},
 ]; 
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 function showModal() {
     modal.style.display = 'block';
 }
@@ -29,6 +27,7 @@ function closeModal() {
 modalCloseBtn.addEventListener('click', closeModal);
 
 function isEmailValid(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
 }
 
@@ -44,25 +43,21 @@ function validForm(email, password) {
     return isEmailValid(email) && isPasswordValid(password);
 }
 
-function emailCheck() {
-    const email = checkEmail.value;
-    checkEmail.addEventListener('focusout', () => {
+function emailCheck(email) {
         if (!isEmailValid(email)) {
             checkEmail.classList.add('error');
             errMessage.style.display = 'block';
-            //checkEmail.focus();
+            checkEmail.focus();
         } else {
             checkEmail.classList.remove('error');
             errMessage.style.display = 'none';
-            loginBtn.classList.toggle('disabled', !validForm(email, checkPW.value));
         }
-    });
+        loginBtn.classList.toggle('disabled', !validForm(email, checkPW.value));
+
 }
 
-function passwordCheck() {
-    const password = checkPW.value;
-    checkPW.addEventListener('focusout', () => {
-        if (isEmailValid(email) && !isPasswordValid(password)) {
+function passwordCheck(password) {
+        if (!isPasswordValid(password)) {
             checkPW.classList.add('error');
             PerrMessage.style.display = 'block';
             checkPW.focus();
@@ -71,54 +66,19 @@ function passwordCheck() {
             PerrMessage.style.display = 'none';
             loginBtn.classList.toggle('disabled', !validForm(checkEmail.value, password));
         }
-    });
 }
 
-// function isValid() {
-//     const email = checkEmail.value;
-//     const password = checkPW.value;
-
-//     checkEmail.addEventListener('focusout', () => {
-//         if (!isEmailValid(email)) {
-//             checkEmail.classList.add('error');
-//             errMessage.style.display = 'block';
-//             checkEmail.focus();
-//         } else {
-//             checkEmail.classList.remove('error');
-//             errMessage.style.display = 'none';
-//         }
-//     });
-//     checkPW.addEventListener('focusout', () => {
-//         if (isEmailValid(email) && !isPasswordValid(password)) {
-//             checkPW.classList.add('error');
-//             PerrMessage.style.display = 'block';
-//             checkPW.focus();
-//         } else {
-//             checkPW.classList.remove('error');
-//             PerrMessage.style.display = 'none';
-//         }
-//     });
-//     if (validForm(email, password)) {
-//         loginBtn.classList.remove('disabled');
-//     } else {
-//         loginBtn.classList.add('disabled');
-//     }
-// }
-
-// checkEmail.addEventListener('focusout', isValid);
-checkEmail.addEventListener('input', emailCheck);
-// checkPW.addEventListener('focusout', isValid);
-checkPW.addEventListener('input', passwordCheck);
+checkEmail.addEventListener('focusout', () => emailCheck(checkEmail.value));
+// checkEmail.addEventListener('input', emailCheck);
+checkPW.addEventListener('focusout', () => passwordCheck(checkPW.value));
+// checkPW.addEventListener('input', passwordCheck);
 
 loginBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const email = checkEmail.value;
     const password = checkPW.value;
     if (!loginBtn.classList.contains('disabled')) {
-        if (isUser(email, password)) {
-            window.location.href = 'items.html';
-        } else {
-            showModal();
-        }
+        if (!isUser(email, password)) return showModal();
+        window.location.href = 'items.html';
     }
 });

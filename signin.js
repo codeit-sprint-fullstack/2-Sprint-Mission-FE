@@ -18,8 +18,6 @@ const USER_DATA = [
     {email: 'codeit6@codeit.com', password: 'codeit06!'},
 ]; 
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 function showModal() {
     if (modal) {
         modal.style.display = 'block';
@@ -32,81 +30,136 @@ function closeModal() {
 
 modalCloseBtn.addEventListener('click', closeModal);
 
-function isUser() {
-    const user = USER_DATA.some((user) => user.email === checkEmail.value);
-    if (user) {
-        showModal();
+function isEmailValid(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+
+function isPasswordValid(password) {
+    return password.length >= 8;
+}
+
+function isPasswordRepeated(password, passwordRepeat) {
+    return password === passwordRepeat;
+}
+
+function isUser(email) {
+    return USER_DATA.some((user) => user.email === email);
+}
+
+function validForm(email, password, passwordRepeat) {
+    return isEmailValid(email) && isPasswordValid(password) && isPasswordRepeated(password, passwordRepeat);
+}
+
+// function validate() {
+//     const isEmailValid = emailPattern.test(checkEmail.value);
+//     const isPasswordValid = checkPW.value.length >= 8;
+//     const isPasswordRepeated = checkPW.value === checkPC.value;
+
+//     if (isEmailValid && isPasswordValid && isPasswordRepeated) {
+//         loginBtn.classList.remove('disabled');
+//     } else {
+//         loginBtn.classList.add('disabled');
+//     }
+// }
+
+function emailCheck(email) {
+    if (!isEmailValid(email)) {
+        checkEmail.classList.add('error');
+        errMessage.style.display = 'block';
+        checkEmail.focus();
     } else {
-        window.location.href = 'login.html';
+        checkEmail.classList.remove('error');
+        errMessage.style.display = 'none';
     }
+    loginBtn.classList.toggle('disabled', !validForm(email, checkPW.value, checkPC.value));
 }
 
-function validate() {
-    const isEmailValid = emailPattern.test(checkEmail.value);
-    const isPasswordValid = checkPW.value.length >= 8;
-    const isPasswordRepeated = checkPW.value === checkPC.value;
-
-    if (isEmailValid && isPasswordValid && isPasswordRepeated) {
-        loginBtn.classList.remove('disabled');
+function passwordCheck(password) {
+    if (!isPasswordValid(password)) {
+        checkPW.classList.add('error');
+        PerrMessage.style.display = 'block';
+        // checkPW.focus();
     } else {
-        loginBtn.classList.add('disabled');
+        checkPW.classList.remove('error');
+        PerrMessage.style.display = 'none';
     }
+    loginBtn.classList.toggle('disabled', !validForm(checkEmail.value, password, checkPC.value));
 }
 
-function emailCheck() {
-    checkEmail.addEventListener('focusout', () => {
-        if (checkEmail.value.trim() === '' || !emailPattern.test(checkEmail.value)) {
-            checkEmail.classList.add('error');
-            errMessage.style.display = 'block';
-            checkEmail.focus();
-        } else {
-            checkEmail.classList.remove('error');
-            errMessage.style.display = 'none';
-        }
-        validate();
-    });
-    checkEmail.addEventListener('input', validate);
+function PCCheck(password, passwordRepeat) {
+    if (!isPasswordRepeated(password, passwordRepeat)) {
+        checkPC.classList.add('error');
+        PCerrMessage.style.display = 'block';
+        // checkPC.focus();
+    } else {
+        checkPC.classList.remove('error');
+        PCerrMessage.style.display = 'none';
+    }
+    loginBtn.classList.toggle('disabled', !validForm(checkEmail.value, password, passwordRepeat));
 }
 
-function passwordCheck() {
-    checkPW.addEventListener('focusout', () => {
-        if (checkPW.value.trim() === '' || checkPW.value.length < 8) {
-            checkPW.classList.add('error');
-            PerrMessage.style.display = 'block';
-            checkPW.focus();
-        } else {
-            checkPW.classList.remove('error');
-            PerrMessage.style.display = 'none';
-        }
-        validate();
-    });
-    checkPW.addEventListener('input', validate);
-}
+// function emailCheck(email) {
+//     checkEmail.addEventListener('focusout', () => {
+//         if (!emailPattern.test(checkEmail.value)) {
+//             checkEmail.classList.add('error');
+//             errMessage.style.display = 'block';
+//             checkEmail.focus();
+//         } else {
+//             checkEmail.classList.remove('error');
+//             errMessage.style.display = 'none';
+//         }
+//         validate();
+//     });
+//     checkEmail.addEventListener('input', validate);
+// }
+// 
+// function passwordCheck(password) {
+//     checkPW.addEventListener('focusout', () => {
+//         if (checkPW.value.length < 8) {
+//             checkPW.classList.add('error');
+//             PerrMessage.style.display = 'block';
+//             checkPW.focus();
+//         } else {
+//             checkPW.classList.remove('error');
+//             PerrMessage.style.display = 'none';
+//         }
+//         validate();
+//     });
+//     checkPW.addEventListener('input', validate);
+// }
 
-function PCCheck() {
-    checkPC.addEventListener('focusout', () => {
-        if (checkPC.value.trim() === '' || checkPC.value !== checkPW.value) {
-            checkPC.classList.add('error');
-            PCerrMessage.style.display = 'block';
-            // checkPC.focus();
-        } else {
-            checkPC.classList.remove('error');
-            PCerrMessage.style.display = 'none';
-        }
-        validate();
-    });
-    checkPC.addEventListener('input', validate);
-}
+// function PCCheck(passwordRepeat) {
+//     checkPC.addEventListener('focusout', () => {
+//         if (checkPC.value !== checkPW.value) {
+//             checkPC.classList.add('error');
+//             PCerrMessage.style.display = 'block';
+//             // checkPC.focus();
+//         } else {
+//             checkPC.classList.remove('error');
+//             PCerrMessage.style.display = 'none';
+//         }
+//         validate();
+//     });
+//     checkPC.addEventListener('input', validate);
+// }
+
+checkEmail.addEventListener('focusout', () => emailCheck(checkEmail.value));
+checkPW.addEventListener('focusout', () => passwordCheck(checkPW.value));
+checkPC.addEventListener('focusout', () => PCCheck(checkPW.value, checkPC.value));
 
 loginBtn.addEventListener('click', (e) => {
+    const email = checkEmail.value;
+
     e.preventDefault();
     if (!loginBtn.classList.contains('disabled')) {
-        console.log('showModal');
-        isUser();
+        if (isUser(email)) return showModal();
+        window.location.href = 'login.html';
     }
 });
 
-emailCheck();
-passwordCheck();
-PCCheck();
-validate();
+// emailCheck();
+// passwordCheck();
+// PCCheck();
+// validate();
