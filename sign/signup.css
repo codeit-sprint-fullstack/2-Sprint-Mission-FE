@@ -148,7 +148,7 @@ input:focus{
         width: 100%;
         height: 100vh;
         overflow: hidden;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.7);
     }
     .modal .modal_popup {
       /*팝업*/
@@ -159,14 +159,35 @@ input:focus{
           padding: 20px;
           background: #ffffff;
           border-radius: 20px;
+        
+          
       }
       .modal .modal_popup .close_btn {
         display: block;
         padding: 10px 20px;
-        background-color: rgb(116, 0, 0);
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
         color: #fff;
         cursor: pointer;
         transition: box-shadow 0.2s;
+    }
+    .close_btn{
+      width: 120px;
+      height: 48px;
+      background: #3692FF;
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+    }
+    .modal_popup{
+      display: flex;
+      justify-content:center;
+      align-items:center;     
+      width: 540px;
+      height: 250px;
+    }
+    .mdFont{
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 19.9px;
     }

@@ -115,7 +115,11 @@ function matchUp (){
   
 
   if (matchEmail){
-    alert('사용중인 이메일입니다');
+    //열기 버튼을 눌렀을 때 모달팝업이 열림
+button.addEventListener('mouseup',function(){
+  //display 속성을 block로 변경
+  modal.style.display = 'block';
+});
   }
    else {
     button.addEventListener('mouseup',goUrl);
@@ -123,3 +127,12 @@ function matchUp (){
 }
 button.addEventListener('mousedown',matchUp);
 
+const modal = document.querySelector('.modal');
+const modalClose = document.querySelector('.close_btn');
+
+
+//닫기 버튼을 눌렀을 때 모달팝업이 닫힘
+modalClose.addEventListener('click',function(){
+   //display 속성을 none으로 변경
+    modal.style.display = 'none';
+});

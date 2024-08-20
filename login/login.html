@@ -5,7 +5,8 @@
     <meta charset="utf-8">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="login.css">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-34MMG84YLW"></script>
 <script>
@@ -37,7 +38,7 @@
     <img class="eyes" src="../판다마켓 그림/btn_visibility_on_24px.png">
     <div id="error_pass"></div>
     </div>
-    <button type="button">
+    <button class="button" type="button">
       로그인
     </button>
 <div id="simplelogin">
@@ -58,10 +59,14 @@
   </form>
 
 </header>
-
+<div class="modal">
+  <div class="modal_popup">
+      <p class="mdFont"> 비밀번호가 일치하지 않습니다.</p>
+      <button type="button" class="close_btn">확인</button>
+</div>
 
 </body>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="login.js"></script>
 
 

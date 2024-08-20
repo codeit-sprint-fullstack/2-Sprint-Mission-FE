@@ -1,6 +1,6 @@
 const username = document.querySelector("#username");//이메일 인풋
 const password = document.querySelector("#password");//비밀번호 인풋
-const button = document.querySelector("button");//로그인버튼
+const button = document.querySelector(".button");//로그인버튼
 const errorEmail = document.querySelector("#error_email");//failure
 const errorPass = document.querySelector("#error_pass");//required
 const input = document.querySelector(".form");//input
@@ -97,10 +97,18 @@ function matchUp (){
   const matchPass = USER_DATA.some(el => el.password === passValue);
 
   if (!matchEmail){
-    alert('비밀번호가 일치하지 않습니다.');
+      //열기 버튼을 눌렀을 때 모달팝업이 열림
+button.addEventListener('mouseup',function(){
+  //display 속성을 block로 변경
+  modal.style.display = 'block';
+});
   }
   else if (matchEmail && !matchPass){
-    alert('비밀번호가 일치하지 않습니다.');
+      //열기 버튼을 눌렀을 때 모달팝업이 열림
+button.addEventListener('mouseup',function(){
+  //display 속성을 block로 변경
+  modal.style.display = 'block';
+});
   }
   else {
     button.addEventListener('mouseup',goUrl);
@@ -109,19 +117,13 @@ function matchUp (){
 button.addEventListener('mousedown',matchUp);
 
 
-  // USER_DATA.forEach((team) => matchUp(team));
+const modal = document.querySelector('.modal');
+const modalClose = document.querySelector('.close_btn');
 
-  // function matchUp(team) {
-  
-  // if(team.email !== userValue){
-  //   alert ('아이디가 일치하지 않습니다.');
-  // } 
-  // else if (team.email === userValue && team.password !== passValue){
-  //   alert ('비밀번호가 일치하지 않습니다.');
-  // }
-  // else {
-  //   button.addEventListener('click',goUrl());
-  // }
-  // }
 
+//닫기 버튼을 눌렀을 때 모달팝업이 닫힘
+modalClose.addEventListener('click',function(){
+   //display 속성을 none으로 변경
+    modal.style.display = 'none';
+});
 
