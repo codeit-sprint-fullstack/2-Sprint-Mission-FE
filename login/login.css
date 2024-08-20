@@ -129,9 +129,17 @@ input:focus {
 }
 
 .password-bar {
+    position: relative;
+
     display: flex;
     justify-content: space-between;
     gap: 5px;
+}
+
+.password-bar img {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 }
 
 button {
@@ -196,4 +204,11 @@ button {
 
 .signup content a {
     color: var(--color-panda-market);
+}
+
+/* -- Mobile -- */
+@media screen and (min-width:375px) and (max-width:742px) {
+    form {
+        padding: 0 1rem;
+    }
 }
