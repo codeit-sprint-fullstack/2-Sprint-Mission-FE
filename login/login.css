@@ -21,6 +21,17 @@
 	--secondary-color-blue: #3182F6;
 }
 
+body{
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* header */
 header {
   display: flex;
   flex-direction: row;
@@ -52,8 +63,11 @@ nav h1 {
   line-height: 5.5975rem;
   text-align: left;
   color: var(--blue-color);
+  white-space: nowrap;
 }
 
+
+/* main */
 main {
   display: flex;
   flex-direction: column;
@@ -70,6 +84,7 @@ form {
   gap: 1.25rem;
 }
 
+/* login */
 label {
   display: flex;
   flex-direction: column;
@@ -100,13 +115,15 @@ label input:focus {
   border: solid 2px;
   border-color: var(--blue-color);
 }
-
+#password{
+  margin-bottom: 3rem;
+}
 #eyeImg {
   width: 1.5rem;
   height: 1.5rem;
   position: relative;
   left: 36.875rem;
-  bottom: 3.4rem;
+  bottom: 6.3rem;
 }
 
 form button {
@@ -125,6 +142,7 @@ form button {
   color: var(--white-color);
 }
 
+/* imgbox */
 .imgbox {
   width: 40rem;
   height: 4.625rem;
@@ -147,8 +165,11 @@ form button {
   text-align: left;
   color: var(--secondary-color-black);
   margin-left: 1.4375rem;
+  white-space: nowrap;
 }
-
+.imgbox a{
+  white-space: nowrap;
+}
 #google {
   display: flex;
   justify-content: center;
@@ -172,6 +193,7 @@ form button {
   margin-right: 1.875rem;
 }
 
+/* fotter */
 footer {
   margin-top: 1.25rem;
   margin-bottom: 20rem;
@@ -220,4 +242,92 @@ footer a {
 
 .btnColor {
   background-color: var(--blue-color);
+}
+/* PC */
+@media screen and (min-width: 1200px){
+
+} 
+
+/* Tablet */
+@media screen and (min-width: 744px) and (max-width: 1199px){
+
+}
+
+/* Mobile */
+@media screen and (min-width: 375px) and (max-width: 743px){
+  /* nav */
+  header{
+    padding-top: 0.7rem;
+    margin-bottom: 0.1rem;
+  }
+  nav{
+    padding: 0 6.4rem;
+  }
+  nav img{
+    width: 3rem;
+    height: auto;
+    border-radius: 1rem;
+  }
+  nav h1{
+    font-size: 2rem;
+  }
+  
+
+  /* login */
+  main{
+    max-width: 25rem;
+    padding: 0 1rem;
+  }
+  section{
+    position: relative;
+    bottom: 2rem;
+  }
+  #email, #password{
+    width: 22rem;
+    padding: 1rem 1rem;
+  }
+  #password{
+    margin-bottom: 0.1rem;
+  }
+  .login_box h4{
+    font-size: 0.8rem;
+  }
+  .login_box button{
+    width: 22rem;
+
+  }
+  #eyeImg{
+    position: relative;
+    left: 19rem;
+    bottom: 3.7rem;
+  }
+  
+  /* imgbox */
+  .imgbox{
+    width: 22rem;
+    padding: 0 1rem;
+    justify-content: flex-start;
+    position: relative;
+    bottom: 4rem;
+  }
+  .imgbox h4{
+    font-size: 0.9rem;
+  }
+  #google, #kakao{
+    position: relative;
+    padding: 1rem;
+    right: 16rem;
+  }
+  #google{
+    right: 17rem;
+  }
+  #kakao{
+    padding-top: 1.2rem;
+  }
+  footer{
+    width: 22rem;
+    margin: 0 1rem;
+    position: relative;
+    bottom: 3rem;
+  }
 }

@@ -469,10 +469,7 @@ footer {
 @media screen and (min-width: 375px) and (max-width: 744px) {
   /* header */
   .header{
-    width: 100%;
     padding: 0 1rem;
-    display: flex;
-    justify-content: space-between;
   }
   .navPlus{
     gap: 0.5rem;
