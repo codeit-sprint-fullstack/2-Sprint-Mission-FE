@@ -179,7 +179,8 @@ a {
 }
 
 .err-message,
-.Perr-message {
+.Perr-message,
+.PCerr-message {
     display:none;
     color: var(--red);
     margin: 1rem 0 0 0;
