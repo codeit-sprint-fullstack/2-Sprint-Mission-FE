@@ -4,7 +4,7 @@ const errMessage = document.querySelector('.err-message');
 const PerrMessage = document.querySelector('.Perr-message');
 const loginBtn = document.querySelector('.login-btn');
 const modal = document.querySelector('#modal');
-const modalText = document.querySelector('.modal-text');
+const modalText = document.querySelector('#modal-text');
 const modalCloseBtn = document.querySelector('#modal-close');
 
 const USER_DATA = [

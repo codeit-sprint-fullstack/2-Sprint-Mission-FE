@@ -1,9 +1,13 @@
 const checkEmail = document.querySelector('#email');
 const checkPW = document.querySelector('#password-field');
+const checkPC = document.querySelector('#password-check');
 const errMessage = document.querySelector('.err-message');
 const PerrMessage = document.querySelector('.Perr-message');
 const PCerrMessage = document.querySelector('.PCerr-message');
 const loginBtn = document.querySelector('.login-btn');
+const modal = document.querySelector('#modal');
+const modalText = document.querySelector('#modal-text');
+const modalCloseBtn = document.querySelector('#modal-close');
 
 const USER_DATA = [
     {email: 'codeit1@codeit.com', password: 'codeit01!'},
@@ -16,20 +20,33 @@ const USER_DATA = [
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function showModal() {
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
+
+function closeModal() {
+    if (modal) modal.style.display = 'none';
+}
+
+modalCloseBtn.addEventListener('click', closeModal);
+
 function isUser() {
     const user = USER_DATA.some((user) => user.email === checkEmail.value);
     if (user) {
-        alert('사용 중인 이메일입니다.');
+        showModal();
     } else {
         window.location.href = 'login.html';
     }
 }
 
 function validate() {
-    const isEmailValid = emailType() && checkEmail.value.trim() !== '';
-    const isPasswordValid = checkPW.value.trim() !== '' && checkPW.value.length >= 8;
+    const isEmailValid = emailPattern.test(checkEmail.value);
+    const isPasswordValid = checkPW.value.length >= 8;
+    const isPasswordRepeated = checkPW.value === checkPC.value;
 
-    if (isEmailValid && isPasswordValid) {
+    if (isEmailValid && isPasswordValid && isPasswordRepeated) {
         loginBtn.classList.remove('disabled');
     } else {
         loginBtn.classList.add('disabled');
@@ -38,7 +55,7 @@ function validate() {
 
 function emailCheck() {
     checkEmail.addEventListener('focusout', () => {
-        if (checkEmail.value.trim() === '' || !emailPattern.test(email)) {
+        if (checkEmail.value.trim() === '' || !emailPattern.test(checkEmail.value)) {
             checkEmail.classList.add('error');
             errMessage.style.display = 'block';
             checkEmail.focus();
@@ -67,13 +84,11 @@ function passwordCheck() {
 }
 
 function PCCheck() {
-    const checkPW = document.querySelector('#password-field');
-    const checkPC = document.querySelector('#password-check');
     checkPC.addEventListener('focusout', () => {
         if (checkPC.value.trim() === '' || checkPC.value !== checkPW.value) {
             checkPC.classList.add('error');
             PCerrMessage.style.display = 'block';
-            checkPC.focus();
+            // checkPC.focus();
         } else {
             checkPC.classList.remove('error');
             PCerrMessage.style.display = 'none';
@@ -86,6 +101,7 @@ function PCCheck() {
 loginBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (!loginBtn.classList.contains('disabled')) {
+        console.log('showModal');
         isUser();
     }
 });
