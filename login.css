@@ -63,7 +63,6 @@ main {
    height: 56px;
    border-radius: 12px;
    background-color: var(--cool-gray-100);
-   padding-left: 24px;
    border: 2px solid transparent;
 }
 
@@ -92,6 +91,7 @@ main {
 .gray-box input {
    flex-grow: 1;
    height: 100%;
+   margin-left: 24px;
    border: 2px solid transparent;
    background: none;
 }
@@ -220,4 +220,47 @@ main {
 
 .hidden {
    visibility: hidden;
+}
+
+/*반응형 웹 만들어보기*/
+@media (min-width: 375px) and (max-width: 743px) {
+   body {
+      max-width: 100%;
+      padding: 0 16px;
+  }
+   .logo img{
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      max-width: 400px;
+   }
+   
+   .login-area,
+   .letter,
+   .gray-box,
+   .login-button,
+   .external-login 
+   {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 400px; /* 최대 400px을 넘지 않음 */
+   }
+
+   .login-button{ /*버튼만 미디어 쿼리 적용이 안돼서 cascading 지정*/
+      width: 100% !important;
+      max-width: 400px !important;
+      margin: 0 auto !important;
+   }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+   body {
+      max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+   body {
+       max-width: 100%;
+   }
 }

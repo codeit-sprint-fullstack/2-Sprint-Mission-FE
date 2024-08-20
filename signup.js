@@ -136,7 +136,6 @@ function createErrorMsg(id, text) {
 function signupResult () {
     const userEmail = emailInput.value;
     const userPassword = passwordInput.value;
-    const userPasswordDbl = passwordDblInput.value;
 
     if (!signupBtn.disabled) {
         const emailExists = USER_DATA.some(user => user.email === userEmail); //some 메서드: 베열의 요소 중 조건을 만족하는 값이 있는지 찾는 메서드

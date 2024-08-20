@@ -22,7 +22,7 @@ main {
     margin-bottom: 40px; /*232px-(132+60)*/
  }
 
- .overall_area {
+ .overall-area {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,13 +35,13 @@ main {
    gap: 16px;
  }
 
- .signup_area{
+ .signup-area{
     display: flex;
     flex-direction: column;
     gap: 24px;
  }
 
- .signup_fillup_zone{
+ .signup-fillup-zone{
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -60,7 +60,7 @@ main {
     font-family: Pretendard;
  }
 
- .gray_box{
+ .gray-box{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,18 +68,17 @@ main {
     height: 56px;
     border-radius: 12px;
     background-color: var(--cool-gray-100);
-    padding-left: 24px;
     border: 2px solid transparent;
  }
 
- .gray_box input::placeholder{
+ .gray-box input::placeholder{
     font-weight: 400;
     font-size: 16px;
     color: var(--cool-gray-400);
     margin-left: 24px;
  }
 
-.gray_box:focus-within {
+.gray-box:focus-within {
     border-color: var(--color-blue);
 }
 
@@ -88,19 +87,20 @@ main {
    outline: none;
 }
 
-.gray_box input:focus {
+.gray-box input:focus {
     border-color: none;
     outline: none;
 }
 
- .gray_box input {
+ .gray-box input {
     flex-grow: 1;
+    margin-left: 24px;
     height: 100%;
     border: 2px solid transparent;
     background: none;
 }
 
- .vis_password{
+ .vis-password{
     cursor: pointer;
     margin-right: 24px;
  }
@@ -223,4 +223,46 @@ main {
 
 .hidden {
    visibility: hidden;
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+   body {
+      max-width: 100%;
+      padding: 0 16px;
+  }
+   .logo img{
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      max-width: 400px;
+   }
+   
+   .signup-area,
+   .letter,
+   .gray-box,
+   .signup-button,
+   .external-login 
+   {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 400px; /* 최대 400px을 넘지 않음 */
+   }
+
+   .signup-button{ /*버튼만 미디어 쿼리 적용이 안돼서 cascading 지정*/
+      width: 100% !important;
+      max-width: 400px !important;
+      margin: 0 auto !important;
+   }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+   body {
+      max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+   body {
+       max-width: 100%;
+   }
 }

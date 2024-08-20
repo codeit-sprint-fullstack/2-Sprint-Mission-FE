@@ -122,6 +122,7 @@ function loginResult () {
     }
 }
 
+//alert 모달
 function modalOn (msg) {
     alertModal.classList.remove("hidden");
     alertModal.classList.add("visible");
