@@ -129,7 +129,8 @@ input::placeholder {
   height: 2.4rem;
 }
 
-button {
+#loginButton {
+  font-family: pretendard;
   padding: 1.6rem 12.4rem; /*16px 124px*/
   border-radius: 4rem;
   border: none;

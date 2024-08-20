@@ -1,0 +1,148 @@
+
+:root {
+  /* font-size */
+  --text-4xl-40: 4rem; /* 40px */
+  --text-3xl-32: 3.2rem; /* 32px */
+  --text-2xl-24: 2.4rem; /* 24px */
+  --text-xl-20: 2rem; /* 20px */
+  --text-2lg-18: 1.8rem; /* 18px */
+  --text-lg-16: 1.6rem; /* 16px */
+  --text-md-14: 1.4rem; /* 14px */
+  --text-sm-13: 1.3rem; /* 13px */
+  --text-xs-12: 1.2rem; /* 12px */
+
+  /* color */
+  --primary-color-100: #3692FF;
+  --primary-color-200: #1967D6;
+  --primary-color-300: #1251AA;
+  --error-color: #F74747;
+  --secondary-color-gray900: #111827;
+  --secondary-color-gray800: #1F2937;
+  --secondary-color-gray700: #374151;
+  --secondary-color-gray600: #4B5563;
+  --secondary-color-gray500: #6B7280;
+  --secondary-color-gray400: #9CA3AF;
+  --secondary-color-gray200: #E5E7EB;
+  --secondary-color-gray100: #F3F4F6;
+  --secondary-color-gray50: #F9FAFB;
+  --background-color-gray10: #FCFCFC;
+  --background-color: #CFE5FF;
+  --background-color-light-blue: #E6F2FF;
+  --background-color-white: #FFFFFF;
+  --border-color: #DFDFDF;
+}
+
+@media screen and (743px < width < 1200px) {
+  /* 공통 */
+  .topBottomSection {
+    height: 77.1rem;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  /* header */
+  header {
+    padding: 0.9rem 2.4rem;
+  }
+
+  #logoAndMenu {
+    gap: 2rem;
+  }
+
+  /* top */
+  #topSection .textSection {
+    align-items: center;
+    gap: 2.4rem;
+  }
+
+  #topSection .textSection br {
+    display: none;
+  }
+
+  #shoppingButton {
+    width: 35.7rem;
+  }
+
+  #topSection img {
+    position: static;
+    margin-top: 9.4rem;
+  }
+
+  /* center */
+  #centerSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #hotItem img {
+    content: url(./image/tabletImgHome01.png);
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+
+  #search img {
+    content: url(./image/tabletImgHome02.png);
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+
+  #register img {
+    content: url(./image/tabletImgHome03.png);
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+
+  .centerMainSection {
+    flex-direction: column;
+    align-items: normal;
+    gap: 1.6rem;
+    padding: 4rem 2.4rem;
+  }
+
+  .title {
+    margin-bottom: 0.8rem;
+  }
+
+  .centerContent h1 {
+    font-size: var(--text-3xl-32);
+    line-height: 4.48rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .contentDescription {
+    font-size: var(--text-2lg-18);
+    line-height: 2.16rem;
+  }
+  
+  .centerContent h1 br {
+    display: none;
+  }
+
+  #search {
+    flex-direction: column-reverse;
+  }
+
+  /* bottom */
+  #bottomSection {
+    margin-top: 2.4rem;
+  }
+
+  #bottomSection img {
+    position: static;
+    margin-top: 5.9rem;
+  }
+
+  #bottomSection h1 {
+    text-align: center;
+  }
+  
+  /* footer */
+  footer {
+    padding: 3.2rem 2.4rem 10.8rem 2.4rem;
+  }
+}

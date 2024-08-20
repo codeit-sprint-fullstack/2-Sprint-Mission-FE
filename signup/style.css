@@ -131,6 +131,7 @@ input::placeholder {
 }
 
 #signupButton {
+  font-family: pretendard;
   padding: 1.6rem 12.4rem; /*16px 124px*/
   border-radius: 4rem;
   border: none;
@@ -163,6 +164,7 @@ input::placeholder {
 font-size: var(--text-lg-16);
 font-weight: 500;
 line-height: 2.4rem; /*24px*/
+color: var(--secondary-color-gray800);
 }
 
 .snsIc {
