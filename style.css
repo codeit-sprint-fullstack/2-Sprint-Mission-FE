@@ -1,29 +1,37 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
 a {
   text-decoration: none;
-  cursor: pointer;* {
+  cursor: pointer;
+
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+
   html {
     line-height: 1.15;
-    font-size: 62.5%; /*1rem = 10px*/
+    font-size: 62.5%;
+    /*1rem = 10px*/
   }
+
   img {
-    max-width: 100%; 
+    max-width: 100%;
     height: auto;
   }
 }
+
 button {
   cursor: pointer;
 }
-.underbar-link{
+
+.underbar-link {
   color: #E5E7EB;
 }
 
 
-#main{
+#main {
   margin: 0;
   padding: 0;
   font-family: 'Pretendard';
@@ -46,6 +54,7 @@ button {
   left: 0;
   z-index: 1;
 }
+
 #nav-main {
   width: 112rem;
   height: 5.1rem;
@@ -55,6 +64,7 @@ button {
   margin-left: 20rem;
   margin-right: 20rem;
 }
+
 #logo-name {
   width: 15.3rem;
   height: 5.1rem;
@@ -62,10 +72,12 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+
 #logo {
   width: 4rem;
   height: 4.014rem;
 }
+
 #name {
   width: 10.3rem;
   height: 3.5rem;
@@ -73,10 +85,30 @@ button {
   align-items: center;
   font-size: 2.563rem;
   font-weight: 700;
-  line-height: 3.46rem; 
+  line-height: 3.46rem;
   text-align: left;
   color: #3692FF;
 }
+
+.menu {
+  width: 10.9rem;
+  height: 6.9rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.148rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu-frame {
+  width: 21.8rem;
+  display: flex;
+  margin-right: auto;
+  margin-left: 3.2rem;
+}
+
 #button-login {
   width: 12.8rem;
   height: 4.8rem;
@@ -90,34 +122,40 @@ button {
   align-items: center;
   border-radius: 0.8rem;
 }
+
 #frame-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.content-edge{
+
+.content-edge {
   width: 100%;
   height: 54rem;
   display: flex;
   justify-content: center;
   align-items: end;
   background: #CFE5FF;
+  overflow: hidden;
 }
-.content-center{
+
+.content-center {
   width: 192rem;
   height: 72rem;
   display: flex;
   align-items: center;
   background-color: #ffffff;
 }
-.right-align{
+
+.right-align {
   justify-content: end;
 }
 
-.left-align{
+.left-align {
   display: flex;
 
 }
+
 #entire-watch {
   width: 111rem;
   height: 34rem;
@@ -125,25 +163,30 @@ button {
   align-items: center;
   justify-content: space-between;
 }
+
 #textbox-watch {
   width: 35.7rem;
   height: 26rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+
 }
+
 #image-watch {
-  width: 74.6rem;
-  height: 34rem;
+  width: 996px;
+  height: 447px;
+  object-fit: cover;
 }
+
 #watch-text1 {
-  position: absolute;
-  top: 0;
-  left: 0;
   font-size: 4rem;
   font-weight: 700;
   line-height: 5.6rem;
   text-align: left;
   color: #374151;
 }
+
 #button-items {
   width: 100%;
   height: 100%;
@@ -165,12 +208,11 @@ button {
 #watch-text2 {
   width: 100%;
   height: 5.6rem;
-  position: absolute;
-  left: 0;
   bottom: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 3.2rem;
 }
 
 #check-entire {
@@ -190,13 +232,14 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  right: 2.9rem;
+  margin-right: 2.9rem;
 }
+
 #check-image {
   width: 58.8rem;
   height: 44.4rem;
 }
+
 #check-text1 {
   width: 60rem;
   height: 2.6rem;
@@ -207,13 +250,6 @@ button {
   text-align: left;
   color: #3692FF;
 }
-#check-textbox2 {
-  width: 100%;
-  height: 20rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 #check-text2 {
   font-size: 4rem;
@@ -223,6 +259,8 @@ button {
   text-align: left;
   width: 22.2rem;
   height: 11.2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 2.4rem;
 }
 
 #check-text3 {
@@ -241,7 +279,7 @@ button {
   width: 96.9rem;
   height: 44.4rem;
   margin-right: 36rem;
-  display: flex;  
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -270,14 +308,6 @@ button {
   color: #3692FF;
 }
 
-#search-textbox2 {
-  width: 100%;
-  height: 20rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: end;
-}
 
 #search-text2 {
   width: 100%;
@@ -288,6 +318,8 @@ button {
   letter-spacing: 0.02em;
   text-align: right;
   color: #374151;
+  margin-top: 1.2rem;
+  margin-bottom: 2.4rem;
 }
 
 #search-text3 {
@@ -299,6 +331,7 @@ button {
   text-align: right;
   color: #374151;
 }
+
 #register-entire {
   background: #FCFCFC;
   width: 98.7rem;
@@ -308,16 +341,17 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+
 #register-image {
   width: 58.8rem;
   height: 100%;
 }
+
 #register-textbox {
   width: 33.5rem;
   height: 23.8rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 #register-text1 {
@@ -331,14 +365,6 @@ button {
   color: #3692FF;
 }
 
-#register-textbox2 {
-  width: 100%;
-  height: 20rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 #register-text2 {
   width: 29.3rem;
   height: 11.2rem;
@@ -348,9 +374,10 @@ button {
   letter-spacing: 0.02em;
   text-align: left;
   color: #374151;
-
-
+  margin-top: 1.2rem;
+  margin-bottom: 2.4rem;
 }
+
 #register-text3 {
   width: 33.5rem;
   height: 6.4rem;
@@ -361,29 +388,23 @@ button {
   text-align: left;
   color: #374151;
 }
-#top-margin{
+
+#top-margin {
   margin-top: 13.8rem;
 }
+
 #trust-entire {
   width: 111rem;
   height: 39.7rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 }
 
-#trust-textbox {
+#trust-text {
   width: 29.5rem;
   height: 17.2rem;
-  padding: 0 0 6rem 0;
-  gap: 1rem;
-  opacity: 0;
-  display: flex;
-  flex-direction: column;
-
-}
-
-#trust-text1 {
   font-size: 4rem;
   font-weight: 700;
   line-height: 5.6rem;
@@ -391,13 +412,13 @@ button {
   width: 100%;
   height: 11.2rem;
   gap: 0;
-  opacity: 0;
+  opacity: 1;
   color: #374151;
 }
-
 #trust-image {
-  width: 74.6rem;
-  height: 100%;
+  width: 996px;
+  height: 540px;
+  object-fit: cover;
 }
 
 #footer {
@@ -411,7 +432,7 @@ button {
 }
 
 #under-bar {
-  width: 112rem;
+  width: 152rem;
   height: 2rem;
   margin-top: 3.2rem;
   display: flex;
@@ -430,6 +451,7 @@ button {
   text-align: center;
   color: #9CA3AF;
 }
+
 #underbar-textbox {
   width: 15.9rem;
   height: 1.9rem;
@@ -437,22 +459,22 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+
 #underbar-text2 {
   width: 10rem;
   height: 1.9rem;
   gap: 0;
-  opacity: 0;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.9rem;
   text-align: center;
   color: #E5E7EB;
 }
+
 #underbar-text3 {
   width: 2.9rem;
   height: 1.9rem;
   gap: 0;
-  opacity: 0;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.9rem;
@@ -467,45 +489,286 @@ button {
   align-items: center;
   justify-content: space-between;
 }
-.iconbox{
+
+.iconbox {
   width: 2rem;
   height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 #facebook-icon,
 #twitter-icon,
 #youtube-icon,
-#instagram-icon{
+#instagram-icon {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.facebook-icon{
+
+.facebook-icon {
   width: 1.8rem;
   height: 1.8rem;
 }
-.twitter-icon{
+
+.twitter-icon {
   width: 1.892rem;
   height: 1.538rem;
 }
-.youtube-icon{
+
+.youtube-icon {
   width: 2rem;
   height: 1.334rem;
 }
-.instagram-icon{
+
+.instagram-icon {
   width: 1.7rem;
   height: 1.7rem;
 }
-@media(max-width: 1199px){
-  #nav-main{
-    margin-left: 24px;
-    margin-right: 24px;
+
+@media(max-width: 1199px) {
+  #nav-main {
+    margin-left: 2.4rem;
+    margin-right: 2.4rem;
+  }
+
+  #menu-frame {
+    margin-right: auto;
+    margin-left: 2rem;
+  }
+
+  .content-edge {
+    width: 100%;
+    height: 771px;
+
+  }
+
+  #entire-watch {
+    width: 774px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #textbox-watch {
+    width: 521px;
+    height: 136px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 94px;
+    align-items: center;
+  }
+
+  #watch-text1 {
+    width: 521px;
+    height: 56px;
+
+    br {
+      display: none;
+    }
+  }
+
+  #watch-text2 {
+    width: 357px;
+    height: 56px;
+  }
+
+  .content-center {
+    width: 74.4rem;
+    height: 75.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  #check-entire {
+    width: 69.6rem;
+    height: 67.8rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  #check-image {
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+
+  #check-textbox {
+    width: 33.5rem;
+    height: 13.8rem;
+    font-size: 1.8rem;
+  }
+
+  #check-text1 {
+    width: 7.2rem;
+    height: 2.5rem;
+    font-size: 1.6rem;
+  }
+
+  #check-text2 {
+    width: 33.5rem;
+    height: 4.5rem;
+    margin-top: 0.8rem;
+    margin-bottom: 1.6rem;
+
+    br {
+      display: none;
+    }
+
+    font-size: 3.2rem;
+  }
+
+  #check-text3 {
+    width: 22.8rem;
+    height: 4.4rem;
+    font-size: 1.8rem;
+    font-family: Pretendard;
+    font-weight: 500;
+    line-height: 2.16rem;
+    letter-spacing: 0.08em;
+    text-align: left;
+  }
+
+  #search-entire {
+    width: 69.6rem;
+    height: 67.8rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: end;
+  }
+
+  #search-image {
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+
+  #search-textbox {
+    width: 42rem;
+    height: 13.8rem;
+  }
+
+  #search-text1 {
+    width: 6rem;
+    height: 2.5rem;
+  }
+
+  #search-text2 {
+    width: 42rem;
+    height: 4.5rem;
+    font-size: 3.2rem;
+    line-height: 4.48rem;
+    letter-spacing: 0.02em;
+    text-align: right;
+    margin-top: 0.8rem;
+    margin-bottom: 1.6rem;
+
+    br {
+      display: none;
+    }
+  }
+
+  #search-text3 {
+    width: 23.8rem;
+    height: 4.4rem;
+    font-size: 1.8rem;
+    line-height: 2.16rem;
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+
+  #register-entire {
+    width: 69.6rem;
+    height: 67.8rem;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  #register-image {
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+
+  #register-textbox {
+    width: 42rem;
+    height: 13.8rem;
+  }
+
+  #register-text1 {
+    width: 7.1rem;
+    height: 2.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    text-align: left;
+  }
+
+  #register-text2 {
+    width: 42rem;
+    height: 4.5rem;
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 4.48rem;
+    letter-spacing: 0.02em;
+    text-align: left;
+    br{
+      display: none;
+    }
+    margin-top: 0.8rem;
+    margin-bottom: 1.6rem;
+  }
+
+  #register-text3 {
+    width: 27.7rem;
+    height: 4.4rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 2.16rem;
+    letter-spacing: 0.08em;
+    text-align: left;
+  }
+  #top-margin{
+    margin-top: 4rem;
+  }
+  #trust-entire{
+    width: 74.3rem;
+    height: 77.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #trust-text{
+    width: 28.6rem;
+    height: 11.2rem;
+    margin-top: 6rem;
+    margin-bottom: 5.9rem;
+    text-align: center;
+  }
+  #trust-image {
+    width: 99.6rem;
+    height: 43rem;
+  }
+  #under-bar {
+    width: 69.6rem;
+    height: 2rem;
+    margin-top: 3.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 2.4rem;
+    margin-right: 2.4rem;
   }
 }
-@media(max-width: 743px){
-  #nav-main{
+
+@media(max-width: 743px) {
+  #nav-main {
     margin-left: 16px;
     margin-right: 16px;
   }
