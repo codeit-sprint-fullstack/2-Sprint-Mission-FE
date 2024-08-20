@@ -83,12 +83,12 @@ function closeModal() {
   errorModal.classList.add('hide');
 }
 
-// 포커스 아웃 시 유효성 검증 이벤트 생성
+// 이메일, 비밀번호 유효성 검증 이벤트 생성
 inputEmail.addEventListener('focusout', () => isEmailValid(inputEmail.value));
 inputPassword.addEventListener('focusout', () =>
   isPasswordValid(inputPassword.value)
 );
-
+// 모달 닫기 이벤트 생성
 errorOverlay.addEventListener('click', closeModal);
 errorOkBtn.addEventListener('click', closeModal);
 

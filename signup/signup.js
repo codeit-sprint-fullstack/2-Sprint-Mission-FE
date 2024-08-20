@@ -5,9 +5,7 @@ const noneName = document.querySelector('.none-nickname-value');
 const nonePasswordRepeat = document.querySelector(
   '.none-password-repeat-value'
 );
-
 const missMatchPassword = document.querySelector('.miss-match-password');
-
 const hidePasswordRepeatIcon = document.querySelector('.password-repeat-hide');
 const showPasswordRepeatIcon = document.querySelector('.password-repeat-show');
 
@@ -41,7 +39,7 @@ function isPasswordRepeatValid(password, rePassword) {
   }
 }
 
-// 비밀번호 표시 함수
+// 재확인 비밀번호 표시 함수
 function showPasswordRepeat() {
   if (inputPasswordRepeat.type == 'password') {
     inputPasswordRepeat.type = 'text';
@@ -50,7 +48,7 @@ function showPasswordRepeat() {
   }
 }
 
-// 비밀번호 숨기기 함수
+// 재확인 비밀번호 숨기기 함수
 function hidePasswordRepeat() {
   if (inputPasswordRepeat.type == 'text') {
     inputPasswordRepeat.type = 'password';
@@ -102,8 +100,7 @@ inputEmail.addEventListener('keyup', () =>
     inputPasswordRepeat.value
   )
 );
-inputPassword.addEventListener(
-  'keyup',
+inputPassword.addEventListener('keyup', () =>
   signupBtnActivation(
     inputEmail.value,
     inputPassword.value,
@@ -111,8 +108,7 @@ inputPassword.addEventListener(
     inputPasswordRepeat.value
   )
 );
-inputName.addEventListener(
-  'keyup',
+inputName.addEventListener('keyup', () =>
   signupBtnActivation(
     inputEmail.value,
     inputPassword.value,
@@ -120,8 +116,7 @@ inputName.addEventListener(
     inputPasswordRepeat.value
   )
 );
-inputPasswordRepeat.addEventListener(
-  'keyup',
+inputPasswordRepeat.addEventListener('keyup', () =>
   signupBtnActivation(
     inputEmail.value,
     inputPassword.value,
@@ -130,6 +125,7 @@ inputPasswordRepeat.addEventListener(
   )
 );
 
+// 닉네임, 비밀번호 재확인 유효성 검사 이벤트 생성
 inputName.addEventListener('focusout', () => noneNameChecker(inputName.value));
 inputPasswordRepeat.addEventListener('focusout', () =>
   isPasswordRepeatValid(inputPassword.value, inputPasswordRepeat.value)
@@ -138,5 +134,6 @@ inputPasswordRepeat.addEventListener('focusout', () =>
 // 중복 이메일 확인 이벤트 생성
 signupBtn.addEventListener('click', () => isSignupValid(inputEmail.value));
 
+// 재확인 비밀번호 표시/숨기기 이벤트 생성
 hidePasswordRepeatIcon.addEventListener('click', showPasswordRepeat);
 showPasswordRepeatIcon.addEventListener('click', hidePasswordRepeat);
