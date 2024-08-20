@@ -12,7 +12,7 @@ const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
 
 //이메일 유효성 검사
-username.onblur = function() {
+const activeEmail= username.addEventListener('blur',function() {
   if (username.value.length === 0 ) { 
     username.classList.add('invalid');
     errorEmail.textContent = '이메일을 입력해주세요.'
@@ -24,9 +24,9 @@ username.onblur = function() {
    return false
   }
   else { return true}
-};
+});
 
-username.onfocus = function() {
+username.addEventListener('focus', function() {
   if (this.classList.contains('invalid')) {
     // 사용자가 새로운 값을 입력하려고 하므로 에러 메시지를 지움
     this.classList.remove('invalid');
@@ -34,9 +34,9 @@ username.onfocus = function() {
     return false
     
   }else { return true}
-};
+});
 // 비밀번호 유효성 검사
-password.onblur = function(){
+const activePass=password.addEventListener('blur' ,function(){
   if (password.value.length === 0){
     password.classList.add('invalid');
     errorPass.textContent = '비밀번호를 입력해주세요.'
@@ -47,38 +47,36 @@ else if (password.value.length < 8 ){
   errorPass.textContent = '비밀번호를 8자 이상 입력해주세요.'
   return false
 }else { return true}
-};
+});
 
-password.onfocus = function(){
+password.addEventListener('focus' ,function(){
   if(this.classList.contains('invalid')){
     this.classList.remove('invalid');
     errorPass.textContent ="";
     return false
   }else { return true}
-};
+});
 //비밀번호 확인 유효성 검사
-verPass.onblur = function(){
+verPass.addEventListener('blur', function(){
   if(verPass.value !== password.value){
     verPass.classList.add('invalid');
     errorVerPass.textContent = '비밀번호가 일치하지 않습니다.'
     return false
   }else { return true};
-}
-verPass.onfocus = function(){
+})
+verPass.addEventListener('focus', function(){
   if(this.classList.contains('invalid')){
     this.classList.remove('invalid');
     errorVerPass.textContent ="";
     return false
   }else { return true}
-};
+});
 
 
 // 로그인 버튼 활성화
-const activeEmail=password.onblur;
-const activePass=password.onblur;
 
 function changebutton(){
-if (username.value.includes("@") && password.value.length >= 8 && verPass.value === password.value && userNick.value.length !== 0){
+if (pattern.test(username.value) && password.value.length >= 8 && verPass.value === password.value && userNick.value.length !== 0){
   button.disabled =false;//활성화
   button.style.background = '#3692ff'
   button.style.cursor = 'pointer'
