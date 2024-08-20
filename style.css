@@ -136,10 +136,12 @@ button {
   justify-content: center;
   background: #CFE5FF;
 }
-.end-align{
+
+.end-align {
   align-items: end;
 }
-.center-align{
+
+.center-align {
   align-items: center;
 }
 
@@ -420,13 +422,14 @@ button {
   opacity: 1;
   color: #374151;
 }
+
 #trust-image {
   width: 99.8rem;
   height: 47.2rem;
   margin-top: 6.8rem;
 }
 
-#footer {
+#footer-content {
   background: #111827;
   width: 100%;
   height: 16rem;
@@ -434,6 +437,7 @@ button {
   justify-content: center;
   white-space: nowrap;
   font-family: 'Pretendard';
+
 }
 
 #under-bar {
@@ -572,10 +576,13 @@ button {
       display: none;
     }
   }
-  #image-watch{
-    overflow: hidden;
-    object-fit:cover
+
+  #image-watch {
+    overflow: visible;
+    /*이미지 삐져나오게하기*/
+    object-fit: cover
   }
+
   #watch-text2 {
     width: 357px;
     height: 56px;
@@ -725,9 +732,11 @@ button {
     line-height: 4.48rem;
     letter-spacing: 0.02em;
     text-align: left;
-    br{
+
+    br {
       display: none;
     }
+
     margin-top: 0.8rem;
     margin-bottom: 1.6rem;
   }
@@ -741,19 +750,12 @@ button {
     letter-spacing: 0.08em;
     text-align: left;
   }
-  #top-margin{
+
+  #top-margin {
     margin-top: 4rem;
   }
 
-
-  /* #trust-entire{ //원본
-    width: 74.3rem;
-    height: 77.1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  } */
-  #trust-entire{
+  #trust-entire {
     width: 74.3rem;
     height: 77.1rem;
     display: flex;
@@ -762,19 +764,22 @@ button {
   }
 
 
-  #trust-text{
+  #trust-text {
     width: 28.6rem;
     height: 11.2rem;
     margin-top: 6rem;
     margin-bottom: 5.9rem;
     text-align: center;
   }
+
   #trust-image {
     width: 996px;
     height: 540px;
-    overflow: hidden;
-    object-fit:cover
+    overflow: visible;
+    /*이미지 삐져나오게하기*/
+    object-fit: cover
   }
+
   #under-bar {
     width: 69.6rem;
     height: 2rem;
@@ -788,8 +793,246 @@ button {
 }
 
 @media(max-width: 743px) {
+
+  #nav {
+    width: 100%;
+    height: 7rem;
+  }
+
   #nav-main {
     margin-left: 16px;
     margin-right: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+  #logo{
+    display: none;
+  }
+
+  #menu-frame {
+    width: 13.5rem;
+    height: 6.9rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .menu {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.09px;
+    text-align: center;
+  }
+
+  .content-edge {
+    width: 100%;
+    height: 54rem;
+  }
+
+  #textbox-watch {
+    width: 35.7rem;
+    height: 16.2rem;
+    margin-top: 48px;
+  }
+
+  #watch-text1 {
+    br {
+      display: inline;
+    }
+
+    width: 23.6rem;
+    height: 9rem;
+    font-size: 3.2rem;
+    line-height: 4.48rem;
+    text-align: center;
+
+    margin-bottom: 1.6rem;
+  }
+
+  #watch-text2 {
+    margin: 0;
+  }
+
+  #image-watch {
+    margin-top: 4.9rem;
+    width: 626px;
+    height: 281px;
+  }
+
+  .content-center {
+    width: 37.5rem;
+    height: 43.7rem;
+  }
+
+  #check-entire {
+    width: 34.3rem;
+    height: 37.3rem;
+  }
+
+  #check-image {
+    width: 343px;
+    height: 259px;
+  }
+
+  #check-textbox {
+    width: 24.5rem;
+    height: 10.6rem;
+  }
+
+  #check-text1 {
+    width: 6.4rem;
+    height: 2.2rem;
+    font-size: 16px;
+    line-height: 22.4px;
+    text-align: left;
+  }
+
+  #check-text2 {
+    width: 24.5rem;
+    height: 3.4rem;
+    font-size: 2.4rem;
+    line-height: 3.36rem;
+    letter-spacing: 0;
+    text-align: left;
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  #check-text3 {
+    width: 20.2rem;
+    height: 3.8rem;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.2px;
+    letter-spacing: 0.08em;
+    text-align: left;
+  }
+
+  #search-entire {
+    width: 34.3rem;
+    height: 37.3rem;
+  }
+
+  #search-image {
+    width: 343px;
+    height: 259px;
+  }
+
+  #search-textbox {
+    width: 31.5rem;
+    height: 10.6rem;
+  }
+
+  #search-text1 {
+    width: 5.3rem;
+    height: 2.2rem;
+    font-size: 1.6rem;
+    line-height: 2.24rem;
+  }
+
+  #search-text2 {
+    width: 31.5rem;
+    height: 3.4rem;
+    font-size: 2.4rem;
+    line-height: 3.36rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  #search-text3 {
+    width: 21.1rem;
+    height: 3.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.92rem;
+  }
+
+  #register-entire {
+    width: 34.3rem;
+    height: 37.2rem;
+  }
+
+  #register-image {
+    width: 343px;
+    height: 258px;
+
+  }
+
+  #register-textbox {
+    width: 31.5rem;
+    height: 10.5rem;
+  }
+
+  #register-text1 {
+    width: 6.3rem;
+    height: 2.2rem;
+    font-size: 1.6rem;
+    line-height: 2.24rem;
+  }
+
+  #register-text2 {
+    width: 31.5rem;
+    height: 3.4rem;
+    font-size: 2.4rem;
+    line-height: 3.36rem;
+    letter-spacing: 0.02em;
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  #register-text3 {
+    width: 24.7rem;
+    height: 3.8rem;
+    font-size: 1.6rem;
+    line-height: 1.92rem;
+    letter-spacing: 0.08em;
+  }
+
+  #trust-entire {
+    width: 37.5rem;
+    height: 54rem;
+  }
+
+  #trust-text {
+    width: 23.6rem;
+    height: 9rem;
+    font-size: 3.2rem;
+    line-height: 4.48rem;
+    text-align: center;
+    margin-top: 9rem;
+    margin-bottom: 9rem;
+  }
+
+  #trust-image {
+    width: 498px;
+    height: 270px;
+  }
+  #footer-content {
+    width: 100%;
+    height: 16rem;
+  }
+  #under-bar {
+    width: 34.3rem;
+    height: 6.3rem;
+    margin-top: 3.2rem;
+    display: grid;
+    grid-template-areas:
+      "p i"
+      "c .";
+  }
+
+  #underbar-text1 {
+    margin: 0;
+    grid-area: c;
+  }
+
+  #underbar-textbox {
+    margin: 0;
+    grid-area: p;
+  }
+
+  #underbar-imagebox {
+    margin: 0;
+    grid-area: i;
   }
 }
