@@ -1,9 +1,11 @@
-document.querySelector('#email').addEventListener('focusout',validateEmail); // 이메일 입력상태 호출
-document.querySelector('#password').addEventListener('focusout',validatePassword); // 비밀번호 입력상태 호출
-document.querySelector('#password').addEventListener('focusout',buttonActivation);
-document.querySelector('#login-button').addEventListener('click',checkUserData); // USER_DATA 확인 후 'alert' 및 페이지 이동기능
-
 // 이메일 입력상태 함수
+document.querySelector('#email').addEventListener('focusout',validateEmail);// 이메일 입력상태 호출
+document.querySelector('#password').addEventListener('focusout',validatePassword); // 비밀번호 입력상태 호출
+document.querySelector('#confirm-password').addEventListener('focusout',validateConfirmPassword);// 비밀번호확인 입력상태 호출
+document.querySelector('#confirm-password').addEventListener('focusout',buttonActivation); // 버튼 활성화
+document.querySelector('#signup-button').addEventListener('click',checkUserData); // USER_DATA 이메일 유무 체크
+
+
 function validateEmail() {
   const elInputEmail = document.querySelector('#email');
   const blankEmailError = document.querySelector('.blank-email-error');
@@ -46,8 +48,33 @@ function validatePassword() {
     return false;
   } else {
     blankPasswordError.style.display = 'none';
-    elInputPassword.style.cssText = 'none';
+    elInputPassword.style.cssText = 'nane;';
     passwordError.style.display = 'none';
+    return true;
+  }
+}
+
+// 비밀번호 확인 입력상태 함수
+function validateConfirmPassword() {
+  const elInputPassword = document.querySelector('#password');
+  const elInputConfirmPassword = document.querySelector('#confirm-password');
+  const confirmPasswordError = document.querySelector('.confirm-password-error');
+  const rewritePasswordError = document.querySelector('.rewrite-password-error');
+  
+  if (elInputConfirmPassword.value.length === 0) {
+    rewritePasswordError.style.display = 'block';
+    elInputConfirmPassword.style.cssText = 'outline: 0.1rem solid var(--error-color);';
+    confirmPasswordError.style.display = 'none';
+    return false
+  } else if (elInputPassword.value !== elInputConfirmPassword.value) {
+    rewritePasswordError.style.display = 'none';
+    elInputConfirmPassword.style.cssText = 'outline: 0.1rem solid var(--error-color);';
+    confirmPasswordError.style.display = 'block';
+    return false;
+  } else {
+    confirmPasswordError.style.display = 'none';
+    elInputConfirmPassword.style.cssText = 'none';
+    rewritePasswordError.style.display = 'none';
     return true;
   }
 }
@@ -56,20 +83,20 @@ function validatePassword() {
 function buttonActivation() {
   const emailValid = validateEmail();
   const passwordValid = validatePassword();
-  const loginButton = document.querySelector("#login-button");
+  const confirmPasswordValid = validateConfirmPassword();
+  const signupButton = document.querySelector('#signup-button');
   let formValid = true;
 
-  if(emailValid && passwordValid) {
-    loginButton.disabled = !formValid;
+  if(emailValid && passwordValid && confirmPasswordValid) {
+    signupButton.disabled = !formValid;
   } else {
-    loginButton.disabled = formValid;
+    signupButton.disabled = formValid;
   }
-
 }
 
-//로그인버튼 클릭시 items페이지로 이동
+// 회원가입버튼 클릭시 login페이지로 이동
 function goUrl() {
-  location.href = '/items';
+  location.href = '../login';
 }
 
 const USER_DATA = [
@@ -81,18 +108,16 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: "codeit606!" },
 ];
 
-// USER_DATA 확인 후 'alert' 및 페이지이동 기능
+// USER_DATA 이메일 유무 체크 후 기능
 function checkUserData() {
   const inputEmail = document.querySelector('#email').value;
-  const inputpassword = document.querySelector('#password').value;
   const checkEmail = USER_DATA.some(user => user.email === inputEmail);
-  const checkPassword = USER_DATA.some(user => user.password === inputpassword);
 
-  if (!checkEmail) {
-    alert('이메일 혹은 비밀번호가 잘못 되었습니다.');
-  } else if (checkEmail && !checkPassword) {
-    alert('비밀번호가 일치하지 않습니다.');
+  if (checkEmail) {
+    alert('사용 중인 이메일입니다');
   } else {
-    document.querySelector('#login-button').addEventListener('click',goUrl);
+    document.querySelector('#signup-button').addEventListener('click',goUrl);
   }
 }
+
+

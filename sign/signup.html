@@ -11,53 +11,62 @@
 <header>
   <div class="pandalogo">
     <a href="/" class="top_home">
-      <img  src="판다마켓 그림/Property 1=lg.png">
+      <img  src="../판다마켓 그림/Property 1=lg.png">
     </a>
   </div>
   <form class="form">
   <div>
     <label for="username">이메일</label>
-    <input id="username" name="username" placeholder="이메일을 입력해주세요">
+    <input id="username" type="email" name="username" placeholder="이메일을 입력해주세요">
+    <div id="error_email"></div>
   </div>
   <div>
   <label for="usernick">닉네임</label>
-  <input id="usernick" name="usernick" placeholder="닉네임을 입력해주세요">
+  <input id="usernick" type="text" name="usernick" placeholder="닉네임을 입력해주세요">
   </div>
   <div>
     <label for="password">비밀번호</label>
     <div id="password_box">
     <input id="password" name="userpsw" type="password" iconUrl="판다마켓 그림/Input/btn_visibility_on_24px.svg" placeholder="비밀번호를 입력해주세요">
-    <img class="eyes" src="판다마켓 그림/btn_visibility_on_24px.png">
+    <img class="eyes" src="../판다마켓 그림/btn_visibility_on_24px.png">
+    <div id="error_pass"></div>
   </div>
   <div>
     <label for="ver_pws">비밀번호확인</label>
     <div id="password_box">
     <input id="ver_pws" name="ver_pws" type="password" iconUrl="판다마켓 그림/Input/btn_visibility_on_24px.svg" placeholder="비밀번호를 다시 한 번 입력해주세요">
-    <img class="eyes" src="판다마켓 그림/btn_visibility_on_24px.png">
+    <img class="eyes" src="../판다마켓 그림/btn_visibility_on_24px.png">
+    <div id="error_verpass"></div>
   </div>
 </div>
-    <button>
+    <button class="button" type="button">
       회원가입
     </button>
 <div id="simplelogin">
   <p class="sim_text" >간편 로그인하기</p>
   <div id="link_img">
   <a href="https://www.google.com/">
-    <img src="판다마켓 그림/google.png">
+    <img src="../판다마켓 그림/google.png">
   </a>
   <a href="https://www.kakaocorp.com/page/">
-    <img src="판다마켓 그림/kakaotalk.png">
+    <img src="../판다마켓 그림/kakaotalk.png">
   </a>
   </div>
 </div>
-<p class="signup">이미 회원이신가요? <a id="sign" href="/login.html">로그인</a></p>
+<p class="signup">이미 회원이신가요? <a id="sign" href="../login/login.html">로그인</a></p>
 
 
 
   </form>
+  <div class="modal">
+    <div class="modal_popup">
+        <h3>모달 팝업 타이틀 입니다!</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, ut facere id ullam ea adipisci et ipsam est quidem commodi ducimus nostrum cum optio non dolor! Quam ipsum nam rem!</p>
+        <button type="button" class="close_btn">닫기</button>
+    </div>
 
 </header>
-
+<script src="signup.js"></script>
 
 </body>
 

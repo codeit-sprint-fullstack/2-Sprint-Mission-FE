@@ -131,4 +131,8 @@ form {
 
   #error_email, #error_pass{
     color: #f74747;
+    font-size: 15px;
+    line-height: 17.9px;
+    font-weight: 600;
+    margin: auto;
   }
