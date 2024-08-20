@@ -134,9 +134,13 @@ button {
   height: 54rem;
   display: flex;
   justify-content: center;
-  align-items: end;
   background: #CFE5FF;
-  overflow: hidden;
+}
+.end-align{
+  align-items: end;
+}
+.center-align{
+  align-items: center;
 }
 
 .content-center {
@@ -176,7 +180,6 @@ button {
 #image-watch {
   width: 996px;
   height: 447px;
-  object-fit: cover;
 }
 
 #watch-text1 {
@@ -393,14 +396,16 @@ button {
   margin-top: 13.8rem;
 }
 
+
+
 #trust-entire {
   width: 111rem;
   height: 39.7rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
 }
+
 
 #trust-text {
   width: 29.5rem;
@@ -416,9 +421,9 @@ button {
   color: #374151;
 }
 #trust-image {
-  width: 996px;
-  height: 540px;
-  object-fit: cover;
+  width: 99.8rem;
+  height: 47.2rem;
+  margin-top: 6.8rem;
 }
 
 #footer {
@@ -541,7 +546,6 @@ button {
   .content-edge {
     width: 100%;
     height: 771px;
-
   }
 
   #entire-watch {
@@ -568,7 +572,10 @@ button {
       display: none;
     }
   }
-
+  #image-watch{
+    overflow: hidden;
+    object-fit:cover
+  }
   #watch-text2 {
     width: 357px;
     height: 56px;
@@ -737,6 +744,15 @@ button {
   #top-margin{
     margin-top: 4rem;
   }
+
+
+  /* #trust-entire{ //원본
+    width: 74.3rem;
+    height: 77.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } */
   #trust-entire{
     width: 74.3rem;
     height: 77.1rem;
@@ -744,6 +760,8 @@ button {
     flex-direction: column;
     align-items: center;
   }
+
+
   #trust-text{
     width: 28.6rem;
     height: 11.2rem;
@@ -752,8 +770,10 @@ button {
     text-align: center;
   }
   #trust-image {
-    width: 99.6rem;
-    height: 43rem;
+    width: 996px;
+    height: 540px;
+    overflow: hidden;
+    object-fit:cover
   }
   #under-bar {
     width: 69.6rem;
