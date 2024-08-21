@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const signupBtn = document.querySelector(".signup-btn");
 
+<<<<<<< HEAD
     const USER_DATA = [
         { email: 'codeit1@codeit.com', password: "codeit101!" },
         { email: 'codeit2@codeit.com', password: "codeit202!" },
@@ -18,6 +19,16 @@ document.addEventListener("DOMContentLoaded", function(){
         { email: 'codeit4@codeit.com', password: "codeit404!" },
         { email: 'codeit5@codeit.com', password: "codeit505!" },
         { email: 'codeit6@codeit.com', password: "codeit606!" },
+=======
+    //8.20 데이터베이스 추가
+    const USER_DATA = [
+            { email: 'codeit1@codeit.com', password: "codeit101!" },
+            { email: 'codeit2@codeit.com', password: "codeit202!" },
+            { email: 'codeit3@codeit.com', password: "codeit303!" },
+            { email: 'codeit4@codeit.com', password: "codeit404!" },
+            { email: 'codeit5@codeit.com', password: "codeit505!" },
+            { email: 'codeit6@codeit.com', password: "codeit606!" },
+>>>>>>> Basic-양가현-sprint3
     ]
 
     //email 관련 함수 
@@ -112,7 +123,10 @@ document.addEventListener("DOMContentLoaded", function(){
     function validCheckInput(){
         const isValidEmail = validateEmail();
         const isValidPassword = validatePassword();
+<<<<<<< HEAD
         const isValidPasswordCheck = validatePasswordCheck();
+=======
+>>>>>>> Basic-양가현-sprint3
         
         if(isValidEmail && isValidPassword && isValidPasswordCheck){ // 버튼 색상
             signupBtn.disabled = false;
@@ -128,11 +142,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
     inputEmail.addEventListener("focusout", validateEmail);
     inputPassword.addEventListener("focusout", validatePassword);
+<<<<<<< HEAD
     inputPasswordCheck.addEventListener("focusout", validatePasswordCheck);
 
     inputEmail.addEventListener("input", validCheckInput);
     inputPassword.addEventListener("input", validCheckInput);
     inputPasswordCheck.addEventListener("input", validCheckInput);
+=======
+
+    inputEmail.addEventListener("input", validCheckInput);
+    inputPassword.addEventListener("input", validCheckInput);
+>>>>>>> Basic-양가현-sprint3
 
     // //로그인 페이지로 이동(임시용)
     // signupBtn.addEventListener("click", function(){
@@ -155,6 +175,32 @@ document.addEventListener("DOMContentLoaded", function(){
                 window.location.href = "login.html";
             }
         }
+<<<<<<< HEAD
     })
 
 });
+=======
+    });
+
+    //데이터베이스 로그인 버튼
+    loginBtn.addEventListener("click", function(){
+        if(!loginBtn.disabled){ //활성화될 때
+            const email = inputEmail.value.trim();
+            const password = inputPassword.value.trim();
+
+            if(email in USER_DATA){
+                if(USER_DATA[email] === password){ //비밀번호 일치 시
+                    window.location.href = "item.html"
+                }
+                else {
+                    alert("비밀번호가 일치하지 않습니다.");
+                }
+            }
+            else {
+                alert("입력한 이메일이 존재하지 않습니다.");
+            }
+        }
+    })
+
+});
+>>>>>>> Basic-양가현-sprint3
