@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const inputEmail = document.getElementById("email");
     const inputPassword = document.getElementById("password");
     const inputPasswordCheck = document.getElementById("passwordcheck");
+    const passwordToggle = document.querySelectorAll(".password-active-toggle");
 
     const errorEmail = document.getElementById("errorEmail");
     const errorPassword = document.getElementById("errorPassword");
@@ -134,13 +135,6 @@ document.addEventListener("DOMContentLoaded", function(){
     inputPassword.addEventListener("input", validCheckInput);
     inputPasswordCheck.addEventListener("input", validCheckInput);
 
-    // //로그인 페이지로 이동(임시용)
-    // signupBtn.addEventListener("click", function(){
-    //     if(!signupBtn.disabled){
-    //         window.location.href = "login.html";
-    //     }
-    // });
-
     //데이터베이스 회원가입 버튼 (데이터베이스 추가X)
     signupBtn.addEventListener("click", function(){
         if(!signupBtn.disabled){ //활성화될 때
@@ -157,4 +151,25 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
+    //눈 모양 아이콘 토글
+    function togglePasswordVisivility(input){
+        if( input.type === "password" ){
+            input.type = "text";
+        }
+        else {
+            input.type = "password";
+        }
+    }
+
+    passwordToggle.forEach((icon, index) => {
+        icon.addEventListener("click", function(){
+            if(index === 0){
+                togglePasswordVisivility(inputPassword);
+            }
+            else if(index === 1){
+                togglePasswordVisivility(inputPasswordCheck);
+            }
+        })
+    })
+    
 });
