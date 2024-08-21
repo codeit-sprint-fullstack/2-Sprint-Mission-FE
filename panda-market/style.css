@@ -1,13 +1,18 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background-color: var(--background-color);
   color: var(--secondary-color-gray700);
-  font-size: 16px; /* Responsive font-size */
+  font-size: 16px;
+  /* Responsive font-size */
   line-height: 1.5;
 }
 
-h1, h2, h3, p {
+h1,
+h2,
+h3,
+p {
   margin: 0;
 }
 
@@ -163,7 +168,7 @@ section h2 {
   font-size: var(--text-4xl);
 }
 
-.sec-bottom h2{
+.sec-bottom h2 {
   padding: var(--text-4xl);
 }
 

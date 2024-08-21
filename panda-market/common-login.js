@@ -8,30 +8,30 @@ const pwdError = document.querySelector(`.pwd-error`);
 email.addEventListener("input", function (e) {
 	if (!email.value) {
 		email.classList.add("alert");
-		emailError.innerHTML="이메일을 입력해주세요.";
+		emailError.innerHTML = "이메일을 입력해주세요.";
 	}
 	else if (!emailRegEx.test(email.value)) {
 		email.classList.add("alert");
-		emailError.innerHTML="잘못된 이메일 형식입니다.";
+		emailError.innerHTML = "잘못된 이메일 형식입니다.";
 	}
 	else {
 		email.classList.remove("alert");
-		emailError.innerHTML="";
+		emailError.innerHTML = "";
 	}
 });
 
 pwd.addEventListener("input", function (e) {
 	if (!pwd.value) {
 		pwd.classList.add("alert");
-		pwdError.innerHTML="비밀번호를 입력해주세요.";
+		pwdError.innerHTML = "비밀번호를 입력해주세요.";
 	}
 	else if (pwd.value.length < 8) {
 		pwd.classList.add("alert");
-		pwdError.innerHTML="비밀번호를 8자 이상 입력해주세요.";
+		pwdError.innerHTML = "비밀번호를 8자 이상 입력해주세요.";
 	}
 	else {
 		pwd.classList.remove("alert");
-		pwdError.innerHTML="";
+		pwdError.innerHTML = "";
 	}
 });
 
@@ -57,5 +57,5 @@ const popupOK = document.querySelector(`.popup-button-ok`);
 const popupText = document.querySelector(`.popup-text`);
 
 popupOK.addEventListener("click", function (e) {
-  popupCon.classList.add("none");
+	popupCon.classList.add("none");
 });
