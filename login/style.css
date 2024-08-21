@@ -68,6 +68,13 @@ input::placeholder {
   border: 1px solid var(--primary-100);
 }
 
+.error-msg {
+  display: none;
+  color: var(--error-red);
+  font-size: 15px;
+  font-weight: 600;
+  margin: 8px 0 0 16px;
+}
 .password-input {
   position: relative;
 }
@@ -92,6 +99,10 @@ button {
   margin: 24px 0;
 }
 
+.isValid {
+  background: var(--primary-100);
+  cursor: pointer;
+}
 .easy-login {
   display: flex;
   align-items: center;
