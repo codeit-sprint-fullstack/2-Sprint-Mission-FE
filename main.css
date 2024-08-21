@@ -116,9 +116,9 @@ header {
 
 /* main */
 
-.section1, 
-.section2,
-.section3 {
+.item-section, 
+.search-section,
+.register-section {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -182,7 +182,7 @@ header {
     cursor: pointer;
 }
 
-.section2 section {
+.search-section section {
     display: flex;
     justify-content: end;
 }
@@ -283,9 +283,13 @@ footer img{
         text-align: center;
     }
 
-    .section1,
-    .section2,
-    .section3 {
+    .top h1 br {
+        display: none;
+    }
+
+    .item-section,
+    .search-section,
+    .register-section {
         height: 87rem;
         display: flex;
         align-items: center;
@@ -328,6 +332,10 @@ footer img{
         font-size: 3.2rem;
         line-height: 4.48rem;
         margin: 0;
+    }
+
+    .section-title br {
+        display: none;
     }
 
     .section-description {
@@ -397,9 +405,13 @@ footer img{
         text-align: center;
     }
 
-    .section1,
-    .section2,
-    .section3 {
+    .top h1 br {
+        display: block;
+    }
+
+    .item-section,
+    .search-section,
+    .register-section {
         height: 55rem;
         display: flex;
         align-items: center;
