@@ -3,6 +3,7 @@ const elInputEmail = document.querySelector('#email');
 const elInputPassword = document.querySelector('#password');
 const elInputConfirmPassword = document.querySelector('#confirmPassword');
 const elSignupBtn = document.querySelector('#signupButton');
+const togglePasswordAll = document.querySelectorAll('.togglePassword');
 
 // 이메일 입력상태 함수
 function validateEmail() {
@@ -112,6 +113,20 @@ function checkUserData() {
     elSignupBtn.addEventListener('click',goUrl);
   }
 }
+
+// togglePassword 클릭시 비밀번호 표시/숨기기
+togglePasswordAll.forEach(togglePassword => {
+  togglePassword.addEventListener('click', function() {
+    const passwordFiled = this.previousElementSibling;
+    if(passwordFiled.type === 'password') {
+      passwordFiled.type = 'text';
+      togglePassword.classList.add('togglePasswordHide');
+    } else {
+      passwordFiled.type = 'password';
+      togglePassword.classList.remove('togglePasswordHide');
+    }
+  })  
+});
 
 /* event handling */ 
 elInputEmail.addEventListener('focusout',validateEmail);// 이메일 입력상태 호출
