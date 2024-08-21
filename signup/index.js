@@ -1,5 +1,6 @@
 const email_input = document.querySelector('.input-email');
 const email_error = document.querySelector('#email-error');
+const email_pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
 const nick_input = document.querySelector('.input-nick');
 const nick_error = document.querySelector('#nick-error');
@@ -10,7 +11,7 @@ const pw_error = document.querySelector('#pw-error');
 const checkpw_input = document.querySelector('.input-checkpw');
 const checkpw_error = document.querySelector('#checkpw-error');
 
-const loginBtn = document.querySelector('.sign-up');
+const signupBtn = document.querySelector('.sign-up');
 
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: "codeit101!" },
@@ -21,7 +22,7 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: "codeit606!" },
 ]
 
-function validity_email() {
+function validateEmail() {
   let error;
 
   try {
@@ -30,7 +31,7 @@ function validity_email() {
       error = new TypeError('이메일을 입력해주세요.');
       throw error;
     }
-    else if (!email_input.checkValidity()) {
+    else if (!email_pattern.test(email_input.value)) {
       email_input.classList.add('fail');
       error = new TypeError('잘못된 이메일 형식입니다.');
       throw error;
@@ -49,11 +50,11 @@ function validity_email() {
   }
 
   finally {
-    button();
+    signButton();
   }
 }
 
-function validity_nick() {
+function validateNick() {
   let error;
 
   try {
@@ -81,11 +82,11 @@ function validity_nick() {
   }
 
   finally {
-    button();
+    signButton();
   }
 }
 
-function validity_pw() {
+function validatePw() {
   let error;
 
   try {
@@ -113,11 +114,11 @@ function validity_pw() {
   }
 
   finally {
-    button();
+    signButton();
   }
 }
 
-function match_pw() {
+function matchPw() {
   let error;
 
   try {
@@ -138,27 +139,29 @@ function match_pw() {
     }
   }
 
-  catch {
+  catch(error) {
     checkpw_input.classList.remove('pass');
     checkpw_error.value = error.message;
     checkpw_input.classList.add('fail');
   }
 
   finally {
-    button();
+    signButton();
   }
 }
 
-function button() {
-  if (email_input.classList.contains('pass') && nick_input.classList.contains('pass') && pw_input.classList.contains('pass') && checkpw_input.classList.contains('pass')){
-    loginBtn.classList.remove('inactive');
+function signButton() {
+  if (email_input.classList.contains('pass') && nick_input.classList.contains('pass') && pw_input.classList.contains('pass') && checkpw_input.classList.contains('pass')) {
+    signupBtn.classList.remove('inactive');
+    signupBtn.style.backgroundColor = "#3692FF";
   }
   else {
-    loginBtn.classList.add('inactive');
+    signupBtn.classList.add('inactive');
+    signupBtn.style.backgroundColor = "#9CA3AF";
   }
 }
 
-function clickBtn() {
+function signClickBtn() {
   const new_data = {
     email: email_input.value,
     password: pw_input.value
@@ -176,8 +179,9 @@ function clickBtn() {
   }
 }
 
-email_input.addEventListener('focusout', validity_email);
-nick_input.addEventListener('focusout', validity_nick);
-pw_input.addEventListener('focusout', validity_pw);
-checkpw_input.addEventListener('focusout', match_pw);
-loginBtn.addEventListener('click', clickBtn);
+
+email_input.addEventListener('focusout', validateEmail);
+nick_input.addEventListener('focusout', validateNick);
+pw_input.addEventListener('focusout', validatePw);
+checkpw_input.addEventListener('focusout', matchPw);
+signupBtn.addEventListener('click', signClickBtn);

@@ -1,5 +1,24 @@
+:root {
+  --primary-color: #3692FF;
+  --background-color: #FFFFFF;
+  --section-text-color: #374151;
+  --gnb-bg: #ffffff;
+  --text-color: #333;
+  --content-box-gray-bg: #FCFCFC;
+  --button-text-color: #FFFFFF;
+  --footer-text-color: #9CA3AF;
+  --footer-bg: #111827;
+  --banner-bg: #CFE5FF;
+  --input-background-color: #F3F4F6;
+  --focus-border-color: #3694FF;
+  --submit-button-bg: #9CA3AF;
+  --social-login-bg: #E6F2FF;
+  --link-color: #3182F6;
+}
+
 html{
   font-family: Pretendard;
+  box-sizing: border-box;
 }
 
 body{
@@ -41,6 +60,23 @@ img{
   margin-left: 200px;
   align-items: center;
   cursor: pointer;
+}
+
+/* 모바일 반응형 디자인 */
+@media (max-width: 743px) {
+  .pandamarket-img{
+    margin-left: 16px;
+    cursor: pointer;
+    display: block;
+    height: auto;
+    max-width: 100%
+  }
+  .header-button{
+    margin-right: 16px;
+    text-align: right;
+    cursor: pointer;
+    display: block;
+  }
 }
 
 .main-banner{

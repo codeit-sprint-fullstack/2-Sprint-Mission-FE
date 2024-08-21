@@ -145,6 +145,10 @@ input:focus{
   pointer-events: none;
 }
 
+.active{
+  background-color: #3692FF;
+}
+
 .fail {
   border-style: 1px solid #F72727;
 }
