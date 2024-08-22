@@ -7,9 +7,6 @@ const pw_error = document.querySelector('#pw-error');
 
 const loginBtn = document.querySelector('.log-in');
 
-var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0]
-
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: "codeit101!" },
   { email: 'codeit2@codeit.com', password: "codeit202!" },
@@ -104,25 +101,15 @@ function logClickBtn() {
 
   if (match_data) {
     if (match_data.password === new_data.password) {
-      modal.style.display = "block";
+      alert('로그인 성공');
       window.location.href = "/items";
     }
     else {
-      modal.style.display = "none";
+      alert('비밀번호가 일치하지 않습니다.');
     }
   }
   else {
     alert('등록된 정보가 없습니다.');
-  }
-}
-
-span.onclick = function() {
-  modal.style,display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target === modal) {
-    modal.style.display = "none";
   }
 }
 

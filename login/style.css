@@ -156,6 +156,20 @@ input:focus{
   outline: none;
 }
 
+.visibility_on{
+  display: none;
+}
+
+.visibility {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
 @media (max-width: 744px) {
   .body{
     margin: 8px;
