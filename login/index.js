@@ -7,6 +7,9 @@ const pw_error = document.querySelector('#pw-error');
 
 const loginBtn = document.querySelector('.log-in');
 
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0]
+
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: "codeit101!" },
   { email: 'codeit2@codeit.com', password: "codeit202!" },
@@ -83,11 +86,11 @@ function validatePw() {
 function logButton() {
   if (email_input.classList.contains('pass') && pw_input.classList.contains('pass')) {
     loginBtn.classList.remove('inactive');
-    signupBtn.style.backgroundColor = "#3692FF";
+    loginBtn.style.backgroundColor = "#3692FF";
   }
   else {
     loginBtn.classList.add('inactive');
-    signupBtn.style.backgroundColor = "#9CA3AF";
+    loginBtn.style.backgroundColor = "#9CA3AF";
   }
 }
 
@@ -101,15 +104,25 @@ function logClickBtn() {
 
   if (match_data) {
     if (match_data.password === new_data.password) {
-      alert('로그인 성공');
+      modal.style.display = "block";
       window.location.href = "/items";
     }
     else {
-      alert('비밀번호가 일치하지 않습니다.');
+      modal.style.display = "none";
     }
   }
   else {
     alert('등록된 정보가 없습니다.');
+  }
+}
+
+span.onclick = function() {
+  modal.style,display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
   }
 }
 

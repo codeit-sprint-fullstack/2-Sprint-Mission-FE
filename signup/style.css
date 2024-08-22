@@ -26,6 +26,10 @@ body{
   cursor: pointer;
 }
 
+.m-pandamarket{
+  display: none;
+}
+
 .signup{
   width: 640px;
   display: flex;
@@ -69,7 +73,7 @@ input:focus{
 
 .visibility{
   position: absolute;
-  top: 35px;
+  top: 50px;
   right: 16px;
   bottom: 16px;
   cursor: pointer;
@@ -90,16 +94,19 @@ input:focus{
 
 .simple{
   display: flex;
-  width: 640px;
+  width: 100%;
   height: 74px;
   background-color: #E6F2FF;
   border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 0 23px;
+  box-sizing: border-box;
 }
 
 .simple-login{
   height: 24px;
-  margin-top: 25px;
-  margin-left: 23px;
   font-weight: 500px;
   font-size: 16px;
   line-height: 24px;
@@ -110,9 +117,6 @@ input:focus{
   display: flex;
   width: 100px;
   height: 42px;
-  margin-top: 16px;
-  margin-left: 393px;
-  gap: 16px;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
@@ -156,4 +160,62 @@ input:focus{
 .fail:not(:focus) {
   border: 1px solid #F72727;
   outline: none;
+}
+
+@media (max-width: 744px) {
+  .body{
+    margin: 8px;
+  }
+  .main{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .pandamarket{
+    display: none;
+  }
+
+  .m-pandamarket{
+    display: block;
+    margin-top: 24px;
+  }
+
+  .signup{
+    width: 100%;
+    max-width: 100%;
+  }
+
+  label{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16.71px;
+  }
+
+  input{
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .error{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 17.9px;
+  }
+
+  .email, .nickname, .password, .password-check, .sign-up, .simple, .already{
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sign-up{
+    align-items: center;
+  }
+
+  .panda-already{
+    text-align: center;
+  }
 }
