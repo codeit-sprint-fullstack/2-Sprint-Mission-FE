@@ -46,7 +46,7 @@ form input.alert {
 .nickname-error,
 .pwd-error,
 .pwd-cfm-error {
-  color: rgb(139, 47, 47);
+  color: var(--error-color);
   font-size: var(--text-lg);
   margin-top: -12px;
 }
@@ -76,7 +76,7 @@ form button {
   border-radius: 9999px;
   font-size: var(--text-xl);
   font-weight: 600;
-  background-color: rgb(59, 92, 59);
+  background-color: var(--primary-color-100);
   color: white;
   display: flex;
   flex-direction: column;
