@@ -69,7 +69,6 @@
   justify-content: center;
   background-color: var(--background-color);
   margin: 0 auto;
-  /* border: 1px solid black; */
 }
 .section {
   display: flex;
@@ -116,7 +115,6 @@
 .section-message {
   min-height: 23.8rem;      
   height: auto;                         /* 높이를 auto로 설정해 세로로 확장되도록 설정 */
-  min-width: 8rem;                      /* 세로 확장시 secetion-left 의 높이를 벗어나지 않게 하기 위해 적당한 min-width 설정 */
 }
 .section-message1 {
   max-width: 27.4rem;      

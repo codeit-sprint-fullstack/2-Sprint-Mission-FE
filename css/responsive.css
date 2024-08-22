@@ -17,7 +17,6 @@
     justify-items: center;
     height: auto;
     padding: 0 2.4rem;                  /* 좌우 여백 조정 */
-    /* border: 1px solid black; */
   }
   .banner-top-message {
     display: block;
@@ -131,7 +130,7 @@
     
   /* 메인 페이지 배너 영역 */
   .banner-wrapper {
-    height: 54rem;                       
+    height: 40rem;                      /* 왜 40rem 정도로 해야 하나? */              
   }
   .banner-top {
     flex-direction: column;             /* 요소들을 위아래로 배치 */
@@ -142,7 +141,7 @@
   .banner-top-message {
     display: block;
     position: static;                   /* absolute 해제 */
-    width: 45rem;
+    width: 100%;
     margin: 0 auto;
     text-align: center;                 
     font-size: 3.2rem;  
@@ -187,14 +186,14 @@
   .banner-bottom-message {
     display: block;
     position: static;                   /* absolute 해제 */
-    width: 45rem;
+    width: 100%;                         /* 수정 */
     margin: 0 auto;
     text-align: center; 
     line-height: 4.48rem;                
   }
   .banner-bottom-message span {
     display: block;
-    width: 30rem;
+    width: 100%;
     margin: 0 auto;
   }
   .banner-bottom-img {
@@ -218,7 +217,7 @@
     justify-content: center; 
     align-items: center; 
     padding: 0 3.2rem; 
-    width: 58.8rem;  
+    width: 100%;                       /* 수정 */
     height: auto;
     gap: 1rem;      
     margin-top: 5rem;
@@ -259,5 +258,18 @@
   }
   .section-message .section-subtitle br {
     display: none;
+  }
+  
+  /* 로그인 페이지 (auth.css) 영역 */
+  .container {
+    padding: 0 1.6rem;                  /* 좌우 여백 16px */
+    width: 100%;                        /* 부모 요소의 100% 너비 차지 */
+    max-width: 400px;                   /* 최대 너비를 400px로 제한 */
+  }
+  .logo-subpage img {
+    width: 100%;                        /* 로고 이미지는 부모 컨테이너의 100% 너비를 차지 */
+    max-width: 100%;                    /* 최대 너비를 부모의 100%로 제한 */
+    height: auto;                       /* 높이를 자동으로 조정 */
+    display: block;                     /* 이미지 아래에 불필요한 여백을 제거 */
   }
 }

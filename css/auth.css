@@ -1,3 +1,12 @@
+/* 로그인/회원가입 공통 */
+.container {
+  background-color: var(--background-color);
+  text-align: center;
+  width: 100%;
+  max-width: 64rem;             
+  margin: 6rem auto 4rem;  
+}
+
 /* 상단 로고 영역 */
 .logo-subpage {
   width: 100%;
@@ -8,15 +17,6 @@
 .logo-subpage img {
   width: 39.6rem;                
   height: 13.2rem;             
-}
-
-/* 로그인/회원가입 공통 */
-.container {
-  background-color: var(--background-color);
-  text-align: center;
-  width: 100%;
-  max-width: 64rem;             
-  margin: 6rem auto 4rem;  
 }
 
 /* 로그인 */
