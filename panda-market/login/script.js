@@ -1,34 +1,37 @@
-const buttonLogInSignUp = document.querySelector(`button#button-login`);
+const buttonLogInSignUp = document.querySelector(`#button-login`);
 
-let allCfmed = [false, false];
+const validationState = {
+  email: false,
+  password: false
+};
 
-email.addEventListener("input", function (e) {
+email.addEventListener("focusout", function (e) {
 	if (!email.value) {
-		allCfmed[0] = false;
+		validationState.email = false;
 		buttonLogInSignUp.disabled = true;
 	}
 	else if (!emailRegEx.test(email.value)) {
-		allCfmed[0] = false;
+		validationState.email = false;
 		buttonLogInSignUp.disabled = true;
 	}
 	else {
-		allCfmed[0] = true;
-		buttonLogInSignUp.disabled = !(allCfmed[0] && allCfmed[1]);
+		validationState.email = true;
+		buttonLogInSignUp.disabled = !(validationState.email && validationState.password);
 	}
 });
 
-pwd.addEventListener("input", function (e) {
+pwd.addEventListener("focusout", function (e) {
 	if (!pwd.value) {
-		allCfmed[1] = false;
+		validationState.password = false;
 		buttonLogInSignUp.disabled = true;
 	}
 	else if (pwd.value.length < 8) {
-		allCfmed[1] = false;
+		validationState.password = false;
 		buttonLogInSignUp.disabled = true;
 	}
 	else {
-		allCfmed[1] = true;
-		buttonLogInSignUp.disabled = !(allCfmed[0] && allCfmed[1]);
+		validationState.password = true;
+		buttonLogInSignUp.disabled = !(validationState.email && validationState.password);
 	}
 });
 
@@ -44,10 +47,6 @@ buttonLogInSignUp.addEventListener("click", function (e) {
 		popupOK.focus();
 	}
 	else {
-		popupText.innerHTML = `로그인 되었습니다.`;
-		popupCon.classList.remove("none");
-		setTimeout(function () {
-			window.location.href = "/items";
-		}, 512);
+		window.location.href = "/items";
 	}
 });
