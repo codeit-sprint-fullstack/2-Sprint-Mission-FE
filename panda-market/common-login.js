@@ -1,11 +1,11 @@
-const email = document.querySelector(`input#email`);
+const email = document.querySelector(`#email`);
 const emailError = document.querySelector(`.email-error`);
 const emailRegEx = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-\_\.]+@[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-\_\.]+\.[\w]{2,3}$/;
 
-const pwd = document.querySelector(`input#password`);
+const pwd = document.querySelector(`#password`);
 const pwdError = document.querySelector(`.pwd-error`);
 
-email.addEventListener("input", function (e) {
+email.addEventListener("focusout", function (e) {
 	if (!email.value) {
 		email.classList.add("alert");
 		emailError.innerHTML = "이메일을 입력해주세요.";
@@ -20,7 +20,7 @@ email.addEventListener("input", function (e) {
 	}
 });
 
-pwd.addEventListener("input", function (e) {
+pwd.addEventListener("focusout", function (e) {
 	if (!pwd.value) {
 		pwd.classList.add("alert");
 		pwdError.innerHTML = "비밀번호를 입력해주세요.";
