@@ -1,12 +1,14 @@
 const inputEmail = document.querySelector('#useremail');
 const inputPassword = document.querySelector('#password');
-const errorModal = document.querySelector('.error-modal');
-const errorOkBtn = document.querySelector('.error-ok');
-const errorOverlay = document.querySelector('.modal-overlay');
 const noneEmail = document.querySelector('.none-email-value');
 const nonePassword = document.querySelector('.none-password-value');
 const formatErrorEmail = document.querySelector('.email-format-error');
 const formatErrorPassword = document.querySelector('.password-format-error');
+
+const errorModal = document.querySelector('.error-modal');
+const errorOkBtn = document.querySelector('.error-ok');
+const errorOverlay = document.querySelector('.modal-overlay');
+
 const hidePasswordIcon = document.querySelector('.password-hide');
 const showPasswordIcon = document.querySelector('.password-show');
 
@@ -19,6 +21,7 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: 'codeit606!' }
 ];
 
+// 이메일 형식 지정
 const emailFormat =
   /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
@@ -88,10 +91,11 @@ inputEmail.addEventListener('focusout', () => isEmailValid(inputEmail.value));
 inputPassword.addEventListener('focusout', () =>
   isPasswordValid(inputPassword.value)
 );
-// 모달 닫기 이벤트 생성
-errorOverlay.addEventListener('click', closeModal);
-errorOkBtn.addEventListener('click', closeModal);
 
 // 비밀번호 표시/숨기기 설정
 hidePasswordIcon.addEventListener('click', () => showPassword(inputPassword));
 showPasswordIcon.addEventListener('click', () => hidePassword(inputPassword));
+
+// 모달 닫기 이벤트 생성
+errorOverlay.addEventListener('click', closeModal);
+errorOkBtn.addEventListener('click', closeModal);
