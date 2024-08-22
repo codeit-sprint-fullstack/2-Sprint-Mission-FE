@@ -59,15 +59,11 @@ function hidePasswordRepeat(password) {
 
 // 회원가입 버튼 활성화 함수
 function signupBtnActivation(email, password, name, rePassword) {
-  if (
-    email &&
-    password &&
-    name &&
-    rePassword &&
-    emailFormat.test(email) &&
-    password.length >= 8 &&
-    password === rePassword
-  ) {
+  const emailValid = email && emailFormat.test(email);
+  const passwordValid = password && password.length >= 8;
+  const rePasswordValid = rePassword && password === rePassword;
+
+  if (emailValid && passwordValid && name && rePasswordValid) {
     signupBtn.classList.add('button-abled');
     signupBtn.disabled = false;
     signupBtn.style.cursor = 'pointer';

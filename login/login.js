@@ -17,7 +17,7 @@ function isLoginValid(email, password) {
   const emailMatch = USER_DATA.find((value) => value.email === email);
   const passwordMatch = USER_DATA.find((value) => value.password === password);
 
-  if (!(emailMatch && passwordMatch)) {
+  if (!emailMatch || !passwordMatch) {
     return errorModal.classList.remove('hide');
   }
 
