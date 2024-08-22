@@ -20,24 +20,14 @@ html, body {
 
 main {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 
     max-width: 40rem;
     width: 100%;
 
     margin: 0 auto;
-    padding: 5rem 0 8rem;
-}
-
-.all-elements {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
+    padding: 3rem 0 8rem;
 
     gap: 1.5rem;
 }
@@ -55,6 +45,7 @@ form {
 
 label {
     width: 100%;
+
     font-size: 1.125rem;
     font-weight: 700;
     line-height: 1.375rem;
@@ -192,6 +183,7 @@ button {
 
 .oauth {
     display: flex;
+    justify-content: center;
     align-items: center;
 
     width: 100%;
