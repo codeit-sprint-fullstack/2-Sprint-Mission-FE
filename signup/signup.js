@@ -40,18 +40,18 @@ function isPasswordRepeatValid(password, rePassword) {
 }
 
 // 재확인 비밀번호 표시 함수
-function showPasswordRepeat() {
-  if (inputPasswordRepeat.type === 'password') {
-    inputPasswordRepeat.type = 'text';
+function showPasswordRepeat(password) {
+  if (password.type === 'password') {
+    password.type = 'text';
     showPasswordRepeatIcon.classList.remove('hide');
     hidePasswordRepeatIcon.classList.add('hide');
   }
 }
 
 // 재확인 비밀번호 숨기기 함수
-function hidePasswordRepeat() {
-  if (inputPasswordRepeat.type === 'text') {
-    inputPasswordRepeat.type = 'password';
+function hidePasswordRepeat(password) {
+  if (password.type === 'text') {
+    password.type = 'password';
     hidePasswordRepeatIcon.classList.remove('hide');
     showPasswordRepeatIcon.classList.add('hide');
   }
@@ -135,5 +135,9 @@ inputPasswordRepeat.addEventListener('focusout', () =>
 signupBtn.addEventListener('click', () => isSignupValid(inputEmail.value));
 
 // 재확인 비밀번호 표시/숨기기 이벤트 생성
-hidePasswordRepeatIcon.addEventListener('click', showPasswordRepeat);
-showPasswordRepeatIcon.addEventListener('click', hidePasswordRepeat);
+hidePasswordRepeatIcon.addEventListener('click', () =>
+  showPasswordRepeat(inputPasswordRepeat)
+);
+showPasswordRepeatIcon.addEventListener('click', () =>
+  hidePasswordRepeat(inputPasswordRepeat)
+);

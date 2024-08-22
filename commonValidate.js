@@ -61,18 +61,18 @@ function isPasswordValid(password) {
 }
 
 // 비밀번호 표시 함수
-function showPassword() {
-  if (inputPassword.type === 'password') {
-    inputPassword.type = 'text';
+function showPassword(password) {
+  if (password.type === 'password') {
+    password.type = 'text';
     showPasswordIcon.classList.remove('hide');
     hidePasswordIcon.classList.add('hide');
   }
 }
 
 // 비밀번호 숨기기 함수
-function hidePassword() {
-  if (inputPassword.type === 'text') {
-    inputPassword.type = 'password';
+function hidePassword(password) {
+  if (password.type === 'text') {
+    password.type = 'password';
     hidePasswordIcon.classList.remove('hide');
     showPasswordIcon.classList.add('hide');
   }
@@ -93,5 +93,5 @@ errorOverlay.addEventListener('click', closeModal);
 errorOkBtn.addEventListener('click', closeModal);
 
 // 비밀번호 표시/숨기기 설정
-hidePasswordIcon.addEventListener('click', showPassword);
-showPasswordIcon.addEventListener('click', hidePassword);
+hidePasswordIcon.addEventListener('click', () => showPassword(inputPassword));
+showPasswordIcon.addEventListener('click', () => hidePassword(inputPassword));
