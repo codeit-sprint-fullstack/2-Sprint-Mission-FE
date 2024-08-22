@@ -1,83 +1,88 @@
-const nickname = document.querySelector(`input#nickname`);
+const nickname = document.querySelector(`#nickname`);
 const nicknameError = document.querySelector(`.nickname-error`);
 const nicknameRegEx = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-\_\.]*$/;
 
-const pwdCfm = document.querySelector(`input#password-confirm`);
+const pwdCfm = document.querySelector(`#password-confirm`);
 const pwdCfmError = document.querySelector(`.pwd-cfm-error`);
 
-const buttonLogInSignUp = document.querySelector(`button#button-signup`);
+const buttonLogInSignUp = document.querySelector(`#button-signup`);
 
-let allCfmed = [false, false, false, false];
+const validationState = {
+  email: false,
+  nickname: false,
+  password: false,
+  passwordConfirm: false
+};
 
-email.addEventListener("input", function (e) {
+email.addEventListener("focusout", function (e) {
   if (!email.value) {
-    allCfmed[0] = false;
+    validationState.email = false;
     buttonLogInSignUp.disabled = true;
   }
   else if (!emailRegEx.test(email.value)) {
-    allCfmed[0] = false;
+    validationState.email = false;
     buttonLogInSignUp.disabled = true;
   }
   else {
-    allCfmed[0] = true;
-    buttonLogInSignUp.disabled = !(allCfmed[0] && allCfmed[1] && allCfmed[2] && allCfmed[3]);
+    validationState.email = true;
+    buttonLogInSignUp.disabled = !(validationState.email && validationState.nickname && validationState.password && validationState.passwordConfirm);
   }
 });
 
-nickname.addEventListener("input", function (e) {
+nickname.addEventListener("focusout", function (e) {
   if (!nickname.value) {
     nickname.classList.add("alert");
     nicknameError.innerHTML = "닉네임을 입력해주세요.";
-    allCfmed[1] = false;
+    validationState.nickname = false;
     buttonLogInSignUp.disabled = true;
   }
   else if (!nicknameRegEx.test(nickname.value)) {
     nickname.classList.add("alert");
     nicknameError.innerHTML = "잘못된 닉네임 형식입니다.";
-    allCfmed[1] = false;
+    validationState.nickname = false;
     buttonLogInSignUp.disabled = true;
   }
   else {
     nickname.classList.remove("alert");
     nicknameError.innerHTML = "";
-    allCfmed[1] = true;
-    buttonLogInSignUp.disabled = !(allCfmed[0] && allCfmed[1] && allCfmed[2] && allCfmed[3]);
+    validationState.nickname = true;
+    buttonLogInSignUp.disabled = !(validationState.email && validationState.nickname && validationState.password && validationState.passwordConfirm);
   }
 });
 
-pwd.addEventListener("input", function (e) {
+pwd.addEventListener("focusout", function (e) {
   if (!pwd.value) {
-    allCfmed[2] = false;
+    validationState.password = false;
     buttonLogInSignUp.disabled = true;
   }
   else if (pwd.value.length < 8) {
-    allCfmed[2] = false;
+    validationState.password = false;
     buttonLogInSignUp.disabled = true;
   }
   else {
-    allCfmed[2] = true;
-    buttonLogInSignUp.disabled = !(allCfmed[0] && allCfmed[1] && allCfmed[2] && allCfmed[3]);
+    validationState.password = true;
+    buttonLogInSignUp.disabled = !(validationState.email && validationState.nickname && validationState.password && validationState.passwordConfirm);
   }
 });
 
-pwdCfm.addEventListener("input", function (e) {
+pwdCfm.addEventListener("focusout", function (e) {
   if (!pwdCfm.value) {
     pwdCfm.classList.add("alert");
     pwdCfmError.innerHTML = "위의 비밀번호를 다시 한번 더 입력해주세요.";
-    allCfmed[3] = false;
+    validationState.passwordConfirm = false;
     buttonLogInSignUp.disabled = true;
   }
   else if (pwdCfm.value !== pwd.value) {
     pwdCfm.classList.add("alert");
-    pwdCfmError.innerHTML = "비밀번호가 다릅니다. 다시 확인해주세요.";
-    allCfmed[3] = false;
+    pwdCfmError.innerHTML = "비밀번호가 일치하지 않습니다.";
+    validationState.passwordConfirm = false;
     buttonLogInSignUp.disabled = true;
   }
   else {
     pwdCfm.classList.remove("alert");
     pwdCfmError.innerHTML = "";
-    allCfmed[3] = true;
-    buttonLogInSignUp.disabled = !(allCfmed[0] && allCfmed[1] && allCfmed[2] && allCfmed[3]);
+    validationState.passwordConfirm = true;
+    buttonLogInSignUp.disabled = !(validationState.email && validationState.nickname && validationState.password && validationState.passwordConfirm);
   }
 });
 
