@@ -1,9 +1,8 @@
+@import "reset.css";
 @font-face {
     font-family: 'ROKAF';
     src: url('ROKAF Sans.ttf') format('truetype');
 }
-
-@import "reset.css";
 
 :root {
   --top-bottom-color: #CFE5FF;

@@ -1,11 +1,9 @@
 /* 기본 설정 */
-
+@import "../reset.css";
 @font-face {
   font-family: 'ROKAF';
   src: url('../ROKAF Sans.ttf') format('truetype');
 }
-
-@import "../reset.css";
 
 :root {
   --blue-color: #3692FF;
