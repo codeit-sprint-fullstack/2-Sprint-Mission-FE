@@ -2,7 +2,10 @@ const loginBtn = document.querySelector('.login-btn');
 
 // 로그인 버튼 활성화 함수
 function loginBtnActivation(email, password) {
-  if (email && password && emailFormat.test(email) && password.length >= 8) {
+  const emailValid = email && emailFormat.test(email);
+  const passwordValid = password && password.length >= 8;
+
+  if (emailValid && passwordValid) {
     loginBtn.classList.add('button-abled');
     loginBtn.disabled = false;
     loginBtn.style.cursor = 'pointer';
