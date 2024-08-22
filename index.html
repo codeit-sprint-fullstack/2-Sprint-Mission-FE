@@ -5,6 +5,7 @@
 <script src="/inc/head.js"></script>  
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/responsive.css">
 </head> 
 <body>
   <header class="gnb-wrapper">
@@ -14,19 +15,22 @@
     </div>
   </header>
   <main class="with-header">
-    <section class="banner">
+    <div class="banner-wrapper">
       <div class="banner-top">
         <div class="banner-top-message">
-          일상의 모든 물건을<br>거래해 보세요
-          <p><a href="/items" class="btn-items">구경하러 가기</a></p>
+          <span>일상의 모든 물건을<br>거래해 보세요</span>
+          <a href="/items" class="btn-items">구경하러 가기</a>
+        </div>
+        <div class="banner-top-img"><img src="/images/img_home_top.png" alt="top banner">
         </div>
       </div>
-    </section>
-  
+    </div>
     <section class="section-wrapper">
       <div class="section section-left">
         <div class="contents-box-left">
-          <div><img src="./images/img_hot-item.png"></div>
+          <div>
+            <img class="main-section-img" src="./images/img_hot-item.png">
+          </div>
           <div class="section-message section-message1">
             <span class="section-title">Hot Item</span>
             <span class="section-subtitle">인기 상품을<br>확인해 보세요</span>
@@ -34,9 +38,6 @@
           </div>
         </div>
       </div>
-    </section>
-  
-    <section class="section-wrapper">
       <div class="section section-right">
         <div class="contents-box-right">
           <div class="section-message section-message2">
@@ -45,17 +46,14 @@
             <span class="section-description">구매하고 싶은 물품은 검색해서<br>쉽게 찾아보세요</span>
           </div>
           <div>
-            <img src="./images/img_search.png">
+            <img class="main-section-img" src="./images/img_search.png">
           </div>
         </div>
       </div>
-    </section>
-  
-    <section class="section-wrapper">
       <div class="section section-left">
         <div class="contents-box-left">
           <div>
-            <img src="./images/img_register.png">
+            <img class="main-section-img" src="./images/img_register.png">
           </div>
           <div class="section-message section-message3">
             <span class="section-title">Register</span>
@@ -65,17 +63,16 @@
         </div>
       </div>
     </section>
-  
-    <section class="banner">
+    <div class="banner-wrapper">
       <div class="banner-bottom">
         <div class="banner-bottom-message">
-          믿을 수 있는<br>판다마켓 중고거래
+          <span>믿을 수 있는<br>판다마켓 중고거래</span>
+        </div>
+        <div class="banner-bottom-img"><img src="/images/img_home_bottom.png" alt="bottom banner">
         </div>
       </div>
-    </section>
-  
+    </div>
   </main>
-
   <footer class="footer-wrapper">
     <div class="footer-contents">
       <div>©codeit - 2024</div>

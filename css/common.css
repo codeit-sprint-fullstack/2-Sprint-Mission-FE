@@ -3,7 +3,7 @@
   --background-color: #FFFFFF;
   --section-text-color: #374151;
   --gnb-bg: #ffffff;
-  --text-color: #333;
+  --text-color: #374151;
   --content-box-gray-bg: #FCFCFC;
   --button-text-color: #FFFFFF;
   --footer-text-color: #9CA3AF;
@@ -19,10 +19,9 @@
 /* 공통 영역 */
 html {
   font-size: 62.5%;                     /* 1rem = 10px */
-  box-sizing: border-box;
 }
 *, *::before, *::after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 body {
   font-family: 'Pretendard', Poppins, "Noto Sans KR", sans-serif;
@@ -30,7 +29,7 @@ body {
   background: var(--background-color);  /* 기본 배경 색상 */
   margin: 0;
   padding: 0;
-  font-size: 1.6rem;                
+            
 }
 a {
   text-decoration:none;
@@ -50,7 +49,7 @@ a {
   width: 100%;
   z-index: 1000;
   border-bottom: 0.1rem solid var(--nav-divider-color);
-  background-color: var(--background-color); /* 배경색을 고정 */
+  background-color: var(--background-color); 
 }
 .gnb {
   display: flex;
@@ -58,7 +57,6 @@ a {
   justify-content: space-between;       /* 가로 정렬: 양쪽 끝에 배치하고 균등 분배 */
   width: 100%;
   max-width: 192rem;       
-  min-width: 68rem;                     /* 작은 화면에서 보기 좋게 */
   height: 7rem;    
   padding: 0 20rem;                     /* 왼쪽과 오른쪽에 각각 패딩 추가하여 간격 조절 */
 }
@@ -68,8 +66,8 @@ a {
   justify-content: center;
   background: var(--primary-color);
   color: var(--button-text-color);
-  width: 12.8rem;                 
-  height: 4.8rem;                 
+  width: 8.8rem;                 
+  height: 4.2rem;                 
   font-size: 1.6rem; 
   font-weight: 600;
   border-radius: 0.8rem; 
@@ -83,21 +81,19 @@ a {
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  height: 16rem;            
-  padding: 3rem;            
+  height: 16rem;             
   color: var(--footer-text-color);
   background-color: var(--footer-bg);
 }
 .footer-contents {   
   width: 100%;                          /* 부모 요소의 너비를 기준으로 100% 확장 */
   max-width: 192rem;          
-  min-width: 68rem;                     /* 화면이 작아져도 한줄로 표시되도록 적당한 min-width 지정 */
   height: 2rem;    
   display: flex;
   justify-content: space-between;
   font-size: 1.6rem;            
   font-weight: 400;
-  padding: 0 20rem;                     /* 왼쪽과 오른쪽에 각각 패딩 추가하여 간격 조절 */
+  padding: 2rem 20rem;                     /* 왼쪽과 오른쪽에 각각 패딩 추가하여 간격 조절 */
 }
 .footer-contents a {
   color: var(--footer-text-color);      /* 링크 글자색 설정 */
