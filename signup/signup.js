@@ -41,7 +41,7 @@ function isPasswordRepeatValid(password, rePassword) {
 
 // 재확인 비밀번호 표시 함수
 function showPasswordRepeat() {
-  if (inputPasswordRepeat.type == 'password') {
+  if (inputPasswordRepeat.type === 'password') {
     inputPasswordRepeat.type = 'text';
     showPasswordRepeatIcon.classList.remove('hide');
     hidePasswordRepeatIcon.classList.add('hide');
@@ -50,7 +50,7 @@ function showPasswordRepeat() {
 
 // 재확인 비밀번호 숨기기 함수
 function hidePasswordRepeat() {
-  if (inputPasswordRepeat.type == 'text') {
+  if (inputPasswordRepeat.type === 'text') {
     inputPasswordRepeat.type = 'password';
     hidePasswordRepeatIcon.classList.remove('hide');
     showPasswordRepeatIcon.classList.add('hide');
@@ -85,7 +85,7 @@ function isSignupValid(email) {
     return errorModal.classList.remove('hide');
   }
 
-  if (inputEmail.value !== '') {
+  if (email !== '') {
     alert('회원가입 하신 것을 축하드립니다!');
     location.href = '../login';
   }

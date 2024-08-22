@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 
-html {
+html, body {
     margin: 0;
     color: var(--color-coolGray800);
     font-size: 16px;
@@ -20,16 +20,24 @@ html {
 
 main {
     display: flex;
-    justify-content: center;
-    margin: 4.375rem 0;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 40rem;
+    width: 100%;
+
+    margin: 0 auto;
+    padding: 5rem 0 8rem;
 }
 
 .all-elements {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    width: 40rem;
+    width: 100%;
 
     gap: 1.5rem;
 }
@@ -37,12 +45,16 @@ main {
 form {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
     padding: 1.25rem 0;
-    width: 40rem;
+    
     gap: 1.5rem;
 }
 
 label {
+    width: 100%;
     font-size: 1.125rem;
     font-weight: 700;
     line-height: 1.375rem;
@@ -120,7 +132,8 @@ label {
 }
 
 input {
-    width: 40rem;
+    width: 100%;
+
     padding: 1rem 1.5rem;
     border-radius: 0.75rem;
     border: none;
@@ -142,7 +155,7 @@ input:focus {
     display: flex;
     justify-content: space-between;
 
-    width: 40rem;
+    width: 100%;
     gap: 0.375rem;
 }
 
@@ -179,18 +192,27 @@ button {
 
 .oauth {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
-    padding: 0 1.875rem;
-
-    width: 40rem;
+    width: 100%;
     height: 4.625rem;
-    border-radius: .5rem;
 
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.5rem;
+}
+
+.oauth-elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    border-radius: .5rem;
+    
+    padding: 0 1.875rem;
+
     background-color: var(--color-oauth-background);
 }
 
@@ -212,11 +234,26 @@ button {
     gap: 0.25rem;
 }
 
-.signup content a {
+.signup-content a {
     color: var(--color-panda-market);
 }
 
 /* -- Mobile -- */
-@media screen and (min-width:375px) and (max-width:742px) {
-    
+@media screen and (max-width:742px) {
+    main {
+        max-width: 25rem;
+    }
+
+    form {
+        padding: 0 1rem;
+    }
+
+    .oauth {
+        padding: 0 1rem;
+    }
+
+    .login-logo {
+        width: 100%;
+        padding: 0 1rem;
+    }
 }
