@@ -93,22 +93,22 @@ button {
     margin-right: 200px;
 }
 
-.main1 {
+.main_content_1 {
     background-color: #CFE5FF;
     display: flex;
 }
 
-.main1 > .check {
+.main_content_1 > .check {
     display: flex;
     margin-top: 200px;
     margin-left: 405px;
 }
 
-.main1 .check_items {
+.main_content_1 .check_items {
     padding: 0 0 60px 0;
 }
 
-.main1 .text1 {
+.main_content_1 .text1 {
     font-size: 40px;
     font-weight: 700;
     line-height: 56px;
@@ -142,9 +142,9 @@ button {
     line-height: 32px;
 }
 
-.main2 h1,
-.main3 h1,
-.main4 h1 {
+.main_content_2 h1,
+.main_content_3 h1,
+.main_content_4 h1 {
     font-size: 40px;
     line-height: 56px;
     font-weight: 700;
@@ -158,49 +158,49 @@ button {
     margin-top: 138px;
 }
 
-.main2 {
+.main_content_2 {
     height: 720px;
 }
 
-.main2 .boxbox {
+.main_content_2 .boxbox {
     margin-left: 360px;
 }
 
-.main2 div {
+.main_content_2 div {
     width: 955px;
 }
 
-.main3 {
+.main_content_3 {
     height: 720px;
 }
 
-.main3 .boxbox {
+.main_content_3 .boxbox {
     margin-left: 591px;
 }
 
-.main3 div {
+.main_content_3 div {
     text-align: right;
     width: 969px;
 }
 
-.main4 {
+.main_content_4 {
     height: 720px;
 }
 
-.main4 .boxbox {
+.main_content_4 .boxbox {
     margin-left: 360px;
 }
 
-.main4 div {
+.main_content_4 div {
     width: 987px;
 }
 
-.main5 {
+.main_content_5 {
     background-color: #CFE5FF;
     display: flex;
 }
 
-.main5 > .box {
+.main_content_5 > .box {
     display: flex;
     gap: 64px;
     margin-top: 143px;
@@ -208,7 +208,7 @@ button {
     align-items: center;
 }
 
-.main5 h1 {
+.main_content_5 h1 {
     font-size: 40px;
     font-weight: 700;
     line-height: 56px;
