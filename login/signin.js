@@ -1,3 +1,5 @@
+import { showModal, closeModal, isEmailValid, isUser } from './login.mjs';
+
 const checkEmail = document.querySelector('#email');
 const checkPW = document.querySelector('#password-field');
 const checkPC = document.querySelector('#password-check');
@@ -6,34 +8,34 @@ const PerrMessage = document.querySelector('.Perr-message');
 const PCerrMessage = document.querySelector('.PCerr-message');
 const loginBtn = document.querySelector('.login-btn');
 const modal = document.querySelector('#modal');
-const modalText = document.querySelector('#modal-text');
+// const modalText = document.querySelector('#modal-text');
 const modalCloseBtn = document.querySelector('#modal-close');
 
-const USER_DATA = [
-    {email: 'codeit1@codeit.com', password: 'codeit01!'},
-    {email: 'codeit2@codeit.com', password: 'codeit02!'},
-    {email: 'codeit3@codeit.com', password: 'codeit03!'},
-    {email: 'codeit4@codeit.com', password: 'codeit04!'},
-    {email: 'codeit5@codeit.com', password: 'codeit05!'},
-    {email: 'codeit6@codeit.com', password: 'codeit06!'},
-]; 
+// const USER_DATA = [
+//     {email: 'codeit1@codeit.com', password: 'codeit01!'},
+//     {email: 'codeit2@codeit.com', password: 'codeit02!'},
+//     {email: 'codeit3@codeit.com', password: 'codeit03!'},
+//     {email: 'codeit4@codeit.com', password: 'codeit04!'},
+//     {email: 'codeit5@codeit.com', password: 'codeit05!'},
+//     {email: 'codeit6@codeit.com', password: 'codeit06!'},
+// ]; 
 
-function showModal() {
-    if (modal) {
-        modal.style.display = 'block';
-    }
-}
+// function showModal() {
+//     if (modal) {
+//         modal.style.display = 'block';
+//     }
+// }
 
-function closeModal() {
-    if (modal) modal.style.display = 'none';
-}
+// function closeModal() {
+//     if (modal) modal.style.display = 'none';
+// }
 
 modalCloseBtn.addEventListener('click', closeModal);
 
-function isEmailValid(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-}
+// function isEmailValid(email) {
+//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     return emailPattern.test(email);
+// }
 
 
 // function isPasswordValid(password) {
@@ -44,9 +46,9 @@ function isEmailValid(email) {
 //     return password === passwordRepeat;
 // }
 
-function isUser(email) {
-    return USER_DATA.some((user) => user.email === email);
-}
+// function isUser(email) {
+//     return USER_DATA.some((user) => user.email === email);
+// }
 
 function validForm(email, password, passwordRepeat) {
     return isEmailValid(email) && checkPasswordValid(password, passwordRepeat);
@@ -183,7 +185,7 @@ loginBtn.addEventListener('click', (e) => {
 
     e.preventDefault();
     if (!loginBtn.classList.contains('disabled')) {
-        if (isUser(email)) return showModal();
+        if (isUser(email)) return showModal(modal);
         window.location.href = 'login.html';
     }
 });

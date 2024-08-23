@@ -1,8 +1,3 @@
-const errMessage = document.querySelector('.err-message');
-const PerrMessage = document.querySelector('.Perr-message');
-const modal = document.querySelector('#modal');
-// const modalText = document.querySelector('#modal-text');
-
 const USER_DATA = [
     {email: 'codeit1@codeit.com', password: 'codeit01!'},
     {email: 'codeit2@codeit.com', password: 'codeit02!'},
@@ -12,15 +7,15 @@ const USER_DATA = [
     {email: 'codeit6@codeit.com', password: 'codeit06!'},
 ]; 
 
-function showModal() {
+function showModal(modal) {
     modal.style.display = 'block';
 }
 
-function closeModal() {
+function closeModal(modal) {
     if (modal) modal.style.display = 'none';
 }
 
-modalCloseBtn.addEventListener('click', closeModal);
+// modalCloseBtn.addEventListener('click', closeModal);
 
 function isEmailValid(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
