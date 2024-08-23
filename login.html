@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>판다마켓 로그인</title>
-  <link rel="stylesheet" href="css/login.css" />
   <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/login.css" />
 </head>
 <body>
   <!-- loginLogo -->
   <header>
       <section class="loginLogo">
         <a href="/index.html">
-          <img class="loginLogoImg" src="/image/login/homeLogoImg.png" alt="homeLogoImg">
+          <img class="loginLogoImg" src="image/login/homeLogoImg.png" alt="homeLogoImg">
         </a>
       </section>
   </header>
@@ -23,18 +23,29 @@
       <section class="email">
         <label class="emailText">이메일</label>
         <input class="emailInput" name="emailInput" placeholder="이메일을 입력해주세요" style="padding-left: 16px;">
+        <span class="emailError"></span>
       </section>
       <!-- password -->
       <section class="password">
         <label class="passwordText">비밀번호</label>
         <input class="passwordInput" name="passwordInput" placeholder="비밀번호를 입력해주세요" style="padding-left: 16px;" type="password">
+        <span class="passwordError"></span>
       </section>
       <!-- loginButton -->
-      <section class="loginButton">
-          <button>로그인</button>
+      <section>
+          <button class="loginButton">로그인</button>
       </section>
     </form>
   </main>
+  <!--alert-->
+  <div class="customAlert">
+    <div class="modalContent">
+      <div class="alertMessage">
+        <p class="alertMessage">비밀번호가 일치하지 않습니다.</p>
+      </div>
+      <button class="alertButton">확인</button>
+    </div>
+  </div>
   <!-- extraHelp -->
   <footer>
       <!-- easyLogin -->
@@ -46,14 +57,14 @@
           <div class="easyLogin-right">
             <a href="https://www.google.co.kr/?hl=ko">
               <img
-                src="/image/login/google.png"
+                src="image/login/google.png"
                 class="googleImg"
                 alt="googleImg"
               />
             </a>
             <a href="https://www.kakaocorp.com/page/">
               <img
-              src="/image/login/kakao.png"
+              src="image/login/kakao.png"
               class="kakaoImg"
               alt="kakaoImg"
               />
@@ -71,5 +82,7 @@
       </div>
       </section>
   </footer>
+  <!--js-->
+  <script src="js/login.js"></script>
 </body>
 </html>
