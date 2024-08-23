@@ -1,5 +1,6 @@
 // 이벤트 리스너 설정
 // 이벤트 리스너에 전달되는 함수는 참조만 해야 하며, 실행되지 않아야 합니다
+// forcusout 시 validateEmail() 함수를 호출
 emailInput.addEventListener('focusout', () => {
   validateEmail(emailInput.value);
   validateForm();
@@ -8,6 +9,10 @@ passwordInput.addEventListener('focusout', () => {
   validatePassword(passwordInput.value);
   validateForm();
 });
+
+// input 시 validateForm() 함수를 호출
+emailInput.addEventListener('input', () => validateForm());
+passwordInput.addEventListener('input', () => validateForm());
 
 // 로그인 버튼 초기화 비활성화
 loginButton.disabled = true;
