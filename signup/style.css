@@ -101,7 +101,8 @@ input:focus {
   position: relative;
 }
 
-.toggle-password {
+.toggle-password,
+.toggle-password-2 {
   width: 1.5rem;
   height: 1.5rem;
 
