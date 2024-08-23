@@ -17,7 +17,7 @@ passwordInput.addEventListener('input', () => validateForm());
 // 로그인 버튼 초기화 비활성화
 loginButton.disabled = true;
 
-// 검증 후 로그인 버튼 다루기
+// 검증 후 로그인 버튼 작동
 function validateForm() {
   const email = emailInput.value;
   const password = passwordInput.value;
@@ -39,6 +39,23 @@ function validateForm() {
 loginButton.addEventListener('click', () => {
   let link = '../items/index.html';
   if (!loginButton.disabled) {
-    window.location.href = link;
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    // 사용자 데이터베이스에서 이메일 찾기
+    const user = USER_DATA.find(user => user.email === email);
+
+    if (user) {
+        if (user.password === password) {
+            // 이메일과 비밀번호가 모두 일치할 경우 페이지 이동
+            window.location.href = link;
+        } else {
+            // 비밀번호가 일치하지 않는 경우
+            alert('비밀번호가 일치하지 않습니다.');
+        }
+    } else {
+        // 이메일이 데이터베이스에 없는 경우
+        alert('비밀번호가 일치하지 않습니다.');
+    }
   }
 });
