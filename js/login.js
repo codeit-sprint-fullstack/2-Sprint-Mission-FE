@@ -97,21 +97,16 @@ document.addEventListener("DOMContentLoaded", function() {
     inputEmail.addEventListener("input", validCheckInput);
     inputPassword.addEventListener("input", validCheckInput);
 
-    //item 페이지로 이동
-    loginBtn.addEventListener("click", function(){
-        if(!loginBtn.disabled) {
-            window.location.href = "items.html";
-        }
-    });
-
     //데이터베이스 로그인 버튼
     loginBtn.addEventListener("click", function(){
         if(!loginBtn.disabled){ //활성화될 때
             const email = inputEmail.value.trim();
             const password = inputPassword.value.trim();
+            
+            const user = USER_DATA.find(user => user.email === email);
 
-            if(email in USER_DATA){
-                if(USER_DATA[email] === password){ //비밀번호 일치 시
+            if(user){
+                if(user.password === password){ //비밀번호 일치 시
                     window.location.href = "items.html"
                 }
                 else {
