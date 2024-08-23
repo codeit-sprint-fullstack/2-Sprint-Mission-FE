@@ -104,3 +104,24 @@ footer p {
 footer a {
   color: #3182f6;
 }
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Mobile */
+@media (max-width: 743px) {
+  header,
+  main,
+  footer {
+    width: 100%;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  header {
+    margin: 2.4rem auto;
+  }
+
+  body * {
+    max-width: 432px;
+  }
+}
