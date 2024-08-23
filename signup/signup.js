@@ -19,6 +19,8 @@ const passwordEl = document.querySelector('#password');
 const nicknameEl = document.querySelector('#nickname');
 const passwordCheckEl = document.querySelector('#passwordCheck');
 const btnEl = document.querySelector('#signUpBtn');
+const eyeImgFirstEl = document.querySelector('.eyeImg');
+const eyeImgSecondEl = document.querySelector('.checkImg');
 
 /* setting variable and fixing html  */
 const emailNewP = document.createElement('p');
@@ -136,6 +138,22 @@ function conditionalBtn(){
   }
 }
 
+function passwordToggle() {
+  if(passwordEl.type === 'password'){
+    passwordEl.setAttribute('type', 'text');
+  } else{
+    passwordEl.setAttribute('type', 'password');
+  }
+}
+
+function passwordCheckToggle() {
+  if(passwordCheckEl.type === 'password'){
+    passwordCheckEl.setAttribute('type', 'text');
+  } else{
+    passwordCheckEl.setAttribute('type', 'password');
+  }
+}
+
 /* event handling */ 
 emailEl.addEventListener('focusout', focusoutEmail);
 passwordEl.addEventListener('focusout', focusoutPassword);
@@ -143,3 +161,5 @@ nicknameEl.addEventListener('focusout', foucusoutNickname);
 passwordCheckEl.addEventListener('focusout', focusoutPasswordCheck);
 formEl.addEventListener('focusout', btnDisabled);
 btnEl.addEventListener('click', conditionalBtn);
+eyeImgFirstEl.addEventListener('click', passwordToggle);
+eyeImgSecondEl.addEventListener('click', passwordCheckToggle);

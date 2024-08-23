@@ -15,6 +15,7 @@ const passwordLabelEl = labelEl[1];
 const emailEl = document.querySelector('#email');
 const passwordEl = document.querySelector('#password');
 const btnEl = document.querySelector('#loginBtn');
+const eyeImgEl = document.querySelector('#eyeImg');
 
 /* setting variable and fixing html  */
 const emailNewP = document.createElement('p');
@@ -98,8 +99,17 @@ function conditionalBtn() {
   } 
 }
 
+function passwordToggle() {
+  if(passwordEl.type === 'password'){
+    passwordEl.setAttribute('type', 'text');
+  } else{
+    passwordEl.setAttribute('type', 'password');
+  }
+}
+
 /* event handling */ 
 emailEl.addEventListener('focusout', focusoutEmail);
 passwordEl.addEventListener('focusout', focusoutPassword);
 formEl.addEventListener('focusout', btnDisabled);
 btnEl.addEventListener('click', conditionalBtn);
+eyeImgEl.addEventListener('click', passwordToggle);
