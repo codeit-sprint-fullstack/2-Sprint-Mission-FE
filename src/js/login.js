@@ -4,6 +4,7 @@ const loginBtn = document.getElementById('loginButton');
 const inputId = document.querySelector('.js-input__id');
 const inputPw = document.querySelector('.js-input__pw');
 const modal = document.querySelector('.modal');
+const showPW = document.querySelectorAll('.label-wrap img');
 
 let idChk = false;
 let pwChk = false;
@@ -64,3 +65,21 @@ loginBtn.addEventListener('click', (e) => {
 modal.querySelector('.button').addEventListener('click', (e) => {
   modal.classList.add('off');
 });
+
+for (let eye of showPW) {
+  eye.addEventListener('click', (e) => {
+    if (e.target.classList.contains('eye')) {
+      e.target.src = '../src/Image/btn_visibility_off_24px.png';
+      e.target.parentElement
+        .querySelector('input')
+        .setAttribute('type', 'password');
+    } else {
+      e.target.src = '../src/Image/btn_visibility_on_24px.png';
+      e.target.parentElement
+        .querySelector('input')
+        .setAttribute('type', 'text');
+    }
+
+    e.target.classList.toggle('eye');
+  });
+}
