@@ -77,7 +77,7 @@
             <p class="error-msg js-error-msg"></p>
           </label>
         </div>
-        <button type="button" disabled>회원가입</button>
+        <button id="signupButton" type="button" disabled>회원가입</button>
       </form>
       <section class="sns-login">
         <span>간편 로그인하기</span>
@@ -94,6 +94,12 @@
     <footer>
       <p>이미 회원이신가요? <a href="../login/">로그인</a></p>
     </footer>
+    <div class="modal off">
+      <div class="modal-content">
+        <p>사용 중인 이메일입니다.</p>
+        <div class="button">확인</div>
+      </div>
+    </div>
     <script type="module" src="../src/js/signup.js"></script>
   </body>
 </html>

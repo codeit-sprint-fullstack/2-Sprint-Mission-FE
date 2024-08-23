@@ -1,10 +1,13 @@
 import * as verification from './verification.js';
 
-const loginBtn = document.getElementById('loginField');
+console.log(verification);
+
+const signupBtn = document.getElementById('signupButton');
 const inputId = document.querySelector('.js-input__id');
 const inputNickName = document.querySelector('.js-input__nickname');
 const inputPw = document.querySelector('.js-input__pw');
 const inputCheckPw = document.querySelector('.js-input__checkpw');
+const modal = document.querySelector('.modal');
 
 let idChk = false;
 let nickNameChk = false;
@@ -29,7 +32,7 @@ inputId.addEventListener('focusout', (e) => {
     errorMsg.textContent = '';
   }
 
-  loginBtn.disabled = !(idChk && nickNameChk && pwChk && pwReChk);
+  signupBtn.disabled = !(idChk && nickNameChk && pwChk && pwReChk);
 });
 
 inputNickName.addEventListener('focusin', (e) =>
@@ -49,7 +52,7 @@ inputNickName.addEventListener('focusout', (e) => {
     errorMsg.textContent = '';
   }
 
-  loginBtn.disabled = !(idChk && nickNameChk && pwChk && pwReChk);
+  signupBtn.disabled = !(idChk && nickNameChk && pwChk && pwReChk);
 });
 
 inputPw.addEventListener('focusin', (e) => e.target.classList.remove('error'));
@@ -73,7 +76,7 @@ inputPw.addEventListener('focusout', (e) => {
     errorMsg.textContent = '';
   }
 
-  loginBtn.disabled = !(idChk && nickNameChk && pwChk && pwReChk);
+  signupBtn.disabled = !(idChk && nickNameChk && pwChk && pwReChk);
 });
 
 inputCheckPw.addEventListener('focusin', (e) =>
@@ -94,13 +97,17 @@ inputCheckPw.addEventListener('focusout', (e) => {
     errorMsg.textContent = '';
   }
 
-  loginBtn.disabled = !(idChk && nickNameChk && pwChk && pwReChk);
+  signupBtn.disabled = !(idChk && nickNameChk && pwChk && pwReChk);
 });
 
-loginBtn.addEventListener('click', (e) => {
-  if (verification.verifyPw(inputId.value, inputPw.value)) {
-    alert('사용 중인 이메일입니다');
+signupBtn.addEventListener('click', (e) => {
+  if (verification.isUser(inputId.value)) {
+    modal.classList.remove('off');
   } else {
     location.href = '../login';
   }
+});
+
+modal.querySelector('.button').addEventListener('click', (e) => {
+  modal.classList.add('off');
 });

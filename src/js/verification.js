@@ -14,8 +14,12 @@ function verifyId(email) {
 }
 
 function verifyPw(email, pw) {
-  // console.log(email, pw)
+  // console.log(email, pw);
   return USER_DATA.some((usr) => usr.email === email && usr.password === pw);
 }
 
-export { verifyId, verifyPw };
+function isUser(email) {
+  return USER_DATA.some((usr) => usr.email === email);
+}
+
+export { verifyId, verifyPw, isUser };

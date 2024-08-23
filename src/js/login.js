@@ -1,8 +1,9 @@
 import * as verification from './verification.js';
 
-const loginBtn = document.getElementById('loginField');
+const loginBtn = document.getElementById('loginButton');
 const inputId = document.querySelector('.js-input__id');
 const inputPw = document.querySelector('.js-input__pw');
+const modal = document.querySelector('.modal');
 
 let idChk = false;
 let pwChk = false;
@@ -54,8 +55,12 @@ inputPw.addEventListener('focusout', (e) => {
 
 loginBtn.addEventListener('click', (e) => {
   if (!verification.verifyPw(inputId.value, inputPw.value)) {
-    alert('비밀번호가 일치하지 않습니다.');
+    modal.classList.remove('off');
+  } else {
+    location.href = '../items';
   }
+});
 
-  location.href = '../items';
+modal.querySelector('.button').addEventListener('click', (e) => {
+  modal.classList.add('off');
 });
