@@ -220,3 +220,48 @@ a.icImg {
 .borderRed{
   outline: 0.1rem solid var(--error-color);
 }
+
+.modalContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000B2;
+}
+
+.modal {
+  display: flex;
+  position: relative;
+  padding: 10.8rem 19.45rem 12.3rem 19.45rem ;
+  background-color: var(--background-color-white);
+  max-width: 54rem;
+  border-radius: 0.8rem;
+}
+
+.modalMessage {
+font-size: var(--text-lg-16);
+font-weight: 500;
+line-height: 1.909rem;
+color: var(--secondary-color-gray800);
+}
+
+.modalButton {
+  width: 12rem;
+  height: 4.8rem;
+  position: absolute;
+  top: 174px;
+  left: 392px;
+  padding: 1.2rem 2.3rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: var(--primary-color-100);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.909rem;
+  color: var(--background-color-white);
+}
