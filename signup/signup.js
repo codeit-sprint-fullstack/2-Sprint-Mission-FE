@@ -1,5 +1,6 @@
-import {USER_DATA, formEl, labelEl, emailEl, passwordEl, emailNewP,
-  passwordToggle, focusoutEmail
+import {USER_DATA, formEl, labelEl, emailEl, passwordEl,
+  passwordToggle, focusoutEmail, modal, modalH1, modalInput,
+  closeModal
 } from '../module.js';
 
 /* getting element */;
@@ -95,7 +96,10 @@ function conditionalBtn(){
   const emailCheck = USER_DATA.some(e => emailEl.value === e.email);
 
   if(emailCheck) {
-    alert('사용 중인 이메일입니다.')
+    modal.style.display = 'block';
+    modalH1.textContent = '사용 중인 이메일입니다.';
+    modalInput.addEventListener('click', closeModal); 
+    //alert('사용 중인 이메일입니다.')
   } else {
     btnEl.addEventListener('click', loginLink);
   }

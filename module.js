@@ -51,6 +51,29 @@ function passwordToggle() {
   }
 }
 
+/* modal */
+const mainEl = document.querySelector('main');
+const modal = document.createElement('div');
+modal.classList.add('modal');
+const modalBox = document.createElement('div');
+modalBox.classList.add('modalBoxStyle');
+const modalH1 = document.createElement('h1');
+modalH1.classList.add('modalH1style');
+const modalInput = document.createElement('input');
+modalInput.classList.add('modalInputStyle');
+modalInput.setAttribute('type', 'button');
+modalInput.setAttribute('value', '확인')  
+mainEl.after(modal);
+modal.append(modalBox)
+modalBox.append(modalH1);
+modalBox.append(modalInput);
+
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+/* modul */
 export {USER_DATA, formEl, labelEl, emailLabelEl, emailEl, passwordEl, emailNewP,
-  validateEmail, passwordToggle, focusoutEmail
+  validateEmail, passwordToggle, focusoutEmail, modal, modalH1,
+  modalInput, closeModal
 };

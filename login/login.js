@@ -1,5 +1,5 @@
 import {USER_DATA, formEl, labelEl, emailEl, passwordEl, passwordToggle,
-  focusoutEmail
+  focusoutEmail, modal, modalH1, modalInput, closeModal
 } from '../module.js';
 
 /* getting element */
@@ -16,7 +16,6 @@ passwordLabelEl.append(passwordNewP);
 btnEl.setAttribute('disabled', true);
 
 /* event handler */
-
 
 function focusoutPassword() {
   if(passwordEl.value === "") {
@@ -56,13 +55,20 @@ function conditionalBtn() {
   const passwordCheck = USER_DATA.some(e => passwordEl.value === e.password);
   
   if(!emailCheck){
-    alert('이메일이 존재하지 않습니다.');
+    //alert('이메일이 존재하지 않습니다.');
+    modal.style.display = 'block';
+    modalH1.textContent = '이메일이 존재하지 않습니다.';
+    modalInput.addEventListener('click', closeModal);
   } else if(emailCheck && !passwordCheck){
-    alert('비밀번호가 일치하지 않습니다.');
+    //alert('비밀번호가 일치하지 않습니다.');
+    modal.style.display = 'block';
+    modalH1.textContent = '비밀번호가 일치하지 않습니다.';
+    modalInput.addEventListener('click', closeModal);
   } else {
     btnEl.addEventListener('click', clickLink);
   } 
 }
+
 /* event handling */ 
 emailEl.addEventListener('focusout', focusoutEmail);
 passwordEl.addEventListener('focusout', focusoutPassword);
