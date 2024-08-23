@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>    
 <title>판다 마켓</title>
     <meta charset="utf-8">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
-  <link rel="stylesheet" href="login.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="login.css">
+
+
 
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-34MMG84YLW"></script>
@@ -20,57 +22,44 @@
 </head>
 <body>
 <header>
-  <div class="pandalogo">
-    <a href="/">
-      <img  src="../판다마켓 그림/Property 1=lg.png">
-    </a>
-  </div>
-  <form class="form">
-    <div>
+ <a href="/"><img class="pandalogo" src="../판다마켓 그림/Property 1=lg.png"></a>
+</header>
+  
+<form class="form">
+  <div class="intervalBox">
     <label for="username">이메일</label>
     <input  class='input' id="username" name="user" type="email" placeholder="이메일을 입력해주세요">
-       <div id="error_email"></div>
-    </div>
-  
-    
-    
-      <label for="password">비밀번호</label>
-      <div id="password_box">
+    <div id="error_email"></div>
+  </div>
+  <div class="intervalBox">  
+  <label for="password">비밀번호</label>
+  <div id="password_box">
     <input class="input" id="password" name="userpsw" type="password" iconUrl="판다마켓 그림/Input/btn_visibility_on_24px.svg" placeholder="비밀번호를 입력해주세요">
     <img class="eyes" src="../판다마켓 그림/btn_visibility_on_24px.png">
     <img class="open_eyes hide" src="../판다마켓 그림/btn_visibility_on_24px.svg">
   </div>
-    <div id="error_pass"></div>
+  <div id="error_pass"></div>
+</div>
     <button class="button" type="button">
       로그인
     </button>
 <div id="simplelogin">
   <p class="sim_text" >간편 로그인하기</p>
   <div id="link_img">
-  <a href="https://www.google.com/">
-    <img src="../판다마켓 그림/google.png">
-  </a>
-  <a href="https://www.kakaocorp.com/page/">
-    <img src="../판다마켓 그림/kakaotalk.png">
-  </a>
+  <a href="https://www.google.com/"><img src="../판다마켓 그림/google.png"></a>
+  <a href="https://www.kakaocorp.com/page/"><img src="../판다마켓 그림/kakaotalk.png"></a>
   </div>
 </div>
 <p class="signup">판다마켓이 처음이신가요? <a id="sign" href="../sign/signup.html">회원가입</a></p>
+  
+</form>
 
-
-
-  </form>
-
-</header>
 <div class="modal">
   <div class="modal_popup">
       <p class="mdFont"> 비밀번호가 일치하지 않습니다.</p>
       <button type="button" class="close_btn">확인</button>
+  </div>
 </div>
-
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="login.js"></script>
-
-
 </html>

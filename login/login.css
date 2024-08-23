@@ -1,9 +1,6 @@
 *{
-    box-sizing: border-box;
-    font-family: Pretendard, sans-serif;
-}
-body{
-  margin-top: 3.75rem;
+  box-sizing: border-box;
+  font-family: Pretendard, sans-serif;
 }
 :root{
   --maincolor : #1f2937;
@@ -14,46 +11,65 @@ body{
   --whiteblue:#E6F2FF;
   --blue: #3692FF;
 }
-
-img {
-    margin:auto;
-    display: block;
+html{
+  font-size: 62.5%;
 }
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin:0;
+}
+
+header{
+  margin: 6rem 0 4rem 0;
+  cursor: pointer;
+}
+
 .pandalogo{
-    width: 24.75rem; 
-    height: 8.25rem;
-    margin:auto;
-    display: block;
+    width: 39.6rem; 
+    height: 13.2rem;
 }
 
 form {
-    margin: 2.5rem auto;
-    width: 40rem;
+    gap:2.4rem;
+    width:100%;
+    max-width: 64rem;
+    height: 43rem;
     
   }
-  
+  .intervalBox{
+    display: flex;
+    flex-direction: column;
+  }
+
   label {
     color: var(--maincolor);
-    display: block;
-    margin: 1rem 0 ;
-    font-size: 1.125rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    line-height: 1.3425rem;
+    line-height: 2.148rem;
+    text-align: left;
+    margin:1.6rem 0;
+
   }
   
   input {
     border: none;
     background-color: var(--coolgrey);
-    border-radius: 12px;
+    border-radius: 1.2rem;
     color: var(--maincolor);
-    display: block;
-    font-size: 1rem;
+    font-size: 1.6rem;
     font-weight: 400;
-    line-height: 1.5rem;
-    margin: 1rem 0;
-    padding: 1rem 1.5rem;
+    line-height: 2.4rem;
+    
     width: 100%;
+    height: 5.6rem;
+    padding: 1.545rem 18.6rem 1.738rem 2.4rem;
+    
+    
   }
+  
   input:focus{
     outline: 1px solid var(--blue);
   }
@@ -65,25 +81,26 @@ form {
     border: none;
     color: var(--white);
     display: block;
-    font-size: 1.25rem;
+    font-size: 2.0rem;
     font-weight: 600;
-    margin: 1.5rem 0;
-    padding: 1rem;
+    line-height: 2.4rem;
+    margin: 1.6rem 0;
+    height: 5.6rem;
     width: 100%;
-    border-radius: 40px;
+    border-radius: 4rem;
   }
   #password_box{
     position: relative;
- 
+    display: flex;
+    align-items: center;
+
   }
 
   .eyes, .open_eyes{
     position: absolute;
-    width: 1.5rem;
-    height: 1.5rem;
-    right: 1.5rem;
-    top:1rem;
-    bottom: 1rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    right: 2.4rem;
   
 }
 
@@ -92,30 +109,30 @@ form {
     justify-content: space-between;
     align-items: center;
     background-color: var(--whiteblue);
-    width: 40rem;
-    height: 4.625rem;
-    border-radius: 8px;
-    margin: 1.5rem 0;
+    width: 100%;
+    height: 7.4rem;
+    border-radius: 0.8px;
+    margin: 2.4rem 0;
 
 }
 #link_img{
     display: flex;
-    gap: 1rem;
-    margin-right: 1.4375rem;
+    gap: 1.6rem;
+    margin-right: 2.3rem;
 }
 
 .sim_text{
-    font-size: 1rem;
+    font-size: 1.6rem;
     font-weight: 500;
-    line-height: 1.5rem;
+    line-height: 2.4rem;
     color:var(--maincolor);
-    margin-left: 1.4375rem;
+    margin-left: 2.3rem;
 }
 .signup{
     text-align: center;
-    font-size: 0.9375rem;
+    font-size: 1.5rem;
     font-weight: 500;
-    line-height: 1.11875rem;
+    line-height: 1.79rem;
     color: var(--maincolor);
 }
 #sign{
@@ -132,15 +149,12 @@ form {
 
   #error_email, #error_pass{
     color: #f74747;
-    font-size: 15px;
-    line-height: 17.9px;
+    font-size: 1.5rem;
+    line-height: 1.79rem;
     font-weight: 600;
-    position: relative;
+    margin-top:0.8rem;
+    
   }
-
-
-
-
 
   .modal {
     /*팝업 배경*/
@@ -149,48 +163,115 @@ form {
         top:0;
         left: 0;
         width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        background: rgba(0,0,0,0.7);
+        height: 100%;
+         background: rgba(0,0,0,0.7);
     }
     .modal .modal_popup {
       /*팝업*/
           position: absolute;
+          top:50%;
+          background: #ffffff;
+          border-radius: 0.8rem;
+          width: 54rem;
+          height: 25rem;
+          display: flex;
+          transform: translate(-50%, -50%);
+          justify-content:center;
+          align-items:center;    
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -50%);
-          padding: 20px;
-          background: #ffffff;
-          border-radius: 20px;
-        
+          
+          
           
       }
-      .modal .modal_popup .close_btn {
+      .close_btn {
         display: block;
-        padding: 10px 20px;
+        /* padding: 1rem 2rem; */
         border: none;
-        border-radius: 8px;
+        border-radius: 0.8rem;
         color: #fff;
         cursor: pointer;
-        transition: box-shadow 0.2s;
-    }
-    .close_btn{
-      width: 120px;
-      height: 48px;
-      background: #3692FF;
-      position: absolute;
-      bottom: 28px;
-      right: 28px;
-    }
-    .modal_popup{
-      display: flex;
-      justify-content:center;
-      align-items:center;     
-      width: 540px;
-      height: 250px;
+        width: 12rem;
+        height: 4.8rem;
+        background: #3692FF;
+        position: absolute;
+        bottom: 2.8rem;
+        right: 2.8rem;
     }
     .mdFont{
-      font-size: 1rem;
+      font-size: 1.6rem;
       font-weight: 500;
-      line-height: 19.9px;
+      line-height: 1.909rem;
     }
+/* tablet */
+@media (743px < width< 1200px){
+  header{
+    margin: 4.8rem 0 4rem 0;
+    
+  }
+}
+
+/* mobile */
+@media (374px < width < 744px){
+
+  header{
+    margin: 2.4rem 1.6rem;
+      }
+
+  .pandalogo{
+    width: 19.8rem; 
+    height: 6.6rem;
+  }
+  body{
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .modal .modal_popup {
+    /*팝업*/
+    position: absolute;
+   flex-direction: column;
+    width: 32.7rem;
+    height: 22rem; 
+    /*
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content:center;
+    align-items:center;     
+    */
+
+    }
+   
+  .modal .modal_popup .close_btn{
+    display: block;
+      /* padding: 1rem 2rem; */
+      border: none;
+      border-radius: 0.8rem;
+      color: #fff;
+      cursor: pointer;
+      width: 12rem;
+      height: 4.8rem;
+      background: #3692FF;
+      position:absolute;
+      bottom:2.3rem;
+      right:auto;
+      /* bottom:2.3rem;
+      right:10.3rem; */
+    /* margin: 4.9rem 0 2.3rem 0 ; */
+    
+    
+      
+  }
+  .mdFont{
+    margin-bottom: 4.9rem;
+  }
+  
+  }
+
+
+

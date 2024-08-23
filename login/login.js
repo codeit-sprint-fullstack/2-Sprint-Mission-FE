@@ -56,7 +56,7 @@ password.addEventListener('focus' , function(){
 
 // 로그인 버튼 활성화
 
-function changebutton(){
+function changeButton(){
 if (pattern.test(username.value) && password.value.length >= 8  ){
   button.disabled =false;//활성화
   button.style.background = '#3692ff'
@@ -67,7 +67,7 @@ if (pattern.test(username.value) && password.value.length >= 8  ){
 }
 }
 
-input.addEventListener('keyup',changebutton);
+input.addEventListener('keyup',changeButton);
 
 
 //로그인 버튼 클릭시 이동
