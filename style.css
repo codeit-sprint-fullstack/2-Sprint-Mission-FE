@@ -115,7 +115,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-bottom: 60px;
+    margin: 0 60px;
 }
 
 .view {
@@ -282,7 +282,7 @@ header {
     gap: 12px;
 }
 
-#facebook, #x, #youtube, #id {
+.sns-icon {
     cursor: pointer;
 }
 
@@ -290,76 +290,117 @@ header {
 @media (min-width: 375px) and (max-width: 743px) {
     body {
         max-width: 100%;
-        padding: 0 32px;
-     }
+        font-size: 16px;
+    }
 
-     .gnb-area{
+    .gnb-area{
         padding: 0 16px;
-     }
+    }
  
-     .kv, .bottom {
-         height: 771px;
-     }
+    .kv, .bottom {
+         height: 100%;
+    }
  
-     .bottom-container, .kv-container {
+    .bottom-container, .kv-container {
          width: 100%;
          display: flex;
          justify-content: space-between;
          align-items: center;
          flex-direction: column-reverse;
-     }
- 
-     .kv-img {
-         width: 996px;
-         height: 447px;
+    }
+
+    .kv-text {
+         margin: 3rem auto;
+    }
+
+    .bottom-text {
+        margin: 5rem auto 8rem;
+   }
+     
+    .headline-heading#kv-head, .headline-heading#bottom-head  {
+         text-align: center;
+         font-size: 32px;
+         line-height: 44.8px;
+    }
+
+    .kv-img {
+         width: 100%;
+         height: 100%;
          top: 324px;
          left: -126px;
          gap: 0px;
-     }
+    }
  
-     .body-image {
-         width: 696px;
-         height: 524px;
-         top: 324px;
-         left: -126px;
-         gap: 0px;
-     }
+    .headline-heading{
+         font-size: 24px;
+         line-height: 33.6px;
+    }
+
+    .headline-heading br{
+         display: none;
+    }
+
+    .headline-heading#kv-head br, .headline-heading#bottom-head br {
+        display: inline;
+    }
+
+    .headline-description{
+         font-size: 16px;
+         line-height: 19.2px;
+         margin-top: 4px;
+    }
+
+    .bluetag {
+         font-size: 16px;
+         margin-bottom: 4px;
+    }
+
+    .body-image {
+         width: 100%;
+         height: 100%;
+         top: 20.25rem;
+         left: -7.88rem;
+         gap: 0rem;
+    }
+
+    .body-text {
+         margin-top: 4px;
+    }
+
+    .section {
+         display: block;
+         padding: 2.5rem 1rem;
+    }
+
+    .section-reverse{
+         display: block;
+         padding: 1.5rem 1rem;
+         text-align: right;
+    }
  
      .hot-item-section, .search-section, .register-section {
-         position: static;
+         height: 100%;
          display: flex;
          align-items: center;
-         height: 900px;
-     }
+    }
  
      .hot-item, .search, .register {
-         margin: 0 auto;
          display: block;
-         position: static;
+         top: 0rem;
          width: auto; /* none 대신 auto 사용 */
          height: auto; /* 100% 대신 auto 사용 (부모 요소의 크기에 따라 자동 조정) */
-         top: 138px;
          background-color: transparent; /* none 대신 transparent 사용 */
-     }
- 
-     .body-text{
-         margin-top: 24px;
-     }
+    }
  
      .bottom-img{
-         width: 996px;
-         height: 540px;
+         width: 100%;
+         height: 100%;
      }
  
-     .footer-copyright {
-         margin-left: 16px;
-     }
- 
-     .social {
-         margin-right: 16px;
-     }
- 
- }
+    .footer-area {
+        padding: 0 16px;
+    }
+}
  
  @media (min-width: 744px) and (max-width: 1199px) {
     body {
@@ -367,11 +408,16 @@ header {
     }
 
     .gnb-area{
+        width: 100%;
         padding: 0 42px;
      }
 
     .kv, .bottom {
-        height: 771px;
+        height: 100%;
+    }
+
+    .headline-heading{
+        font-size: 32px;
     }
 
     .bottom-container, .kv-container {
@@ -382,27 +428,70 @@ header {
         flex-direction: column-reverse;
     }
 
+    .kv-text, .bottom-text {
+         margin: 100px auto 150px;
+    }
+
+    .headline-heading#kv-head, .headline-heading#bottom-head  {
+        text-align: center;
+        font-size: 40px;
+        line-height: 56px;
+        width: 100%;
+        white-space: nowrap; /* 한 줄로 유지 */
+    }
+
     .kv-img {
         width: 996px;
         height: 447px;
-        top: 324px;
-        left: -126px;
-        gap: 0px;
+    }
+
+    .headline-heading{
+        font-size: 32px;
+        line-height: 44.8px;
+    }
+
+    .headline-heading br{
+        display: none;
+    }
+
+    .headline-heading#bottom-head br{
+        display: inline;
+    }
+
+    .headline-description{
+         font-size: 18px;
+         line-height: 21.6px;
+         margin-top: 18px;
+    }
+
+    .bluetag {
+         font-size: 18px;
+         margin-bottom: 16px;
     }
 
     .body-image {
         width: 696px;
         height: 524px;
-        top: 324px;
-        left: -126px;
-        gap: 0px;
+        border-radius: 14.2px;
+    }
+
+    .body-text{
+        margin-top: 12px;
+    }
+
+    .section {
+        padding: 50px 24px;
+    }
+
+    .section-reverse{
+        padding: 24px 24px;
+        text-align: right;
     }
 
     .hot-item-section, .search-section, .register-section {
-        position: static;
+        height: 100%;
         display: flex;
         align-items: center;
-        height: 900px;
     }
 
     .hot-item, .search, .register {
@@ -415,10 +504,6 @@ header {
         background-color: transparent; /* none 대신 transparent 사용 */
     }
 
-    .body-text{
-        margin-top: 24px;
-    }
-
     .bottom-img{
         width: 996px;
         height: 540px;
@@ -428,10 +513,10 @@ header {
         padding: 0 42px;
     }
 
- }
+}
  
  @media (min-width: 1200px) {
     body {
         max-width: 100%;
     }
- }
+}
