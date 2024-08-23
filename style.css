@@ -29,7 +29,8 @@ header {
 }
 
 .gnb-area{
-    width: 1520px;
+    width: 1120px;
+    padding: 0 200px;
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -39,7 +40,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 200px;
 }
 
 .logo{
@@ -64,7 +64,6 @@ header {
     height: 42px;
     border: none;
     border-radius: 10px;
-    margin-right: 200px;
     color: var(--cool-gray-100);
     font-weight: 600;
     font-size: 16px;
@@ -289,10 +288,16 @@ header {
 @media (min-width: 375px) and (max-width: 743px) {
     body {
         max-width: 100%;
+        padding: 0 32px;
      }
-     .logo-and-menus, .login {
+
+     .gnb-area{
+        padding: 0 16px;
+     }
+
+     /* .logo-and-menus, .login {
          margin: 16px
-     }
+     } */
  
      .kv, .bottom {
          height: 771px;
@@ -362,9 +367,10 @@ header {
     body {
        max-width: 100%;
     }
-    .logo-and-menus, .login {
-        margin: 24px
-    }
+
+    .gnb-area{
+        padding: 0 42px;
+     }
 
     .kv, .bottom {
         height: 771px;
