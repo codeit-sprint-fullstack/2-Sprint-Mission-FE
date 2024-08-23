@@ -23,28 +23,40 @@
         <section class="email">
           <label class="emailText">이메일</label>
           <input class="emailInput" name="emailInput" placeholder="이메일을 입력해주세요" style="padding-left: 16px;">
+          <span class="emailError"></span>
         </section>
         <!-- username -->
         <section class="username">
-            <label class="usernameText">이메일</label>
+            <label class="usernameText">닉네임</label>
             <input class="usernameInput" name="usernameInput" placeholder="닉네임을 입력해주세요" style="padding-left: 16px;">
           </section>
         <!-- password -->
         <section class="password">
           <label class="passwordText">비밀번호</label>
           <input class="passwordInput" name="passwordInput" placeholder="비밀번호를 입력해주세요" style="padding-left: 16px;" type="password">
+          <span class="passwordError"></span>
         </section>
         <!-- passwordRepeat -->
         <section class="passwordRepeat">
-            <label class="passwordRepeatText">비밀번호</label>
+            <label class="passwordRepeatText">비밀번호 확인</label>
             <input class="passwordRepeatInput" name="passwordRepeatInput" placeholder="비밀번호를 다시 한 번 입력해주세요" style="padding-left: 16px;" type="password">
+            <span class="passwordRepeatError"></span>
           </section>
         <!-- loginButton -->
-        <section class="signUpButton">
-            <button>회원가입</button>
+        <section>
+            <button  class="signUpButton">회원가입</button>
         </section>
       </form>
     </main>
+    <!--alert-->
+    <div class="customAlert">
+      <div class="modalContent">
+        <div class="alertMessage">
+          <p class="alertMessage">사용 중인 이메일입니다.</p>
+        </div>
+        <button class="alertButton">확인</button>
+      </div>
+    </div>
     <!-- extraHelp -->
     <footer>
         <!-- easyLogin -->
@@ -73,5 +85,7 @@
         </div>
         </section>
     </footer>
+    <!--js-->
+    <script src="js/signUp.js"></script>
   </body>
 </html>
