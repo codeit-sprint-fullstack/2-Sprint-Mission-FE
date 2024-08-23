@@ -236,7 +236,7 @@ header {
     align-self: flex-end;
 }
 
-.footer {
+.footer-background {
     position: relative;
     display: flex;
     justify-content: center;
@@ -247,7 +247,8 @@ header {
 }
 
 .footer-area{
-    width: 1520px;
+    width: 1120px;
+    padding: 0 200px;
     height: 20px;
     display:flex;
     justify-content: space-between;
@@ -258,7 +259,6 @@ header {
     color: var(--cool-gray-400);
     font-weight: 400;
     font-size: 16px;
-    margin-left: 200px;
 }
 
 .externalpages {
@@ -281,7 +281,6 @@ header {
     display: flex;
     justify-content: space-around;
     gap: 12px;
-    margin-right: 200px;
 }
 
 /*반응형 웹 만들어보기*/
@@ -294,10 +293,6 @@ header {
      .gnb-area{
         padding: 0 16px;
      }
-
-     /* .logo-and-menus, .login {
-         margin: 16px
-     } */
  
      .kv, .bottom {
          height: 771px;
@@ -426,12 +421,8 @@ header {
         height: 540px;
     }
 
-    .footer-copyright {
-        margin-left: 24px;
-    }
-
-    .social {
-        margin-right: 24px;
+    .footer-area {
+        padding: 0 42px;
     }
 
  }
