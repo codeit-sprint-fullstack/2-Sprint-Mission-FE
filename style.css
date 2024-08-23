@@ -293,8 +293,23 @@ header {
         font-size: 16px;
     }
 
-    .gnb-area{
+    .gnb-area {
+        width: 100%;
         padding: 0 16px;
+    }
+
+    .logo-and-menus{
+        gap: 10px;
+    }
+
+    .logo {
+        width: 81px;
+        height: 40px;
+        margin-right: 0;
+    }
+
+    .sub-menu {
+        padding: 0;
     }
  
     .kv, .bottom {
@@ -433,6 +448,8 @@ header {
     }
 
     .headline-heading#kv-head, .headline-heading#bottom-head  {
+        display: flex;
+        justify-content: center;
         text-align: center;
         font-size: 40px;
         line-height: 56px;
