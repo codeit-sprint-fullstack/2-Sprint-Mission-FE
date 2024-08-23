@@ -277,10 +277,13 @@ header {
 }
 
 .social {
-    cursor: pointer;
     display: flex;
     justify-content: space-around;
     gap: 12px;
+}
+
+#facebook, #x, #youtube, #id {
+    cursor: pointer;
 }
 
 /*반응형 웹 만들어보기*/
