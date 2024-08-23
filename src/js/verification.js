@@ -15,7 +15,7 @@ function verifyId(email) {
 
 function verifyPw(email, pw) {
   // console.log(email, pw)
-  return USER_DATA.some(usr.email === email && usr.password === pw);
+  return USER_DATA.some((usr) => usr.email === email && usr.password === pw);
 }
 
 export { verifyId, verifyPw };

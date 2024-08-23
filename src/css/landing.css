@@ -1,360 +1,109 @@
 @import "header.css";
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Pretendard Variable";
-    /* margin: 0 auto; */
-}
-
-/* 1920픽셀 최대치를 만들기 위해 */
-.section-wrap {
-    margin: 0 auto;
-    max-width: 1920px;
-    height: 100%;
-    padding: 0 200px;
+header {
+  padding: 0 20rem;
+  height: 7rem;
 }
 
 h1 {
-    /* font-size: 40px; */
-    font-size: 2.5rem;
-    font-weight: 700;
-    /* line-height: 56px; */
-    line-height: 3.5rem;
+  font-size: 4rem;
+  line-height: 5.6rem;
+  font-weight: 700;
 }
 
-header,
-main,
-footer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+#pandaLogo {
+  width: 153px;
 }
 
-/* 헤더 부분 */
-header {
-    position: sticky;
-    background-color: #ffffff;
-    top: 0;
-    height: 70px;
-    z-index: 1;
+#loginButton {
+  font-weight: 600;
+  border-radius: 0.8rem;
+  padding: 1.1rem 4.3rem;
+  line-height: 2.6rem;
 }
 
-header .section-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.banner {
+  background-color: #cfe5ff;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: 80% bottom;
+  background-size: 55%;
+  height: 54rem;
 }
 
-header button {
-    background: url('../../src/image/btn_small_48.png') no-repeat;
-    /* width: 128px; */
-    width: 8rem;
-    /* height: 48px; */
-    height: 3rem;
+#topBanner {
+  background-image: url("../Image/Img_home_top.png");
 }
 
-/* 메인 부분 */
-main {
-    color: var(--gray-700);
+.section-wrap,
+.cards {
+  max-width: 151rem;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.top-section,
-.bottom-section {
-    /* height: 540px; */
-    height: 33.75rem;
-    background-color: #CFE5FF;
-}
-
-.top-section .section-wrap,
-.bottom-section .section-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: end;
-    overflow: hidden;
-    gap: 0;
-}
-
-.top-section .detail,
-.bottom-section .detail {
-    /* margin: 40px auto; */
-    margin: 2.5rem auto;
-}
-
-.top-section .detail button {
-    /* width: 357px; */
-    /* height: 56px; */
-    /* font-size: 20px; */
-    /* line-height: 32px; */
-    width: 22.3125rem;
-    font-size: 1.25rem;
-    line-height: 2rem;
-    font-weight: 600;
-    height: 3.5rem;
-    background-color: var(--Primary-100);
-    border: 0;
-    border-radius: 40px;
-    color:var(--gray-50);
-    /* margin: 32px 0 60px; */
-    margin: 2rem 0 3.75rem;
-}
-
-.top-section .detail button:hover {
-    cursor: pointer;
-}
-
-/* 중앙의 카드형 부분 */
-.hot-item,
-.search,
-.register {
-    /* height: 720px; */
-    height: 45rem;
-}
-
-.hot-item .section-wrap,
-.search .section-wrap,
-.register .section-wrap {
-    display: flex;
-    align-items: center;
-}
-
-.search .section-wrap,
-.search .card {
-    flex-direction: row-reverse;
-    text-align: right;
+.long-button {
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 100rem;
+  padding: 1.6rem 12.4rem;
+  margin-top: 3.2rem;
 }
 
 .card {
-    /* background-color: #fcfcfc; */
-    display: flex;
-    align-items: center;
+  padding: 13.8rem 0;
+  display: flex;
+  align-items: center;
+  gap: 5%;
 }
 
-.card-detail {
-    display: flex;
-    flex-direction: column;
-    /* margin: 103px 29px 103px 64px; */
-    margin: 6.4375rem 1.8125rem 6.4375rem 4rem;
+.card:nth-child(2) {
+  text-align: right;
 }
 
-.search .card-detail {
-    /* margin: 103px 64px 103px 29px; */
-    margin: 6.4375rem 4rem 6.4375rem 1.8125rem;
+.card-text {
+  flex: 1;
 }
 
-.card-detail p {
-    /* font-size: 24px; */
-    font-size: 1.5rem;
-    font-weight: 500;
-    /* line-height: 32px; */
-    line-height: 2rem;
+.card-text h2 {
+  color: var(--Primary-100);
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
 }
 
-.card__name {
-    /* font-size: 18px; */
-    font-size: 1.125rem;
-    font-weight: 700;
-    /* line-height: 26px; */
-    line-height: 1.625rem;
-    color: var(--Primary-100);
+.card-text p {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 3.2rem;
+  margin-top: 2.4rem;
 }
 
-.bottom-section .detail {
-    /* margin: 112.5px 69px 112.5px 0; */
-    margin: 7rem 4.3125rem 7rem 0;
+#bottomBanner {
+  background-image: url("../Image/Img_home_bottom.png");
 }
 
-/* 푸터 부분 */
 footer {
-    /* height: 160px; */
-    height: 10rem;
-    background-color: var(--gray-900);
-    /* padding-top: 32px; */
-    padding-top: 2rem;
+  height: 16rem;
+  background-color: var(--gray-900);
+  padding: 3.2rem 20rem 10.8rem 20rem;
+  color: var(--gray-400);
 }
 
-footer .section-wrap,
-footer .footer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.footer-link {
+  display: flex;
+  gap: 3rem;
+  color: var(--gray-200);
 }
 
-footer p {
-    /* font-size: 16px; */
-    font-size: 1rem;
-    font-weight: 400;
-    /* line-height: 19.09px; */
-    line-height: 1.2rem;
-    color: var(--gray-400);
-    margin : 0;
+.sns-link {
+  display: flex;
+  gap: 1.2rem;
 }
 
-footer .documents {
-    display: flex;
-    justify-content: space-between;
-    /* gap: 30px; */
-    gap: 1.875rem;
-}
-
-footer .documents a {
-    color: var(--gray-200);
-    text-decoration: none;
-}
-
-footer .sns {
-    display: flex;
-    justify-content: space-between;
-    /* gap: 12px; */
-    gap: 0.75rem
-}
-
-/* Tablet */
-@media (max-width: 1199px) { 
-    .section-wrap {
-        padding: 0 24px;
-    }
-    
-    /* 메인 부분 */
-    .top-section,
-    .bottom-section {
-        /* height: 771px; */
-        height: 48.1875rem;
-    }
-    
-    .top-section .section-wrap,
-    .bottom-section .section-wrap {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-    }
-
-    .top-section .detail {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    /* 중앙의 카드형 부분 */
-    .hot-item,
-    .search,
-    .register {
-        /* height: 758px; */
-        height: 47.375rem;
-    }
-    
-    .hot-item .section-wrap,
-    .search .section-wrap,
-    .register .section-wrap {
-        margin: 40px 24px;
-    }
-    
-    .search .section-wrap,
-    .search .card {
-        flex-direction: column;
-        text-align: right;
-    }
-    
-    .card {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card-detail {
-        display: flex;
-        flex-direction: column;
-        /* margin: 103px 29px 103px 64px; */
-        margin: 6.4375rem 1.8125rem 6.4375rem 4rem;
-    }
-    
-    .search .card-detail {
-        /* margin: 103px 64px 103px 29px; */
-        margin: 6.4375rem 4rem 6.4375rem 1.8125rem;
-    }
-    
-    .card-detail p {
-        /* font-size: 24px; */
-        font-size: 1.5rem;
-        font-weight: 500;
-        /* line-height: 32px; */
-        line-height: 2rem;
-    }
-    
-    .card__name {
-        /* font-size: 18px; */
-        font-size: 1.125rem;
-        font-weight: 700;
-        /* line-height: 26px; */
-        line-height: 1.625rem;
-        color: var(--Primary-100);
-    }
-    
-    .bottom-section .detail {
-        /* margin: 112.5px 69px 112.5px 0; */
-        margin: 7rem 4.3125rem 7rem 0;
-    }
-    
-    /* 푸터 부분 */
-    footer {
-        /* height: 160px; */
-        height: 10rem;
-        background-color: var(--gray-900);
-        /* padding-top: 32px; */
-        padding-top: 2rem;
-    }
-    
-    footer .section-wrap,
-    footer .footer {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-    
-    footer p {
-        /* font-size: 16px; */
-        font-size: 1rem;
-        font-weight: 400;
-        /* line-height: 19.09px; */
-        line-height: 1.2rem;
-        color: var(--gray-400);
-        margin : 0;
-    }
-    
-    footer .documents {
-        display: flex;
-        justify-content: space-between;
-        /* gap: 30px; */
-        gap: 1.875rem;
-    }
-    
-    footer .documents a {
-        color: var(--gray-200);
-        text-decoration: none;
-    }
-    
-    footer .sns {
-        display: flex;
-        justify-content: space-between;
-        /* gap: 12px; */
-        gap: 0.75rem
-    }
-}
-
-/* Mobile */
-@media (max-width: 743px) { 
-    .section-wrap {
-        padding: 0 16px;
-    }
-
-    .top-section,
-    .bottom-section {
-        /* height: 540px; */
-        height: 33.75rem;
-    }
+.sns-link img {
+  width: 2rem;
+  height: 2rem;
 }

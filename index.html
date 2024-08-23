@@ -1,143 +1,146 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="description" content="일상에서 모든 물건을 거래해보세요">
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="판다마켓">
-  <meta name="twitter:description" content="일상에서 모든 물건을 거래해보세요">
+    <meta name="description" content="일상에서 모든 물건을 거래해보세요" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="판다마켓" />
+    <meta
+      name="twitter:description"
+      content="일상에서 모든 물건을 거래해보세요"
+    />
 
-  <!-- Open Graph general (Facebook, Pinterest)-->
-  <meta property="og:title" content="판다마켓">
-  <meta property="og:description" content="일상에서 모든 물건을 거래해보세요">
-  <meta property="og:url" content="https://sprintmission1kty.netlify.app">
-  <meta property="og:site_name" content="sprintmission1kty.netlify.app">
-  <meta property="og:type" content="website">
+    <!-- Open Graph general (Facebook, Pinterest)-->
+    <meta property="og:title" content="판다마켓" />
+    <meta
+      property="og:description"
+      content="일상에서 모든 물건을 거래해보세요"
+    />
+    <meta property="og:url" content="https://sprintmission1kty.netlify.app" />
+    <meta property="og:site_name" content="sprintmission1kty.netlify.app" />
+    <meta property="og:type" content="website" />
 
-  <link rel="stylesheet" href="src/css/landing.css">
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKYQ6RPZRH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <link rel="stylesheet" href="src/css/landing.css" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-WKYQ6RPZRH"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'G-WKYQ6RPZRH');
-  </script>
-  <title>판다마켓</title>
-</head>
-<body>
-  <header>
-    <div class="section-wrap">
-      <a href=""><img src="src/image/Property 1=md.png" alt="판다마켓 로고"></a>
-      <a href="login"><img src="src/image/btn_small_48.png" alt="로그인 버튼"></a>
-    </div>
-  </header>
-  <main>
-    <section class="top-section">
-      <div class="section-wrap">
-        <div class="detail">
-          <h1>
-            일상의 모든 물건을<br>
+      gtag("config", "G-WKYQ6RPZRH");
+    </script>
+    <title>판다마켓</title>
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <img id="pandaLogo" src="src/Image/logo.png" alt="판다마켓 로고" />
+      </a>
+      <a href="./login/" id="loginButton" class="button">로그인</a>
+    </header>
+
+    <main>
+      <section id="topBanner" class="banner">
+        <div class="section-wrap">
+          <h1 id="topBannerTitle">
+            일상의 모든 물건을<br />
             거래해 보세요
           </h1>
-          <button type="button" onclick="location.href='items'">구경하러 가기</button>
+          <a href="./items/" class="button long-button">구경하러 가기</a>
         </div>
-        <img src="src/image/Img_home_top.png" alt="랜딩 페이지 상단 이미지">
-      </div>
-    </section>
-
-    <section class="hot-item">
-      <div class="section-wrap">
+      </section>
+      <section class="cards">
         <div class="card">
-          <img src="src/image/Img_home_01.png" alt="Hot Item">
-          <div class="card-detail">
-            <p class="card__name">Hot Item</p>
+          <img src="src/Image/Img_home_01.png" alt="Hot Item" />
+          <div class="card-text">
+            <h2>Hot item</h2>
             <h1>
-              인기 상품을<br>
+              인기 상품을<br />
               확인해 보세요
             </h1>
             <p>
-              가장 HOT한 중고거래 물품을<br>
+              가장 HOT한 중고거래 물품을<br />
               판다 마켓에서 확인해 보세요
             </p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="search">
-      <div class="section-wrap">
         <div class="card">
-          <img src="src/image/Img_home_02.png" alt="Search">
-          <div class="card-detail">
-            <p class="card__name">Search</p>
+          <div class="card-text">
+            <h2>Search</h2>
             <h1>
-              구매를 원하는<br>
+              구매를 원하는<br />
               상품을 검색하세요
             </h1>
             <p>
-              구매하고 싶은 물품은 검색해서<br>
+              구매하고 싶은 물품은 검색해서<br />
               쉽게 찾아보세요
             </p>
           </div>
+          <img src="src/Image/Img_home_02.png" alt="Search" />
         </div>
-      </div>
-    </section>
-
-    <section class="register">
-      <div class="section-wrap">
         <div class="card">
-          <img src="src/image/Img_home_03.png" alt="Register">
-          <div class="card-detail">
-            <p class="card__name">Register</p>
+          <img src="src/Image/Img_home_03.png" alt="Register" />
+          <div class="card-text">
+            <h2>Register</h2>
             <h1>
-              판매를 원하는<br>
+              판매를 원하는<br />
               상품을 등록하세요
             </h1>
             <p>
-              어떤 물건이든 판매하고 싶은 상품을<br>
+              어떤 물건이든 판매하고 싶은 상품을<br />
               쉽게 등록하세요
             </p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="bottom-section">
-      <div class="section-wrap">
-        <div class="detail">
+      </section>
+      <section id="bottomBanner" class="banner">
+        <div class="section-wrap">
           <h1>
-            믿을 수 있는<br>
-            판다마켓 중고 거래
+            믿을 수 있는<br />
+            판다마켓 중고거래
           </h1>
         </div>
-        <img src="src/image/Img_home_bottom.png" alt="랜딩 페이지 하단 이미지">
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <footer>
-    <div class="section-wrap">
-      <div class="footer">
+    <footer>
+      <div>
         <p>©codeit - 2024</p>
-        <div class="documents">
-          <a href="privacy">Privacy Policy</a>
-          <a href="faq">FAQ</a>
-        </div>
-        <div class="sns">
-          <a href="https://www.facebook.com/" target="_blank"><img src="src/image/ic_facebook.png" alt="페이스북"></a>
-          <a href="https://x.com/" target="_blank"><img src="src/image/ic_twitter.png" alt="트위터"></a>
-          <a href="https://www.youtube.com/" target="_blank"><img src="src/image/ic_youtube.png" alt="유튜브"></a>
-          <a href="https://www.instagram.com/" target="_blank"><img src="src/image/ic_instagram.png" alt="인스타그램"></a>
-        </div>
       </div>
-    </div>
-  </footer>
-  <script src="src/js/landing.js"></script>
-</body>
+      <div class="footer-link">
+        <a href="./privacy/">Privacy Policy</a>
+        <a href="./faq/">FAQ</a>
+      </div>
+      <div class="sns-link">
+        <a href="https://www.facebook.com/"
+          ><img src="src/Image/ic_facebook.png" alt="facebook"
+        /></a>
+        <a href="https://twitter.com/home"
+          ><img src="src/Image/ic_twitter.png" alt="twitter"
+        /></a>
+        <a href="https://www.youtube.com/"
+          ><img src="src/Image/ic_youtube.png" alt="youtube"
+        /></a>
+        <a href="https://www.instagram.com/"
+          ><img src="src/Image/ic_instagram.png" alt="instagram"
+        /></a>
+      </div>
+    </footer>
+    <script src="src/js/landing.js"></script>
+  </body>
 </html>
