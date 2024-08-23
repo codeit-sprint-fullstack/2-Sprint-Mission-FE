@@ -1,3 +1,7 @@
+// import { showModal, closeModal, isEmailValid, 
+//     isPasswordValid, isUser, validForm } 
+//     from './login.mjs';
+
 const checkEmail = document.querySelector('#email');
 const checkPW = document.querySelector('#password-field');
 const errMessage = document.querySelector('.err-message');
@@ -82,3 +86,4 @@ loginBtn.addEventListener('click', (e) => {
         window.location.href = 'items.html';
     }
 });
+

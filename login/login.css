@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'ROKAF';
-    src: url('./assets/fonts/ROKAFSans.ttf') format('truetype');
+    src: url('../assets/fonts/ROKAFSans.ttf') format('truetype');
 }
 
 :root {
