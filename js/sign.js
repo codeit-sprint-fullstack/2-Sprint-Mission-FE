@@ -8,8 +8,6 @@ export const USER_DATA = [
     { email: 'codeit6@codeit.com', password: "codeit606!" },
 ];
 
-
-
 //email 관련 함수 
 /* 1. 아무 것도 입력하지 않았을 때
    2. 잘못된 이메일 형식일 때

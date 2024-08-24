@@ -1,3 +1,5 @@
+import { USER_DATA, validateEmail, validatePassword, togglePasswordVisibility} from './sign.js';
+
 document.addEventListener("DOMContentLoaded", function(){
 
     //변수 선언
@@ -11,78 +13,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const errorPasswordCheck = document.getElementById("errorPasswordCheck");
 
     const signupBtn = document.querySelector(".signup-btn");
-
-    const USER_DATA = [
-        { email: 'codeit1@codeit.com', password: "codeit101!" },
-        { email: 'codeit2@codeit.com', password: "codeit202!" },
-        { email: 'codeit3@codeit.com', password: "codeit303!" },
-        { email: 'codeit4@codeit.com', password: "codeit404!" },
-        { email: 'codeit5@codeit.com', password: "codeit505!" },
-        { email: 'codeit6@codeit.com', password: "codeit606!" },
-    ]
-
-    //email 관련 함수 
-    /* 1. 아무 것도 입력하지 않았을 때
-       2. 잘못된 이메일 형식일 때
-       3. 제대로 입력했을 때*/
-
-    function validateEmail(){
-        const emailValue = inputEmail.value.trim();
-        if(!emailValue){
-            errorEmail.textContent = "이메일을 입력해주세요.";
-            inputEmail.classList.add("input-error-box");
-            errorEmail.style.display = "block";
-
-            return false;
-        }
-
-        else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)){ //정규표현식이 아니라면
-            errorEmail.textContent = "잘못된 이메일 형식입니다.";
-            inputEmail.classList.add("input-error-box");
-            errorEmail.style.display = "block";
-
-            return false;
-        }
-
-        else {
-            errorEmail.style.display = "none";
-            inputEmail.classList.remove("input-error-box");
-
-            return true;
-        }
-    }
-
-    //password 관련 함수
-    /* 1. 아무 것도 입력하지 않았을 때
-       2. 8자 이상 입력하지 않았을 때
-       3. 제대로 입력했을 때*/
-
-    function validatePassword(){
-        const passwordValue = inputPassword.value.trim();
-
-        if(!passwordValue){
-            errorPassword.textContent = "비밀번호를 입력하세요.";
-            inputPassword.classList.add("input-error-box");
-            errorPassword.style.display = "block";
-
-            return false;
-        }
-        else if(passwordValue.length < 8){
-            errorPassword.textContent = "비밀번호를 8자 이상 입력해주세요."
-            inputPassword.classList.add("input-error-box");
-            errorPassword.style.display = "block";
-
-            return false;
-        }
-
-        else{
-            errorPassword.style.display = "none";
-            inputPassword.classList.remove("input-error-box");
-
-
-            return true;
-        }
-    }
 
     //passwordcheck 관련 함수
     /* 1. 비밀번호가 같지 않았을 때
@@ -111,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     //모든 요소들 체크
     function validCheckInput(){
-        const isValidEmail = validateEmail();
-        const isValidPassword = validatePassword();
+        const isValidEmail = validateEmail(inputEmail, errorEmail);
+        const isValidPassword = validatePassword(inputPassword, errorPassword);
         const isValidPasswordCheck = validatePasswordCheck();
         
         if(isValidEmail && isValidPassword && isValidPasswordCheck){ // 버튼 색상
@@ -127,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     //focus out
 
-    inputEmail.addEventListener("focusout", validateEmail);
-    inputPassword.addEventListener("focusout", validatePassword);
+    inputEmail.addEventListener("focusout", () => validateEmail(inputEmail, errorEmail));
+    inputPassword.addEventListener("focusout", () => validatePassword(inputPassword, errorPassword));
     inputPasswordCheck.addEventListener("focusout", validatePasswordCheck);
 
     inputEmail.addEventListener("input", validCheckInput);
@@ -151,25 +81,14 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
-    //눈 모양 아이콘 토글
-    function togglePasswordVisivility(input){
-        if( input.type === "password" ){
-            input.type = "text";
-        }
-        else {
-            input.type = "password";
-        }
-    }
-
     passwordToggle.forEach((icon, index) => {
-        icon.addEventListener("click", function(){
-            if(index === 0){
-                togglePasswordVisivility(inputPassword);
+        icon.addEventListener("click", () => {
+            if (index === 0) {
+                togglePasswordVisibility(inputPassword);
+            } else if (index === 1) {
+                togglePasswordVisibility(inputPasswordCheck);
             }
-            else if(index === 1){
-                togglePasswordVisivility(inputPasswordCheck);
-            }
-        })
+        });
     })
     
 });
