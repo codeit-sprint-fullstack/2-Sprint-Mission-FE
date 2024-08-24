@@ -84,11 +84,14 @@ input:focus {
 .password-wrapper {
   position: relative;
 }
-.password-wrapper .toggle-password {
+.password-wrapper .visibility_icon {
   position: absolute;
+  width: 24px; 
+  height: 24px;
   top: 1.6rem;                      
   right: 1.6rem;                  
   bottom: 1.6rem;                 
+  cursor: pointer;
 }
 .btn_submit {
   width: 100%;
@@ -123,3 +126,56 @@ input:focus {
   text-decoration:underline;
   text-underline-offset: 0.2rem;        /* 밑줄과 텍스트 사이 간격을 조정 */
 }
+/* ****************************** */
+/* 자바스크립트에서 콘트롤하는 요소 */
+/* ****************************** */
+
+/* 입력창 테두리 (오류 입력시) */
+.input-error {
+  border: 1px solid red;
+}
+
+/* 모달 Dialog (입력 오류 메시지 등 alert 기능) */
+
+/* 기본 모달 스타일 */
+#error-modal {
+  width: 40rem;        
+  min-height: 15rem;                 
+  padding: 2rem;
+  border: none;
+  border-radius: 1rem;        
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;       /* 시스템 기본 폰트 설정 */
+}
+
+#error-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);         /* 모달 외부 영역에 반투명 배경 적용 */
+}
+
+.modal-content {
+  text-align: center;
+}
+
+#modal-message {
+  margin-bottom: 2rem;
+  font-size: 1.6rem; 
+  color: #333; 
+  line-height: 1.5; 
+}
+
+#modal-confirm-btn {
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.6rem; 
+}
+
+#modal-confirm-btn:hover {
+  background-color: #0056b3; 
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); 
+}
+
+

@@ -73,7 +73,8 @@
       </div>
     </div>
   </main>
-  <footer class="footer-wrapper">
+  
+  <footer class="footer-wrapper" style="position: relative;">
     <div class="footer-contents">
       <div>©codeit - 2024</div>
       <div>
@@ -97,6 +98,14 @@
         </a>
       </div>
     </div>
+    <p id="demo" style="position: absolute; bottom: 10px; width: 100%; color: white; text-align: center; margin: 0;">Demo content here</p>
   </footer>
 </body>
+<script>
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  
+  var x = document.getElementById("demo");
+  x.innerHTML = "Browser width: " + w + ", height: " + h + ".";
+  </script>
 </html>

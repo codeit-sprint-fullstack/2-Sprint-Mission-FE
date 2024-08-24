@@ -264,7 +264,7 @@
   .container {
     padding: 0 1.6rem;                  /* 좌우 여백 16px */
     width: 100%;                        /* 부모 요소의 100% 너비 차지 */
-    max-width: 400px;                   /* 최대 너비를 400px로 제한 */
+    max-width: 40rem;                   /* 최대 너비를 400px로 제한 */
   }
   .logo-subpage img {
     width: 100%;                        /* 로고 이미지는 부모 컨테이너의 100% 너비를 차지 */

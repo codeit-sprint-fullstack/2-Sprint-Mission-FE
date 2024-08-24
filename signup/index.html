@@ -6,34 +6,35 @@
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/auth.css">
   <link rel="stylesheet" href="/css/responsive.css">
+  <script src="/js/auth.js" defer></script>
 </head> 
 <body>
   <main class="container">
     <div class="logo-subpage">
-      <a href="/"><img src="/images/logo_subpage.png"" alt="판다마켓 로고" class="logo"></a>
+      <a href="/"><img src="/images/logo_subpage.png" alt="판다마켓 로고" class="logo"></a>
     </div>    
     <div class="signup-container">
-      <form class="signup-form">
+      <form id= "signup-form" class="signup-form" method="post">
         <div class="form-field">
-          <label for="loginemail">이메일</label>
-          <input type="email" id="loginemail" name="email" placeholder="이메일을 입력해주세요" required>
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
         </div>
         <div class="form-field">
           <label for="nick">닉네임</label>
-          <input type="text" id="nick" name="nick" placeholder="닉네임을 입력해주세요" required>
+          <input type="text" id="nick" name="nick" placeholder="닉네임을 입력해주세요">
         </div>
         <div class="form-field">
           <label for="password">비밀번호</label>
           <div class="password-wrapper">
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
-            <img class="toggle-password" src="/images/btn_visibility.png" alt="비밀번호 보기">
+            <img id="password-visibility" class="visibility_icon" src="/images/btn_visibility_off_24px.svg" alt="비밀번호 보기">
           </div>
         </div>
         <div class="form-field">
           <label for="password-confirm">비밀번호 확인</label>
           <div class="password-wrapper">
-            <input type="password" id="password-confirm" name="passwordconfirm" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
-            <img class="toggle-password" src="/images/btn_visibility.png" alt="비밀번호 보기">
+            <input type="password" id="password-confirm" name="password-confirm" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+            <img id="password-confirm-visibility" class="visibility_icon" src="/images/btn_visibility_off_24px.svg" alt="비밀번호 보기">
           </div>
         </div>
         <div>
@@ -44,8 +45,8 @@
     <div class="social-login">
       <p>간편 로그인하기</p>
       <div class="social-icons">
-        <a href="https://www.google.com/"><img src="../images/ic_google.png" alt="Google 로그인"></a>
-        <a href="https://www.kakaocorp.com/page/"><img src="../images/ic_kakaotalk.png" alt="Kakaotalk 로그인"></a>
+        <a href="https://www.google.com/"><img src="/images/ic_google.png" alt="Google 로그인"></a>
+        <a href="https://www.kakaocorp.com/page/"><img src="/images/ic_kakaotalk.png" alt="Kakaotalk 로그인"></a>
       </div>
     </div>
     <div class="signup-link">
