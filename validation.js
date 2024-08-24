@@ -19,13 +19,11 @@ function pw(input, guide) {
     guide.value = "비밀번호를 입력해주세요.";
     input.pw.classList.remove("pass");
     input.pw.classList.add("fail");
-  }
-  else if (input.pw.value.length < 8) {
+  } else if (input.pw.value.length < 8) {
     guide.value = "비밀번호 8자 이상 입력해주세요.";
     input.pw.classList.remove("pass");
     input.pw.classList.add("fail");
-  }
-  else {
+  } else {
     guide.value = "";
     input.pw.classList.remove("fail");
     input.pw.classList.add("pass");
@@ -33,17 +31,17 @@ function pw(input, guide) {
   this.readyBtn(input);
 }
 
-function confirmPw(input, guide){
-  if(input.confirmPw.value ===''){
+function confirmPw(input, guide) {
+  if (input.confirmPw.value === "") {
     guide.value = "비밀번호를 입력해주세요.";
     input.confirmPw.classList.remove("pass");
     input.confirmPw.classList.add("fail");
-  }else if(input.confirmPw.value !== input.pw.value){
-    guide.value="비밀번호가 일치하지 않습니다.";
+  } else if (input.confirmPw.value !== input.pw.value) {
+    guide.value = "비밀번호가 일치하지 않습니다.";
     input.confirmPw.classList.remove("pass");
     input.confirmPw.classList.add("fail");
-  }else {
-    guide.value='';
+  } else {
+    guide.value = "";
     input.confirmPw.classList.remove("fail");
     input.confirmPw.classList.add("pass");
   }
@@ -51,7 +49,7 @@ function confirmPw(input, guide){
 }
 
 function login(userData, inputData) {
-  const matchData = userData.find(user => user.id === inputData.id.value);
+  const matchData = userData.find((user) => user.id === inputData.id.value);
   if (matchData) {
     if (matchData.pw === inputData.pw.value) {
       alert("로그인 성공");
@@ -63,42 +61,51 @@ function login(userData, inputData) {
     alert("등록된 정보가 없습니다.");
   }
 }
-function signUp(userData, inputData){
-  const signUpData ={
+function signUp(userData, inputData) {
+  const signUpData = {
     id: inputData.id,
     pw: inputData.pw,
   };
-  const matchData = userData.find(user => user.id === inputData.id.value);
-  if(matchData){
+  const matchData = userData.find((user) => user.id === inputData.id.value);
+  if (matchData) {
     alert("사용 중인 이메일입니다.");
-  }else{
+  } else {
     userData.push(signUpData);
     alert("회원가입 성공");
-    window.location.href = "/items.html";
+    window.location.href = "/login.html";
   }
 }
-function readyBtn(input) { // confirm 확인
+function readyBtn(input) {
   const isIdValid = input.id.classList.contains("pass");
   const isPwValid = input.pw.classList.contains("pass");
-  const isConfirmPwValid = input.confirmPw? input.confirmPw.classList.contains("pass") : true;
-  if (
-    isIdValid && isPwValid && isConfirmPwValid
-  ) {
+  const isConfirmPwValid = input.confirmPw
+    ? input.confirmPw.classList.contains("pass")
+    : true;
+  if (isIdValid && isPwValid && isConfirmPwValid) {
     input.btn.classList.remove("deactivate");
-    input.btn.classList.add("activate")
+    input.btn.classList.add("activate");
   } else {
     input.btn.classList.remove("activate");
     input.btn.classList.add("deactivate");
   }
 }
-function togglePw(input){
-    if(input.pw.getAttribute("type")==="password"){
-        input.pw.setAttribute("type","text");
-        input.togglePw.setAttribute("src", "image/btn_visibility_on_24px.svg");
-    }else{
-        input.pw.setAttribute("type", "password");     
-        input.togglePw.setAttribute("src", "image/btn_visibility_off_24px.svg");
-    }
+function togglePw(input) {
+  if (input.pw.getAttribute("type") === "password") {
+    input.pw.setAttribute("type", "text");
+    input.togglePw.setAttribute("src", "image/btn_visibility_on_24px.svg");
+  } else {
+    input.pw.setAttribute("type", "password");
+    input.togglePw.setAttribute("src", "image/btn_visibility_off_24px.svg");
+  }
+}
+function toggleConfirmPw(input) {
+  if (input.confirmPw.getAttribute("type") === "password") {
+    input.confirmPw.setAttribute("type", "text");
+    input.toggleConfirmPw.setAttribute("src", "image/btn_visibility_on_24px.svg");
+  } else {
+    input.confirmPw.setAttribute("type", "password");
+    input.toggleConfirmPw.setAttribute("src", "image/btn_visibility_off_24px.svg");
+  }
 }
 const validate = {
   id,
@@ -108,5 +115,6 @@ const validate = {
   signUp,
   readyBtn,
   togglePw,
+  toggleConfirmPw,
 };
 export default validate;
