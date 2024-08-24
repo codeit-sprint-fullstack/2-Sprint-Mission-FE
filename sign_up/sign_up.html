@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+	
 	<meta charset="utf-8">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>판다마켓</title>
 		<link rel="stylesheet" href="./style_signup.css">
 		<link rel="icon" href="../img/panda_logo.png">
-	
+		
 	</head>	
 
 	
@@ -18,31 +20,37 @@
 			</a>
 			
 			<form>
-				<label for="sign">이메일</label>
-				<input id ="sign" name="signup_email" type="email" placeholder="  이메일을 입력해주세요">				
-				<label for="nickname">닉네임</label>
-				<input id ="nickname" name="nickname" type="name" placeholder="  닉네임을 입력해주세요">
-				<label for="password">비밀번호</label>				
-				<input id ="password" name="sign_password" type="password" placeholder="  비밀번호를 입력해주세요">
-				<label for="password">비밀번호 확인</label>				
-				<input id ="password" name="sign_password" type="password" placeholder="  비밀번호를 다시 한 번 입력해주세요">
+				<label for="email">이메일</label>
+				<input id ="email" class="signupEmail" type="email" placeholder="  이메일을 입력해주세요">				
 				
-				<button class="signup-button" type="submit">
+				<label for="nickname">닉네임</label>
+				<input id ="nickname" class="signupNickname" type="name" placeholder="  닉네임을 입력해주세요">
+				
+				<label for="password">비밀번호</label>				
+				<input id ="password" class="signupPassword" type="password" placeholder="  비밀번호를 입력해주세요">
+				
+				<label for="confirmpPassword">비밀번호 확인</label>				
+				<input id ="confirmpPassword" class="confirmpPasswords" type="password" placeholder="  비밀번호를 다시 한 번 입력해주세요">
+				
+				<button id="signupButton" type="submit">
 					회원가입
 				</button>
 			</form>
 
 			<div class="simple-box">
 				<p class="simple-login">간편 로그인하기</p>
+				
 				<div class="simple-logo">
 					<a href="https://www.google.com/" target="_blank">
 						<img class="google-icon" src="../login/google.png">
 					</a>
+					
 					<a href="https://www.kakaocorp.com/page/" target="_blank">
 						<img class="kakao-icon" src="../login/kakao.png">
 					</a> 
 				</div>
 			</div>
+			
 			<div class="login-contents">
 				<p class="login-text">이미 회원이신가요?</p>
 				<a href="../login/login.html">로그인</a>
@@ -50,7 +58,7 @@
 
 		</main>
 
-	
+		<script src="./sign_up.js"></script>
 	</body>
 
 

@@ -3,9 +3,20 @@
 	<meta charset="utf-8">
 	<head>
 		<title>판다마켓</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="./style_login.css">
 		<link rel="icon" href="../img/panda_logo.png">
-	
+		
+		
+		<style>
+			.error {
+					color: red;
+					font-size: 12px;
+			}
+			.input-error {
+					border: 1px solid red;
+			}
+	</style>
 	</head>	
 
 	
@@ -17,12 +28,16 @@
 				<img class="panda" src="./pandamarket.png" alt="판다마켓로고">
 			</a>
 			
-			<form>
-				<label for="sign">이메일</label>
-				<input id ="sign" name="sign_email" type="email" placeholder="  이메일을 입력해주세요">				
+			<form id="loginForm">
+				<label for="email">이메일</label>
+				<input id ="email" class="loginEmail" type="email" placeholder="  이메일을 입력해주세요">				
+				<div id="emailError" class="error"></div>
+				
 				<label for="password">비밀번호</label>				
-				<input id ="password" name="sign_password" type="password" placeholder="  비밀번호를 입력해주세요">
-				<button class="login-button" type="submit">
+				<input id ="password" class="loginPassword" type="password" placeholder="  비밀번호를 입력해주세요">
+				<div id="passwordError" class="error"></div>
+				
+				<button class="loginButton" type="submit">
 					로그인
 				</button>
 			</form>
@@ -46,6 +61,8 @@
 		</main>
 
 	
+	
+		<script src="./login.js"></script>
 	</body>
 
 
