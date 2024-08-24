@@ -116,3 +116,22 @@ footer a {
     color: #3182F6;
 }
 
+input.email_error {
+    border: 2px solid red;
+}
+
+input.pwd_error {
+    border: 2px solid red;
+}
+
+span.email_error {
+    color: red;
+    display: block;
+ 
+}
+
+span.pwd_error {
+    color: red;
+    display: block;
+
+}
