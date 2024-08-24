@@ -1,4 +1,4 @@
-import { USER_DATA, validateEmail, validatePassword, togglePasswordVisibility} from './sign.js';
+import { USER_DATA, validateEmail, validatePassword, togglePasswordVisibility} from 'js/sign.js';
 
 document.addEventListener("DOMContentLoaded", function() {
     const inputEmail = document.getElementById("email");

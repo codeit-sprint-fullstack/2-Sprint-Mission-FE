@@ -179,6 +179,9 @@ footer {
 /* order로 이미지, 내용 순으로 정렬 */
 
 @media (max-width: 1199px) {
+    .banner{
+        overflow: hidden;
+    }
     .feature {
         display: flex;
         flex-direction: column;
@@ -222,6 +225,17 @@ footer {
 /* tablet 용*/
 
 @media (min-width: 744px) and (max-width: 1199px) {
+    .banner-img {
+        position: absolute;
+        left: 50%; 
+        transform: translateX(-150%); 
+    }
+
+    .banner-img img {
+        width: 300%;
+        height: auto; 
+    }
+
 
     .logo img { 
         margin-left: 24px;
@@ -236,6 +250,16 @@ footer {
 /* mobile 용 */
 
 @media (min-width: 375px) and (max-width: 743px) {
+
+    .banner-img {
+        position: absolute;
+        left: 50%; /* 배너 가운데로 위치 조정 */
+        transform: translateX(-250%); 
+    }
+    .banner-img img {
+        width: 500%; 
+        height: auto;
+    }
 
     .logo img { 
         margin-left: 16px;
@@ -255,7 +279,6 @@ footer {
     }
     
     .footer-content {
-        flex-direction: column;
         align-items: center;
         gap: 2rem;
     }
@@ -284,160 +307,3 @@ footer {
 1. 모바일일 때 footer 순서
 2. 배너 이미지 크기
 */
-=======
-*{
-    margin: 0;
-    padding: 0;
-    color: #374151;
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 62.5%;  /* 심화 요구사항 1rem = 10px */
-}
-
-nav {
-    width: 100%;
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    height: 7rem;
-    z-index: 2;
-}
-
-a {
-    text-decoration: none;
-    text-align:center;
-}
-
-.logo img{
-    width: 15rem;
-    margin-left: 20rem;
-}
-
-.button{
-    background-color: #3692FF;
-    color: white;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1.7rem;
-    font-weight: 600;
-}
-
-#loginbtn {
-    width: 10rem;
-    height: 4rem;
-    border-radius: 1rem;
-    margin-right: 20rem;
-}
-
-#lookforbtn{
-    width: 30rem;
-    height: 5rem;
-    border-radius: 99.9rem;
-    margin-top: 2rem;
-}
-
-/*main*/
-
-.banner {
-    background-color: #CFE5FF;
-    display: flex;
-    align-items: center;
-    height: 57rem; /*nav 만큼 더 줌*/
-    font-size: 2.5rem;
-    position: relative;
-}
-
-.wrapper{
-    margin-top: 2rem;
-    margin-left: 15rem;
-    z-index: 1;
-}
-
-.banner-img{
-    position: absolute;
-    right: 20rem;
-    bottom: -0.6rem;
-}
-
-#features{
-    padding-bottom: 130px;
-}
-
-.feature{
-    font-size: 2rem;
-    padding: 10rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-
-}
-
-.feature-content{
-    background-color: #FCFCFC;
-    width: auto;
-}
-
-.feature-subtitle {
-    color: #3692FF;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-}
-
-.feature-title {
-    margin-bottom: 2rem;
-    font-size: 3rem;
-    font-weight: 800;
-}
-
-.feature-description {
-    font-size: 2rem;
-}
-.even-feature{
-    margin-left: 20rem;
-}
-
-.odd-feature{
-    margin-right: 20rem;
-}
-.even-feature-content { 
-    text-align: right;
-    padding: 10rem 5rem 10rem 1rem;
-}
-
-.odd-feature-content {
-    padding: 10rem 1rem 10rem 5rem;
-}
-
-/*footer*/
-
-footer {
-    font-size: 2rem;
-    background-color: #111827;
-    padding: 5rem 0;
-    
-}
-
-.footer-content{
-    display: flex;
-    justify-content: space-around;
-}
-
-.copyright{
-    color: #9CA3AF;
-    margin-left: 20rem;
-}
-
-.snsicon{
-    margin-right: 20rem;
-}
-.footerlink a {
-    color: #E5E7EB;
-    text-decoration: none;
-}
