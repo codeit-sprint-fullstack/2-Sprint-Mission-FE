@@ -1,16 +1,4 @@
 
-
-/*--------피드백 -------*/
-.adjustImage{
-  width:50%
-}
-
-.adjustImageB{
-  width:20px;
-}
-
-
-
 /*--------웹페이지 -------*/
 
 
@@ -19,32 +7,6 @@ a {
   color: inherit;
 }
 
-
-
-
-/* 헤더 스타일 */
-header {
-  position: fixed;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 70px;
-  padding: 9px, 400px, 9px, 400px;
-  background-color: white;
-  z-index: 1;
-}
-
-
-
-/* 바디 스타일 */
-
-body {
-  margin: 0;
-  word-break: keep-all;
-  font-family: Poppins, "Nato Sans KR", sans-serif;
-  }
 
 
   /* nav 스타일 */
@@ -59,6 +21,7 @@ body {
     margin: 0 200px;
     gap:10px;
     z-index: 1;
+    
   }
 
   
@@ -71,13 +34,25 @@ body {
     justify-content: center;
     flex-direction: row;
     align-items: end;
-    
   
   }
-/* height: 440px; */
+  
+  #firstSection{
+    height: 440px;
+  }
+  
+  
+  #lastSection{
+    height: 370px;
+  } 
+  
+  
+  
+
+/* main banner */
 .second-tird-fourth-section{
   background-color:  #ffffff; 
-  height: 540px;
+  height: 440px;
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -85,6 +60,7 @@ body {
   align-items:center;
   
 }
+
 
 /* 풋터 스타일 */
 footer{
@@ -120,15 +96,18 @@ footer{
 
 
 
-/*수정라인0------00000000000000*/
-
-img {
-  width: 500px;
-}
 
 
 /* 헤더 로그인 버튼*/
-.login-Button {
+
+#loginLinkButton {
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 11.5px 23px;
+}
+
+/* .login-Button {
   background-color: #2196f3; 
   color: #fff; 
   padding: 15px 20px;
@@ -143,11 +122,18 @@ img {
   margin-top: 10px;
   margin-left: 50px;
   
-}
+} */
 
 
 
 /* 구경하러가기 버튼*/
+
+.banner .pill-button {
+  margin-top: 32px;
+}
+
+
+
 .look-up-button{
   background-color: #2196f3; 
   color: #fff; 
@@ -161,15 +147,22 @@ img {
 
 
 
-/* #1 섹션  일상의 모든 물건을 거래해 보아요    */
-#firstSection{
-  height: 440px;
+
+/*--------image adjust -------*/
+.adjustImage{
+  width:50%
 }
 
+.adjustImageB{
+  width:20px;
+}
 
+.adjustImageC{
+  width:100%
+}
 
-#lastSection{
-  height: 370px;
-} 
+img {
+  width: 500px;
+}
 
 

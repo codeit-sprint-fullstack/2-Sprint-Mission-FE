@@ -1,8 +1,33 @@
 
+/*-------  스프린트3  --------*/
+
+/* -- Mobile -- */
+@media screen and (min-width:375px) and (max-width:742px) {
+    .top-bar {
+      margin: 0 1rem;
+    }
+}  
+  
+/* Hide previous error message*/
+.wrongEmail{
+    color: red; 
+    outline: 1px solid red; 
+    display: none;
+
+}
+
+.enterEmail{
+    color: red; display: none;
+}
+
+
+
+   /*-------  스프린트2  --------*/
+
 
 html {
     margin: 0;
-    color: #D9D9D9
+    color: #D9D9D9;
     font-size: 16px;
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
@@ -21,8 +46,6 @@ main {
     align-items: center;
     gap: 24px;
     justify-content: space-between;
-    
-   
 }
 
 
@@ -30,7 +53,7 @@ main {
 form {
     display: flex;
     flex-direction: column;
-    padding: px 0;
+    padding: 0;
     gap: 24px;
     width: 640px;
 }
@@ -50,6 +73,7 @@ input {
     font-size: 1rem;
     font-weight: 400;
     line-height: 24px;
+    
 }
 
 #hideicon{
@@ -59,9 +83,8 @@ input {
 }
 
 input:focus {
-    outline: 1px solid var(3692ff);
+    outline: 1px solid #3692ff; 
 }
-
 
 .pill-bnt {
     padding: 16px 124px;
@@ -73,11 +96,8 @@ input:focus {
     font-size: 1rem;
     font-weight: 400;
     line-height: 24px;
-    background-color: #9CA3AF;;
+    background-color: #9CA3AF;
 }
-
-
-
 
 .sns-login {
     width: 100%;
@@ -91,25 +111,29 @@ input:focus {
     box-sizing: border-box;
 }
 
-
-
-
-
 .password-container {
     position: relative;
     width: 100%; }
 
+
+/* 비밀번호를 입력해 주세요 */
 .password-container input[type="password"],
 .password-container input[type="text"] {
-    width: 589px;
+    width: 100%;
     padding-right: 40px;  
     padding: 16px 24px;
     border-radius: 12px;
     
     background-color: #F3F4F6;
     font-size: 1rem;
+    
 }
 
+#password{
+    box-sizing: border-box; 
+}
+
+/* show and hide button  */
 .password-toggle {
     position: absolute;
     right: 10px;
@@ -121,7 +145,9 @@ input:focus {
     padding: 0;
 }
 
-.password-toggle img {
-    width: 24px; 
-    height: 24px;
-}
+
+.auth-switch a {
+    color: #3182f6;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }

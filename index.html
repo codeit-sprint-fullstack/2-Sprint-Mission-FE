@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <!--심화요구사항 reset -->
-    <link rel="stylesheet" href="landing.css">
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="styles/landing.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="icon" href="images/logo/favicon.ico" />
+
     <title>판다마켓</title>
   </head>
 
 
+    
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-본인의_Tracking_ID"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-XXXXXXXXXX"); 
+    </script>
+
+
   <body>
     <!-- Header:      판다마켓        로그인       -->
+
+  <!-- <heaer> 
+    <a href="/"
+    ><img src="images/logo/logo.svg" alt="판다마켓 홈" width="153"
+  /><a href="login.html" ID="loginLinkButton" class="button">로그인</a>
+  
+  </heaer>
+     -->
     <header>
      <div id="nav">
       <div>
-        <a href="/"><img class="adjustImage" src="image/aPandamarket.png" ></a>
+        <a href="/"><img  src="images/logo/logo.svg" alt=" 판다켓 홈" width="153" class="adjustImageC" ></a>
       </div>
-
-        <button class="login-Button" > 
+      <a href="login.html" id="loginLinkButton" class="button">로그인</a>
+        <!-- <button class="login-Button" > 
           <a href="login.html">로그인</a>
         </button>
-      
+       -->
       </div>
     </header>
 
@@ -34,9 +61,10 @@
         <div>  
           <h1 class="second-line">일상의 모든 물건을<br> 거래해 보세요</h1> 
           <button class="look-up-button"> <a href='/items'>구경하러 가기</a></button>
+           <!-- <a href="items.html" class="button pill-button">구경하러 가기</a> -->
         </div>
         <div class="img-box"> 
-           <img src="image/b2.png" >
+           <img src="images/home/hero-image.png" >
         </div>   
     </div>
      
@@ -44,7 +72,7 @@
 <!-- Second Section:     이미지        인기상품을 확인해 보세요       -->
     <div class="second-tird-fourth-section" id="secondSection">
       <div class=second-section>
-         <img src="image/c2.png">
+         <img src="images/home/feature1-image.png">
       </div>
       <div class="second-box">  
         <div class="text-section">
@@ -65,7 +93,7 @@
         <h4 class="third-line">구매하고 싶은 물품은 검색해서<br>쉽게 찾아세요</h4>
       </div>
       <div>
-      <img src="image/d2.png">          
+      <img src="images/home/feature2-image.png">          
       </div>
     </div>
 
@@ -74,7 +102,7 @@
     <div class="second-tird-fourth-section">
       
       <div class="fourth-box">
-        <img src="image/e2.png">
+        <img src="images/home/feature3-image.png">
       </div>
       
       <div class="text-section">  
@@ -92,7 +120,7 @@
           <h1 class="second-line">믿을 수 있는<br> 판다마켓 중고 거래</h1>
         </div>
       <div >
-          <img  id="lastPanda" src="image/f2.png">
+          <img  id="lastPanda" src="images/home/bottom-banner-image.png">
       </div>
     </div>
 
@@ -109,16 +137,16 @@
       </div>
       <div id="footer3">
         <a href="http://www.facebook.com/"> 
-          <img src="image/ic_facebook.png" class="adjustImageB">
+          <img src="images/social/facebook-logo.svg" class="adjustImageB">
         </a>  
         <a href="http://www.twiter.com/"> 
-          <img src="image/ic_twitter.png"class="adjustImageB">
+          <img src="images/social/twitter-logo.svg"class="adjustImageB">
         </a> 
         <a href="http://www.youtube.com/"> 
-          <img src="image/ic_youtube.png"class="adjustImageB">
+          <img src="images/social/youtube-logo.svg"class="adjustImageB">
         </a> 
         <a href="http://www.instagam/"> 
-          <img src="image/ic_instagram.png" class="adjustImageB">
+          <img src="images/social/instagram-logo.svg" class="adjustImageB">
         </a> 
       </div> 
   </footer>
