@@ -74,7 +74,7 @@ body {
     padding: 1.6rem 12.4rem 1.6rem 12.4rem;
     gap: 1rem;
     border-radius: 4rem;
-    background: #9CA3AF;
+    /* background: #9CA3AF; */
     border: none;
     font-size: 2rem;
     font-weight: 600;
@@ -191,6 +191,8 @@ body {
 }
 .deactivate{
     pointer-events: none;
+    background-color: #9CA3AF;
+    ;
 }
 .fail {
     border-style: 0.2rem solid red;
@@ -199,4 +201,7 @@ body {
 .fail:not(:focus) {
     border: 0.2rem solid red;
     outline: none;
+}
+.activate{
+    background: #3692FF;
 }
