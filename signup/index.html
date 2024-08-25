@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/auth.css">
   <link rel="stylesheet" href="/css/responsive.css">
-  <script src="/js/auth.js" defer></script>
+  <script type="module" src="/js/auth.js" defer></script>
 </head> 
 <body>
   <main class="container">
@@ -26,14 +26,14 @@
         <div class="form-field">
           <label for="password">비밀번호</label>
           <div class="password-wrapper">
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" autocomplete="off"  required>
             <img id="password-visibility" class="visibility_icon" src="/images/btn_visibility_off_24px.svg" alt="비밀번호 보기">
           </div>
         </div>
         <div class="form-field">
           <label for="password-confirm">비밀번호 확인</label>
           <div class="password-wrapper">
-            <input type="password" id="password-confirm" name="password-confirm" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+            <input type="password" id="password-confirm" name="password-confirm" placeholder="비밀번호를 다시 한 번 입력해주세요" autocomplete="off"  required>
             <img id="password-confirm-visibility" class="visibility_icon" src="/images/btn_visibility_off_24px.svg" alt="비밀번호 보기">
           </div>
         </div>
