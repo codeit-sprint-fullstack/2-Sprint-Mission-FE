@@ -49,16 +49,17 @@ function confirmPw(input, guide) {
 }
 
 function login(userData, inputData) {
-  const matchData = userData.find((user) => user.id === inputData.id.value);
+  const matchData = userData.find(user => user.id === inputData.id.value);
   if (matchData) {
     if (matchData.pw === inputData.pw.value) {
-      alert("로그인 성공");
       window.location.href = "/items.html";
     } else {
-      alert("비밀번호가 일치하지 않습니다.");
+      inputData.modalMessage.textContent='비밀번호가 일치하지 않습니다.';
+      inputData.modal.classList.remove("hidden");
     }
   } else {
-    alert("등록된 정보가 없습니다.");
+    inputData.modalMessage.textContent='등록된 정보가 없습니다.';
+    inputData.modal.classList.remove("hidden");
   }
 }
 function signUp(userData, inputData) {
@@ -66,12 +67,12 @@ function signUp(userData, inputData) {
     id: inputData.id,
     pw: inputData.pw,
   };
-  const matchData = userData.find((user) => user.id === inputData.id.value);
+  const matchData = userData.find(user => user.id === inputData.id.value);
   if (matchData) {
-    alert("사용 중인 이메일입니다.");
+    inputData.modalMessage.textContent="사용 중인 이메일입니다.";
+    inputData.modal.classList.remove("hidden");
   } else {
     userData.push(signUpData);
-    alert("회원가입 성공");
     window.location.href = "/login.html";
   }
 }
@@ -107,6 +108,10 @@ function toggleConfirmPw(input) {
     input.toggleConfirmPw.setAttribute("src", "image/btn_visibility_off_24px.svg");
   }
 }
+
+function closeModal(inputData){
+  inputData.modal.classList.add("hidden");
+}
 const validate = {
   id,
   pw,
@@ -116,5 +121,6 @@ const validate = {
   readyBtn,
   togglePw,
   toggleConfirmPw,
+  closeModal,
 };
 export default validate;

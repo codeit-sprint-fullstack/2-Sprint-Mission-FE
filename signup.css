@@ -205,3 +205,43 @@ body {
 .activate{
     background: #3692FF;
 }
+#modal{
+    width: 54rem;
+    height: 25rem;
+    border-radius: 0.8rem;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    z-index: 1;
+    background: #FFFFFF;
+}
+#modal.hidden {
+    display: none;
+}
+#modal-message {
+    width: 19.2rem;
+    height: 1.9rem;
+    margin-top: 10.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.909rem;
+    text-align: center;
+    white-space: nowrap;
+}
+#modal-button {
+    width: 12rem;
+    height: 4.8rem;
+    position: fixed;
+    right: 4.8rem;
+    bottom: 4.8rem;
+    padding: 1.2rem 2.3rem 1.2rem 2.3rem;
+    gap: 10px;
+    border-radius: 0.8rem;
+    opacity: 0px;
+    background: #3692FF;
+    color: #ffffff;
+    border-style: none;
+}

@@ -8,6 +8,9 @@ const guideConfirmPw = document.querySelector('#password-check-guide');
 const signUpButton = document.querySelector('#sign-up-button');
 const togglePw = document.querySelector('#watch-toggle');
 const toggleConfirmPw = document.querySelector('#watch-toggle-check');
+const modal = document.querySelector('#modal');
+const modalMessage = document.querySelector('#modal-message');
+const modalButton = document.querySelector('#modal-button');
 const userData = [
     { id: 'codeit1@codeit.com', pw: "codeit101!" },
     { id: 'codeit2@codeit.com', pw: "codeit202!" },
@@ -23,6 +26,8 @@ const inputData={
     btn: signUpButton,
     togglePw,
     toggleConfirmPw,
+    modal,
+    modalMessage,
 };
 inputId.addEventListener("focusout", ()=>validate.id(inputData,guideId));
 inputPw.addEventListener("focusout",()=>validate.pw(inputData,guidePw));
@@ -30,3 +35,4 @@ inputConfirmPw.addEventListener("focusout",()=>validate.confirmPw(inputData,guid
 signUpButton.addEventListener("click", ()=>validate.signUp(userData, inputData));
 togglePw.addEventListener("click",()=> validate.togglePw(inputData));
 toggleConfirmPw.addEventListener("click",()=> validate.toggleConfirmPw(inputData));
+modalButton.addEventListener("click",()=>validate.closeModal(inputData));
