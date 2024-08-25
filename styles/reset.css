@@ -278,21 +278,40 @@ footer {
         width: calc(100% - 32px); /* 이미지와 동일한 가로 크기 */
     }
     
-    .footer-content {
-        align-items: center;
-        gap: 2rem;
-    }
     .space {
         display: block;
     }
 
-    .footerlink, .snsicon {
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 5rem;
+        font-size: 2.5rem;
+    }
 
+    .footerlink {
         order: 1;
+        flex: 1;
+        display: flex;
+        gap: 5rem;
+    }
+
+    .snsicon {
+        order: 1;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .snsicon img {
+        width: 3rem;
     }
 
     .copyright {
         order: 2;
+        width: 100%;
+        margin-top: 2rem;
     }
 }
 
@@ -302,8 +321,3 @@ footer {
         display: block;
     }
 }
-
-/*
-1. 모바일일 때 footer 순서
-2. 배너 이미지 크기
-*/
