@@ -64,13 +64,26 @@ main {
    border-radius: 12px;
    background-color: var(--cool-gray-100);
    border: 2px solid transparent;
-}
+  
+   & input::placeholder {
+     font-weight: 400;
+     font-size: 16px;
+     color: var(--cool-gray-400);
+     margin-left: 24px;
+  }
 
-.gray-box input::placeholder{
-   font-weight: 400;
-   font-size: 16px;
-   color: var(--cool-gray-400);
-   margin-left: 24px;
+  & input:focus {
+     border-color: none;
+     outline: none;
+  }
+
+  & input {
+     flex-grow: 1;
+     margin-left: 24px;
+     height: 100%;
+     border: 2px solid transparent;
+     background: none;
+ }
 }
 
 .gray-box:focus-within {
@@ -81,19 +94,6 @@ main {
 .gray-box-outer {
    border-color: var(--error-red);
    outline: none;
-}
-
-.gray-box input:focus {
-   border-color: none;
-   outline: none;
-}
-
-.gray-box input {
-   flex-grow: 1;
-   height: 100%;
-   margin-left: 24px;
-   border: 2px solid transparent;
-   background: none;
 }
 
 .vis-password{
@@ -158,10 +158,10 @@ main {
    font-weight: 500;
    font-size: 15px;
    color: var(--color-dark-gray);
-}
 
-.create-account a{
-  color: var(--signin-blue);
+   & a{
+      color: var(--signin-blue);
+    }
 }
 
 .error-red {

@@ -36,7 +36,7 @@ function validateInputs() {
     const isNicknameValid =  userNickname !== '';
 
     // 유효성에 따라 로그인 버튼 활성화
-    signupBtn.disabled = !(isEmailValid && isPasswordValid && isPasswordDblValid && isNicknameValid);
+    signupBtn.disabled = !isEmailValid || !isPasswordValid || !isPasswordDblValid || !isNicknameValid;
 };
 
 function loginFocusOut() {
@@ -167,14 +167,10 @@ function modalSignupFail () {
 }
 
 //눈 아이콘 토글
-function togglePasswordVisibility(inputElement, iconElement) {
-    if (inputElement.type === 'password') {
-        inputElement.type = 'text';
-        iconElement.src = 'login_create_account_asset/btn_visibility_on_24px.svg';
-    } else {
-        inputElement.type = 'password';
-        iconElement.src = 'login_create_account_asset/btn_visibility_off_24px.svg';
-    }
+function passwordIconVis () {
+    const isHidden = (passwordInput.type === 'password');
+    passwordInput.type = isHidden ? 'text' : 'password';
+    toggleIcon.src = `login_create_account_asset/btn_visibility_${isHidden ? 'on' : 'off'}_24px.svg`;
 }
 
 emailBox.addEventListener('keyup', validateInputs);

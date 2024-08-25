@@ -313,19 +313,19 @@ header {
     }
  
     .kv, .bottom {
-         height: 100%;
+        height: 100%;
     }
  
     .bottom-container, .kv-container {
-         width: 100%;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         flex-direction: column-reverse;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column-reverse;
     }
 
     .kv-text {
-         margin: 3rem auto;
+        margin: 3rem auto;
     }
 
     .bottom-text {
@@ -333,26 +333,26 @@ header {
    }
      
     .headline-heading#kv-head, .headline-heading#bottom-head  {
-         text-align: center;
-         font-size: 32px;
-         line-height: 44.8px;
+        text-align: center;
+        font-size: 32px;
+        line-height: 44.8px;
     }
 
     .kv-img {
-         width: 100%;
-         height: 100%;
-         top: 324px;
-         left: -126px;
-         gap: 0px;
+        width: 100%;
+        height: 100%;
+        top: 324px;
+        left: -126px;
+        gap: 0px;
     }
  
     .headline-heading{
-         font-size: 24px;
-         line-height: 33.6px;
+        font-size: 24px;
+        line-height: 33.6px;
     }
 
     .headline-heading br{
-         display: none;
+        display: none;
     }
 
     .headline-heading#kv-head br, .headline-heading#bottom-head br {
@@ -360,51 +360,51 @@ header {
     }
 
     .headline-description{
-         font-size: 16px;
-         line-height: 19.2px;
-         margin-top: 4px;
+        font-size: 16px;
+        line-height: 19.2px;
+        margin-top: 4px;
     }
 
     .bluetag {
-         font-size: 16px;
-         margin-bottom: 4px;
+        font-size: 16px;
+        margin-bottom: 4px;
     }
 
     .body-image {
-         width: 100%;
-         height: 100%;
-         top: 20.25rem;
-         left: -7.88rem;
-         gap: 0rem;
+        width: 100%;
+        height: 100%;
+        top: 20.25rem;
+        left: -7.88rem;
+        gap: 0rem;
     }
 
     .body-text {
-         margin-top: 4px;
+        margin-top: 4px;
     }
 
     .section {
-         display: block;
-         padding: 2.5rem 1rem;
+        display: block;
+        padding: 2.5rem 1rem;
     }
 
     .section-reverse{
-         display: block;
-         padding: 1.5rem 1rem;
-         text-align: right;
+        display: block;
+        padding: 1.5rem 1rem;
+        text-align: right;
     }
  
      .hot-item-section, .search-section, .register-section {
-         height: 100%;
-         display: flex;
-         align-items: center;
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
  
      .hot-item, .search, .register {
-         display: block;
-         top: 0rem;
-         width: auto; /* none 대신 auto 사용 */
-         height: auto; /* 100% 대신 auto 사용 (부모 요소의 크기에 따라 자동 조정) */
-         background-color: transparent; /* none 대신 transparent 사용 */
+        display: block;
+        top: 0rem;
+        width: auto; /* none 대신 auto 사용 */
+        height: auto; /* 100% 대신 auto 사용 (부모 요소의 크기에 따라 자동 조정) */
+        background-color: transparent; /* none 대신 transparent 사용 */
     }
  
      .bottom-img{
@@ -444,7 +444,7 @@ header {
     }
 
     .kv-text, .bottom-text {
-         margin: 100px auto 150px;
+        margin: 100px auto 150px;
     }
 
     .headline-heading#kv-head, .headline-heading#bottom-head  {
@@ -482,8 +482,8 @@ header {
     }
 
     .bluetag {
-         font-size: 18px;
-         margin-bottom: 16px;
+        font-size: 18px;
+        margin-bottom: 16px;
     }
 
     .body-image {

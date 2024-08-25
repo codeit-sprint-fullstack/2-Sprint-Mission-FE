@@ -12,55 +12,55 @@ main {
     min-height: 100%;
     max-width: 1920px;
     margin: 0 auto;
- }
+}
 
- .logo {
+.logo {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 60px;
     margin-bottom: 40px; /*232px-(132+60)*/
- }
+}
 
- .overall-area {
+.overall-area {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
- }
+}
 
- label {
-   display: flex;
-   flex-direction: column;
-   gap: 16px;
- }
-
- .signup-area{
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
- }
-
- .signup-fillup-zone{
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
- }
-
- .letter-box {
+label {
    display: flex;
    flex-direction: column;
    gap: 16px;
 }
 
- .letter{
+.signup-area{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.signup-fillup-zone{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.letter-box {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+.letter{
     font-weight: 700;
     font-size: 18px;
     color: var(--color-dark-gray);
     font-family: Pretendard;
- }
+}
 
- .gray-box{
+.gray-box{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -69,14 +69,27 @@ main {
     border-radius: 12px;
     background-color: var(--cool-gray-100);
     border: 2px solid transparent;
- }
+   
+    & input::placeholder {
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--cool-gray-400);
+      margin-left: 24px;
+   }
 
- .gray-box input::placeholder{
-    font-weight: 400;
-    font-size: 16px;
-    color: var(--cool-gray-400);
-    margin-left: 24px;
- }
+   & input:focus {
+      border-color: none;
+      outline: none;
+   }
+
+   & input {
+      flex-grow: 1;
+      margin-left: 24px;
+      height: 100%;
+      border: 2px solid transparent;
+      background: none;
+  }
+}
 
 .gray-box:focus-within {
     border-color: var(--color-blue);
@@ -87,25 +100,12 @@ main {
    outline: none;
 }
 
-.gray-box input:focus {
-    border-color: none;
-    outline: none;
-}
-
- .gray-box input {
-    flex-grow: 1;
-    margin-left: 24px;
-    height: 100%;
-    border: 2px solid transparent;
-    background: none;
-}
-
- .vis-password{
+.vis-password{
     cursor: pointer;
     margin-right: 24px;
- }
+}
 
- .signup-button:disabled{
+.signup-button:disabled{
    width: 640px;
    height: 56px;
    border-radius: 40px;
@@ -116,7 +116,7 @@ main {
    color: var(--color-white);
 }
 
- .signup-button{
+.signup-button{
     width: 640px;
     height: 56px;
     border-radius: 40px;
@@ -125,9 +125,9 @@ main {
     font-weight: 600;
     font-size: 20px;
     color: var(--color-white);
- }
+}
 
- .external-login{
+.external-login{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -135,39 +135,39 @@ main {
     height: 74px;
     border-radius: 8px;
     background-color: var(--color-light-skyblue);
- }
+}
 
- .external-login-letter{
+.external-login-letter{
     font-weight: 500;
     color: var(--color-dark-gray);
     margin-left: 23px;
- }
+}
 
- .external-login-icons{
+.external-login-icons{
     display: flex;
     gap: 16px;
     margin-right: 23px;
- }
+}
 
- .external-login-icons a{
+.external-login-icons a{
     cursor: pointer;
     width: 42px;
     height: 42px;
- }
+}
 
- .create-account{
+.login{
     display: flex;
     justify-content: center;
     font-weight: 500;
     font-size: 15px;
     color: var(--color-dark-gray);
- }
 
- .create-account a{
-   color: var(--signin-blue);
- }
+    & a{
+      color: var(--signin-blue);
+    }
+}
 
- .error-red {
+.error-red {
    color: var(--error-red);
    font-size: 15px;
    font-weight: 600;
@@ -258,7 +258,7 @@ main {
 @media (min-width: 744px) and (max-width: 1199px) {
    body {
       max-width: 100%;
-  }
+   }
 }
 
 @media (min-width: 1200px) {
