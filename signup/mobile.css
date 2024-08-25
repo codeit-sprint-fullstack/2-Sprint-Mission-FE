@@ -69,4 +69,22 @@
   .easyLogin {
     padding: 0 2.4rem;
   }
+
+  .modalContainer {
+    padding: 0 2.4rem;
+  }
+
+  .modal {
+    flex-direction: column;
+    align-items: center;
+    height: 22rem;
+    padding: 8.1rem 0 0 0;
+    gap: 4.9rem;
+    max-width: 40rem;
+    
+  }
+
+  .modalButton {
+    position: static;
+  }
 }

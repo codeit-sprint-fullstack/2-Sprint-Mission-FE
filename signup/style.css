@@ -165,10 +165,10 @@ input::placeholder {
 }
 
 .easyLoginText {
-font-size: var(--text-lg-16);
-font-weight: 500;
-line-height: 2.4rem; /*24px*/
-color: var(--secondary-color-gray800);
+  font-size: var(--text-lg-16);
+  font-weight: 500;
+  line-height: 2.4rem; /*24px*/
+  color: var(--secondary-color-gray800);
 }
 
 .snsIc {
@@ -236,6 +236,8 @@ a.icImg {
 .modal {
   display: flex;
   position: relative;
+  width: 54rem;
+  height: 25rem;
   padding: 10.8rem 19.45rem 12.3rem 19.45rem ;
   background-color: var(--background-color-white);
   max-width: 54rem;
@@ -243,10 +245,10 @@ a.icImg {
 }
 
 .modalMessage {
-font-size: var(--text-lg-16);
-font-weight: 500;
-line-height: 1.909rem;
-color: var(--secondary-color-gray800);
+  font-size: var(--text-lg-16);
+  font-weight: 500;
+  line-height: 1.909rem;
+  color: var(--secondary-color-gray800);
 }
 
 .modalButton {

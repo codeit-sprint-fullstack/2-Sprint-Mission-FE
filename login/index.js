@@ -1,11 +1,4 @@
-const USER_DATA = [
-  { email: 'codeit1@codeit.com', password: "codeit101!" },
-  { email: 'codeit2@codeit.com', password: "codeit202!" },
-  { email: 'codeit3@codeit.com', password: "codeit303!" },
-  { email: 'codeit4@codeit.com', password: "codeit404!" },
-  { email: 'codeit5@codeit.com', password: "codeit505!" },
-  { email: 'codeit6@codeit.com', password: "codeit606!" },
-];
+import { USER_DATA, showErrorMessage, removeErrorMessage, changeFiledType } from '../module.js';
 
 // element setting
 const elInputEmail = document.querySelector('#email');
@@ -16,25 +9,12 @@ const togglePasswordAll = document.querySelectorAll('.togglePassword');
 let emailComplete
 let passwordComplete
 
-// 에러 메세지 표시
-function showErrorMessage(elInput, errorId) {
-  const visibleErrorMessage = document.querySelector(errorId)
-  visibleErrorMessage.style.display = 'block';
-  elInput.classList.add('borderRed');
-}
-// 에러 메세지 지우기
-function removeErrorMessage(elInput, errorId) {
-  const visibleErrorMessage = document.querySelector(errorId)
-  visibleErrorMessage.style.display = 'none';
-  elInput.classList.remove('borderRed');
-}
-
 // 이메일 입력상태 함수
 function validateEmail() {
   removeErrorMessage(elInputEmail, '#emptyEmailError');
   removeErrorMessage(elInputEmail, '#emailError');
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  emailComplete = false
+  emailComplete = false;
 
   if (elInputEmail.value.length === 0) {
     showErrorMessage(elInputEmail, '#emptyEmailError');
@@ -50,7 +30,7 @@ function validateEmail() {
 function validatePassword() {
   removeErrorMessage(elInputPassword, '#emptyPasswordError');
   removeErrorMessage(elInputPassword, '#passwordError');
-  passwordComplete = false
+  passwordComplete = false;
 
   if (elInputPassword.value.length === 0) {
     showErrorMessage(elInputPassword, '#emptyPasswordError');
@@ -99,16 +79,7 @@ function checkUserData() {
 
 // togglePassword 클릭시 비밀번호 표시/숨기기
 togglePasswordAll.forEach(togglePassword => {
-  togglePassword.addEventListener('click', function() {
-    const passwordFiled = this.previousElementSibling;
-    if(passwordFiled.type === 'password') {
-      passwordFiled.type = 'text';
-      togglePassword.classList.add('togglePasswordHide');
-    } else {
-      passwordFiled.type = 'password';
-      togglePassword.classList.remove('togglePasswordHide');
-    }
-  })  
+  togglePassword.addEventListener('click', changeFiledType)
 });
 
 /* event handling */ 

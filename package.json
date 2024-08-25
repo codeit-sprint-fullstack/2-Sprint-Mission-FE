@@ -1,0 +1,12 @@
+{
+  "name": "sprint-mission-fs",
+  "version": "1.0.0",
+  "description": "Create PandaMarkt using HTML and CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
