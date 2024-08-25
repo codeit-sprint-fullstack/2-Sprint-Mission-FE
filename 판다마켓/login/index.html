@@ -1,25 +1,28 @@
 <!DOCTYPE HTML>
 <HTML>
-  <HEAD>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <TITLE>판다마켓 로그인</TITLE>
-  </HEAD>
-  <BODY>
+  </head>
+  <body>
     <header>
-      <a href="/"><img src="img\logo.png"></a>
+      <a href="/"><img src="img\logo.png" class="mainlogo"></a>
     </header>
-    <div class="LoginForm">
-      <label for="email"  >이메일</label>
-      <input id="email" name="email" placeholder="이메일을 입력해주세요">
+    <form class="LoginForm">
+      <label for="email">이메일</label>
+      <div class="email">
+        <input id="email" name="email" type="email" placeholder="이메일을 입력해주세요">
+      <div class="errorMassage" id="emailError"></div>
+      </div>
       <label for="password" > 비밀번호 </label>
       <div class="password">
         <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
-        <img class="BlindEye" src="IMG/btn_visibility_on_24px.svg" > 
+        <img class="pwToggle" src="IMG/btn_visibility_on_24px.svg" >
       </div>
-
-      <button>로그인</button>
+      <div class="errorMassage" id="pwError"></div>
+      <button id="button" class="disabled">로그인</button>
       <div class="SnsLogin">
         <p>간편 로그인하기</p>
         <div class="sns">
@@ -27,10 +30,15 @@
           <a href="https://www.kakaocorp.com/page/"><img src="IMG/Component 3.png"></a>
         </div>
       </div>
-    <div class="signup">
-      <p>판다마켓이 처음이신가요?</p>
-      <a signup href="/signup">회원가입</a>
-    </div>
-  </div>    
-  </BODY>
+      <div class="signup">
+        <p>판다마켓이 처음이신가요?</p>
+        <a signup href="/signup">회원가입</a>
+      </div>
+      <div id="modal" class="hidden">
+        <div id="modalMassage"></div>
+        <button id="modalBtn">확인</button>
+      </div>
+    </form>
+  <script src="index.js"></script>  
+  </body>
 </HTML>

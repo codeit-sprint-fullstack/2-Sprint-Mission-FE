@@ -57,7 +57,7 @@ a.login {
   align-items: center;
 }
 
-.mainbanner {
+.mainBanner {
   position: relative;
   display: flex;
   flex-shrink: 0;
@@ -89,7 +89,7 @@ a.login {
   border: 0;
 }
 
-.banner-content-end {
+.bannerContentEnd {
   position: absolute;
   bottom: 0;
   align-items: center;
@@ -132,7 +132,7 @@ a.viewMore {
   background-color: white;
 }
 
-.clickView {
+.quickViewleft {
   position: relative;
   padding: 138px 605px 138px 360px;
   display: flex;
@@ -142,23 +142,12 @@ a.viewMore {
   opacity: 0px;
 }
 
-.clickView2 {
+.quickViewright {
   position: relative;
   padding: 138px 360px 138px 591px;
   display: flex;
   flex-direction: row;
   width: Fixed (969px)px;
-  height: Hug (444px)px;
-  margin: auto;
-  opacity: 0px;
-}
-
-.clickView3 {
-  position: relative;
-  padding: 138px 573px 138px 360px;
-  display: flex;
-  flex-direction: row;
-  width: Hug (987px)px;
   height: Hug (444px)px;
   margin: auto;
   opacity: 0px;
