@@ -15,20 +15,21 @@
     </section>
     <form>
       <div class="eamil">
-        <label for="eamil-input">이메일<br /></label>
+        <label for="email_input">이메일<br /></label>
         <input
           name="login-email"
-          id="email-input"
-          type="email"
+          id="email_input"
+          type="text"
           placeholder="이메일을 입력해주세요"
         />
       </div>
+      <span id="email_check"></span>
       <div class="password">
-        <label for="password-input">비밀번호<br /></label>
+        <label for="password_input">비밀번호<br /></label>
         <div class="password-wrapper">
           <input
             name="login-password"
-            id="password-input"
+            id="password_input"
             type="password"
             placeholder="비밀번호를 입력해주세요"
           />
@@ -38,8 +39,9 @@
             class="toggle-password"
           />
         </div>
+        <span id="pw_check"></span>
       </div>
-      <button class="login-button">로그인</button>
+      <button id="login_button" disabled>로그인</button>
       <div class="easy-login">
         <p>간편 로그인하기</p>
         <div class="easy-login-link">
@@ -56,5 +58,6 @@
         <a href="/signup/signup.html">회원가입</a>
       </div>
     </form>
+    <script src="login.js"></script>
   </body>
 </html>

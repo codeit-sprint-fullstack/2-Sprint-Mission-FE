@@ -129,3 +129,21 @@ p {
   gap: 4px;
   opacity: 0px;
 }
+
+input.email_error {
+  border: 2px solid red;
+}
+
+input.pw_error {
+  border: 2px solid red;
+}
+
+span.email_error {
+  color: red;
+  display: block;
+}
+
+span.pw_error {
+  color: red;
+  display: block;
+}
