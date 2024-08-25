@@ -13,7 +13,6 @@ a {
   html {
     line-height: 1.15;
     font-size: 62.5%;
-    /*1rem = 10px*/
   }
 
   img {
@@ -181,8 +180,8 @@ button {
 }
 
 #image-watch {
-  width: 996px;
-  height: 447px;
+  width: 99.6rem;
+  height: 44.7rem;
 }
 
 #watch-text1 {
@@ -551,28 +550,28 @@ button {
 
   .content-edge {
     width: 100%;
-    height: 771px;
+    height: 77.1rem;
   }
 
   #entire-watch {
-    width: 774px;
+    width: 77.4rem;
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
   }
 
   #textbox-watch {
-    width: 521px;
-    height: 136px;
+    width: 52.1rem;
+    height: 13.6rem;
     display: flex;
     flex-direction: column;
-    margin-top: 94px;
+    margin-top: 9.4rem;
     align-items: center;
   }
 
   #watch-text1 {
-    width: 521px;
-    height: 56px;
+    width: 52.1rem;
+    height: 5.6rem;
 
     br {
       display: none;
@@ -586,8 +585,8 @@ button {
   }
 
   #watch-text2 {
-    width: 357px;
-    height: 56px;
+    width: 35.7rem;
+    height: 5.6rem;
   }
 
   .content-center {
@@ -775,8 +774,8 @@ button {
   }
 
   #trust-image {
-    width: 996px;
-    height: 540px;
+    width: 99.6rem;
+    height: 54rem;
     overflow: visible;
     /*이미지 삐져나오게하기*/
     object-fit: cover
@@ -802,8 +801,8 @@ button {
   }
 
   #nav-main {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 1.6rem;
+    margin-right: 1.6rem;
     display: flex;
     justify-content: space-between;
   }
@@ -820,9 +819,9 @@ button {
   }
 
   .menu {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
-    line-height: 19.09px;
+    line-height: 1.909rem;
     text-align: center;
   }
 
@@ -834,7 +833,7 @@ button {
   #textbox-watch {
     width: 35.7rem;
     height: 16.2rem;
-    margin-top: 48px;
+    margin-top: 4.8rem;
   }
 
   #watch-text1 {
@@ -873,8 +872,8 @@ button {
   }
 
   #check-image {
-    width: 343px;
-    height: 259px;
+    width: 34.3rem;
+    height: 25.9rem;
   }
 
   #check-textbox {
@@ -885,8 +884,8 @@ button {
   #check-text1 {
     width: 6.4rem;
     height: 2.2rem;
-    font-size: 16px;
-    line-height: 22.4px;
+    font-size: 1.6rem;
+    line-height: 2.24rem;
     text-align: left;
   }
 
@@ -905,9 +904,9 @@ button {
     width: 20.2rem;
     height: 3.8rem;
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
-    line-height: 19.2px;
+    line-height: 1.92rem;
     letter-spacing: 0.08em;
     text-align: left;
   }
@@ -918,8 +917,8 @@ button {
   }
 
   #search-image {
-    width: 343px;
-    height: 259px;
+    width: 34.3rem;
+    height: 25.9rem;
   }
 
   #search-textbox {
@@ -957,9 +956,8 @@ button {
   }
 
   #register-image {
-    width: 343px;
-    height: 258px;
-
+    width: 34.3rem;
+    height: 25.8rem;
   }
 
   #register-textbox {
@@ -1008,9 +1006,8 @@ button {
   }
 
   #trust-image {
-    width: 498px;
-    height: 270px;
-
+    width: 49.8rem;
+    height: 27rem;
   }
 
   #footer-content {
