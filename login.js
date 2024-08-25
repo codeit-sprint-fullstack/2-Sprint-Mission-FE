@@ -107,11 +107,12 @@ function loginResult () {
         // 로그인 성공
         modalOn('로그인 성공');
         modalOk.addEventListener('click', modalLoginSuccess);
-    } else {
-        // 로그인 실패
-        modalOn('비밀번호가 일치하지 않습니다.');
-        modalOk.addEventListener('click', modalLoginFail);
+        return;
     }
+
+    // 로그인 실패
+    modalOn('비밀번호가 일치하지 않습니다.');
+    modalOk.addEventListener('click', modalLoginFail);
 }
 
 //alert 모달

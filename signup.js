@@ -22,6 +22,7 @@ const USER_DATA = [
     { email: 'codeit5@codeit.com', password: "codeit505!" },
     { email: 'codeit6@codeit.com', password: "codeit606!" },
 ];
+
 // 입력값의 유효성을 검사 & 로그인 버튼 활성화
 function validateInputs() {
     const userEmail = emailInput.value;
@@ -42,51 +43,40 @@ function validateInputs() {
 function loginFocusOut() {
     const userEmail = emailInput.value;
 
-    //기존 error 삭제
+    // 기존 에러 삭제
     removeErrorMessage('email-error-noinput');
     removeErrorMessage('email-error-wrongformat');
 
     // 값이 없을 경우
-    if (userEmail === "") {
-        emailBox.classList.add('gray-box-outer');
-        const msg = createErrorMsg('email-error-noinput', '이메일을 입력해주세요.');
-        document.querySelector('#email-area').appendChild(msg);
+    if (!userEmail) {
+        return handleError(emailBox, 'email-error-noinput', '이메일을 입력해주세요.', '#email-area');
     }
     // 이메일 형식에 맞지 않을 경우
-    else if (!emailRegex.test(userEmail)) {
-        emailBox.classList.add('gray-box-outer');
-        const msg = createErrorMsg('email-error-wrongformat', '잘못된 이메일 형식입니다.');
-        document.querySelector('#email-area').appendChild(msg);
+    if (!emailRegex.test(userEmail)) {
+        return handleError(emailBox, 'email-error-wrongformat', '잘못된 이메일 형식입니다.', '#email-area');
     }
     // 에러 없음: 스타일 제거
-    else {
-        emailBox.classList.remove('gray-box-outer');
-    }
+    emailBox.classList.remove('gray-box-outer');
 }
 
 function passwordFocusOut() {
     const userPassword = passwordInput.value;
 
-    //기존 error 삭제
+    // 기존 에러 삭제
     removeErrorMessage('password-error-noinput');
     removeErrorMessage('password-error-wrongformat');
 
     // 값이 없을 경우
-    if (userPassword === "") {
-        passwordBox.classList.add('gray-box-outer');
-        const msg = createErrorMsg('password-error-noinput', '비밀번호를 입력해주세요');
-        document.querySelector('#password-area').appendChild(msg);
+    if (!userPassword) {
+        return handleError(passwordBox, 'password-error-noinput', '비밀번호를 입력해주세요.', '#password-area');
     }
-    // 비밀번호가 8자 이상인 경우
-    else if (userPassword.length < 8) {
-        passwordBox.classList.add('gray-box-outer');
-        const msg = createErrorMsg('password-error-wrongformat', '비밀번호를 8자 이상 입력해주세요.');
-        document.querySelector('#password-area').appendChild(msg);
+    // 비밀번호가 8자 미만인 경우
+    if (userPassword.length < 8) {
+        return handleError(passwordBox, 'password-error-wrongformat', '비밀번호를 8자 이상 입력해주세요.', '#password-area');
     }
+
     // 에러 없음: 스타일 제거
-    else {
-        passwordBox.classList.remove('gray-box-outer');
-    }
+    passwordBox.classList.remove('gray-box-outer');
 }
 
 function passwordDblFocusOut() {
@@ -98,29 +88,28 @@ function passwordDblFocusOut() {
     removeErrorMessage('repassword-error-wrongformat');
 
     // 값이 없을 경우
-    if (userPasswordDbl === "") {
-        passwordDblBox.classList.add('gray-box-outer');
-        const msg = createErrorMsg('repassword-error-noinput', '비밀번호를 입력해주세요');
-        document.querySelector('#repassword-area').appendChild(msg);
+    if (!userPasswordDbl) {
+        return handleError(passwordDblBox, 'repassword-error-noinput', '비밀번호를 입력해주세요', '#repassword-area');
     }
     // 비밀번호가 8자 일치하지 않는 경우
-    else if (userPasswordDbl !== userPassword) {
-        passwordDblBox.classList.add('gray-box-outer');
-        const msg = createErrorMsg('repassword-error-wrongformat', '비밀번호가 일치하지 않습니다.');
-        document.querySelector('#repassword-area').appendChild(msg);
+    if (userPasswordDbl !== userPassword) {
+        return handleError(passwordDblBox, 'repassword-error-wrongformat', '비밀번호가 일치하지 않습니다.', '#repassword-area');
     }
     // 에러 없음: 스타일 제거
-    else {
-        passwordDblBox.classList.remove('gray-box-outer');
-    }
+    passwordDblBox.classList.remove('gray-box-outer');
+}
+
+// 에러 처리 함수
+function handleError(boxElement, id, message, area) {
+    boxElement.classList.add('gray-box-outer');
+    const msg = createErrorMsg(id, message);
+    document.querySelector(area).appendChild(msg);
 }
 
 // 에러 메시지 제거 함수
 function removeErrorMessage(id) {
     const errorMessage = document.querySelector(`#${id}`);
-    if (errorMessage) {
-        errorMessage.remove();
-    }
+    if (errorMessage) return errorMessage.remove();
 }
 
 // 에러 메시지 생성 함수
@@ -135,19 +124,19 @@ function createErrorMsg(id, text) {
 // 회원가입 버튼 성공, 실패 여부
 function signupResult () {
     const userEmail = emailInput.value;
-    const userPassword = passwordInput.value;
 
-    if (!signupBtn.disabled) {
-        const emailExists = USER_DATA.some(user => user.email === userEmail); //some 메서드: 베열의 요소 중 조건을 만족하는 값이 있는지 찾는 메서드
-        if (emailExists) {
-            modalOn('사용 중인 이메일입니다.');
-            modalOk.addEventListener('click', modalSignupFail);
-        } else {
-            modalOn('회원가입 성공');
-            USER_DATA.push({ email: userEmail, password: userPassword });
-            modalOk.addEventListener('click', modalSignupSuccess);
-        }
+    if (signupBtn.disabled) return;
+
+    const emailExists = USER_DATA.some(user => user.email === userEmail); //some 메서드: 베열의 요소 중 조건을 만족하는 값이 있으면 true반환
+
+    if (emailExists) {
+        modalOn('사용 중인 이메일입니다.');
+        modalOk.addEventListener('click', modalSignupFail);
+        return;
     }
+
+    modalOn('회원가입 성공');
+    modalOk.addEventListener('click', modalSignupSuccess);
 }
 
 //alert 모달
@@ -158,7 +147,7 @@ function modalOn (msg) {
 }
 
 function modalSignupSuccess () {
-    location.href = '/login';
+    location.href = 'login';
 }
 
 function modalSignupFail () {
@@ -167,10 +156,10 @@ function modalSignupFail () {
 }
 
 //눈 아이콘 토글
-function passwordIconVis () {
-    const isHidden = (passwordInput.type === 'password');
-    passwordInput.type = isHidden ? 'text' : 'password';
-    toggleIcon.src = `login_create_account_asset/btn_visibility_${isHidden ? 'on' : 'off'}_24px.svg`;
+function togglePasswordVisibility(inputElement, iconElement) {
+    const isHidden = (inputElement.type === 'password');
+    inputElement.type = isHidden ? 'text' : 'password';
+    iconElement.src = `login_create_account_asset/btn_visibility_${isHidden ? 'on' : 'off'}_24px.svg`;
 }
 
 emailBox.addEventListener('keyup', validateInputs);
