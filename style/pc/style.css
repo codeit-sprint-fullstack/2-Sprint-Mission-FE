@@ -20,18 +20,37 @@ header {
   position: sticky;
   top: 0;
   height: 7rem;
-  padding: 0.9rem 20rem;
-  gap: 1rem;
+  padding: 0 20rem;
+  gap: 3.2rem;
+}
+
+.navbar {
+  display: flex;
+  flex-grow: 1;
+}
+
+.navbar_menu {
+  list-style: none;
+  display: flex;
+}
+
+.navbar_menu_li{
+  display: flex;
+  justify-content: center;
+  width: 10.9rem;
+  color: var(--secondary-600);
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.148rem;
+  text-decoration: none;
 }
 
 .login_button {
   cursor: pointer;
-  width: 12.8rem;
-  height: 4.8rem;
   padding: 1.2rem 2.3rem;
   border-radius: 0.8rem;
   border: 0;
-  background-color: #3592ff;
+  background-color: var(--primary-100);
   color: #ffffff;
   font-weight: 600;
   gap: 1rem;
@@ -47,28 +66,22 @@ main {
 .home_top {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
   background-color: #cfe5ff;
   width: 100%;
   height: 54rem;
+  overflow: hidden;
 }
 
-.home_top_article {
-  display: flex;
-  justify-content: center;
-  gap: 0.7rem;
-}
-
-.home_top_text_btn {
+.home_top_items {
   display: flex;
   flex-direction: column;
   align-self: center;
   gap: 3.2rem;
-  padding-bottom: 6rem;
+  margin-right: -1.6rem;
 }
 
-.home_top_article_h1 {
-  color: #374151;
+.home_top_items_h1 {
+  color: var(--secondary-700);
   font-size: 4rem;
   font-weight: 700;
   line-height: 5.6rem;
@@ -80,19 +93,19 @@ main {
   height: 5.6rem;
   border: 0;
   border-radius: 4rem;
-  background-color: #3592ff;
+  background-color: var(--primary-100);
   padding: 1.6rem 12.4rem;
-  color: #f9fafb;
+  color: #ffffff;
   font-size: 2rem;
   font-weight: 600;
-  line-height: 3.2rem;
+  line-height: 2.4rem;
   gap: 1rem;
 }
 
 .home_top_img {
   align-self: flex-end;
-  width: 74.6rem;
-  height: 34rem;
+  width: 996px;
+  height: 447px;
 }
 
 .home_middle {
@@ -106,27 +119,21 @@ main {
 .home_mid_hot-item {
   display: flex;
   justify-content: start;
-  background-color: #fcfcfc;
   gap: 6.4rem;
-  width: 95.5rem;
-  margin: 13.8rem 12.25rem 13.8rem 0;
+  margin: 13.8rem 24.5rem 13.8rem 0;
 }
 
 .home_mid_search {
   display: flex;
   justify-content: flex-end;
-  background-color: #fcfcfc;
-  width: 96.9rem;
   gap: 6.4rem;
-  margin: 13.8rem 0 13.8rem 10.85rem;
+  margin: 13.8rem 0 13.8rem 23.1rem;
 }
 
 .home_mid_register {
   display: flex;
-  background-color: #fcfcfc;
-  width: fit-content;
   gap: 6.4rem;
-  margin: 13.8rem 12.25rem 13.8rem 0;
+  margin: 13.8rem 17.8rem 13.8rem 0;
 }
 
 .home_mid_hot-item_text {
@@ -154,29 +161,31 @@ main {
 .home_middle h3 {
   font-weight: 700;
   font-size: 1.8rem;
-  line-height: 2.6rem;
-  color: #3592ff;
+  line-height: 2.52rem;
+  color: var(--primary-100);
 }
 
 .home_middle h1 {
   font-weight: 700;
   font-size: 4rem;
   line-height: 5.6rem;
-  letter-spacing: 2%;
-  color: #374151;
+  letter-spacing: 0.08rem;
+  color: var(--secondary-700);
 }
 
 .home_middle h2 {
   font-weight: 500;
   font-size: 2.4rem;
-  line-height: 3.2rem;
-  color: #374151;
+  line-height: 2.88rem;
+  letter-spacing: 0.192rem;
+  color: var(--secondary-700);
 }
 
 .home_middle img {
-  width: 58.8rem;
-  height: 44.4rem;
+  width: 588px;
+  height: 444px;
   border-radius: 1.2rem;
+  overflow: hidden;
 }
 
 .home_mid_bot_margin {
@@ -193,11 +202,13 @@ main {
   background-color: #cfe5ff;
   width: 100%;
   height: 54rem;
+  overflow: hidden;
 }
 
 .home_bottom_article {
   display: flex;
-  gap: 6.9rem;
+  gap: 4.6rem;
+  margin: 0 0 0 6.85rem;
 }
 
 .home_bottom_article h1 {
@@ -210,40 +221,40 @@ main {
 
 .home_bottom_img {
   align-self: flex-end;
-  width: 74.6rem;
-  height: 39.7rem;
+  width: 996px;
+  height: 540px;
 }
 
 footer {
   display: flex;
   justify-content: space-between;
-  background-color: #111827;
+  background-color: var(--secondary-900);
   height: 16rem;
   padding: 3.2rem 20rem 10.8rem 20rem;
   gap: 1rem;
 }
 
-.footer_codeit {
-  color: #9ca3af;
+#footer_codeit {
+  color: var(--secondary-400);
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.909rem;
 }
 
-.footer_menu {
+#footer_menu {
   display: flex;
   gap: 3rem;
 }
 
-.footer_menu a {
+#footer_menu a {
   text-decoration: none;
-  color: #e5e7eb;
+  color: var(--secondary-200);
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.909rem;
 }
 
-.footer_social-media {
+#footer_social-media {
   display: flex;
   text-decoration: none;
   gap: 1.2rem;
