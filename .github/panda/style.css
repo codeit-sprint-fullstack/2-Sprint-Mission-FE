@@ -11,7 +11,7 @@ body{
   align-items: center;
   margin: 0 200px 0 200px;
 }
-.maintop{
+.main-top{
   width: 100%;
   height: 70px;
   padding: 9.5px 0 9.5px 0;
@@ -20,14 +20,14 @@ body{
   left: 0;
   background-color: #FFFFFF;
 }
-.article1{ 
+.article-top{ 
   /* 가장큰 테두리 */
   background-color:#CFE5FF;
   width: 100%;
   height: 540px;
   padding: 5px 0 5px 0;
 }
-.articletop1{
+.article-top-outer{
   width: 1110px;
   height: 340px;
   display: flex;
@@ -35,7 +35,7 @@ body{
   align-items: center;
   margin: 200px 400px 0 400px;
 }
-.top1_1{
+.top-text{
   margin: 32px 0 0 0;
   padding: 0 0 60px 0;
   font-size: 40px;
@@ -49,9 +49,9 @@ body{
   gap: 32px;
 }
 
-.buybutton{
+.buyButton{
   height: 56px;
-  padding: 16px 124px 16px 124px;
+  padding: 16px 115px 16px 115px;
   background-color: #3692FF;
   border-radius: 40px;
   color:#F9FAFB;
@@ -60,9 +60,8 @@ body{
   border: none;
   cursor: pointer;
   gap: 10px;
-  line-height: 32px;
 }
-.loginbutton{
+.login-button{
   text-decoration-line: none;
   color:#F3F4F6;
   width: 128px;
@@ -74,20 +73,19 @@ body{
   position: sticky;
   right: 200px;
 }
-.article2{
+.article-above-middle{
   width: 1920px;
   height: 720px;
 
 }
-.articlemiddle1{
+.above-middle-outer{
   margin: 138px 360px;
   gap: 64px;
   display: flex;
   align-items: center;
   background-color:#FCFCFC;
 }
-.middle1_2{
-  width: 274px;
+.above-text{
   height: 238px;
   gap: 12px;
   display: inline-flex;
@@ -97,23 +95,23 @@ body{
   line-height: 26px;
   font-weight: 700;
 }
-.middle1_2_1{
+.above-text-1{
   font-size: 40px;
   line-height: 56px;
   color: #374151;;
 }
-.middle1_2_2{
+.above-text-2{
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
   color: #374151;
 }
-.article3{
+.article-center-middle{
   width: 1920px;
   height: 720px;
 }
-.articlemiddle2{
-  width: 969px;
+.center-middle-outer{
+  width: 1000px;
   height: 444px;
   margin: 138px 591px;
   gap: 64px;
@@ -121,12 +119,11 @@ body{
   align-items: center;
   background-color:#FCFCFC;
 }
-.middle2_1{
+.center-img{
   /* 사진부분 */
   width: 588px;
 }
-.middle2_2{
-  width: 317px;
+.center-text{
   height: 238px;
   gap: 12px;
   display: flex;
@@ -137,14 +134,14 @@ body{
   line-height: 26px;
   font-weight: 700;
 }
-.middle2_2_1{
+.center-text-1{
   font-size: 40px;
   line-height: 56px;
   color: #374151;
   display: flex;
   text-align: right;
 }
-.middle2_2_2{
+.center-text-2{
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
@@ -152,7 +149,12 @@ body{
   text-align: right;
 
 }
-.articlebottom{
+
+#center{
+  width:588px;
+  height:428px;
+}
+.article-below-outer{
   width: 1920px;
   height: 720px;
   padding: 138px 360px;
@@ -160,58 +162,82 @@ body{
   align-items: center;
 }
 
-.bottomtext{
-  width: 335px;
-  height: 238px;
+.below-text{
   margin:  103px 0 103px 64px;
 }
-.article5{
-  /* 믿을수 있는 판다마켓 중고 거래 */
+
+.below-text h5{
+  color: #3692FF;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.below-text h2{
+  color: #374151;
+  font-size: 40px; 
+  font-weight: 700;
+}
+
+.below-text p{
+  color: #374151;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.article-bottom{
   background-color:#CFE5FF;
   width: auto;
   height: 540px;
   padding: 3px 0 0 5px;
 }
 
-.down{
+.article-bottom-outer{
   width: 1110px;
   height: 397px;
   margin: 140px 0 0 400px;
   display: flex;
+  align-items: center;
+}
+.bottom-text{
   font-size: 40px;
   font-weight: 700;
   color: #374151;
-  align-items: center;
 }
 
 footer{
-  width: 1920px;
+  width: 100%;
   height: 160px;
-  padding: 32px 400px 32px 400px;
+  padding: 32px 0;
   background-color: #111827;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer{
   width: 100%;
-  height: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.footer_1{
+.footer-text-left{
   color: #9CA3AF;
+  margin-left: 200px;
 }
-.footer_2{
+.footer-text-center{
   display: flex;
   gap: 30px;
-  justify-content: space-between;
+  flex-grow: 1;
+  justify-content: center;
   color: #E5E7EB;
 }
-.footer_3{
-
+.footer-text-right{
+  margin-right: 200px;
+  display: flex;
+  gap: 20px;
 }
 
-a.footer{
+.footer a{
   cursor: pointer;
 }

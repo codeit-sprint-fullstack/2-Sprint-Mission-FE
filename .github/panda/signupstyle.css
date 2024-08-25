@@ -8,8 +8,9 @@
 }
 #middle-div{
   width: 640px;
-  height: 430px;
+  height: 664px;
   margin: 100px 640px 0 640px;
+  gap: 24px;
 }
 input{
   border: 1px solid #d1d1d1;
@@ -25,6 +26,7 @@ input{
 input:focus {
   outline-color: #3692FF;
 }
+
 button{
   background: #9CA3AF;
   border: none;
@@ -68,12 +70,12 @@ label{
   height: 42px;
   margin: -33px 0 0 517px;
 }
-#first{
+#already{
   font-weight: 500;
   font-size: 15px;
   text-align: center;
 }
-#panda-first a{
+#panda-already a{
   color: #3182F6;
 }
 
@@ -86,3 +88,4 @@ label{
   width: 42px;
   height: 42px;
 }
+
