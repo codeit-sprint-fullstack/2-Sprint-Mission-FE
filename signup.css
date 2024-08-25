@@ -238,10 +238,47 @@ body {
     right: 4.8rem;
     bottom: 4.8rem;
     padding: 1.2rem 2.3rem 1.2rem 2.3rem;
-    gap: 10px;
+    gap: 1rem;
     border-radius: 0.8rem;
-    opacity: 0px;
+    opacity: 0;
     background: #3692FF;
     color: #ffffff;
     border-style: none;
+}
+@media(max-width: 743px){
+    #logo-title{
+        width: 19.8rem;
+        height: 6.6rem;
+        margin-top: 2.4rem;
+        margin-bottom: 2.4rem;
+    }
+    #sign-up-entire{
+        width: 100%;
+        max-width: 43.2rem;
+        padding-left: 1.6rem;
+        padding-right: 1.6rem;
+    }
+    #sign-up-box{
+        width: 100%;
+        align-items: center;
+    }
+    .sign-up-input{
+        width: 100%;
+        overflow: hidden;
+    }
+    #username{
+        width: 100%;
+    }
+    #nickname{
+        width: 100%;
+    }
+    .password-frame{
+        width: 100%;
+    }
+    #sign-up-button{
+        width: 100%;
+    }
+    #easy-login-frame{
+        width: 100%;
+    }
 }

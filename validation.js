@@ -4,7 +4,7 @@ function id(input, guide) {
     input.id.classList.remove("pass");
     input.id.classList.add("fail");
   } else if (!input.id.checkValidity()) {
-    guide.value = "이메일을 입력해주세요.";
+    guide.value = "잘못된 이메일 형식입니다.";
     input.id.classList.remove("pass");
     input.id.classList.add("fail");
   } else {
