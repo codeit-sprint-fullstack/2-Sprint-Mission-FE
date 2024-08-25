@@ -22,20 +22,27 @@
             <img class="pandaTopLogo" src="images/logo/logo.svg" alt="pandamarketLogo" width="396" height="auto" >
         </a>
 
+
+
+
                 <!--  폼 섹션:  이메일을 입력해주세요.  -->
 
-        <form method="post">
+        <form class="loginForm" method="post">
             <label for="email">이메일</label>
             <input 
-                type="text" 
                 id="email"
+                type="text"     
                 name="email" 
                 placeholder="이메일을 입력해주세요"
             />
-                        <!--  폼 섹션:  비밀번호를 입력해주세요.  -->
+            <label id="enterEmail">이메일을 입력해주세요.</label>
+            <label id="notEmail" >잘못된 이메일 형식입니다.</label>
+
+                <!--  폼 섹션:  비밀번호를 입력해주세요.  -->
             <label for="password">비밀번호</label>
             <div class="password-container">
-                <input 
+                <input
+                    name="password"
                     type="password" 
                     id="password" 
                     placeholder="비밀번호를 입력해주세요"
@@ -52,13 +59,27 @@
                     />
                 </button>
             </div>
-
+            <label id="enterPassword">비밀번호를 8자 이상 입력해주세요.</label>
                         <!--  로그인 버튼 -->
-
-            <button class="pill-bnt" type="submit">
+            <button id="loginBtn" class="pill-bnt" type="submit">
                 로그인
             </button>
         </form>
+
+
+
+
+            <!-- Error modal section   -->
+    <div id="modal">
+        <div id="modal-content"></div>
+            <p id="modal-notMachingPassword">비밀번호가 일치하지 않습니다</p>
+            <button id="modal-close">확인</button>
+        </div>
+      </div>
+            <!-- Error modal end     -->
+
+
+
 
                         <!--  간편로그인 섹션 -->
                         <section class="sns-login">
@@ -91,6 +112,8 @@
         판다마켓이 처음이신가요? <a href="signup.html">회원가입</a>
         </div>
     </main>
+    <script src="JavaScript/auth.js"></script>
+    <script type="module" src="moduleAuth.js"></script>
 </body>
 
 </html>

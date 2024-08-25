@@ -1,52 +1,50 @@
-import{ 
+import { 
   showModal, closeModal, isEmailValid, isPasswordValid, isUser, validForm 
-} from './auth.mjs'; 
+} from './moduleAuth.mjs'; 
 
-const email = document.querySelector('#email');
-const enterEmail = document.querySelector('#enterEamil');
-const notEmail = document.querySelector('#notEmail');
-const password = document.querySelector('#password');
-const enterPassword = document.querySelector('#enterPassword')
+const queryEmail = document.querySelector('#email');
+const enterEmail = document.querySelector('.enterEmail'); // Fixed typo
+const notEmail = document.querySelector('.notEmail');
+const queryPassword = document.querySelector('#password');
+const enterPassword = document.querySelector('.enterPassword');
 const loginBtn = document.querySelector('#loginBtn');
 const modal = document.querySelector('#modal');
-const modalNotMatchingPassword = document.querySelector('notMatchingPassword')
-
+const modalNotMatchingPassword = document.querySelector('#notMatchingPassword'); // Fixed selector
 
 function emailVerification(email) {
-  if (!isEmailValid(email)){
-    email.classList.add('error');
+  if (!isEmailValid(email)) { // Correct usage of parameter
+    queryEmail.classList.add('error');
     enterEmail.style.display = 'block';
-    email.focus();
+    queryEmail.focus();
+  } else {
+    queryEmail.classList.remove('error');
+    enterEmail.style.display = 'none';
+  }
+  loginBtn.classList.toggle('disabled', !validForm(email, queryPassword.value));
+}
+
+function passwordCheck(password) {
+  if (!isPasswordValid(password)) {
+    queryPassword.classList.add('error');
+    enterPassword.style.display = 'block';
+    queryPassword.focus(); // Use queryPassword since password is a value
+  } else {
+    queryPassword.classList.remove('error');
+    enterPassword.style.display = 'none';
+    loginBtn.classList.toggle('disabled', !validForm(queryEmail.value, password));
   }
 }
 
+// Attach event listeners to the input elements, not the functions
+queryEmail.addEventListener('focusout', () => emailVerification(queryEmail.value));
+queryPassword.addEventListener('focusout', () => passwordCheck(queryPassword.value));
 
-
-
-//quary selector  >  css selector  
-//sperate con- 
-
-// const form = document.querySelector('.loginForm');
-// const emailInput = document.querySelector('#userEmail'); // It's better to use getElementById for unique elements
-// const emailError = document.querySelector('.wrongEmail');
-
-
-// form.addEventListener('submit', function(event) {
-//     // Simple email validation regex
-//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-//     // Check if the email is valid
-//     if (!emailPattern.test(emailInput.value)) {
-//         event.preventDefault();  // Prevent form submission
-//         emailError.style.display = 'block';  // Show error message
-//         // emailInput.style.outline = "none" 없어도 됨 
-//         emailInput.style.border = "1px solid #ff0000";
-//     }
-    
-    // else {
-    //     emailError.style.display = 'none';  // Hide error message if email is valid
-    // } 없어도 됨 
-// });
-
-
-
+loginBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const email = queryEmail.value;
+  const password = queryPassword.value;
+  if (!loginBtn.classList.contains('disabled')) {
+    if (!isUser(email, password)) return showModal();
+    window.location.href = 'items.html';
+  }
+});

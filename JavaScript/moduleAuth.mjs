@@ -26,11 +26,11 @@ function isPasswordValid(password) {
   return password.length >= 8;
 }
 
-function isUser(email, password)
+function isUser(email, password){
   return USER_DATA.some((user) => user.eamil === email && user.password === password);
+}
 
-
-function validForm(email. password) {
+function validForm(email, password) {
   return isEmailValid(email) && isPasswordValid(password);
 }
 
