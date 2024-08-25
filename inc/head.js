@@ -32,4 +32,3 @@ document.write(`
 
   <title>판다마켓</title>
   `);
-  go

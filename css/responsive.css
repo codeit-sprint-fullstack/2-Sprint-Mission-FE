@@ -122,21 +122,39 @@
 @media (max-width: 743px) {
   /* 공통영역 */
   .gnb {
-    padding: 0 1.6rem;                  /* 좌우 여백 조정 */
+    padding: 0 1.6rem;                 
   }
+
   .footer-contents {
-    padding: 1rem 1.6rem;               /* 좌우 여백 조정 */
+    display: flex;
+    flex-wrap: wrap;                    
+    justify-content: space-between; 
+    align-items: center;
+    padding: 2rem 1.6rem; 
   }
-    
+
+  #privacy-faq, #sns {
+    width: 50%;                         /* 두 요소를 한 줄에 배치되도록 너비 설정 */
+  }
+  #sns {
+    text-align: right;
+  }
+  #copyright {
+    order: 3;                           /* 세 번째 요소로 이동 */
+    width: 100%; 
+    margin-top: 1rem; 
+  }
+  
   /* 메인 페이지 배너 영역 */
   .banner-wrapper {
-    height: 40rem;                      /* 왜 40rem 정도로 해야 하나? */              
+    height: 54rem;                          
   }
   .banner-top {
     flex-direction: column;             /* 요소들을 위아래로 배치 */
     justify-items: center;
     height: auto;
     padding: 0 1.6rem;                  /* 좌우 여백 조정 */
+    width: 100%;
   }
   .banner-top-message {
     display: block;
@@ -145,6 +163,7 @@
     margin: 0 auto;
     text-align: center;                 
     font-size: 3.2rem;  
+    line-height: 4.48rem;
   }
   .banner-top-message span {
     display: block;
@@ -162,14 +181,14 @@
   }
   .btn-items {                          /* 구경하러 가기 버튼 */
     width: 100%;           
-    height: auto;              
+    height: 5.14rem;              
     font-size: 2rem;           
     font-weight: 600;
-    line-height: 3.2rem;       
+    line-height: 2.4rem;       
     border-radius: 4rem;       
     border: none; 
     cursor: pointer; 
-    margin: 2rem auto;
+    margin: 3rem auto;
   }  
 
   .banner-bottom {
@@ -177,11 +196,12 @@
     justify-items: center;
     height: auto;
     padding: 0 1.6rem;                  /* 좌우 여백 조정 */
+    width: 100%;
   }
   .banner-bottom-message {
     display: block;
     position: static;                   /* absolute 해제 */
-    width: 100%;                         /* 수정 */
+    width: 100%;                        
     margin: 0 auto;
     text-align: center; 
     line-height: 4.48rem;                
@@ -211,7 +231,7 @@
     justify-content: center; 
     align-items: center; 
     padding: 0 3.2rem; 
-    width: 100%;                       /* 수정 */
+    width: 100%;                       
     height: auto;
     gap: 1rem;      
     margin-top: 5rem;
@@ -252,7 +272,7 @@
     line-height: 1.92rem;     
   }
   .section-right .contents-box-right {
-    flex-direction: column-reverse;      /* 이미지가 먼저 나오고 메시지가 뒤따라 나오도록 순서 변경 */
+    flex-direction: column-reverse;     /* 이미지가 먼저 나오고 메시지가 뒤따라 나오도록 순서 변경 */
   }
   .section-message .section-subtitle br {
     display: none;
