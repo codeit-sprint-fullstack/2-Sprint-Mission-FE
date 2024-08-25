@@ -263,3 +263,38 @@ button {
     color: #ffffff;
     border-style: none;
 }
+@media(max-width: 743px) {
+    #logo-title{
+        width: 19.6rem;
+        height: 6.6rem;
+        margin-top: 2.4rem;
+        margin-bottom: 2.4rem;
+    }
+    #login-entire{
+        width:100%;
+        max-width: 43.2rem;
+        padding-left: 1.6rem;
+        padding-right: 1.6rem;
+        margin: 0;
+    }
+    #login-box{
+        width: 100%;
+        align-items: center;
+    }
+    .login-input{
+        width: 100%;
+        overflow: hidden;
+    }
+    #username{
+        width: 100%;
+    }
+    #password-frame{
+        width:100%;
+    }
+    #login-button{
+        width: 100%;
+    }
+    #easy-login-frame{
+        width: 100%;
+    }
+}
