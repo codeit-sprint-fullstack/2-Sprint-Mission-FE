@@ -9,4 +9,6 @@
 - 
 스프린트 미션 3
 -------------
-로그인 페이지 기본요구사항 구현완료
+요구사항 구현완료
+js파일은 login.js와 siginup.js, 모듈 validation js 파일이 있음
+netlify 링크 : https://panda-markget94.netlify.app/
