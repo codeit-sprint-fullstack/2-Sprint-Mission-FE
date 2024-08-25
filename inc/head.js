@@ -15,6 +15,21 @@ document.write(`
 
     gtag('config', 'G-V73JTDZS0G');
   </script>  
+
+  <!-- Open Graph 메타 태그 (페이스북, 카카오톡, 디스코드 등에서 사용) -->
+  <meta property="og:title" content="판다마켓" />
+  <meta property="og:description" content="일상에서 모든 물건을 거래해보세요" />
+  <meta property="og:url" content="https://buffso-pandamarket.netlify.app/" />
+  <meta property="og:image" content="https://buffso-pandamarket.netlify.app/images/pandamarket.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- 트위터 카드 메타 태그 (트위터에서 사용) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="판다마켓" />
+  <meta name="twitter:description" content="일상에서 모든 물건을 거래해보세요" />
+  <meta name="twitter:url" content="https://buffso-pandamarket.netlify.app/" />
+  <meta name="twitter:image" content="https://buffso-pandamarket.netlify.app/images/pandamarket.png" />
+
   <title>판다마켓</title>
   `);
-  
+  go
