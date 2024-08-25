@@ -121,6 +121,7 @@ button {
   justify-content: center;
   align-items: center;
   border-radius: 0.8rem;
+  border-style: none;
 }
 
 #frame-center {
@@ -202,6 +203,7 @@ button {
   text-align: center;
   background-color: #3692FF;
   border-radius: 4rem;
+  border-style: none;
 }
 
 #buttonsize-items {
@@ -805,7 +807,8 @@ button {
     display: flex;
     justify-content: space-between;
   }
-  #logo{
+
+  #logo {
     display: none;
   }
 
@@ -854,8 +857,9 @@ button {
 
   #image-watch {
     margin-top: 4.9rem;
-    width: 626px;
-    height: 281px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
 
   .content-center {
@@ -1006,19 +1010,24 @@ button {
   #trust-image {
     width: 498px;
     height: 270px;
+
   }
+
   #footer-content {
     width: 100%;
     height: 16rem;
   }
+
   #under-bar {
-    width: 34.3rem;
+    width: 100%;
     height: 6.3rem;
     margin-top: 3.2rem;
     display: grid;
     grid-template-areas:
-      "p i"
-      "c .";
+      "p p i"
+      "c . .";
+    gap: 0;
+    justify-content: space-between;
   }
 
   #underbar-text1 {
@@ -1027,12 +1036,105 @@ button {
   }
 
   #underbar-textbox {
+    width: auto;
     margin: 0;
+    display: flex;
+    justify-content: space-between;
     grid-area: p;
+    
   }
-
   #underbar-imagebox {
     margin: 0;
     grid-area: i;
+  }
+  
+
+  #entire-watch {
+    width: 100%;
+    margin: 0 3.2rem;
+ 
+  }
+
+  #check-entire {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 3.2rem 0;
+  }
+
+  #check-image {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  #search-entire {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 3.2rem 0;
+  }
+  #search-image{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  #register-entire {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 3.2rem 0;
+  }
+  #register-image{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  #trust-entire {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 3.2rem 0;
+  }
+  #trust-image{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .content-edge{
+    height: auto;
+  }
+  .content-center {
+    width: 100%;
+    padding: 0 3.2rem;
+    overflow: hidden;
+    height: auto;
+  }
+
+  #frame-center {
+    width: 100%;
+  }
+
+  #trust-entire {
+    width: 100%;
+    margin: 0 3.2rem;
+  }
+  #button-items{
+    width: 100%;
+  }
+  #buttonsize-item{
+    width: 100%;
+  }
+  #watch-text2{
+    width: 100%;
+  }
+  #textbox-watch{
+    width: 100%;
+    margin: 0 0.9rem;
   }
 }
