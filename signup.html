@@ -21,7 +21,7 @@
               type="email"
               placeholder="이메일을 입력해주세요"
             />
-            <input id="username-guide" class="guide" type="text" disabled>
+            <input id="username-guide" class="guide" type="text" disabled />
           </div>
           <div class="sign-up-input">
             <label for="nickname">닉네임</label>
@@ -30,7 +30,7 @@
               name="nickname"
               placeholder="닉네임을 입력해주세요"
             />
-            <input id="nickname-guide" class="guide" type="text" disabled>
+            <input id="nickname-guide" class="guide" type="text" disabled />
           </div>
           <div class="sign-up-input">
             <label for="password">비밀번호</label>
@@ -43,7 +43,7 @@
               />
               <img id="watch-toggle" src="image/btn_visibility_off_24px.svg" />
             </div>
-            <input id="password-guide" class="guide" type="text" disabled>
+            <input id="password-guide" class="guide" type="text" disabled />
           </div>
           <div class="sign-up-input">
             <label for="password-check">비밀번호 확인</label>
@@ -59,7 +59,12 @@
                 src="image/btn_visibility_off_24px.svg"
               />
             </div>
-            <input id="password-check-guide" class="guide" type="text" disabled>
+            <input
+              id="password-check-guide"
+              class="guide"
+              type="text"
+              disabled
+            />
           </div>
           <button id="sign-up-button" class="deactivate">회원가입</button>
         </div>
@@ -82,12 +87,12 @@
           <div id="general-login-text">이미 회원이신가요?</div>
           <a id="login-link" href="login.html">로그인</a>
         </div>
+        <div id="modal" class="hidden">
+          <div id="modal-message"></div>
+          <button id="modal-button">확인</button>
+        </div>
       </div>
     </main>
-    <div id="modal" class="hidden" >
-      <div id="modal-message"></div>
-      <button id="modal-button">확인</button>
-    </div>
   </body>
   <script type="module" src="signup.js"></script>
 </html>

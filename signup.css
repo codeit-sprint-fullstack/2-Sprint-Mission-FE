@@ -45,6 +45,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 #sign-up-box {
@@ -210,7 +211,7 @@ body {
     height: 25rem;
     border-radius: 0.8rem;
     display: flex;
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
