@@ -9,40 +9,54 @@ function isOK(res) {
   return res.status >= 200 && res.status < 300;
 }
 
-async function getProductList(params = {}) {
-  const res = await instance.get('/', { params });
-
+function returnIfOK(res) {
   if (!isOK(res)) throw new Error(res.status + ' ' + res.statusText);
 
   return res.data;
+}
+
+function requestGet(url, params) {
+  return instance.get(url, params);
+}
+
+function requestPost(url, body) {
+  return instance.post(url, body);
+}
+
+function requestPatch(url, body) {
+  return instance.patch(url, body);
+}
+
+function requestDelete(url) {
+  return instance.delete(url);
+}
+
+async function getProductList(params = {}) {
+  const res = await requestGet('/', { params });
+
+  return returnIfOK(res);
 }
 
 async function getProduct(id) {
-  const res = await instance.get('/' + id);
+  const res = await requestGet('/' + id);
 
-  if (!isOK(res)) throw new Error(res.status + ' ' + res.statusText);
-
-  return res.data;
+  return returnIfOK(res);
 }
 
 async function createProduct(product) {
-  const res = await instance.post('/', product);
+  const res = await requestPost('/', product);
 
-  if (!isOK(res)) throw new Error(res.status + ' ' + res.statusText);
-
-  return res.data;
+  return returnIfOK(res);
 }
 
 async function patchProduct(id, product) {
-  const res = await instance.patch('/' + id, product);
+  const res = await requestPatch('/' + id, product);
 
-  if (!isOK(res)) throw new Error(res.status + ' ' + res.statusText);
-
-  return res.data;
+  return returnIfOK(res);
 }
 
 async function deleteProduct(id) {
-  const res = await instance.delete('/' + id);
+  const res = await requestDelete('/' + id);
 
   return res.status;
 }
