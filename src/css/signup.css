@@ -1,0 +1,11 @@
+label.input__pw > div,
+label.input__checkpw > div {
+  position: relative;
+}
+
+label.input__pw img,
+label.input__checkpw img {
+  position: absolute;
+  right: 2.4rem;
+  bottom: 1.6rem;
+}
