@@ -1,0 +1,266 @@
+@charset "UTF-8";
+@import url("color.css");
+
+html {
+   font-family: Pretendard;
+}
+
+main {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   min-height: 100%;
+   max-width: 1920px;
+   margin: 0 auto;
+}
+
+.logo {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 60px;
+   margin-bottom: 40px; /*232px-(132+60)*/
+}
+
+.overall-area {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 24px;
+}
+
+.login-area{
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+}
+
+.letter-box {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+.login-fillup-zone{
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+}
+
+.letter{
+   font-weight: 700;
+   font-size: 18px;
+   color: var(--color-dark-gray);
+   font-family: Pretendard;
+}
+
+.gray-box{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 616px;
+   height: 56px;
+   border-radius: 12px;
+   background-color: var(--cool-gray-100);
+   border: 2px solid transparent;
+  
+   & input::placeholder {
+     font-weight: 400;
+     font-size: 16px;
+     color: var(--cool-gray-400);
+     margin-left: 24px;
+  }
+
+  & input:focus {
+     border-color: none;
+     outline: none;
+  }
+
+  & input {
+     flex-grow: 1;
+     margin-left: 24px;
+     height: 100%;
+     border: 2px solid transparent;
+     background: none;
+ }
+}
+
+.gray-box:focus-within {
+   border-color: var(--color-blue);
+   outline: none;
+}
+
+.gray-box-outer {
+   border-color: var(--error-red);
+   outline: none;
+}
+
+.vis-password{
+   cursor: pointer;
+   margin-right: 24px;
+}
+
+.login-button:disabled{
+   width: 640px;
+   height: 56px;
+   border-radius: 40px;
+   border: none;
+   background-color: var(--cool-gray-400);
+   font-weight: 600;
+   font-size: 20px;
+   color: var(--color-white);
+}
+
+.login-button{
+   cursor: pointer;
+   width: 640px;
+   height: 56px;
+   border-radius: 40px;
+   border: none;
+   background-color: var(--color-blue);
+   font-weight: 600;
+   font-size: 20px;
+   color: var(--color-white);
+}
+
+.external-login{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 640px;
+   height: 74px;
+   border-radius: 8px;
+   background-color: var(--color-light-skyblue);
+}
+
+.external-login-letter{
+   font-weight: 500;
+   color: var(--color-dark-gray);
+   margin-left: 23px;
+}
+
+.external-login-icons{
+   display: flex;
+   gap: 16px;
+   margin-right: 23px;
+}
+
+.external-login-icons a{
+   cursor: pointer;
+   width: 42px;
+   height: 42px;
+}
+
+.create-account{
+   display: flex;
+   justify-content: center;
+   font-weight: 500;
+   font-size: 15px;
+   color: var(--color-dark-gray);
+
+   & a{
+      color: var(--signin-blue);
+    }
+}
+
+.error-red {
+   color: var(--error-red);
+   font-size: 15px;
+   font-weight: 600;
+   margin-left: 16px;
+}
+
+.modal {
+   position: relative;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   width: 540px;
+   height: 250px;
+   background-color: var(--color-white);
+   border-radius: 8px;
+   font-weight: 500;
+   font-size: 16px;
+   color: var(--color-dark-gray);
+   font-family: Pretendard;
+}
+
+.modal-bg {
+   top: 0;
+   left: 0;
+   position: fixed;
+   height: 100%;
+   width: 100%;
+   background-color: rgba(0, 0, 0, 0.5); /* opacity를 rgba로 설정 */
+   margin: auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.button-close {
+   cursor: pointer;
+   position: absolute; /* 절대 위치 지정 */
+   bottom: 30px; /* 모달의 아래쪽 여백 */
+   right: 30px; /* 모달의 오른쪽 여백 */
+   width: 120px;
+   height: 48px;
+   background-color: var(--color-blue);
+   border-radius: 8px;
+   font-weight: 500;
+   font-size: 16px;
+   color: var(--color-white);
+   font-family: Pretendard;
+}
+
+.visible {
+   visibility: visible;
+}
+
+.hidden {
+   visibility: hidden;
+}
+
+/*반응형 웹 만들어보기*/
+@media (min-width: 375px) and (max-width: 743px) {
+   body {
+      max-width: 100%;
+      padding: 0 16px;
+  }
+   .logo img{
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      max-width: 400px;
+   }
+   
+   .login-area,
+   .letter,
+   .gray-box,
+   .login-button,
+   .external-login 
+   {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 400px; /* 최대 400px을 넘지 않음 */
+   }
+
+   .login-button{ /*버튼만 미디어 쿼리 적용이 안돼서 cascading 지정*/
+      width: 100% !important;
+      max-width: 400px !important;
+      margin: 0 auto !important;
+   }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+   body {
+      max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+   body {
+       max-width: 100%;
+   }
+}

@@ -2,11 +2,12 @@
 <html lang="ko">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="login_create_account_asset/favicon.ico">
         <title>판다마켓 회원가입</title>
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
         <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="style_signup.css">
+        <link rel="stylesheet" href="signup.css">
     </head>
     <body>
         <main>
@@ -15,51 +16,55 @@
                     <img src="login_create_account_asset/Property 1=lg.png" alt="판다마켓 로고">
                 </a>
             </div>
-            <div class="overall_area">
-                <form class="signup_area">
-                    <div class="signup_fillup_zone">
+            <div class="overall-area">
+                <form class="signup-area">
+                    <div class="signup-fillup-zone">
                         <div class = "letter-box" id="email-area">
                             <label class="letter" for="email">이메일</label>
-                            <div class="gray_box">
+                            <div class="gray-box" id="email-box">
                                 <input id="email"
-                                       type="text" 
+                                       type="text"
+                                       value=""
                                        placeholder="이메일을 입력해주세요"
                                        autocomplete="email">
                             </div>
                         </div>
                         <div class="letter-box" id="nickname-area">
                             <label class="letter" for="nickname">닉네임</label>
-                            <div class="gray_box">
+                            <div class="gray-box" id="nickname-box">
                                 <input id="nickname"
-                                       type="text" 
+                                       type="text"
+                                       value=""
                                        placeholder="닉네임을 입력해주세요">
                             </div>
                         </div>
                         <div class="letter-box" id="password-area">
                             <label class="letter" for="password">비밀번호</label>
-                            <div class="gray_box">
+                            <div class="gray-box" id="password-box">
                                 <input id="password" 
                                        type="password" 
+                                       value=""
                                        placeholder="비밀번호를 입력해주세요">
-                                <div class="vis_password">
-                                    <img src="login_create_account_asset/btn_visibility_off_24px.svg" alt="invisible icon">
+                                <div class="vis-password">
+                                    <img id="toggle-icon-pw" src="login_create_account_asset/btn_visibility_off_24px.svg" alt="invisible icon">
                                 </div>
                             </div>
                         </div>
                         <div class="letter-box" id="repassword-area">
                             <label class="letter" for="password-doublecheck">비밀번호 확인</label>
-                            <div class="gray_box">
+                            <div class="gray-box" id="password-dblcheck-box">
                                 <input id="password-doublecheck"
-                                       type="password" 
+                                       type="password"
+                                       value=""
                                        placeholder="비밀번호를 다시 한 번 입력해주세요">
-                                <div class="vis_password">
-                                    <img src="login_create_account_asset/btn_visibility_off_24px.svg" alt="invisible icon">
+                                <div class="vis-password">
+                                    <img id="toggle-icon-dbl" src="login_create_account_asset/btn_visibility_off_24px.svg" alt="invisible icon">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="cta">
-                        <button class="button">
+                        <button type="button" class="signup-button" disabled>
                             회원가입
                         </button>
                     </div>
@@ -79,11 +84,19 @@
                         </a>
                     </div>
                 </div>
-                <div class="create-account">
+                <div class="login">
                     <p>
-                        이미 회원이신가요? <a href="/login">로그인</a>
+                        이미 회원이신가요? <a href="login">로그인</a>
                     </p>
                 </div>
             </div>
-        </main>    
-    </body>    
+        </main>
+        <div class="modal-bg hidden">
+            <div class="modal">
+                <p class="modal-text"></p>
+                <button class="button-close">확인</button>
+            </div>
+        </div>
+        <script src="signup.js"></script>     
+    </body>
+</html>

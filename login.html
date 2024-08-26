@@ -2,11 +2,12 @@
 <html lang="ko">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="login_create_account_asset/favicon.ico">
         <title>판다마켓 로그인</title>
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css">
         <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="style_login.css">
+        <link rel="stylesheet" href="login.css">
     </head>
     <body>
         <main>
@@ -15,32 +16,34 @@
                     <img src="login_create_account_asset/Property 1=lg.png" alt="판다마켓 로고">
                 </a>
             </div>
-            <div class="overall_area">
-                <form class="login_area">
-                    <div class="login_fillup_zone">
+            <div class="overall-area">
+                <form class="login-area">
+                    <div class="login-fillup-zone">
                         <div class = "letter-box" id="email-area">
                             <label class="letter" for="email">이메일</label>
-                            <div class="gray_box">
+                            <div class="gray-box" id="email-box">
                                 <input id="email"
                                        type="text" 
+                                       value=""
                                        placeholder="이메일을 입력해주세요"
                                        autocomplete="email">
                             </div>
                         </div>
                         <div class="letter-box" id="password-area">
                             <label class="letter" for="password">비밀번호</label>
-                            <div class="gray_box">
+                            <div class="gray-box" id="password-box">
                                 <input id="password"
-                                       type="password" 
+                                       type="password"
+                                       value=""
                                        placeholder="비밀번호를 입력해주세요">
-                                <div class="vis_password">
-                                    <img src="login_create_account_asset/btn_visibility_off_24px.svg">
+                                <div class="vis-password">
+                                    <img id="toggle-icon" src="login_create_account_asset/btn_visibility_off_24px.svg">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="cta">
-                        <button class="button">
+                        <button type="button" class="login-button" disabled>
                             로그인
                         </button>
                     </div>
@@ -62,9 +65,17 @@
                 </div>
                 <div class="create-account">
                     <p>
-                        판다마켓이 처음이신가요? <a href="/signup">회원가입</a>
+                        판다마켓이 처음이신가요? <a href="signup">회원가입</a>
                     </p>
                 </div>
             </div>
-        </main>    
-    </body>    
+        </main>
+        <div class="modal-bg hidden">
+            <div class="modal">
+                <p class="modal-text"></p>
+                <button class="button-close">확인</button>
+            </div>
+        </div>
+        <script src="login.js"></script>    
+    </body>
+</html>    
