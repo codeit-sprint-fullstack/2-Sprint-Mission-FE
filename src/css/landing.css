@@ -1,0 +1,209 @@
+@import "header.css";
+
+header {
+  padding: 0 20rem;
+  height: 7rem;
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 5.6rem;
+  font-weight: 700;
+}
+
+footer {
+  height: 16rem;
+  background-color: var(--gray-900);
+  padding: 3.2rem 20rem 10.8rem 20rem;
+  color: var(--gray-400);
+}
+
+#pandaLogo {
+  width: 153px;
+}
+
+#topNav {
+  flex: 1;
+  margin-left: 3.2rem;
+  display: flex;
+  gap: 3.2rem;
+  color: var(--gray-600);
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.148rem;
+  text-align: center;
+}
+
+#loginButton {
+  font-weight: 600;
+  border-radius: 0.8rem;
+  padding: 1.1rem 2.3rem;
+  line-height: 2.6rem;
+}
+
+#topBanner {
+  background-image: url("../Image/Img_home_top.png");
+}
+
+#bottomBanner {
+  background-image: url("../Image/Img_home_bottom.png");
+}
+
+.banner {
+  background-color: #cfe5ff;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: 80% bottom;
+  background-size: 55%;
+  height: 54rem;
+}
+
+.section-wrap,
+.cards {
+  max-width: 120rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.long-button {
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 100rem;
+  padding: 1.6rem 12.4rem;
+  margin-top: 3.2rem;
+}
+
+.card {
+  padding: 13.8rem 0;
+  display: flex;
+  align-items: center;
+  gap: 5%;
+}
+
+.card.reverse {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.card-text {
+  flex: 1;
+}
+
+.card-text h2 {
+  color: var(--Primary-100);
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.card-text p {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 3.2rem;
+  margin-top: 2.4rem;
+}
+
+.footer-link {
+  display: flex;
+  gap: 3rem;
+  color: var(--gray-200);
+}
+
+.sns-link {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.sns-link img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 1199px) {
+  header,
+  footer {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+  }
+
+  .banner {
+    height: 77.1rem;
+    background-position: bottom;
+    background-size: 120%;
+    position: relative;
+    align-items: baseline;
+  }
+
+  .section-wrap {
+    text-align: center;
+    position: relative;
+    top: 18%;
+  }
+
+  .card {
+    padding: 4rem 2.4rem;
+    flex-direction: column;
+  }
+
+  .card.reverse {
+    flex-direction: column;
+  }
+
+  .card-text {
+    text-align: left;
+    width: 696px;
+    margin-top: 1.6rem;
+  }
+
+  .card.reverse .card-text {
+    text-align: right;
+  }
+
+  .card img {
+    width: 696px;
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Mobile */
+@media (max-width: 743px) {
+  header,
+  footer {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  #topNav {
+    margin-left: 1.6rem;
+    gap: 0.8rem;
+    font-size: 1.6rem;
+    line-height: 1.909rem;
+  }
+
+  .banner {
+    height: 54rem;
+  }
+
+  .section-wrap {
+    top: 8%;
+  }
+
+  .card {
+    padding: 3.2rem 1.6rem;
+  }
+
+  .card-text {
+    width: 100%;
+    margin-top: 0.8rem;
+  }
+
+  .card img {
+    width: 100%;
+  }
+}
