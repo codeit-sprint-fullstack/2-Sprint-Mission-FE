@@ -110,5 +110,15 @@
 		</div>
 	</footer>
 </body>
-
+<script>
+const logo = document.querySelector("img.logo");
+window.addEventListener("resize", function (event) {
+	if (window.innerWidth < 744) {
+		logo.setAttribute("src", "/images/logo-text-only.png");
+	}
+	else {
+		logo.setAttribute("src", "/images/Property-1=lg.png");
+	}
+});
+</script>
 </html>
