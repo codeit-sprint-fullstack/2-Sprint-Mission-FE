@@ -66,6 +66,10 @@ img {
     font-size: 12px;
   }
 
+  header img.logo {
+    height: 27px;
+  }
+
   header .sub,
   footer .sub {
     margin: 0 16px;
