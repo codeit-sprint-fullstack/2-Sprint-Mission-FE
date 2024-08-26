@@ -40,7 +40,7 @@ form {
 }
 
 .logo-img {
-width: 198px;
+width: 396px;
  margin: 60px auto 24px;
  display: block;
 }
@@ -135,6 +135,7 @@ button {
 .signup {
   color: #3182F6;
 }
+
 @media (max-width: 743px) {
   body {
     font-size: 1.6rem;
@@ -145,7 +146,8 @@ button {
   }
 
   form {
-    max-width: 344px;
+    width: 100%;
+      padding: 0 16px;
   }
 
   label {
