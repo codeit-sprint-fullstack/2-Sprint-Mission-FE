@@ -38,7 +38,7 @@ form {
 
 .logo-img {
   width: 396px;
-    margin: 60px auto 24px;
+  margin: 60px auto 24px;
     display: block;
 }
 
@@ -82,7 +82,7 @@ input::placeholder {
 .toggle-show-password {
   height: 24px;
   position: absolute;
-  top: 50%;
+  top: 30px;
   transform: translateY(-50%);
   right: 24px;
 }
