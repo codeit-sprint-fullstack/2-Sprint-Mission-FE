@@ -73,7 +73,7 @@ img {
 
   header nav ul li {
     padding: .2em .2em;
-    font-size: var(--text-md)
+    font-size: var(--text-lg)
   }
 
   header a.button {
@@ -91,6 +91,28 @@ img {
 
   section.sec-top,
   section.sec-bottom {
-    background-position: bottom 0 right -12em;
+    background-position: bottom 0 center;
+  }
+
+  footer .sub-footer {
+    display: grid;
+    grid-template: repeat(2, auto) / 1fr auto;
+    grid-template-areas:
+      "privacyFAQ SNS"
+      "codeit SNS";
+    gap: 13px;
+  }
+
+  footer .codeit-2024 {
+    grid-area: codeit;
+  }
+
+  footer .privacy-policy-and-FAQ {
+    grid-area: privacyFAQ;
+    gap: 15px;
+  }
+
+  footer .sns-icons {
+    grid-area: SNS;
   }
 }
