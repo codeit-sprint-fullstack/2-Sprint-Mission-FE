@@ -59,6 +59,11 @@ header{
   padding-left: 21px;
   padding-right: 21px;
   color: #4B5563;
+  opacity: 1;
+}
+
+.free:hover, .secondhand:hover{
+  opacity: 0.7;
 }
 
 .header-images{
@@ -83,10 +88,23 @@ img{
 .pandamarket-img{
   margin-left: 200px;
   align-items: center;
+  opacity: 1;
+}
+
+.pandamarket-img:hover{
+  opacity: 0.7;
 }
 
 .m-pandamarket-img{
   display: none;
+}
+
+.loginbutton-img:hover{
+  opacity: 0.7;
+}
+
+.loginbutton-img{
+  opacity: 1;
 }
 
 .main-banner{
@@ -111,6 +129,11 @@ img{
 
 .mainbutton-img{
   cursor: pointer;
+  opacity: 1;
+}
+
+.mainbutton-img:hover{
+  opacity: 0.7;
 }
 
 .main-img{

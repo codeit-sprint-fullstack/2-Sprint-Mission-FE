@@ -7,6 +7,25 @@ const pw_error = document.querySelector('#pw-error');
 
 const loginBtn = document.querySelector('.log-in');
 
+const visibilityBtn = document.querySelector('.visibility');
+
+const bg = document.querySelector('.modal-bg');
+const modalBtn = document.querySelector('.modal-close');
+const modalTxt = document.querySelector('.modal-error');
+
+let isClicked = false;
+
+visibilityBtn.addEventListener('click', function(e) {
+  isClicked = !isClicked
+  if(isClicked){
+    pw_input.setAttribute('type', 'text');
+    visibilityBtn.setAttribute('src','../img/btn_visibility_on.png');
+    return;
+  }
+  pw_input.setAttribute('type', 'password');
+    visibilityBtn.setAttribute('src','../img/visibility.png');
+})
+
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: "codeit101!" },
   { email: 'codeit2@codeit.com', password: "codeit202!" },
@@ -18,7 +37,6 @@ const USER_DATA = [
 
 function validateEmail() {
   let error;
-  
   try {
     if (email_input.value === '') {
       email_input.classList.add('fail');
@@ -50,7 +68,6 @@ function validateEmail() {
 
 function validatePw() {
   let error;
-
   try {
     if (pw_input.value === '') {
       pw_input.classList.add('fail');
@@ -81,17 +98,21 @@ function validatePw() {
 }
 
 function logButton() {
-  if (email_input.classList.contains('pass') && pw_input.classList.contains('pass')) {
+  const isValid = email_input.classList.contains('pass') && pw_input.classList.contains('pass')
+  if (isValid) {
     loginBtn.classList.remove('inactive');
+    loginBtn.classList.add('active');
     loginBtn.style.backgroundColor = "#3692FF";
   }
   else {
+    loginBtn.classList.remove('active');
     loginBtn.classList.add('inactive');
     loginBtn.style.backgroundColor = "#9CA3AF";
   }
 }
 
 function logClickBtn() {
+  console.log(33);
   const new_data = {
     email: email_input.value,
     password: pw_input.value
@@ -101,18 +122,24 @@ function logClickBtn() {
 
   if (match_data) {
     if (match_data.password === new_data.password) {
-      alert('로그인 성공');
       window.location.href = "/items";
     }
     else {
-      alert('비밀번호가 일치하지 않습니다.');
+      modalTxt.textContent = "비밀번호가 일치하지 않습니다.";
+      bg.style.display = "block";
     }
   }
   else {
-    alert('등록된 정보가 없습니다.');
+    modalTxt.textContent = "등록된 정보가 없습니다.";
+    bg.style.display = "block";
   }
+}
+
+function modalClose() {
+  bg.style.display = 'none';
 }
 
 email_input.addEventListener('focusout', validateEmail);
 pw_input.addEventListener('focusout', validatePw);
 loginBtn.addEventListener('click', logClickBtn);
+modalBtn.addEventListener('click', modalClose);

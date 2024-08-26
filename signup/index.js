@@ -13,6 +13,39 @@ const checkpw_error = document.querySelector('#checkpw-error');
 
 const signupBtn = document.querySelector('.sign-up');
 
+const pw_visibilityBtn = document.querySelector('#pw-visibility');
+const checkpw_visibilityBtn = document.querySelector('#checkpw-visibility');
+
+const bg = document.querySelector('.modal-bg');
+const modalBtn = document.querySelector('.modal-close');
+const modalTxt = document.querySelector('.modal-error');
+
+let pw_isClicked = false;
+let checkpw_isClicked = false;
+
+pw_visibilityBtn.addEventListener('click', function(e) {
+  pw_isClicked = !pw_isClicked
+  if(pw_isClicked){
+    pw_input.setAttribute('type', 'text');
+    pw_visibilityBtn.setAttribute('src','../img/btn_visibility_on.png');
+    return;
+  }
+  pw_input.setAttribute('type', 'password');
+  pw_visibilityBtn.setAttribute('src','../img/visibility.png');
+})
+
+checkpw_visibilityBtn.addEventListener('click', function(e) {
+  checkpw_isClicked = !checkpw_isClicked;
+  if(checkpw_isClicked){
+    checkpw_input.setAttribute('type', 'text');
+    checkpw_visibilityBtn.setAttribute('src','../img/btn_visibility_on.png');
+    return;
+  }
+  checkpw_input.setAttribute('type', 'password');
+  checkpw_visibilityBtn.setAttribute('src','../img/visibility.png');
+})
+
+
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: "codeit101!" },
   { email: 'codeit2@codeit.com', password: "codeit202!" },
@@ -153,10 +186,12 @@ function matchPw() {
 function signButton() {
   if (email_input.classList.contains('pass') && nick_input.classList.contains('pass') && pw_input.classList.contains('pass') && checkpw_input.classList.contains('pass')) {
     signupBtn.classList.remove('inactive');
+    signupBtn.classList.add('active');
     signupBtn.style.backgroundColor = "#3692FF";
   }
   else {
     signupBtn.classList.add('inactive');
+    signupBtn.classList.remove('active');
     signupBtn.style.backgroundColor = "#9CA3AF";
   }
 }
@@ -170,13 +205,19 @@ function signClickBtn() {
   const match_data = USER_DATA.find(user => user.email === new_data.email)
 
   if (match_data) {
-    alert('사용 중인 이메일입니다.');
+    modalTxt.textContent = "사용 중인 이메일입니다.";
+    bg.style.display = 'block';
   }
 
   else {
-    alert('회원가입 성공');
+    modalTxt.textContent = "회원가입 성공";
+    bg.style.display = 'block';
     window.location.href = "/login";
   }
+}
+
+function modalClose() {
+  bg.style.display = 'none';
 }
 
 
@@ -185,3 +226,4 @@ nick_input.addEventListener('focusout', validateNick);
 pw_input.addEventListener('focusout', validatePw);
 checkpw_input.addEventListener('focusout', matchPw);
 signupBtn.addEventListener('click', signClickBtn);
+modalBtn.addEventListener('click', modalClose);

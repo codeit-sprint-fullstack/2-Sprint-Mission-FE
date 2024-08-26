@@ -10,8 +10,8 @@
 <body>
   <div class="main">
     <a href="/">
-      <img class="pandamarket" src="../img/pandamarket.png">
-      <img class="m-pandamarket" src="../img/m_log_panda.png">
+      <img class="pandamarket" src="../img/pandamarket.svg">
+      <img class="m-pandamarket" src="../img/pandamarket.svg" style="width: 198px">
     </a>
     <div class="signup">
       <div class="email">
@@ -27,13 +27,13 @@
       <div class="password">
         <label class="label-pw" for="password">비밀번호</label>
         <input class="input-pw" id="password" placeholder="비밀번호를 입력해주세요" type="password" required>
-        <img class="visibility" src="../img/visibility.png">
+        <img class="visibility" id="pw-visibility" src="../img/visibility.png">
         <input class="error" id="pw-error" type="text" disabled>
       </div>
       <div class="password-check">
         <label class="label-checkpw" for="pw-check">비밀번호 확인</label>
         <input class="input-checkpw" id="pw-check" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password" required>
-        <img class="visibility" src="../img/visibility.png">
+        <img class="visibility" id="checkpw-visibility" src="../img/visibility.png">
         <input class="error" id="checkpw-error" type="text" disabled>
       </div>
       <button class="sign-up" type="submit">회원가입</button>
@@ -51,11 +51,17 @@
       <div class="already">
         <p class="panda-already">
           이미 회원이신가요?
-          <a href="/login">로그인</a>
+          <a class="login" href="/login">로그인</a>
         </p>
       </div>
     </div>
   </div>
+<div class="modal-bg">
+  <div class="modal">
+    <p class="modal-error">사용 중인 이메일입니다.</p>
+    <button class="modal-close">확인</button>
+  </div>
+</div>
 </body>
 <script src="index.js"></script>
 </html>

@@ -90,6 +90,7 @@ input:focus{
   justify-content: center;
   border: 0;
   cursor: pointer;
+  align-items: center;
 }
 
 .simple{
@@ -151,6 +152,11 @@ input:focus{
 
 .active{
   background-color: #3692FF;
+  opacity: 1;
+}
+
+.active:hover{
+  opacity: 0.7;
 }
 
 .fail {
@@ -218,4 +224,71 @@ input:focus{
   .panda-already{
     text-align: center;
   }
+}
+
+.modal-bg{
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.modal{
+  border-radius: 16px;
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  width: 540px;
+  height: 250px;
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.modal-error{
+  display: inline;
+  position: absolute;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19.09px;
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.modal-close{
+  width: 120px;
+  height: 48px;
+  top: 174px;
+  left: 392px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  gap: 10px;
+  background-color: #3692FF;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19.09px;
+  color: #FFFFFF;
+  position: absolute;
+  border: none;
+}
+
+.modal-close:hover{
+  opacity: 0.7;
+}
+
+.login{
+  opacity: 1;
+}
+
+.login:hover{
+  opacity: 0.7;
 }
