@@ -2,52 +2,80 @@
 <html lang="ko">
 
 <head>
-    <meta charset="utf-8">
-    <title>판다마켓 회원가입</title>
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-    <link rel="stylesheet" href="signup.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>판다마켓 회원가입</title>
+
+  <link rel="icon" href="../images/favicon.ico">
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="signup.css" />
 </head>
 
 <body>
-    <main>
-        <a href="../"><img class="login-logo" src="../images/logo.png" alt="로그인 로고"></a>
-        <form action="../signup">
-            <label for="useremail">이메일</label>
-            <input id="useremail" name="useremail" type="email" placeholder="이메일을 입력해주세요">
-            <label for="nickname">닉네임</label>
-            <input id="nickname" name="nickname" type="text" placeholder="닉네임을 입력해주세요">
+  <main>
+    <a href="../"><img class="signup-logo" src="../images/logo.png" alt="로그인 로고" /></a>
+    <form>
+      <label for="useremail">이메일</label>
+      <input id="useremail" name="useremail" type="email" placeholder="이메일을 입력해주세요" />
+      <label class="none-email-value hide font">이메일을 입력해주세요.</label>
+      <label class="email-format-error hide font">잘못된 이메일 형식입니다.</label>
 
-            <label for="password">비밀번호</label>
-            <div class="password-bar">
-                <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
-                <img src="../images/btn_visibility_on_24px.svg" alt="눈 아이콘">
-            </div>
+      <label for="nickname">닉네임</label>
+      <input id="nickname" name="nickname" type="text" placeholder="닉네임을 입력해주세요" />
+      <label class="none-nickname-value hide font">닉네임을 입력해주세요.</label>
 
-            <label for="password-repeat">비밀번호 확인</label>
-            <div class="password-bar">
-                <input id="password-repeat" name="password-repeat" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
-                <img src="../images/btn_visibility_on_24px.svg" alt="눈 아이콘">
-            </div>
+      <label for="password">비밀번호</label>
+      <div class="password-bar">
+        <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요" />
+        <img class="password-hide" src="../images/btn_visibility_off_24px.svg" alt="눈 아이콘 off" />
+        <img class="password-show hide" src="../images/btn_visibility_on_24px.svg" alt="눈 아이콘 on" />
+      </div>
+      <label class="none-password-value hide font">비밀번호를 입력해주세요.</label>
+      <label class="password-format-error hide font">비밀번호를 8자 이상 입력해주세요.</label>
 
-            <button class="signup-btn" type="button" onclick="location.href='../signup'">회원가입</button>
-        </form>
-        <div class="oauth">
-            <span>간편 로그인하기</span>
-            <div class="oauth-logo">
-                <a href="https://www.google.com/">
-                    <img src="../images/google_logo.png" alt="구글 로고">
-                </a>
-                <a href="https://www.kakaocorp.com/page/">
-                    <img src="../images/kakaotalk_logo.png" alt="카카오톡 로고">
-                </a>
-            </div>
+      <label for="password-repeat">비밀번호 확인</label>
+      <div class="password-bar">
+        <input id="password-repeat" name="password-repeat" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" />
+        <img class="password-repeat-hide" src="../images/btn_visibility_off_24px.svg" alt="눈 아이콘 off" />
+        <img class="password-repeat-show hide" src="../images/btn_visibility_on_24px.svg" alt="눈 아이콘 on" />
+      </div>
+      <label class="none-password-repeat-value hide font">비밀번호를 입력해주세요.</label>
+      <label class="miss-match-password hide font">입력한 비밀번호와 일치하지 않습니다.</label>
+
+      <button class="signup-btn" type="button">회원가입</button>
+    </form>
+
+    <div class="error-modal hide">
+      <div class="modal-overlay"></div>
+      <div class="error-inner">
+        <span class="error-message">사용 중인 이메일입니다.</span>
+        <button class="error-ok">확인</button>
+      </div>
+    </div>
+
+    <div class="oauth">
+      <div class="oauth-elements">
+        <span>간편 로그인하기</span>
+        <div class="oauth-logo">
+          <a href="https://www.google.com/">
+            <img src="../images/google_logo.png" alt="구글 로고" />
+          </a>
+          <a href="https://www.kakaocorp.com/page/">
+            <img src="../images/kakaotalk_logo.png" alt="카카오톡 로고" />
+          </a>
         </div>
-        <div class="login-content">
-            <span>이미 회원이신가요?</span>
-            <a href="../login">로그인</a>
-        </div>
-    </main>
+      </div>
+    </div>
+
+    <div class="login-content">
+      <span>이미 회원이신가요?</span>
+      <a href="../login">로그인</a>
+    </div>
+  </main>
+  <script src="../commonValidate.js" charset="utf-8"></script>
+  <script src="signup.js" charset="utf-8"></script>
 </body>
 
 </html>
