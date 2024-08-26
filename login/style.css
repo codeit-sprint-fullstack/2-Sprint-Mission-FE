@@ -130,3 +130,20 @@ button {
 .signup {
   color: #3182F6;
 }
+@media (max-width: 743px) {
+  body {
+    font-size: 16px;
+  }
+
+  .logo-img {
+    width: 198px;
+  }
+
+  form {
+    max-width: 344px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+}
