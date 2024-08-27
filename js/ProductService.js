@@ -1,74 +1,68 @@
+//axios 도전
+import axios from 'axios';
+
 const PRODUCT_URL = 'https://sprint-mission-api.vercel.app/products';
 
-async function getProductList(page = 1, pageSize = 100, keyword =''){  //GET (default 값)
+async function getProductList(page, pageSize , keyword){  //GET
     try {
-        const response = await fetch (`${PRODUCT_URL}?page=${page}&pageSize=${pageSize}&keyword=${keyword}`)
-        
-        return await response.json();
-    }
-
-    catch(error) {
-        console.error(error);
+       const res = await axios.get(PRODUCT_URL,{
+        params:{
+            page,
+            pageSize,
+            keyword
+        }
+       })
+       return res.data;
+    } 
+    catch(e) {
+        console.error(`${e.message}`);
     }
 };
 
 async function getProduct(id){ //GET
     try {
-        const response = await fetch(`${PRODUCT_URL}/${id}`);
+        const res = await axios.get(`${PRODUCT_URL}/${id}`);
 
-        return await response.json();
+        return res.data;
     }
-
-    catch(error) {
-        console.error(error);
+    catch(e) {
+        console.error(`${e.message}`);
     }
 };
 
 async function createProduct({name, description, price, manufacturer, tags, images}){ //POST
     try {
-        const response = await fetch(PRODUCT_URL, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ name, description, price, tags, images })
-
+        const res = await axios.post(PRODUCT_URL, {
+            name,
+            description,
+            price,
+            tags,
+            images
         })
-
-        return await response.json();
+        return res.data;
     }
-
-    catch(error) {
-        console.error(error);
+    catch(e) {
+        console.error(`${e.message}`);
     }
-};
+}; //제조사는 어떻게 해결해야하나...
 
 async function patchProduct(id, data){ //PATCH
     try {
-        const response = await fetch(`${PRODUCT_URL}/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-            
-        });
-        return response.json();
+        const res = await axios.patch(`${PRODUCT_URL}/${id}`, data);
+        return res.data;
     }
-
-    catch(error) {
-        console.error(error);
+    catch(e) {
+        console.error(`${e.message}`);
     }
 };
 
 async function deleteProduct(id){ //DELETE
     try {
-        const response = await fetch(`${PRODUCT_URL}/${id}`, {
-            method: 'DELETE' 
-        });
-        return 'product deledted successfully!'
+        const res = await axios.delete(`${PRODUCT_URL}/${id}`);
+        return res.data;
     }
-
-    catch(error) {
-        console.error(error);
+    catch(e) {
+        console.error(`${e.message}`);
     }
 };
 
