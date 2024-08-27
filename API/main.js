@@ -7,8 +7,7 @@ import { getProductList,getProduct,createProduct,patchProduct,deleteProduct } fr
 getArticleList().then(el =>console.log(el));//불러오기
 
 //getArticle
-getArticle(1).then(el => console.log(el)).catch(err=>console.log(err.response.data))
-실패
+getArticle(1).then(el => console.log(el)).catch(err=>console.log(err.response.data))//실패
 getArticle(86).then(el => console.log(el));//성공
 
 //creatArticle
