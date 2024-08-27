@@ -1,49 +1,76 @@
 const SERVER = 'https://sprint-mission-api.vercel.app/articles/';
+const HTTP_METHODS = Object.freeze({
+  GET: 'GET',
+  POST: 'POST',
+  PATCH: 'PATCH',
+  DELETE: 'DELETE'
+});
 
-async function fetchData(url, method, body = {}, params = {}) {
-  const server = new URL(url);
+async function fetchData({
+  url: requestUrl,
+  method,
+  body = {},
+  params = {},
+  options = {}
+}) {
+  if (!requestUrl || !method) throw new Error('URL and Method is required');
+  if (!HTTP_METHODS[method]) throw new Error('Invalid HTTP method');
+
+  const url = new URL(requestUrl);
   for (let key in params) {
-    server.searchParams.append(key, params[key]);
+    url.searchParams.append(key, params[key]);
   }
 
-  const res =
-    method === 'POST' || method === 'PATCH'
-      ? fetch(server, {
+  let res;
+  try {
+    switch (method) {
+      case HTTP_METHODS.GET:
+      case HTTP_METHODS.DELETE:
+        res = await fetch(url, { method, headers: options.headers });
+        break;
+      case HTTP_METHODS.POST:
+      case HTTP_METHODS.PATCH:
+        res = await fetch(url, {
           method,
           body: JSON.stringify(body),
-          headers: { 'Content-Type': 'application/json' }
-        })
-      : fetch(server);
+          headers: options.headers
+        });
+        break;
+    }
 
-  const data = await res
-    .then((r) => {
-      if (r.status === 204) return r.status;
-      else if (r.ok) return r.json();
+    if (!res.ok) throw new Error('Failed to fetch data');
+    // DELETE 작업시 리턴
+    if (res.status === 204) return res.status;
 
-      throw new Error(r.status + ' ' + r.statusText);
-    })
-    .catch((e) => console.log(e.message));
-
-  // const res = await fetch(server, {
-  //   method,
-  //   body: JSON.stringify(body),
-  //   headers: { 'Content-Type': 'application/json' }
-  // })
-  //   .then((r) => {
-  //     if (r.ok) return r.json();
-
-  //     throw new Error(r.status + ' ' + r.statusText);
-  //   })
-  //   .catch((e) => console.log(e.message));
-  return data;
+    return await res.json();
+  } catch (err) {
+    throw err;
+  }
 }
 
-// function jsonIfOK(res) {
-//   // return res.ok ? res.json() : res;
-//   if (res.ok) return res.json();
+async function fetchGet(url, params, options) {
+  return await fetchData({ url, method: HTTP_METHODS.GET, params, options });
+}
 
-//   throw new Error(res.status + ' ' + res.statusText);
-// }
+async function fetchPost(
+  url,
+  body,
+  options = { headers: { 'Content-Type': 'application/json' } }
+) {
+  return await fetchData({ url, method: HTTP_METHODS.POST, body, options });
+}
+
+async function fetchPatch(
+  url,
+  body,
+  options = { headers: { 'Content-Type': 'application/json' } }
+) {
+  return await fetchData({ url, method: HTTP_METHODS.PATCH, body, options });
+}
+
+async function fetchDelete(url, options) {
+  return await fetchData({ url, method: HTTP_METHODS.DELETE, options });
+}
 
 async function getArticleList(params = {}) {
   // const url = new URL(SERVER);
@@ -57,7 +84,7 @@ async function getArticleList(params = {}) {
   // return fetch(url)
   //   .then((res) => jsonIfOK(res))
   //   .catch((e) => console.log(e.message));
-  return fetchData(SERVER, 'GET', {}, params);
+  return await fetchGet(SERVER, params);
 }
 
 async function getArticle(id) {
@@ -69,7 +96,7 @@ async function getArticle(id) {
   // return fetch(url)
   //   .then((res) => jsonIfOK(res))
   //   .catch((e) => console.log(e.message));
-  return fetchData(SERVER + id, 'GET');
+  return await fetchGet(SERVER + id);
 }
 
 async function createArticle(article) {
@@ -89,7 +116,7 @@ async function createArticle(article) {
   // })
   //   .then((res) => jsonIfOK(res))
   //   .catch((e) => console.log(e.message));
-  return fetchData(SERVER, 'POST', article);
+  return await fetchPost(SERVER, article);
 }
 
 async function patchArticle(id, article) {
@@ -109,7 +136,7 @@ async function patchArticle(id, article) {
   // })
   //   .then((res) => jsonIfOK(res))
   //   .catch((e) => console.log(e.message));
-  return fetchData(SERVER + id, 'PATCH', article);
+  return await fetchPatch(SERVER + id, article);
 }
 
 async function deleteArticle(id) {
@@ -119,7 +146,7 @@ async function deleteArticle(id) {
   //   method: 'DELETE'
   // });
   // return res.status;
-  return fetchData(SERVER + id, 'DELETE');
+  return await fetchDelete(SERVER + id);
 }
 
 export {
