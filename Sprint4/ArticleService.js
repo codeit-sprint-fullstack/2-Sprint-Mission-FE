@@ -42,10 +42,8 @@ export async function getArticle(id) {
   return handleRequest(requestGet(`/${id}`)).catch(handleError);
 }
 
-export async function createArticle(data) {
-  return handleRequest(
-    requestPost('/', { data, title: title, content: content, image: image })
-  ).catch(handleError);
+export async function createArticle(article) {
+  return handleRequest(requestPost('/', article)).catch(handleError);
 }
 
 export async function patchArticle(id, article) {
