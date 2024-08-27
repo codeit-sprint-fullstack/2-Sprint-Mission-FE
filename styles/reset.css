@@ -92,9 +92,15 @@ a {
 
 }
 
+/* 8.19 추가 */
+.feature-img {
+    width: 550px;
+    height: auto;
+}
+
 .feature-content{
-    background-color: #FCFCFC;
-    width: auto;
+    width: 500px;
+    height: auto;
 }
 
 .feature-subtitle {
@@ -112,13 +118,15 @@ a {
 .feature-description {
     font-size: 2rem;
 }
+
 .even-feature{
-    margin-left: 20rem;
+    margin-left: 15rem;
 }
 
 .odd-feature{
-    margin-right: 20rem;
+    margin-right: 15rem;
 }
+
 .even-feature-content { 
     text-align: right;
     padding: 10rem 5rem 10rem 1rem;
@@ -140,6 +148,7 @@ footer {
 .footer-content{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .copyright{
@@ -155,3 +164,160 @@ footer {
     text-decoration: none;
 }
 
+/* sprint3 부터 추가된 내용 */
+
+.board {
+    flex-grow: 1;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 4rem;
+    display: flex;
+    gap: 4rem;
+}
+
+/* tablet, mobile 공통 코드 */
+/* order로 이미지, 내용 순으로 정렬 */
+
+@media (max-width: 1199px) {
+    .banner{
+        overflow: hidden;
+    }
+    .feature {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    .feature-img {
+        height: auto;
+       
+    }
+    .feature-content{
+        order: 1;
+        padding: 1rem 0;
+    }
+
+    .banner {
+        flex-direction: column;
+        height: 800px;
+
+    }
+    .wrapper {
+        margin: 0;
+        padding-top: 15rem;
+    }
+
+    .copyright{
+        margin-left: 0rem;
+    }
+    
+    .snsicon{
+        margin-right: 0rem;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+
+/* tablet 용*/
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .banner-img {
+        position: absolute;
+        left: 50%; 
+        transform: translateX(-150%); 
+    }
+
+    .banner-img img {
+        width: 300%;
+        height: auto; 
+    }
+
+
+    .logo img { 
+        margin-left: 24px;
+    }
+
+    #loginbtn {
+        margin-right: 24px;
+    }
+
+}
+
+/* mobile 용 */
+
+@media (min-width: 375px) and (max-width: 743px) {
+
+    .banner-img {
+        position: absolute;
+        left: 50%; /* 배너 가운데로 위치 조정 */
+        transform: translateX(-250%); 
+    }
+    .banner-img img {
+        width: 500%; 
+        height: auto;
+    }
+
+    .logo img { 
+        margin-left: 16px;
+    }
+
+    #loginbtn {
+        margin-right: 16px;
+    }
+
+    .feature-img {
+        width: calc(100% - 32px); /* 좌우 여백 32px을 제외 */
+        height: auto;
+    }
+
+    .feature-content {
+        width: calc(100% - 32px); /* 이미지와 동일한 가로 크기 */
+    }
+    
+    .space {
+        display: block;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 5rem;
+        font-size: 2.5rem;
+    }
+
+    .footerlink {
+        order: 1;
+        flex: 1;
+        display: flex;
+        gap: 5rem;
+    }
+
+    .snsicon {
+        order: 1;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .snsicon img {
+        width: 3rem;
+    }
+
+    .copyright {
+        order: 2;
+        width: 100%;
+        margin-top: 2rem;
+    }
+}
+
+/* PC 화면에서 띄어쓰기 추가 */
+@media (min-width: 1200px) {
+    .space {
+        display: block;
+    }
+}

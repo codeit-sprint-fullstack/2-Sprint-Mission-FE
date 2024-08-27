@@ -17,13 +17,17 @@
         <div class="login-container">
             <form>
                 <label for="email" >이메일</label>
-                <input id="email" name="email" class="input" placeholder="이메일을 입력해주세요">        
+                <input id="email" name="email" class="input" placeholder="이메일을 입력해주세요">  
+                <span class="error-message" id="errorEmail"></span>
+
                 <label for="password">비밀번호</label>
                 <div class="input-password-container">
                     <input id="password" class="input" type="password" placeholder="비밀번호를 입력해주세요">
                     <img src="images/sign/password-active-toggle.png" alt="비밀번호보기" class="password-active-toggle">
                 </div>
-                <button class="login-btn">로그인</button>
+                <span class="error-message" id="errorPassword"></span>
+
+                <button type="button" class="login-btn">로그인</button>
             </form>
         </div>
  
@@ -45,5 +49,7 @@
         </div>
         
     </main>
+    <script type="module" src="js/sign.js"></script>
+    <script type="module" src="js/login.js"></script>
 </body>
 </html>

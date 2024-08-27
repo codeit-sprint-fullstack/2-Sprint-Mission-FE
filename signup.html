@@ -18,19 +18,26 @@
             <form>
                 <label for="email" >이메일</label>
                 <input id="email" name="email" class="input" placeholder="이메일을 입력해주세요">
+                <span class="error-message" id="errorEmail"></span>
+
                 <label for="nickname" >닉네임</label>
                 <input id="nickname" name="nickname" class="input" placeholder="닉네임을 입력해주세요">
+
                     <label for="password">비밀번호</label>
                 <div class="input-password-container">    
                     <input id="password" name="password" class="input" type="password" placeholder="비밀번호를 입력해주세요">
                     <img src="images/sign/password-active-toggle.png" alt="비밀번호보기" class="password-active-toggle">
                 </div>
+                <span class="error-message" id="errorPassword"></span>
+
                     <label for="passwordcheck">비밀번호 확인</label>
                 <div class="input-password-container">
                     <input id="passwordcheck" name="passwordcheck" class="input" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
                 <img src="images/sign/password-active-toggle.png" alt="비밀번호보기" class="password-active-toggle">
                 </div>
-                <button class="signup-btn">회원가입</button>
+                <span class="error-message" id="errorPasswordCheck"></span>
+
+                <button type="button" class="signup-btn">회원가입</button>
             </form>
         </div>
 
@@ -52,5 +59,7 @@
         </div>
         
     </main>
+<script type="module" src="js/sign.js"></script>
+<script type="module" src="js/signup.js"></script>
 </body>
 </html>

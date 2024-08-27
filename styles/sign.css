@@ -86,10 +86,10 @@ p{
   position: relative;
 }
 
-.password-active-toggle { /*심화 요구사항 js는 반영 안 됨*/
+.password-active-toggle { 
   position: absolute;
   right: 2rem;
-  top: 2rem;
+  top: 1.5rem;
 }
 
 .social {
@@ -103,3 +103,58 @@ p{
     justify-content: center;
 }
 
+/* sprint3 이후 추가 css */
+
+.error-message {
+  color: red;
+  font-size: 1.2rem;
+  display: none;
+  margin: -1rem 0 1rem 0;
+}
+
+.input-error-box {
+  /* js에서 add remove 이용 */
+  border: 2px solid red; 
+}
+
+.signup-btn:disabled {
+  background-color: #9CA3AF;
+  cursor: not-allowed;
+}
+
+/* mobile 용 */
+
+@media (max-width: 743px) { 
+
+  main {
+    padding: 0 1.6rem /* 좌우 여백*/
+  }
+
+  .login-container, .signup-container, .easy-login-section {
+    max-width: 100%;
+    padding: 0; /* 내부 요소들이 너비를 모두 차지*/
+  }
+
+  .login-container, .signup-container, .easy-login-section {
+    width: 100%;
+    max-width: 400px; /* 최대 너비 400px로 제한 */
+  }
+
+  /* 아래 코드부터 모바일을 위한 추가 css */
+  input, button {
+      font-size: 1.4rem; 
+      padding: 1.4rem 1.6rem; 
+  }
+
+  .easy-login-section {
+      padding: 1rem 1rem; 
+      flex-direction: column;
+  }
+
+  .social {
+      width: 100%;
+      max-width: 15rem;
+      padding-top: 1rem;
+      justify-content: space-around; 
+  }
+}
