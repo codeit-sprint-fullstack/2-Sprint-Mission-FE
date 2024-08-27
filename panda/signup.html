@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <header>
+    <meta charset="utf-8">
+    <title>판다마켓 회원가입</title>
+    <link rel="stylesheet" href="signupstyle.css">
+  </header>
+  <body>
+    <div id="big-logo-div">
+      <a href="index.html"><img style="width: 396px;height: 132px;" src="property1=lg@3x.png"></a>
+    </div>
+    <form id="middle-div">
+      <label for="signup-id">아이디</label>
+      <input id="signup-id" name="id" placeholder="이메일을 입력해주세요">
+      <label for="signup-name">닉네임</label>
+      <input id="signup-name" name="nickname" placeholder="닉네임을 입력해주세요">
+
+      <label for="signup-password">비밀번호</label>
+      <div class="pw-and-eye">
+        <input id="signup-password" name="pw" type="password" placeholder="비밀번호를 입력해주세요">
+        <img id="eye-img" src="btn_visibility_off_24px.svg">
+      </div>
+  
+      <label for="login-id">비밀번호 확인</label>
+      <div class="pw-and-eye">
+        <input id="login-id" name="id" placeholder="비밀번호를 다시 한 번 입력해주세요">
+        <img id="eye-img" src="btn_visibility_off_24px.svg">
+      </div>
+      <button>회원가입</button>
+      <div id="simple-login">
+        <h4 id="simple-login-text">간편 로그인하기</h4>
+        <div id="google-and-kakao">
+          <a href="https://www.google.com/" target="_blank"><img id="google-ic" src="ic_google.png"></a>
+          <a href="https://www.kakaocorp.com/page/" target="_blank"><img id="kakao-ic" src="ic_kakao.png"></a>
+        </div>
+      </div>
+      <div id="already">
+        <p id="panda-already">
+          이미 회원이신가요?
+          <a href="login.html">로그인</a>
+        </p>
+      </div>
+    </form>
+  </body>
+</html>

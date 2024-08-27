@@ -1,0 +1,91 @@
+*{
+  box-sizing: border-box;
+}
+#big-logo-div{
+  width: 396px;
+  height: 132px;
+  margin: 60px 762px 0 762px;
+}
+#middle-div{
+  width: 640px;
+  height: 664px;
+  margin: 100px 640px 0 640px;
+  gap: 24px;
+}
+input{
+  border: 1px solid #d1d1d1;
+  background-color: #F3F4F6;
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 8px 0;
+  padding: 16px 24px;
+  width: 100%;
+  border-radius: 12px;
+}
+input:focus {
+  outline-color: #3692FF;
+}
+
+button{
+  background: #9CA3AF;
+  border: none;
+  color: #ffffff;
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 24px 0;
+  padding: 16px;
+  width: 100%;
+  border-radius: 40px;
+}
+label{
+  color: #1F2937;
+  font-weight: 700;
+  font-size: 18px;
+}
+.pw-and-eye{
+  position: relative;
+}
+#eye-img{
+  position: absolute;
+  right: 18px;
+  top: 18px;
+}
+#simple-login{
+  width: 640px;
+  height: 74px;
+  border-radius: 8px;
+  padding: 1px;
+  background-color: #E6F2FF;
+}
+#simple-login-text{
+  margin: 24px 0 0 23px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1F2937;
+}
+#google-and-kakao{
+  width: 100px;
+  height: 42px;
+  margin: -33px 0 0 517px;
+}
+#already{
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+}
+#panda-already a{
+  color: #3182F6;
+}
+
+#google-ic{
+  width: 42px;
+  height: 42px;
+}
+
+#kakao-ic{
+  width: 42px;
+  height: 42px;
+}
+
