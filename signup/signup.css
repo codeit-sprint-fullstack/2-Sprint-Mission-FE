@@ -21,7 +21,7 @@ form {
   margin-bottom: 184px;
 }
 
-.eamil,
+.email,
 .password,
 .nickname,
 .password-verify {
@@ -39,7 +39,7 @@ label {
   color: #1f2937;
 }
 
-.password-wrapper {
+.password_wrapper {
   position: relative;
 }
 
@@ -68,7 +68,7 @@ input:focus {
   outline: none;
 }
 
-.toggle-password {
+.toggle_password {
   position: absolute;
   right: 16px;
   top: 50%;
@@ -77,13 +77,12 @@ input:focus {
 }
 
 button {
-  width: Fill (640px) px;
-  height: Hug (56px) px;
+  width: 640px px;
+  height: 56px px;
   padding: 16px 124px 16px 124px;
   gap: 10px;
   border-radius: 40px;
   border: none;
-  opacity: 0px;
   background-color: #9ca3af;
 
   font-family: Pretendard;
@@ -105,7 +104,7 @@ p {
   color: #1f2937;
 }
 
-.easy-login {
+.easy_login {
   display: flex;
   padding: 25px 23px;
   width: 640px;
@@ -119,16 +118,33 @@ p {
   align-items: center;
 }
 
-.easy-login-link {
+.easy_login-link {
   display: flex;
   gap: 16px;
 }
 
-.signup-page {
+#signup_page {
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin-top: 60px;
 
   gap: 4px;
-  opacity: 0px;
+}
+
+input.email_error {
+  border: 2px solid red;
+}
+
+input.pw_error {
+  border: 2px solid red;
+}
+
+span.email_error {
+  color: red;
+  display: block;
+}
+
+span.pw_error {
+  color: red;
+  display: block;
 }

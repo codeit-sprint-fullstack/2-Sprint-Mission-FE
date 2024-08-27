@@ -14,59 +14,64 @@
       /></a>
     </section>
     <form>
-      <div class="eamil">
-        <label for="eamil-input">이메일<br /></label>
+      <div class="email">
+        <label for="email_input">이메일<br /></label>
         <input
-          name="signup-email"
-          id="email-input"
+          name="signup_email"
+          id="email_input"
           type="email"
           placeholder="이메일을 입력해주세요"
         />
       </div>
+      <span id="email_check"></span>
+
       <div class="nickname">
-        <label for="nickname-input">닉네임<br /></label>
+        <label for="nickname_input">닉네임<br /></label>
         <input
-          name="signup-nickname"
-          id="nickname-input"
+          name="signup_nickname"
+          id="nickname_input"
           placeholder="닉네임을 입력해주세요"
         />
       </div>
       <div class="password">
-        <label for="password-input">비밀번호<br /></label>
-        <div class="password-wrapper">
+        <label for="password_input">비밀번호<br /></label>
+        <div class="password_wrapper">
           <input
-            name="signup-password"
-            id="password-input"
+            name="signup_password"
+            id="password_input"
             type="password"
             placeholder="비밀번호를 입력해주세요"
           />
           <img
             src="/images/btn_visibility_off_24px.svg"
             alt="비밀번호 보기"
-            class="toggle-password"
+            class="toggle_password"
           />
         </div>
       </div>
-      <div class="password-verify">
-        <label for="password-verify-input">비밀번호확인<br /></label>
-        <div class="password-wrapper">
+      <span id="pw_check"></span>
+
+      <div class="password_verify">
+        <label for="password_verify_input">비밀번호확인<br /></label>
+        <div class="password_wrapper">
           <input
-            name="signup-password-verify"
-            id="password-verify-input"
+            name="signup_password_verify"
+            id="password_verify_input"
             type="password"
             placeholder="비밀번호를 다시 한 번 입력해주세요"
           />
           <img
             src="/images/btn_visibility_off_24px.svg"
             alt="비밀번호 보기"
-            class="toggle-password"
+            class="toggle_password"
           />
         </div>
       </div>
-      <button class="login-button">회원가입</button>
-      <div class="easy-login">
+      <span id="pw_double_check"></span>
+      <button id="signup_button" disabled>회원가입</button>
+      <div class="easy_login">
         <p>간편 로그인하기</p>
-        <div class="easy-login-link">
+        <div class="easy_login_link">
           <a href="https://www.google.com/"
             ><img src="/images/google-icon.png" alt="구글"
           /></a>
@@ -76,9 +81,10 @@
         </div>
       </div>
     </form>
-    <div class="signup-page">
+    <div id="signup_page">
       <p>이미 회원이신가요?</p>
       <a href="/login/login.html">로그인</a>
     </div>
+    <script src="signup.js"></script>
   </body>
 </html>
