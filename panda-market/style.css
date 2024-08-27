@@ -1,19 +1,30 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background-color: var(--background-color);
   color: var(--secondary-color-gray700);
-  font-size: 16px; /* Responsive font-size */
+  font-size: 16px;
+  /* Responsive font-size */
   line-height: 1.5;
 }
 
-h1, h2, h3, p {
+h1,
+h2,
+h3,
+p {
   margin: 0;
+}
+
+.cBoth.no-float {
+  float: none;
+  clear: both;
 }
 
 header,
 main,
 footer {
+  width: 100%;
   max-width: 1920px;
   margin: 0 auto;
   display: flex;
@@ -35,14 +46,36 @@ header {
   border-color: var(--border-color);
 }
 
-header .sub-header {
+header .sub {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+header .sub-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 header img.logo {
   height: 40px;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  padding-left: 1em;
+  margin: 0;
+}
+
+header nav ul li {
+  padding: .2em 1em;
+  font-size: var(--text-2xl);
+  font-weight: 700;
 }
 
 a.button {
@@ -72,11 +105,10 @@ main a.button {
 
 section {
   margin: 0 -12.5rem;
-  padding: 0 12.5rem;
-  display: flex;
+  padding: 5rem 12.5rem;
   justify-content: center;
   align-items: center;
-  height: 720px;
+  height: auto;
   background-color: white;
 }
 
@@ -84,16 +116,16 @@ section.left {
   justify-content: flex-start;
 }
 
+section.left * {
+  float: left;
+}
+
 section.right {
   justify-content: flex-end;
 }
 
-section.left .description {
-  align-items: flex-start;
-}
-
-section.right .description {
-  align-items: flex-end;
+section.right * {
+  float: right;
 }
 
 section.right .description * {
@@ -107,25 +139,37 @@ section h3 {
 }
 
 section.sec-top {
-  height: 540px;
-  padding: 12.5rem 0 0;
+  display: flex;
+  height: 420px;
+  padding: 5rem 0 0;
   background-color: transparent;
+  background-image: url(/images/Img_home_top.png);
+  background-repeat: no-repeat;
+  background-position: bottom 0 right 8rem;
 }
 
 .sec-bottom-divider {
-  height: 80px;
+  padding: 4rem;
   margin: 0 -12.5rem;
   background-color: var(--secondary-color-gray100);
 }
 
 section.sec-bottom {
+  display: flex;
   height: 540px;
   padding: 143px 0 0;
   background-color: transparent;
+  background-image: url(/images/Img_home_bottom.png);
+  background-repeat: no-repeat;
+  background-position: bottom 0 right 8rem;
 }
 
 section h2 {
   font-size: var(--text-4xl);
+}
+
+.sec-bottom h2 {
+  padding: var(--text-4xl);
 }
 
 .description {
@@ -142,9 +186,11 @@ section h2 {
 .sec-top .description,
 .sec-bottom .description {
   background-color: transparent;
+  margin-right: -3em;
 }
 
 .img-home-top {
+  max-width: 100%;
   width: 746px;
   height: 340px;
 }
@@ -156,6 +202,7 @@ section h2 {
 }
 
 .img-home-bottom {
+  max-width: 100%;
   width: 746px;
   height: 397px;
 }
