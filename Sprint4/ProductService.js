@@ -20,65 +20,37 @@ function requestDelete(url) {
   return instance.delete(url);
 }
 
-export async function getProductList(page, pageSize, keyword) {
+async function handleRequest(request) {
   try {
-    const res = await requestGet('/', {
-      params: {
-        page,
-        pageSize,
-        keyword
-      }
-    });
+    const res = await request;
     if (res.status >= 200 && res.status < 300) {
       return res.data;
     }
   } catch (err) {
     return `${err} 에러 발생!`;
   }
+}
+
+export async function getProductList(page, pageSize, keyword) {
+  return handleRequest(
+    requestGet(`/`, { params: { page, pageSize, keyword } })
+  );
 }
 
 export async function getProduct(id) {
-  try {
-    const res = await requestGet(`/${id}`);
-    if (res.status >= 200 && res.status < 300) {
-      return res.data;
-    }
-  } catch (err) {
-    return `${err} 에러 발생!`;
-  }
+  return handleRequest(requestGet(`/${id}`));
 }
 
 export async function createProduct(product) {
-  try {
-    const res = await requestPost('/', product);
-    if (res.status >= 200 && res.status < 300) {
-      return res.data;
-    }
-  } catch (err) {
-    return `${err} 에러 발생!`;
-  }
+  return handleRequest(requestPost(`/`, product));
 }
 
 export async function patchProduct(id, product) {
-  try {
-    const res = await requestPatch(`/${id}`, product);
-    if (res.status >= 200 && res.status < 300) {
-      return res.data;
-    }
-  } catch (err) {
-    return `${err} 에러 발생!`;
-  }
+  return handleRequest(requestPatch(`/${id}`, product));
 }
 
 export async function deleteProduct(id) {
-  try {
-    const res = await requestDelete(`/${id}`);
-    if (res.status >= 200 && res.status < 300) {
-      return res.status;
-    }
-  } catch (err) {
-    return `${err} 에러 발생!`;
-  }
+  return handleRequest(requestDelete(`/${id}`));
 }
 
 const products = {
