@@ -10,7 +10,7 @@ const testArticleData = {
 const testPatchArticleData = {
     title: 'patch article',
     content: 'patch article content',
-    image: '',
+    // image: '',
 };
 
 try {
