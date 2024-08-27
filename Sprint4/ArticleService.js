@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://sprint-mission-api.vercel.app'
+  baseURL: 'https://sprint-mission-api.vercel.app/articles'
 });
 
 function requestGet(url, params) {
@@ -21,7 +21,7 @@ function requestDelete(url) {
 }
 
 export async function getArticleList(page, pageSize, keyword) {
-  return requestGet('/articles', {
+  return requestGet('/', {
     params: {
       page,
       pageSize,
@@ -38,8 +38,8 @@ export async function getArticleList(page, pageSize, keyword) {
     });
 }
 
-async function getArticle(id) {
-  return requestGet(`/articles/${id}`)
+export async function getArticle(id) {
+  return requestGet(`/${id}`)
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {
         return res.data;
@@ -50,8 +50,8 @@ async function getArticle(id) {
     });
 }
 
-async function createArticle(article) {
-  return requestPost('/articles', article)
+export async function createArticle(article) {
+  return requestPost('/', article)
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {
         return res.data;
@@ -62,8 +62,8 @@ async function createArticle(article) {
     });
 }
 
-async function patchArticle(id, article) {
-  return requestPatch(`/articles/${id}`, article)
+export async function patchArticle(id, article) {
+  return requestPatch(`/${id}`, article)
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {
         return res.data;
@@ -74,14 +74,24 @@ async function patchArticle(id, article) {
     });
 }
 
-async function deleteArticle(id) {
-  return requestDelete(`/articles/${id}`)
+export async function deleteArticle(id) {
+  return requestDelete(`/${id}`)
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {
-        return res.data;
+        return res.status;
       }
     })
     .catch((err) => {
       return `${err.response.status} 에러 발생!`;
     });
 }
+
+const articles = {
+  getArticleList,
+  getArticle,
+  createArticle,
+  patchArticle,
+  deleteArticle
+};
+
+export default articles;
