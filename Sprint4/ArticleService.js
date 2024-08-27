@@ -20,70 +20,38 @@ function requestDelete(url) {
   return instance.delete(url);
 }
 
-export async function getArticleList(page, pageSize, keyword) {
-  return requestGet('/', {
-    params: {
-      page,
-      pageSize,
-      keyword
+async function handleRequest(request) {
+  return request.then((res) => {
+    if (res.status >= 200 && res.status < 300) {
+      return res.data;
     }
-  })
-    .then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        return res.data;
-      }
-    })
-    .catch((err) => {
-      return `${err.response.status} 에러 발생!`;
-    });
+  });
+}
+
+async function handleError(err) {
+  return `${err.response.status} 에러 발생!`;
+}
+
+export async function getArticleList(page, pageSize, keyword) {
+  return handleRequest(
+    requestGet('/', { params: { page, pageSize, keyword } })
+  ).catch(handleError);
 }
 
 export async function getArticle(id) {
-  return requestGet(`/${id}`)
-    .then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        return res.data;
-      }
-    })
-    .catch((err) => {
-      return `${err.response.status} 에러 발생!`;
-    });
+  return handleRequest(requestGet(`/${id}`)).catch(handleError);
 }
 
 export async function createArticle(article) {
-  return requestPost('/', article)
-    .then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        return res.data;
-      }
-    })
-    .catch((err) => {
-      return `${err.response.status} 에러 발생!`;
-    });
+  return handleRequest(requestPost('/', article)).catch(handleError);
 }
 
 export async function patchArticle(id, article) {
-  return requestPatch(`/${id}`, article)
-    .then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        return res.data;
-      }
-    })
-    .catch((err) => {
-      return `${err.response.status} 에러 발생!`;
-    });
+  return handleRequest(requestPatch(`/${id}`, article)).catch(handleError);
 }
 
 export async function deleteArticle(id) {
-  return requestDelete(`/${id}`)
-    .then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        return res.status;
-      }
-    })
-    .catch((err) => {
-      return `${err.response.status} 에러 발생!`;
-    });
+  return handleRequest(requestDelete(`/${id}`)).catch(handleError);
 }
 
 const articles = {
