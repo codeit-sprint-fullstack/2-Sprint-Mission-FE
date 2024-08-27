@@ -1,46 +1,85 @@
-const ARTICLE_URL = 'https://sprint-mission-api.vercel.app/articles';
+//axios 도전
 
-async function getArticleList(page = 1, pageSize = 100, keyword =''){ //GET
-    return fetch (`${ARTICLE_URL}?page=${page}&pageSize=${pageSize}&keyword=${keyword}`)
-        .then(response => response.json())
-        .catch(error => console.error(error))
+import axios from 'axios';
+
+const ARTICLE_URL= 'https://sprint-mission-api.vercel.app/articles';
+
+async function getArticleList(page, pageSize, keyword){ //GET
+    return axios.get(ARTICLE_URL, {
+        params:{
+            page,
+            pageSize,
+            keyword
+        }
+    }).then(res => {
+        if(res.status >= 200 && res.status <300){
+            return res.data;
+        }
+        else{
+            console.error(res.status);
+        }
+    }).catch(e =>{
+        console.error(e);
+    });
 };
 
 async function getArticle(id){ //GET
-    return fetch (`${ARTICLE_URL}/${id}`)
-    .then(response => response.json())
-    .catch(error => console.error(error))
+    return axios.get(`${ARTICLE_URL}/${id}`)
+    .then(res => {
+        if(res.status >= 200 && res.status <300){
+            return res.data;
+        }
+        else{
+            console.error(res.status);
+        }
+    }).catch(e =>{
+        console.error(e);
+    });
 };
 
 async function createArticle(title, content, image){ //POST
-    return fetch(ARTICLE_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ title, content, image })
+    return axios.post(ARTICLE_URL,{
+        title,
+        content,
+        image
+    }).then(res => {
+        if(res.status >= 200 && res.status <300){
+            return res.data;
+        }
+        else{
+            console.error(res.status);
+        }
+    }).catch(e => {
+        console.error(e);
     })
-    .then(response => response.json())
-    .catch(error => console.error(error))
 };
 
 async function patchArticle(id, data){ //PATCH
-    return fetch(`${ARTICLE_URL}/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+    return axios.patch(`${ARTICLE_URL}/${id}`, data)
+    .then(res =>{
+        if(res.status >= 200 && res.status <300){
+            return res.data;
+        }
+        else{
+            console.error(res.status);
+        }
+    }).catch(e => {
+        console.error(e);
     })
-    .then(response => response.json())
-    .catch(error => console.error(error))
 };
 
 async function deleteArticle(id){ //DELETE
-    return fetch(`${ARTICLE_URL}/${id}`, {
-        method: 'DELETE'
+    return axios.delete(`${ARTICLE_URL}/${id}`)
+    .then(res =>{
+        if(res.status >= 200 && res.status <300){
+            return res.data;
+        }
+        else{
+            console.error(res.status);
+        }
+    }).catch(e => {
+        console.error(e);
     })
-    .then(response => 'article deledted successfully!')
 };
 
 
