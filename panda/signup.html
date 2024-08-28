@@ -11,7 +11,9 @@
     </div>
     <form id="middle-div">
       <label for="signup-id">아이디</label>
-      <input id="signup-id" name="id" placeholder="이메일을 입력해주세요">
+      <input id="signup-id" name="id" required placeholder="이메일을 입력해주세요">
+      <span id="id-error" class="error-message">이메일을 입력해주세요</span>
+
       <label for="signup-name">닉네임</label>
       <input id="signup-name" name="nickname" placeholder="닉네임을 입력해주세요">
 
@@ -20,13 +22,16 @@
         <input id="signup-password" name="pw" type="password" placeholder="비밀번호를 입력해주세요">
         <img id="eye-img" src="btn_visibility_off_24px.svg">
       </div>
-  
-      <label for="login-id">비밀번호 확인</label>
+      <span id="password-error" class="error-message">비밀번호를 입력해주세요</span>
+      <span id="password-length-error" class="error-message">비밀번호를 8자 이상 입력해주세요</span>
+
+      <label for="password-check">비밀번호 확인</label>
       <div class="pw-and-eye">
-        <input id="login-id" name="id" placeholder="비밀번호를 다시 한 번 입력해주세요">
+        <input id="password-check" name="pwck" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
         <img id="eye-img" src="btn_visibility_off_24px.svg">
       </div>
-      <button>회원가입</button>
+      <span id="password-check-error" class="error-message">비밀번호가 일치하지 않습니다</span>
+      <button id="signup-btn">회원가입</button>
       <div id="simple-login">
         <h4 id="simple-login-text">간편 로그인하기</h4>
         <div id="google-and-kakao">
@@ -41,5 +46,6 @@
         </p>
       </div>
     </form>
+    <script src="signup.js"></script>
   </body>
 </html>

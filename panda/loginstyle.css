@@ -1,17 +1,20 @@
-*{
+* {
   box-sizing: border-box;
 }
-#big-logo-div{
+
+#big-logo-div {
   width: 396px;
   height: 132px;
   margin: 60px 762px 0 762px;
 }
-#middle-div{
+
+#middle-div {
   width: 640px;
   height: 430px;
   margin: 100px 640px 0 640px;
 }
-input{
+
+input {
   border: 1px solid #d1d1d1;
   background-color: #F3F4F6;
   display: block;
@@ -22,10 +25,16 @@ input{
   width: 100%;
   border-radius: 12px;
 }
+
 input:focus {
   outline-color: #3692FF;
 }
-button{
+
+input.invalid-after-focus {
+  border-color: #FF0000;
+}
+
+button {
   background: #9CA3AF;
   border: none;
   color: #ffffff;
@@ -37,52 +46,74 @@ button{
   width: 100%;
   border-radius: 40px;
 }
-label{
+
+button:disabled {
+  background: #d1d1d1;
+}
+
+label {
   color: #1F2937;
   font-weight: 700;
   font-size: 18px;
 }
-.pw-and-eye{
+
+.pw-and-eye {
   position: relative;
 }
-#eye-img{
+
+#eye-img {
   position: absolute;
   right: 18px;
   top: 18px;
 }
-#simple-login{
+
+#simple-login {
   width: 640px;
   height: 74px;
   border-radius: 8px;
   padding: 1px;
   background-color: #E6F2FF;
 }
-#simple-login-text{
+
+#simple-login-text {
   margin: 24px 0 0 23px;
   font-size: 16px;
   font-weight: 500;
   color: #1F2937;
 }
-#google-and-kakao{
+
+#google-and-kakao {
   width: 100px;
   height: 42px;
   margin: -33px 0 0 517px;
 }
-#first{
+
+#first {
   font-weight: 500;
   font-size: 15px;
   text-align: center;
 }
-#panda-first a{
+
+#panda-first a {
   color: #3182F6;
 }
 
-#google-ic{
+#google-ic {
   width: 42px;
   height: 42px;
 }
 
-#kakao-ic{
+#kakao-ic {
   width: 42px;
   height: 42px;
+}
+
+.error-message {
+  color: #FF0000;
+  font-size: 14px;
+  display: none;
+}
+
+input.invalid-after-focus + .error-message {
+  display: block;
 }
