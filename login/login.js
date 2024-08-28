@@ -16,21 +16,32 @@ passwordLabelEl.append(passwordNewP);
 btnEl.setAttribute('disabled', true);
 
 /* event handler */
+function passwordLimit(){
+  passwordNewP.textContent = '비밀번호를 입력해주세요.';
+  passwordNewP.style.display = 'block';
+}
+
+function passwordLimitNum(){
+  passwordNewP.textContent = '비밀번호를 8자 이상 입력해주세요.';
+  passwordNewP.style.display = 'block';
+}
+
+function passwordHidden(){
+  passwordNewP.style.display = 'none';
+}
 
 function focusoutPassword() {
   if(passwordEl.value === "") {
     passwordEl.classList.add('borderRed');
-    passwordNewP.textContent = '비밀번호를 입력해주세요.';
-    passwordNewP.style.display = 'block';
+    passwordLimit();
     return false;
   } else if(passwordEl.value.length < 8) {
     passwordEl.classList.add('borderRed');
-    passwordNewP.textContent = '비밀번호를 8자 이상 입력해주세요.';
-    passwordNewP.style.display = 'block';
+    passwordLimitNum();
     return false;
   } else {
     passwordEl.classList.remove('borderRed');
-    passwordNewP.style.display = 'none';
+    passwordHidden();
     return true;
   }
 }
