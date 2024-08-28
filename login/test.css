@@ -1,0 +1,187 @@
+img {
+    margin:auto;
+    display: block;
+}
+.pandalogo{
+    width: 39.6rem; 
+    height: 13.2rem;
+    margin:auto;
+    display: block;
+}
+
+form {
+    margin: 4rem auto;
+    width: 64rem;
+    
+  }
+ 
+  
+  label {
+    color: var(--maincolor);
+    display: block;
+    margin: 1.6rem 0 ;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.148rem;
+  }
+  
+  input {
+    border: none;
+    background-color: var(--coolgrey);
+    border-radius: 12px;
+    color: var(--maincolor);
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 3.84rem;
+    margin: 1.6rem 0;
+    padding: 1.6rem 2.4rem;
+    width: 100%;
+  }
+  input:focus{
+    outline: 1px solid var(--blue);
+  }
+  
+  
+
+  .button {
+    background: var(--darkgrey);
+    border: none;
+    color: var(--white);
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 2.4rem 0;
+    padding: 1.6rem;
+    width: 100%;
+    border-radius: 40px;
+    white-space: nowrap;
+  }
+  #password_box{
+    position: relative;
+ 
+  }
+
+  .eyes, .open_eyes{
+    position: absolute;
+    width: 2.4rem;
+    height: 2.4rem;
+    right: 2.4rem;
+    top:1.6rem;
+    bottom: 1.6rem;
+  
+}
+
+#simplelogin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--whiteblue);
+    width: 64rem;
+    height: 7.4rem;
+    border-radius: 8px;
+    margin: 2.4rem 0;
+
+}
+#link_img{
+    display: flex;
+    gap: 1.6rem;
+    margin-right: 2.3rem;
+}
+
+.sim_text{
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+    color:var(--maincolor);
+    margin-left: 2.3rem;
+    white-space: nowrap;
+}
+.signup{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.79rem;
+    color: var(--maincolor);
+    white-space: nowrap;
+}
+#sign{
+    color:var(--skyblue);
+}
+
+.hide {
+  display: none;
+  }
+
+  .invalid {
+    border: 1px solid #f74747;
+  }
+
+  #error_email, #error_pass{
+    color: #f74747;
+    font-size: 1.5rem;
+    line-height: 17.9rem;
+    font-weight: 600;
+    position: relative;
+  }
+
+
+
+
+
+  .modal {
+    /*팝업 배경*/
+      display: none; /*평소에는 보이지 않도록*/
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: rgba(0,0,0,0.7);
+    }
+    .modal .modal_popup {
+      /*팝업*/
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 20px;
+          background: #ffffff;
+          border-radius: 20px;
+        
+          
+      }
+      .modal .modal_popup .close_btn {
+        display: block;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        cursor: pointer;
+        transition: box-shadow 0.2s;
+    }
+    .close_btn{
+      width: 120px;
+      height: 48px;
+      background: #3692FF;
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+    }
+    .modal_popup{
+      display: flex;
+      justify-content:center;
+      align-items:center;     
+      width: 540px;
+      height: 250px;
+    }
+    .mdFont{
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 19.9px;
+    }
+
+
+
+

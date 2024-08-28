@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+<title>판다 마켓</title>
+    <meta charset="utf-8">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="signup.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+</head>
+<body>
+<header>
+    <a href="/" class="top_home"><img class="pandalogo" src="../판다마켓 그림/Property 1=lg.png"></a>
+  </header>
+    
+  <form class="form">
+    <div class="intervalBox" >
+      <label for="username">이메일</label>
+      <input id="username" type="email" name="username" placeholder="이메일을 입력해주세요">
+      <div id="error_email"></div>
+    </div>
+
+    <div class="intervalBox">
+      <label for="usernick">닉네임</label>
+      <input id="usernick" type="text" name="usernick" placeholder="닉네임을 입력해주세요">
+    </div>
+    <div class="intervalBox">
+      <label for="password">비밀번호</label>
+    <div id="password_box">
+      <input id="password" name="userpsw" type="password" iconUrl="판다마켓 그림/Input/btn_visibility_on_24px.svg" placeholder="비밀번호를 입력해주세요">
+      <img class="eyes" src="../판다마켓 그림/btn_visibility_on_24px.png">
+      <img class="open_eyes hide" src="../판다마켓 그림/btn_visibility_on_24px.svg">
+    </div>
+      <div id="error_pass"></div>
+    </div>
+    <div class="intervalBox">
+        <label for="ver_pws">비밀번호확인</label>
+      <div id="password_box">
+        <input id="ver_pws" name="ver_pws" type="password" iconUrl="판다마켓 그림/Input/btn_visibility_on_24px.svg" placeholder="비밀번호를 다시 한 번 입력해주세요">
+        <img class="eyes2" src="../판다마켓 그림/btn_visibility_on_24px.png">
+        <img class="open_eyes2 hide" src="../판다마켓 그림/btn_visibility_on_24px.svg">
+      </div>
+        <div id="error_verpass"></div>
+    </div>
+      <button class="button" type="button">
+        회원가입
+      </button>
+<div id="simplelogin">
+    <p class="sim_text" >간편 로그인하기</p>
+  <div id="link_img">
+    <a href="https://www.google.com/"><img src="../판다마켓 그림/google.png"></a>
+    <a href="https://www.kakaocorp.com/page/"><img src="../판다마켓 그림/kakaotalk.png"></a>
+  </div>
+</div>
+<p class="signup">이미 회원이신가요? <a id="sign" href="../login/login.html">로그인</a></p>
+</form>
+
+  <div class="modal">
+    <div class="modal_popup">
+        <p class="mdFont"> 사용 중인 이메일 입니다.</p>
+        <button type="button" class="close_btn">확인</button>
+  </div>
+  </div>
+  <script src="signup.js"></script>
+
+</body>
+</html>
