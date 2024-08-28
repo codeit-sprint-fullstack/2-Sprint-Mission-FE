@@ -4,19 +4,19 @@ const instance = axios.create({
   baseURL: 'https://sprint-mission-api.vercel.app/articles'
 });
 
-function requestGet(url, params) {
+async function requestGet(url, params) {
   return instance.get(url, params);
 }
 
-function requestPost(url, body) {
+async function requestPost(url, body) {
   return instance.post(url, body);
 }
 
-function requestPatch(url, body) {
+async function requestPatch(url, body) {
   return instance.patch(url, body);
 }
 
-function requestDelete(url) {
+async function requestDelete(url) {
   return instance.delete(url);
 }
 

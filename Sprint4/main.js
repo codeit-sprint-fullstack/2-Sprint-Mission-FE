@@ -33,14 +33,22 @@ const updateTestProduct = {
 
 /* ---- Article ---- */
 console.log(await articles.getArticleList(1, 100, 'test'));
+console.log('*********************************************');
 console.log(await articles.getArticle(85));
+console.log('*********************************************');
 console.log(await articles.createArticle(createTestArticle));
-console.log(await articles.patchArticle(338, updateTestArticle));
-console.log(await articles.deleteArticle(338));
+console.log('*********************************************');
+console.log(await articles.patchArticle(348, updateTestArticle));
+console.log('*********************************************');
+console.log(await articles.deleteArticle(348));
 
 /* ---- Product ---- */
 console.log(await products.getProductList(1, 100, 'TEST'));
+console.log('*********************************************');
 console.log(await products.getProduct(20));
+console.log('*********************************************');
 console.log(await products.createProduct(createTestProduct));
-console.log(await products.patchProduct(209, updateTestProduct));
-console.log(await products.deleteProduct(209));
+console.log('*********************************************');
+console.log(await products.patchProduct(210, updateTestProduct));
+console.log('*********************************************');
+console.log(await products.deleteProduct(210));
