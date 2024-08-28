@@ -4,6 +4,11 @@ const instance = axios.create({
   baseURL: 'https://sprint-mission-api.vercel.app/articles'
 });
 
+instance.interceptors.response.use(
+  (res) => res,
+  (err) => console.log(`${err.response.status} 에러 발생!`)
+);
+
 async function requestGet(url, params) {
   return instance.get(url, params);
 }
@@ -20,38 +25,47 @@ async function requestDelete(url) {
   return instance.delete(url);
 }
 
-async function handleRequest(request) {
-  return request.then((res) => {
-    if (res.status >= 200 && res.status < 300) {
-      return res.data;
-    }
-  });
-}
+// async function handleRequest(request) {
+//   return request.then((res) => {
+//     if (res.status >= 200 && res.status < 300) {
+//       return res.data;
+//     }
+//   });
+// }
 
-async function handleError(err) {
-  return `${err.response.status} 에러 발생!`;
-}
+// async function handleError(err) {
+//   return `${err.response.status} 에러 발생!`;
+// }
 
 export async function getArticleList(page, pageSize, keyword) {
-  return handleRequest(
-    requestGet('/', { params: { page, pageSize, keyword } })
-  ).catch(handleError);
+  const res = await requestGet('/', { params: { page, pageSize, keyword } });
+  return res.data;
+  // return handleRequest(requestGet('/', { params: { page, pageSize, keyword } }))
+  //.catch(handleError);
 }
 
 export async function getArticle(id) {
-  return handleRequest(requestGet(`/${id}`)).catch(handleError);
+  const res = await requestGet(`/${id}`);
+  return res.data;
+  // return handleRequest(requestGet(`/${id}`)).catch(handleError);
 }
 
 export async function createArticle(article) {
-  return handleRequest(requestPost('/', article)).catch(handleError);
+  const res = await requestPost('/', article);
+  return res.data;
+  // return handleRequest(requestPost('/', article)).catch(handleError);
 }
 
 export async function patchArticle(id, article) {
-  return handleRequest(requestPatch(`/${id}`, article)).catch(handleError);
+  const res = await requestPatch(`/${id}`, article);
+  return res.data;
+  // return handleRequest(requestPatch(`/${id}`, article)).catch(handleError);
 }
 
 export async function deleteArticle(id) {
-  return handleRequest(requestDelete(`/${id}`)).catch(handleError);
+  const res = await requestDelete(`/${id}`);
+  return res.data;
+  // return handleRequest(requestDelete(`/${id}`)).catch(handleError);
 }
 
 const articles = {

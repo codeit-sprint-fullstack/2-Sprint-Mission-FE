@@ -32,17 +32,17 @@ const updateTestProduct = {
 };
 
 /* ---- Article ---- */
-console.log(await articles.getArticleList(1, 100, 'test'));
-console.log('*********************************************');
-console.log(await articles.getArticle(85));
-console.log('*********************************************');
-console.log(await articles.createArticle(createTestArticle));
-console.log('*********************************************');
-console.log(await articles.patchArticle(348, updateTestArticle));
-console.log('*********************************************');
-console.log(await articles.deleteArticle(348));
+// console.log(await articles.getArticleList(1, 100, 'test'));
+// console.log('*********************************************');
+// console.log(await articles.getArticle(85));
+// console.log('*********************************************');
+// console.log(await articles.createArticle(createTestArticle));
+// console.log('*********************************************');
+// console.log(await articles.patchArticle(353, updateTestArticle));
+// console.log('*********************************************');
+// console.log(await articles.deleteArticle(352));
 
-/* ---- Product ---- */
+// /* ---- Product ---- */
 console.log(await products.getProductList(1, 100, 'TEST'));
 console.log('*********************************************');
 console.log(await products.getProduct(20));
