@@ -21,7 +21,7 @@
 <body>
   <header>
     <nav>
-      <div>
+      <div class="navIn">
         <a href="../index.html" target="_self">
           <img src="../img/panda.png">
         </a>
@@ -36,14 +36,14 @@
       <form>
         <label>
           <h4>이메일</h4>
-          <input type="email" name="email" placeholder="이메일을 입력해주세요">
+          <input id = "email" type="email" name="email" placeholder="이메일을 입력해주세요">
         </label>
         <label>
           <h4>비밀번호</h4>
-          <input type="password" name="password" placeholder="비밀번호를 입력해주세요">
+          <input id = "password" type="password" name="password" placeholder="비밀번호를 입력해주세요">
           <img src="../img/eyeshape.png" id="eyeImg">
         </label>
-        <button type="submit" name="login">로그인</button>
+        <button id="loginBtn" type="button" name="login">로그인</button>
       </form>
     </section>
     <section class="imgbox">
@@ -66,5 +66,6 @@
     <span>판다마켓이 처음이신가요?</span>
     <a href="../signup/signup.html">회원가입</a>
   </footer>
+  <script src="login.js" type="module"></script>
 </body>
 </html>
