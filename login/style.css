@@ -75,7 +75,7 @@ form {
   width: 100%;
 }
 
-.login-wrapper {
+.loginWrapper {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
@@ -89,7 +89,7 @@ label {
   color: var(--secondary-color-gray800);
 }
 
-.pw-container {
+.pwContainer {
   display: flex;
   position: relative;
   align-items: center;
@@ -104,6 +104,11 @@ input {
   border: none;
 }
 
+/* 자동완성시 배경색 바뀌는거 막아줌 */ 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 500px whitesmoke inset !important;
+}
+
 input:focus {
   outline: 0.1rem solid var(--primary-color-100);
 } 
@@ -116,7 +121,7 @@ input::placeholder {
   color: var(--secondary-color-gray400);
 }
 
-.toggle-password {
+.togglePassword {
   position: absolute;
   right: 2.4rem; /*24px*/
   cursor: pointer;
@@ -124,11 +129,16 @@ input::placeholder {
   height: 2.4rem;
 }
 
-button {
+.togglePasswordHide {
+  content: url(../image/closed-eyes.png);
+}
+
+#loginButton {
+  font-family: pretendard;
   padding: 1.6rem 12.4rem; /*16px 124px*/
   border-radius: 4rem;
   border: none;
-  background-color: var(--secondary-color-gray400);
+  background-color: var(--primary-color-100);
   font-size: var(--text-xl-20);
   font-weight: 600;
   line-height: 2.4rem; /*24px*/
@@ -137,7 +147,11 @@ button {
   cursor: pointer;
 }
 
-.easy-login {
+#loginButton:disabled {
+  background-color: var(--secondary-color-gray400);
+}
+
+.easyLogin {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -148,24 +162,25 @@ button {
   padding: 0 2.3rem;
 }
 
-.easy-login-text {
-font-size: var(--text-lg-16);
-font-weight: 500;
-line-height: 2.4rem; /*24px*/
+.easyLoginText {
+  font-size: var(--text-lg-16);
+  font-weight: 500;
+  line-height: 2.4rem; /*24px*/
+  color: var(--secondary-color-gray800);
 }
 
-.sns-ic {
+.snsIc {
   display: flex;
   gap: 1.6rem;
 }
 
-a.ic-img {
+a.icImg {
   width: 4.2rem; /*42px*/
   height: 4.2rem; /*42px*/
   cursor: pointer;
 }
 
-.ic-link {
+.icLink {
   width: 4.2rem;
   height: 4.2rem;
 }
@@ -181,12 +196,74 @@ a.ic-img {
   width: 100%;
 }
 
-.signup-text {
+.signupText {
   color: var(--secondary-color-gray800);
 }
 
-.signup-link {
+.signupLink {
   display: block;
   color: #3182F6;
   cursor: pointer;
+}
+
+.hide {
+  display: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.79rem;
+  color: var(--error-color);
+  position: relative;
+  top: 0.8rem;
+  left: 1.6rem;
+}
+
+.borderRed{
+  outline: 0.1rem solid var(--error-color);
+}
+
+.modalContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000B2;
+}
+
+.modal {
+  display: flex;
+  position: relative;
+  width: 54rem;
+  height: 25rem;
+  padding: 10.8rem 17.4rem 12.3rem 17.4rem ;
+  background-color: var(--background-color-white);
+  max-width: 54rem;
+  border-radius: 0.8rem;
+}
+
+.modalMessage {
+  font-size: var(--text-lg-16);
+  font-weight: 500;
+  line-height: 1.909rem;
+  color: var(--secondary-color-gray800);
+}
+
+.modalButton {
+  width: 12rem;
+  height: 4.8rem;
+  position: absolute;
+  top: 174px;
+  left: 392px;
+  padding: 1.2rem 2.3rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: var(--primary-color-100);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.909rem;
+  color: var(--background-color-white);
 }
