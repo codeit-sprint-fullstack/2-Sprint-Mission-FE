@@ -49,6 +49,6 @@ console.log(await products.getProduct(20));
 console.log('*********************************************');
 console.log(await products.createProduct(createTestProduct));
 console.log('*********************************************');
-console.log(await products.patchProduct(210, updateTestProduct));
+console.log(await products.patchProduct(222, updateTestProduct));
 console.log('*********************************************');
-console.log(await products.deleteProduct(210));
+console.log(await products.deleteProduct(221));
