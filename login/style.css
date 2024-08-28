@@ -1,11 +1,9 @@
 /* 기본 설정 */
-
+@import "../reset.css";
 @font-face {
   font-family: 'ROKAF';
   src: url('../ROKAF Sans.ttf') format('truetype');
 }
-
-@import "../reset.css";
 
 :root {
   --blue-color: #3692FF;
@@ -82,7 +80,8 @@ input {
   width: 100%;
   gap: 0.625;
   border-radius: 0.75rem;
-  border:none;
+
+  border: none;
 }
 
 input::placeholder {
@@ -90,7 +89,7 @@ input::placeholder {
 }
 
 input:focus {
-  border-color: var(--blue-color);
+  outline: 1px solid var(--blue-color);
 }
 
 /* 눈 아이콘 설정 */
@@ -103,7 +102,8 @@ input:focus {
   position: relative;
 }
 
-.toggle-password {
+.toggle-password,
+.toggle-password-2{
   width: 1.5rem;
   height: 1.5rem;
 
@@ -174,4 +174,26 @@ button {
 .login-signup-link {
   color: #3182F6;
   text-decoration: underline;
+}
+
+/* js 관련 css */
+.error-message {
+  position: relative;
+  top: -8px;
+  left: 16px;
+  color: #F74747;
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 17.9px;
+  text-align: left;
+}
+
+.hide {
+  display: none;
+}
+
+.button-click {
+  background-color: var(--blue-color);
+  cursor: pointer;
 }
