@@ -8,19 +8,9 @@ const instance = axios.create({
 instance.interceptors.response.use(
   (res) => res,
   (err) => {
-    throw new Error(err.status + ' ' + err.statusText);
+    throw new Error(err.response.status + ' ' + err.response.statusText);
   }
 );
-
-// function isOK(res) {
-//   return res.status >= 200 && res.status < 300;
-// }
-
-// function returnIfOK(res) {
-//   if (!isOK(res)) throw new Error(res.status + ' ' + res.statusText);
-
-//   return res.data;
-// }
 
 function getRequest(url, params) {
   return instance.get(url, params);
