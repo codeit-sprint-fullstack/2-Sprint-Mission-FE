@@ -1,0 +1,188 @@
+/* 상단 배너 영역 */
+.banner-wrapper {
+  display: flex;
+  justify-content: center;              /* 가로 정렬: 가운데 */
+  align-items: flex-end;                /* 세로 정렬: 하단 */
+  width: 100%;              
+  height: auto;           
+  background-color: var(--banner-bg);
+}
+.banner-top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  width: 152rem;
+  height: 54rem;
+}
+.banner-top-message {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 20rem;
+  left: 18rem;
+  width: 35.7rem;           
+  height: 20rem;    
+  color: var(--text-color);       
+  font-size: 4rem;          
+  font-weight: 700;
+  line-height: 5.6rem;  
+}
+.banner-top-message span {
+  display: block;
+  width: 29.5rem;
+}
+.banner-top-img {
+  display: flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+  width: 99.6rem;              
+  height: 44.7rem;  
+}
+.banner-top-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                    
+} 
+
+.btn-items {                            /* 구경하러 가기 버튼 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: var(--button-text-color);
+  width: 35.7rem;           
+  height: 5.6rem;              
+  font-size: 2rem;           
+  font-weight: 600;
+  line-height: 2.4rem;       
+  border-radius: 4rem;       
+  border: none; 
+  cursor: pointer; 
+}
+
+/* 섹션 영역 */
+.section-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  margin: 0 auto;
+}
+.section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 192rem;    
+  height: 72rem;  
+  /* border: 1px solid blue;      */
+}
+.main-section-img {
+  width: 58.8rem;                      
+  height: 44.4rem;                         
+}
+.section-left {
+  justify-content: center;
+  text-align: left;
+}
+.section-right {
+  justify-content: center;
+  text-align: right;  
+}
+
+.contents-box-left {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  gap: 3rem;                
+  width: 117.6rem;
+  padding-right: 22.1rem;
+  height: 44.4rem;      
+  /* background-color: var(--content-box-gray-bg); *//
+}
+.contents-box-right {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  gap: 3rem;                
+  width: 117.6rem;
+  padding-left: 22.1rem;
+  height: 44.4rem;      
+  /* background-color: var(--content-box-gray-bg); */
+
+}
+.section-message {
+  min-height: 23.8rem;      
+  height: auto;                         /* 높이를 auto로 설정해 세로로 확장되도록 설정 */
+}
+.section-message1 {
+  max-width: 27.4rem;      
+}
+.section-message2 {
+  max-width: 31.7rem;      
+}
+.section-message3 {
+  max-width: 33.5rem;      
+}
+.section-wrapper span {
+  display: block;
+  margin-bottom: 1.6rem;   
+}
+.section-title {
+  font-size: 1.8rem;       
+  font-weight: 700;
+  line-height: 2.6rem;     
+  color: var(--primary-color);
+}
+.section-subtitle {
+  font-size: 4rem;         
+  font-weight: 700;
+  line-height: 5.6rem;     
+  color: var(--section-text-color); 
+}
+.section-description {
+  font-size: 2.4rem;       
+  font-weight: 500;
+  line-height: 3.2rem;     
+  color: var(--section-text-color); 
+}
+
+/* 하단 배너 영역 */
+.banner-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  width: 152rem;
+  height: 54rem;
+}
+.banner-bottom-message {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 20rem;
+  left: 18rem;
+  width: 29.5rem;           
+  height: 11.2rem;    
+  color: var(--text-color);       
+  font-size: 4rem;          
+  font-weight: 700;
+  line-height: 5.6rem;     
+}
+.banner-bottom-message span {
+  display: block;
+  width: 29.5rem;
+}
+.banner-bottom-img {
+  display: flex;
+  align-items:flex-end;
+  z-index: 0;
+  width: 99.6rem;              
+  height: 54rem;        
+}
+.banner-bottom-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           
+}

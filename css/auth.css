@@ -1,0 +1,181 @@
+/* 로그인/회원가입 공통 */
+.container {
+  background-color: var(--background-color);
+  text-align: center;
+  width: 100%;
+  max-width: 64rem;             
+  margin: 6rem auto 4rem;  
+}
+
+/* 상단 로고 영역 */
+.logo-subpage {
+  width: 100%;
+  max-width: 64rem;              
+  margin: 6rem auto;          
+  text-align: center;
+}
+.logo-subpage img {
+  width: 39.6rem;                
+  height: 13.2rem;             
+}
+
+/* 로그인 */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3.2rem;                    
+  width: 100%;
+  height: 43rem;           
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 29rem;              
+  gap: 1.6rem;                      
+}
+
+/* 회원가입 */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3.2rem;                      
+  width: 100%;
+  height: 66.4rem;               
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 52.4rem;               
+  gap: 1.6rem;                    
+}
+
+/* 로그인/회원가입 공통 */
+.form-field {
+  height: 9.3rem;                       /* 93px 각 항목의label과 input을 포함하는 높이 지정 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+label {
+  text-align: left;
+  font-size: 1.8rem;            
+  font-weight: 700;
+  margin-bottom: 0.8rem;          
+}
+input {
+  width: 100%;
+  height: 5.6rem;                 
+  padding: 1.6rem 2.4rem;          
+  background-color: var(--input-background-color);
+  border: none;
+  border-radius: 1.2rem;         
+  font-size: 1.6rem; 
+}
+input:focus {
+  border: 0.01rem solid var(--focus-border-color);  
+  outline: none;                        /* 기본 포커스 스타일 제거 */
+}
+.password-wrapper {
+  position: relative;
+}
+.password-wrapper .visibility_icon {
+  position: absolute;
+  width: 24px; 
+  height: 24px;
+  top: 1.6rem;                      
+  right: 1.6rem;                  
+  bottom: 1.6rem;                 
+  cursor: pointer;
+}
+.btn_submit {
+  width: 100%;
+  height: 5.6rem;                
+  border-radius: 4rem;         
+  padding: 1.6rem 12.4rem;         
+  background-color: var(--submit-button-bg);
+  border: none;
+  font-size: 2rem;            
+  font-weight: 600;
+  color: var(--button-text-color);
+}
+.social-login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  height: 7.4rem;               
+  border-radius: 0.8rem;         
+  background-color: var(--social-login-bg);
+  padding: 0 2.3rem;           
+  font-size: 1.6rem;                
+  font-weight: 500;
+  line-height: 2.4rem;            
+}
+.signup-link {
+  font-size: 1.5rem;           
+  font-weight: 500;
+}
+.signup-link a {
+  color: var(--link-color);
+  text-decoration:underline;
+  text-underline-offset: 0.2rem;        /* 밑줄과 텍스트 사이 간격을 조정 */
+}
+/* ****************************** */
+/* 자바스크립트에서 콘트롤하는 요소 */
+/* ****************************** */
+
+/* 입력창 테두리 (오류 입력시) */
+.input-error {
+  border: 1px solid red;
+}
+
+/* 모달 Dialog (입력 오류 메시지 등 alert 기능) */
+
+/* 기본 모달 스타일 */
+#error-modal {
+  width: 40rem;        
+  min-height: 15rem;                 
+  padding: 2rem;
+  border: none;
+  border-radius: 1rem;        
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;       /* 시스템 기본 폰트 설정 */
+}
+
+#error-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);         /* 모달 외부 영역에 반투명 배경 적용 */
+}
+
+.modal-content {
+  text-align: center;
+}
+
+#modal-message {
+  margin-bottom: 2rem;
+  font-size: 1.6rem; 
+  color: #333; 
+  line-height: 1.5; 
+}
+
+#modal-confirm-btn {
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.6rem; 
+}
+
+#modal-confirm-btn:hover {
+  background-color: #0056b3; 
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); 
+}
+
+
