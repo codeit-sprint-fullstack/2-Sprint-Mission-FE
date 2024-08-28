@@ -31,46 +31,74 @@ nicknameLabelEl.append(nicknameNewP);
 btnEl.setAttribute('disabled', true);
 
 /* event handler */
+function passwordLimit(){
+  passwordNewP.textContent = '비밀번호를 입력해주세요.';
+  passwordNewP.style.display = 'block';
+}
+
+function passwordLimitNum(){
+  passwordNewP.textContent = '비밀번호를 8자 이상 입력해주세요.';
+  passwordNewP.style.display = 'block';
+}
+
+function passwordHidden(){
+  passwordNewP.style.display = 'none';
+}
+
 function focusoutPassword() {
   if(passwordEl.value === "") {
     passwordEl.classList.add('borderRed');
-    passwordNewP.textContent = '비밀번호를 입력해주세요.';
-    passwordNewP.style.display = 'block';
+    passwordLimit();
     return false;
   } else if(passwordEl.value.length < 8) {
     passwordEl.classList.add('borderRed');
-    passwordNewP.textContent = '비밀번호를 8자 이상 입력해주세요.';
-    passwordNewP.style.display = 'block';
+    passwordLimitNum();
     return false;
   } else {
     passwordEl.classList.remove('borderRed');
-    passwordNewP.style.display = 'none';
+    passwordHidden();
     return true;
   }
+}
+
+function passwordCheckIncorrect(){
+  passwordCheckNewP.textContent = '비밀번호가 일치하지 않습니다.';
+  passwordCheckNewP.style.display = 'block';
+}
+
+function passwordCheckHidden(){
+  passwordCheckNewP.style.display = 'none';
 }
 
 function focusoutPasswordCheck() {
   if(passwordCheckEl.value !== passwordEl.value) {
     passwordCheckEl.classList.add('borderRed');
-    passwordCheckNewP.textContent = '비밀번호가 일치하지 않습니다.';
-    passwordCheckNewP.style.display = 'block';
+    passwordCheckIncorrect();
     return false;
   } else {
     passwordCheckEl.classList.remove('borderRed');
-    passwordCheckNewP.style.display = 'none';
+    passwordCheckHidden();
     return true;
   }
+}
+
+function nicknameLimit(){
+  nicknameNewP.textContent = '닉네임을 입력해주세요.';
+  nicknameNewP.style.display = 'block';
+}
+
+function nicknameHidden(){
+  nicknameNewP.style.display = 'none';
 }
 
 function foucusoutNickname(){
   if(nicknameEl.value === ""){
     nicknameEl.classList.add('borderRed');
-    nicknameNewP.textContent = '닉네임을 입력해주세요.';
-    nicknameNewP.style.display = 'block';
+    nicknameLimit();
     return false;
   } else {
     nicknameEl.classList.remove('borderRed');
-    nicknameNewP.style.display = 'none';
+    nicknameHidden();
     return true;
   }
 }
