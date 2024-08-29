@@ -26,10 +26,10 @@ const testPatchArticleData = {
 };
 
 function validateArticleData(data) {
-  if (!data.title || typeof(data.title) !== 'string') {
+  if (!data.title || typeof data.title !== 'string') {
     throw new Error('title error');
   }
-  if (!data.content || typeof(data.content) !== 'string') {
+  if (!data.content || typeof data.content !== 'string') {
     throw new Error('content error');
   }
 }
@@ -79,13 +79,13 @@ const testPatchProductData = {
 };
 
 function validateProductData(data) {
-  if(!data.name || typeof(data.name) !== 'string') {
+  if(!data.name || typeof data.name !== 'string') {
     throw new Error('name error');
   }
-  if (!data.description || typeof(data.description) !== 'string') {
+  if (!data.description || typeof data.description !== 'string') {
     throw new Error('description error');
   }
-  if (!data.price || typeof(data.price) !== 'number') {
+  if (!data.price || typeof data.price !== 'number') {
     throw new Error('price error');
   }
 }
