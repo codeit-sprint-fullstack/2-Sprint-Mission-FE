@@ -1,0 +1,13 @@
+{
+  "name": "2-sprint-mission-fe",
+  "version": "1.0.0",
+  "description": "================================================================\r ##Mission 1\r - Randing page(Panda Market)\r ----------------------------------------------------------------\r ##Mission 2\r - Log-in page(Panda Market)\r - Sign-up page(Panda Market)",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
