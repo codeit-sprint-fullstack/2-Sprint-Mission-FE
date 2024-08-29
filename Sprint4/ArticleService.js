@@ -6,7 +6,13 @@ const instance = axios.create({
 
 instance.interceptors.response.use(
   (res) => res,
-  (err) => console.log(`${err.response.status} 에러 발생!`)
+  (err) => {
+    console.log('주의 : 에러 발생!');
+    if (err.response.status >= 400 && err.response.status < 500) {
+      console.log('4XX, 클라이언트 에러 응답');
+    }
+    throw err;
+  }
 );
 
 async function requestGet(url, params) {
