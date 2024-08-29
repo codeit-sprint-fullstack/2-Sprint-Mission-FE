@@ -68,15 +68,15 @@ function validForm(email, password, passwordRepeat) {
 
 function emailCheck(email) {
   if (!isEmailValid(email)) {
-    checkEmail.classList.add("error");
-    errMessage.style.display = "block";
+    checkEmail.classList.add('error');
+    errMessage.style.display = 'block';
     checkEmail.focus();
   } else {
-    checkEmail.classList.remove("error");
-    errMessage.style.display = "none";
+    checkEmail.classList.remove('error');
+    errMessage.style.display = 'none';
   }
   loginBtn.classList.toggle(
-    "disabled",
+    'disabled',
     !validForm(email, checkPW.value, checkPC.value)
   );
 }
@@ -153,10 +153,10 @@ function emailCheck(email) {
 function checkPasswordValid(password, passwordRepeat) {
   console.log(password, passwordRepeat);
   if (!passwordRepeat) {
-    console.log("passwordRepeat is empty", password.length);
+    // console.log('passwordRepeat is empty', password.length);
     return password.length >= 8;
   } else {
-    if (password === passwordRepeat) console.log("passwords match");
+    // if (password === passwordRepeat) console.log("passwords match");
     return password === passwordRepeat;
   }
 }
@@ -169,23 +169,23 @@ function pwCheck(
   checkPasswordValid
 ) {
   if (!checkPasswordValid(password, passwordRepeat)) {
-    check.classList.add("error");
-    errMessage.style.display = "block";
+    check.classList.add('error');
+    errMessage.style.display = 'block';
     // check.focus();
   } else {
-    check.classList.remove("error");
-    errMessage.style.display = "none";
+    check.classList.remove('error');
+    errMessage.style.display = 'none';
   }
   loginBtn.classList.toggle(
-    "disabled",
+    'disabled',
     !validForm(checkEmail.value, checkPW.value, checkPC.value)
   );
 }
 
-checkEmail.addEventListener("focusout", () => emailCheck(checkEmail.value));
+checkEmail.addEventListener('focusout', () => emailCheck(checkEmail.value));
 // checkPW.addEventListener('focusout', () => passwordCheck(checkPW.value));
 // checkPC.addEventListener('focusout', () => PCCheck(checkPW.value, checkPC.value));
-checkPW.addEventListener("focusout", () =>
+checkPW.addEventListener('focusout', () =>
   pwCheck(
     checkPW.value,
     checkPC.value,
@@ -194,7 +194,7 @@ checkPW.addEventListener("focusout", () =>
     checkPasswordValid
   )
 );
-checkPC.addEventListener("focusout", () =>
+checkPC.addEventListener('focusout', () =>
   pwCheck(
     checkPW.value,
     checkPC.value,
@@ -204,13 +204,13 @@ checkPC.addEventListener("focusout", () =>
   )
 );
 
-loginBtn.addEventListener("click", (e) => {
+loginBtn.addEventListener('click', (e) => {
   const email = checkEmail.value;
 
   e.preventDefault();
-  if (!loginBtn.classList.contains("disabled")) {
+  if (!loginBtn.classList.contains('disabled')) {
     if (isUserForSignin(email)) return showModal(modal);
-    window.location.href = "login.html";
+    window.location.href = 'login.html';
   }
 });
 

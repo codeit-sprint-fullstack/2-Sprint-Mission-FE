@@ -8,11 +8,11 @@ const USER_DATA = [
 ];
 
 function showModal(modal) {
-  modal.style.display = "block";
+  modal.style.display = 'block';
 }
 
 function closeModal(modal) {
-  if (modal) modal.style.display = "none";
+  if (modal) modal.style.display = 'none';
 }
 
 function isEmailValid(email) {

@@ -5,16 +5,16 @@ import {
   isPasswordValid,
   isUser,
   validForm,
-} from "./login.mjs";
+} from './login.mjs';
 
-const checkEmail = document.querySelector("#email");
-const checkPW = document.querySelector("#password-field");
-const errMessage = document.querySelector(".err-message");
-const PerrMessage = document.querySelector(".Perr-message");
-const loginBtn = document.querySelector(".login-btn");
-const modal = document.querySelector("#modal");
+const checkEmail = document.querySelector('#email');
+const checkPW = document.querySelector('#password-field');
+const errMessage = document.querySelector('.err-message');
+const PerrMessage = document.querySelector('.Perr-message');
+const loginBtn = document.querySelector('.login-btn');
+const modal = document.querySelector('#modal');
 // const modalText = document.querySelector("#modal-text");
-const modalCloseBtn = document.querySelector("#modal-close");
+const modalCloseBtn = document.querySelector('#modal-close');
 
 // const USER_DATA = [
 //     {email: 'codeit1@codeit.com', password: 'codeit01!'},
@@ -33,7 +33,7 @@ const modalCloseBtn = document.querySelector("#modal-close");
 //     if (modal) modal.style.display = 'none';
 // }
 
-modalCloseBtn.addEventListener("click", () => closeModal(modal));
+modalCloseBtn.addEventListener('click', () => closeModal(modal));
 
 // function isEmailValid(email) {
 //     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,42 +54,42 @@ modalCloseBtn.addEventListener("click", () => closeModal(modal));
 
 function emailCheck(email) {
   if (!isEmailValid(email)) {
-    checkEmail.classList.add("error");
-    errMessage.style.display = "block";
+    checkEmail.classList.add('error');
+    errMessage.style.display = 'block';
     checkEmail.focus();
   } else {
-    checkEmail.classList.remove("error");
-    errMessage.style.display = "none";
+    checkEmail.classList.remove('error');
+    errMessage.style.display = 'none';
   }
-  loginBtn.classList.toggle("disabled", !validForm(email, checkPW.value));
+  loginBtn.classList.toggle('disabled', !validForm(email, checkPW.value));
 }
 
 function passwordCheck(password) {
   if (!isPasswordValid(password)) {
-    checkPW.classList.add("error");
-    PerrMessage.style.display = "block";
+    checkPW.classList.add('error');
+    PerrMessage.style.display = 'block';
     checkPW.focus();
   } else {
-    checkPW.classList.remove("error");
-    PerrMessage.style.display = "none";
+    checkPW.classList.remove('error');
+    PerrMessage.style.display = 'none';
     loginBtn.classList.toggle(
-      "disabled",
+      'disabled',
       !validForm(checkEmail.value, password)
     );
   }
 }
 
-checkEmail.addEventListener("focusout", () => emailCheck(checkEmail.value));
+checkEmail.addEventListener('focusout', () => emailCheck(checkEmail.value));
 // checkEmail.addEventListener('input', emailCheck);
-checkPW.addEventListener("focusout", () => passwordCheck(checkPW.value));
+checkPW.addEventListener('focusout', () => passwordCheck(checkPW.value));
 // checkPW.addEventListener('input', passwordCheck);
 
-loginBtn.addEventListener("click", (e) => {
+loginBtn.addEventListener('click', (e) => {
   e.preventDefault();
   const email = checkEmail.value;
   const password = checkPW.value;
-  if (!loginBtn.classList.contains("disabled")) {
+  if (!loginBtn.classList.contains('disabled')) {
     if (!isUser(email, password)) return showModal(modal);
-    window.location.href = "items.html";
+    window.location.href = 'items.html';
   }
 });
