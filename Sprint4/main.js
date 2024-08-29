@@ -1,4 +1,4 @@
-import articles from './ArticleService.js';
+import articles, { createArticle } from './ArticleService.js';
 import products from './ProductService.js';
 
 const createTestArticle = {
@@ -32,23 +32,55 @@ const updateTestProduct = {
 };
 
 /* ---- Article ---- */
-// console.log(await articles.getArticleList(1, 100, 'test'));
-// console.log('*********************************************');
-// console.log(await articles.getArticle(85));
-// console.log('*********************************************');
-// console.log(await articles.createArticle(createTestArticle));
-// console.log('*********************************************');
-// console.log(await articles.patchArticle(353, updateTestArticle));
-// console.log('*********************************************');
-console.log(await articles.deleteArticle(353));
+try {
+  const getArticleList = await articles.getArticleList(1, 3, 'test');
+  const getArticle = await articles.getArticle(getArticleList[0].id);
+  const createArticle = await articles.createArticle(createTestArticle);
+  const updateArticle = await articles.patchArticle(
+    createArticle.id,
+    updateTestArticle
+  );
+  const deleteArticle = await articles.deleteArticle(updateArticle.id);
 
-// // /* ---- Product ---- */
-// console.log(await products.getProductList(1, 100, 'TEST'));
-// console.log('*********************************************');
-// console.log(await products.getProduct(20));
-// console.log('*********************************************');
-// console.log(await products.createProduct(createTestProduct));
-// console.log('*********************************************');
-// console.log(await products.patchProduct(222, updateTestProduct));
-// console.log('*********************************************');
-// console.log(await products.deleteProduct(221));
+  console.log(getArticleList);
+  console.log('*********************************************');
+  console.log(getArticle);
+  console.log('*********************************************');
+  console.log(createArticle);
+  console.log('*********************************************');
+  console.log(updateArticle);
+  console.log('*********************************************');
+  console.log(deleteArticle);
+} catch (err) {
+  console.log('!! ----- 경고 : 에러 발생 ----- !!');
+  console.log(err.response.status);
+} finally {
+  console.log('!! ----- Article Service 종료 ----- !!');
+}
+
+// /* ---- Product ---- */
+try {
+  const getProductList = await products.getProductList(1, 3, 'TEST');
+  const getProduct = await products.getProduct(getProductList[0].id);
+  const createProduct = await products.createProduct(createTestProduct);
+  const updateProduct = await products.patchProduct(
+    createProduct.id,
+    updateTestProduct
+  );
+  const deleteProduct = await products.deleteProduct(updateProduct.id);
+
+  console.log(getProductList);
+  console.log('*********************************************');
+  console.log(getProduct);
+  console.log('*********************************************');
+  console.log(createProduct);
+  console.log('*********************************************');
+  console.log(updateProduct);
+  console.log('*********************************************');
+  console.log(deleteProduct);
+} catch (err) {
+  console.log('!! ----- 경고 : 에러 발생 ----- !!');
+  console.log(err.response.status);
+} finally {
+  console.log('!! ----- Product Service 종료 ----- !!');
+}
