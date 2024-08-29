@@ -21,6 +21,17 @@
 	--secondary-color-blue: #3182F6;
 }
 
+body{
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* header */
 header {
   display: flex;
   flex-direction: row;
@@ -52,8 +63,11 @@ nav h1 {
   line-height: 5.5975rem;
   text-align: left;
   color: var(--blue-color);
+  white-space: nowrap;
 }
 
+
+/* main */
 main {
   display: flex;
   flex-direction: column;
@@ -70,6 +84,7 @@ form {
   gap: 1.25rem;
 }
 
+/* login */
 label {
   display: flex;
   flex-direction: column;
@@ -96,23 +111,26 @@ label input {
 }
 
 label input:focus {
-  outline: none !important;
+  outline: none;
   border: solid 2px;
   border-color: var(--blue-color);
 }
-
+#password{
+  margin-bottom: 0.5rem;
+}
 #eyeImg {
   width: 1.5rem;
   height: 1.5rem;
   position: relative;
   left: 36.875rem;
-  bottom: 3.4rem;
+  bottom: 3.9rem;
 }
 
 form button {
   width: 40rem;
   padding: 1rem 7.75rem;
-  gap: 0.625rem;
+  position: relative;
+  bottom: 2rem;
   border-radius: 2.5rem;
   border: none;
   background-color: var(--secondary-color-gray100);
@@ -124,6 +142,7 @@ form button {
   color: var(--white-color);
 }
 
+/* imgbox */
 .imgbox {
   width: 40rem;
   height: 4.625rem;
@@ -134,6 +153,8 @@ form button {
   justify-content: space-between;
   align-items: center;
   background-color: var(--secondary-color-gray300);
+  position: relative;
+  bottom: 1.5rem;
 }
 
 .imgbox h4 {
@@ -144,8 +165,11 @@ form button {
   text-align: left;
   color: var(--secondary-color-black);
   margin-left: 1.4375rem;
+  white-space: nowrap;
 }
-
+.imgbox a{
+  white-space: nowrap;
+}
 #google {
   display: flex;
   justify-content: center;
@@ -169,6 +193,7 @@ form button {
   margin-right: 1.875rem;
 }
 
+/* fotter */
 footer {
   margin-top: 1.25rem;
   margin-bottom: 20rem;
@@ -194,4 +219,169 @@ footer a {
   text-align: left;
   color: var(--secondary-color-blue);
   padding-left: 0.4375rem;
+}
+
+/* js */
+.borderRed {
+  outline: none;
+  border: solid 2px;
+  border-color: red;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 0.8rem;
+  font-family: Pretendard;
+  display: none;
+}
+
+.passwordBottom {
+  position: relative;
+  bottom: 2.5rem;
+}
+
+.btnColor {
+  background-color: var(--blue-color);
+}
+
+/* modal */
+.modal{
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalBoxStyle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: var(--white-color);
+  margin: 30rem auto;
+  padding-top: 7rem;
+  border-radius: 0.8rem;
+  width: 34rem;
+  height: 15.6rem;
+  bottom: 5rem;
+}
+
+.modalH1Style{
+  font-family: Pretendard;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  color: var(--secondary-color-black);
+  text-align: center;
+  position: relative;
+  top: 5rem;
+}
+
+.modalInputStyle{
+  position: relative;
+  top: 3rem;
+  right: 1.5rem;
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 0.5rem;
+  width: 7.5rem;
+  height: 3rem;
+  font-size: 1rem;
+  font-family: Pretendard;
+  line-height: 2rem;
+  align-self: end;
+  cursor: pointer;
+}
+
+/* PC */
+@media screen and (min-width: 1200px){
+
+} 
+
+/* Tablet */
+@media screen and (min-width: 744px) and (max-width: 1199px){
+
+}
+
+/* Mobile */
+@media screen and (min-width: 375px) and (max-width: 743px){
+  /* nav */
+  header{
+    padding-top: 0.7rem;
+    margin-bottom: 0.1rem;
+  }
+  nav{
+    padding: 0 6.4rem;
+  }
+  nav img{
+    width: 3rem;
+    height: auto;
+    border-radius: 1rem;
+  }
+  nav h1{
+    font-size: 2rem;
+  }
+  
+
+  /* login */
+  main{
+    max-width: 25rem;
+    padding: 0 1rem;
+  }
+  section{
+    position: relative;
+    bottom: 2rem;
+  }
+  #email, #password{
+    width: 22rem;
+    padding: 1rem 1rem;
+  }
+  #password{
+    margin-bottom: 0.1rem;
+  }
+  .login_box h4{
+    font-size: 0.8rem;
+  }
+  .login_box button{
+    width: 22rem;
+
+  }
+  #eyeImg{
+    position: relative;
+    left: 19rem;
+    bottom: 3.7rem;
+  }
+  
+  /* imgbox */
+  .imgbox{
+    width: 22rem;
+    padding: 0 1rem;
+    justify-content: flex-start;
+    position: relative;
+    bottom: 4rem;
+  }
+  .imgbox h4{
+    font-size: 0.9rem;
+  }
+  #google, #kakao{
+    position: relative;
+    padding: 1rem;
+    right: 16rem;
+  }
+  #google{
+    right: 17rem;
+  }
+  #kakao{
+    padding-top: 1.2rem;
+  }
+  footer{
+    width: 22rem;
+    margin: 0 1rem;
+    position: relative;
+    bottom: 3rem;
+  }
 }

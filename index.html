@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- 공유 meta tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="아직 미숙한 첫번 째 웹 사이트">
+  <meta property="og:title" content="판다마켓">
+  <meta property="og:url" content="https://ldy-sprint12.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ldy-sprint12.netlify.app/img/panda.png">
+  <meta property="og:description" content="일상에서 모든 물건을 거래해보세요">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ELV3FDXL1B"></script>
   <script>
@@ -26,6 +33,9 @@
           <img class="pandaImg" src="img/pandaFace.png" alt="판다마켓">
         </a>
         <h1>판다마켓</h1>
+        <h2>자유게시판</h2>
+        <h2>중고마켓</h2>
+      </div>
       </div>
       <a href="login/login.html" target="_self" class="a_button">
         <button type="button" class="login_btn">로그인</button>
@@ -35,24 +45,22 @@
   <div class="purchase">
     <div class="panda_1">
       <div class="perdiv">
-        <h1>일상의 모든 물건을<br>거래해 보세요</h1>
+        <h1>일상의 모든 물건을<br class="navBr">거래해 보세요</h1>
         <a href="items/index.html" target="_self">
           <button type="button">구경하러 가기</button>
         </a>
       </div>
-      <div>
-        <img src="img/header.png">
-      </div>
+      <img class="purchaseImg" src="img/header.png">
     </div>
   </div>
   <div class="section">
     <div class="check">
       <div class="bigbox">
-        <img src="img/section 1.png">
+        <img class= "checkImg"" src="img/section 1.png">
         <div class="smallbox">
           <h5>Hot item</h5>
           <div class="onetext">
-            <h2>인기 상품을<br>확인해 보세요</h2>
+            <h2>인기 상품을<br class="sectionBr">확인해 보세요</h2>
             <h4>가장 HOT한 중고거래 물품을<br>판다 마켓에서 확인해 보세요</h4>
           </div>
         </div>
@@ -63,20 +71,20 @@
         <div class="smallbox2">
           <h5>Search</h5>
           <div class="onetext2">
-            <h2>구매를 원하는<br>상품을 검색하세요</h2>
+            <h2>구매를 원하는<br class="sectionBr">상품을 검색하세요</h2>
             <h4>구매하고 싶은 물품은 검색해서<br>쉽게 찾아보세요</h4>
           </div>
         </div>
-      <img src="img/section 2.png">
+        <img class="searchImg" class="searchImg" src="img/section 2.png">
       </div>
     </div>
     <div class="register">
       <div class="bigbox3">
-        <img src="img/section 3.png">
+        <img class="registerImg" src="img/section 3.png">
         <div class="smallbox3">
           <h5>Register</h5>
           <div class="onetext3">
-            <h2>판매를 원하는<br>상품을 등록하세요</h2>
+            <h2>판매를 원하는<br class="sectionBr">상품을 등록하세요</h2>
             <h4>어떤 물건이든 판매하고 싶은 상품을<br>쉽게 등록학세요</h4>
           </div>
         </div>
@@ -87,11 +95,13 @@
     <div></div>
   </div>
   <div class="up_footer">
-    <div>
+    <div class="upFooterIn">
       <div class="trustdiv">
         <h1>믿을 수 있는<br>판다마켓 중고 거래</h1>
       </div>
-      <img src="img/footer.png">
+      <div class="footerImgBox">
+        <img class="footerImg" src="img/footer.png">
+      </div>
     </div>
   </div>
   <footer>
@@ -119,5 +129,6 @@
       </div>
     </div>
   </footer>
+  <script src="index.js"></script>
 </body>
 </html>
