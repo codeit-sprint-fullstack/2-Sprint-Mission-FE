@@ -108,6 +108,8 @@ input:focus{
 
 .simple-login{
   height: 24px;
+  margin-top: 25px;
+  margin-left: 23px;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -122,6 +124,12 @@ input:focus{
   align-items: center;
   gap: 20px;
   cursor: pointer;
+  margin-top:16px;
+  margin-left: 393px;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
 .first{
