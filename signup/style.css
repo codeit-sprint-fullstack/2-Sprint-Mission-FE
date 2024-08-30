@@ -1,12 +1,10 @@
 html{
   font-family: Pretendard;
-  box-sizing: border-box;
 }
 
 body{
   background-color: #fcfcfc;
   margin: 0;
-  padding: 0;
 }
 
 .main{
@@ -18,13 +16,11 @@ body{
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  position: relative;
 }
 
 .pandamarket{
-  display: block;
   padding: 80px 0;
-  width: 396px;
+  width: 386px;
   height: 132px;
   align-items: center;
   cursor: pointer;
@@ -34,7 +30,7 @@ body{
   display: none;
 }
 
-.login{
+.signup{
   width: 640px;
   display: flex;
   flex-direction: column;
@@ -45,11 +41,11 @@ body{
 
 label{
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   color: #1F2937;
   display: flex;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 input{
@@ -71,15 +67,19 @@ input:focus{
   position: relative;
 }
 
+.password-check{
+  position: relative;
+}
+
 .visibility{
   position: absolute;
-  top: 35px;
+  top: 50px;
   right: 16px;
   bottom: 16px;
   cursor: pointer;
 }
 
-.log-in{
+.sign-up{
   display: flex;
   width: 640px;
   height: 56px;
@@ -108,9 +108,7 @@ input:focus{
 
 .simple-login{
   height: 24px;
-  margin-top: 25px;
-  margin-left: 23px;
-  font-weight: 500;
+  font-weight: 500px;
   font-size: 16px;
   line-height: 24px;
   color: #1F2937;
@@ -124,20 +122,15 @@ input:focus{
   align-items: center;
   gap: 20px;
   cursor: pointer;
-  margin-top:16px;
-  margin-left: 393px;
-  gap: 16px;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
 }
 
-.first{
-  font-weight: 500;
+.already{
+  font-weight: 500px;
   font-size: 15px;
+  cursor: pointer;
 }
 
-.panda-first a{
+.panda-already a{
   color: #3182F6;
   cursor: pointer;
 }
@@ -158,6 +151,7 @@ input:focus{
 }
 
 .active{
+  background-color: #3692FF;
   opacity: 1;
 }
 
@@ -174,21 +168,10 @@ input:focus{
   outline: none;
 }
 
-.visibility {
-  position: absolute;
-  right: 10px;
-  margin-top: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-}
-
 @media (max-width: 744px) {
   .body{
     margin: 8px;
   }
-
   .main{
     width: 100%;
     height: auto;
@@ -206,7 +189,7 @@ input:focus{
     margin-top: 24px;
   }
 
-  .login{
+  .signup{
     width: 100%;
     max-width: 100%;
   }
@@ -229,16 +212,16 @@ input:focus{
     line-height: 17.9px;
   }
 
-  .email, .password, .log-in, .simple, .first{
+  .email, .nickname, .password, .password-check, .sign-up, .simple, .already{
     width: 100%;
     max-width: 100%;
   }
 
-  .log-in{
+  .sign-up{
     align-items: center;
   }
-  
-  .panda-first{
+
+  .panda-already{
     text-align: center;
   }
 }
@@ -302,10 +285,10 @@ input:focus{
   opacity: 0.7;
 }
 
-.signup{
+.login{
   opacity: 1;
 }
 
-.signup:hover{
+.login:hover{
   opacity: 0.7;
 }
