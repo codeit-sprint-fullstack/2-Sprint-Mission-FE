@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>판다마켓</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../img/panda-img.png">
+</head>
+<body>
+  <div class="main">
+    <a href="/">
+      <img class="pandamarket" src="../img/pandamarket.svg">
+      <img class="m-pandamarket" src="../img/pandamarket.svg" style="width: 198px">
+    </a>
+    <div class="login">
+      <div class="email">
+        <label class="label-email" for="email">이메일</label>
+        <input class="input-email" id="email" placeholder="이메일을 입력해주세요" type="email" autocomplete="on" required>
+        <input id="email-error" class="error" type="text" disabled>
+      </div>
+      <div class="password">
+        <label class="label-pw" for="password">비밀번호</label>
+        <input class="input-pw" id="password" placeholder="비밀번호를 입력해주세요" type="password" autocomplete="on" required>
+        <img class="visibility" src="../img/visibility.png">
+        <input id="pw-error" class="error" type="text" disabled>
+      </div>
+      <button class="log-in" type="submit">로그인</button>
+      <div class="simple">
+        <p class="simple-login">간편 로그인하기</p>
+        <div class="icon">
+          <a href="https://www.google.com." target="_blank" title="google">
+            <img class="google" src="../img/icon-google.png">
+          </a>
+          <a href="https://www.kakaocorp.com/page/" target="_blank" target="kakao">
+            <img class="kakao" src="../img/icon-kakao.png">
+          </a>
+        </div>
+      </div>
+      <div class="first">
+        <p class="panda-first">
+          판다마켓이 처음이신가요?
+          <a class="signup" href="/signup">회원가입</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-bg">
+  <div class="modal">
+    <p class="modal-error">비밀번호가 일치하지 않습니다.</p>
+    <button class="modal-close">확인</button>
+  </div>
+</div>
+</body>
+<script src="index.js"></script>
+</html>
