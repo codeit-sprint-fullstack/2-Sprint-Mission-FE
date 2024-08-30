@@ -11,25 +11,33 @@
     <div>
       <a href="/"><img class="logo-img" src="images/logo.png" /></a>
     </div>
+    <div>
       <label for="username">이메일</label>
       <input id="username" name="username" placeholder="이메일을 입력해주세요">
+      <span id="email-empty-error" class="error-msg">이메일을 입력해주세요.</span>
+      <span id="email-input-error" class="error-msg">잘못된 이메일 형식입니다.</span>
+      </div>
+      <div>
       <label for="nickname">닉네임</label>
       <input id="nickname" name="nickname" placeholder="닉네임을 입력해주세요">
-      <label for="password1">비밀번호</label>
-      <div class="password-input">
-        <input id="password1" name="password" type="password" placeholder="비밀번호를 입력해주세요">
-        <div class="toggle-show-password">
-          <img src="images/invisible.png" />
-        </div>
+      <span id="nickname-empty-error" class="error-msg">닉네임을 입력해주세요.</span>
+      </div>
+    <label for="password1">비밀번호</label>
+    <div class="password-input">
+      <input id="password1" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+      <img class="toggle-show-password" src="images/toggle-show-password-image.png" />
+      <span id="password-empty-error" class="error-msg">비밀번호를 입력해주세요.</span>
+      <span id="password-input-error" class="error-msg">비밀번호를 8자 이상 입력해주세요.</span>
       </div>
       <label for="password2">비밀번호 확인</label>
       <div class="password-input verification">
         <input id="password2" name="password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
         <div class="toggle-show-password">
-          <img src="images/invisible.png" />
+        <img src="images/toggle-show-password-image.png" />
         </div>
-      </div>
-      <button>회원가입</button>
+      <span id="password2-check-error" class="error-msg">비밀번호가 일치하지 않습니다.</span>
+    </div>
+    <button id="signin-button" type="submit" disabled>회원가입</button>
     <div class="easy-login">
       <span>간편 로그인하기</span>
       <div class="icons">
@@ -41,5 +49,12 @@
       이미 회원이신가요? <a href="/login" class="signup">로그인</a>
     </div>
   </form>
+  <div class="alert-modal">
+    <div class="modal-content">
+      <p class="modal-message"></p>
+      <span class="modal-button">확인</span>
+    </div>
+  </div>
+  <script src="index.js"></script>
 </body>
 </html>
