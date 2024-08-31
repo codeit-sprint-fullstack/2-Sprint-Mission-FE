@@ -53,8 +53,9 @@ if(passwordInput) {
 
   passwordInput.parentElement.appendChild(passwordErrorMsg);
 
-  passwordInput.addEventListener('blur', function () {
+  passwordInput.addEventListener('input', function () {     // input 으로 해야 한글자만 입력했을경우 로그인 버튼 활성화 방지 <= EtoggleButtonState 입력값이 있고 에러메시지가 없으면 활성화 시킴
     if(passwordInput.value.trim() === '') {
+      console.log('check password')
       setErrorMessage(passwordInput, passwordErrorMsg, '비밀번호를 입력해 주세요');
     } else if(!validatePassword(passwordInput.value)) {
       setErrorMessage(passwordInput, passwordErrorMsg, '비밀번호를 8자 이상 입력해 주세요');
@@ -84,17 +85,21 @@ if(passwordConfirmInput) {
 
   passwordConfirmInput.parentElement.appendChild(passwordConfirmErrorMsg);
 
-  passwordConfirmInput.addEventListener('blur', function () {
+  passwordConfirmInput.addEventListener('input', function () {
     if(passwordConfirmInput.value.trim() === '') {
+      console.log('check password confirm');
       setErrorMessage(passwordConfirmInput, passwordConfirmErrorMsg, '비밀번호를 다시 한 번 입력해 주세요');
     } else if(!validatePassword(passwordConfirmInput.value)) {
       setErrorMessage(passwordConfirmInput, passwordConfirmErrorMsg, '비밀번호를 8자 이상 입력해 주세요');
-    } else {
+    } else if(passwordInput.value !== passwordConfirmInput.value) {
+      setErrorMessage(passwordConfirmInput, passwordConfirmErrorMsg, '비빌번호가 일치하지 않습니다. 비밀번호를 다시 한 번 입력해 주세요');
+    }
+    else {
       clearErrorMessage(passwordConfirmInput, passwordConfirmErrorMsg);
     }
     toggleButtonState();
   });
-  passwordConfirmInput.addEventListener('input', toggleButtonState); 
+  passwordConfirmInput.addEventListener('input', toggleButtonState);  // 비밀번호 입력과 마찬가지로 blur 보다 input 으로 해야 
 
   // 비밀번호 확인 표시/숨기기
   const passwordConfirmVisibilityIcon = document.querySelector('#password-confirm-visibility');
