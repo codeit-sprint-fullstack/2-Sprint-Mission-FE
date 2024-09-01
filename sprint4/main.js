@@ -38,51 +38,34 @@ function article() {
       console.log("Done");
     });
 }
-
-//article();
+article();
 
 // Product API
-function product() {
-  getProductList(1, 10, "")
-    .then((productList) => {
-      console.log("getProductList:", productList);
-      return getProduct(20);
-    })
-    .then((product) => {
-      console.log("getProduct:", product);
-      return createProduct({
-        name: "이름",
-        description: "설명입니다",
-        price: 10000,
-        manufacturer: "메뉴팩쳐러",
-        tags: ["좋다", "아주좋음"],
-        images: [""],
-      });
-    })
-    .then((postProduct) => {
-      console.log("createProduct:", postProduct);
-      return patchProduct(275, {
-        name: "수정된 이름",
-        description: "수정된 설명입니다",
-        price: 10000,
-        manufacturer: "수정된 메뉴팩쳐러",
-        tags: ["또 수정됨", "수정"],
-        images: [""],
-      });
-    })
-    .then((updateProduct) => {
-      console.log("patchProduct:", updateProduct);
-      //return deleteProduct(36);
-    })
-    .then((removeProduct) => {
-      console.log("deleteProduct:", removeProduct);
-    })
-    .catch((error) => {
-      console.error("Error:", error.message);
-    })
-    .finally(() => {
-      console.log("Done");
-    });
+try {
+  const productList = await getProductList(1, 10, "");
+  console.log("getProductList:", productList);
+  const product = await getProduct(20);
+  console.log("getProduct:", product);
+  const postProduct = await createProduct({
+    name: "이름",
+    description: "설명입니다",
+    price: 10000,
+    manufacturer: "메뉴팩쳐러",
+    tags: ["좋다", "아주좋음"],
+    images: [],
+  });
+  console.log("createProduct:", postProduct);
+  const updateProduct = await patchProduct(275, {
+    name: "수정된 이름",
+    description: "수정된 설명입니다",
+    price: 10000,
+    manufacturer: "수정된 메뉴팩쳐러",
+    tags: ["좋다", "아주좋음"],
+    images: [""],
+  });
+  console.log("patchArticle:", updateProduct);
+  const removeProduct = await deleteProduct(36);
+  //console.log("deleteProduct:", removeProduct);
+} catch (error) {
+  console.error("Error:", error.message);
 }
-
-product();
