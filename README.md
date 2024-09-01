@@ -43,7 +43,7 @@
 -[x] 이외의 코드들은 모두 main.js 파일에 작성해 주세요.
 
 -[x] import를 활용해 주세요.
--[] 각 함수를 실행하는 코드를 작성하고, 제대로 동작하는지 확인해 주세요.
+-[x] 각 함수를 실행하는 코드를 작성하고, 제대로 동작하는지 확인해 주세요.
 
 
 ## 주요 변경사항
@@ -53,7 +53,7 @@
 
 
 ## 멘토에게
-- Product에서 [name, description, price, tags, images]를 포함해달라고 했지만, API 명세에는 manufaturer이 포함되어있어서 createProduct에서 어떻게 해결해야할 지 모르겠습니다. 
-- 
+- Product에서 [name, description, price, tags, images]를 포함해달라고 했지만, API 명세에는 manufaturer이 포함되어있어서 createProduct에서 어떻게 해결해야할 지 모르겠습니다. (추가함)
+- 테스트 방법을 잘 몰라서 GPT를 사용했습니다..
 
 
