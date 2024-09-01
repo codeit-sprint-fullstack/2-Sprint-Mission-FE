@@ -64,6 +64,14 @@ if(passwordInput) {
     }
     toggleButtonState();
   });
+  // 비밀번호 입력란에서 포커스를 잃을 때 실행할 이벤트 리스너 추가  //기존 blur 에서 input 올 바뀌어서 키입력 없이 포커스아웃 될 때 적용하기 위함
+  passwordInput.addEventListener('focusout', function () {
+    if (passwordInput.value.trim() === '') {
+      setErrorMessage(passwordInput, passwordErrorMsg, '비밀번호를 입력해 주세요');
+    } else {
+      clearErrorMessage(passwordInput, passwordErrorMsg);
+    }
+  });
   passwordInput.addEventListener('input', toggleButtonState); 
 
   // 비밀번호 표시/숨기기
@@ -99,6 +107,16 @@ if(passwordConfirmInput) {
     }
     toggleButtonState();
   });
+
+  // 비밀번호 확인 력란에서 포커스를 잃을 때 실행할 이벤트 리스너 추가  //기존 blur 에서 input 올 바뀌어서 키입력 없이 포커스아웃 될 때 적용하기 위함
+  passwordConfirmInput.addEventListener('focusout', function () {
+    if (passwordConfirmInput.value.trim() === '') {
+      setErrorMessage(passwordConfirmInput, passwordConfirmErrorMsg, '비밀번호를 다시 한 번 입력해 주세요');
+    } else {
+      clearErrorMessage(passwordConfirmInput, passwordConfirmErrorMsg);
+    }
+  });
+    
   passwordConfirmInput.addEventListener('input', toggleButtonState);  // 비밀번호 입력과 마찬가지로 blur 보다 input 으로 해야 
 
   // 비밀번호 확인 표시/숨기기
