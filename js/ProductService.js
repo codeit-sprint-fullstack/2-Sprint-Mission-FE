@@ -1,32 +1,30 @@
-//axios 도전
 import axios from 'axios';
 
 const PRODUCT_URL = 'https://sprint-mission-api.vercel.app/products';
 
-async function getProductList(page, pageSize , keyword){  //GET
+async function getProductList(page, pageSize, keyword){  //GET
     try {
-       const res = await axios.get(PRODUCT_URL,{
-        params:{
+       const res = await axios.get(PRODUCT_URL, {
+        params: {
             page,
             pageSize,
             keyword
         }
-       })
+       });
        return res.data;
     } 
     catch(e) {
-        console.error(`${e.message}`);
+        console.error(e.message);
     }
 };
 
 async function getProduct(id){ //GET
     try {
         const res = await axios.get(`${PRODUCT_URL}/${id}`);
-
         return res.data;
     }
     catch(e) {
-        console.error(`${e.message}`);
+        console.error(e.message);
     }
 };
 
@@ -36,15 +34,16 @@ async function createProduct({name, description, price, manufacturer, tags, imag
             name,
             description,
             price,
+            manufacturer,
             tags,
             images
-        })
+        });
         return res.data;
     }
     catch(e) {
-        console.error(`${e.message}`);
+        console.error(e.message);
     }
-}; //제조사는 어떻게 해결해야하나...
+};
 
 async function patchProduct(id, data){ //PATCH
     try {
@@ -52,7 +51,7 @@ async function patchProduct(id, data){ //PATCH
         return res.data;
     }
     catch(e) {
-        console.error(`${e.message}`);
+        console.error(e.message);
     }
 };
 
@@ -62,17 +61,14 @@ async function deleteProduct(id){ //DELETE
         return res.data;
     }
     catch(e) {
-        console.error(`${e.message}`);
+        console.error(e.message);
     }
 };
 
-
-const products = {
+export default {
     getProductList, 
     getProduct, 
     createProduct, 
     patchProduct, 
     deleteProduct
 };
-
-export default products;
