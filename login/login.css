@@ -231,7 +231,7 @@ a {
 
 #modal-close {
     position: relative;
-    top: 13rem;
+    top: 10rem;
     background-color: var(--blue);
     color: var(--white);
     border: none;
@@ -249,6 +249,10 @@ a {
         width: 54rem;
         height: 25rem;
         border-radius: 0.8rem;
+    }
+
+    #modal-close {
+        top: 9rem;
     }
 }
 
@@ -354,11 +358,13 @@ a {
     }
 
     #modal-text {
+        top: 6rem;
         font-size: 1.6rem;
         line-height: 1.9rem;
     }
 
     #modal-close {
+        top: 7rem;
         width: 12rem;
         height: 4.8rem;
         border-radius: 0.8rem;
