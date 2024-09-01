@@ -4,78 +4,83 @@ const instance = axios.create({
   baseURL: "https://sprint-mission-api.vercel.app/",
 });
 
-export async function getProductList(page, pageSize, keyword) {
-  try {
-    const res = await instance.get("/products", {
+export function getProductList(page, pageSize, keyword) {
+  return instance
+    .get("/products", {
       params: { page, pageSize, keyword },
+    })
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) return res.data;
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+      throw error;
     });
-
-    if (res.status >= 200 && res.status < 300) return res.data;
-    throw new Error(`Error: ${res.status} - ${res.statusText}`);
-  } catch (error) {
-    console.error("Error:", error.message);
-    throw error;
-  }
 }
 
-export async function getProduct(id) {
-  try {
-    const res = await instance.get(`/products/${id}`);
-
-    if (res.status >= 200 && res.status < 300) return res.data;
-    throw new Error(`Error: ${res.status} - ${res.statusText}`);
-  } catch (error) {
-    console.error("Error:", error.message);
-    throw error;
-  }
-}
-
-export async function createProduct({ name, description, price, manufacturer, tags, images }) {
-  try {
-    const res = await instance.post("/products", {
-      name: name,
-      description: description,
-      price: price,
-      manufacturer: manufacturer,
-      tags: tags,
-      images: images,
+export function getProduct(id) {
+  return instance
+    .get(`/products/${id}`)
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) return res.data;
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+      throw error;
     });
-
-    if (res.status >= 200 && res.status < 300) return res.data;
-    throw new Error(`Error: ${res.status} - ${res.statusText}`);
-  } catch (error) {
-    console.error("Error:", error.message);
-    throw error;
-  }
 }
 
-export async function patchProduct(id, { name, description, price, manufacturer, tags, images }) {
-  try {
-    const res = await instance.patch(`/products/${id}`, {
-      name: name,
-      description: description,
-      price: price,
-      manufacturer: manufacturer,
-      tags: tags,
-      images: images,
+export function createProduct({ name, description, price, manufacturer, tags, images }) {
+  return instance
+    .post("/products", {
+      name,
+      description,
+      price,
+      manufacturer,
+      tags,
+      images,
+    })
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) return res.data;
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+      throw error;
     });
-
-    if (res.status >= 200 && res.status < 300) return res.data;
-    throw new Error(`Error: ${res.status} - ${res.statusText}`);
-  } catch (error) {
-    console.error("Error:", error.message);
-    throw error;
-  }
 }
 
-export async function deleteProduct(id) {
-  try {
-    const res = await instance.delete(`product/${id}`);
+export function patchProduct(id, { name, description, price, manufacturer, tags, images }) {
+  return instance
+    .patch(`/products/${id}`, {
+      name,
+      description,
+      price,
+      manufacturer,
+      tags,
+      images,
+    })
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) return res.data;
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+      throw error;
+    });
+}
 
-    if (res.status >= 200 && res.status < 300) return res.data;
-    throw new Error(`Error: ${res.status} - ${res.statusText}`);
-  } catch (error) {
-    console.error("Error:", error.message);
-    throw error;
-  }
+export function deleteProduct(id) {
+  return instance
+    .delete(`/products/${id}`)
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) return res.data;
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+      throw error;
+    });
 }

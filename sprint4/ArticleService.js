@@ -4,8 +4,8 @@ const instance = axios.create({
   baseURL: "https://sprint-mission-api.vercel.app",
 });
 
-export async function getArticleList(page, pageSize, keyword) {
-  return await instance
+export function getArticleList(page, pageSize, keyword) {
+  return instance
     .get("/articles", {
       params: { page, pageSize, keyword },
     })
@@ -19,8 +19,8 @@ export async function getArticleList(page, pageSize, keyword) {
     });
 }
 
-export async function getArticle(id) {
-  return await instance
+export function getArticle(id) {
+  return instance
     .get(`/articles/${id}`)
     .then((res) => {
       if (res.status >= 200 && res.status < 300) return res.data;
@@ -32,8 +32,8 @@ export async function getArticle(id) {
     });
 }
 
-export async function createArticle({ title, content, image }) {
-  return await instance
+export function createArticle({ title, content, image }) {
+  return instance
     .post(`/articles/`, {
       title: title,
       content: content,
@@ -49,8 +49,8 @@ export async function createArticle({ title, content, image }) {
     });
 }
 
-export async function patchArticle(id, { title, content, image }) {
-  return await instance
+export function patchArticle(id, { title, content, image }) {
+  return instance
     .patch(`/articles/${id}`, {
       title: title,
       content: content,
@@ -66,8 +66,8 @@ export async function patchArticle(id, { title, content, image }) {
     });
 }
 
-export async function deleteArticle(id) {
-  return await instance
+export function deleteArticle(id) {
+  return instance
     .delete(`/articles/${id}`)
     .then((res) => {
       if (res.status >= 200 && res.status < 300) return res.data;
