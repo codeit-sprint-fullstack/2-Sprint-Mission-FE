@@ -50,7 +50,7 @@ input:focus {
   border-color: #3692FF; /* 포커스 시 테두리 색상 변경 */
 }
 
-#signupButton{
+.loginBtn{
   width: 640px;
   height: 56px;
   border-radius: 40px;
@@ -61,7 +61,13 @@ input:focus {
   padding: 16px, 124px, 16px, 124px;
 }
 
-.simple-box{
+.signupText {
+  text-align: center;
+  color: white;
+}
+
+
+.simpleBox{
   display: flex;
   align-items: center;
   margin-left: 640px;
@@ -72,15 +78,15 @@ input:focus {
   justify-content: space-between;
 }
 
-.simple-login{
+.simpleLogin{
   margin-left: 23px;
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
-
+  color: black;
 }
 
-.simple-logo{
+.simpleLogo{
   width: 100px;
   height: 42px;
   justify-content: space-between;
@@ -88,7 +94,7 @@ input:focus {
 
 }
 
-.login-contents{
+.loginContents{
   display: flex;
   align-items: center;
   margin-left: 640px;
@@ -100,3 +106,61 @@ input:focus {
   font-size: 15px;
   line-height: 17.9px;
   }
+
+
+  .errMessage,
+  .PerrMessage,
+  .PCerrMessage {
+      display:none;
+      color: red;
+  }
+
+  #modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalContent {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+    margin: 30rem auto;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    width: 54rem;
+    height: 25rem;
+    /* justify-content: center; */
+}
+
+#modalText {
+    position: relative;
+    top: 5em;
+    margin-bottom: 3rem;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    color: gray;
+    text-align: center;
+}
+
+#modalClose {
+    position: relative;
+    top: 10rem;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    width: 12rem;
+    height: 4.8rem;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    align-self: end;
+    cursor: pointer;
+}

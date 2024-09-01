@@ -1,36 +1,97 @@
-document.addEventListener('DOMContentLoaded', () => {
-const USER_DATA = [
-  { email: 'codeit1@codeit.com', password: "codeit101!" },
-    { email: 'codeit2@codeit.com', password: "codeit202!" },
-    { email: 'codeit3@codeit.com', password: "codeit303!" },
-    { email: 'codeit4@codeit.com', password: "codeit404!" },
-    { email: 'codeit5@codeit.com', password: "codeit505!" },
-    { email: 'codeit6@codeit.com', password: "codeit606!" },
-]
+import { showModal, closeModal, isEmailValid, isUserForSignin } from "./sign_up.mjs";
 
-document.getElementById('signupButton').addEventListener('click', (event) => {
-  event.preventDefault(); // 기본 동작 방지
+const checkEmail = document.querySelector("#email");
+const checkPW = document.querySelector("#password");
+const checkPC = document.querySelector("#confirmpPassword");
+const errMessage = document.querySelector(".errMessage");
+const PerrMessage = document.querySelector(".PerrMessage");
+const PCerrMessage = document.querySelector(".PCerrMessage");
+const loginBtn = document.querySelector(".loginBtn");
+const modal = document.querySelector("#modal");
+
+const modalCloseBtn = document.querySelector("#modalClose");
 
 
-document.getElementById('signupButton').addEventListener('click', () => {
-  const email = document.querySelector('.signupEmail').value;
-  const nickname = document.querySelector('.signupNickname').value;
-  const password = document.querySelector('.signupPassword').value;
-  const confirmPassword = document.querySelector('.confirmPasswords').value;
 
-  // 이메일이 이미 존재하는지 확인
-  if (USER_DATA.hasOwnProperty(email)) {
-      alert('사용 중인 이메일입니다');
-  } else if (password !== confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다');
+function validForm(email, password, passwordRepeat) {
+  return isEmailValid(email) && checkPasswordValid(password, passwordRepeat);
+  
+}
+
+function emailCheck(email) {
+  if (!isEmailValid(email)) {
+    checkEmail.classList.add('error');
+    errMessage.style.display = 'block';
+    checkEmail.focus();
   } else {
-      // 회원가입 성공 처리
-      USER_DATA[email] = password; // 새로운 사용자 추가 (시뮬레이션)
-      alert('회원가입이 성공적으로 처리되었습니다');
-      window.location.href = "../login/"; // 로그인 페이지로 이동
+    checkEmail.classList.remove('error');
+    errMessage.style.display = 'none';
   }
-})
+  loginBtn.classList.toggle(
+    'disabled',
+    !validForm(email, checkPW.value, checkPC.value)
+  );
+}
 
-});
+function checkPasswordValid(password, passwordRepeat) {
+  console.log(password, passwordRepeat);
+  if (!passwordRepeat) {
+    
+    return password.length >= 8;
+  } else {
+  
+    return password === passwordRepeat;
+  }
+}
 
+function pwCheck(
+  password,
+  passwordRepeat,
+  check,
+  errMessage,
+  checkPasswordValid
+) {
+  if (!checkPasswordValid(password, passwordRepeat)) {
+    check.classList.add('error');
+    errMessage.style.display = 'block';
+  
+  } else {
+    check.classList.remove('error');
+    errMessage.style.display = 'none';
+  }
+  loginBtn.classList.toggle(
+    'disabled',
+    !validForm(checkEmail.value, checkPW.value, checkPC.value)
+  );
+}
+
+checkEmail.addEventListener('focusout', () => emailCheck(checkEmail.value));
+
+checkPW.addEventListener('focusout', () =>
+  pwCheck(
+    checkPW.value,
+    checkPC.value,
+    checkPW,
+    PerrMessage,
+    checkPasswordValid
+  )
+);
+checkPC.addEventListener('focusout', () =>
+  pwCheck(
+    checkPW.value,
+    checkPC.value,
+    checkPC,
+    PCerrMessage,
+    checkPasswordValid
+  )
+);
+
+loginBtn.addEventListener('click', (e) => {
+  const email = checkEmail.value;
+
+  e.preventDefault();
+  if (!loginBtn.classList.contains('disabled')) {
+    if (isUserForSignin(email)) return showModal(modal);
+    window.location.href = 'login.html';
+  }
 });

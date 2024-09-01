@@ -22,45 +22,55 @@
 			<form>
 				<label for="email">이메일</label>
 				<input id ="email" class="signupEmail" type="email" placeholder="  이메일을 입력해주세요">				
-				
+				<span class="errMessage">잘못된 이메일 형식입니다</span>
+
 				<label for="nickname">닉네임</label>
 				<input id ="nickname" class="signupNickname" type="name" placeholder="  닉네임을 입력해주세요">
-				
+
+
 				<label for="password">비밀번호</label>				
 				<input id ="password" class="signupPassword" type="password" placeholder="  비밀번호를 입력해주세요">
-				
+				<span class="PerrMessage">비밀번호를 8자 이상 입력해주세요</span>
+
 				<label for="confirmpPassword">비밀번호 확인</label>				
 				<input id ="confirmpPassword" class="confirmpPasswords" type="password" placeholder="  비밀번호를 다시 한 번 입력해주세요">
-				
-				<button id="signupButton" type="submit">
-					회원가입
-				</button>
-			</form>
+				<span class="PCerrMessage">비밀번호가 일치하지 않습니다</span>
 
-			<div class="simple-box">
-				<p class="simple-login">간편 로그인하기</p>
+
+				<a class="loginBtn" href="../login/login.html">
+					<p class="signupText">회원가입</p>
+			
+				</form>
+
+			<div class="simpleBox">
+				<p class="simpleLogin">간편 로그인하기</p>
 				
-				<div class="simple-logo">
+				<div class="simpleLogo">
 					<a href="https://www.google.com/" target="_blank">
 						<img class="google-icon" src="../login/google.png">
 					</a>
 					
 					<a href="https://www.kakaocorp.com/page/" target="_blank">
-						<img class="kakao-icon" src="../login/kakao.png">
+						<img class="kakaoIcon" src="../login/kakao.png">
 					</a> 
 				</div>
 			</div>
 			
-			<div class="login-contents">
-				<p class="login-text">이미 회원이신가요?</p>
+			<div class="loginContents">
+				<p class="loginText">이미 회원이신가요?</p>
 				<a href="../login/login.html">로그인</a>
 			</div>
 
 		</main>
-
-		<script src="./sign_up.js"></script>
+		<div id="modal">
+			<div id="modalContent">
+					<p id="modalText">사용 중인 이메일입니다.</p>
+					<button id="modalClose">확인</button>
+			</div>
+	  </div>
+		
 	</body>
-
+	<script src="./sign_up.js" type="module"></script>
 
 
 </html>
