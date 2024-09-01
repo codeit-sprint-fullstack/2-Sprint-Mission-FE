@@ -9,7 +9,7 @@ const modal = document.querySelector("#modal");
 const modalMessage = document.querySelector("#modal-message");
 const modalButton = document.querySelector("#modal-button");
 
-const inputData = {
+const elementsData = {
   id: inputId,
   pw: inputPw,
   btn: loginButton,
@@ -18,10 +18,10 @@ const inputData = {
   modalMessage,
 };
 
-inputId.addEventListener("focusout", () => validate.id(inputData, guideId));
-inputPw.addEventListener("focusout", () => validate.pw(inputData, guidePw));
+inputId.addEventListener("focusout", () => validate.id(elementsData, guideId));
+inputPw.addEventListener("focusout", () => validate.pw(elementsData, guidePw));
 loginButton.addEventListener("click", () =>
-  validate.login(validate.userData, inputData)
+  validate.login(validate.userData, elementsData)
 );
-togglePw.addEventListener("click", () => validate.togglePw(inputData));
-modalButton.addEventListener("click", () => validate.closeModal(inputData));
+togglePw.addEventListener("click", () => validate.togglePw(elementsData));
+modalButton.addEventListener("click", () => validate.closeModal(elementsData));

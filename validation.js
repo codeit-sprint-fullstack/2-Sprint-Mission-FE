@@ -1,4 +1,4 @@
-function id(input, guide) {
+function email(input, guide) {
   if (input.id.value === "") {
     guide.value = "이메일을 입력해주세요.";
     input.id.classList.remove("pass");
@@ -49,16 +49,16 @@ function confirmPw(input, guide) {
 }
 
 function login(userData, inputData) {
-  const matchData = userData.find(user => user.id === inputData.id.value);
+  const matchData = userData.find((user) => user.id === inputData.id.value);
   if (matchData) {
     if (matchData.pw === inputData.pw.value) {
       window.location.href = "/items.html";
     } else {
-      inputData.modalMessage.textContent='비밀번호가 일치하지 않습니다.';
+      inputData.modalMessage.textContent = "비밀번호가 일치하지 않습니다.";
       inputData.modal.classList.remove("hidden");
     }
   } else {
-    inputData.modalMessage.textContent='등록된 정보가 없습니다.';
+    inputData.modalMessage.textContent = "등록된 정보가 없습니다.";
     inputData.modal.classList.remove("hidden");
   }
 }
@@ -67,9 +67,9 @@ function signUp(userData, inputData) {
     id: inputData.id,
     pw: inputData.pw,
   };
-  const matchData = userData.find(user => user.id === inputData.id.value);
+  const matchData = userData.find((user) => user.id === inputData.id.value);
   if (matchData) {
-    inputData.modalMessage.textContent="사용 중인 이메일입니다.";
+    inputData.modalMessage.textContent = "사용 중인 이메일입니다.";
     inputData.modal.classList.remove("hidden");
   } else {
     userData.push(signUpData);
@@ -102,18 +102,32 @@ function togglePw(input) {
 function toggleConfirmPw(input) {
   if (input.confirmPw.getAttribute("type") === "password") {
     input.confirmPw.setAttribute("type", "text");
-    input.toggleConfirmPw.setAttribute("src", "image/btn_visibility_on_24px.svg");
+    input.toggleConfirmPw.setAttribute(
+      "src",
+      "image/btn_visibility_on_24px.svg"
+    );
   } else {
     input.confirmPw.setAttribute("type", "password");
-    input.toggleConfirmPw.setAttribute("src", "image/btn_visibility_off_24px.svg");
+    input.toggleConfirmPw.setAttribute(
+      "src",
+      "image/btn_visibility_off_24px.svg"
+    );
   }
 }
 
-function closeModal(inputData){
+function closeModal(inputData) {
   inputData.modal.classList.add("hidden");
 }
+const userData = [
+  { id: "codeit1@codeit.com", pw: "codeit101!" },
+  { id: "codeit2@codeit.com", pw: "codeit202!" },
+  { id: "codeit3@codeit.com", pw: "codeit303!" },
+  { id: "codeit4@codeit.com", pw: "codeit404!" },
+  { id: "codeit5@codeit.com", pw: "codeit505!" },
+  { id: "codeit6@codeit.com", pw: "codeit606!" },
+];
 const validate = {
-  id,
+  email,
   pw,
   confirmPw,
   login,
@@ -122,5 +136,6 @@ const validate = {
   togglePw,
   toggleConfirmPw,
   closeModal,
+  userData,
 };
 export default validate;

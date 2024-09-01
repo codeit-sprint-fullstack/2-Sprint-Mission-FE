@@ -11,7 +11,7 @@ const toggleConfirmPw = document.querySelector("#watch-toggle-check");
 const modal = document.querySelector("#modal");
 const modalMessage = document.querySelector("#modal-message");
 const modalButton = document.querySelector("#modal-button");
-const inputData = {
+const elementsData = {
   id: inputId,
   pw: inputPw,
   confirmPw: inputConfirmPw,
@@ -21,16 +21,16 @@ const inputData = {
   modal,
   modalMessage,
 };
-inputId.addEventListener("focusout", () => validate.id(inputData, guideId));
-inputPw.addEventListener("focusout", () => validate.pw(inputData, guidePw));
+inputId.addEventListener("focusout", () => validate.id(elementsData, guideId));
+inputPw.addEventListener("focusout", () => validate.pw(elementsData, guidePw));
 inputConfirmPw.addEventListener("focusout", () =>
-  validate.confirmPw(inputData, guideConfirmPw)
+  validate.confirmPw(elementsData, guideConfirmPw)
 );
 signUpButton.addEventListener("click", () =>
-  validate.signUp(validate.userData, inputData)
+  validate.signUp(validate.userData, elementsData)
 );
-togglePw.addEventListener("click", () => validate.togglePw(inputData));
+togglePw.addEventListener("click", () => validate.togglePw(elementsData));
 toggleConfirmPw.addEventListener("click", () =>
-  validate.toggleConfirmPw(inputData)
+  validate.toggleConfirmPw(elementsData)
 );
-modalButton.addEventListener("click", () => validate.closeModal(inputData));
+modalButton.addEventListener("click", () => validate.closeModal(elementsData));
