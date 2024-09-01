@@ -28,6 +28,7 @@
 html {
   font-size: 62.5%;
 }
+
 body {
   font-family: "Pretendard-Regular";
   color: var(--gray-800);
@@ -40,7 +41,7 @@ form {
 }
 
 .logo-img {
-width: 396px;
+ width: 396px;
  margin: 60px auto 24px;
  display: block;
 }
@@ -78,6 +79,7 @@ input::placeholder {
   font-weight: 600;
   margin: 8px 0 0 16px;
 }
+
 .password-input {
   position: relative;
 }
@@ -106,6 +108,7 @@ button {
   background: var(--primary-100);
   cursor: pointer;
 }
+
 .easy-login {
   display: flex;
   align-items: center;
@@ -132,9 +135,7 @@ button {
 
 .signup {
   color: #3182F6;
-}
-
-.alert-modal {
+}.alert-modal {
   display: none;
   position: fixed;
   justify-content: center;
@@ -142,7 +143,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0,0,0,0.4);
   align-items: center;
   justify-content: center;
 }
@@ -184,7 +185,7 @@ button {
   .logo-img {
     width: 198px;
   }
-
+  
   form {
     width: 100%;
     padding: 0 16px;

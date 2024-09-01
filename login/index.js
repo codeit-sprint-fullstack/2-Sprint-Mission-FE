@@ -2,9 +2,10 @@ const emailInput = document.querySelector('#username');
 const passwordInput = document.querySelector('#password');
 const btn = document.querySelector('#login-button');
 
-function showErrorMsg(el, errorID) {
+function showErrorMsg(el, errorID, errorMsg) {
   const showingMsg = document.getElementById(errorID);
   showingMsg.style.display = 'block';
+  showingMsg.innerHTML = errorMsg;
   el.style.border = '1px solid #F74747';
 }
 
@@ -14,8 +15,8 @@ function hideErrorMsg(el, errorID) {
   el.style.border = 'none';
 }
 
-let emailValidation;
-let passwordValidation;
+let isEmailValid;
+let isPasswordValid;
 
 function emailValidCheck(e) {
   const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -23,34 +24,32 @@ function emailValidCheck(e) {
 }
 
 function emailChecker() {
-  emailValidation = false;
+  isEmailValid = false;
 
-  hideErrorMsg(emailInput, 'email-empty-error');
-  hideErrorMsg(emailInput, 'email-input-error');
+  hideErrorMsg(emailInput, 'email-error');
 
   if (!emailInput.value) {
-    showErrorMsg(emailInput, 'email-empty-error');
+    showErrorMsg(emailInput, 'email-error', '이메일을 입력해주세요.');
   } else if (!emailValidCheck(emailInput.value)) {
-    showErrorMsg(emailInput, 'email-input-error');
+    showErrorMsg(emailInput, 'email-error', '잘못된 이메일 형식입니다.');
   } else {
-    emailValidation = true;
+    isEmailValid = true;
   }
 
-  btnActivate();
+  activeBtn();
 }
 
 function passwordChecker() {
-  passwordValidation = false;
+  isPasswordValid = false;
 
-  hideErrorMsg(passwordInput, 'password-empty-error');
-  hideErrorMsg(passwordInput, 'password-input-error');
+  hideErrorMsg(passwordInput, 'password-error');
 
   if (!passwordInput.value) {
-    showErrorMsg(passwordInput, 'password-empty-error');
+    showErrorMsg(passwordInput, 'password-error', '비밀번호를 입력해주세요.');
   } else if (passwordInput.value.length < 8) {
-    showErrorMsg(passwordInput, 'password-input-error');
+    showErrorMsg(passwordInput, 'password-error', '비밀번호를 8자 이상 입력해주세요.');
   } else {
-    passwordValidation = true;
+    isPasswordValid = true;
   }
 
   btnActivate();
@@ -73,7 +72,7 @@ function showModal(message) {
   modalMessage.textContent = message;
   modal.style.display = 'flex';
 
-  modalButton.onclick = function () {
+  modalButton.onclick = function() {
     modal.style.display = 'none';
   }
 }
@@ -93,10 +92,10 @@ function goLogin(e) {
   }
 }
 
-function btnActivate() {
-  console.log(emailValidation, passwordValidation);
-
-  if (emailValidation && passwordValidation) {
+function activeBtn() {
+  console.log(isEmailValid, isPasswordValid);
+  
+  if (isEmailValid && isPasswordValid) {
     btn.classList.add('isValid')
     btn.disabled = false;
     btn.addEventListener('click', goLogin);

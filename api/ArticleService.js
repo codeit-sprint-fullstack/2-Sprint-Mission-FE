@@ -1,26 +1,46 @@
 export async function getArticleList(page, pageSize, keyword) {
-  const url = new URL('https://sprint-mission-api.vercel.app/articles');
-  const params = { page, pageSize, keyword };
+  try {
+    const url = new URL('https://sprint-mission-api.vercel.app/articles');
+    const params = { page, pageSize, keyword };
 
-  Object.keys(params).forEach((key) => {
-    if (params[key]) {
-      url.searchParams.append(key, params[key]);
+    Object.keys(params).forEach((key) => {
+      if (params[key]) {
+        url.searchParams.append(key, params[key]);
+      }
+    });
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error('데이터를 불러오지 못했습니다.');
     }
-  });
-
-  const res = await fetch(url);
-  const data = await res.json();
-  return data;
+    
+    const data = await res.json();
+    return data;
+    
+  } catch(e) {
+    console.log(e.message);
+  }
 }
 
 export async function getArticle(id) {
-  const article = await fetch(`https://sprint-mission-api.vercel.app/articles/${id}`);
-  const data = await article.json();
-  return data;
+  try {
+    const article = await fetch(`https://sprint-mission-api.vercel.app/articles/${id}`);
+
+    if (!article.ok) {
+      throw new Error('데이터를 불러오지 못했습니다.');
+    }
+
+    const data = await article.json();
+    return data;
+  } catch(e) {
+    console.log(e.message);
+  }
 }
 
 export async function createArticle(articleData) {
-  const article = await fetch(`https://sprint-mission-api.vercel.app/articles`, {
+  try {
+    const article = await fetch(`https://sprint-mission-api.vercel.app/articles`, {
     method: 'POST',
     body: JSON.stringify(articleData),
     headers: {
@@ -28,12 +48,21 @@ export async function createArticle(articleData) {
     }
   });
 
+  if (!article.ok) {
+    throw new Error('데이터를 불러오지 못했습니다.');
+  }
+
   const data = await article.json();
   return data;
+  } catch(e) {
+    console.log(e.message);
+  }
+  
 }
 
 export async function patchArticle(id, articleData) {
-  const article = await fetch(`https://sprint-mission-api.vercel.app/articles/${id}`, {
+  try {
+    const article = await fetch(`https://sprint-mission-api.vercel.app/articles/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(articleData),
     headers: {
@@ -41,15 +70,29 @@ export async function patchArticle(id, articleData) {
     }
   });
 
+  if (!article.ok) {
+    throw new Error('데이터를 불러오지 못했습니다.');
+  }
+
   const data = await article.json();
   return data;
+  } catch(e) {
+    console.log(e.message);
+  }
 }
 
 export async function deleteArticle(id) {
-  const article = await fetch(`https://sprint-mission-api.vercel.app/articles/${id}`, {
+  try {
+    const article = await fetch(`https://sprint-mission-api.vercel.app/articles/${id}`, {
     method: 'DELETE',
-  });
+    });
 
-  const data = await article.json();
-  return data;
+    if (!article.ok) {
+      throw new Error('데이터를 불러오지 못했습니다.');
+    } else if (article.status === 204) {
+      return `${id}번 글이 정상적으로 삭제되었습니다.`;
+    }
+  } catch(e) {
+    console.log(e.message);
+  }
 }
