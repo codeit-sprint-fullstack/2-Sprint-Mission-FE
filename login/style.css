@@ -28,6 +28,7 @@
 html {
   font-size: 62.5%;
 }
+
 body {
   font-family: "Pretendard-Regular";
   color: var(--gray-800);
@@ -78,6 +79,7 @@ input::placeholder {
   font-weight: 600;
   margin: 8px 0 0 16px;
 }
+
 .password-input {
   position: relative;
 }
@@ -106,6 +108,7 @@ button {
   background: var(--primary-100);
   cursor: pointer;
 }
+
 .easy-login {
   display: flex;
   align-items: center;
@@ -134,21 +137,72 @@ button {
   color: #3182F6;
 }
 
+.alert-modal {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 540px;
+  height: 250px;
+  font-size: 1.6rem;
+  color: var(--gray-800);
+  text-align: center;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.modal-button {
+  width: 120px;
+  height: 48px;
+  background-color: var(--primary-100);
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 50px;
+  margin-left: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 743px) {
   body {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .logo-img {
     width: 198px;
   }
-
+  
   form {
     width: 100%;
-      padding: 0 16px;
+    padding: 0 16px;
   }
 
-        label {
-          font-size: 1.4rem;
+  label {
+    font-size: 1.4rem;
+  }
+
+  .modal-content {
+    width: 327px;
+    height: 220px;
+  }
+
+  .modal-button {
+    margin-left: 0;
   }
 }

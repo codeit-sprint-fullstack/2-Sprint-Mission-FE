@@ -58,9 +58,9 @@ header {
   cursor: pointer;
   display: flex;
   align-items: center;
-    width: 153px;
-    justify-content: space-between;
-    gap: 10px;
+  width: 153px;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .logo-img-1 {
@@ -106,9 +106,9 @@ header {
   height: 540px;
   width: 100%;
   background-image: url('main-banner.png');
-    background-size: 626.12px 281px;
-    background-repeat: no-repeat;
-    background-position: bottom center;
+  background-size: 626.12px 281px;
+  background-repeat: no-repeat;
+  background-position: bottom center;
 }
 
 .main-contents {
@@ -122,14 +122,14 @@ header {
   color: var(--gray-700);
   font-size: 3.2rem;
   font-weight: 700;
-  line-height: 44.8px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    margin-top: 48px;
-    white-space: pre-wrap;
+  line-height: 44.8px;  
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+  white-space: pre-wrap;
 }
 
 .shop-button {
@@ -147,15 +147,15 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width:100%;
   padding: 0 0 32px 0;
 }
 
 .mid-banner {
   display: flex;
   flex-direction: column;
-    justify-content: center;
-    width: 100%;
+  justify-content: center;
+  width: 100%;
 }
 
 .banner {
@@ -187,14 +187,14 @@ header {
 .leftsided {
   gap: 8px;
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .rightsided {
   text-align: right;
   display: flex;
   flex-direction: column;
-    gap: 8px;
+  gap: 8px;
 }
 
 .title {
@@ -234,9 +234,9 @@ footer {
   height: 160px;
   font-size: 1.6rem;
   padding: 32px 16px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .footer-contents {
@@ -245,14 +245,14 @@ footer {
   align-items: center;
   gap: 24px;
   flex-wrap: wrap;
-    width: 1520px;
+  width: 1520px;
 }
 
 .footer-version {
   color: var(--gray-400);
   order: 3;
   display: flex;
-    flex-basis: 100%;
+  flex-basis: 100%;
 }
 
 .footer-buttons {
@@ -272,142 +272,141 @@ footer {
   gap: 12px;
   order: 2;
   justify-content: flex-end;
+}
+
+/* ---------Tablet---------- */
+@media (min-width: 744px) {
+  .logo-img-1 {
+    display: block;
   }
   
-  /* ---------Tablet---------- */
-  @media (min-width: 744px) {
-    .logo-img-1 {
-      display: block;
-    }
+  .nav-left {
+    gap: 30px;
+  }
+
+  .main-banner {
+    height: 771px;
+    background-size: 996px 447px;
+  }
+
+  .main-text {
+    white-space: nowrap;
+    font-size: 4rem;
+    gap: 24px;
+    margin-top: 114px;
+    line-height: 56px;
+  }
+
+  .title, .text {
+    font-size: 1.8rem;
+    line-height: 21.6px;
+  }
+
+  .subtitle {
+    font-size: 3.2rem;
+  }
+
+  .bottom-banner {
+    height: 771px;
+    background-size: 996px 540px;
+  }
+
+  .footer-contents {
+    flex-wrap: nowrap;
+  }
+
+  .footer-version {
+    order: 1;
+    flex-basis: auto;
+    flex-grow: 1;
+  }
   
-    .nav-left {
-      gap: 30px;
-    }
-  
-    .main-banner {
-      height: 771px;
-      background-size: 996px 447px;
-    }
-  
-    .main-text {
-      white-space: nowrap;
-      font-size: 4rem;
-      gap: 24px;
-      margin-top: 114px;
-      line-height: 56px;
-    }
-    .title,
-    .text {
-      font-size: 1.8rem;
-      line-height: 21.6px;
-    }
-  
-    .subtitle {
-      font-size: 3.2rem;
-    }
-  
-    .bottom-banner {
-      height: 771px;
-      background-size: 996px 540px;
-    }
-  
-    .footer-contents {
-      flex-wrap: nowrap;
-    }
-  
-    .footer-version {
-      order: 1;
-      flex-basis: auto;
-      flex-grow: 1;
-    }
-  
-    .footer-buttons {
-      order: 1;
-      flex-grow: 1;
-      justify-content: center;
-    }
-  
-    .footer-icons {
-      order: 1;
-      flex-grow: 1;
-    }
-    }
-  
-    /* -----------PC------------ */
-    @media (min-width: 1200px) {
-      .main-banner {
+  .footer-buttons {
+    order: 1;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .footer-icons {
+    order: 1;
+    flex-grow: 1;
+  }
+}
+
+/* -----------PC------------ */
+@media (min-width: 1200px) {
+  .main-banner {
+    height: 540px;background-position-x: 80%;
+    background-size: 996px 447px;
+    display: flex;
+    align-items: center;
+  }
+
+  .main-contents {
+    align-items: center;
+  }
+
+  .main-text, .bottom {
+    text-align: left;
+    align-items: flex-start;
+    margin: 0 0 0 -700px;
+    white-space: pre-wrap;
+  }
+
+  .main-text.bottom {
+    margin-top: 0;
+  }
+
+  .mid-banner {
+    max-width: 1120px;
+    gap: 276px;
+    margin: 138px 0;
+  }
+
+  .banner {
+    width: 969px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+  }
+
+  .right-aligned {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .ban-img {
+    width: 588px;
+  }
+
+  .leftsided {
+    padding-left: 30px;
+  }
+
+  .rightsided {
+    padding-right: 30px;
+  }
+
+  .title {
+    line-height: 25.2px;
+  }
+
+  .subtitle {
+    font-size: 4rem;
+    line-height: 56px;
+    white-space: pre-wrap;
+  }
+
+  .text {
+    font-size: 2.4rem;
+    line-height: 28.8px;
+  }
+
+  .bottom-banner {
     height: 540px;
-      background-position-x: 80%;
-      background-size: 996px 447px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .main-contents {
-      align-items: center;
-    }
-    .main-text,
-    .bottom {
-      text-align: left;
-      align-items: flex-start;
-      margin: 0 0 0 -700px;
-      white-space: pre-wrap;
-    }
-  
-    .main-text.bottom {
-      margin-top: 0;
-    }
-  
-    .mid-banner {
-      max-width: 1120px;
-      gap: 276px;
-      margin: 138px 0;
-    }
-  
-    .banner {
-      width: 969px;
-      flex-direction: row;
-      align-items: center;
-      padding: 0;
-    }
-  
-    .right-aligned {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-    }
-  
-    .ban-img {
-      width: 588px;
-    }
-  
-    .leftsided {
-      padding-left: 30px;
-    }
-  
-    .rightsided {
-      padding-right: 30px;
-    }
-  
-    .title {
-      line-height: 25.2px;
-    }
-  
-    .subtitle {
-      font-size: 4rem;
-      line-height: 56px;
-      white-space: pre-wrap;
-    }
-  
-    .text {
-      font-size: 2.4rem;
-      line-height: 28.8px;
-    }
-  
-    .bottom-banner {
-      height: 540px;
-      background-position-x: 80%;
-      display: flex;
-      align-items: center;
-    }
+    background-position-x: 80%;
+    display: flex;
+    align-items: center;
+  }
 }

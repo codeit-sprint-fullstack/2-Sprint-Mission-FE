@@ -1,12 +1,13 @@
 const emailInput = document.querySelector('#username');
 const nicknameInput = document.querySelector('#nickname');
 const passwordInput = document.querySelector('#password1');
-const password2Input = document.querySelector('#password2');
+const passwordConfirmInput = document.querySelector('#password2');
 const btn = document.querySelector('#signin-button');
 
-function showErrorMsg(el, errorID) {
+function showErrorMsg(el, errorID, errorMsg) {
   const showingMsg = document.getElementById(errorID);
   showingMsg.style.display = 'block';
+  showingMsg.innerHTML = errorMsg;
   el.style.border = '1px solid #F74747';
 }
 
@@ -16,10 +17,10 @@ function hideErrorMsg(el, errorID) {
   el.style.border = 'none';
 }
 
-let emailValidation;
-let nicknameValidation;
-let passwordValidation;
-let password2Validation;
+let isEmailValid;
+let isNicknameValid;
+let isPasswordValid;
+let isPasswordConfrimValid;
 
 function emailValidCheck(e) {
   const emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -27,67 +28,65 @@ function emailValidCheck(e) {
 }
 
 function emailChecker() {
-  emailValidation = false;
+  isEmailValid = false;
 
-  hideErrorMsg(emailInput, 'email-empty-error');
-  hideErrorMsg(emailInput, 'email-input-error');
+  hideErrorMsg(emailInput, 'email-error');
 
   if (!emailInput.value) {
-    showErrorMsg(emailInput, 'email-empty-error');
+    showErrorMsg(emailInput, 'email-error', '이메일을 입력해주세요.');
   } else if (!emailValidCheck(emailInput.value)) {
-    showErrorMsg(emailInput, 'email-input-error');
+    showErrorMsg(emailInput, 'email-error', '잘못된 이메일 형식입니다.');
   } else {
-    emailValidation = true;
+    isEmailValid = true;
   }
 
-  btnActivate();
+  activeBtn();
 }
 
 function nicknameChecker() {
-  nicknameValidation = false;
+  isNicknameValid = false;
   
-  hideErrorMsg(nicknameInput, 'nickname-empty-error');
-
+  hideErrorMsg(nicknameInput, 'nickname-error');
   if (!nickname.value) {
-    showErrorMsg(nicknameInput, 'nickname-empty-error')
+    showErrorMsg(nicknameInput, 'nickname-error', '닉네임을 입력해주세요.');
   } else {
-    nicknameValidation = true;
+    isNicknameValid = true;
   }
   
-  btnActivate();
+  activeBtn();
 }
 
 function passwordChecker() {
-  passwordValidation = false;
+  isPasswordValid = false;
 
-  hideErrorMsg(passwordInput, 'password-empty-error');
-  hideErrorMsg(passwordInput, 'password-input-error');
+  hideErrorMsg(passwordInput, 'password-error');
 
   if (!passwordInput.value) {
-    showErrorMsg(passwordInput, 'password-empty-error');
+    showErrorMsg(passwordInput, 'password-error', '비밀번호를 입력해주세요.');
   } else if (passwordInput.value.length < 8) {
-    showErrorMsg(passwordInput, 'password-input-error');
+
+    showErrorMsg(passwordInput, 'password-error', '비밀번호를 8자 이상 입력해주세요.');
   } else {
-    passwordValidation = true;
+    isPasswordValid = true;
   }
 
-  btnActivate();
+  activeBtn();
 }
 
 function password2Checker() {
-  password2Validation = false;
+  isPasswordConfrimValid = false;
   
-  hideErrorMsg(password2Input, 'password2-check-error');
+  hideErrorMsg(passwordConfirmInput, 'password2-check-error');
 
   if (passwordInput) {
-    if (password2Input.value === passwordInput.value) {
-      password2Validation = true;
+    if (passwordConfirmInput.value === passwordInput.value) {
+      isPasswordConfrimValid = true;
     } else {
-      showErrorMsg(password2Input, 'password2-check-error');
+      showErrorMsg(passwordConfirmInput, 'password2-check-error', '비밀번호가 일치하지 않습니다.');
     }
   }
 
-  btnActivate();
+  activeBtn();
 }
 
 const USER_DATA = [
@@ -99,21 +98,34 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: "codeit606!" },
 ];
 
+function showModal(message) {
+  const modal = document.querySelector('.alert-modal');
+  const modalMessage = document.querySelector('.modal-message');
+  const modalButton = document.querySelector('.modal-button');
+
+  modalMessage.textContent = message;
+  modal.style.display = 'flex';
+
+  modalButton.onclick = function() {
+    modal.style.display = 'none';
+  }
+}
+
 function goSignIn(e) {
   e.preventDefault();
 
   const eachUserData = USER_DATA.find(el => el.email === emailInput.value);
   if (eachUserData) {
-    alert('사용 중인 이메일입니다.');
+    showModal('사용 중인 이메일입니다.');
   } else {
     window.location.href="/login";
   }
 }
 
-function btnActivate() {
-  console.log(emailValidation, passwordValidation);
+function activeBtn() {
+  console.log(isEmailValid, isPasswordValid);
   
-  if (emailValidation && nicknameValidation && passwordValidation && password2Validation) {
+  if (isEmailValid && isNicknameValid && isPasswordValid && isPasswordConfrimValid) {
     btn.classList.add('isValid')
     btn.disabled = false;
     btn.addEventListener('click', goSignIn);
@@ -126,4 +138,4 @@ function btnActivate() {
 emailInput.addEventListener('focusout', emailChecker);
 nicknameInput.addEventListener('focusout', nicknameChecker);
 passwordInput.addEventListener('focusout', passwordChecker);
-password2Input.addEventListener('focusout', password2Checker);
+passwordConfirmInput.addEventListener('focusout', password2Checker);
