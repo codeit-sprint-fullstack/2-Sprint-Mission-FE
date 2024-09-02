@@ -1,0 +1,29 @@
+# Node.js 관련
+node_modules/         # npm 패키지 폴더
+.env                 # 환경 변수 파일
+npm-debug.log*       # npm 디버그 로그 파일
+
+# 운영체제 관련
+.DS_Store            # macOS에서 생성되는 파일
+Thumbs.db            # Windows에서 생성되는 파일
+
+# IDE/에디터 관련
+.vscode/             # Visual Studio Code 설정 파일
+.idea/               # IntelliJ IDEA 설정 파일
+*.swp                # Vim swap 파일
+*.sublime-project    # Sublime Text 프로젝트 파일
+*.sublime-workspace  # Sublime Text 작업 공간 파일
+
+# 빌드 결과물
+dist/                # 빌드 결과물 폴더
+build/               # 빌드 디렉토리
+out/                 # 출력 디렉토리
+*.class              # Java 클래스 파일
+*.o                  # 컴파일된 오브젝트 파일
+
+# 로그 파일
+logs/                # 로그 디렉토리
+*.log                # 모든 로그 파일
+
+# 기타
+*.bak                # 백업 파일

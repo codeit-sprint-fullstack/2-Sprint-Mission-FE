@@ -1,60 +1,38 @@
-## 스프린트 미션 1
+## 스프린트 미션 4
 ### 기본
-- [x] React와 같은 UI 라이브러리를 사용하지 않고 진행합니다
-- [x] PC사이즈만 고려해 주어진 디자인으로 구현합니다.
-- [x] HTML, CSS 파일을 Netlify로 배포해 주세요. (참고: https://www.codeit.kr/learn/5309)
-- [x] 랜딩 페이지의 url path는 루트(‘/’)로 설정합니다.
-- [x] title은 “판다마켓”로 설정합니다.
-- [x] “판다마켓” 로고 클릭 시 루트 페이지(‘/’)로 이동합니다.
-- [x] '로그인' 버튼 클릭 시 로그인 페이지(‘/login’)로 이동합니다 (빈 페이지)
-- [x] “구경하러 가기”버튼 클릭 시(’/items’)로 이동합니다. (빈 페이지)
-- [x] “Privacy Policy”, “FAQ”는 클릭 시 각각 Privacy 페이지(‘/privacy’), FAQ 페이지(‘/faq’)로 이동합니다.(모두 빈 페이지)
-- [x]  페이스북, 트위터, 유튜브, 인스타그램 아이콘을 클릭 시 각각의 홈페이지로 새로운 창이 열리면서 이동합니다.
-- [x] 아래로 스크롤해도 “판다 마켓” 로고와 “로그인” 버튼이 있는 상단 내비게이션 바(Global Navigation Bar)가 최상단에 고정되게 해 주세요.
-- [x] 화면의 너비가 1920px 이상이면 하늘색 배경색은 너비를 꽉 채우도록 채워지고, 내부 요소들의 위치는 고정되고, 여백만 커지도록 합니다.
-- [x] 화면의 너비가 1920px 보다 작아질 때, “판다마켓” 로고의 왼쪽 여백 200px, “로그인" 버튼의 오른쪽 여백 200px이 유지되고, 화면의 너비가 작아질수록 두 요소 간 거리가 가까워지도록 설정합니다.
-- [x] 화면의 너비가 1920px 이상이면 내부에 있는 요소 간 동일한 간격을 유지하며 가운데 정렬해야 합니다.
-- [x] 화면의 너비가 1920px 보다 작아질 때, 최하단에 있는 “codeit-2024”의 왼쪽 여백 200px과 SNS 아이콘들의 오른쪽 여백 200px을 유지하면서 가운데 있는 “Privacy Policy”, “FAQ” 요소와 각각 동일한 간격을 유지하며 가까워져야 합니다.
-- [x] 클릭으로 기능이 동작해야 하는 경우, 사용자가 클릭할 수 있는 요소임을 알 수 있도록 CSS 속성 cursor: pointer로 설정합니다.
+- [x] Github에 스프린트 미션 PR을 만들어 주세요.
+- [x] 'https://sprint-mission-api.vercel.app/articles' API를 이용하여 아래 함수들을 구현해 주세요.
+- [x] getArticleList() : GET 메서드를 사용해 주세요.
+- [x] page, pageSize, keyword 쿼리 파라미터를 이용해 주세요.
+- [x] getArticle() : GET 메서드를 사용해 주세요.
+- [x] createArticle() : POST 메서드를 사용해 주세요.
+- [x] request body에 title, content, image 를 포함해 주세요.
+- [x] patchArticle() : PATCH 메서드를 사용해 주세요.
+- [x] deleteArticle() : DELETE 메서드를 사용해 주세요.
+- [x] fetch 혹은 axios 를 이용해 주세요.
+- [x] 응답의 상태 코드가 2XX가 아닐 경우, 에러메시지를 콘솔에 출력해 주세요.
+- [x] .then() 메서드를 이용하여 비동기 처리를 해주세요.
+- [x] .catch() 를 이용하여 오류 처리를 해주세요.
 
-### 심화
-- [x] reset.css를 설정해 주세요.
-- [x] 사용자의 브라우저 설정에 따라 기본 폰트 크기 설정이 변화함에 따라서 페이지의 요소 간 간격, 요소의 크기, font-size 등 모든 크기와 관련된 값이 크고 작아지도록 설정해 주세요.
-***
-## 스프린터 미션2
-### 기본
-- [x] Git 활용 과정에서 유닉스 커맨드를 활용해 주세요.
-- [x] HTML, CSS 파일을 Netlify로 배포합니다. (참고: https://www.codeit.kr/learn/5309)
+- [x] 'https://sprint-mission-api.vercel.app/products' API를 이용하여 아래 함수들을 구현해 주세요.
+- [x] getProductList() : GET 메서드를 사용해 주세요.
+- [x] page, pageSize, keyword 쿼리 파라미터를 이용해 주세요.
+- [x] getProduct() : GET 메서드를 사용해 주세요.
+- [x] createProduct() : POST 메서드를 사용해 주세요.
+- [x] request body에 name, description, price, tags, images 를 포함해 주세요.
+- [x] patchProduct() : PATCH 메서드를 사용해 주세요.
+- [x] deleteProduct() : DELETE 메서드를 사용해 주세요.
+- [x] async/await 을 이용하여 비동기 처리를 해주세요.
+- [x] try/catch 를 이용하여 오류 처리를 해주세요.
+- [x] 구현한 함수들을 아래와 같이 파일을 분리해 주세요.
 
-- [x] “판다마켓" 로고 클릭 시 루트 페이지(“/”)로 이동합니다.
-- [x] 로그인 페이지, 회원가입 페이지 모두 로고 위 상단 여백이 동일합니다.
-- [x] SNS 아이콘들은 클릭 시 각각 “https://www.google.com/”, “https://www.kakaocorp.com/page/” 으로 이동합니다.
-- [x] input 요소에 focus in 일 때, 테두리 색상은 ##3692FF입니다.
-- [x] input 요소에 focus out 일 때, 테두리는 없습니다.
-- [x] “회원가입”버튼 클릭 시 “/signup” 페이지로 이동합니다.
-- [x] “로그인”버튼 클릭 시 “/login” 페이지로 이동합니다
-
-### 심화
-- [x] palette에 있는 color값들을 css 변수로 등록해서 사용합니다.
-- [x] 구글 애널리틱스로 방문자 수 확인하기 할 수 있도록 설정합니다.
-- [x] 비밀번호, 비밀번호 확인 input 요소 오른쪽에 비밀번호를 확인할 수 있는 눈 모양 아이콘을 추가합니다.
-
-## 주요 변경사항
-- https://fs2-gsh-sprint1-2-pandamarket.netlify.app/(스프린트 미션 1+2 사이트)
-
-## 스크린샷
-
-![image](https://github.com/user-attachments/assets/736dff2e-427d-42c6-9292-9c2c902867c2)
-![image](https://github.com/user-attachments/assets/86fc5c80-f14c-4492-91ce-ff178b21c17b)
-![image](https://github.com/user-attachments/assets/546d4843-1bd1-4cfd-88f9-e82eb2ffcb46)
+- [x] export를 활용해 주세요.
+- [x] ProductService.js 파일 Product API 관련 함수들을 작성해 주세요.
+- [x] ArticleService.js 파일에 Article API 관련 함수들을 작성해 주세요.
+- [x] 이외의 코드들은 모두 main.js 파일에 작성해 주세요.
+- [x] import를 활용해 주세요.
+- [x] 각 함수를 실행하는 코드를 작성하고, 제대로 동작하는지 확인해 주세요.
 
 ## 멘토에게
 
-- 스프린터 미션 1 - 기본에서 "화면의 너비가 1920px 보다 작아질 때, 최하단에 있는 “codeit-2024”의 왼쪽 여백 200px과 SNS 아이콘들의 오른쪽 여백 200px을 유지하면서 가운데 있는 “Privacy Policy”, “FAQ” 요소와 각각 동일한 간격을 유지하며 가까워져야 합니다."
-미션을 해결하기 위해 footer_article에 마진값을 200px 주었고,
-피그마에 패딩값이 있어 footer_section에 패딩값을 32px 400px 주었습니다.
-이렇게 하니 피그마의 이미지와 배치가 달라집니다.(패딩값만 주었을 때는 이미지가 동일함)
-피그마의 이미지와 동일하면서 미션을 해결할 수 있나요?
-- 스프린터 미션 1 - 심화에서 "사용자의 브라우저 설정에 따라 기본 폰트 크기 설정이 변화함에 따라서 페이지의 요소 간 간격, 요소의 크기, font-size 등 모든 크기와 관련된 값이 크고 작아지도록 설정해 주세요."
-이 미션을 해결하려면 어디까지 rem, em을 사용해야 하나요?
-피그마에 fixed를 제외하고 모든 값을 rem, em으로 사용해야 하나요? 범위가 궁금합니다!
+- 동작은 잘 되고 추가 보완할 곳을 알려주시면 감사하겠습니다.
