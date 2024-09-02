@@ -63,7 +63,7 @@ const deleteProduct = async (id) => {
   return res.data;
 }
 
-const product = {
+const productService = {
   getProductList,
   getProduct,
   createProduct,
@@ -71,4 +71,4 @@ const product = {
   deleteProduct
 };
 
-export default product;
+export default productService;
