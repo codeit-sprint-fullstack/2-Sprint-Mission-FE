@@ -71,10 +71,12 @@ export function toggleButtonState() {
     passwordConfirmErrorMsgVisible
   ) {
     submitButton.disabled = true;                   // submitButton 은 전역 변수
+    submitButton.style.backgroundColor = '#9CA3AF'
     submitButton.classList.add('disabled');
     //console.log('submit button disabled');
   } else {
     submitButton.disabled = false;
+    submitButton.style.backgroundColor = '#3694FF'
     submitButton.classList.remove('disabled');
     //console.log('submit button enabled');
   }
@@ -101,15 +103,15 @@ export function handleLogin(event) {
     return;
   }
   const user = findUserByEmail(email);
-  if(user) {
-    if(user.password === password) {
-      showModal('로그인 성공', 'info', '/items');
-    } else {
-      showModal('비밀번호가 일치하지 않습니다.', 'error');
-    } 
-  } else {
+  if(!user) {
     showModal('비밀번호가 일치하지 않습니다.', 'error');
+    return;
   }
+  if(user.password !== password) {
+    showModal('비밀번호가 일치하지 않습니다.', 'error');
+    return;
+  }
+  showModal('로그인 성공', 'info', '/items');
 }
 
 /* ********************** */
