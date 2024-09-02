@@ -77,7 +77,8 @@ img {
 
   header nav ul li {
     padding: .2em .2em;
-    font-size: var(--text-xl)
+    font-size: var(--text-2lg);
+    font-weight: 700;
   }
 
   header a.button {
