@@ -1,10 +1,10 @@
 import instance from "./instance.js";
 
 // * params = {page, pageSize, keyword}
-const getArticleList = async (params = {}) => {
+const getArticleList = async ({page, pageSize, keyword}) => {
   let res = null;
   try {
-    res = await instance.get(`/articles`, {params});
+    res = await instance.get(`/articles`, {page, pageSize, keyword});
   } catch (err) {
     console.log(err);
     return res?.message;
@@ -71,7 +71,7 @@ const deleteArticle = async (id) => {
   return res.data;
 }
 
-const article = {
+const articleService = {
   getArticleList,
   getArticle,
   createArticle,
@@ -79,4 +79,4 @@ const article = {
   deleteArticle
 };
 
-export default article;
+export default articleService;
