@@ -1,9 +1,11 @@
-const email_input = document.querySelector('.input-email');
-const email_error = document.querySelector('#email-error');
-const email_pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+import { setError, clearError } from "../common.js";
 
-const pw_input = document.querySelector('.input-pw');
-const pw_error = document.querySelector('#pw-error');
+const emailInput = document.querySelector('.input-email');
+const emailError = document.querySelector('#email-error');
+const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+
+const pwInput = document.querySelector('.input-pw');
+const pwError = document.querySelector('#pw-error');
 
 const loginBtn = document.querySelector('.log-in');
 
@@ -17,13 +19,13 @@ let isClicked = false;
 
 visibilityBtn.addEventListener('click', function(e) {
   isClicked = !isClicked
-  if(isClicked){
-    pw_input.setAttribute('type', 'text');
+  if (isClicked){
+    pwInput.setAttribute('type', 'text');
     visibilityBtn.setAttribute('src','../img/btn_visibility_on.png');
     return;
   }
-  pw_input.setAttribute('type', 'password');
-    visibilityBtn.setAttribute('src','../img/visibility.png');
+  pwInput.setAttribute('type', 'password');
+  visibilityBtn.setAttribute('src','../img/visibility.png');
 })
 
 const USER_DATA = [
@@ -35,70 +37,71 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: "codeit606!" },
 ]
 
+// const setError = (inputName, inputError, message) => {
+//   inputName.classList.add('fail');
+//   inputName.classList.remove('pass');
+//   inputError.value = message;
+// }
+
+// const clearError = (inputName, inputError) => {
+//   inputName.classList.remove('fail');
+//   inputName.classList.add('pass');
+//   inputError.value = '';
+// }
+
 function validateEmail() {
   let error;
   try {
-    if (email_input.value === '') {
-      email_input.classList.add('fail');
-      error = new TypeError('이메일을 입력해주세요.');
-      throw error;
+    const email = emailInput.value.trim();
+
+    if (email === '') {
+      throw new TypeError('이메일을 입력해주세요.');
     }
-    else if (!email_pattern.test(email_input.value)) {
-      email_input.classList.add('fail');
-      error = new TypeError('잘못된 이메일 형식입니다.');
-      throw error;
+
+    if (!emailPattern.test(email.value)) {
+      throw new TypeError('잘못된 이메일 형식입니다.');
     }
-    else {
-      email_error.value = '';
-      email_input.classList.remove('fail');
-      email_input.classList.add('pass');
-    }
+
+    clearError(emailInput, emailError);
   }
   
-  catch {
-    email_input.classList.remove('pass');
-    email_error.value = error.message;
-    email_input.classList.add('fail');
+  catch (error) {
+    setError(emailInput, emailError, error.message);
   }
 
   finally {
-    logButton();
+    loginButton();
   }
 }
 
 function validatePw() {
-  let error;
+  const MIN_LENGTH = 8;
+
   try {
-    if (pw_input.value === '') {
-      pw_input.classList.add('fail');
-      error = new TypeError('비밀번호를 입력해주세요.');
-      throw error;
+    const password = pwInput.value.trim();
+
+    if (password === '') {
+      throw new TypeError('비밀번호를 입력해주세요.');
     }
-    else if (pw_input.value.length < 8) {
-      pw_input.classList.add('fail');
-      error = new TypeError('비밀번호를 8자 이상 입력해주세요.');
-      throw error;
+
+    if (password.length < MIN_LENGTH) {
+      throw new TypeError(`비밀번호를 ${MIN_LENGTH}자 이상 입력해주세요.`)
     }
-    else {
-      pw_error.value = '';
-      pw_input.classList.remove('fail');
-      pw_input.classList.add('pass');
-    }
+
+    clearError(pwInput, pwError);
   }
 
-  catch {
-    pw_input.classList.remove('pass');
-    pw_error.value = error.message;
-    pw_input.classList.add('fail');
+  catch (error) {
+    setError(pwInput, pwError, error.message);
   }
 
   finally {
-    logButton();
+    loginButton();
   }
 }
 
-function logButton() {
-  const isValid = email_input.classList.contains('pass') && pw_input.classList.contains('pass')
+function loginButton() {
+  const isValid = emailInput.classList.contains('pass') && pwInput.classList.contains('pass');
   if (isValid) {
     loginBtn.classList.remove('inactive');
     loginBtn.classList.add('active');
@@ -111,11 +114,10 @@ function logButton() {
   }
 }
 
-function logClickBtn() {
-  console.log(33);
+function loginClickBtn() {
   const new_data = {
-    email: email_input.value,
-    password: pw_input.value
+    email: emailInput.value,
+    password: pwInput.value
   }
 
   const match_data = USER_DATA.find(user => user.email === new_data.email);
@@ -125,12 +127,10 @@ function logClickBtn() {
       window.location.href = "/items";
     }
     else {
-      modalTxt.textContent = "비밀번호가 일치하지 않습니다.";
       bg.style.display = "block";
     }
   }
   else {
-    modalTxt.textContent = "등록된 정보가 없습니다.";
     bg.style.display = "block";
   }
 }
@@ -139,7 +139,7 @@ function modalClose() {
   bg.style.display = 'none';
 }
 
-email_input.addEventListener('focusout', validateEmail);
-pw_input.addEventListener('focusout', validatePw);
-loginBtn.addEventListener('click', logClickBtn);
+emailInput.addEventListener('focusout', validateEmail);
+pwInput.addEventListener('focusout', validatePw);
+loginBtn.addEventListener('click', loginClickBtn);
 modalBtn.addEventListener('click', modalClose);

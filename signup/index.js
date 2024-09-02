@@ -1,15 +1,17 @@
-const email_input = document.querySelector('.input-email');
-const email_error = document.querySelector('#email-error');
-const email_pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+import { setError, clearError } from "../common.js";
 
-const nick_input = document.querySelector('.input-nick');
-const nick_error = document.querySelector('#nick-error');
+const emailInput = document.querySelector('.input-email');
+const emailError = document.querySelector('#email-error');
+const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
-const pw_input = document.querySelector('.input-pw');
-const pw_error = document.querySelector('#pw-error');
+const nickInput = document.querySelector('.input-nick');
+const nickError = document.querySelector('#nick-error');
 
-const checkpw_input = document.querySelector('.input-checkpw');
-const checkpw_error = document.querySelector('#checkpw-error');
+const pwInput = document.querySelector('.input-pw');
+const pwError = document.querySelector('#pw-error');
+
+const checkpwInput = document.querySelector('.input-checkpw');
+const checkpwError = document.querySelector('#checkpw-error');
 
 const signupBtn = document.querySelector('.sign-up');
 
@@ -26,22 +28,22 @@ let checkpw_isClicked = false;
 pw_visibilityBtn.addEventListener('click', function(e) {
   pw_isClicked = !pw_isClicked
   if(pw_isClicked){
-    pw_input.setAttribute('type', 'text');
+    pwInput.setAttribute('type', 'text');
     pw_visibilityBtn.setAttribute('src','../img/btn_visibility_on.png');
     return;
   }
-  pw_input.setAttribute('type', 'password');
+  pwInput.setAttribute('type', 'password');
   pw_visibilityBtn.setAttribute('src','../img/visibility.png');
 })
 
 checkpw_visibilityBtn.addEventListener('click', function(e) {
   checkpw_isClicked = !checkpw_isClicked;
   if(checkpw_isClicked){
-    checkpw_input.setAttribute('type', 'text');
+    checkpwInput.setAttribute('type', 'text');
     checkpw_visibilityBtn.setAttribute('src','../img/btn_visibility_on.png');
     return;
   }
-  checkpw_input.setAttribute('type', 'password');
+  checkpwInput.setAttribute('type', 'password');
   checkpw_visibilityBtn.setAttribute('src','../img/visibility.png');
 })
 
@@ -55,136 +57,120 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: "codeit606!" },
 ]
 
-function validateEmail() {
-  let error;
+// const setError = (inputName, inputError, message) => {
+//   inputName.classList.add('fail');
+//   inputName.classList.remove('pass');
+//   inputError.value = message;
+// }
 
+// const clearError = (inputName, inputError) => {
+//   inputName.classList.remove('fail');
+//   inputName.classList.add('pass');
+//   inputError.value = '';
+// }
+
+function validateEmail() {
   try {
-    if (email_input.value === '') {
-      email_input.classList.add('fail');
-      error = new TypeError('이메일을 입력해주세요.');
-      throw error;
+    const email = emailInput.value.trim();
+
+    if (email === '') {
+      throw new TypeError('이메일을 입력해주세요.');
     }
-    else if (!email_pattern.test(email_input.value)) {
-      email_input.classList.add('fail');
-      error = new TypeError('잘못된 이메일 형식입니다.');
-      throw error;
+
+    if (!emailPattern.test(email.value)) {
+      throw new TypeError('잘못된 이메일 형식입니다.');
     }
-    else {
-      email_error.value = '';
-      email_input.classList.remove('fail');
-      email_input.classList.add('pass');
-    }
+
+    clearError(emailInput, emailError);
   }
 
-  catch {
-    email_input.classList.remove('pass');
-    email_error.value = error.message;
-    email_input.classList.add('fail')
+  catch (error) {
+    setError(emailInput, emailError, error.message);
   }
 
   finally {
-    signButton();
+    signupButton();
   }
 }
 
 function validateNick() {
-  let error;
-
   try {
-    if (nick_input.value === '') {
-      nick_input.classList.add('fail');
-      error = new TypeError('닉네임을 입력해주세요.');
-      throw error;
+    const nickname = nickInput.value.trim();
+
+    if (nickname === '') {
+      throw new TypeError('닉네임을 입력해주세요.');
     }
-    else if (!nick_input.checkValidity()) {
-      nick_input.classList.add('fail');
-      error = new TypeError('잘못된 닉네임 형식입니다.');
-      throw error;
+
+    if (!nickname.checkValidity()) {
+      throw new TypeError('잘못된 닉네임 형식입니다.');
     }
-    else {
-      nick_error.value = '';
-      nick_input.classList.remove('fail');
-      nick_input.classList.add('pass');
-    }
+
+    clearError(nickInput, nickError);
   }
 
-  catch {
-    nick_input.classList.remove('pass');
-    nick_error.value = error.message;
-    nick_input.classList.add('fail');
+  catch (error) {
+    setError(nickInput, nickError, error.message);
   }
 
   finally {
-    signButton();
+    signupBtn();
   }
 }
 
 function validatePw() {
-  let error;
+  const MIN_LENGTH = 8;
 
   try {
-    if (pw_input.value === '') {
-      pw_input.classList.add('fail');
-      error = new TypeError('비밀번호를 입력해주세요.');
-      throw error;
+    const password = pwInput.value.trim();
+
+    if (password === '') {
+      throw new TypeError('비밀번호를 입력해주세요.');
     }
-    else if (pw_input.value.length < 8) {
-      pw_input.classList.add('fail');
-      error = new TypeError('비밀번호를 8자 이상 입력해주세요.');
-      throw error;
+
+    if (password.length < MIN_LENGTH) {
+      throw new TypeError(`비밀번호를 ${MIN_LENGTH}자 이상 입력해주세요.`);
     }
-    else {
-      pw_error.value = '';
-      pw_input.classList.remove('fail');
-      pw_input.classList.add('pass');
-    }
+
+    clearError(pwInput, pwError);
   }
 
-  catch {
-    pw_input.classList.remove('pass');
-    pw_error.value = error.message;
-    pw_input.classList.add('fail');
+  catch (error) {
+    setError(pwInput, pwError, error.message);
   }
 
   finally {
-    signButton();
+    signupButton();
   }
 }
 
 function matchPw() {
-  let error;
-
   try {
-    if (checkpw_input.value === '') {
-      checkpw_input.classList.add('fail');
-      error = new TypeError('비밀번호를 입력해주세요.');
-      throw error;
-    }
-    else if (checkpw_input.value !== pw_input.value) {
-      checkpw_input.classList.add('fail');
-      error = new TypeError('비밀번호가 일치하지 않습니다.');
-      throw error;
-    }
-    else {
-      checkpw_error.value = '';
-      checkpw_input.classList.remove('fail');
-      checkpw_input.classList.add('pass');
-    }
-  }
+    const checkPwd = checkpwInput.value.trim();
+    const password = pwInput.value.trim();
 
-  catch(error) {
-    checkpw_input.classList.remove('pass');
-    checkpw_error.value = error.message;
-    checkpw_input.classList.add('fail');
+    if (checkPwd === '') {
+      throw new TypeError('비밀번호를 입력해주세요.');
+    }
+
+    if (checkPwd.value !== password.value) {
+      throw new TypeError('비밀번호가 일치하지 않습니다.');
+    }
+
+    clearError(checkpwInput, checkpwError);
+  }
+  
+  catch (error) {
+    setError(checkpwInput, checkpwError, error.message);
   }
 
   finally {
-    signButton();
+    signupButton();
   }
 }
 
-function signButton() {
-  if (email_input.classList.contains('pass') && nick_input.classList.contains('pass') && pw_input.classList.contains('pass') && checkpw_input.classList.contains('pass')) {
+function signupButton() {
+  const isValid = emailInput.classList.contains('pass') && nickInput.classList.contains('pass') && pwInput.classList.contains('pass') && checkpwInput.classList.contains('pass');
+  if (isValid) {
     signupBtn.classList.remove('inactive');
     signupBtn.classList.add('active');
     signupBtn.style.backgroundColor = "#3692FF";
@@ -198,8 +184,8 @@ function signButton() {
 
 function signClickBtn() {
   const new_data = {
-    email: email_input.value,
-    password: pw_input.value
+    email: emailInput.value,
+    password: pwInput.value
   }
 
   const match_data = USER_DATA.find(user => user.email === new_data.email)
@@ -221,9 +207,9 @@ function modalClose() {
 }
 
 
-email_input.addEventListener('focusout', validateEmail);
-nick_input.addEventListener('focusout', validateNick);
-pw_input.addEventListener('focusout', validatePw);
-checkpw_input.addEventListener('focusout', matchPw);
+emailInput.addEventListener('focusout', validateEmail);
+nickInput.addEventListener('focusout', validateNick);
+pwInput.addEventListener('focusout', validatePw);
+checkpwInput.addEventListener('focusout', matchPw);
 signupBtn.addEventListener('click', signClickBtn);
 modalBtn.addEventListener('click', modalClose);
