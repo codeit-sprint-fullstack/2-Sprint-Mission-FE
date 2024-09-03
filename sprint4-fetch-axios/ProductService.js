@@ -1,9 +1,9 @@
 import instance from "./instance.js";
 
 // * params = {page, pageSize, keyword};
-const getProductList = async (params = {}) => {
+const getProductList = async ({page, pageSize, keyword}) => {
   try {
-    const res = await instance.get(`/products`, {params});
+    const res = await instance.get(`/products`, {page, pageSize, keyword});
     return res.data;
   } catch (err) {
     console.log(err);
@@ -22,9 +22,9 @@ const getProduct = async (id) => {
 };
 
 // * data = {name, description, price, tags, images};
-const createProduct = async (data = {}) => {
+const createProduct = async ({name, description, price, tags, images}) => {
   try {
-    const res = await instance.post(`/products`, data, {
+    const res = await instance.post(`/products`, {name, description, price, tags, images}, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -36,9 +36,9 @@ const createProduct = async (data = {}) => {
   }
 };
 
-const patchProduct = async (id, data = {}) => {
+const patchProduct = async (id, {name, description, price, tags, images}) => {
   try {
-    const res = await instance.patch(`/products/${id}`, data, {
+    const res = await instance.patch(`/products/${id}`, {name, description, price, tags, images}, {
       headers: {
         "Content-Type": "application/json",
       },

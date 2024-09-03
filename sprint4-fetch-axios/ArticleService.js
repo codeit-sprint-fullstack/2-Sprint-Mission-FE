@@ -28,9 +28,9 @@ data = {
   "image": "string"
 };
  */
-const createArticle = async (data = {}) => {
+const createArticle = async ({title, content, image}) => {
   try {
-    const res = await instance.post(`/articles`, data, {
+    const res = await instance.post(`/articles`, {title, content, image}, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -42,9 +42,9 @@ const createArticle = async (data = {}) => {
   }
 };
 
-const patchArticle = async (id, data) => {
+const patchArticle = async (id, {title, content, image}) => {
   try {
-    const res = await instance.patch(`/articles/${id}`, data, {
+    const res = await instance.patch(`/articles/${id}`, {title, content, image}, {
       headers: {
         "Content-Type": "application/json",
       },
