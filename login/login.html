@@ -8,15 +8,6 @@
 		<link rel="icon" href="../img/panda_logo.png">
 		
 		
-		<style>
-			.error {
-					color: red;
-					font-size: 12px;
-			}
-			.input-error {
-					border: 1px solid red;
-			}
-	</style>
 	</head>	
 
 	
@@ -31,40 +22,51 @@
 			<form id="loginForm">
 				<label for="email">이메일</label>
 				<input id ="email" class="loginEmail" type="email" placeholder="  이메일을 입력해주세요">				
-				<div id="emailError" class="error"></div>
+				<span class="errMessage">잘못된 이메일 형식입니다.</span>
+
 				
-				<label for="password">비밀번호</label>				
-				<input id ="password" class="loginPassword" type="password" placeholder="  비밀번호를 입력해주세요">
-				<div id="passwordError" class="error"></div>
-				
-				<button class="loginButton" type="submit">
-					로그인
-				</button>
+				<div class="passwordInput">
+					<label for="password">비밀번호</label>				
+					<input id ="password" class="loginPassword" type="password" placeholder="  비밀번호를 입력해주세요">
+					<span class="PerrMessage">비밀번호를 8자 이상 입력해주세요</span>
+				</div>
+
+
+
+				<a class='loginBtn' href='../items/'>
+					<p class="loginText">로그인</p>
+			  </a>
+			
 			</form>
 
-			<div class="simple-box">
-				<p class="simple-login">간편 로그인하기</p>
-				<div class="simple-logo">
+			<div class="simpleBox">
+				<p class="simpleLogin">간편 로그인하기</p>
+				<div class="simpleLogo">
 					<a href="https://www.google.com/" target="_blank">
-						<img class="google-icon" src="./google.png">
+						<img class="googleIcon" src="./google.png">
 					</a>
 					<a href="https://www.kakaocorp.com/page/" target="_blank">
 						<img class="kakao-icon" src="./kakao.png">
 					</a> 
 				</div>
 			</div>
-			<div class="signup-contents">
-				<p class="signup-text">판다마켓이 처음이신가요?</p>
+			<div class="signupContents">
+				<p class="signupText">판다마켓이 처음이신가요?</p>
 				<a href="../sign_up/sign_up.html">회원가입</a>
 			</div>
 
 		</main>
-
+		<div id="modal">
+			<div id="modalContent">
+					<p id="modalText">비밀번호가 일치하지 않습니다.</p>
+					<button id="modalClose">확인</button>
+			</div>
+	</div>
 	
 	
-		<script src="./login.js"></script>
+		
 	</body>
-
+	<script src="./login.js" type="module"></script>
 
 
 </html>

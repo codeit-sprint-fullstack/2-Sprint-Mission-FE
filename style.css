@@ -32,7 +32,7 @@ a {
   cursor: pointer;
 }
 
-.login_button {
+.loginButton {
 
   width: 128px;
   height: 48px;
@@ -58,20 +58,20 @@ section{
   white-space: nowrap; /*너비 초과해도 그냥 글자 안넘치게*/
   
 }
-.contents_section{
+.contentsSection{
   width: 357px;
   height: 260px;
   
 
 }
 
-.panda_secton{
+.pandaSecton{
   width: 746px;
   height: 340px;
   
 }
 
-.ment_section{
+.mentSection{
   color:#374151;
   ;
   font-size: 40px;
@@ -80,7 +80,7 @@ section{
   
 }
 
-.button_section{
+.buttonSection{
   font-size: 20px;
   background-color: #3692FF;
   border: none;
@@ -92,7 +92,7 @@ section{
   cursor: pointer;
 }
 
-.all_section{
+.allSection{
   display: flex;
 }
 
@@ -106,14 +106,14 @@ main{
   
 }
 
-.main_1{
+.main1{
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.contents1_main{
+.contents1Main{
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -123,31 +123,31 @@ main{
   background-color:#FCFCFC;
 }
 
-.img1_main{
+.img1Main{
   width: 588px;
   height: 444px;
 }
 
-.text1_main{
+.text1Main{
   
   flex-direction: column; 
   margin-left: 50px;
 }
 
-.hot_item{
+.hotItem{
   color: #3692FF;
   font-weight: 700;
   font-size: 18px;
 }
 
-.title1_main{
+.title1Main{
   font-weight: 700;
   font-size: 40px;
   color: #374151;
 
 }
 
-.detail1_main{
+.detail1Main{
   font-weight: 500;
   font-size: 24px;
   color: #374151;
@@ -155,7 +155,7 @@ main{
 }
 
 
-.main_2{
+.main2{
   position: relative;
   top: 800px;
   display: flex;
@@ -163,7 +163,7 @@ main{
   align-items: center;
 }
 
-.contents2_main{
+.contents2Main{
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -174,13 +174,13 @@ main{
   
 }
 
-.img2_main{
+.img2Main{
   width: 588px;
   height: 444px;
 }
 
 
-.text2_main{
+.text2Main{
   
   flex-direction: column; 
   margin-right: 50px;
@@ -193,21 +193,21 @@ main{
   font-size: 18px;
 }
 
-.title2_main{
+.title2Main{
   font-weight: 700;
   font-size: 40px;
   color: #374151;
 
 }
 
-.detail2_main{
+.detail2Main{
   font-weight: 500;
   font-size: 24px;
   color: #374151;
 
 }
 
-.main_3{
+.main3{
   position: relative;
   top: 1600px;
   display: flex;
@@ -215,7 +215,7 @@ main{
   align-items: center;
 }
 
-.contents3_main{
+.contents3Main{
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -225,12 +225,12 @@ main{
   background-color:#FCFCFC;
 }
 
-.img3_main{
+.img3Main{
   width: 588px;
   height: 444px;
 }
 
-.text3_main{
+.text3Main{
   
   flex-direction: column; 
   margin-left: 50px;
@@ -242,21 +242,21 @@ main{
   font-size: 18px;
 }
 
-.title3_main{
+.title3Main{
   font-weight: 700;
   font-size: 40px;
   color: #374151;
 
 }
 
-.detail3_main{
+.detail3Main{
   font-weight: 500;
   font-size: 24px;
   color: #374151;
 
 }
 
-.footer_section{
+.footerSection{
   position: relative;
   width: 100%;
   height: 540px;
@@ -268,14 +268,14 @@ main{
 
 }
 
-.contents2_section{
+.contents2Section{
 
   display: flex;
   justify-content: center;
   
 }
 
-.ment2_section{
+.ment2Section{
   margin-bottom: 200px;
   font-size: 40px;
   font-weight: 700;
@@ -295,7 +295,7 @@ footer{
 
 }
 
-.contents_footer{
+.contentsFooter{
   display: flex;
   position: relative;
   height: 20px;
@@ -314,7 +314,7 @@ footer{
   font-size: 16px;
 }
 
-.mid_footer{
+.midFooter{
   display: flex;
   gap: 40px;
   color: white;
