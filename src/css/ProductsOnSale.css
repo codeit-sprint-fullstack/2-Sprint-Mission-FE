@@ -1,0 +1,51 @@
+@import "./import.css";
+
+#productOnSaleTitle {
+  margin-bottom: 2.4rem;
+}
+
+#productOnSaleItems {
+  height: 67.4rem;
+
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+#productOnSalePagination {
+  margin-top: 4.3rem;
+  margin-bottom: 5.8rem;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 1199px) {
+  #productOnSaleItems {
+    height: 82rem;
+
+    gap: 1.6rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Mobile */
+@media (max-width: 743px) {
+  #productOnSaleTitle {
+    margin-bottom: 1.6rem;
+  }
+
+  #productOnSaleItems {
+    height: 67.4rem;
+
+    gap: 0.8rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card.productOnSale .product-img {
+    max-width: 250px;
+  }
+}
