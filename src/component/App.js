@@ -1,8 +1,15 @@
 import '../css/App.css';
+import Footer from './Footer';
+import Nav from './Nav';
+import BestItem from './BestItem';
 
 function App() {
   return (
-    <div></div>
+    <>
+      <Nav className='Nav' />
+      <BestItem className='BestItem' />
+      <Footer className='Footer' />
+    </>
   );
 }
 
