@@ -63,6 +63,7 @@ export async function createArticle(articleData) {
 export async function patchArticle(id, articleData) {
   try {
     const article = await fetch(`https://sprint-mission-api.vercel.app/articles/${id}`, {
+
     method: 'PATCH',
     body: JSON.stringify(articleData),
     headers: {
@@ -95,4 +96,3 @@ export async function deleteArticle(id) {
   } catch(e) {
     console.log(e.message);
   }
-}
