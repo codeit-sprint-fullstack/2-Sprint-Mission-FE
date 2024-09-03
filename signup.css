@@ -1,139 +1,143 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-
 input {
     box-sizing: border-box;
 }
 
 input:focus {
-    border: 2px solid #3692FF;
+    border: 0.2rem solid #3692FF;
     outline: none;
 }
 
 input:not(:focus) {
     border: none;
 }
-a{
+
+a {
     cursor: pointer;
 }
-button{
+
+button {
     cursor: pointer;
 }
+
 body {
     background: #FCFCFC;
 }
 
-.frame {
+#frame {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: Pretendard;
 }
 
-.logo-title {
-    width: 396px;
-    height: 132px;
-    margin-top: 60px;
-    margin-bottom: 40px;
+#logo-title {
+    width: 39.6rem;
+    height: 13.2rem;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
 }
 
-.sign-up-entire {
-    width: 640px;
-    height: 664px;
+#sign-up-entire {
+    width: 64rem;
+    height: 74.2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
-.sign-up-box {
-    width: 640px;
-    height: 524px;
+#sign-up-box {
+    width: 64rem;
+    height: 60.2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+ 
 }
 
 .sign-up-input {
-    width: 640px;
-    height: 93px;
-    font-size: 18px;
+    width: 64rem;
+    height: 11.9rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    line-height: 21.48px;
+    line-height: 2.148rem;
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.sign-up-button {
-    width: 640px;
-    height: 56px;
-    padding: 16px 124px 16px 124px;
-    gap: 10px;
-    border-radius: 40px;
-    background: #9CA3AF;
+#sign-up-button {
+    width: 64rem;
+    height: 5.6rem;
+    padding: 1.6rem 12.4rem 1.6rem 12.4rem;
+    gap: 1rem;
+    border-radius: 4rem;
+    /* background: #9CA3AF; */
     border: none;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 600;
-    line-height: 24px;
+    line-height: 2.4rem;
     text-align: center;
     color: #FFFFFF;
 }
 
-.easy-login-frame {
-    width: 640px;
-    height: 74px;
-    border-radius: 8px;
+#easy-login-frame {
+    width: 64rem;
+    height: 7.4rem;
+    border-radius: 0.8rem;
     background: #E6F2FF;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.easy-login-text {
-    width: 101px;
-    height: 24px;
-    margin-left: 23px;
-    font-size: 16px;
+#easy-login-text {
+    width: 10.1rem;
+    height: 2.4rem;
+    margin-left: 2.3rem;
+    font-size: 1.6rem;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 2.4rem;
     text-align: left;
     color: #1F2937;
 }
 
-.easy-login-iconbox {
-    width: 100px;
-    height: 42px;
-    margin-right: 23px;
+#easy-login-iconbox {
+    width: 10rem;
+    height: 4.2rem;
+    margin-right: 2.3rem;
     display: flex;
     justify-content: space-between;
 }
 
 .icon {
-    width: 42px;
-    height: 42px;
+    width: 4.2rem;
+    height: 4.2rem;
 }
 
-.general-login-frame {
-    width: 158px;
-    height: 18px;
+#general-login-frame {
+    width: 15.8rem;
+    height: 1.8rem;
     display: flex;
     justify-content: space-between;
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: 500;
-    line-height: 17.9px;
+    line-height: 1.79rem;
     text-align: left;
 }
 
-.general-login-text {
-    width: 115px;
-    height: 18px;
+#general-login-text {
+    width: 11.5rem;
+    height: 1.8rem;
     color: #1F2937;
 }
 
-.login-link {
-    width: 39px;
-    height: 18px;
+#login-link {
+    width: 3.9rem;
+    height: 1.8rem;
     color: #3182F6;
 
 }
@@ -141,14 +145,139 @@ body {
 #nickname,
 #password,
 #password-check {
-    width: 640px;
-    height: 56px;
-    padding: 16px 24px 16px 24px;
-    border-radius: 12px;
+    width: 64rem;
+    height: 5.6rem;
+    padding: 1.6rem 2.4rem 1.6rem 2.4rem;
+    border-radius: 1.2rem;
     background: #F3F4F6;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 2.4rem;
     text-align: left;
 
+}
+
+.password-frame {
+    width: 64rem;
+    height: 5.6rem;
+    border-radius: 1.2rem;
+    background: #F3F4F6;
+    text-align: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#watch-toggle {
+    position: absolute;
+    right: 2.4rem;
+    cursor: pointer;
+}
+
+#watch-toggle-check {
+    position: absolute;
+    right: 2.4rem;
+    cursor: pointer;
+}
+.guide {
+    height: 1.8rem;
+    color: red;
+    margin-left: 1.6rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.79rem;
+    text-align: left;
+    background: #FCFCFC;
+}
+.deactivate{
+    pointer-events: none;
+    background-color: #9CA3AF;
+    ;
+}
+.fail {
+    border-style: 0.2rem solid red;
+}
+
+.fail:not(:focus) {
+    border: 0.2rem solid red;
+    outline: none;
+}
+.activate{
+    background: #3692FF;
+}
+#modal{
+    width: 54rem;
+    height: 25rem;
+    border-radius: 0.8rem;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    z-index: 1;
+    background: #FFFFFF;
+}
+#modal.hidden {
+    display: none;
+}
+#modal-message {
+    width: 19.2rem;
+    height: 1.9rem;
+    margin-top: 10.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.909rem;
+    text-align: center;
+    white-space: nowrap;
+}
+#modal-button {
+    width: 12rem;
+    height: 4.8rem;
+    position: fixed;
+    right: 4.8rem;
+    bottom: 4.8rem;
+    padding: 1.2rem 2.3rem 1.2rem 2.3rem;
+    gap: 1rem;
+    border-radius: 0.8rem;
+    background: #3692FF;
+    color: #ffffff;
+    border-style: none;
+}
+@media(max-width: 743px){
+    #logo-title{
+        width: 19.8rem;
+        height: 6.6rem;
+        margin-top: 2.4rem;
+        margin-bottom: 2.4rem;
+    }
+    #sign-up-entire{
+        width: 100%;
+        max-width: 43.2rem;
+        padding-left: 1.6rem;
+        padding-right: 1.6rem;
+    }
+    #sign-up-box{
+        width: 100%;
+        align-items: center;
+    }
+    .sign-up-input{
+        width: 100%;
+        overflow: hidden;
+    }
+    #username{
+        width: 100%;
+    }
+    #nickname{
+        width: 100%;
+    }
+    .password-frame{
+        width: 100%;
+    }
+    #sign-up-button{
+        width: 100%;
+    }
+    #easy-login-frame{
+        width: 100%;
+    }
 }

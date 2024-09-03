@@ -5,7 +5,7 @@ input {
 }
 
 input:focus {
-    border: 2px solid #3692FF;
+    border: 0.2rem solid #3692FF;
     outline: none;
 }
 
@@ -16,148 +16,285 @@ input:not(:focus) {
 body {
     background: #FCFCFC;
 }
+
 a {
     cursor: pointer;
 }
+
 button {
     cursor: pointer;
 }
-.frame {
+
+#frame {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: Pretendard;
 }
 
-.logo-title {
-    width: 396px;
-    height: 132px;
-    margin-top: 60px;
-    margin-bottom: 40px;
+#logo-title {
+    width: 39.6rem;
+    height: 13.2rem;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
 }
 
-.login-entire {
-    width: 640px;
-    height: 430px;
+#login-entire {
+    width: 64rem;
+    height: 48.2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
-.login-box {
-    width: 640px;
-    height: 210px;
+#login-box {
+    width: 64rem;
+    height: 34.2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.login-button {
-    width: 640px;
-    height: 56px;
-    padding: 16px 124px 16px 124px;
-    gap: 10px;
-    border-radius: 40px;
-    background: #9CA3AF;
+#login-button {
+    width: 64rem;
+    height: 5.6rem;
+    padding: 1.6rem 12.4rem 1.6rem 12.4rem;
+    gap: 1rem;
+    border-radius: 4rem;
     border: none;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 600;
-    line-height: 24px;
+    line-height: 2.4rem;
     text-align: center;
     color: #FFFFFF;
 }
 
-.easy-login {
-    width: 640px;
-    height: 74px;
-    background-color: green;
-}
-
-.sign-up-frame {
-    width: 210px;
-    height: 18px;
+#sign-up-frame {
+    width: 21rem;
+    height: 1.8rem;
     display: flex;
     justify-content: space-between;
 }
 
 .login-input {
-    width: 640px;
-    height: 93px;
+    width: 64rem;
+    height: 11.9rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 700;
-    line-height: 21.48px;
+    line-height: 2.148rem;
     text-align: left;
-
 }
 
-#username,
-#password {
-    width: 640px;
-    height: 56px;
-    padding: 16px 24px 16px 24px;
-    border-radius: 12px;
+#username {
+    width: 64rem;
+    height: 5.6rem;
+    padding: 1.6rem 2.4rem 1.6rem 2.4rem;
+    border-radius: 1.2rem;
     background: #F3F4F6;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 2.4rem;
     text-align: left;
 
 }
 
-.easy-login-frame {
-    width: 640px;
-    height: 74px;
-    border-radius: 8px;
+#password-frame {
+    width: 64rem;
+    height: 5.6rem;
+    border-radius: 1.2rem;
+    background: #F3F4F6;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#watch-toggle {
+    position: absolute;
+    right: 2.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#password {
+    width: 64rem;
+    height: 5.6rem;
+    padding: 1.6rem 2.4rem 1.6rem 2.4rem;
+    background: #F3F4F6;
+    border-radius: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    text-align: left;
+
+}
+
+#easy-login-frame {
+    width: 64rem;
+    height: 7.4rem;
+    border-radius: 0.8rem;
     background: #E6F2FF;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.easy-login-text {
-    width: 101px;
-    height: 24px;
-    margin-left: 23px;
-    font-size: 16px;
+#easy-login-text {
+    width: 10.1rem;
+    height: 2.4rem;
+    margin-left: 2.3rem;
+    font-size: 1.6rem;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 2.4rem;
     text-align: left;
     color: #1F2937;
 }
 
-.easy-login-iconbox {
-    width: 100px;
-    height: 42px;
-    margin-right: 23px;
+#easy-login-iconbox {
+    width: 10rem;
+    height: 4.2rem;
+    margin-right: 2.3rem;
     display: flex;
     justify-content: space-between;
 }
 
 .icon {
-    width: 42px;
-    height: 42px;
+    width: 4.2rem;
+    height: 4.2rem;
 }
 
-.sign-up-text {
-    width: 154px;
-    height: 18px;
-    font-size: 15px;
+#sign-up-text {
+    width: 15.4rem;
+    height: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 500;
-    line-height: 17.9px;
+    line-height: 1.79rem;
     text-align: left;
     color: #1F2937;
 }
 
-.sign-up-link {
-    width: 52px;
-    height: 18px;
-    font-size: 15px;
+#sign-up-link {
+    width: 5.2rem;
+    height: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 500;
-    line-height: 17.9px;
+    line-height: 1.79rem;
     text-align: left;
     color: #3182F6;
+}
+
+.guide {
+    height: 1.8rem;
+    color: red;
+    margin-left: 1.6rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.79rem;
+    text-align: left;
+    background: #FCFCFC;
+
+}
+
+.deactivate {
+    pointer-events: none;
+    background: #9CA3AF;
+}
+
+.activate {
+    background: #3692FF;
+}
+
+.fail {
+    border-style: 0.2rem solid red;
+}
+
+.fail:not(:focus) {
+    border: 0.2rem solid red;
+    outline: none;
+}
+
+#modal.hidden {
+    display: none;
+}
+#modal{
+    width: 54rem;
+    height: 25rem;
+    border-radius: 0.8rem;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    z-index: 1;
+    background: #FFFFFF;
+}
+
+#modal-message {
+    width: 19.2rem;
+    height: 1.9rem;
+    margin-top: 10.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.909rem;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#modal-button {
+    width: 12rem;
+    height: 4.8rem;
+    position: fixed;
+    right: 4.8rem;
+    bottom: 4.8rem;
+    padding: 1.2rem 2.3rem 1.2rem 2.3rem;
+    gap: 1rem;
+    border-radius: 0.8rem;
+    background: #3692FF;
+    color: #ffffff;
+    border-style: none;
+}
+@media(max-width: 743px) {
+    #logo-title{
+        width: 19.6rem;
+        height: 6.6rem;
+        margin-top: 2.4rem;
+        margin-bottom: 2.4rem;
+    }
+    #login-entire{
+        width:100%;
+        max-width: 43.2rem;
+        padding-left: 1.6rem;
+        padding-right: 1.6rem;
+        margin: 0;
+    }
+    #login-box{
+        width: 100%;
+        align-items: center;
+    }
+    .login-input{
+        width: 100%;
+        overflow: hidden;
+    }
+    #username{
+        width: 100%;
+    }
+    #password-frame{
+        width:100%;
+    }
+    #login-button{
+        width: 100%;
+    }
+    #easy-login-frame{
+        width: 100%;
+    }
 }
