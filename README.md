@@ -53,7 +53,10 @@
 
 
 ## 멘토에게
+
 - Product에서 [name, description, price, tags, images]를 포함해달라고 했지만, API 명세에는 manufaturer이 포함되어있어서 createProduct에서 어떻게 해결해야할 지 모르겠습니다. (추가함)
 - 테스트 방법을 잘 몰라서 GPT를 사용했습니다..
+
+
 
 
