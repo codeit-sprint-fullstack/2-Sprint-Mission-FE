@@ -2,66 +2,63 @@ import instance from "./instance.js";
 
 // * params = {page, pageSize, keyword};
 const getProductList = async (params = {}) => {
-  let res = null;
   try {
-    res = await instance.get(`/products`, {params});
+    const res = await instance.get(`/products`, {params});
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
-  return res.data;
 };
 
 const getProduct = async (id) => {
-  let res = null;
   try {
-    res = await instance.get(`/products/${id}`);
+    const res = await instance.get(`/products/${id}`);
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
-  return res.data;
 };
 
 // * data = {name, description, price, tags, images};
 const createProduct = async (data = {}) => {
-  let res = null;
   try {
-    res = await instance.post(`/products`, data, {
+    const res = await instance.post(`/products`, data, {
       headers: {
         "Content-Type": "application/json",
       },
     });
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
 };
 
 const patchProduct = async (id, data = {}) => {
-  let res = null;
   try {
-    res = await instance.patch(`/products/${id}`, data, {
+    const res = await instance.patch(`/products/${id}`, data, {
       headers: {
         "Content-Type": "application/json",
       },
     });
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
 };
 
 const deleteProduct = async (id) => {
-  let res = null;
   try {
-    res = await instance.delete(`/products/${id}`);
+    const res = await instance.delete(`/products/${id}`);
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
-  return res.data;
-}
+};
 
 const productService = {
   getProductList,
