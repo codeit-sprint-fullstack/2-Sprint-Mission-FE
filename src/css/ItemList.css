@@ -1,12 +1,12 @@
-.best-section {
-    margin-top: 7.4rem;
+.item-section {
+    margin: 4rem 0;
     width: 120rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.best-title {
+.item-title {
     display: flex;
     font-size: 2rem;
     font-weight: 700;
@@ -14,14 +14,15 @@
     justify-content: flex-start;
 }
 
-.best-item {
-    display: flex;
+.item-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     justify-content: center;
     gap: 2.4rem;
 }
 
-.img {
-    width: 28.2rem;
-    height: 28.2rem;
+.item-img {
+    width: 22.1rem;
+    height: 22.1rem;
     border-radius: 1.6rem;
 }

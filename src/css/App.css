@@ -4,3 +4,8 @@ html {
     font-family: Pretendard;
 }
 
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

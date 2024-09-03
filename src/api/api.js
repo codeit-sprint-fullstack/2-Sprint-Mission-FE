@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://panda-market-api.vercel.app/docs/",
+  baseURL: "https://panda-market-api.vercel.app/",
   timeout: 3000,
 });
 

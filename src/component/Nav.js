@@ -12,6 +12,8 @@ export default function Nav() {
           <a href="/">
             <h1 className="title">판다마켓</h1>
           </a>
+          <a className='page' href='/'>자유게시판</a>
+          <a className='page' href='/'>중고마켓</a>
         </div>
         <button className="login">
           <a href="./login/login.html">로그인</a>

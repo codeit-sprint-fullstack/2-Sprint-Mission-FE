@@ -37,7 +37,17 @@
     line-height: 3.46rem;
     font-weight: 700;
     margin-left: 0.8rem;
+    margin-right: 2rem;
     font-family: ROKAF;
+}
+
+.page {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    color: #4B5563;
+    font-weight: 700;
+    text-align: center;
+    padding: 2.1rem 1.5rem;
 }
 
 .login {
