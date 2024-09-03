@@ -11,14 +11,18 @@
     <div>
       <a href="/"><img class="logo-img" src="images/logo.png" /></a>
     </div>
+    <div>
       <label for="username">이메일</label>
       <input id="username" name="username" placeholder="이메일을 입력해주세요">
-      <label for="password">비밀번호</label>
-      <div class="password-input">
-        <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
-        <img class="toggle-show-password" src="images/invisible.png">
-      </div>
-      <button>로그인</button>
+      <span id="email-error" class="error-msg"></span>
+    </div>
+    <label for="password">비밀번호</label>
+    <div class="password-input">
+      <input id="password" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+      <img class="toggle-show-password" src="images/toggle-show-password-image.png">
+      <span id="password-error" class="error-msg"></span>
+    </div>
+    <button id="login-button" type="submit" disabled>로그인</button>
     <div class="easy-login">
       <span>간편 로그인하기</span>
       <div class="icons">
@@ -30,5 +34,12 @@
       판다마켓이 처음이신가요? <a href="/signup" class="signup">회원가입</a>
     </div>
   </form>
+  <div class="alert-modal">
+    <div class="modal-content">
+      <p class="modal-message"></p>
+      <span class="modal-button">확인</span>
+    </div>
+  </div>
+  <script src="index.js"></script>
 </body>
 </html>
