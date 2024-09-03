@@ -2,25 +2,23 @@ import instance from "./instance.js";
 
 // * params = {page, pageSize, keyword}
 const getArticleList = async ({page, pageSize, keyword}) => {
-  let res = null;
   try {
-    res = await instance.get(`/articles`, {page, pageSize, keyword});
+    const res = await instance.get(`/articles`, {page, pageSize, keyword});
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
-  return res.data;
 };
 
 const getArticle = async (id) => {
-  let res = null;
   try {
-    res = await instance.get(`/articles/${id}`);
+    const res = await instance.get(`/articles/${id}`);
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
-  return res.data;
 };
 
 /*
@@ -31,42 +29,40 @@ data = {
 };
  */
 const createArticle = async (data = {}) => {
-  let res = null;
   try {
-    res = await instance.post(`/articles`, data, {
+    const res = await instance.post(`/articles`, data, {
       headers: {
         "Content-Type": "application/json",
       },
     });
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
-  return res.data;
 };
 
 const patchArticle = async (id, data) => {
-  let res = null;
   try {
-    res = await instance.patch(`/articles/${id}`, data, {
+    const res = await instance.patch(`/articles/${id}`, data, {
       headers: {
         "Content-Type": "application/json",
       },
     });
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
-  return res.data;
 };
 
 const deleteArticle = async (id) => {
-  let res = null;
   try {
-    res = await instance.delete(`/articles/${id}`);
+    const res = await instance.delete(`/articles/${id}`);
+    return res.data;
   } catch (err) {
     console.log(err);
-    return res?.message;
+    return err?.response || err;
   }
   return res.data;
 }
