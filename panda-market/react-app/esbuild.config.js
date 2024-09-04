@@ -1,13 +1,23 @@
 import esbuild from 'esbuild';
 
+// Get the page name from the command line arguments
+let pageName = process.argv[2];
+let dirName = `${pageName}/`;
+
+if (!pageName) {
+  console.log('Default is index[.js]');
+  pageName = 'index';
+  dirName = '';
+}
+
 esbuild.build({
   sourcemap: true,
   logLevel: 'info',
   platform: 'browser',
-  entryPoints: ['src/index.js'],
+  entryPoints: [`src/${pageName}.js`],
   bundle: true,
   minify: true,
-  outfile: 'dist/esb-bundle.js',
+  outfile: `dist/${dirName}esb-bundle.js`,
   write: true,
   loader: {
     '.js': 'jsx',
