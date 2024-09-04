@@ -1,0 +1,2 @@
+// * ./src/placeholder.ts
+export {};
