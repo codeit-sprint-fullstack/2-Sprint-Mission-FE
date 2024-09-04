@@ -1,28 +1,28 @@
 import '../css/BestItem.css';
-import { getProductList } from '../api/ProductService';
-import { useState, useEffect } from 'react';
+// import { getProductList } from '../api/ProductService';
+// import { useState, useEffect } from 'react';
 
-export default function BestItem() {
-  const [products, setProducts] = useState([]);
+export default function BestItem({ products }) {
+  // const [products, setProducts] = useState([]);
 
-  const handleGetProductList = async () => {
-    const productList = await getProductList({ pageSize: 10 });
-    if (productList) {
-      const sortedProductList = productList.list.sort((a, b) => b.favoriteCount - a.favoriteCount).slice(0, 4);
-      setProducts(sortedProductList);
+  // const handleGetProductList = async () => {
+  //   const productList = await getProductList({ pageSize: 10 });
+  //   if (productList) {
+  //     const sortedProductList = productList.list.sort((a, b) => b.favoriteCount - a.favoriteCount).slice(0, 4);
+  //     setProducts(sortedProductList);
       
-    } else {
-      console.log('상품 목록을 불러오는데 실패했습니다.');
-    }
-  };
+  //   } else {
+  //     console.log('상품 목록을 불러오는데 실패했습니다.');
+  //   }
+  // };
 
-  useEffect(() => {
-    handleGetProductList();
-  }, []);
+  // useEffect(() => {
+  //   handleGetProductList();
+  // }, []);
 
   return (
-    <div className='best-section '>
-      <p className='best-title'>베스트 상품</p>
+    // <div className='best-section '>
+      /* <p className='best-title'>베스트 상품</p> */
       <div className='best-item'>
         {products.length > 0 ? (
           products.map((product) => (
@@ -37,6 +37,6 @@ export default function BestItem() {
           <p>상품이 없습니다.</p> 
         )}
       </div>
-    </div>
+    // </div>
   );
 }

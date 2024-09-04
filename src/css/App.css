@@ -1,11 +1,160 @@
 html {
-    /* 10px */
-    font-size: 62.5%;
+  /* 10px */
+  font-size: 62.5%;
+  font-family: Pretendard;
+}
+
+button,
+input {
     font-family: Pretendard;
 }
 
 .section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.best-section {
+  margin-top: 7.4rem;
+  width: 120rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.best-title {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  justify-content: flex-start;
+}
+
+.item-section {
+  margin: 4rem 0;
+  width: 120rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item-search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-title {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-group {
+    position: relative;
+    width: 32.5rem;
+}
+
+.search {
+  width: 100%;
+  height: 4.2rem;
+  border-radius: 1.2rem;
+  border: none;
+  padding: 0 2rem 0 4rem;
+  background-color: #f3f4f6;
+  box-sizing: border-box;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.item-register {
+  width: 13.3rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: #3692ff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.6rem;
+  color: #f3f4f6;
+}
+
+.sort-menu {
+  position: relative;
+}
+
+.sort-toggle {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  width: 13rem;
+  height: 4.2rem;
+  border-radius: 1.2rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.sort-toggle p {
+    align-self: center;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+    color: #1F2937;
+}
+
+.sort-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 13rem;
+  height: 8.4rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.2rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sort-button {
+  width: 13rem;
+  height: 4.2rem;
+  border: none;
+  border-radius: 1.2rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+  color: #1F2937;
+}
+
+.arrow {
+    align-self: center;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.sort-options span {
+  border: 1px solid #e5e7eb;
+}
+
+
+
