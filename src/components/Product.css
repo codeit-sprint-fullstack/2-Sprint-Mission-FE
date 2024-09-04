@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.product-wrapper {
+  padding: 0 300px;
+}
+
+/* 베스트 상품 */
+.best-product {
+  padding-top: 70px;
+}
+
+/* 검색 */
+input {
+  background-color: #f3f4f6;
+  border: none;
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* 등록 버튼 */
+.register-product {
+  background-color: #3692ff;
+  border: none;
+  color: #ffffff;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* 판매 중 상품 */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.product-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.product-item img {
+  width: 221px;
+  height: 221px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.like-wrapper img {
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+}
+/* 페이지네이션 */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0 100px 0;
+}
+
+.pagination button {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination button:hover {
+  background-color: #b3d6fc;
+  border-color: #b3d6fc;
+}

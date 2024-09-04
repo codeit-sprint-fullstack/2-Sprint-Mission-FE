@@ -1,5 +1,7 @@
 import React from "react";
-import logoImg from "./images/icon/pandalogo.png";
+import logoImg from "../images/icon/pandalogo.svg";
+import userIcon from "../images/etc/userIcon.svg";
+import "./Header.css";
 
 const Header = () => {
   return (
@@ -19,11 +21,10 @@ const Header = () => {
               <a href="">중고마켓 </a>
             </span>
           </div>
-          <a href="login.html">
-            <div id="loginbtn" class="button">
-              로그인
-            </div>
-          </a>
+          <div className="user">
+            <img src={userIcon} alt="유저 이미지" />
+            김코드
+          </div>
         </nav>
       </header>
     </>
