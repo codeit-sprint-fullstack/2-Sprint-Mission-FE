@@ -1,7 +1,6 @@
 /** @format */
 
-import React from "react";
 import ReactDOM from "react-dom/client";
-
+import App from "./App";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<h1>Hi React Jun's first React project</h1>);
+root.render(<App />);
