@@ -25,20 +25,32 @@ function validateEmail(email) {
   return emailPattern.test(email);
 }
 
+function emailLimit(){
+  emailNewP.textContent = "이메일을 입력해주세요.";
+  emailNewP.style.display = 'block';
+}
+
+function emailIncorrect(){
+  emailNewP.textContent = "잘못된 이메일 형식입니다.";
+  emailNewP.style.display = 'block';
+}
+
+function emailHidden(){
+  emailNewP.style.display = 'none';
+}
+
 function focusoutEmail() {
   if(emailEl.value === ""){ 
     emailEl.classList.add('borderRed');
-    emailNewP.textContent = "이메일을 입력해주세요.";
-    emailNewP.style.display = 'block';
+    emailLimit();
     return false;
   } else if(!validateEmail(emailEl.value)) {
     emailEl.classList.add('borderRed');
-    emailNewP.textContent = "잘못된 이메일 형식입니다.";
-    emailNewP.style.display = 'block';
+    emailIncorrect();
     return false;
   } else {
     emailEl.classList.remove('borderRed');
-    emailNewP.style.display = 'none';
+    emailHidden();
     return true;
   }
 }
