@@ -1,6 +1,126 @@
+import { useEffect } from "react";
 import PopUp from "./PopUp";
+import USER_DATA from "./scripts/data";
 
 function LogInComp() {
+	useEffect(() => {
+		const email = document.querySelector(`#email`);
+		const emailError = document.querySelector(`.email-error`);
+		const emailRegEx = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-_.]+@[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-_.]+\.[\w]{2,3}$/;
+
+		const pwd = document.querySelector(`#password`);
+		const pwdError = document.querySelector(`.pwd-error`);
+
+		email.addEventListener("focusout", function (e) {
+			if (!email.value) {
+				email.classList.add("alert");
+				emailError.innerHTML = "이메일을 입력해주세요.";
+			}
+			else if (!emailRegEx.test(email.value)) {
+				email.classList.add("alert");
+				emailError.innerHTML = "잘못된 이메일 형식입니다.";
+			}
+			else {
+				email.classList.remove("alert");
+				emailError.innerHTML = "";
+			}
+		});
+
+		pwd.addEventListener("focusout", function (e) {
+			if (!pwd.value) {
+				pwd.classList.add("alert");
+				pwdError.innerHTML = "비밀번호를 입력해주세요.";
+			}
+			else if (pwd.value.length < 8) {
+				pwd.classList.add("alert");
+				pwdError.innerHTML = "비밀번호를 8자 이상 입력해주세요.";
+			}
+			else {
+				pwd.classList.remove("alert");
+				pwdError.innerHTML = "";
+			}
+		});
+
+		const handleVisPwd = function (e) {
+			if (e.target.previousElementSibling.getAttribute("type") === "password") {
+				e.target.setAttribute("src", "/images/btn_visibility_on_24px.svg");
+				e.target.previousElementSibling.setAttribute("type", "text");
+			}
+			else {
+				e.target.setAttribute("src", "/images/btn_visibility_off_24px.svg");
+				e.target.previousElementSibling.setAttribute("type", "password");
+			}
+		};
+		const visPwd = pwd.nextElementSibling;
+		visPwd.addEventListener("click", handleVisPwd);
+
+		///////////////////////////////////
+		//  Popup module
+		///////////////////////////////////
+		const popupCon = document.querySelector(`.popup-container`);
+		// const popup = document.querySelector(`.popup`);
+		const popupOK = document.querySelector(`.popup-button-ok`);
+		const popupText = document.querySelector(`.popup-text`);
+
+		popupOK.addEventListener("click", function (e) {
+			popupCon.classList.add("none");
+		});
+
+		const buttonLogInSignUp = document.querySelector(`#button-login`);
+
+		const validationState = {
+			email: false,
+			password: false
+		};
+
+		email.addEventListener("focusout", function (e) {
+			if (!email.value) {
+				validationState.email = false;
+				buttonLogInSignUp.disabled = true;
+			}
+			else if (!emailRegEx.test(email.value)) {
+				validationState.email = false;
+				buttonLogInSignUp.disabled = true;
+			}
+			else {
+				validationState.email = true;
+				buttonLogInSignUp.disabled = !(validationState.email && validationState.password);
+			}
+		});
+
+		pwd.addEventListener("focusout", function (e) {
+			if (!pwd.value) {
+				validationState.password = false;
+				buttonLogInSignUp.disabled = true;
+			}
+			else if (pwd.value.length < 8) {
+				validationState.password = false;
+				buttonLogInSignUp.disabled = true;
+			}
+			else {
+				validationState.password = true;
+				buttonLogInSignUp.disabled = !(validationState.email && validationState.password);
+			}
+		});
+
+		buttonLogInSignUp.addEventListener("click", function (e) {
+			if (!USER_DATA[email.value]) {
+				popupText.innerHTML = `이메일 ${email.value} 은 가입되어 있지 않습니다.`;
+				popupCon.classList.remove("none");
+				popupOK.focus();
+			}
+			else if (USER_DATA[email.value].password !== pwd.value) {
+				popupText.innerHTML = `비밀번호가 일치하지 않습니다.`;
+				popupCon.classList.remove("none");
+				popupOK.focus();
+			}
+			else {
+				window.location.href = "/items";
+			}
+		});
+
+	}, []);
+
 	return (
 	<>
 		<main>
