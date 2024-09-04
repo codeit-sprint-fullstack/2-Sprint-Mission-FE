@@ -5,9 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="/images/판다-얼굴.png">
-	<link rel="stylesheet" href="/root.css">
-	<link rel="stylesheet" href="/login.css">
-	<link rel="stylesheet" href="/reset.css">
+	<link rel="stylesheet" href="esb-bundle.css">
 	<title>판다마켓 (Panda Market) 가입하기</title>
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBGJGRHF74"></script>
@@ -21,46 +19,7 @@
 </head>
 
 <body>
-	<main>
-		<a href="/"><img class="logo" src="/images/Property-1=lg.png" alt="판다마켓 logo"></a>
-		<form>
-			<label for="email">이메일</label>
-			<input id="email" name="email" placeholder="이메일을 입력해주세요" type="email" autocomplete="on" required>
-			<div class="email-error"></div>
-			<label for="nickname">닉네임</label>
-			<input id="nickname" name="nickname" placeholder="닉네임을 입력해주세요" type="text" autocomplete="on" required>
-			<div class="nickname-error"></div>
-			<label for="password">비밀번호</label>
-			<div class="pwd-container">
-				<input id="password" name="password" placeholder="비밀번호를 입력해주세요" type="password" required>
-				<img src="/images/btn_visibility_off_24px.svg" alt="Button visibility off">
-			</div>
-			<div class="pwd-error"></div>
-			<label for="password-confirm">비밀번호 확인</label>
-			<div class="pwd-container">
-				<input id="password-confirm" name="password-confirm" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password" required>
-				<img src="/images/btn_visibility_off_24px.svg" alt="Button visibility off">
-			</div>
-			<div class="pwd-cfm-error"></div>
-			<button id="button-signup" type="button" disabled>회원가입</button>
-		</form>
-		<div class="oauth">
-			<span>간편 로그인하기</span>
-			<div class="oauth-images">
-				<a href="https://www.google.com/"><img src="/images/oauth-Google.png" alt="구글로 로그인하기" class="img-oauth"></a>
-				<a href="https://www.kakaocorp.com/page/"><img src="/images/oauth-Kakao.png" alt="카카오로 로그인하기" class="img-oauth"></a>
-			</div>
-		</div>
-		<div class="check-description">
-			이미 회원이신가요?
-			<a href="/login">로그인</a>
-		</div>
-	</main>
-	<div class="popup-container none">
-		<div class="popup">
-			<div class="popup-text"></div><button class="popup-button-ok">확인</button>
-		</div>
-	</div>
+	<div id="root"></div>
 </body>
 <script src="/data.js" charset="UTF-8"></script>
 <script src="/common-login.js" charset="UTF-8"></script>
