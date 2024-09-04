@@ -5,7 +5,7 @@ function ProductCard() {
   return (
     <section>
       <div>
-        <div>section: BestProducts </div>
+        <div>section: ProductCard </div>
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ function ProductsList() {
   return (
     <section>
       <div>
-        <div>section: BestProducts </div>
+        <div>section: ProductsList;</div>
       </div>
     </section>
   );
