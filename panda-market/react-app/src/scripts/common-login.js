@@ -1,3 +1,4 @@
+// Not reusable because const vars are block scoped, therefore they can't be referenced or used outside of this function.
 function commonLogIn() {
 	const email = document.querySelector(`#email`);
 	const emailError = document.querySelector(`.email-error`);
