@@ -11,7 +11,7 @@ function SignUpComp() {
 		const pwd = document.querySelector(`#password`);
 		const pwdError = document.querySelector(`.pwd-error`);
 
-		email.addEventListener("focusout", function (e) {
+		email.addEventListener("input", function (e) {
 			if (!email.value) {
 				email.classList.add("alert");
 				emailError.innerHTML = "이메일을 입력해주세요.";
@@ -26,7 +26,7 @@ function SignUpComp() {
 			}
 		});
 
-		pwd.addEventListener("focusout", function (e) {
+		pwd.addEventListener("input", function (e) {
 			if (!pwd.value) {
 				pwd.classList.add("alert");
 				pwdError.innerHTML = "비밀번호를 입력해주세요.";
@@ -82,7 +82,7 @@ function SignUpComp() {
 			passwordConfirm: false
 		};
 
-		email.addEventListener("focusout", function (e) {
+		email.addEventListener("input", function (e) {
 			if (!email.value) {
 				validationState.email = false;
 				buttonLogInSignUp.disabled = true;
@@ -97,7 +97,7 @@ function SignUpComp() {
 			}
 		});
 
-		nickname.addEventListener("focusout", function (e) {
+		nickname.addEventListener("input", function (e) {
 			if (!nickname.value) {
 				nickname.classList.add("alert");
 				nicknameError.innerHTML = "닉네임을 입력해주세요.";
@@ -118,7 +118,7 @@ function SignUpComp() {
 			}
 		});
 
-		pwd.addEventListener("focusout", function (e) {
+		pwd.addEventListener("input", function (e) {
 			if (!pwd.value) {
 				validationState.password = false;
 				buttonLogInSignUp.disabled = true;
@@ -133,7 +133,7 @@ function SignUpComp() {
 			}
 		});
 
-		pwdCfm.addEventListener("focusout", function (e) {
+		pwdCfm.addEventListener("input", function (e) {
 			if (!pwdCfm.value) {
 				pwdCfm.classList.add("alert");
 				pwdCfmError.innerHTML = "위의 비밀번호를 다시 한번 더 입력해주세요.";

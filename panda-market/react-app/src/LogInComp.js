@@ -11,7 +11,7 @@ function LogInComp() {
 		const pwd = document.querySelector(`#password`);
 		const pwdError = document.querySelector(`.pwd-error`);
 
-		email.addEventListener("focusout", function (e) {
+		email.addEventListener("input", function (e) {
 			if (!email.value) {
 				email.classList.add("alert");
 				emailError.innerHTML = "이메일을 입력해주세요.";
@@ -26,7 +26,7 @@ function LogInComp() {
 			}
 		});
 
-		pwd.addEventListener("focusout", function (e) {
+		pwd.addEventListener("input", function (e) {
 			if (!pwd.value) {
 				pwd.classList.add("alert");
 				pwdError.innerHTML = "비밀번호를 입력해주세요.";
@@ -73,7 +73,7 @@ function LogInComp() {
 			password: false
 		};
 
-		email.addEventListener("focusout", function (e) {
+		email.addEventListener("input", function (e) {
 			if (!email.value) {
 				validationState.email = false;
 				buttonLogInSignUp.disabled = true;
@@ -88,7 +88,7 @@ function LogInComp() {
 			}
 		});
 
-		pwd.addEventListener("focusout", function (e) {
+		pwd.addEventListener("input", function (e) {
 			if (!pwd.value) {
 				validationState.password = false;
 				buttonLogInSignUp.disabled = true;
