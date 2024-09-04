@@ -1,0 +1,8 @@
+.App {
+  display: flex;
+  flex-direction: column; /* column으로 설정해야  */
+}
+
+.with-header {
+  margin-top: 7rem; /* GNB가 fixed로 설정되었기 때문에 GNB의 높이만큼 상단 여백 추가 */
+}
