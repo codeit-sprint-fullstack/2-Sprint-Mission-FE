@@ -1,3 +1,5 @@
+export const BASE_URL = "https://sprint-mission-api.vercel.app/articles";
+
 function validatePositiveInteger(data) {
   if (Number.isInteger(data) && data > 0) {
     return true;
@@ -5,7 +7,7 @@ function validatePositiveInteger(data) {
     return false;
   }
 }
-async function getArticleList(Params) {
+export async function getArticleList(Params) {
   const { page = 1, pageSize = 10, keyword = "" } = Params || {};
 
   if (!validatePositiveInteger(page)) {
@@ -19,7 +21,7 @@ async function getArticleList(Params) {
     pageSize,
     keyword,
   };
-  const url = new URL("https://sprint-mission-api.vercel.app/articles");
+  const url = new URL(`${BASE_URL}`);
   Object.keys(options).forEach((key) =>
     url.searchParams.append(key, options[key])
   );
@@ -32,11 +34,11 @@ async function getArticleList(Params) {
   }
 }
 
-async function getArticle(id) {
+export async function getArticle(id) {
   if (!validatePositiveInteger(id)) {
     throw new Error("id는 양의 정수만 기입해주세요.");
   }
-  const url = new URL(`https://sprint-mission-api.vercel.app/articles/${id}`);
+  const url = new URL(`${BASE_URL}/${id}`);
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`리퀘스트 실패: ${res.status} ${res.statusText}`);
@@ -45,7 +47,7 @@ async function getArticle(id) {
   return data;
 }
 
-async function createArticle(articleData) {
+export async function createArticle(articleData) {
   //title,content,image
   const { title, content, image } = articleData || {};
   if (title === undefined) {
@@ -62,7 +64,7 @@ async function createArticle(articleData) {
     content,
     image,
   };
-  const url = new URL("https://sprint-mission-api.vercel.app/articles");
+  const url = new URL(`${BASE_URL}`);
   const res = await fetch(url, {
     method: "POST",
     body: JSON.stringify(article),
@@ -76,7 +78,7 @@ async function createArticle(articleData) {
   const data = await res.json();
   return data;
 }
-async function patchArticle(id, articleData) {
+export async function patchArticle(id, articleData) {
   if (!validatePositiveInteger(id)) {
     throw new Error("id는 양의 정수를 기입해야 합니다.");
   }
@@ -84,7 +86,7 @@ async function patchArticle(id, articleData) {
   if (!(title || content || image)) {
     throw new Error("수정사항이 없습니다.");
   }
-  const url = new URL(`https://sprint-mission-api.vercel.app/articles/${id}`);
+  const url = new URL(`${BASE_URL}/${id}`);
   const res = await fetch(url, {
     method: "PATCH",
     body: JSON.stringify(articleData),
@@ -99,11 +101,11 @@ async function patchArticle(id, articleData) {
   return data;
 }
 
-function deleteArticle(id) {
+export function deleteArticle(id) {
   if (!validatePositiveInteger(id)) {
     throw new Error("id는 양의 정수만 기입해주세요.");
   }
-  const url = new URL(`https://sprint-mission-api.vercel.app/articles/${id}`);
+  const url = new URL(`${BASE_URL}/${id}`);
   fetch(url, {
     method: "DELETE",
   })
@@ -122,13 +124,3 @@ function deleteArticle(id) {
       console.log(err.message);
     });
 }
-const articleApi = {
-  validatePositiveInteger,
-  getArticleList,
-  getArticle,
-  createArticle,
-  patchArticle,
-  deleteArticle,
-};
-
-export default articleApi;

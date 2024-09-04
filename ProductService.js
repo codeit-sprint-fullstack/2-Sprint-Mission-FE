@@ -13,7 +13,7 @@ function validatePositiveInteger(data) {
 function isValid(value) {
   return value === undefined || value === "" || value === null;
 }
-async function getProductList(params) {
+export async function getProductList(params) {
   //page, pageSize, keyword 쿼리 파라미터를 이용해 주세요.
   const { page = 1, pageSize = 10, keyword = "" } = params || {};
   if (!validatePositiveInteger(page)) {
@@ -32,18 +32,19 @@ async function getProductList(params) {
   const data = res.data;
   return data;
 }
-async function getProduct(id) {
+export async function getProduct(id) {
   if (!validatePositiveInteger(id)) {
     throw new Error("id는 양의 정수여야 합니다.");
   }
   try {
     const res = await instance.get(`/${id}`);
     const data = res.data;
+    return data;
   } catch {
     throw new Error("리퀘스트 실패");
   }
 }
-async function createProduct(params) {
+export async function createProduct(params) {
   if (!(typeof params.price === "number" && !isNaN(params.price))) {
     throw new Error("가격은 숫자여야 합니다.");
   }
@@ -66,7 +67,7 @@ async function createProduct(params) {
   const res = await instance.post("", params);
   return res.data;
 }
-async function patchProduct(id, params) {
+export async function patchProduct(id, params) {
   if (params.price) {
     if (!(typeof params.price === "number" && !isNaN(params.price))) {
       throw new Error("가격은 숫자여야 합니다.");
@@ -78,7 +79,7 @@ async function patchProduct(id, params) {
   const res = await instance.patch(`/${id}`, params);
   return res.data;
 }
-async function deleteProduct(id) {
+export async function deleteProduct(id) {
   if (!validatePositiveInteger(id)) {
     throw new Error("id는 양의 정수여야 합니다.");
   }
@@ -89,11 +90,3 @@ async function deleteProduct(id) {
     throw new Error("리퀘스트 실패");
   }
 }
-const productApi = {
-  getProductList,
-  getProduct,
-  createProduct,
-  patchProduct,
-  deleteProduct,
-};
-export default productApi;

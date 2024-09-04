@@ -1,5 +1,17 @@
-import articleApi from "./ArticleService.js";
-import productApi from "./ProductService.js";
+import {
+  getArticleList,
+  getArticle,
+  createArticle,
+  deleteArticle,
+  patchArticle,
+} from "./ArticleService.js";
+import {
+  getProductList,
+  getProduct,
+  createProduct,
+  patchProduct,
+  deleteProduct,
+} from "./ProductService.js";
 
 const testArticle = {
   title: "제목",
@@ -7,26 +19,25 @@ const testArticle = {
   image: "이미지",
 };
 
-const testArticleList = await articleApi
-  .getArticleList()
-  .catch((err) => console.error(err.message)); //{page:1, pageSize:100, keyword:''}
+const testArticleList = await getArticleList().catch((err) =>
+  console.error(err.message)
+); //{page:1, pageSize:100, keyword:''}
 
-const testArticleId = await articleApi
-  .getArticle(85)
-  .catch((err) => console.error(err.message));
+const testArticleId = await getArticle(103).catch((err) =>
+  console.error(err.message)
+);
 console.log(testArticleId);
 
-const testCreateArticle = await articleApi
-  .createArticle(testArticle)
-  .catch((err) => console.error(err.message)); //{title, content, image}
+const testCreateArticle = await createArticle(testArticle).catch((err) =>
+  console.error(err.message)
+); //{title, content, image}
 console.log(testCreateArticle);
 
-const testPatchArticle = await articleApi
-  .patchArticle(85, testArticle)
-  .catch((err) => console.error(err.message));
+const testPatchArticle = await patchArticle(103, testArticle).catch((err) =>
+  console.error(err.message)
+);
 console.log(testPatchArticle);
-
-articleApi.deleteArticle(85);
+await deleteArticle(208);
 
 const testProduct = {
   name: "string",
@@ -37,21 +48,26 @@ const testProduct = {
   images: ["string"],
 };
 
-const testProductList = await productApi
-  .getProductList()
-  .catch((err) => console.error(err.message));
+const testProductList = await getProductList().catch((err) =>
+  console.error(err.message)
+);
 console.log(testProductList);
 
-const testCreateProduct = await productApi
-  .createProduct(testProduct)
-  .catch((err) => console.error(err.message));
+const testProductId = await getProduct(20).catch((err) =>
+  console.error(err.message)
+);
+console.log(testProductId);
+
+const testCreateProduct = await createProduct(testProduct).catch((err) =>
+  console.error(err.message)
+);
 console.log(testCreateProduct);
 
-const testPatchProduct = await productApi
-  .patchProduct(9, testProduct)
-  .catch((err) => console.error(err.message));
+const testPatchProduct = await patchProduct(9, testProduct).catch((err) =>
+  console.error(err.message)
+);
 console.log(testPatchProduct);
 
-const testDeleteProduct = await productApi
-  .deleteProduct(120)
-  .catch((err) => console.error(err.message));
+const testDeleteProduct = await deleteProduct(20).catch((err) =>
+  console.error(err.message)
+);
