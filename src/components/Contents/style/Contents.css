@@ -1,0 +1,11 @@
+#contents {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#products-entire {
+    margin-top: 2.4rem;
+}

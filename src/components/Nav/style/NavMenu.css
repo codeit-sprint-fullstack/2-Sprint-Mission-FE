@@ -1,0 +1,9 @@
+.menu {
+    height: 100%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.6rem;
+    align-items: center;
+    display: flex;
+    padding: 0 1.5rem;
+}

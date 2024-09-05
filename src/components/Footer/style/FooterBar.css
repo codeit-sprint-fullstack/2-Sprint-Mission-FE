@@ -1,0 +1,20 @@
+#footer-bar {
+    width: 112rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#footer-bar-imgbox {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.2rem;
+}
+
+
+#footer-bar-menu-textbox {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
