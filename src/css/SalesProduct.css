@@ -1,0 +1,37 @@
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+}
+
+.img {
+  border-radius: 1.6rem;
+  width: 28.2rem;
+  height: 28.2rem;
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+}
+
+.salesItems {
+  display: flex;
+  gap: 2.4rem;
+  list-style-type: none;
+}
+
+.salesItemSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  width: 100%;
+  max-width: 120rem;
+}

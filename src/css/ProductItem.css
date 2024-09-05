@@ -1,0 +1,17 @@
+.img {
+  border-radius: 1.6rem;
+  width: 28.2rem;
+  height: 28.2rem;
+}
+
+.name {
+font-size: 1.4rem;
+font-weight: 500;
+line-height: 2.4rem;
+}
+
+.price {
+font-size: 1.6rem;
+font-weight: 700;
+line-height: 2.6rem;
+}

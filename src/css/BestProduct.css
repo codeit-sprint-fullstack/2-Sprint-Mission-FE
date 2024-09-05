@@ -1,0 +1,19 @@
+.title {
+font-size: 2rem;
+font-weight: 700;
+line-height: 3.2rem;
+}
+
+.bestItems {
+  display: flex;
+  gap: 2.4rem;
+  list-style-type: none;
+}
+
+.bestItemSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  width: 100%;
+  max-width: 120rem;
+}
