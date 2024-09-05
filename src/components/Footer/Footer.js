@@ -1,6 +1,4 @@
-// Footer.js
 import './Footer.css';
-
 import FacebookIcon from '../assets/images/icon/ic_facebook.png';
 import TwitterIcon from '../assets/images/icon/ic_twitter.png';
 import YoutubeIcon from '../assets/images/icon/ic_youtube.png';

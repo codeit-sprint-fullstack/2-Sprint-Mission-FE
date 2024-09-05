@@ -4,5 +4,10 @@
 }
 
 .with-header {
-  margin-top: 7rem; /* GNB가 fixed로 설정되었기 때문에 GNB의 높이만큼 상단 여백 추가 */
+  padding-top: 7rem;      /* margin-top 으로 했더니 ProductMain과 Footer가 겹침(이해 안됨) */
+}
+
+.content {
+  width: 120rem;
+  margin: 0 auto;
 }

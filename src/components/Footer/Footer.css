@@ -10,13 +10,13 @@
 }
 .footer-contents {   
   width: 100%;                          /* 부모 요소의 너비를 기준으로 100% 확장 */
-  max-width: 192rem;          
+  max-width: 120rem;          
   height: 2rem;    
   display: flex;
   justify-content: space-between;
   font-size: 1.6rem;            
   font-weight: 400;
-  padding: 2rem 20rem;                     /* 왼쪽과 오른쪽에 각각 패딩 추가하여 간격 조절 */
+  padding: 2rem 0;                    
 }
 .footer-contents a {
   color: var(--footer-text-color);      /* 링크 글자색 설정 */

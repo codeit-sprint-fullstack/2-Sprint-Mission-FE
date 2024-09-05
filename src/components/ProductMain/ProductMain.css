@@ -1,0 +1,86 @@
+.product-main {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0;
+  margin-bottom: calc(7rem + 1.4rem + 10rem);   /* productMain 영역의 높이가 늘어나지 않아서 억지로 맞춤 */
+}
+
+/* 베스트 상품 div 스타일 */
+.best-products {
+  margin : 2.4rem 0 4rem 0;
+}
+
+/* 상품 나열을 위한 그리드 스타일 */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1.5rem;
+}
+
+/* 개별 상품 스타일 */
+.product-item {
+  width: 28.2rem;
+  height: 28.2rem;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.heart-icon {
+  width: 1.6rem;
+  height: 1.6rem; 
+  vertical-align: middle; 
+}
+
+/* 텍스트 요소 style 지정 */
+.best-title {
+  font-size: 2rem;
+  line-height: 3.2rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.product-title {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  font-weight: 500;
+  color: #1F2937;
+}
+
+.product-price {
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  font-weight: 700;
+  color: #1F2937
+}
+
+.product-favorite {
+  font-size: 1.2rem;
+  line-height: 18px;
+  font-weight: 500;
+  color: #4B5563;
+}
+
+.product-title,
+.product-price,
+.product-favorite {
+  margin: 0;                  /* p태그 때문에 기본 여백 제거 */
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .product-main {
+    padding: 0 2.4rem;             
+  }
+}
+
+@media (max-width: 743px) {
+  .product-main {
+    padding: 0 1.6rem;            
+  }
+}

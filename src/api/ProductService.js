@@ -1,19 +1,26 @@
-
+// src/api/ProductService.js
 const PRODUCT_API_BASE_URL = 'https://panda-market-api.vercel.app/products/';
 
 // Product 목록 가져오기
-export async function getProductList(page = 1, pageSize = 10, orderBy = 'recent', keyword = '') {
+export async function getProductList(
+  page = 1,
+  pageSize = 10,
+  orderBy = 'recent',
+  keyword = ''
+) {
   try {
     const params = new URLSearchParams({
       page,
       pageSize,
       orderBy,
-      keyword
-    })
-    const response = await fetch(`${PRODUCT_API_BASE_URL}?${params.toString()}`);
+      keyword,
+    });
+    const response = await fetch(
+      `${PRODUCT_API_BASE_URL}?${params.toString()}`
+    );
     if (!response.ok) {
       const errorMessage = await response.text();
-      console.log('errorMessage',errorMessage);
+      console.log('errorMessage', errorMessage);
       throw new Error(`Error: ${response.status}`);
     }
     return await response.json();
@@ -28,7 +35,7 @@ export async function getProduct(id) {
     const response = await fetch(`${PRODUCT_API_BASE_URL}/${id}`);
     if (!response.ok) {
       const errorMessage = await response.text();
-      console.log('errorMessage',errorMessage);
+      console.log('errorMessage', errorMessage);
       throw new Error(`Error: ${response.status}`);
     }
     return await response.json();
@@ -43,11 +50,11 @@ export async function createProduct(productData) {
     const response = await fetch(PRODUCT_API_BASE_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(productData)
+      body: JSON.stringify(productData),
     });
     if (!response.ok) {
       const errorMessage = await response.text();
-      console.log('errorMessage',errorMessage);
+      console.log('errorMessage', errorMessage);
       throw new Error(`Error: ${response.status}`);
     }
     return await response.json();
@@ -62,11 +69,11 @@ export async function patchProduct(id, data) {
     const response = await fetch(`${PRODUCT_API_BASE_URL}/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
     if (!response.ok) {
       const errorMessage = await response.text();
-      console.log('errorMessage',errorMessage);
+      console.log('errorMessage', errorMessage);
       throw new Error(`Error: ${response.status}`);
     }
     return await response.json();
@@ -78,10 +85,12 @@ export async function patchProduct(id, data) {
 // Product 삭제
 export async function deleteProduct(id) {
   try {
-    const response = await fetch(`${PRODUCT_API_BASE_URL}/${id}`, { method: 'DELETE' });
+    const response = await fetch(`${PRODUCT_API_BASE_URL}/${id}`, {
+      method: 'DELETE',
+    });
     if (!response.ok) {
       const errorMessage = await response.text();
-      console.log('errorMessage',errorMessage);
+      console.log('errorMessage', errorMessage);
       throw new Error(`Error: ${response.status}`);
     }
     return await response.text();
