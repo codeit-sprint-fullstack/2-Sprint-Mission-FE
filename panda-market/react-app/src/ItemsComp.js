@@ -5,6 +5,7 @@ import useAsync from "./hooks/useAsync";
 import { getProducts } from "./apis/itemsService";
 import BestItemsList from "./BestItemsList";
 import ItemsList from "./ItemsList";
+import PageNum from "./PageNum";
 
 function ItemsComp() {
 	const [pageBestSize, setPageBestSize] = useState(1);
@@ -76,7 +77,7 @@ function ItemsComp() {
 	<>
 		<Header/>
 		<main>
-			<BestItemsList bestItems={bestItems} pageNum={pageNum} pageBestSize={pageBestSize}/>
+			<BestItemsList bestItems={bestItems}/>
 			<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} pageNum={pageNum} setKeyword={setKeyword}/>
 			<PageNum pageNum={pageNum} setPageNum={setPageNum}/>
 		</main>
