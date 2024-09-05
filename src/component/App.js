@@ -7,6 +7,7 @@ import Nav from "./Nav";
 import BestItem from "./BestItem";
 import ItemList from "./ItemList";
 import { getProductList } from "../api/ProductService";
+import Pagination from "./Pagination";
 
 function App() {
   const [order, setOrder] = useState("favorite");
@@ -14,6 +15,8 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [bestItems, setBestItems] = useState([]);
   const [isToggle, setIsToggle] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [totalCount, setTotalCount] = useState(1); 
 
   // BestItem 데이터만 한 번 로드
   useEffect(() => {
@@ -30,11 +33,13 @@ function App() {
   const handleNewesClick = () => {
     setOrder("recent");
     setIsToggle(false);
+    setCurrentPage(1);
   };
 
   const handleBestClick = () => {
     setOrder("favorite");
     setIsToggle(false);
+    setCurrentPage(1);
   };
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);
@@ -42,20 +47,21 @@ function App() {
   const toggleSortMenu = () => setIsToggle(!isToggle);
 
   const handleGetProductList = useCallback(async (orderQuery) => {
-    let queryParams = { orderBy: orderQuery };
+    let queryParams = { orderBy: orderQuery, page: currentPage, pageSize: 10 };
 
     if (keyword) {
       queryParams.keyword = keyword;
     }
 
-    const { list: productList } = await getProductList(queryParams);
+    const { list: productList, totalCount: fetchedTotalCount } = await getProductList(queryParams);
     setProducts(productList);
-    console.log(productList);
-  }, [keyword]);
+    setTotalCount(fetchedTotalCount);
+    // console.log(productList);
+  }, [keyword, currentPage]);
 
   useEffect(() => {
-    handleGetProductList(order);
-  }, [order, keyword, handleGetProductList]);
+    handleGetProductList(order, currentPage);
+  }, [order, keyword, currentPage, handleGetProductList]);
 
   return (
     <Fragment>
@@ -100,6 +106,7 @@ function App() {
           <ItemList products={sortedProducts} className="ItemList" />
         </div>
       </div>
+      <Pagination className='Pagination' page={currentPage} setPage={setCurrentPage} totalCount={totalCount} />
       <Footer className="Footer" />
     </Fragment>
   );

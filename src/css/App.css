@@ -156,5 +156,8 @@ input {
   border: 1px solid #e5e7eb;
 }
 
-
+.Pagination {
+  display: flex;
+  justify-content: center;
+}
 
