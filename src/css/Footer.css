@@ -41,3 +41,21 @@ footer img{
 .icon {
     display: flex;
 }
+
+@media (max-width: 1199px) and (min-width: 744px) {
+    .footer-icon {
+      margin: 2.4rem;
+    }
+  }
+  
+  @media (max-width: 743px) {
+
+    .footer-icon {
+      margin: 1.6rem;
+    }
+  
+    .footer-icon p {
+      font-size: 1.6rem;
+      line-height: 2rem;
+    }
+  }
