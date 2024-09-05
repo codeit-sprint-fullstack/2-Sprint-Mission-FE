@@ -28,9 +28,9 @@ export default function BestItem({ products }) {
           products.map((product) => (
             <div key={product.id} className='item'>
               <img className='img' src={product.images} alt={product.name} />
-              <p className='name'>{product.name}</p>
-              <p className='price'>{product.price}원</p>
-              <p className='favoriteCount'>♡ {product.favoriteCount}</p>
+              <p className='best-name'>{product.name}</p>
+              <p className='best-price'>{product.price.toLocaleString()}원</p>
+              <p className='best-favoriteCount'>♡ {product.favoriteCount}</p>
             </div>
           ))
         ) : (

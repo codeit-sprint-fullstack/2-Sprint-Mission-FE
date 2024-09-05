@@ -6,12 +6,25 @@
     justify-content: center;
 }
 
-.item-title {
-    display: flex;
-    font-size: 2rem;
+.item-name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+    color: #1F2937;
+}
+
+.item-price {
+    font-size: 1.6rem;
     font-weight: 700;
-    line-height: 3.2rem;
-    justify-content: flex-start;
+    line-height: 2.6rem;
+    color: #1F2937;
+}
+
+.item-favoriteCount {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: #4B5563;
 }
 
 .item-list {

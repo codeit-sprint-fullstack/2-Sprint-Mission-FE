@@ -37,7 +37,7 @@ export default function ItemList({ products }) {
                 alt={product.name}
                 onError={(e) => e.target.src = img_default} />
               <p className='item-name'>{product.name}</p>
-              <p className='item-price'>{product.price}원</p>
+              <p className='item-price'>{product.price.toLocaleString()}원</p>
               <p className='item-favoriteCount'>♡ {product.favoriteCount}</p>
             </div>
           ))
