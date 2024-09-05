@@ -74,10 +74,16 @@ nav {
   font-weight: 500;
 }
 
-.productsListing {
+.bestProductsListing {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.productsListing {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
 }
 
 .bestProductsContainer {
@@ -94,6 +100,7 @@ nav {
   justify-content: space-between;
   width: 100%;
   height: 317px;
+  margin: 16px 0;
 }
 
 footer {

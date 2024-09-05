@@ -19,7 +19,6 @@ function Products({ items }) {
   }
   return (
     <div>
-      <h1 className="header">판매 중인 상품</h1>
       <ul className="productsListing">
         {items.map((item) => {
           return (

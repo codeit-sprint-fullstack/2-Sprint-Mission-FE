@@ -20,7 +20,7 @@ export default function BestProducts({ items }) {
   return (
     <div>
       <h1 className="header">베스트 상품</h1>
-      <ul className="productsListing">
+      <ul className="bestProductsListing">
         {items.map((item) => {
           return (
             <li className="bestProductsContainer" key={item.id}>
