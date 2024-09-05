@@ -1,0 +1,57 @@
+.best-product-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2.4rem auto 4rem;
+}
+
+.best-product-list .product-grid {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2.4rem;
+  row-gap: 1.6rem;
+}
+
+.best-product-list h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  color: var(--secondary-900);
+  text-align: left;
+  grid-column: 1 / -1; /* 첫 번째 열부터 마지막 열까지 차지 */
+  grid-row: 1; /* 첫 번째 행에 위치 */
+  width: 100%;
+}
+
+.best-product-list .product-card-img {
+  width: 282px;
+  height: 282px;
+  border-radius: 1.6rem;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .best-product-list .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1rem;
+  }
+
+  .best-product-list .product-card-img {
+    width: 343px;
+    height: 343px;
+    border-radius: 1.946rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .best-product-list .product-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .best-product-list .product-card-img {
+    width: 343px;
+    height: 343px;
+    border-radius: 1.946rem;
+  }
+}
