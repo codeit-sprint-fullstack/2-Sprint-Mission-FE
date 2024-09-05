@@ -1,0 +1,51 @@
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+
+  width: 100%;
+
+  font-size: 16px;
+
+  color: #374151;
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+}
+ 
+
+.BestProducts {
+    display: flex;
+    justify-content: center;
+
+    margin: 20px 0;
+    width: 1200px;
+}
+
+.BestProductList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 20px;
+}
+
+.BestProductItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.BestProductItem-img {
+    width: 282px;
+    height: 282px;
+    border-radius: 20px; 
+}
+
+.best-product-info {
+display: flex;
+flex-direction: column;
+}
+
+.BestProductItem span {
+font-size: 14px;
+font-weight: 500;
+line-height: 24px;
+text-align: left;
+}

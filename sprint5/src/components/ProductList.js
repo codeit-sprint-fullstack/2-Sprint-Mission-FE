@@ -4,12 +4,12 @@ function ProductListItem({ item }) {
   const { images, name, price, favoriteCount, createdAt } = item;
 
   return (
-    <div className="ProductListItem">
-      <img className="ProductListItem-img" src={images} alt={name} />
+    <div className="product-item">
+      <img className="product-item-img" src={images} alt={name} />
       <div className="product-info">
-        <span>{name}</span>
-        <span>{price}</span>
-        <span>{favoriteCount}</span>
+        <span className="product-name">{name}</span>
+        <span className="product-price">{price}원</span>
+        <span className="product-favorite-count">♡ {favoriteCount}</span>
         <span>{createdAt}</span>
       </div>
     </div>
@@ -17,12 +17,10 @@ function ProductListItem({ item }) {
 }
 
 export default function ProductList({ items }) {
-  const [items, setItems] = useState([]);
-
   return (
     <section>
-      <div className="Products">
-        <div className="ProductList">
+      <div className="products">
+        <div className="product-list">
           {items.map((item) => (
             <div key={item.id}>
               <ProductListItem item={item} />
