@@ -1,12 +1,10 @@
 import './BestItemsList.css';
 import Item from './Item';
 
-function BestItemsList({ bestItems, pageNum, pageBestSize }) {
+function BestItemsList({ bestItems }) {
 	return (
 		<ul className="best-items">
-			{bestItems.map((item) => {
-				return (<Item item={item}/>);
-			})}
+			{bestItems.map(item => <Item item={item}/>)}
 		</ul>
 	);
 }
