@@ -9,16 +9,20 @@ export default function Nav() {
 
   return (
     <nav>
-      <a href="/">
-        <img id="logo" alt="Panadamarket CI" src={logoImg} />
-      </a>
-      {topics.map((topic) => (
-        <p key={topic.id} className="menu">
-          {topic.title}
-        </p>
-      ))}
-      <img id="profileImg" alt="Panda Image in grayscale" src={profileImg} />
-      <p id="profileName">김코드</p>
+      <div className="logoMenu">
+        <a href="/">
+          <img id="logo" alt="Panadamarket CI" src={logoImg} />
+        </a>
+        {topics.map((topic) => (
+          <p key={topic.id} className="menu">
+            {topic.title}
+          </p>
+        ))}
+      </div>
+      <div className="profile">
+        <img id="profileImg" alt="Panda Image in grayscale" src={profileImg} />
+        <p id="profileName">김코드</p>
+      </div>
     </nav>
   );
 }

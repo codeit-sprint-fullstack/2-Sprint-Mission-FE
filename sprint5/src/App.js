@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getProducts } from "../api.js";
-import Nav from "./Nav.js";
-import Footer from "./Footer.js";
-import Products from "./Products.js";
-import BestProducts from "./BestProducts.js";
+import { getProducts } from "./api.js";
+import Nav from "./components/Nav.js";
+import Footer from "./components/Footer.js";
+import Products from "./components/Products.js";
+import BestProducts from "./components/BestProducts.js";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -49,12 +49,15 @@ export default function App() {
   return (
     <>
       <Nav />
-      <BestProducts items={best} />
-      <div>
-        <h1 className="header">판매 중인 상품</h1>
+      <div className="container">
+        <BestProducts items={best} />
         <div>
-          <button onClick={handleNewestClick}>최신순</button>
-          <button onClick={handleBestClick}>좋아요순</button>
+          <h1 className="header">판매 중인 상품</h1>
+          <button id="addProduct">상품 등록하기</button>
+          <div>
+            <button onClick={handleNewestClick}>최신순</button>
+            <button onClick={handleBestClick}>좋아요순</button>
+          </div>
         </div>
         <Products items={currentItem} />
         <div>
