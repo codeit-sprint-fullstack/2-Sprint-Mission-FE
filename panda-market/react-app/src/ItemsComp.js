@@ -16,6 +16,27 @@ function ItemsComp() {
 	const [orderBy, setOrderBy] = useState("recent");
 	const [keyword, setKeyword] = useState("");
 
+	const handleSearch = async () => {
+		const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync(loadItems);
+
+		try {
+			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
+			if (!result1) return;
+			setItems(result1.list);
+		}
+		catch (err) {
+			console.error(err);
+		}
+	};
+
+	async function loadBest({ page, pageSize, orderBy, keyword }) {
+		return await getProducts({ page, pageSize, orderBy, keyword });
+	}
+
+	async function loadItems({ page, pageSize, orderBy, keyword }) {
+		return await getProducts({ page, pageSize, orderBy, keyword });
+	}
+
 	useEffect(() => {
 		window.addEventListener("resize", function () {
 			if (window.innerWidth > 1200) {
@@ -32,15 +53,14 @@ function ItemsComp() {
 			}
 		});
 		window.dispatchEvent(new Event('resize'));
+
+		const searchButton = document.querySelector(".search-button");
+		searchButton.addEventListener("click", handleSearch);
+		const searchInput = document.querySelector(".search-input");
+		searchInput.addEventListener("input", (e) => {
+			if (e.code === "Enter") handleSearch();
+		})
 	}, []);
-
-	async function loadBest({ page, pageSize, orderBy, keyword }) {
-		return await getProducts({ page, pageSize, orderBy, keyword });
-	}
-
-	async function loadItems({ page, pageSize, orderBy, keyword }) {
-		return await getProducts({ page, pageSize, orderBy, keyword });
-	}
 
 	useEffect(async () => {
 		const [isLoadingBest, errorLoadingBest, loadBestAsync] = useAsync(loadBest);
@@ -60,25 +80,12 @@ function ItemsComp() {
 		}
 	}, [pageBestSize, pageSize, pageNum, orderBy]);
 
-	useEffect(async () => {
-		const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync(loadItems);
-
-		try {
-			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
-			if (!result1) return;
-			setItems(result1.list);
-		}
-		catch (err) {
-			console.error(err);
-		}
-	}, [keyword]);
-
 	return (
 	<>
 		<Header/>
 		<main>
 			<BestItemsList bestItems={bestItems}/>
-			<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} pageNum={pageNum} setKeyword={setKeyword}/>
+			<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
 			<PageNum pageNum={pageNum} setPageNum={setPageNum}/>
 		</main>
 		<Footer/>
