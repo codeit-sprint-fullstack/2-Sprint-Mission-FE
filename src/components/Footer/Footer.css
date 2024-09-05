@@ -33,7 +33,7 @@
 /* Tablet 사이즈 */
 @media (max-width: 1199px) and (min-width: 744px) {
   .footer-contents {
-    padding: 1.5rem 2.4rem;             /* 좌우 여백 조정 */
+    padding: 1.5rem 2.4rem;            
   }
 }
 

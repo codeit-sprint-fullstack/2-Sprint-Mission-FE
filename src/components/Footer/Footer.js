@@ -17,17 +17,17 @@ function Footer() {
         </ul>
       </div>
       <div id="sns">
-        <a href="https://facebook.com" target="_blank">
-          <img src={FacebookIcon} />
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <img src={FacebookIcon} alt="Facebook" />
         </a>
-        <a href="https://twitter.com" target="_blank">
-          <img src={TwitterIcon} />
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <img src={TwitterIcon}  alt="Twitter" />
         </a>
-        <a href="https://youtube.com" target="_blank">
-          <img src={YoutubeIcon} />
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <img src={YoutubeIcon}  alt="Youtube" />
         </a>
-        <a href="https://instagram.com" target="_blank">
-          <img src={InstagramIcon} />
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <img src={InstagramIcon}  alt="Instagram" />
         </a>
       </div>
     </div>
