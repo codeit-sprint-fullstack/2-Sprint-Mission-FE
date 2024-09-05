@@ -1,4 +1,5 @@
 import '../css/ItemList.css';
+import img_default from '../assets/img/img_default.png';
 // import { getProductList } from '../api/ProductService';
 // import { useState, useEffect } from 'react';
 
@@ -31,7 +32,10 @@ export default function ItemList({ products }) {
 			{products.length > 0 ? (
           products.map((product) => (
             <div key={product.id} className='item'>
-              <img className='item-img' src={product.images} alt={product.name} />
+              <img className='item-img' 
+                src={product.images} 
+                alt={product.name}
+                onError={(e) => e.target.src = img_default} />
               <p className='item-name'>{product.name}</p>
               <p className='item-price'>{product.price}원</p>
               <p className='item-favoriteCount'>♡ {product.favoriteCount}</p>
