@@ -3,31 +3,34 @@ import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import { getProduct } from '../api';
 import ProductList from './ProductList';
+import PageBar from './PageBar';
+import ProductListBar from './ProductListBar';
+import BestProduct from './BestProduct';
 
 export default function App() {
   const [order, setOrder] = useState('createdAt');
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]); ///
 
   const sortedItems = items.sort((a, b) => b[order] - a[order]);
 
-  const handleNewestClick = () => setOrder('createdAt');
-  const handleBestClick = () => setOrder('favoriteCount');
+  const handleNewest = () => setOrder('createdAt');
+  const handleBest = () => setOrder('favoriteCount');
 
-  const handleLoad = async () => {
-    const { list } = await getProduct();
+  const handleLoad = async (options) => {
+    const { list } = await getProduct(options);
     setItems(list);
   };
 
   useEffect(() => {
-    handleLoad();
-  }, []);
+    handleLoad({ page: 1, pageSize: 10, order });
+  }, [order]);
 
   return (
     <div>
       <Header />
-      <button onClick={handleNewestClick}>최신순</button>
-      <button onClick={handleBestClick}>좋아요순</button>
+      <ProductListBar />
       <ProductList items={sortedItems} />
+      <PageBar />
       <Footer />
     </div>
   );

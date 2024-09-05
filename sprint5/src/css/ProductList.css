@@ -1,0 +1,49 @@
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+
+  width: 100%;
+
+  font-size: 16px;
+
+  color: #374151;
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+}
+
+.Products {
+    display: flex;
+    justify-content: center;
+
+    width: 1200px;
+}
+
+.ProductList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.ProductListItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.ProductListItem-img {
+    width: 220px;
+    height: 220px;
+    border-radius: 20px; 
+}
+
+.product-info {
+display: flex;
+flex-direction: column;
+}
+
+.ProductListItem span {
+font-size: 14px;
+font-weight: 500;
+line-height: 24px;
+text-align: left;
+}

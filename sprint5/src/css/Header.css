@@ -1,0 +1,76 @@
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+
+  width: 100%;
+
+  font-size: 16px;
+
+  color: #374151;
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    background-color: #ffffff;
+  }
+  
+  .top-bar {
+    /* 상단 네비게이션 바 */
+    position: relative;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    margin: 0 12.5rem;
+  
+    width: 100%;
+    max-width: 120rem;
+    height: 4.375rem;
+  }
+  
+  .top-bar-elements {
+    position: absolute;
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    padding: 0.5625rem 0;
+  
+    width: 100%;
+  }
+  
+  .site-logo {
+    /* 사이트 로고 */
+    width: 9.5625rem;
+    height: 3.1875rem;
+  }
+  .menu-left {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+  }
+
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+  .auth {
+    /* 로그인 버튼 */
+    background-color: #3292FF;
+    padding: 0.75rem 3.125rem;
+    border-radius: 0.5rem;
+  }
