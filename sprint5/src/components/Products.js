@@ -4,12 +4,12 @@ function CostFormat(amount) {
 
 function ProductList({ item }) {
   return (
-    <div>
+    <>
       <img className="productImg" src={item.images} alt={`the picture of ${item.title}`} />
       <p className="name">{item.name}</p>
       <p className="price"> {CostFormat(item.price)}원</p>
       <p className="like">♡ {item.favoriteCount}</p>
-    </div>
+    </>
   );
 }
 
@@ -20,10 +20,10 @@ function Products({ items }) {
   return (
     <div>
       <h1 className="header">판매 중인 상품</h1>
-      <ul>
+      <ul className="productsListing">
         {items.map((item) => {
           return (
-            <li key={item.id}>
+            <li className="productsContainer" key={item.id}>
               <ProductList item={item} />
             </li>
           );

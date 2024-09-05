@@ -9,21 +9,20 @@ export default function Footer() {
     { title: "FAQ", href: "/faq", id: "faq" },
   ];
   const socialMedia = [
-    { alt: "facebook Logo", src: facebook, href: "https://www.facebook.com/" },
-    { alt: "twitter Logo", src: twitter, href: "https://x.com/" },
-    { alt: "youtube Logo", src: youtube, href: "https://www.youtube.com/" },
-    { alt: "instagram Logo", src: instagram, href: "https://www.instagram.com/" },
+    { alt: "Facebook Logo", src: facebook, href: "https://www.facebook.com/" },
+    { alt: "Twitter Logo", src: twitter, href: "https://x.com/" },
+    { alt: "Youtube Logo", src: youtube, href: "https://www.youtube.com/" },
+    { alt: "Instagram Logo", src: instagram, href: "https://www.instagram.com/" },
   ];
 
   return (
     <footer>
-      <p>------------</p>
       <div>
-        <p>©codeit - 2024</p>
+        <p id="copyright">©codeit - 2024</p>
       </div>
       <div>
         {externalPages.map((page) => (
-          <a key={page.id} href={page.href}>
+          <a className="externalPage" key={page.id} href={page.href}>
             {page.title}
           </a>
         ))}
@@ -31,7 +30,7 @@ export default function Footer() {
       <div>
         {socialMedia.map((logo) => (
           <a key={logo.alt} href={logo.href}>
-            <img src={logo.src} alt={logo.alt}></img>
+            <img className="snsLogo" src={logo.src} alt={logo.alt}></img>
           </a>
         ))}
       </div>
