@@ -6,11 +6,18 @@ ul.items {
 }
 
 ul.items>li {
-	width: 19%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
+}
+
+ul.items.best>li {
+	width: 24%;
+}
+
+ul.items.normal>li {
+	width: 19%;
 }
 
 ul.items>li img {
