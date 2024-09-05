@@ -11,7 +11,7 @@ This is the first personal project mission for Codeit Full Stack SPRINT program.
 ### Files
 ***
 
-`HTML` `CSS` and *etc*.
+`HTML` `CSS` `JS` and *etc*.
 </br></br></br>
 
 ### Feature
@@ -19,8 +19,7 @@ This is the first personal project mission for Codeit Full Stack SPRINT program.
 
 | Requirements | Link |
 | :----------: | ---- |
-| Mission 1 | https://www.codeit.kr/topics/fs-sprint-mission-1/lessons/8733 |
-| Mission 2 | https://www.codeit.kr/topics/fs-sprint-mission-2/lessons/8732 |
+| Mission 1 | https://www.codeit.kr/topics/fs-sprint-mission-5/lessons/9019 |
 
 
 ### What I Learned
@@ -30,6 +29,8 @@ This is the first personal project mission for Codeit Full Stack SPRINT program.
 - HTML
 - CSS
 - GIT / VIM
+- JS
+- React
 ```
 
 </br></br></br>
