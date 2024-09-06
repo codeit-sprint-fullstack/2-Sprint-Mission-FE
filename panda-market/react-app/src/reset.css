@@ -150,7 +150,20 @@ img {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		flex-wrap: wrap;
 		margin: 6px 0;
+		width: 100%;
+		gap: 10px;
+	}
+
+	.head-row h2 {
+		flex-grow: 1;
+	}
+
+	.head-row .input-wrapper {
+		flex-grow: 1;
+		width: auto;
+		min-width: 90px;
 	}
 
 	.input-wrapper {

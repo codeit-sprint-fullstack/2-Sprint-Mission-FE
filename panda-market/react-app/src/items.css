@@ -19,12 +19,13 @@ section {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-bottom: var(--text-xl);
 }
 
 .items-head h2 {
 	font-size: var(--text-xl);
 	font-weight: 700;
-	margin: 0 0 var(--text-xl);
 }
 
 ul.items {
@@ -141,8 +142,8 @@ ul.items li img {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 40px;
-	height: 40px;
+	width: var(--text-4xl);
+	height: var(--text-4xl);
 	padding: 12.5px;
 	background-color: white;
 	color: var(--secondary-color-gray500);
