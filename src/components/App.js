@@ -5,37 +5,26 @@ import Footer from "./Footer/Footer.js";
 import { getProductList } from "../api/ProductService.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import test from '../api/test.js';
 
 function App() {
-  async function test() {
-    const params = {
-      page: 1,
-      pageSize: 4,
-      keyword: "",
-      orderBy: "updateAt",
-    };
-    const res = await axios("https://sprint-mission-api.vercel.app/products", {
-      params,
-    });
-    const data = res.data;
-    console.log(data);
-  }
-  test();
   const [bestList, setBestList] = useState([]);
   const [sellingList, setSellingList] = useState([]);
   const [order, setOrder] = useState("recent");
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
 
   const handleBestLoad = async (options) => {
-    const nextBestList = await getProductList(options);
-    setBestList(nextBestList);
+    const {list, totalCount} = await test(options);
+    setBestList(list);
   };
   const handleSellingLoad = async (options) => {
-    const nextSellingList = await getProductList(options);
-    setSellingList(nextSellingList);
+    const {list, totalCount} = await test(options);
+    setSellingList(list);
+    setTotalPage(totalCount);
   };
   const handleChangePage = async (pageValue) => {
-    setPage(pageValue);
+    setCurrentPage(pageValue);
     const options = {
       page: pageValue,
       pageSize: 10,
@@ -43,17 +32,28 @@ function App() {
     };
     handleSellingLoad(options);
   };
+
   useEffect(() => {
     handleBestLoad({ pageSize: 4, orderBy: "favoriteCount" });
-    handleSellingLoad({ page, pageSize: 10, orderBy: order });
-  }, [order, page]);
+    handleSellingLoad({ currentPage, pageSize: 10, orderBy: order });
+  }, [order, currentPage]);
+
+  const totalList = {
+    bestList,
+    sellingList,
+  };
+  const pageInfo={
+    currentPage,
+    totalPage,
+  };
+
   return (
     <>
       <Nav />
       <Contents
-        bestList={bestList}
-        sellingList={sellingList}
+        totalList={totalList}
         onChangePage={handleChangePage}
+        pageInfo = {pageInfo}
       />
       <Footer />
     </>

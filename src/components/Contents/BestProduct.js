@@ -5,7 +5,7 @@ function BestProduct({ name, price, image, favoriteCount, description }) {
     <div className="best-product">
       <img
         className="best-product-img"
-        src="https://imagecdn.skstoa.com/goods/422/26466422_g.jpg"
+        src={image}
       />
 
       <div className="best-product-info">

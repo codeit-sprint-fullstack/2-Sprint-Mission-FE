@@ -1,13 +1,13 @@
 import "./style/ProductsEntire.css";
 import BestProductsSection from "./BestProductsSection.js";
 import SellingProductsSection from "./SellingProductsSection.js";
-function ProductsEntire({ bestList, sellingList }) {
+function ProductsEntire({ totalList }) {
   return (
     <div id="products-entire">
-      <BestProductsSection bestList={bestList} />
+      <BestProductsSection bestList={totalList.bestList} />
       <SellingProductsSection
         id="selling-products-entire"
-        sellingList={sellingList}
+        sellingList={totalList.sellingList}
       />
     </div>
   );

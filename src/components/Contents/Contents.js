@@ -1,15 +1,14 @@
 import "./style/Contents.css";
 import ProductsEntire from "./ProductsEntire.js";
 import PageEntire from "./PageEntire.js";
-function Contents({ bestList, sellingList, onChangePage }) {
+function Contents({ totalList, onChangePage, pageInfo }) {
   return (
     <div id="contents">
       <ProductsEntire
         id="products-entire"
-        bestList={bestList}
-        sellingList={sellingList}
+        totalList={totalList}
       />
-      <PageEntire id="page-entire" onChangePage={onChangePage} />
+      <PageEntire id="page-entire" onChangePage={onChangePage} pageInfo={pageInfo}   />
     </div>
   );
 }

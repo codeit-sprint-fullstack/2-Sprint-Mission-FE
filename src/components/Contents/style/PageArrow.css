@@ -1,4 +1,4 @@
-#page-button {
+.arrow-button {
     width: 4rem;
     height: 4rem;
     border-radius: 4rem;
@@ -7,12 +7,4 @@
     font-weight: 600;
     line-height: 2.6rem;
     text-align: center;
-}
-.current-page{
-    background: #2F80ED;
-    color: #F9FAFB;
-
-}
-.not-current-page{
-    color: #6B7280;
 }
