@@ -1,0 +1,16 @@
+#product-list-header {
+    width: 100%;
+    height: 4.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+#search-sort-box {
+    height: 100%;
+    display: flex;
+}
+
+#search-box {
+    margin-right: 1.2rem;
+}

@@ -1,16 +1,17 @@
 import "./style/PageEntire.css";
 import PageButton from "./PageButton.js";
-function PageEntire() {
+function PageEntire({ onMoreLoad }) {
+  const buttonList = [1, 2, 3, 4, 5];
   return (
-    <div id="page-entire">
+    <ul id="page-entire">
       <PageButton>{"<"}</PageButton>
-      <PageButton>1</PageButton>
-      <PageButton>2</PageButton>
-      <PageButton>3</PageButton>
-      <PageButton>4</PageButton>
-      <PageButton>5</PageButton>
+      {buttonList.map((buttonPage) => (
+        <li key={buttonPage}>
+          <PageButton>{buttonPage}</PageButton>
+        </li>
+      ))}
       <PageButton>{">"}</PageButton>
-    </div>
+    </ul>
   );
 }
 export default PageEntire;

@@ -13,9 +13,15 @@ function validatePositiveInteger(data) {
 function isValid(value) {
   return value === undefined || value === "" || value === null;
 }
+
 export async function getProductList(params) {
   //page, pageSize, keyword 쿼리 파라미터를 이용해 주세요.
-  const { page = 1, pageSize = 10, keyword = "" } = params || {};
+  const {
+    page = 1,
+    pageSize = 10,
+    keyword = "",
+    orderBy = "createdAt",
+  } = params || {};
   if (!validatePositiveInteger(page)) {
     throw new Error("page는 양의 정수여야 합니다.");
   }
@@ -25,13 +31,15 @@ export async function getProductList(params) {
   const option = {
     page,
     pageSize,
-    pageSize,
+    keyword,
+    orderBy,
   };
 
-  const res = await instance.get("", params);
+  const res = await instance.get("", { params: option });
   const data = res.data;
   return data;
 }
+
 export async function getProduct(id) {
   if (!validatePositiveInteger(id)) {
     throw new Error("id는 양의 정수여야 합니다.");

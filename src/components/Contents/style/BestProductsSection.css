@@ -1,0 +1,7 @@
+#best-products-section {
+    width: 100%;
+    height: 42.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

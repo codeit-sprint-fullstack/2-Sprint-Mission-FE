@@ -1,5 +1,11 @@
 #products-entire {
     width: 120rem;
     height: 120.6rem;
-    border: 0.5rem solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#selling-products-entire {
+    margin-top: 4rem;
 }

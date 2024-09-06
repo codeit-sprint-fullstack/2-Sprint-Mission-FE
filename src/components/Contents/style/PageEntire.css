@@ -1,8 +1,7 @@
 #page-entire {
     width: 30.4rem;
     height: 4rem;
-    margin-top: 4.3rem;
-    margin-bottom: 14rem;
     display: flex;
     justify-content: space-between;
+    list-style: none;
 }
