@@ -42,8 +42,7 @@ header {
   z-index: 100;
   top: 0;
   background-color: white;
-  border-width: 0 0 1px;
-  border-color: var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 header .sub {
