@@ -1,21 +1,23 @@
-@import "./import.css";
-
-#productOnSaleTitle {
-  margin-bottom: 2.4rem;
+#productOnSale {
+  margin: 0 auto;
 }
 
 #productOnSaleItems {
   height: 67.4rem;
 
+  margin-top: 2.4rem;
+
   display: grid;
-  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2.4rem;
+  row-gap: 4rem;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
 
 #productOnSalePagination {
-  margin-top: 4.3rem;
-  margin-bottom: 5.8rem;
+  margin: 4.3rem auto 14rem;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------- */
@@ -25,8 +27,12 @@
   #productOnSaleItems {
     height: 82rem;
 
-    gap: 1.6rem;
+    column-gap: 1.6rem;
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  #productOnSalePagination {
+    margin-bottom: 16.5rem;
   }
 }
 
@@ -34,18 +40,21 @@
 
 /* Mobile */
 @media (max-width: 743px) {
-  #productOnSaleTitle {
-    margin-bottom: 1.6rem;
-  }
-
   #productOnSaleItems {
     height: 67.4rem;
 
-    gap: 0.8rem;
+    margin-top: 1.6rem;
+
+    column-gap: 0.8rem;
     grid-template-columns: repeat(2, 1fr);
   }
 
   .card.productOnSale .product-img {
-    max-width: 250px;
+    width: 16.8rem;
+    border-radius: 12px;
+  }
+
+  #productOnSalePagination {
+    margin-bottom: 13.5rem;
   }
 }

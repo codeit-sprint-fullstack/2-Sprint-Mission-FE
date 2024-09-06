@@ -1,6 +1,5 @@
 import '../css/Pagination.css';
 import { useCallback, useEffect, useState } from 'react';
-import PageButton from './PageButton';
 import { useViewport } from '../contexts/ViewportContext';
 import { ITEM_PAGE_SIZE } from './ProductsOnSale';
 
@@ -27,11 +26,13 @@ function Pagination({ totalCount, onPageChange }) {
   useEffect(() => {
     const newBundle = [];
     const head = (pBundle - 1) * BUNDLE_SIZE + 1;
+
     for (let i = 0; i < BUNDLE_SIZE; i++) {
       const page = head + i;
       if (page > totalPages) break;
       newBundle.push(page);
     }
+
     setBundle(newBundle);
     handlePageChange(head);
   }, [pBundle, totalPages, handlePageChange]);
@@ -47,7 +48,13 @@ function Pagination({ totalCount, onPageChange }) {
           &lt;
         </button>
         {bundle.map((p) => (
-          <PageButton value={p} key={p} now={now} onClick={handlePageChange} />
+          <button
+            key={p}
+            onClick={() => handlePageChange(p)}
+            className={p === now ? 'now' : ''}
+          >
+            {p}
+          </button>
         ))}
         <button
           id="pageAfter"

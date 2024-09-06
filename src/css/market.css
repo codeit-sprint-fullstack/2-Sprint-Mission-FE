@@ -1,5 +1,3 @@
-@import "import.css";
-
 h3 {
   font-weight: 700;
   font-size: 2rem;
@@ -8,7 +6,7 @@ h3 {
 }
 
 main {
-  padding: 0 clamp(16.66%, 36rem, 18.75%);
+  padding: 0 36rem;
 }
 
 #bestProducts {
@@ -19,14 +17,8 @@ main {
 
 /* Tablet */
 @media (max-width: 1199px) {
-  header,
   main {
-    padding-left: 2.4rem;
-    padding-right: 2.4rem;
-  }
-
-  #bestProducts {
-    max-width: 78rem;
+    padding: 0 2.4rem;
   }
 }
 
@@ -34,20 +26,11 @@ main {
 
 /* Mobile */
 @media (max-width: 743px) {
-  header,
-  main {
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
-  }
-
-  #topNav {
-    margin-left: 1.6rem;
-    gap: 0.8rem;
-    font-size: 1.6rem;
-    line-height: 1.909rem;
-  }
-
   #bestProducts {
     max-width: 36rem;
+  }
+
+  main {
+    padding: 0 1.6rem;
   }
 }

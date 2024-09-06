@@ -1,13 +1,11 @@
-@import "import.css";
-
 .card {
   display: grid;
   gap: 1.6rem;
-  grid-template-rows: 1fr 8rem;
+  grid-template-rows: 1fr auto;
 }
 
 .card .product-img {
-  width: 100%;
+  width: 22.1rem;
   aspect-ratio: 1/1;
 
   border-radius: 16px;
@@ -39,7 +37,7 @@
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.8rem;
-  color: #4b5563;
+  color: var(--gray-600);
 }
 
 /* ----------------------------------------------------------------------------------------------------------------- */
@@ -52,4 +50,8 @@
 
 /* Mobile */
 @media (max-width: 743px) {
+  .card .product-img {
+    width: 16.8rem;
+    border-radius: 12px;
+  }
 }

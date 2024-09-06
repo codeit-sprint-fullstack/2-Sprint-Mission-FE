@@ -1,5 +1,3 @@
-@import "./import.css";
-
 #bestProductsTitle {
   margin-bottom: 1.6rem;
 }
@@ -25,7 +23,8 @@
   }
 
   .card.bestItem .product-img {
-    max-width: 360px;
+    width: 343px;
+    border-radius: 19.46px;
   }
 }
 
