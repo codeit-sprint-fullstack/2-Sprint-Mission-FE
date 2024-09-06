@@ -1,14 +1,6 @@
 function PageNum({}) {
 	return (
-	<div>
-		<div className="page-num">&lt;</div>
-		<div className="page-num">1</div>
-		<div className="page-num">2</div>
-		<div className="page-num">3</div>
-		<div className="page-num">4</div>
-		<div className="page-num">5</div>
-		<div className="page-num">&gt;</div>
-	</div>
+	<div className="pagenation"><div className="disabled">&lt;</div><div className="selected">1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>&gt;</div></div>
 	);
 }
 

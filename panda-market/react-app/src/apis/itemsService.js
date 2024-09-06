@@ -5,38 +5,66 @@ const instance = axios.create({
 });
 
 async function getProducts(params = { page: 1, pageSize: 10, orderBy: "recent", keyword: "" }) {
-	const products = await instance.get(`/products`, {params});
-	return products;
+	try {
+		const products = await instance.get(`/products`, {params});
+		return products.data;
+	} catch (err) {
+		return err?.response?.data || err;
+	}
 }
 
 async function getProductWithId(id) {
-	const product = await instance.get(`/products/${id}`);
-	return product;
+	try {
+		const product = await instance.get(`/products/${id}`);
+		return product.data;
+	} catch (err) {
+		return err?.response?.data || err;
+	}
 }
 
 async function postProduct(data = { images: [], tags: [], price: 0, description: "", name: "" }) {
-	const resp = await instance.post(`/products`, data);
-	return resp;
+	try {
+		const resp = await instance.post(`/products`, data);
+		return resp.data;
+	} catch (err) {
+		return err?.response?.data || err;
+	}
 }
 
 async function patchProductWithId(id, data = {images, tags, price, description, name}) {
-	const resp = await instance.patch(`/products/${id}`, data);
-	return resp;
+	try {
+		const resp = await instance.patch(`/products/${id}`, data);
+		return resp.data;
+	} catch (err) {
+		return err?.response?.data || err;
+	}
 }
 
 async function deleteProductWithId(id) {
-	const resp = await instance.delete(`/products/${id}`);
-	return resp;
+	try {
+		const resp = await instance.delete(`/products/${id}`);
+		return resp.data;
+	} catch (err) {
+		return err?.response?.data || err;
+	}
 }
 
 async function putProductToFavorite(id) {
-	const resp = await instance.post(`/products/${id}/favorite`);
-	return resp;
+	try {
+		const resp = await instance.post(`/products/${id}/favorite`);
+		return resp.data;
+	} catch (err) {
+		return err?.response?.data || err;
+	}
 }
 
 async function deleteProductFromFavorite(id) {
-	const resp = await instance.delete(`/products/${id}/favorite`);
-	return resp;
+	try {
+		const resp = await instance.delete(`/products/${id}/favorite`);
+		return resp.data;
+	} catch (err) {
+		return err?.response?.data || err;
+	}
 }
 
 const itemsService = {
