@@ -20,7 +20,7 @@ export async function getProductList(params) {
     page = 1,
     pageSize = 10,
     keyword = "",
-    orderBy = "createdAt",
+    orderBy = "recent",
   } = params || {};
   if (!validatePositiveInteger(page)) {
     throw new Error("page는 양의 정수여야 합니다.");
@@ -34,7 +34,7 @@ export async function getProductList(params) {
     keyword,
     orderBy,
   };
-
+  //console.log(option);
   const res = await instance.get("", { params: option });
   const data = res.data;
   return data;
