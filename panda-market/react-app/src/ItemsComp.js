@@ -2,40 +2,41 @@ import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import useAsync from "./hooks/useAsync";
-import { getProducts } from "./apis/itemsService";
+import itemsService from "./apis/itemsService";
 import BestItemsList from "./BestItemsList";
 import ItemsList from "./ItemsList";
 import PageNum from "./PageNum";
 
+const loadBest = async function (params) { // * { page, pageSize, orderBy, keyword }
+	return await itemsService.getProducts(params);
+}
+
+const loadItems = async function (params) { // * { page, pageSize, orderBy, keyword }
+	return await itemsService.getProducts(params);
+}
+
 function ItemsComp() {
-	const [pageBestSize, setPageBestSize] = useState(1);
+	const [pageBestSize, setPageBestSize] = useState(4);
 	const [bestItems, setBestItems] = useState([]);
-	const [pageSize, setPageSize] = useState(2);
+	const [pageSize, setPageSize] = useState(10);
 	const [pageNum, setPageNum] = useState(1);
 	const [items, setItems] = useState([]);
 	const [orderBy, setOrderBy] = useState("recent");
 	const [keyword, setKeyword] = useState("");
+	const [isLoadingBest, errorLoadingBest, loadBestAsync] = useAsync(loadBest);
+	const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync(loadItems);
 
 	const handleSearch = async () => {
-		const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync(loadItems);
-
 		try {
 			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
 			if (!result1) return;
-			setItems(result1.list);
+			console.log(result1.data.list);
+			setItems(result1.data.list);
 		}
 		catch (err) {
 			console.error(err);
 		}
 	};
-
-	async function loadBest({ page, pageSize, orderBy, keyword }) {
-		return await getProducts({ page, pageSize, orderBy, keyword });
-	}
-
-	async function loadItems({ page, pageSize, orderBy, keyword }) {
-		return await getProducts({ page, pageSize, orderBy, keyword });
-	}
 
 	useEffect(() => {
 		window.addEventListener("resize", function () {
@@ -54,26 +55,29 @@ function ItemsComp() {
 		});
 		window.dispatchEvent(new Event('resize'));
 
-		const searchButton = document.querySelector(".search-button");
+		const searchButton = document.querySelector(".input-wrapper>img");
 		searchButton.addEventListener("click", handleSearch);
-		const searchInput = document.querySelector(".search-input");
+		const searchInput = document.querySelector(".input-wrapper>input");
 		searchInput.addEventListener("input", (e) => {
-			if (e.code === "Enter") handleSearch();
+			if (e.code === "Enter") {
+				e.preventDefault();
+				handleSearch();
+			}
 		})
 	}, []);
 
 	useEffect(async () => {
-		const [isLoadingBest, errorLoadingBest, loadBestAsync] = useAsync(loadBest);
-		const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync(loadItems);
-
 		try {
-			const result0 = await loadBestAsync({ page: (pageNum-1)*pageBestSize + 1, pageBestSize, orderBy: "favorite", keyword: "" });
+			console.log("pageBestSize", pageBestSize);
+			const result0 = await loadBestAsync({ page: (pageNum-1)*pageBestSize + 1, pageSize: pageBestSize, orderBy: "favorite", keyword: "" });
 			if (!result0) return;
-			setBestItems(result0.list);
+			console.log("Best Items: ", result0.data.list);
+			setBestItems(items => result0.data.list);
 
 			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
 			if (!result1) return;
-			setItems(result1.list);
+			console.log("Items: ", result1.data.list);
+			setItems(items => result1.data.list);
 		}
 		catch (err) {
 			console.error(err);
