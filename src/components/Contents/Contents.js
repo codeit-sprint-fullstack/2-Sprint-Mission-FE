@@ -1,7 +1,7 @@
 import "./style/Contents.css";
 import ProductsEntire from "./ProductsEntire.js";
 import PageEntire from "./PageEntire.js";
-function Contents({ bestList, sellingList, onMoreLoad }) {
+function Contents({ bestList, sellingList, onChangePage }) {
   return (
     <div id="contents">
       <ProductsEntire
@@ -9,7 +9,7 @@ function Contents({ bestList, sellingList, onMoreLoad }) {
         bestList={bestList}
         sellingList={sellingList}
       />
-      <PageEntire id="page-entire" onMoreLoad={onMoreLoad} />
+      <PageEntire id="page-entire" onChangePage={onChangePage} />
     </div>
   );
 }

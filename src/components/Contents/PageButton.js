@@ -1,5 +1,15 @@
 import "./style/PageButton.css";
-function PageButton({ children }) {
-  return <button id="page-button">{children}</button>;
+function PageButton({ buttonPage, onChangePage }) {
+  const handleChangePageClick = () => {
+    if (onChangePage) {
+      onChangePage(buttonPage);
+    }
+  };
+
+  return (
+    <button id="page-button" onClick={handleChangePageClick}>
+      {buttonPage}
+    </button>
+  );
 }
 export default PageButton;

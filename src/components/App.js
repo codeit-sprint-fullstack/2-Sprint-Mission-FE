@@ -19,10 +19,10 @@ function App() {
     const nextSellingList = await getProductList(options);
     setSellingList(nextSellingList);
   };
-  const handleSellingLoadMore = async (pageValue) => {
+  const handleChangePage = async (pageValue) => {
     setPage(pageValue);
     const options = {
-      page,
+      page: pageValue,
       pageSize: 10,
       orderBy: order,
     };
@@ -31,14 +31,14 @@ function App() {
   useEffect(() => {
     handleBestLoad({ pageSize: 4, orderBy: "favoriteCount" });
     handleSellingLoad({ page, pageSize: 10, orderBy: "createdAt" });
-  }, []);
+  }, [order, page]);
   return (
     <>
       <Nav />
       <Contents
         bestList={bestList}
         sellingList={sellingList}
-        onMoreLoad={handleSellingLoadMore}
+        onChangePage={handleChangePage}
       />
       <Footer />
     </>
