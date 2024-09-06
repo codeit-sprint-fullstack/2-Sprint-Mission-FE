@@ -1,13 +1,12 @@
 import instance from "./instance.js";
 
 // * params = {page, pageSize, keyword}
-const getArticleList = async ({page, pageSize, keyword}) => {
+const getArticleList = async (params = {page, pageSize, keyword}) => {
   try {
-    const res = await instance.get(`/articles`, {page, pageSize, keyword});
+    const res = await instance.get(`/articles`, {params});
     return res.data;
   } catch (err) {
-    console.log(err);
-    return err?.response || err;
+    return err?.response?.data || err;
   }
 };
 
@@ -16,8 +15,7 @@ const getArticle = async (id) => {
     const res = await instance.get(`/articles/${id}`);
     return res.data;
   } catch (err) {
-    console.log(err);
-    return err?.response || err;
+    return err?.response?.data || err;
   }
 };
 
@@ -28,31 +26,29 @@ data = {
   "image": "string"
 };
  */
-const createArticle = async ({title, content, image}) => {
+const createArticle = async (data = {title, content, image}) => {
   try {
-    const res = await instance.post(`/articles`, {title, content, image}, {
+    const res = await instance.post(`/articles`, data, {
       headers: {
         "Content-Type": "application/json",
       },
     });
     return res.data;
   } catch (err) {
-    console.log(err);
-    return err?.response || err;
+    return err?.response?.data || err;
   }
 };
 
-const patchArticle = async (id, {title, content, image}) => {
+const patchArticle = async (id, data = {title, content, image}) => {
   try {
-    const res = await instance.patch(`/articles/${id}`, {title, content, image}, {
+    const res = await instance.patch(`/articles/${id}`, data, {
       headers: {
         "Content-Type": "application/json",
       },
     });
     return res.data;
   } catch (err) {
-    console.log(err);
-    return err?.response || err;
+    return err?.response?.data || err;
   }
 };
 
@@ -61,10 +57,8 @@ const deleteArticle = async (id) => {
     const res = await instance.delete(`/articles/${id}`);
     return res.data;
   } catch (err) {
-    console.log(err);
-    return err?.response || err;
+    return err?.response?.data || err;
   }
-  return res.data;
 }
 
 const articleService = {
