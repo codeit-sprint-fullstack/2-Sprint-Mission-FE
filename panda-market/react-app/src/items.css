@@ -1,3 +1,20 @@
+main {
+	max-width: 1920px;
+	padding: 20px 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	gap: 20px;
+	background-color: white;
+}
+
+section {
+	max-width: 1200px;
+	width: 100%;
+	padding: 0;
+	margin: 0 auto;
+}
+
 ul.items {
 	list-style-type: none;
 	display: flex;
@@ -21,5 +38,27 @@ ul.items.normal>li {
 }
 
 ul.items>li img {
+	width: 100%;
 	aspect-ratio: 1 / 1;
+	border-radius: 16px;
+}
+
+.input-wrapper {
+	position: relative;
+	height: 43px;
+	width: 325px;
+}
+
+.input-wrapper>img {
+	position: absolute;
+	left: 20px;
+	top: 14px;
+	bottom: 14px;
+	width: 17px;
+}
+
+.input-wrapper>input {
+	position: absolute;
+	inset: 0;
+	border-radius: 12px;
 }
