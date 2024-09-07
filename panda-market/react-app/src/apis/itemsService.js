@@ -31,7 +31,8 @@ async function postProduct(data = { images: [], tags: [], price: 0, description:
 	}
 }
 
-async function patchProductWithId(id, data = {images, tags, price, description, name}) {
+// * = {images, tags, price, description, name}
+async function patchProductWithId(id, data) {
 	try {
 		const resp = await instance.patch(`/products/${id}`, data);
 		return resp.data;
@@ -67,7 +68,7 @@ async function deleteProductFromFavorite(id) {
 	}
 }
 
-const itemsService = {
+export {
 	getProducts,
 	getProductWithId,
 	postProduct,
@@ -76,5 +77,3 @@ const itemsService = {
 	putProductToFavorite,
 	deleteProductFromFavorite
 };
-
-export default itemsService;
