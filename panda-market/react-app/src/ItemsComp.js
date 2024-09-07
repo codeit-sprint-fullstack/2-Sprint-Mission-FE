@@ -35,12 +35,19 @@ function ItemsComp() {
 			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
 			console.log(result1);
 			if (!result1) return;
-			setItems(result1.list);
+			setItems([...result1.list]);
 		}
 		catch (err) {
 			console.error(err);
 		}
 	}, [pageNum, pageSize, orderBy, keyword]);
+
+	const handleSearchInput = useCallback((e) => {
+		if (e.code === "Enter") {
+			e.preventDefault();
+			handleSearch();
+		}
+	}, []);
 
 	useEffect(() => {
 		console.log(`useEffect with dependancy []`);
@@ -63,14 +70,11 @@ function ItemsComp() {
 		const searchButton = document.querySelector(".input-wrapper img");
 		searchButton.addEventListener("click", handleSearch);
 		const searchInput = document.querySelector(".input-wrapper input");
-		searchInput.addEventListener("input", (e) => {
-			if (e.code === "Enter") {
-				e.preventDefault();
-				handleSearch();
-			}
-		});
+		searchInput.addEventListener("input", handleSearchInput);
 
 		return () => {
+			searchButton.removeEventListener("click", handleSearch);
+			searchInput.removeEventListener("input", handleSearchInput);
 			console.log(`[] unmounted.`);
 		};
 	}, []);
@@ -78,26 +82,24 @@ function ItemsComp() {
 	useEffect(async () => {
 		console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`);
 		try {
-			console.log("pageBestSize", pageBestSize);
 			const result0 = await loadBestAsync({ page: (pageNum-1)*pageBestSize + 1, pageSize: pageBestSize, orderBy: "favorite", keyword: "" });
+			console.log('result0', result0);
 			if (!result0) return;
-			console.log("Best Items: ", result0);
 
 			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
+			console.log('result1', result1);
 			if (!result1) return;
-			console.log("Items: ", result1);
 
-			setBestItems(result0.list);
-			setItems(result1.list);
+			setBestItems([...result0.list]);
+			setItems([...result1.list]);
 		}
 		catch (err) {
 			console.error(err);
 		}
 
 		return () => {
-			console.log(`[pageBestSize, pageSize, pageNum, orderBy] unmounted..`);
-			setBestItems([]);
-			setItems([]);
+			console.log(`[pageBestSize, pageSize, pageNum, orderBy] unmounted.
+			`);
 		};
 	}, [pageBestSize, pageSize, pageNum, orderBy]);
 
