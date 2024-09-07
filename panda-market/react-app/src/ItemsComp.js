@@ -42,34 +42,8 @@ function ItemsComp() {
 		}
 	}, [pageNum, pageSize, orderBy, keyword]);
 
-	const centerize = useCallback(async (pageN, pagenation) => {
-		setPageNum(pageN);
-		// const pagenation = document.getElementsByClassName("pagenation")[0];
-		if (pageN <= 1) {
-			pagenation.innerHTML = `<div class="disabled">&lt;</div><div class="selected">1</div>${pageNumMax < 2 ? "" : `<div>2</div>`}${pageNumMax < 3 ? "" : `<div>3</div>`}${pageNumMax < 4 ? "" : `<div>4</div>`}${pageNumMax < 5 ? "" : `<div>5</div>`}<div${pageNumMax <= 5 ? ` class="disabled"` : ""}>&gt;</div$>`;
-		}
-		else if (pageN <= pageNumMax && pageN === 2) {
-			pagenation.innerHTML = `<div class="disabled">&lt;</div><div>1</div><div class="selected">2</div>${pageNumMax < 3 ? "" : `<div>3</div>`}${pageNumMax < 4 ? "" : `<div>4</div>`}${pageNumMax < 5 ? "" : `<div>5</div>`}<div${pageNumMax <= 5 ? ` class="disabled"` : ""}>&gt;</div$>`;
-		}
-		else if (pageN <= pageNumMax && pageN === 3) {
-			pagenation.innerHTML = `<div class="disabled">&lt;</div><div>1</div><div>2</div><div class="selected">3</div>${pageNumMax < 4 ? "" : `<div>4</div>`}${pageNumMax < 5 ? "" : `<div>5</div>`}<div${pageNumMax <= 5 ? ` class="disabled"` : ""}>&gt;</div$>`;
-		}
-		else if (pageN < pageNumMax - 2 && pageN > 3) {
-			pagenation.innerHTML = `<div>&lt;</div><div>${pageN - 2}</div><div>${pageN - 1}</div><div class="selected">${pageN}</div><div>${pageN + 1}</div><div>${pageN + 2}</div><div>&gt;</div>`;
-		}
-		else if (pageN === pageNumMax - 2) {
-			pagenation.innerHTML = `<div>&lt;</div><div>${pageN - 2}</div><div>${pageN - 1}</div><div class="selected">${pageN}</div><div>${pageN + 1}</div><div>${pageN + 2}</div><div class="disabled">&gt;</div>`;
-		}
-		else if (pageN === pageNumMax - 1) {
-			pagenation.innerHTML = `<div>&lt;</div><div>${pageN - 3}</div><div>${pageN - 2}</div><div>${pageN - 1}</div><div class="selected">${pageN}</div><div>${pageN + 1}</div><div class="disabled">&gt;</div>`;
-		}
-		else if (pageN >= pageNumMax) {
-			pagenation.innerHTML = `<div>&lt;</div><div>${pageNumMax - 4}</div><div>${pageNumMax - 3}</div><div>${pageNumMax - 2}</div><div>${pageNumMax - 1}</div><div class="selected">${pageNumMax}</div><div class="disabled">&gt;</div>`;
-		}
-	}, [pageNumMax, pageNum]);
-
 	useEffect(() => {
-		console.log(`useEffect with dependancy []`, document.querySelector("#root").innerHTML);
+		console.log(`useEffect with dependancy []`);
 		window.addEventListener("resize", function () {
 			if (window.innerWidth > 1200) {
 				setPageBestSize(4);
@@ -95,26 +69,6 @@ function ItemsComp() {
 				handleSearch();
 			}
 		});
-		const pagenation = document.querySelector(".pagenation");
-		pagenation.addEventListener("click", (event) => {
-			const pages = document.querySelectorAll(".pagenation>div");
-			const target = event.target;
-			const pageN = Number(target.innerText);
-			if (isNaN(pageN)) {
-				if (!target.classList.contains("disabled")) {
-					if (target.innerText === "&lt;" || target.innerText === "<") {
-						centerize(Number(pages[1].innerText) - 1);
-					}
-					else if (target.innerText === "&gt;" || target.innerText === ">") {
-						centerize(Number(pages[5].innerText) + 1);
-					}
-				}
-			}
-			else {
-				centerize(pageN);
-			}
-		});
-		centerize(pageNum);
 
 		return () => {
 			console.log(`[] unmounted.`);
@@ -122,7 +76,7 @@ function ItemsComp() {
 	}, []);
 
 	useEffect(async () => {
-		console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`, document.querySelector("#root").innerHTML);
+		console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`);
 		try {
 			console.log("pageBestSize", pageBestSize);
 			const result0 = await loadBestAsync({ page: (pageNum-1)*pageBestSize + 1, pageSize: pageBestSize, orderBy: "favorite", keyword: "" });
@@ -135,7 +89,6 @@ function ItemsComp() {
 
 			setBestItems(result0.list);
 			setItems(result1.list);
-			centerize(pageNum);
 		}
 		catch (err) {
 			console.error(err);
@@ -154,7 +107,7 @@ function ItemsComp() {
 		<main>
 			<BestItemsList bestItems={bestItems}/>
 			<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
-			<PageNum pageNum={pageNum} setPageNum={setPageNum}/>
+			<PageNum pageNum={pageNum} setPageNum={setPageNum} pageNumMax={pageNumMax}/>
 		</main>
 		<Footer/>
 	</div>);
