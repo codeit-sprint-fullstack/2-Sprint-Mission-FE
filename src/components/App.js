@@ -11,6 +11,7 @@ function App() {
   const [bestList, setBestList] = useState([]);
   const [sellingList, setSellingList] = useState([]);
   const [order, setOrder] = useState("recent");
+  const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
@@ -40,10 +41,11 @@ function App() {
   const handleChangeOrder = (chosenOrder) => {
     setOrder(chosenOrder);
   }
+  const handleChangeKeyword = (inputKeyword) => setKeyword(inputKeyword);
   useEffect(() => {
     handleBestLoad({ pageSize: 4, orderBy: "favoriteCount" });
-    handleSellingLoad({ page: currentPage, pageSize: 10, orderBy: order });
-  }, [order, currentPage]);
+    handleSellingLoad({ page: currentPage, pageSize: 10, orderBy: order, keyword, });
+  }, [order, currentPage, keyword]);
 
   const totalList = {
     bestList,
@@ -62,6 +64,7 @@ function App() {
         pageInfo={pageInfo}
         onChangePage={handleChangePage}
         onChangeOrder={handleChangeOrder}
+        onChangeKeyword={handleChangeKeyword}
       />
       <Footer />
     </>
