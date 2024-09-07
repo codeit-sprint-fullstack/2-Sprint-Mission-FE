@@ -12,14 +12,11 @@
 }
 
 #search-box {
-    margin-right: 1.2rem;
-}
-
-#search-box {
     width: 47rem;
     height: 100%;
     display: flex;
     justify-content: space-between;
+    margin-right: 1.2rem;
 }
 
 #register-btn {
@@ -41,4 +38,10 @@
     padding: 0.9rem 2rem;
     border-radius: 1.2rem;
     background: #F3F4F6;
+}
+
+#search-sort-box {
+    width: 61.2rem;
+    height: 100%;
+    display: flex;
 }
