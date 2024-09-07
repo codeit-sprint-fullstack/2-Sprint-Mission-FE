@@ -15,13 +15,13 @@ function App() {
   const [totalPage, setTotalPage] = useState(0);
 
   const handleBestLoad = async (options) => {
-    const {list, totalCount} = await test(options);
+    const { list, totalCount } = await test(options);
     setBestList(list);
   };
   const handleSellingLoad = async (options) => {
-    const {list, totalCount} = await test(options);
+    const { list, totalCount } = await test(options);
     setSellingList(list);
-    const nextTotalPage = Math.ceil(totalCount/(options.pageSize));
+    const nextTotalPage = Math.ceil(totalCount / (options.pageSize));
     setTotalPage(nextTotalPage);
   };
   const handleChangePage = async (pageValue) => {
@@ -40,14 +40,14 @@ function App() {
 
   useEffect(() => {
     handleBestLoad({ pageSize: 4, orderBy: "favoriteCount" });
-    handleSellingLoad({page: currentPage, pageSize: 10, orderBy: order });
+    handleSellingLoad({ page: currentPage, pageSize: 10, orderBy: order });
   }, [order, currentPage]);
 
   const totalList = {
     bestList,
     sellingList,
   };
-  const pageInfo={
+  const pageInfo = {
     currentPage,
     totalPage,
   };
@@ -58,7 +58,7 @@ function App() {
       <Contents
         totalList={totalList}
         onChangePage={handleChangePage}
-        pageInfo = {pageInfo}
+        pageInfo={pageInfo}
       />
       <Footer />
     </>

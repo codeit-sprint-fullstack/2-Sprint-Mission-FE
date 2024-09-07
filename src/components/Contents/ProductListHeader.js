@@ -6,7 +6,7 @@ function ProductListHeader() {
   return (
     <div id="product-list-header">
       <CategoryTitle>판매 중인 상품</CategoryTitle>
-      <div id="search-sort-box">
+      <div className="layout-container">
         <SearchBox id="search-box" />
         <SortSelector />
       </div>
