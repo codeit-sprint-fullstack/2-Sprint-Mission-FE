@@ -18,13 +18,23 @@ function PageEntire({ onChangePage, pageInfo }) {
     }else return false;
   }
   const handleNextPageGroup = ()=>{
-    setButtonList(prevButtonList=>{
+    setButtonList(prevButtonList=>
       prevButtonList.map(pageValue=> pageValue+5)
-    })
+    )
   };
+  const handlePrevPageGroup=()=>{
+    setButtonList(prevButtonList=>{
+      if(prevButtonList[0] === 1){
+        return prevButtonList
+      }else{
+        return prevButtonList.map(pageValue=> pageValue-5)
+      }
+    }
+    )
+  }
   return (
     <ul id="page-entire">
-      <PageArrow>{'<'}</PageArrow>
+      <PageArrow onChangePageGroup={handlePrevPageGroup}>{'<'}</PageArrow>
       {buttonList.map((buttonPage) => (
           showPage(buttonPage)&&<li key={buttonPage}>
         <PageButton buttonPage={buttonPage} onChangePage={onChangePage} pageInfo={pageInfo}>
