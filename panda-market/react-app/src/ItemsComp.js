@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Footer from "./Footer.js";
 import Header from "./Header.js";
 import useAsync from "./hooks/useAsync.js";
@@ -23,13 +23,14 @@ function ItemsComp() {
 	const [bestItems, setBestItems] = useState([]);
 	const [pageSize, setPageSize] = useState(initialPageSize);
 	const [pageNum, setPageNum] = useState(1);
+	const [pageNumMax, setPageNumMax] = useState(10); // TODO: find pageNumMax from loadItemsAsync data.
 	const [items, setItems] = useState([]);
 	const [orderBy, setOrderBy] = useState("recent");
 	const [keyword, setKeyword] = useState("");
 	const [isLoadingBest, errorLoadingBest, loadBestAsync] = useAsync(loadBest);
 	const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync(loadItems);
 
-	const handleSearch = async () => {
+	const handleSearch = useCallback(async () => {
 		try {
 			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
 			console.log(result1);
@@ -39,12 +40,11 @@ function ItemsComp() {
 		catch (err) {
 			console.error(err);
 		}
-	};
+	}, [pageNum, pageSize, orderBy, keyword]);
 
-	let pageNumMax = 10; // TODO: find pageNumMax from loadItemsAsync data.
-	const centerize = async (pageN) => {
+	const centerize = useCallback(async (pageN, pagenation) => {
 		setPageNum(pageN);
-		const pagenation = document.querySelector(".pagenation");
+		// const pagenation = document.getElementsByClassName("pagenation")[0];
 		if (pageN <= 1) {
 			pagenation.innerHTML = `<div class="disabled">&lt;</div><div class="selected">1</div>${pageNumMax < 2 ? "" : `<div>2</div>`}${pageNumMax < 3 ? "" : `<div>3</div>`}${pageNumMax < 4 ? "" : `<div>4</div>`}${pageNumMax < 5 ? "" : `<div>5</div>`}<div${pageNumMax <= 5 ? ` class="disabled"` : ""}>&gt;</div$>`;
 		}
@@ -66,7 +66,7 @@ function ItemsComp() {
 		else if (pageN >= pageNumMax) {
 			pagenation.innerHTML = `<div>&lt;</div><div>${pageNumMax - 4}</div><div>${pageNumMax - 3}</div><div>${pageNumMax - 2}</div><div>${pageNumMax - 1}</div><div class="selected">${pageNumMax}</div><div class="disabled">&gt;</div>`;
 		}
-	};
+	}, [pageNumMax, pageNum]);
 
 	useEffect(() => {
 		console.log(`useEffect with dependancy []`, document.querySelector("#root").innerHTML);
