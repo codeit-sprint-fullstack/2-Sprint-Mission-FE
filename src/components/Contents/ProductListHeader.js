@@ -1,7 +1,7 @@
 import CategoryTitle from "./CategoryTitle.js";
 import "./style/ProductListHeader.css";
 import SortSelector from "./SortSelector.js";
-function ProductListHeader() {
+function ProductListHeader({ onChangeOrder }) {
   return (
     <div id="product-list-header">
 
@@ -11,7 +11,7 @@ function ProductListHeader() {
           <input id="search-input"></input>
           <button id="register-btn">상품 등록하기</button>
         </div>
-        <SortSelector />
+        <SortSelector onChangeOrder={onChangeOrder} />
       </div>
 
     </div>

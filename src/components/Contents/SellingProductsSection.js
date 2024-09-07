@@ -2,10 +2,10 @@ import "./style/SellingProductsSection.css";
 import CategoryTitle from "./CategoryTitle.js";
 import ProductListHeader from "./ProductListHeader.js";
 import SellingProductList from "./SellingProductList.js";
-function SellingProductsSection({ sellingList }) {
+function SellingProductsSection({ sellingList, onChangeOrder }) {
   return (
     <div id="selling-product-section">
-      <ProductListHeader />
+      <ProductListHeader onChangeOrder={onChangeOrder} />
       <SellingProductList sellingList={sellingList} />
     </div>
   );

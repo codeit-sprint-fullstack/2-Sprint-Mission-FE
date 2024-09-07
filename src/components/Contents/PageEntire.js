@@ -15,6 +15,7 @@ function PageEntire({ onChangePage, pageInfo }) {
     } else {
       setButtonList([1, 2, 3, 4, 5]);
     }
+
   }, [currentPage, totalPage]);
   const showPage = (buttonPage) => {
     if (buttonPage <= totalPage) {
@@ -29,7 +30,6 @@ function PageEntire({ onChangePage, pageInfo }) {
         return prevButtonList.map(pageValue => pageValue + 5)
       }
     }
-
     )
   };
   const handlePrevPageGroup = () => {

@@ -37,7 +37,9 @@ function App() {
     console.log(`orderyBy: ${options.orderBy}`);
     console.log(`totalPage: ${totalPage}`);
   };
-
+  const handleChangeOrder = (chosenOrder) => {
+    setOrder(chosenOrder);
+  }
   useEffect(() => {
     handleBestLoad({ pageSize: 4, orderBy: "favoriteCount" });
     handleSellingLoad({ page: currentPage, pageSize: 10, orderBy: order });
@@ -57,8 +59,9 @@ function App() {
       <Nav />
       <Contents
         totalList={totalList}
-        onChangePage={handleChangePage}
         pageInfo={pageInfo}
+        onChangePage={handleChangePage}
+        onChangeOrder={handleChangeOrder}
       />
       <Footer />
     </>
