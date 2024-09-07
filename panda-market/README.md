@@ -19,26 +19,27 @@
 
 #### 중고마켓 페이지
 
-- [ ]  PC, Tablet, Mobile 디자인에 해당하는 중고마켓 페이지를 만들어 주세요.
+- [x]  PC, Tablet, Mobile 디자인에 해당하는 중고마켓 페이지를 만들어 주세요.
 
-- [ ]  중고마켓 페이지 url path는 별도로 설정하지 않고, ‘/’에 보이도록 합니다.
+- [x]  중고마켓 페이지 url path는 별도로 설정하지 않고, ‘/’에 보이도록 합니다.
 
 // /items 에 보이도록 만들겠습니다. / 는 home index.html 로 /login, /signup, /faq, /privacy 정도까지 페이지 나오도록 만들겁니다.
+// https://panda-market-by-kipid.netlify.app/items/ 에 배포했습니다.
 
 
 
-- [ ]  상품 데이터는 https://panda-market-api.vercel.app/docs/ 에 명세된 GET 메소드 “/products” 를 사용해주세요.
+- [x]  상품 데이터는 https://panda-market-api.vercel.app/docs/ 에 명세된 GET 메소드 “/products” 를 사용해주세요.
 
-- [ ]  상단 네비게이션 바, 푸터는 랜딩 페이지와 동일한 스타일과 규칙으로 만들어주세요.
+- [x]  상단 네비게이션 바, 푸터는 랜딩 페이지와 동일한 스타일과 규칙으로 만들어주세요.
 
-- [ ]  상품 데이터는 https://panda-market-api.vercel.app/docs/ 에 명세된 GET 메소드 “/products” 를 활용해주세요.
+- [x]  상품 데이터는 https://panda-market-api.vercel.app/docs/ 에 명세된 GET 메소드 “/products” 를 활용해주세요.
 
-	- [ ] 상품 목록 페이지네이션 기능을 구현합니다.
-	- [ ] 드롭 다운으로 “최신 순” 또는 “좋아요 순”을 선택해서 정렬을 구현하세요.
+	- [x] 상품 목록 페이지네이션 기능을 구현합니다.
+	- [x] 드롭 다운으로 “최신 순” 또는 “좋아요 순”을 선택해서 정렬을 구현하세요.
 	// <select><option value=""></option></select> 사용해야 할듯.
-	- [ ] 상품 목록 검색 기능을 구현합니다.
+	- [x] 상품 목록 검색 기능을 구현합니다.
 
-- [ ]  베스트 상품 데이터는 https://panda-market-api.vercel.app/docs/ 에 명세된 GET 메소드 “/products”의 정렬 기준 favorite을 사용해주세요.
+- [x]  베스트 상품 데이터는 https://panda-market-api.vercel.app/docs/ 에 명세된 GET 메소드 “/products”의 정렬 기준 favorite을 사용해주세요.
 
 
 
@@ -46,7 +47,7 @@
 
 #### 공통
 
-- [ ] 커스텀 hook을 만들어 필요한 곳에 활용해 보세요.
+- [x] 커스텀 hook을 만들어 필요한 곳에 활용해 보세요.
 
 // useAsync hook 을 사용해 볼 예정.
 
@@ -54,7 +55,7 @@
 
 #### 중고마켓 페이지
 
-- [ ] 중고 마켓의 카드 컴포넌트 반응형 기준은 다음과 같습니다.
+- [x] 중고 마켓의 카드 컴포넌트 반응형 기준은 다음과 같습니다.
 	- 베스트 상품
 		- Desktop : 4열 {page: 4*pageNum, pageSize: 4, orderBy: "favorite"}
 		- Tablet : 2열 {page: 2*pageNum, pageSize: 2, orderBy: "favorite"}
