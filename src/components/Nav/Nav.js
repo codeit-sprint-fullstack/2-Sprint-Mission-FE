@@ -1,11 +1,11 @@
-import GnbLogoImg from '../assets/images/logo_gnb.png';
-import GnbLogoImgMobile from '../assets/images/logo_gnb_m.png';
-import UserProfileImg from '../assets/images/user_profile.png';
-import './Gnb.css';
+import GnbLogoImg from '../../assets/images/logo_gnb.png';
+import GnbLogoImgMobile from '../../assets/images/logo_gnb_m.png';
+import UserProfileImg from '../../assets/images/user_profile.png';
+import './Nav.css';
 
-function Gnb() {
+function Nav() {
   return (
-    <header className="gnb-wrapper">
+  <div className="gnb-wrapper">
     <div className="gnb">
       <div className="gnb__logo">
         <a href="/">
@@ -28,8 +28,8 @@ function Gnb() {
         </div>
       </div>
     </div>
-  </header>    
+  </div>    
   )
 }
 
-export default Gnb;
+export default Nav;

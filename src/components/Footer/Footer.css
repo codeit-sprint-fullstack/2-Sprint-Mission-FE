@@ -41,10 +41,11 @@
 @media (max-width: 743px) {
   .footer-contents {
     display: flex;
-    flex-wrap: wrap;                    
+    flex-wrap: wrap;
+    width: 100%;                    
     justify-content: space-between; 
     align-items: center;
-    padding: 2rem 1.6rem; 
+    padding: 2rem 1.6rem;
   }
 
   #privacy-faq, #sns {

@@ -1,10 +1,10 @@
-import BestProducts from './BestProducts';
+import BestProductList from './BestProductList';
 import './ProductMain.css';
 
 function ProductMain() {
   return (
     <div className="product-main">
-      <BestProducts />
+      <BestProductList />
     </div>
   );
 }

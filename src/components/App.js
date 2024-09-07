@@ -1,12 +1,12 @@
 import './App.css';
-import Gnb from './Gnb/Gnb';
+import Nav from './Nav/Nav';
 import Footer from './Footer/Footer';
 import ProductMain from './ProductMain/ProductMain';
 
 function App() {
   return (
     <div className="App">
-      <Gnb />
+      <Nav />
       <main className="content with-header">
         <ProductMain />
       </main>

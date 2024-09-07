@@ -15,9 +15,9 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 192rem;
+  max-width: 120rem;
   height: 7rem;
-  padding: 0 20rem;
+  padding: 0;
 }
 
 .gnb-logo-desktop {
@@ -38,7 +38,7 @@
 .gnb__nav-list {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1rem;
   margin: 0;
   padding: 0;
 }
@@ -112,17 +112,23 @@
 
 /* Mobile 사이즈 */
 @media (max-width: 743px) {
-  .gnb {
+
+  .gnb{
+    width: 100%;      
     padding: 0 1.6rem;
   }
 
+  .gnb__nav {
+    width: 100%;
+    margin: 0 1rem;
+    padding: 0;
+  }
   .gnb__nav-list li a {
     font-size: 1.6rem;
   }
   .gnb-logo-desktop {
     display: none;
   }
-
   .gnb-logo-mobile {
     display: block;
     width: 8.1rem;
