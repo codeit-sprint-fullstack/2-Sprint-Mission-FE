@@ -42,6 +42,7 @@ ul.items li {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
+	gap: 8px;
 	margin-bottom: 30px;
 }
 
@@ -64,7 +65,7 @@ ul.items li .favorite-count {
 }
 
 ul.items li .favorite-count .heart {
-	font-size: 1.6em;
+	font-size: 1.3em;
 }
 
 ul.items.best li {

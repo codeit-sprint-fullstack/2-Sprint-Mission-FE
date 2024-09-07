@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import PopUp from "./PopUp";
-import USER_DATA from "./scripts/data";
+import PopUp from "./PopUp.js";
+import USER_DATA from "./scripts/data.js";
 
 function LogInComp() {
 	useEffect(() => {

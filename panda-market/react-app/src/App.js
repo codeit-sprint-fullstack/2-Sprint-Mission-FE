@@ -1,6 +1,6 @@
-import Header from "./Header";
-import HomeMain from "./HomeMain";
-import Footer from "./Footer";
+import Header from "./Header.js";
+import HomeMain from "./HomeMain.js";
+import Footer from "./Footer.js";
 import { useEffect } from "react";
 
 function App() {

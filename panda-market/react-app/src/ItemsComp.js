@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Footer from "./Footer";
-import Header from "./Header";
-import useAsync from "./hooks/useAsync";
-import itemsService from "./apis/itemsService";
-import BestItemsList from "./BestItemsList";
-import ItemsList from "./ItemsList";
-import PageNum from "./PageNum";
+import Footer from "./Footer.js";
+import Header from "./Header.js";
+import useAsync from "./hooks/useAsync.js";
+import itemsService from "./apis/itemsService.js";
+import BestItemsList from "./BestItemsList.js";
+import ItemsList from "./ItemsList.js";
+import PageNum from "./PageNum.js";
 
 const loadBest = async function (params) { // * { page, pageSize, orderBy, keyword }
 	return await itemsService.getProducts(params);
@@ -43,6 +43,7 @@ function ItemsComp() {
 
 	let pageNumMax = 10; // TODO: find pageNumMax from loadItemsAsync data.
 	const centerize = async (pageN) => {
+		setPageNum(pageN);
 		const pagenation = document.querySelector(".pagenation");
 		if (pageN <= 1) {
 			pagenation.innerHTML = `<div class="disabled">&lt;</div><div class="selected">1</div>${pageNumMax < 2 ? "" : `<div>2</div>`}${pageNumMax < 3 ? "" : `<div>3</div>`}${pageNumMax < 4 ? "" : `<div>4</div>`}${pageNumMax < 5 ? "" : `<div>5</div>`}<div${pageNumMax <= 5 ? ` class="disabled"` : ""}>&gt;</div$>`;
@@ -68,6 +69,7 @@ function ItemsComp() {
 	};
 
 	useEffect(() => {
+		console.log(`useEffect with dependancy []`, document.querySelector("#root").innerHTML);
 		window.addEventListener("resize", function () {
 			if (window.innerWidth > 1200) {
 				setPageBestSize(4);
@@ -113,9 +115,14 @@ function ItemsComp() {
 			}
 		});
 		centerize(pageNum);
+
+		return () => {
+			console.log(`[] unmounted.`);
+		};
 	}, []);
 
 	useEffect(async () => {
+		console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`, document.querySelector("#root").innerHTML);
 		try {
 			console.log("pageBestSize", pageBestSize);
 			const result0 = await loadBestAsync({ page: (pageNum-1)*pageBestSize + 1, pageSize: pageBestSize, orderBy: "favorite", keyword: "" });
@@ -133,10 +140,16 @@ function ItemsComp() {
 		catch (err) {
 			console.error(err);
 		}
+
+		return () => {
+			console.log(`[pageBestSize, pageSize, pageNum, orderBy] unmounted..`);
+			setBestItems([]);
+			setItems([]);
+		};
 	}, [pageBestSize, pageSize, pageNum, orderBy]);
 
 	return (
-	<>
+	<div>
 		<Header/>
 		<main>
 			<BestItemsList bestItems={bestItems}/>
@@ -144,7 +157,7 @@ function ItemsComp() {
 			<PageNum pageNum={pageNum} setPageNum={setPageNum}/>
 		</main>
 		<Footer/>
-	</>);
+	</div>);
 }
 
 export default ItemsComp;
