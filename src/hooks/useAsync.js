@@ -1,8 +1,10 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
+import { useSetError } from '../contexts/ErrorContext';
+import { useSetPending } from '../contexts/PendingContext';
 
 function useAsync(asyncFunc) {
-  const [pending, setPending] = useState(false);
-  const [err, setErr] = useState(null);
+  const setPending = useSetPending();
+  const setErr = useSetError();
 
   const wrappedFunc = useCallback(
     async (...params) => {
@@ -18,10 +20,10 @@ function useAsync(asyncFunc) {
         setPending(false);
       }
     },
-    [asyncFunc]
+    [asyncFunc, setPending, setErr]
   );
 
-  return [pending, err, wrappedFunc];
+  return wrappedFunc;
 }
 
 export default useAsync;

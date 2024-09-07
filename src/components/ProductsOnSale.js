@@ -21,7 +21,7 @@ function ProductsOnSale() {
   const [now, setNow] = useState(1);
   const [sortOrder, setSortOrder] = useState(SORT_ORDER.RECENT);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLoading, err, getProductsAsync] = useAsync(getProducts);
+  const getProductsAsync = useAsync(getProducts);
 
   const handleLoadItem = useCallback(
     async (params) => {

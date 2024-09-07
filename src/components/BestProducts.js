@@ -15,7 +15,7 @@ const BEST_ITEM_PAGE_SIZE = Object.freeze({
 function BestProducts() {
   const viewport = useViewport();
   const [items, setItems] = useState([]);
-  const [isLoading, err, getProductsAsync] = useAsync(getProducts);
+  const getProductsAsync = useAsync(getProducts);
 
   const handleLoadItem = useCallback(
     async (params) => {
