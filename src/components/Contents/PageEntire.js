@@ -43,17 +43,19 @@ function PageEntire({ onChangePage, pageInfo }) {
     )
   }
   return (
-    <ul id="page-entire">
+    <div id="page-entire">
       <PageArrow onChangePageGroup={handlePrevPageGroup}>{'<'}</PageArrow>
-      {buttonList.map((buttonPage) => (
-        showPage(buttonPage) && <li key={buttonPage}>
-          <PageButton buttonPage={buttonPage} onChangePage={onChangePage} pageInfo={pageInfo}>
-            {buttonPage}
-          </PageButton>
-        </li>
-      ))}
+      <ul id="page-button-list">
+        {buttonList.map((buttonPage) => (
+          showPage(buttonPage) && <li key={buttonPage}>
+            <PageButton className="page-button" buttonPage={buttonPage} onChangePage={onChangePage} pageInfo={pageInfo}>
+              {buttonPage}
+            </PageButton>
+          </li>
+        ))}
+      </ul>
       <PageArrow onChangePageGroup={handleNextPageGroup} pageInfo={pageInfo}>{'>'}</PageArrow>
-    </ul>
+    </div>
   );
 }
 export default PageEntire;
