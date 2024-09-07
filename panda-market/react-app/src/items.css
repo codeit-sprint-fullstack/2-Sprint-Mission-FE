@@ -37,6 +37,12 @@ ul.items {
 	padding: 0;
 }
 
+ul.items.normal {
+	display: grid;
+	grid-template: repeat(2, auto) / repeat(5, 1fr);
+	gap: 10px;
+}
+
 ul.items li {
 	display: flex;
 	flex-direction: column;
@@ -73,7 +79,7 @@ ul.items.best li {
 }
 
 ul.items.normal li {
-	width: 19%;
+	width: 100%;
 }
 
 ul.items li img {
