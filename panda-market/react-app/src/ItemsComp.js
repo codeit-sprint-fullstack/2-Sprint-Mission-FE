@@ -35,6 +35,7 @@ function ItemsComp() {
 			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
 			console.log(result1);
 			if (!result1) return;
+			setPageNumMax(Math.ceil(result1 / pageSize));
 			setItems([...result1.list]);
 		}
 		catch (err) {
@@ -49,22 +50,24 @@ function ItemsComp() {
 		}
 	}, []);
 
+	const handleResize = useCallback(function () {
+		if (window.innerWidth > 1200) {
+			setPageBestSize(4);
+			setPageSize(10);
+		}
+		else if (window.innerWidth > 744) {
+			setPageBestSize(2);
+			setPageSize(6);
+		}
+		else {
+			setPageBestSize(1);
+			setPageSize(4);
+		}
+	}, []);
+
 	useEffect(() => {
 		console.log(`useEffect with dependancy []`);
-		window.addEventListener("resize", function () {
-			if (window.innerWidth > 1200) {
-				setPageBestSize(4);
-				setPageSize(10);
-			}
-			else if (window.innerWidth > 744) {
-				setPageBestSize(2);
-				setPageSize(6);
-			}
-			else {
-				setPageBestSize(1);
-				setPageSize(4);
-			}
-		});
+		window.addEventListener("resize", handleResize);
 		window.dispatchEvent(new Event('resize'));
 
 		const searchButton = document.querySelector(".input-wrapper img");
@@ -73,6 +76,7 @@ function ItemsComp() {
 		searchInput.addEventListener("input", handleSearchInput);
 
 		return () => {
+			window.removeEventListener("resize", handleResize);
 			searchButton.removeEventListener("click", handleSearch);
 			searchInput.removeEventListener("input", handleSearchInput);
 			console.log(`[] unmounted.`);
