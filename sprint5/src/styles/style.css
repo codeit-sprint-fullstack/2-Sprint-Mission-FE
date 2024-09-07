@@ -16,8 +16,13 @@ nav {
   align-items: center;
   height: 70px;
   color: white;
-  padding: 0 200px;
+  padding: 0 400px;
   border: 1px solid #dfdfdf; /*color pallet에 없어서 임의로 추가*/
+}
+
+.container {
+  width: 1220px;
+  margin: 0 400px;
 }
 
 .logoMenu {
@@ -55,6 +60,28 @@ nav {
   color: var(--color-gray-600);
 }
 
+.productsTool {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productsTool #searchAndSort {
+  display: flex;
+  gap: 10px;
+}
+
+#searchBar {
+  width: 325px;
+  height: 42px;
+  border-radius: 12px;
+  background-color: var(--color-gray-100);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-gray-400);
+}
+
 #addProduct {
   font-size: 16px;
   font-weight: 600;
@@ -63,6 +90,23 @@ nav {
   height: 42px;
   border-radius: 8px;
   background-color: var(--color-primary-100);
+}
+
+select {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray-200);
+  font-size: 16px;
+  color: var(--color-gray-800);
+}
+
+.select option {
+  border-radius: 12px;
+  border: 1px solid var(--color-gray-200);
+  font-size: 16px;
+  color: var(--color-gray-800);
+  background-color: white;
 }
 
 .bestImg {
@@ -100,7 +144,7 @@ nav {
 .bestProductsListing {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .productsListing {

@@ -10,13 +10,18 @@ export default function App() {
   const [best, setBest] = useState([]);
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(1); // 현재 페이지 수
+  const [value, setValue] = useState(""); //input 태그에 사용될 값
 
   const sortedItem = items.sort((a, b) => {
     if (order === "createdAt") return new Date(b.createdAt) - new Date(a.createdAt); //날짜 형식으로 변환
     return b[order] - a[order];
   });
-  const handleNewestClick = () => setOrder("createdAt");
-  const handleBestClick = () => setOrder("favoriteCount");
+  const handleNewestClick = () => {
+    return setOrder("createdAt");
+  };
+  const handleBestClick = () => {
+    return setOrder("favoriteCount");
+  };
 
   const handleLoad = async () => {
     try {
@@ -51,12 +56,21 @@ export default function App() {
       <Nav />
       <div className="container">
         <BestProducts items={best} />
-        <div>
+        <div className="productsTool">
           <h1 className="header">판매 중인 상품</h1>
-          <button id="addProduct">상품 등록하기</button>
-          <div>
-            <button onClick={handleNewestClick}>최신순</button>
-            <button onClick={handleBestClick}>좋아요순</button>
+          <div id="searchAndSort">
+            <input id="searchBar" type="text" value={value} placeholder="제품명을 입력해주세요" onChange={setValue} />
+            <button id="addProduct">상품 등록하기</button>
+            <div className="selectBox">
+              <select id="selectOrder">
+                <option onClick={handleNewestClick} className="itemOrder" value="최신순">
+                  최신순
+                </option>
+                <option onClick={handleBestClick} className="itemOrder" value="좋아요순">
+                  좋아요순
+                </option>
+              </select>
+            </div>
           </div>
         </div>
         <Products items={currentItem} />
