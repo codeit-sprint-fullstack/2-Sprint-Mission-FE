@@ -27,11 +27,11 @@ function PageNum({pageNum, setPageNum, pageNumMax}) {
 		:(pageNum <= pageNumMax && pageNum === 3) ?
 		<><div className="disabled">&lt;</div><div>1</div><div>2</div><div className="selected">3</div>{pageNumMax >= 4 && <div>4</div>}{pageNumMax >= 5 && <div>5</div>}<div className={pageNumMax <= 5 ? `disabled` : ""}>&gt;</div></>
 		:(pageNum < pageNumMax - 2 && pageNum > 3) ?
-		<><div>&lt;</div><div>{pageNum - 2}</div><div>{pageNum - 1}</div><div className="selected">{pageN}</div><div>{pageNum + 1}</div><div>{pageNum + 2}</div><div>&gt;</div></>
+		<><div>&lt;</div><div>{pageNum - 2}</div><div>{pageNum - 1}</div><div className="selected">{pageNum}</div><div>{pageNum + 1}</div><div>{pageNum + 2}</div><div>&gt;</div></>
 		:(pageNum === pageNumMax - 2) ?
-		<><div>&lt;</div><div>{pageNum - 2}</div><div>{pageNum - 1}</div><div className="selected">{pageN}</div><div>{pageNum + 1}</div><div>{pageNum + 2}</div><div className="disabled">&gt;</div></>
+		<><div>&lt;</div><div>{pageNum - 2}</div><div>{pageNum - 1}</div><div className="selected">{pageNum}</div><div>{pageNum + 1}</div><div>{pageNum + 2}</div><div className="disabled">&gt;</div></>
 		:(pageNum === pageNumMax - 1) ?
-		<><div>&lt;</div><div>{pageNum - 3}</div><div>{pageNum - 2}</div><div>{pageNum - 1}</div><div className="selected">{pageN}</div><div>{pageNum + 1}</div><div className="disabled">&gt;</div></>
+		<><div>&lt;</div><div>{pageNum - 3}</div><div>{pageNum - 2}</div><div>{pageNum - 1}</div><div className="selected">{pageNum}</div><div>{pageNum + 1}</div><div className="disabled">&gt;</div></>
 		:<><div>&lt;</div><div>{pageNumMax - 4}</div><div>{pageNumMax - 3}</div><div>{pageNumMax - 2}</div><div>{pageNumMax - 1}</div><div className="selected">{pageNumMax}</div><div className="disabled">&gt;</div></>}
 	</div>);
 }
