@@ -21,7 +21,8 @@ function App() {
   const handleSellingLoad = async (options) => {
     const {list, totalCount} = await test(options);
     setSellingList(list);
-    setTotalPage(totalCount);
+    const nextTotalPage = Math.ceil(totalCount/(options.pageSize));
+    setTotalPage(nextTotalPage);
   };
   const handleChangePage = async (pageValue) => {
     setCurrentPage(pageValue);
@@ -30,7 +31,6 @@ function App() {
       pageSize: 10,
       orderBy: order,
     };
-    handleSellingLoad(options);
     console.log('바뀌는 페이지 정보');
     console.log(`page: ${options.page}`);
     console.log(`pageSize: ${options.pageSize}`);
@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     handleBestLoad({ pageSize: 4, orderBy: "favoriteCount" });
-    handleSellingLoad({ currentPage, pageSize: 10, orderBy: order });
+    handleSellingLoad({page: currentPage, pageSize: 10, orderBy: order });
   }, [order, currentPage]);
 
   const totalList = {

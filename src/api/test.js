@@ -19,7 +19,7 @@ function validatePositiveInteger(data) {
 pageSize=10,
 keyword='',
 orderBy="recent",
-  }) {
+  }={}) {
     if(orderBy === 'recent'){
       const res = await instance.get('',{params:{page, pageSize,keyword, orderBy:'recent'}});
       const data = res.data;
