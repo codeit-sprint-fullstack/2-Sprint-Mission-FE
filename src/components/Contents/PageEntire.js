@@ -7,7 +7,11 @@ function PageEntire({ onChangePage, pageInfo }) {
   const [buttonList, setButtonList] = useState([1,2,3,4,5]);
   useEffect(()=>{
     if(currentPage >= 4){
-      setButtonList([currentPage-2, currentPage-1, currentPage, currentPage+1, currentPage+2]);
+      if(currentPage+2 === totalPage){
+        return;
+      }else{
+        setButtonList([currentPage-2, currentPage-1, currentPage, currentPage+1, currentPage+2]);
+      }
     }else{
       setButtonList([1,2,3,4,5]);
     }
@@ -18,8 +22,14 @@ function PageEntire({ onChangePage, pageInfo }) {
     }else return false;
   }
   const handleNextPageGroup = ()=>{
-    setButtonList(prevButtonList=>
-      prevButtonList.map(pageValue=> pageValue+5)
+    setButtonList(prevButtonList=>{
+      if(prevButtonList.includes(totalPage)){
+        return prevButtonList;
+      }else {
+        return prevButtonList.map(pageValue=> pageValue+5)
+      } 
+    }
+      
     )
   };
   const handlePrevPageGroup=()=>{

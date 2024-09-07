@@ -31,6 +31,11 @@ function App() {
       orderBy: order,
     };
     handleSellingLoad(options);
+    console.log('바뀌는 페이지 정보');
+    console.log(`page: ${options.page}`);
+    console.log(`pageSize: ${options.pageSize}`);
+    console.log(`orderyBy: ${options.orderBy}`);
+    console.log(`totalPage: ${totalPage}`);
   };
 
   useEffect(() => {

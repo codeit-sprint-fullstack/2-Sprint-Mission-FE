@@ -9,7 +9,6 @@ function PageButton({ buttonPage, onChangePage, pageInfo, children }) {
       return true;
     }
   };
-
   
   return (
     <button id="page-button" onClick={handleChangePageClick}
