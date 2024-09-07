@@ -5,15 +5,18 @@
 
 .product-item.best .product-image {
   width: 28.2rem;
-  
+  height: 28.2rem;
+  border-radius: 4px;
 }
 product-item .product-image {
   width: 22.1rem;
+  height: 22.1rem;
+  border-radius: 4px;
 }
 
 .product-image {
-  width: 100%;
-  height: auto;
+  width: 22.1rem;
+  height: 22.1rem;
   border-radius: 4px;
 }
 
