@@ -14,7 +14,9 @@ export default function Header() {
               <p>중고마켓</p>
             </div>
           </div>
-          <img className="user-icon" src={userIcon} alt="유저 아이콘" />
+          <a class="auth" href="./login">
+            로그인
+          </a>
         </div>
       </div>
     </header>

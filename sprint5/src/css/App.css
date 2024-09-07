@@ -1,0 +1,23 @@
+*{
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+
+  width: 100%;
+
+  font-size: 16px;
+
+  color: #374151;
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

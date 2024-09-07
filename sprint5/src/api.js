@@ -26,7 +26,11 @@ instance.interceptors.response.use(
 );
 
 async function requestGet(url, params) {
-  return instance.get(url, params);
+  try {
+    return instance.get(url, params);
+  } catch (err) {
+    console.error(err.message);
+  }
 }
 
 async function requestPost(url, body) {
@@ -42,8 +46,12 @@ async function requestDelete(url) {
 }
 
 export async function getProductList(params = {}) {
-  const res = await requestGet(`/products`, params);
-  return res.data;
+  try {
+    const res = await requestGet(`/products`, params);
+    return res.data;
+  } catch (err) {
+    console.error(err.message);
+  }
 }
 
 export async function getProduct(id) {

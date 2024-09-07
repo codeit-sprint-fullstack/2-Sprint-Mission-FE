@@ -1,31 +1,68 @@
 import '../css/BestProduct.css';
+import { useCallback, useState, useEffect } from 'react';
+import useAsync from '../hooks/useAsync';
+import { getProductList } from '../api';
 
-function BestProductItem({ item }) {
-  const { images, name, price, favoriteCount, createdAt } = item;
+function BestProductItem({ bestItem }) {
+  const { images, name, price, favoriteCount, createdAt } = bestItem;
 
   return (
-    <div className="BestProductItem">
-      <img className="BestProductItem-img" src={images} alt={name} />
+    <div className="best-product-item">
+      <img className="best-product-item-img" src={images} alt={name} />
       <div className="best-product-info">
-        <span>{name}</span>
-        <span>{price}원</span>
-        <span>♡ {favoriteCount}</span>
-        <span>{createdAt}</span>
+        <span className="best-product-name">{name}</span>
+        <span className="best-product-price">{price}원</span>
+        <span className="best-product-favorite">♡ {favoriteCount}</span>
       </div>
     </div>
   );
 }
 
-export default function BestProduct({ items }) {
+export default function BestProduct() {
+  const [bestItems, setBestItems] = useState([]);
+  const [isLoading, loadingError, getProductAsync] = useAsync(getProductList);
+  const [bestPageSize, setBestPageSize] = useState(4);
+
+  useEffect(() => {
+    const handlePageSize = () => {
+      if (window.innerWidth >= 1200) {
+        setBestPageSize(4);
+      } else if (window.innerWidth >= 744) {
+        setBestPageSize(2);
+      } else {
+        setBestPageSize(1);
+      }
+    };
+    handlePageSize();
+    window.addEventListener('resize', handlePageSize);
+
+    return () => window.removeEventListener('resize', handlePageSize);
+  }, []);
+
+  const handleBestLoad = useCallback(
+    async (params) => {
+      const result = await getProductAsync(params);
+      if (!result) return;
+
+      const { list } = result;
+      setBestItems(list.sort((a, b) => b.favoriteCount - a.favoriteCount));
+    },
+    [getProductAsync]
+  );
+
+  useEffect(() => {
+    handleBestLoad({ page: 1, pageSize: bestPageSize, orderBy: 'favorite' });
+  }, [bestPageSize, handleBestLoad]);
+
   return (
     <section>
       <div>
-        <h1>베스트 상품</h1>
-        <div className="BestProducts">
-          <div className="BestProductList">
-            {items.map((item) => (
-              <div key={item.id}>
-                <BestProductItem item={item} />
+        <h1 className="best-product-title">베스트 상품</h1>
+        <div className="best-products">
+          <div className="best-product-list">
+            {bestItems.slice(0, bestPageSize).map((bestItem) => (
+              <div key={bestItem.id}>
+                <BestProductItem bestItem={bestItem} />
               </div>
             ))}
           </div>

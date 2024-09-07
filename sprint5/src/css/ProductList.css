@@ -1,18 +1,6 @@
-html,
-body {
-  margin: 0 auto;
-  padding: 0;
-
-  width: 100%;
-
-  font-size: 16px;
-
-  color: #374151;
-  font-family: "Pretendard Variable", Pretendard, sans-serif;
-}
-
 .products {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
     width: 75rem;
@@ -21,13 +9,14 @@ body {
 .product-list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
     gap: 1.25rem;
 }
 
 .product-item {
     display: flex;
     flex-direction: column;
+
+    gap: 1.25rem;
 }
 
 .product-item-img {
@@ -41,7 +30,7 @@ display: flex;
 flex-direction: column;
 }
 
-.product-item span {
+.product-name {
 font-size: 0.875rem;
 font-weight: 500;
 line-height: 1.5rem;
@@ -52,3 +41,15 @@ font-size: 1rem;
 font-weight: 700;
 line-height: 1.625rem;
 }
+
+.product-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+    }
+    
+    .product-favorite {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    }
