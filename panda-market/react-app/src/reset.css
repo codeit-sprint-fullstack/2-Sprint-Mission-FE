@@ -73,10 +73,6 @@ img {
 	ul.items.best>li {
 		width: 49%;
 	}
-
-	ul.items.normal>li {
-		width: 31%;
-	}
 }
 
 @media (max-width:744px) {
@@ -180,9 +176,5 @@ img {
 
 	ul.items.best>li {
 		width: 100%;
-	}
-
-	ul.items.normal>li {
-		width: 49%;
 	}
 }
