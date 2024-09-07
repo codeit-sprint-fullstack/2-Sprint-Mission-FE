@@ -34,8 +34,8 @@ function PageEntire({ onChangePage, pageInfo }) {
   };
   const handlePrevPageGroup = () => {
     setButtonList(prevButtonList => {
-      if (prevButtonList[0] === 1) {
-        return prevButtonList
+      if (prevButtonList[0] < 6) {
+        return [1, 2, 3, 4, 5];
       } else {
         return prevButtonList.map(pageValue => pageValue - 5)
       }
