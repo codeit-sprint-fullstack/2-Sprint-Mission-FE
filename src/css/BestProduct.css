@@ -5,7 +5,7 @@
 }
 .product-wrapper {
   width: 100%; /* 전체 너비 사용 */
-  overflow: hidden; /* 스크롤 숨기기 */
+  margin: 0 auto; /* 가운데 정렬 */
 }
 /* 베스트 상품 - Desktop: 4열 */
 .best-product .product-list {

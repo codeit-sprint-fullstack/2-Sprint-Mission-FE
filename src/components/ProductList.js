@@ -114,7 +114,7 @@ const ProductList = () => {
             <input
               className="search-input"
               type="text"
-              placeholder="검색할 상품을 입력해주세요"
+              placeholder="&nbsp; &nbsp; &nbsp;검색할 상품을 입력해주세요"
               value={searchContent}
               onChange={handleSearchChange}
             />

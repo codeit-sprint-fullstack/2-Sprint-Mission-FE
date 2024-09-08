@@ -54,6 +54,9 @@ input {
   height: 40px;
   padding: 10px;
   border-radius: 10px;
+  background-image: url("../images/etc/reading-glasses.svg");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
 }
 
 /* 등록 버튼 */
