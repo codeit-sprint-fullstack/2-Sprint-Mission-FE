@@ -39,13 +39,5 @@ export function totalProducts(page, pageSize, orderBy, keyword) {
 }
 
 // totalProducts(1, 10, "recent", "").then((totalCount) => {
-//   const totalPages = Math.ceil(totalCount / 10); // 페이지 수 계산
-//   const totalPageArray = [];
-
-//   for (let i = 1; i <= totalPages; i++) {
-//     totalPageArray.push(i);
-//   }
-
-//   console.log(totalPageArray)
-//   return totalPageArray; // 배열 반환
+//   console.log(totalCount);
 // });

@@ -16,8 +16,17 @@ export default function Products() {
   const [totalPages, setTotalPages] = useState([]); // 전체 page 수 출력
   const [pagingPages, setPagingPages] = useState([]); // 5개씩 paging
   const [searchValue, setSearchValue] = useState("");
+  const [pageSize, setPageSize] = useState(10); // 초기값 4로 설정
 
-  const pageSize = 10;
+  function updatePageSize() {
+    if (window.matchMedia("(min-width: 375px) and (max-width: 743px)").matches) {
+      setPageSize(4); // 375px ~ 743px
+    } else if (window.matchMedia("(min-width: 744px) and (max-width: 1199px)").matches) {
+      setPageSize(6); // 744px ~ 1199px
+    } else {
+      setPageSize(10); // 그 외에는 기본 4
+    }
+  }
 
   function ProductList() {
     //console.log(searchValue);
@@ -65,9 +74,13 @@ export default function Products() {
 
   // 무한 요청 막기
   useEffect(() => {
+    updatePageSize();
     ProductList();
     fetchTotalPages();
-  }, [currentPage, order, searchValue]);
+
+    window.addEventListener("resize", updatePageSize);
+    return () => window.removeEventListener("resize", updatePageSize);
+  }, [currentPage, order, searchValue, pageSize]);
 
   return (
     <div>

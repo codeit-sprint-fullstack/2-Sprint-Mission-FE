@@ -262,45 +262,15 @@ footer {
   cursor: pointer;
 }
 
-@media (min-width: 375px) and (max-width: 743px) {
-  nav {
-    padding: 0 30px;
-  }
-
-  .container {
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .productsListing {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
-  }
-
-  .bestProductsListing {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 10px;
-  }
-
-  footer {
-    padding: 35px 30px;
-  }
-}
-
 @media (min-width: 744px) and (max-width: 1199px) {
   nav {
     padding: 0 30px;
   }
 
-  body {
-    padding: 0 30px;
-  }
-
   .container {
     width: 100%;
     margin: 0 auto;
+    padding: 0 30px;
   }
 
   .bestImg {
@@ -334,6 +304,32 @@ footer {
 
   .bestProductsContainer {
     height: 100%;
+    gap: 10px;
+  }
+
+  footer {
+    padding: 35px 30px;
+  }
+}
+@media (min-width: 375px) and (max-width: 743px) {
+  nav {
+    padding: 0 30px;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .productsListing {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  .bestProductsListing {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: 10px;
   }
 
