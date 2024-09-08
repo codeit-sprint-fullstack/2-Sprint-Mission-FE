@@ -96,6 +96,11 @@ nav {
     font-weight: 400;
     color: var(--color-gray-400);
   }
+
+  &:focus {
+    border-color: none;
+    outline: none;
+  }
 }
 
 #addProduct {
@@ -108,9 +113,14 @@ nav {
   background-color: var(--color-primary-100);
 }
 
-select {
+.selectContainer {
   width: 130px;
   height: 42px;
+}
+
+select {
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
   border: 1px solid var(--color-gray-200);
   font-size: 16px;
@@ -208,6 +218,11 @@ select {
   border: 1px solid var(--color-gray-200);
   border-radius: 40px;
   padding: 12.5px 12.5px;
+
+  &.active {
+    color: var(--color-gray-50);
+    background-color: #2f80ed;
+  }
 }
 
 footer {
@@ -245,4 +260,84 @@ footer {
 
 .snsLogo {
   cursor: pointer;
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  nav {
+    padding: 0 30px;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .productsListing {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  .bestProductsListing {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+
+  footer {
+    padding: 35px 30px;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  nav {
+    padding: 0 30px;
+  }
+
+  body {
+    padding: 0 30px;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .bestImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 19.46px;
+  }
+
+  .productImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 19.46px;
+  }
+
+  .productsListing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  .productsContainer {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .bestProductsListing {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .bestProductsContainer {
+    height: 100%;
+    gap: 10px;
+  }
+
+  footer {
+    padding: 35px 30px;
+  }
 }

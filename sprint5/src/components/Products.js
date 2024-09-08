@@ -40,7 +40,7 @@ export default function Products() {
     //console.log(currentPage, totalPages.length);
     if (currentPage < totalPages.length) {
       let nextpage = currentPage + 1;
-      console.log(nextpage);
+      //console.log(nextpage);
       setCurrentPage(nextpage);
     }
   };
@@ -85,10 +85,15 @@ export default function Products() {
             />
           </div>
           <button id="addProduct">상품 등록하기</button>
-          <select onChange={handleSortItems} value={order}>
-            <option value="recent">최신순</option>
-            <option value="favorite">좋아요순</option>
-          </select>
+          <div className="selectContainer">
+            <select onChange={handleSortItems} value={order}>
+              <option value="recent">최신순</option>
+              <option value="favorite">좋아요순</option>
+            </select>
+            {/* <div className="iconContainer">
+              <FontAwesomeIcon icon="fa-solid fa-caret-down" />
+            </div> */}
+          </div>
         </div>
       </div>
       <ul className="productsListing">
@@ -106,7 +111,11 @@ export default function Products() {
       <div className="pageButtons">
         <img className="arrowButton" src={leftArrow} onClick={handleBeforePage} />
         {pagingPages.map((page) => (
-          <button key={page} className="pageButton" onClick={() => handlePageChange(page)}>
+          <button
+            key={page}
+            className={`pageButton ${currentPage === page ? "active" : ""}`}
+            onClick={() => handlePageChange(page)}
+          >
             {page}
           </button>
         ))}
