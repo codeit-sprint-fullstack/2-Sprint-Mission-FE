@@ -6,7 +6,7 @@ import Pagination from './Pagination';
 import ProductListBar from './ProductListBar';
 
 function ProductListItem({ item }) {
-  const { images, name, price, favoriteCount, createdAt } = item;
+  const { images, name, price, favoriteCount } = item;
 
   return (
     <div className="product-item">

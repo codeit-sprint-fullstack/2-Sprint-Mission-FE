@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../css/OrderMenu.css';
 import arrowDown from '../images/ic_arrow_down.png';
+import sortIcon from '../images/ic_sort.png';
 
 const OrderMenu = ({ value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,8 @@ const OrderMenu = ({ value, onChange }) => {
     <div className="order-menu">
       <div className="order-menu-selected" onClick={() => setIsOpen(!isOpen)}>
         {options.find((option) => option.value === value)?.label || 'Select...'}
-        <img src={arrowDown} />
+        <img className="sort-icon" src={arrowDown} />
+        <img className="mobile-sort-icon" src={sortIcon} />
       </div>
       {isOpen && (
         <div className="order-menu-options">

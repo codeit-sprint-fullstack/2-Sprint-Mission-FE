@@ -1,54 +1,77 @@
 .order-menu {
-    position: relative;
+  position: relative;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    width: 130px;
-    height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    border-radius: 12px;
-    border: 1px solid #E5E7EB;
-    font-weight: 400;
-    line-height: 26px;
+  width: 8.125rem;
+  height: 2.625rem;
 
-    background-color: white;
+  border-radius: 0.75rem;
+  border: 1px solid #E5E7EB;
+
+  font-weight: 400;
+  line-height: 1.625rem;
+
+  background-color: white;
+}
+
+.order-menu-selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  z-index: 2;
+  gap: 15px;
+}
+
+.order-menu-options {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  right: 0;
+
+  width: 8.125rem;
+
+  padding: 0.75rem 0;
+
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+
+  cursor: pointer;
+  z-index: 1;
+
+  background-color: white;
+
+}
+
+.order-menu-option {
+  font-weight: 400;
+  line-height: 1.625rem;
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.order-menu-option+.order-menu-option {
+  border-top: 1px solid #E5E7EB;
+}
+
+.mobile-sort-icon {
+  display: none;
+}
+
+@media (max-width: 743px) {
+  .sort-icon {
+    display: none;
   }
-  
-  .order-menu-selected {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 2;
-    gap: 15px;
-  }
-  
-  .order-menu-options {
+
+  .mobile-sort-icon {
+    display: block;
+
     position: absolute;
-    top: 120%;
-    left: 0;
-    right: 0;
-    padding: 12px 0;
-    border-radius: 12px;
-    border: 1px solid #E5E7EB;
-
-    cursor: pointer;
-    width: 130px;
-    z-index: 1;
-
-    background-color: white;
-    
+    right: 5px;
   }
-  
-  .order-menu-option {
-    cursor: pointer;
-font-weight: 400;
-line-height: 26px;
-text-align: center;
-  }
-
-  .order-menu-option + .order-menu-option {
-    border-top: 1px solid #ddd;
-  }
+}

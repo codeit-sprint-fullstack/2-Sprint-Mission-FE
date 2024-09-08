@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -10,7 +10,6 @@ body {
   width: 100%;
 
   font-size: 16px;
-
   color: #374151;
   font-family: "Pretendard Variable", Pretendard, sans-serif;
 }
