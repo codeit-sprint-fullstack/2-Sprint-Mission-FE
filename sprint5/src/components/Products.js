@@ -13,23 +13,43 @@ export default function Products() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("recent");
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState([]);
+  const [totalPages, setTotalPages] = useState([]); // 전체 page 수 출력
+  const [pagingPages, setPagingPages] = useState([]); // 5개씩 paging
   const [searchValue, setSearchValue] = useState("");
 
   const pageSize = 10;
 
   function ProductList() {
-    console.log(searchValue);
+    //console.log(searchValue);
     getProducts(currentPage, pageSize, order, searchValue).then((productlist) => {
       setItems(productlist);
     });
   }
 
   function fetchTotalPages() {
-    totalProducts(1, 10, "recent", "").then((totalCount) => {
-      setTotalPages(totalCount);
+    totalProducts(currentPage, pageSize, order, searchValue).then((totalCount) => {
+      let start = currentPage - 1;
+      let end = start + 5;
+      const pageArray = totalCount.slice(start, end);
+      setPagingPages(pageArray);
+      setTotalPages(totalCount); // 14 넘기기
     });
   }
+
+  const handleNextPage = () => {
+    //console.log(currentPage, totalPages.length);
+    if (currentPage < totalPages.length) {
+      let nextpage = currentPage + 1;
+      console.log(nextpage);
+      setCurrentPage(nextpage);
+    }
+  };
+
+  const handleBeforePage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   const handleSearchItem = (e) => {
     setSearchValue(e.target.value);
@@ -84,13 +104,13 @@ export default function Products() {
         })}
       </ul>
       <div className="pageButtons">
-        <img src={leftArrow} />
-        {totalPages.map((page) => (
+        <img className="arrowButton" src={leftArrow} onClick={handleBeforePage} />
+        {pagingPages.map((page) => (
           <button key={page} className="pageButton" onClick={() => handlePageChange(page)}>
             {page}
           </button>
         ))}
-        <img src={rightArrow} />
+        <img className="arrowButton" src={rightArrow} onClick={handleNextPage} />
       </div>
     </div>
   );

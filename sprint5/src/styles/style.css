@@ -195,6 +195,10 @@ select {
   margin-bottom: 120px;
 }
 
+.arrowButton {
+  cursor: pointer;
+}
+
 .pageButton {
   cursor: pointer;
   font-size: 16px;
