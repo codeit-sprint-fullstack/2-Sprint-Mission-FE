@@ -20,14 +20,14 @@ export default function Footer() {
       <div>
         <p id="copyright">©codeit - 2024</p>
       </div>
-      <div>
+      <div className="externalPageContainer">
         {externalPages.map((page) => (
           <a className="externalPage" key={page.id} href={page.href}>
             {page.title}
           </a>
         ))}
       </div>
-      <div>
+      <div className="snsContainer">
         {socialMedia.map((logo) => (
           <a key={logo.alt} href={logo.href}>
             <img className="snsLogo" src={logo.src} alt={logo.alt}></img>

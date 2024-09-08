@@ -7,6 +7,7 @@ html {
 
 body {
   margin: 0 auto;
+  background-color: #fcfcfc; /*color pallet에 없어서 임의로 추가*/
 }
 
 nav {
@@ -15,7 +16,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 70px;
-  color: white;
+  background-color: white;
   padding: 0 400px;
   border: 1px solid #dfdfdf; /*color pallet에 없어서 임의로 추가*/
 }
@@ -65,6 +66,7 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 40px;
 }
 
 .productsTool #searchAndSort {
@@ -72,14 +74,28 @@ nav {
   gap: 10px;
 }
 
-#searchBar {
-  width: 325px;
+.searchBar {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  gap: 10px;
+  width: 305px;
   height: 42px;
   border-radius: 12px;
   background-color: var(--color-gray-100);
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--color-gray-400);
+}
+
+#search-input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+
+  &::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-gray-400);
+  }
 }
 
 #addProduct {
@@ -99,6 +115,7 @@ select {
   border: 1px solid var(--color-gray-200);
   font-size: 16px;
   color: var(--color-gray-800);
+  padding-left: 12px;
 }
 
 .select option {
@@ -165,17 +182,37 @@ select {
   flex-direction: column;
   justify-content: space-between;
   height: 317px;
+  width: 220px;
   margin: 16px 0;
+}
+
+.pageButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 40px;
+  margin-bottom: 120px;
+}
+
+.pageButton {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  background-color: white;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 40px;
+  padding: 12.5px 12.5px;
 }
 
 footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  height: 160px;
+  height: 125px;
   background-color: var(--color-gray-900);
-  padding: 10px 200px;
+  padding: 35px 400px;
 }
 
 #copyright {
@@ -184,12 +221,22 @@ footer {
   color: var(--color-gray-400);
 }
 
+.externalPageContainer {
+  display: flex;
+  gap: 30px;
+}
+
 .externalPage {
   cursor: pointer;
   font-size: 16px;
   font-weight: 400;
   color: var(--color-gray-200);
   text-decoration: none;
+}
+
+.snsContainer {
+  display: flex;
+  gap: 12px;
 }
 
 .snsLogo {
