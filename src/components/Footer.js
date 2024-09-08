@@ -3,21 +3,21 @@ import facebookImg from "../images/icon/facebook.png";
 import twitterImg from "../images/icon/twitter.png";
 import youtubeImg from "../images/icon/youtube.png";
 import instagramImg from "../images/icon/instagram.png";
-import "./Footer.css";
+import "../css/Footer.css";
 
 const Footer = () => {
   return (
     <>
       <footer>
-        <div class="footer-content">
-          <div class="copyright"> @codeit - 2024 </div>
+        <div className="footer-content">
+          <div className="copyright"> @codeit - 2024 </div>
 
-          <div class="footerlink">
+          <div className="footerlink">
             <a href="privacy.html">Privacy Policy</a>
             <a href="faq.html">FAQ</a>
           </div>
 
-          <div class="snsicon">
+          <div className="snsicon">
             <a href="https://www.facebook.com/">
               <img src={facebookImg} alt="페이스북" id="facebookicon" />
             </a>

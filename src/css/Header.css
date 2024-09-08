@@ -13,7 +13,8 @@ nav {
   background-color: white;
   height: 70px;
   z-index: 2;
-  padding: 0 100px;
+  padding: 0 200px;
+  border-bottom: #dfdfdf solid 1px;
 }
 
 a {
@@ -34,4 +35,5 @@ a {
 .user {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
