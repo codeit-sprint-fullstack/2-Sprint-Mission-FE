@@ -21,7 +21,7 @@ export default function Header() {
             </div>
           </div>
           <div className="top-bar-right">
-            <a className="auth" href="./login">
+            <a className="auth" href=".../login">
               로그인
             </a>
             <img className="user-icon" src={userIcon} />
