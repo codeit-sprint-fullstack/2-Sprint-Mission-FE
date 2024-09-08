@@ -1,9 +1,9 @@
 import priceFunc from "../PriceFunc";
 import '../css/ProductItem.css'
 
-export default function ProductItem({ item }) {
+export default function ProductItem({ item, classNames }) {
   return (
-    <div>
+    <div className={classNames}>
       <img className='img' src={item.images} alt='' />
       <div className='textSection'>
         <h2 className='name'>{item.name}</h2>

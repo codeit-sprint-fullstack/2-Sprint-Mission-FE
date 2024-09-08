@@ -12,7 +12,10 @@ export default function Nav() {
           <li className="menuList">중고마켓</li>
         </ul>
       </div>
-      <a className="profile" href="./login/"><img src={profileImg} alt="프로필이미지" />김코드</a>
+      <div className='user'>
+        <img src={profileImg} alt="프로필이미지" />
+        <p className="profile">김코드</p>
+      </div>
     </header>
   );
 }

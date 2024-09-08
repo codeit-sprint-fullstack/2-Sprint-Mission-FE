@@ -31,7 +31,7 @@ export default function BestProduct() {
         {bestItems.map((item) => {
           return (
             <li key={item.id}>
-              <ProductItem item={item} />
+              <ProductItem item={item} classNames="BestProduct" />
             </li>
           )
         })}

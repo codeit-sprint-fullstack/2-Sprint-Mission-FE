@@ -45,7 +45,7 @@ export default function SalesProduct() {
         {salesItems.map((item) => {
           return (
             <li key={item.id}>
-              <ProductItem item={item} />
+              <ProductItem item={item} classNames="SalesProduct" />
             </li>
           )
         })}

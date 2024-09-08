@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import '../css/Pagination.css'
 const ITEMS_PER_PAGE = 10;
 const BUNDLE_LIMIT = 5;
 
@@ -32,17 +32,16 @@ export default function Pagination({ page, setPage, totalCount }) {
   }, [totalPage]);
 
   return (
-    <div className="PaginationWrapper">
+    <div className="paginationWrapper">
       <button className="prevPageBtn" onClick={() => setPage(page - 1)} disabled={page === 1}>
         &lt;
       </button>
-      <div>
+      <div className="pageBtns">
         {currentPageArray?.map((i) => (
           <button
-            className="pageBtn"
+            className={page === i + 1 ? 'active' : ''}
             key={i + 1}
             onClick={() => setPage(i + 1)}
-            aria-current={page === i + 1 ? 'page' : null}
           >
             {i + 1}
           </button>
