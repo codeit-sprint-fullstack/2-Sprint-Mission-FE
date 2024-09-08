@@ -66,6 +66,7 @@ signButton.addEventListener('click', () => {
     const user = USER_DATA.find(user => user.email === email);
 
     if (user) {
+      // 이미 가입된 이메일이라면.
       alert('사용 중인 이메일입니다');
     } else {
       USER_DATA.push({ email: email, password: password });
