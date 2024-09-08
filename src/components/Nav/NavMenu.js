@@ -1,5 +1,5 @@
-import "./style/NavMenu.css";
+import styles from "./NavMenu.module.css";
 function NavMenu({ name }) {
-  return <div className="menu">{name}</div>;
+  return <div className={styles.menu}>{name}</div>;
 }
 export default NavMenu;

@@ -7,3 +7,9 @@
     display: flex;
     padding: 0 1.5rem;
 }
+
+@media(max-width: 743px) {
+    .menu {
+        font-size: 1.6rem;
+    }
+}

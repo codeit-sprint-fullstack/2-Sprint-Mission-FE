@@ -9,3 +9,6 @@ input {
 body {
     background: #FCFCFC;
 }
+a{
+    text-decoration: none;
+}

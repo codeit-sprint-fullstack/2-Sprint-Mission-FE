@@ -17,18 +17,22 @@ function isValid(value) {
 export async function test({
   page = 1,
   pageSize = 10,
-  keyword = '',
+  keyword = "",
   orderBy = "recent",
 } = {}) {
-  if (orderBy === 'recent') {
-    const res = await instance.get('', { params: { page, pageSize, keyword, orderBy: 'recent' } });
-    const data = res.data;
-    return data;
-  } else {
-    const res = await instance.get('', { params: { page, pageSize, keyword, orderBy: 'favorite' } });
-    const data = res.data;
-    return data;
-  }
+  const res = await instance.get("");
+  return res.data;
 
+  // if (orderBy === "recent") {
+  //   const res = await instance.get("", { params: { page, pageSize, keyword, orderBy: "recent" },
+  //   });
+  //   const data = res.data;
+  //   return data;
+  // } else {
+  //   const res = await instance.get("", { params: { page, pageSize, keyword, orderBy: "favorite" },
+  //   });
+  //   const data = res.data;
+  //   return data;
+  // }
 }
 export default test;

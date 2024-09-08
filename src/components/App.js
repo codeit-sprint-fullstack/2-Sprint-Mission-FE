@@ -6,6 +6,7 @@ import { getProductList } from "../api/ProductService.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import test from "../api/test.js";
+import styles from "./App.module.css";
 
 function App() {
   const [bestList, setBestList] = useState([]);
@@ -14,6 +15,7 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+
   const getPageSize = (width) => {
     if (width > 1200)
       return {
@@ -68,6 +70,7 @@ function App() {
     setOrder(chosenOrder);
   };
   const handleChangeKeyword = (inputKeyword) => setKeyword(inputKeyword);
+
   useEffect(() => {
     handleBestLoad({ pageSize: pageSize.bestList, orderBy: "favoriteCount" });
     handleSellingLoad({
@@ -89,7 +92,7 @@ function App() {
 
   return (
     <>
-      <Nav />
+      <Nav className={styles.nav} />
       <Contents
         totalList={totalList}
         pageInfo={pageInfo}

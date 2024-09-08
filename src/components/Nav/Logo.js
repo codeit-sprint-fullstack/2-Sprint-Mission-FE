@@ -1,9 +1,10 @@
-import logoImg from "./img/Logo.png";
-import "./style/Logo.css";
-function Logo() {
+import logoImg from "./img/logo-face.png";
+import styles from "./Logo.module.css";
+function Logo({ className }) {
   return (
-    <a href="/">
-      <img id="logo" src={logoImg} alt="로고 이미지" />
+    <a className={`${className} ${styles.logo}`} href="/">
+      <img className={styles.image} src={logoImg} alt="로고 이미지" />
+      <div className={styles.text}>판다마켓</div>
     </a>
   );
 }
