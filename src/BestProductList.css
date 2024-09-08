@@ -38,25 +38,52 @@
   border-radius: 16px;
 }
 
-
-.ListFont1{
+.ListFont1 {
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
   color: #1f2937;
   margin: 0 0 6px;
 }
-.ListFont2{
+.ListFont2 {
   font-size: 16px;
   font-weight: 700;
   line-height: 26px;
   color: #1f2937;
   margin: 6px 0;
 }
-.ListFont3{
+.ListFont3 {
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
   color: #4b5563;
   margin: 6px 0 0;
+}
+
+/* tablet Size */
+@media (max-width: 1199px) {
+  .BestItemList img {
+    width: 343px;
+    height: 343px;
+    margin-bottom: 10px;
+  }
+
+  .BestProductFrame {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .BestSection {
+    max-width: 696px;
+  }
+}
+
+/* mobile Size */
+
+@media (max-width: 743px) {
+  .BestProductFrame {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .BestSection {
+    max-width: 343px;
+  }
 }

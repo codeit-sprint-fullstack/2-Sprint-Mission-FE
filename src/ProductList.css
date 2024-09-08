@@ -19,13 +19,15 @@
   line-height: 32px;
   color: #111827;
   margin: 0;
+  flex-grow: 1;
+  white-space: nowrap;
 }
-.ProductMenuBar {
+/* .ProductMenuBar {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-}
+} */
 .ProductSerchInput {
   border-radius: 12px;
   border: none;
@@ -42,6 +44,7 @@
   background-repeat: no-repeat;
   background-position: 16px center; /* 아이콘 위치 */
   background-size: 24px 24px; /* 돋보기 크기 조정 */
+  margin-right: 12px;
 }
 .PostProduct {
   display: flex;
@@ -57,6 +60,8 @@
   line-height: 26px;
   color: #f3f4f6;
   margin: 0;
+  margin-right: 12px;
+  white-space: nowrap;
 }
 .ProductDropdown {
   display: flex;
@@ -104,7 +109,7 @@
 /* 메인Grid */
 .ProductListFrame {
   display: grid;
-  grid-template: 1fr 1fr / repeat(5, 1fr);
+  grid-template: repeat(2, 1fr) / repeat(5, 1fr);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -115,4 +120,63 @@
   height: 221px;
   margin-bottom: 16px;
   border-radius: 16px;
+}
+
+/* tablet Size */
+@media (max-width: 1199px) {
+  .Main {
+    max-width: 696px;
+  }
+  .ProductListFrame {
+    grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+    gap: 40px 16px;
+  }
+}
+
+/* mobile Size */
+@media (max-width: 743px) {
+  .Main {
+    max-width: 344px;
+  }
+  .DropdownBox .ProductDropdown {
+    background: url("./imgFile/드롭다운모바일.png") no-repeat center;
+    background-size: contain;
+    width: 40px; /* 이미지 크기에 맞춰 조정 */
+    height: 40px; /* 이미지 크기에 맞춰 조정 */
+    padding: 0; /* 패딩 제거 */
+    color: transparent; /* 텍스트 숨기기 */
+    cursor: pointer;
+  }
+  .DropdownBox .DropdownArrow {
+    display: none; /* 화살표 아이콘 숨기기 */
+  }
+  .ProductMenuBox {
+    display: grid;
+    grid-template-columns: 288px 42px;
+    gap: 8px 14px;
+  }
+  .PostProduct {
+    order: 0;
+    transform: translateX(-136px);
+    padding: 0;
+    width: 133px;
+  }
+  .ProductSerchInput {
+    order: 1;
+    box-sizing: border-box;
+    width: 288px;
+    margin-right: 14px;
+  }
+  .DropdownBox {
+    order: 2;
+  }
+
+  .ProductListFrame {
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    gap: 32px 8px;
+  }
+  .ProductListItem img {
+    width: 168px;
+    height: 168px;
+  }
 }

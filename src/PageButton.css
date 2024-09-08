@@ -7,26 +7,25 @@
   margin-bottom: 140px;
 }
 
-.PageButton{
-    border-radius: 40px;
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    line-height: 26px;
-    font-weight: 600;
-    border: 1px solid #e5e7eb;
-    background-color: #fff;
-    color: #6b7280;
-    cursor: pointer;
+.PageButton {
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  background-color: #fff;
+  color: #6b7280;
+  cursor: pointer;
 }
-.ArrowButton{
-    color: #4B5563;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.ArrowButton {
+  color: #4b5563;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.active{
-    background-color: #2f80ed;
-    color: #f9fafb;
+.active {
+  background-color: #2f80ed;
+  color: #f9fafb;
 }
