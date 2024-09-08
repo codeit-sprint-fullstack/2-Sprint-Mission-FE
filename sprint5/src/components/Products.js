@@ -1,5 +1,4 @@
-import axios from "axios";
-import getProducts from "../api.js";
+import { getProducts, totalProducts } from "../api.js";
 import { useEffect, useState } from "react";
 
 function CostFormat(amount) {
@@ -10,22 +9,37 @@ export default function Products() {
   // const selecList = ["좋아요순 ",""]
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("recent");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState([]);
 
   function ProductList() {
-    getProducts(1, 10, order, "").then((productlist) => {
+    getProducts(currentPage, 10, order, "").then((productlist) => {
       //console.log("getLsit:", productlist);
       setItems(productlist);
     });
   }
 
+  function fetchTotalPages() {
+    totalProducts(1, 10, "recent", "").then((totalCount) => {
+      setTotalPages(totalCount);
+    });
+  }
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page); // 현재 페이지를 변경
+  };
+
   const handleSortItems = (e) => {
-    console.log(e.target.value);
     setOrder(e.target.value);
   };
 
   // 무한 요청 막기
   useEffect(() => {
     ProductList();
+  }, [currentPage, order]);
+
+  useEffect(() => {
+    fetchTotalPages();
   }, [order]);
 
   return (
@@ -53,6 +67,13 @@ export default function Products() {
           );
         })}
       </ul>
+      <div>
+        {totalPages.map((page) => (
+          <button key={page} onClick={() => handlePageChange(page)}>
+            {page}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

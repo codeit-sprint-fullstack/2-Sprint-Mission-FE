@@ -1,4 +1,4 @@
-import getProducts from "../api.js";
+import { getProducts } from "../api.js";
 import { useEffect, useState } from "react";
 
 function CostFormat(amount) {
