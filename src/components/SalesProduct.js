@@ -13,7 +13,6 @@ export default function SalesProduct() {
   const [currentPage, setCurrentPage] = useState(1)
 
   const handleSortOrderChange = (order) => setSortOrder(order);
-  
 
   const handleLoadSalesItem = useCallback(
     async (params) => {
@@ -23,7 +22,7 @@ export default function SalesProduct() {
       setSalesItems(data.list);
       setTotalCount(data.totalCount);
     },
-    [getProductList]
+    []
   );
 
   const handleSearch = (keyword) => setSearchText(keyword);
@@ -34,7 +33,7 @@ export default function SalesProduct() {
       orderBy: sortOrder,
       keyword: searchText,
     });
-  }, [currentPage, sortOrder, searchText]);
+  }, [currentPage, sortOrder, searchText, handleLoadSalesItem]);
   
   return (
     <div className='salesItemSection'>
@@ -51,7 +50,7 @@ export default function SalesProduct() {
           )
         })}
       </div>
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalCount={totalCount} />
+      <Pagination page={currentPage} setPage={setCurrentPage} totalCount={totalCount} />
     </div>
   );
 }

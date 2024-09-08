@@ -1,56 +1,56 @@
-import { useState } from "react"
+import { useEffect, useState } from "react";
 
-const BUNDLE_COUNT = 5;
 const ITEMS_PER_PAGE = 10;
+const BUNDLE_LIMIT = 5;
 
-export default function Pagination({ currentPage, setCurrentPage, totalCount }) {
-  const totalBundle = Math.ceil(currentPage / BUNDLE_COUNT);
+export default function Pagination({ page, setPage, totalCount }) {
+  const [currentPageArray, setCurrentPageArray] = useState([]);
+  const [totalPageArray, setTotalPageArray] = useState([]);
   const totalPage = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
-  const getVisiblePages = () => {
-    const startPage = (totalBundle - 1) * BUNDLE_COUNT + 1;
-    const endPage = Math.min(startPage + BUNDLE_COUNT - 1, totalPage);
-    return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
+  const sliceArrayByLimit = (totalPage, BUNDLE_LIMIT) => {
+    const totalPageArray = Array(totalPage)
+      .fill()
+      .map((_, i) => i);
+    return Array(Math.ceil(totalPage / BUNDLE_LIMIT))
+      .fill()
+      .map(() => totalPageArray.splice(0, BUNDLE_LIMIT));
   };
 
-  const visiblePages = getVisiblePages();
-
-  const handlePrevClick = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+  useEffect(() => {
+    if (page % BUNDLE_LIMIT === 1) {
+      setCurrentPageArray(totalPageArray[Math.floor(page / BUNDLE_LIMIT)]);
+    } else if (page % BUNDLE_LIMIT === 0) {
+      setCurrentPageArray(totalPageArray[Math.floor(page / BUNDLE_LIMIT) - 1]);
     }
-  };
+  }, [page, totalPageArray]);
 
-  const handleNextClick = () => {
-    if (currentPage < totalPage) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePageClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-   
-
-  const handlePrevPage = () => {}
+  useEffect(() => {
+    const slicedPageArray = sliceArrayByLimit(totalPage, BUNDLE_LIMIT);
+    setTotalPageArray(slicedPageArray);
+    setCurrentPageArray(slicedPageArray[0]);
+  }, [totalPage]);
 
   return (
-    <div>
-      <button onClick={handlePrevClick} disabled={currentPage === 1}>
+    <div className="PaginationWrapper">
+      <button className="prevPageBtn" onClick={() => setPage(page - 1)} disabled={page === 1}>
         &lt;
       </button>
-      {visiblePages.map((pageNumber) => (
-        <button 
-          key={pageNumber}
-          className={pageNumber === currentPage ? 'active' : ''}
-          onClick={() => handlePageClick(pageNumber)}
-        >
-          {pageNumber}
-        </button>
-      ))}
-      <button onClick={handleNextClick} disabled={currentPage === totalPage}>
+      <div>
+        {currentPageArray?.map((i) => (
+          <button
+            className="pageBtn"
+            key={i + 1}
+            onClick={() => setPage(i + 1)}
+            aria-current={page === i + 1 ? 'page' : null}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
+      <button className="nextPageBtn" onClick={() => setPage(page + 1)} disabled={page === totalPage}>
         &gt;
       </button>
     </div>
-  )
+  );
 }
