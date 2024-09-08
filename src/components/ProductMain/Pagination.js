@@ -1,7 +1,7 @@
 import './Pagination.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const maxPageDisplay = 10; // 표시할 최대 페이지 수를 10개로 설정
+  const maxPageDisplay = 5; // 표시할 최대 페이지 수를 10개로 설정
   const isMobile = window.innerWidth <= 743; // 모바일 환경 감지
   const pageNumbers = [];
 
