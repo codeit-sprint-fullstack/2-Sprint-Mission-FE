@@ -49,9 +49,10 @@ function BestProductList() {
     fetchBestProducts();
   }, [maxItems]); // maxItems가 변경될 때마다 호출
 
-  if (error) return (
-    <div>{error}</div>
-  );
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+
 
   return (
     <div className="product-list-container">

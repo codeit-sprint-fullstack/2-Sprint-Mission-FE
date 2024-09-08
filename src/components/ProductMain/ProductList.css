@@ -83,6 +83,21 @@
   background-color: #F3F4F6;
 }
 
+/* 오류 메시지 스타일링 */
+.error-message {
+  background-color: #fff4e5; /* 연한 주황색 배경 */
+  color: #d9534f; /* 오류 메시지 글씨 색상 */
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  margin: 2rem auto;
+  max-width: 50rem; /* 최대 너비 설정 */
+  height: 30rem;
+  border: 0.1rem solid #d9534f; /* 붉은 색 테두리 */
+}
+
 @media (max-width: 1199px) and (min-width: 744px) {
   .product-list-container { 
     max-width: 69.6rem;

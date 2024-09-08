@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getProductList } from '../../api/ProductService';
 import ProductItem from './ProductItem';
+import Pagination from './Pagination';
 import sortIcon from '../../assets/images/btn_sort.png'; // 소트 이미지 임포트
 import './ProductList.css';
 
@@ -11,6 +12,8 @@ function ProductList() {
   const [isSortMenuVisible, setSortMenuVisible] = useState(false); 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 743); 
   const [sortOption, setSortOption] = useState('recent'); 
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,14 +36,16 @@ function ProductList() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productList = await getProductList(1, maxItems, sortOption);
+        const productList = await getProductList(currentPage, maxItems, sortOption);
         setProducts(productList.list);
+        console.log(productList);
+        setTotalPages(Math.ceil(productList.totalCount / maxItems));
       } catch (e) {
         setError('판매중인 상품을 불러오는 데 실패하였습니다.');
       }
     };
     fetchProducts();
-  }, [maxItems, sortOption]);
+  }, [maxItems, sortOption, currentPage]);
 
   const toggleSortMenu = () => {
     setSortMenuVisible((prev) => !prev);
@@ -53,8 +58,12 @@ function ProductList() {
     console.log(`Sort menu visibility: ${false}`); // 메뉴 닫힘 상태 로그 출력
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   if (error) {
-    return <div>{error}</div>;
+    return <div className="error-message">{error}</div>;
   }
 
   return (
@@ -105,7 +114,8 @@ function ProductList() {
           <ProductItem key={product.id} product={product} type="" />
         ))}
       </div>
-
+      {/* Pagination 컴포넌트 사용 */}
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
     </div>
   );
   
