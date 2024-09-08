@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getProductList } from '../../api/ProductService';
 import ProductItem from './ProductItem';
 import './BestProductList.css';
@@ -6,7 +6,17 @@ import './BestProductList.css';
 function BestProductList() {
   const [bestProducts, setBestProducts] = useState([]);
   const [error, setError] = useState(null);
-  const [maxItems, setMaxItems] = useState(4); // 기본값: Desktop에서 4개
+
+  // 초기값을 현재 창 너비에 따라 설정
+  const [maxItems, setMaxItems] = useState(() => {
+    if (window.innerWidth >= 1200) {
+      return 4; // Desktop
+    } else if (window.innerWidth >= 744) {
+      return 2; // Tablet
+    } else {
+      return 1; // Mobile
+    }
+  });
 
   useEffect(() => {
     const handleResize = () => {
