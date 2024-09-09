@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { fetchApi } from "../api/axiosInstance";
 import likeButton from "../images/etc/likeButton.svg";
 import nonImage from "../images/etc/nonImage.svg";
 import "../css/ProductList.css";
@@ -8,22 +8,25 @@ const PCITEMS = 10; // 전체 상품 (Desktop)
 const TABLETITEMS = 6; // 전체 상품 (Tablet)
 const MOBILEITEMS = 4; // 전체 상품 (Mobile)
 
+// 페이지 크기 계산
+const getPageSize = () => {
+  const width = window.innerWidth;
+  // 전체 상품의 반응형 그리드 설정
+  if (width >= 1200) {
+    return PCITEMS;
+  } else if (width >= 744) {
+    return TABLETITEMS;
+  } else {
+    return MOBILEITEMS;
+  }
+};
+
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [sortType, setSortType] = useState("recent"); // 기본 정렬은 최신순
   const [searchContent, setSearchContent] = useState("");
-
-  // 페이지 크기 계산
-  const getPageSize = () => {
-    const width = window.innerWidth;
-    // 전체 상품의 반응형 그리드 설정
-    if (width >= 1200) return PCITEMS;
-    if (width >= 744) return TABLETITEMS;
-    return MOBILEITEMS;
-  };
-
   const [pageSize, setPageSize] = useState(getPageSize());
 
   // 반응형 페이지네이션 설정
@@ -44,18 +47,14 @@ const ProductList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(
-        "https://panda-market-api.vercel.app/products",
-        {
-          params: {
-            page: currentPage,
-            limit: pageSize,
-            sort: sortType === "recent" ? "recent" : "favorite",
-            search: searchContent,
-          },
-        }
-      );
-      let products = response.data.list || [];
+      const response = await fetchApi("/products", {
+        page: currentPage,
+        limit: pageSize,
+        sort: sortType,
+        search: searchContent,
+      });
+
+      let products = response.list || [];
 
       // 검색 필터링 -> 서버에서 검색 지원이 안됨
       if (searchContent) {
@@ -63,14 +62,15 @@ const ProductList = () => {
           product.name.toLowerCase().includes(searchContent.toLowerCase())
         );
       }
-
-      // 정렬 처리
-      if (sortType === "favorite") {
-        products.sort((a, b) => b.favoriteCount - a.favoriteCount); // 좋아요순 정렬
+      // 정렬
+      if (sortType === "recent") {
+        products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      } else if (sortType === "favorite") {
+        products.sort((a, b) => b.favoriteCount - a.favoriteCount);
       }
 
       setProducts(products);
-      setTotalPages(Math.ceil(response.data.totalCount / pageSize));
+      setTotalPages(Math.ceil(response.totalCount / pageSize));
     } catch (error) {
       console.error(error);
     }

@@ -28,7 +28,7 @@
 }
 
 .product-wrapper {
-  padding: 0 300px;
+  padding: 0 100px;
 }
 
 .search-sort-bar {
@@ -77,6 +77,11 @@ select {
   height: 40px;
   text-align: center;
   border-color: #dfdfdf;
+}
+
+.product-list {
+  overflow: hidden;
+  width: 100%;
 }
 
 .product-item {
