@@ -30,3 +30,28 @@
   height: 282px;
   border-radius: 16px;
 }
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .item {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 10px;
+  }
+
+  .bestItem .itemImg {
+    width: 343px;
+    height: 343px;
+    border-radius: 19.46px;
+  }
+}
+
+@media (max-width: 743px) {
+  .item {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .bestItem .itemImg {
+    width: 343px;
+    height: 343px;
+    border-radius: 19.46px;
+  }
+}
