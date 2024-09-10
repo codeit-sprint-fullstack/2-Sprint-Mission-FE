@@ -9,8 +9,8 @@ function AllProductList({ item }) {
       <img className={styles.productImage} src={item.images} alt={item.name} />
       <div className={styles.productInfo}>
         <p className={styles.description}>{item.description}</p>
-        <p>{item.price}원</p>
-        <p>♡ {item.favoriteCount}</p>
+        <p className={styles.price}>{item.price}원</p>
+        <p className={styles.favoriteCount}>♡ {item.favoriteCount}</p>
       </div>
     </div>
   );
@@ -23,6 +23,7 @@ function AllProducts() {
   const [pageSize, setPageSize] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, loadingError, getProductsAsync] = useAsync(getProducts);
+  const [width, setWidth] = useState(0);
 
   const handleLoad = useCallback(
     async (options) => {
@@ -61,8 +62,27 @@ function AllProducts() {
   }
 
   useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (width >= 1200) {
+      setPageSize(10);
+    } else if (width >= 744) {
+      setPageSize(6);
+    } else {
+      setPageSize(4);
+    }
+
     handleLoad({ orderBy: order, page: page, pageSize: pageSize });
-  }, [order, page, pageSize, handleLoad]);
+  }, [order, page, pageSize, width, handleLoad]);
 
   return (
     <div className={styles.wrapper}>
@@ -70,7 +90,7 @@ function AllProducts() {
         <h1>판매 중인 상품</h1>
         <div className={styles.subTitleMenus}>
           <form>
-            <input placeholder="검색할 상품을 입력해주세요" />
+            <input placeholder="      검색할 상품을 입력해주세요" />
             <button className={styles.formButton} onClick={handleClick}>
               상품 등록하기
             </button>

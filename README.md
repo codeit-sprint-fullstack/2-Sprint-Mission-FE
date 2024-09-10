@@ -19,7 +19,7 @@ This is the first personal project mission for Codeit Full Stack SPRINT program.
 
 | Requirements | Link |
 | :----------: | ---- |
-| Mission 1 | https://www.codeit.kr/topics/fs-sprint-mission-5/lessons/9019 |
+| Mission 5 | https://www.codeit.kr/topics/fs-sprint-mission-5/lessons/9019 |
 
 
 ### What I Learned

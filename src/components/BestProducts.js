@@ -18,8 +18,9 @@ function BestProductList({ item }) {
 
 function BestProducts() {
   const [items, setItems] = useState([]);
-  const [pageSize, setPageSize] = useState();
+  const [pageSize, setPageSize] = useState(0);
   const [isLoading, loadingError, getProductsAsync] = useAsync(getProducts);
+  const [width, setWidth] = useState(0);
 
   const handleLoad = useCallback(
     async (options) => {
@@ -33,8 +34,28 @@ function BestProducts() {
   );
 
   useEffect(() => {
-    handleLoad({ orderBy: "favorite", page: 1, pageSize: 4 });
-  }, [handleLoad]);
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  console.log(width);
+
+  useEffect(() => {
+    if (width >= 1200) {
+      setPageSize(4);
+    } else if (width >= 744) {
+      setPageSize(2);
+    } else {
+      setPageSize(1);
+    }
+
+    handleLoad({ orderBy: "favorite", page: 1, pageSize: pageSize });
+  }, [pageSize, width, handleLoad]);
 
   return (
     <div className={styles.wrapper}>

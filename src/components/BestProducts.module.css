@@ -1,3 +1,4 @@
+/* -----------PC------------ */
 
 h1 {
   font-size: 2rem;
@@ -6,7 +7,7 @@ h1 {
 }
 
 .wrapper {
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -19,6 +20,7 @@ h1 {
 .bestProductList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  margin: 24px 0;
 }
 
 .productImage {
@@ -29,7 +31,7 @@ h1 {
 
 .productInfo {
   width: 282px;
-  margin: 6px 0 0 0;
+  margin: 12px 0 0 0;
 }
 
 .description {
@@ -51,4 +53,33 @@ h1 {
   font-weight: 500;
   line-height: 1.8rem;
   margin: 0;
+}
+
+
+/* ---------Tablet---------- */
+@media (max-width: 1200px) {
+  .wrapper {
+    margin: 0 10px;
+  }
+  
+  .bestProductList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .productImage {
+    width: 343px;
+    height: 343px;
+  }
+
+  .productInfo {
+    width: 343px;
+  }
+}
+
+
+/* -----------Mobile------------ */
+@media (max-width: 744px) {
+  .bestProductList {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -1,3 +1,4 @@
+/* -----------PC------------ */
 
 h1 {
   font-size: 2rem;
@@ -6,13 +7,14 @@ h1 {
 }
 
 .wrapper {
-  width: 1200px;
+  max-width: 1200px;
   margin: 40px auto;
 }
 
 .subTitle {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 24px 0;
 }
 
@@ -37,6 +39,9 @@ input {
 
 input::placeholder {
   color: var(--gray-400);
+  background-image: url("/src/assets/search-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .formButton {
@@ -81,7 +86,7 @@ select {
 
 .productInfo {
   width: 221px;
-  margin: 6px 0 0 0;
+  margin: 12px 0 0 0;
 }
 
 .description {
@@ -117,10 +122,44 @@ select {
   height: 40px;
   border: solid 1px var(--gray-200);
   border-radius: 40px;
+  background-color: #FFFFFF;
 }
 
 .pagination>button:hover, .pagination>button.active {
   cursor: pointer;
   background-color: #2F80ED;
   color: var(--gray-50);
+}
+
+
+/* ---------Tablet---------- */
+@media (max-width: 1200px) {
+  .wrapper {
+    margin: 40px 10px;
+  }
+  
+  .allProductList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  input {
+    width: 242px;
+  }
+}
+
+
+/* -----------Mobile------------ */
+@media (max-width: 744px) {
+  .allProductList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .productImage {
+    width: 168px;
+    height: 168px;
+  }
+
+  .productInfo {
+    width: 168px;
+  }
 }
