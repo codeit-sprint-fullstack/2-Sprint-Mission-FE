@@ -1,17 +1,17 @@
-import Nav from './component/Nav';
-import { useState } from 'react';
-import Footer from './component/Footer'
+import Nav from "./component/Nav";
+import Footer from "./component/Footer";
+import BestItem from "./component/BestItem";
+import ItemList from "./component/ItemList";
 
 function App() {
-  // const [order, setOrder] = useState('favorite');
-  // const [bestItem, setBestItem] = useState([]);
-
   return (
     <div>
       <Nav />
+      <BestItem />
+      <ItemList />
       <Footer />
     </div>
-  )
+  );
 }
 
 export default App;
