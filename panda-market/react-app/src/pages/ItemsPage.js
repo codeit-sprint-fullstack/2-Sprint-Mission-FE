@@ -92,15 +92,12 @@ function ItemsPage() {
 	}, [pageBestSize, pageSize, pageNum, orderBy]);
 
 	return (
-	<div>
-		<Header/>
-		<main>
-			<BestItemsList bestItems={bestItems}/>
-			<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
-			<PageNum pageNum={pageNum} setPageNum={setPageNum} pageNumMax={pageNumMax}/>
-		</main>
-		<Footer/>
-	</div>);
+	<main>
+		<BestItemsList bestItems={bestItems}/>
+		<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
+		<PageNum pageNum={pageNum} setPageNum={setPageNum} pageNumMax={pageNumMax}/>
+	</main>
+	);
 }
 
 export default ItemsPage;
