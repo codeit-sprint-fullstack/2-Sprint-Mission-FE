@@ -1,9 +1,10 @@
-import "./style/BestProductsList.css";
+import styles from "./BestProductsList.module.css";
 import BestProduct from "./BestProduct.js";
-function BestProductsList({ bestList }) {
+function BestProductsList({ bestList, pageSize }) {
+  const list = bestList.slice(0, pageSize);
   return (
-    <ul id="best-products-list">
-      {bestList.map((product) => (
+    <ul id="best-products-list" className={styles.bestProductsListUI}>
+      {list.map((product) => (
         <li key={product.id}>
           <BestProduct
             name={product.name}

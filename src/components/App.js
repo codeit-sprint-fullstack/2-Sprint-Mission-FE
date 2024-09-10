@@ -4,6 +4,7 @@ import Contents from "./Contents/Contents.js";
 import Footer from "./Footer/Footer.js";
 import { getProductList } from "../api/ProductService.js";
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import test from "../api/test.js";
 import styles from "./App.module.css";
@@ -88,18 +89,26 @@ function App() {
   const pageInfo = {
     currentPage,
     totalPage,
+    pageSize,
   };
-
   return (
     <>
       <Nav className={styles.nav} />
-      <Contents
-        totalList={totalList}
-        pageInfo={pageInfo}
-        onChangePage={handleChangePage}
-        onChangeOrder={handleChangeOrder}
-        onChangeKeyword={handleChangeKeyword}
-      />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Contents
+              totalList={totalList}
+              pageInfo={pageInfo}
+              onChangePage={handleChangePage}
+              onChangeOrder={handleChangeOrder}
+              onChangeKeyword={handleChangeKeyword}
+            />
+          }
+        ></Route>
+      </Routes>
       <Footer />
     </>
   );

@@ -1,0 +1,86 @@
+.listHeader {
+    width: 100%;
+    height: 4.2rem;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.title {
+    grid-area: t;
+}
+
+
+.searchInput {
+    width: 32.5rem;
+    height: 4.2rem;
+    margin-left: 47.5rem;
+    padding: 0.9rem 2rem;
+    border-radius: 1.2rem;
+    background: #F3F4F6;
+
+}
+
+.registerBtn {
+    width: 13.3rem;
+    height: 4.2rem;
+    margin-left: 1.2rem;
+    padding: 0 2.3rem;
+    border-radius: 0.8rem;
+    background: #3692FF;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+    align-content: center;
+    color: #F3F4F6;
+}
+
+.sortSelector {
+    margin-left: 1.2rem;
+}
+
+@media(max-width: 1199px) {
+    .searchInput {
+        width: 24.2rem;
+        margin-left: 5.3rem;
+    }
+
+    .sortSelector {
+        margin-left: 1.2rem;
+    }
+}
+
+@media(max-width: 743px) {
+    .listHeader {
+        width: 100%;
+        height: 9.2rem;
+        display: grid;
+        grid-template-areas:
+            "t b ."
+            "i i s";
+        align-content: space-between;
+    }
+
+    .title {
+        width: 13.2rem;
+        height: 3.2rem;
+        margin: 0;
+        grid-area: t;
+
+    }
+
+    .searchInput {
+        width: 28.8rem;
+        margin: 0;
+        grid-area: i;
+    }
+
+    .registerBtn {
+        margin: 0;
+        grid-area: b;
+    }
+
+    .sortSelector {
+        grid-area: s;
+    }
+}

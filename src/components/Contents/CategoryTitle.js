@@ -1,5 +1,8 @@
-import "./style/CategoryTitle.css";
-function CategoryTitle({ children }) {
-  return <div className="category-title">{children}</div>;
+import styles from "./CategoryTitle.module.css";
+
+function CategoryTitle({ children, className }) {
+  return (
+    <div className={`${className} ${styles.categoryTitle}`}>{children}</div>
+  );
 }
 export default CategoryTitle;

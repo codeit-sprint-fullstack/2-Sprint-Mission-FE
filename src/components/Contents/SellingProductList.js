@@ -1,11 +1,12 @@
-import "./style/SellingProductList.css";
+import styles from "./SellingProductList.module.css";
 import SellingProduct from "./SellingProduct.js";
-function SellingProductList({ sellingList }) {
+function SellingProductList({ sellingList, pageSize }) {
+  const list = sellingList.slice(0, pageSize);
   return (
-    <ul id="selling-product-list">
-      {sellingList.map((product) => (
+    <ul className={styles.sellingProductList}>
+      {list.map((product) => (
         <li key={product.id}>
-          <SellingProduct product={product} />
+          <SellingProduct product={product} pageSize={pageSize} />
         </li>
       ))}
     </ul>

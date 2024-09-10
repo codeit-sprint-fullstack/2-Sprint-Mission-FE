@@ -1,10 +1,11 @@
-import "./style/SortSelector.css";
-function SortSelector({ onChangeOrder }) {
+import styles from "./SortSelector.module.css";
+function SortSelector({ onChangeOrder, className }) {
   const handleSelect = (e) => onChangeOrder(e.target.value);
+
   return (
-    <div id="sort-selector">
+    <div className={`${styles.frame} ${className}`}>
       <label for="options" />
-      <select id="sort-selector" onChange={handleSelect}>
+      <select className={styles.sortSelector} onChange={handleSelect}>
         <option value="recent">최신순</option>
         <option value="favorite">좋아요순</option>
       </select>

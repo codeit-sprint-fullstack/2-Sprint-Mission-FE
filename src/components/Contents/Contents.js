@@ -1,4 +1,4 @@
-import "./style/Contents.css";
+import styles from "./Contents.module.css";
 import ProductsEntire from "./ProductsEntire.js";
 import PageEntire from "./PageEntire.js";
 function Contents({
@@ -9,15 +9,16 @@ function Contents({
   onChangeKeyword,
 }) {
   return (
-    <div id="contents">
+    <div id="contents" className={styles.contents}>
       <ProductsEntire
-        id="products-entire"
+        className={styles.productsEntire}
         totalList={totalList}
         onChangeOrder={onChangeOrder}
         onChangeKeyword={onChangeKeyword}
+        pageSize={pageInfo.pageSize}
       />
       <PageEntire
-        id="page-entire"
+        className={styles.pageEntire}
         onChangePage={onChangePage}
         pageInfo={pageInfo}
       />

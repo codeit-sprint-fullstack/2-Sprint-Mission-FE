@@ -1,0 +1,29 @@
+.productsEntire {
+    width: 120rem;
+    height: 120.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sellingProductsEntire {
+    margin-top: 4rem;
+}
+
+@media(max-width: 1199px) {
+    .productsEntire {
+        width: 69.6rem;
+        height: 126.2rem;
+    }
+}
+
+@media(max-width: 743px) {
+    .productsEntire {
+        width: 34.4rem;
+        height: 119.4rem;
+    }
+
+    .sellingProductsEntire {
+        margin-top: 2.4rem;
+    }
+}

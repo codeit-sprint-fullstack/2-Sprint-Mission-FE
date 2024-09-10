@@ -1,15 +1,25 @@
-import "./style/ProductsEntire.css";
+import styles from "./ProductsEntire.module.css";
 import BestProductsSection from "./BestProductsSection.js";
 import SellingProductsSection from "./SellingProductsSection.js";
-function ProductsEntire({ totalList, onChangeOrder, onChangeKeyword }) {
+function ProductsEntire({
+  totalList,
+  onChangeOrder,
+  onChangeKeyword,
+  className,
+  pageSize,
+}) {
   return (
-    <div id="products-entire">
-      <BestProductsSection bestList={totalList.bestList} />
+    <div className={`${styles.productsEntire} ${className}`}>
+      <BestProductsSection
+        bestList={totalList.bestList}
+        pageSize={pageSize.bestList}
+      />
       <SellingProductsSection
-        id="selling-products-entire"
+        className={styles.sellingProductsEntire}
         sellingList={totalList.sellingList}
         onChangeOrder={onChangeOrder}
         onChangeKeyword={onChangeKeyword}
+        pageSize={pageSize.sellingList}
       />
     </div>
   );
