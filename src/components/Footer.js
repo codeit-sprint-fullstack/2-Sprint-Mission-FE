@@ -15,10 +15,10 @@ export default function Footer() {
         <a href="./faq/">FAQ</a>
       </div>
       <div className="snsLink">
-        <a href="https://www.facebook.com/" target="_blank"><img src={facebookIc} alt="페이스북" /></a>
-        <a href="https://twitter.com/" target="_blank"><img src={twitterIc} alt="트위터" /></a>
-        <a href="https://www.youtube.com/" target="_blank"><img src={youtubeIc} alt="유튜브" /></a>
-        <a href="https://www.instagram.com/" target="_blank"><img src={instagramIc} alt="인스타그램" /></a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><img src={facebookIc} alt="페이스북" /></a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><img src={twitterIc} alt="트위터" /></a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><img src={youtubeIc} alt="유튜브" /></a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src={instagramIc} alt="인스타그램" /></a>
       </div>
     </footer>
   );
