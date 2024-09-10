@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useItem from "./hook/useItem";
 import Item from "./Item";
+import "./BestItem.css";
 
 const getPageSize = () => {
   const width = window.innerWidth;
@@ -35,8 +36,8 @@ const BestItem = () => {
 
   return (
     <div className="bestItem">
+      <p className="bestItem-p">베스트 상품</p>
       <div className="item">
-        <p>베스트 상품</p>
         {item.map((product) => (
           <Item key={product.id} item={product} />
         ))}
