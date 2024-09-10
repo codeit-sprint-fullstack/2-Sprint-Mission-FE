@@ -1,8 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './root.css';
-import './style.css';
-import './reset.css';
 import CommonsPage from './pages/CommonsPage.js';
 import HomePage from './pages/HomePage.js';
 import ItemsPage from './pages/ItemsPage.js';

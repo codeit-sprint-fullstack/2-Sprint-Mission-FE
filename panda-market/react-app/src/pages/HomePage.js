@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+import '../style.css';
+import '../reset.css';
+
 function HomePage() {
   return (<main>
 		<article className="sub">
 			<section className="sec-top" style={{backgroundImage: `url("/images/Img_home_top.png")`}}>
 				<div className="description">
 					<h2>일상의 모든 물건을<br />거래해 보세요</h2>
-					<a href="/items" className="button">구경하러 가기</a>
+					<Link to="/items" className="button">구경하러 가기</Link>
 				</div>
 				<div className="img-home-top"></div>
 			</section>
