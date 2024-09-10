@@ -1,20 +1,31 @@
-.salesProductTitle {
-  display: flex;
-  justify-content: space-between;
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  color: #111827;
 }
 
-.titleFn {
-  display: flex;
-  gap: 1.2rem;
+.salesProductTitle {
+  display: grid;
+  grid-template-columns: 58.8rem 33.7rem 14.5rem 13rem ;
 }
 
 .searchArea {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   width: 32.5rem;
   height: 4.2rem;
-  padding: 9px 20px 9px 16px;
-  border: none;
+  padding: 0.9rem 1.6rem 0.9rem 1.6rem;
   border-radius: 1.2rem;
   background-color: #F3F4F6;
+}
+
+.searchInputArea {
+  border: none;
+  background-color: #F3F4F6;
+  width: 100%;
+  height: 100%;
 }
 
 .registButton {
@@ -32,4 +43,42 @@
   line-height: 2.6rem;
   color: #F3F4F6;
   cursor: pointer;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .searchArea {
+    width: 24.2rem;
+  }
+
+  .salesProductTitle {
+    grid-template-columns: 16.6rem 25.4rem 14.5rem 13rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .salesProductTitle {
+    grid-template-columns: 28.8rem 4.2rem;; /* 1행의 열 너비 */
+    grid-template-rows: 4.2rem 4.2rem; /* 행의 높이 */
+    row-gap: 0.8rem; /* 행과 열의 간격 */
+    column-gap: 1.4rem;
+  }
+  .title {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  .registButton {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    justify-self: end;
+  }
+  .searchArea {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    width: 28.8rem; /* 2행의 첫 번째 열 너비 */
+  }
+  .SortOrder {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    width: 4.2rem; /* 2행의 두 번째 열 너비 */
+  }
 }

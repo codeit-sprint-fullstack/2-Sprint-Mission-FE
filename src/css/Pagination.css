@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   gap: 0.4rem;
-  margin: 4.3rem 0 14rem 0;
+  margin: 1.9rem 0 14rem 0;
 }
 
 button {
@@ -32,3 +32,7 @@ button {
   cursor: not-allowed;
   background-color: #ffffff;
 }
+
+@media (min-width: 744px) and (max-width: 1199px) {}
+
+@media (max-width: 743px) {}

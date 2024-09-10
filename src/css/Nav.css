@@ -1,3 +1,4 @@
+
 header {
   display: flex;
   justify-content: space-between;
@@ -8,9 +9,9 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   height: 7rem;
   z-index: 999;
+  width: 100%;
 }
 
 .logoAndMenu {
@@ -43,4 +44,43 @@ header {
   font-size: 1.8rem;
   font-weight: 700;
   line-height: 2.6rem;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  header {
+    padding: 0.9rem 2.4rem;
+  }
+
+  .logoAndMenu {
+    gap: 2rem;
+  }
+
+}
+
+@media (max-width: 743px) {
+  header {
+    padding: 0.9rem 1.6rem;
+  }
+
+  .logoAndMenu {
+    gap: 0.8rem;
+  }
+
+  #logo {
+    content: url('../image/logoText.png');
+  }
+
+  .navMenu {
+    gap: 0.8rem;
+  }
+
+  .menuList {
+    font-size: 1.6rem;
+    padding: 2.4rem 0
+  }
+
+  .user p {
+    display: none;
+  }
+
 }

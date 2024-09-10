@@ -1,7 +1,7 @@
 .salesItems {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 2.4rem;
+  gap: 4rem 2.4rem;
   max-width: 120rem;
   list-style-type: none;
 }
@@ -9,7 +9,22 @@
 .salesItemSection {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
-  width: 100%;
+  gap: 2.4rem;
   max-width: 120rem;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .salesItems {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem 1.6rem;
+  }
+
+}
+
+@media (max-width: 743px) {
+  .salesItems {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.2rem 0.8rem;
+    max-width: 37.6rem;
+  }
 }

@@ -3,8 +3,21 @@ import '../css/BestProduct.css';
 import { getProductList } from '../api';
 import { useCallback, useEffect, useState } from 'react';
 
+function getPageSize() {
+  const width = window.innerWidth;
+
+  if (width >= 1200) {
+    return 4;
+  } else if (width >= 744) {
+    return 2;
+  } else {
+    return 1;
+  }
+}
+
 export default function BestProduct() {
   const [bestItems, setBestItems] = useState([]);
+  const [pageSize, setPageSize] = useState(getPageSize());
 
   const handleLoadBestItem = useCallback(
     async (params) => {
@@ -13,15 +26,32 @@ export default function BestProduct() {
 
       setBestItems(data.list);
     },
-    [getProductList]
+    []
   );
 
   useEffect(() => {
     handleLoadBestItem({
       page: 1,
-      pageSize: 4,
+      pageSize: pageSize,
       orderBy: 'favorite'
     });
+  }, [pageSize, handleLoadBestItem]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 744) {
+        setPageSize(1);
+      } else if (window.innerWidth < 1200) {
+        setPageSize(2);
+      } else {
+        setPageSize(4);
+      }
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (

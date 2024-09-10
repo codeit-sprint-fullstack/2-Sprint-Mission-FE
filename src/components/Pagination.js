@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import '../css/Pagination.css'
-const ITEMS_PER_PAGE = 10;
+// const ITEMS_PER_PAGE = 10;
 const BUNDLE_LIMIT = 5;
 
-export default function Pagination({ page, setPage, totalCount }) {
+export default function Pagination({ page, setPage, totalCount, pageSize}) {
   const [currentPageArray, setCurrentPageArray] = useState([]);
   const [totalPageArray, setTotalPageArray] = useState([]);
-  const totalPage = Math.ceil(totalCount / ITEMS_PER_PAGE);
+  const totalPage = Math.ceil(totalCount / pageSize);
 
   const sliceArrayByLimit = (totalPage, BUNDLE_LIMIT) => {
     const totalPageArray = Array(totalPage)

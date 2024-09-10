@@ -2,27 +2,96 @@
   display: flex;
   align-items: center;
   position: relative;
+  font-family: pretendard;
 }
 
-select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  width: 13rem;
-  height: 4.2rem;
-  border: 0.1rem solid #E5E7EB;
+.custom-dropdown-selected{
+  width: 130px;
+  height: 42px;
+  padding: 1.2rem 2rem;
+  border: 1px solid #E5E7EB;;
   border-radius: 1.2rem;
-  padding: 0 2rem 0 2rem;
-  font-family: Pretendard;
+  background-color: #ffffff;
+  color: #1F2937;;
   font-size: 1.6rem;
   font-weight: 400;
+  line-height: 2.6rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
-.optionText {
+.custom-dropdown-list {
+  position: absolute;
+  display: grid;
+  grid-template-rows: repeat(2, 42px);
+  grid-gap: 0;
+  margin-top: 0.8rem;
+  width: 130px;
+}
+
+.item-recent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #E5E7EB;
+  border-radius: 1.2rem 1.2rem 0 0;
+  background-color: #ffffff;
+  color: #1F2937;
+  font-size: 1.6rem;
   font-weight: 400;
+  line-height: 2.6rem;
 }
 
-.dropdownArrowImg {
+.item-recent:hover {
+  background-color: #3692FF;
+  color: #F9FAFB;
+  border: none;
+}
+
+.item-favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #E5E7EB;
+  border-top: 0;
+  border-radius: 0 0 1.2rem 1.2rem;
+  background-color: #ffffff;
+  color: #1F2937;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+}
+
+.item-favorite:hover {
+  background-color: #3692FF;
+  color: #F9FAFB;
+  border: none;
+}
+
+/* .dropdownArrowImg {
   position: absolute;
   right: 2rem;
+} */
+
+@media (min-width: 744px) and (max-width: 1199px) {}
+
+@media (max-width: 743px) {
+  
+  .custom-dropdown{
+    order: 2;
+  }
+
+  .custom-dropdown-selected {
+    width: 42px;
+    justify-content: center;
+  }
+
+  .custom-dropdown-list {
+    transform: translateX(-88px);
+  }
 }
