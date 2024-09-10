@@ -19,7 +19,7 @@ const useItem = (page = 1, pageSize = 10, orderBy = "recent") => {
 
         if (response.data && Array.isArray(response.data.list)) {
           setItem(response.data.list);
-          setAllProduct(response.data.allProduct);
+          setAllProduct(response.data.totalCount);
         } else {
           setItem([]);
           setAllProduct(0);

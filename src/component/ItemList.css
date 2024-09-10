@@ -141,6 +141,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
+  margin: 4.3px auto 140px;
 }
 
 .pagination button {
@@ -152,4 +153,25 @@
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  color: #6b7280;
+}
+
+.pagination button:hover {
+  background-color: #2f80ed;
+  color: #6b7280;
+  border: none;
+}
+
+.pagination button.active {
+  background-color: #2f80ed;
+  color: #6b7280;
+  border: none;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  background-color: #ffffff;
 }
