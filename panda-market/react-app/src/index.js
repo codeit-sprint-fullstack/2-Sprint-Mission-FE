@@ -1,8 +1,25 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './root.css';
 import './style.css';
 import './reset.css';
-import App from './App.js';
+import CommonsPage from './pages/CommonsPage.js';
+import HomePage from './pages/HomePage.js';
+import ItemsPage from './pages/ItemsPage.js';
+import LogInPage from './pages/LogInPage.js';
+import SignUpPage from './pages/SignUpPage.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+	<BrowserRouter>
+		<Routes>
+			<Route path="/" element={<CommonsPage/>}>
+				<Route index element={<HomePage/>}/>
+				<Route path="items" element={<ItemsPage/>}/>
+			</Route>
+			<Route path="/login" element={<LogInPage/>}/>
+			<Route path="/signup" element={<SignUpPage/>}/>
+			<Route path="*" element={<NotFoundPage/>}/>
+		</Routes>
+	</BrowserRouter>
+);

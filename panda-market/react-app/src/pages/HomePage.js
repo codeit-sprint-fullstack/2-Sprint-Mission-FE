@@ -1,4 +1,4 @@
-function HomeMain() {
+function HomePage() {
   return (<main>
 		<article className="sub">
 			<section className="sec-top" style={{backgroundImage: `url("/images/Img_home_top.png")`}}>
@@ -54,4 +54,4 @@ function HomeMain() {
 	</main>);
 }
 
-export default HomeMain;
+export default HomePage;

@@ -1,9 +1,9 @@
-import Header from "./Header.js";
-import HomeMain from "./HomeMain.js";
-import Footer from "./Footer.js";
+import Header from "../Header.js";
+import Footer from "../Footer.js";
 import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
-function App() {
+function CommonsPage() {
   useEffect(() => {
     const logo = document.querySelector("img.logo");
     window.addEventListener("resize", function (event) {
@@ -19,9 +19,9 @@ function App() {
 
   return (<>
     <Header/>
-    <HomeMain/>
+    <Outlet/>
     <Footer/>
   </>);
 }
 
-export default App;
+export default CommonsPage;

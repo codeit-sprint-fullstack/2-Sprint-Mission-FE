@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import PopUp from "./PopUp.js";
-import USER_DATA from "./scripts/data.js";
+import '../login.css';
+import PopUp from "../PopUp.js";
+import USER_DATA from "../scripts/data.js";
 
-function SignUpComp() {
+function SignUpPage() {
 	useEffect(() => {
 		const email = document.querySelector(`#email`);
 		const emailError = document.querySelector(`.email-error`);
@@ -214,4 +215,4 @@ function SignUpComp() {
 	</>);
 }
 
-export default SignUpComp;
+export default SignUpPage;

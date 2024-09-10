@@ -1,11 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
-import Footer from "./Footer.js";
-import Header from "./Header.js";
-import useAsync from "./hooks/useAsync.js";
-import BestItemsList from "./BestItemsList.js";
-import ItemsList from "./ItemsList.js";
-import PageNum from "./PageNum.js";
-import { getProducts } from "./apis/itemsService.js";
+import '../items.css';
+import Footer from "../Footer.js";
+import Header from "../Header.js";
+import useAsync from "../hooks/useAsync.js";
+import BestItemsList from "../BestItemsList.js";
+import ItemsList from "../ItemsList.js";
+import PageNum from "../PageNum.js";
+import { getProducts } from "../apis/itemsService.js";
 
 const loadItems = async function (params) { // * { page, pageSize, orderBy, keyword }
 	return await getProducts(params);
@@ -14,7 +15,7 @@ const loadItems = async function (params) { // * { page, pageSize, orderBy, keyw
 const initialPageBestSize = window.innerWidth > 1200 ? 4 : (window.innerWidth > 744 ? 2 : 1);
 const initialPageSize = window.innerWidth > 1200 ? 10 : (window.innerWidth > 744 ? 6 : 4);
 
-function ItemsComp() {
+function ItemsPage() {
 	const [pageBestSize, setPageBestSize] = useState(initialPageBestSize);
 	const [bestItems, setBestItems] = useState([]);
 	const [pageSize, setPageSize] = useState(initialPageSize);
@@ -62,7 +63,7 @@ function ItemsComp() {
 		return () => {
 			console.log(`[] unmounted.`);
 		};
-	}, []);
+	}, [handleResize]);
 
 	useEffect(() => {
 		console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`);
@@ -102,4 +103,4 @@ function ItemsComp() {
 	</div>);
 }
 
-export default ItemsComp;
+export default ItemsPage;
