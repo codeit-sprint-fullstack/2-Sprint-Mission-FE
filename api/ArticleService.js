@@ -92,3 +92,13 @@ export function deleteArticle(articleId) {
       return null;
     });
 }
+
+const article = {
+  getArticleList,
+  getArticle,
+  createArticle,
+  patchArticle,
+  deleteArticle,
+};
+
+export default article;
