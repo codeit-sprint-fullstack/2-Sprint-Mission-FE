@@ -1,0 +1,54 @@
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2px;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.bestProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bestProductList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.productImage {
+  width: 282px;
+  height: 282px;
+  border-radius: 19.46px;
+}
+
+.productInfo {
+  width: 282px;
+  margin: 6px 0 0 0;
+}
+
+.description {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  margin: 0;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+  margin: 0;
+}
+
+.favoriteCount {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  margin: 0;
+}

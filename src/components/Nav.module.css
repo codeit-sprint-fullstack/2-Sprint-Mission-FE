@@ -1,0 +1,67 @@
+nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #DFDFDF;
+  margin: 0 0 26px 0;
+}
+
+.navContents {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1520px;
+  height: 70px;
+  justify-content: space-between;
+}
+
+.logoImg {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 153px;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.logo1 {
+  display: none;
+  width: 40px;
+}
+
+.logo2 {
+  width: 103px;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: 16px;
+  width: 232px;
+}
+
+.navRight {
+  font-size: 1.6rem;
+  padding: 12px 23px;
+  border-radius: 8px;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gray-600);
+}
+
+.menu {
+  font-size: 1.8rem;
+  font-weight: 700px;
+  white-space: nowrap;
+  display: flex;
+  gap: 10px;
+}
+
+.profileImg {
+  width: 40px;
+  height: 40px;
+}
