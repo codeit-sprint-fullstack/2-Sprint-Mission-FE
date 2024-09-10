@@ -1,3 +1,5 @@
+import validateData from './ValidateData';
+
 const baseUrl = 'https://sprint-mission-api.vercel.app/articles/articles';
 const header = {
   'Content-Type': 'application/json',
@@ -46,19 +48,9 @@ export async function getArticle(id) {
 export async function createArticle(articleData) {
   const errors = [];
 
-  function ValidateData(key, type) {
-    if (typeof articleData[key] !== type) {
-      const currentType = typeof articleData[key];
-      errors.push({
-        path: key,
-        message: `Expected a(an) ${type}, but received: ${currentType}`
-      })
-    }
-  }
-
-  ValidateData('title', 'string');
-  ValidateData('content', 'string');
-  ValidateData('image', 'string');
+  validateData(articleData, 'title', 'string');
+  validateData(articleData, 'content', 'string');
+  validateData(articleData, 'image', 'string');
 
   if (errors.length > 0) {
     return {
