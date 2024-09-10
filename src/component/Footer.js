@@ -10,16 +10,12 @@ function Footer() {
       <div className="footer-icon">
         <p className="codeit">@codeit - 2024</p>
         <div className="menu">
-          <p className="Privacy">
-            <a href="/privacy" className="Privacy-a">
-              Privacy Policy
-            </a>
-          </p>
-          <p className="FAQ">
-            <a href="/faq" className="FAQ-a">
-              FAQ
-            </a>
-          </p>
+          <a href="/privacy" className="Privacy-a">
+            Privacy Policy
+          </a>
+          <a href="/faq" className="FAQ-a">
+            FAQ
+          </a>
         </div>
         <div class="icon">
           <a href="https://www.facebook.com/" target="_blank" title="facebook">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useItem from "./hook/useItem";
 import Item from "./Item";
 import search from "../assets/ic_search.svg";
@@ -6,6 +6,7 @@ import rightArrow from "../assets/btn_right.svg";
 import leftArrow from "../assets/btn_left.svg";
 import arrowDown from "../assets/ic_arrow_down.svg";
 import sort from "../assets/ic_sort.svg";
+import "./ItemList.css";
 
 const getPageSize = () => {
   const width = window.innerWidth;
@@ -48,7 +49,7 @@ const ItemList = () => {
     const pageNumbers = [];
     const maxPageNumbers = 5;
     let startPage = Math.max(1, page - Math.floor(maxPageNumbers / 2));
-    let endPage = Math.min(allProduct, startPage + maxPageNumbers - 1);
+    let endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
 
     if (endPage - startPage < maxPageNumbers - 1) {
       startPage = Math.max(1, endPage - maxPageNumbers + 1);
@@ -58,7 +59,7 @@ const ItemList = () => {
       pageNumbers.push(
         <button
           key={i}
-          onClick={() => setPage(1)}
+          onClick={() => setPage(i)}
           className={page === i ? "active" : ""}
         >
           {i}
