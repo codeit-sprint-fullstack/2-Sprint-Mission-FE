@@ -36,8 +36,8 @@ const BestItem = () => {
 
   return (
     <div className="bestItem">
-      <p className="bestItem-p">베스트 상품</p>
       <div className="item">
+        <p className="bestItem-p">베스트 상품</p>
         {item.map((product) => (
           <Item key={product.id} item={product} />
         ))}

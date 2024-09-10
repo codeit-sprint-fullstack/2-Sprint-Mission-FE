@@ -1,0 +1,57 @@
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.itemImg {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+}
+
+.itemText {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 10px;
+  line-height: 24px;
+}
+
+.itemName {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.itemPrice {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.heart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.heartImg {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+}
+
+.heart p {
+  display: flex;
+  color: #4b5563;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+p {
+  margin: 0;
+}

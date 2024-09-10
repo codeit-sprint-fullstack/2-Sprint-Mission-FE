@@ -20,9 +20,9 @@
   line-height: 32px;
   color: #111827;
   text-align: left;
+  width: 100%;
   grid-column: 1 / -1;
   grid-row: 1;
-  width: 100%;
 }
 
 .bestItem .itemImg {
