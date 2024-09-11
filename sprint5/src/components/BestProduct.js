@@ -1,10 +1,10 @@
 import '../css/BestProduct.css';
 import { useCallback, useState, useEffect } from 'react';
-import useAsync from '../hooks/useAsync';
+import useQuery from '../hooks/useQuery';
 import { getProductList } from '../api';
 
 function BestProductItem({ bestItem }) {
-  const { images, name, price, favoriteCount, createdAt } = bestItem;
+  const { images, name, price, favoriteCount } = bestItem;
 
   return (
     <div className="best-product-item">
@@ -20,7 +20,7 @@ function BestProductItem({ bestItem }) {
 
 export default function BestProduct() {
   const [bestItems, setBestItems] = useState([]);
-  const [isLoading, loadingError, getProductAsync] = useAsync(getProductList);
+  const [data, isLoading, error] = useQuery(() => getProductList({}));
   const [bestPageSize, setBestPageSize] = useState(4);
 
   useEffect(() => {
@@ -39,20 +39,15 @@ export default function BestProduct() {
     return () => window.removeEventListener('resize', handlePageSize);
   }, []);
 
-  const handleBestLoad = useCallback(
-    async (params) => {
-      const result = await getProductAsync(params);
-      if (!result) return;
-
-      const { list } = result;
-      setBestItems(list.sort((a, b) => b.favoriteCount - a.favoriteCount));
-    },
-    [getProductAsync]
-  );
-
   useEffect(() => {
-    handleBestLoad({ page: 1, pageSize: bestPageSize, orderBy: 'favorite' });
-  }, [bestPageSize, handleBestLoad]);
+    const handleLoadBestItems = async () => {
+      const result = await getProductList();
+      setBestItems(
+        result.list.sort((a, b) => b.favoriteCount - a.favoriteCount)
+      );
+    };
+    handleLoadBestItems();
+  }, []);
 
   return (
     <section>

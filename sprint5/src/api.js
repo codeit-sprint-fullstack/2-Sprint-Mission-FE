@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://welcome-panda-market-api.onrender.com'
+  baseURL: 'https://panda-market-api.vercel.app'
 });
 
 instance.interceptors.response.use(
@@ -13,7 +13,7 @@ instance.interceptors.response.use(
 );
 
 async function get(url, params) {
-  return instance.get(url, params);
+  return instance.get(url, { params });
 }
 
 async function post(url, body) {

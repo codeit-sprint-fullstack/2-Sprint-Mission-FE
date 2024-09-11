@@ -1,6 +1,6 @@
 import '../css/ProductList.css';
-import { useCallback, useState, useEffect } from 'react';
-import useAsync from '../hooks/useAsync';
+import { useState, useEffect } from 'react';
+import useQuery from '../hooks/useQuery';
 import { getProductList } from '../api';
 import Pagination from './Pagination';
 import ProductListBar from './ProductListBar';
@@ -21,14 +21,22 @@ function ProductListItem({ item }) {
 }
 
 export default function ProductList() {
-  const [items, setItems] = useState([]);
-  const [isLoading, loadingError, getProductAsync] = useAsync(getProductList);
   const [pageSize, setPageSize] = useState(10);
   const [sortOrder, setSortOrder] = useState('recent');
-  const [filteredItems, setFilteredItems] = useState([]);
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
+  const fetchProductList = () =>
+    getProductList({
+      page: currentPage,
+      pageSize,
+      orderBy: sortOrder,
+      keyword
+    });
+
+  const [data, isLoading, error] = useQuery(fetchProductList);
+
+  // 페이지 사이즈 조정
   useEffect(() => {
     const handlePageSize = () => {
       if (window.innerWidth >= 1200) {
@@ -39,43 +47,31 @@ export default function ProductList() {
         setPageSize(4);
       }
     };
-    handlePageSize();
+    handlePageSize(); // 초기 페이지 사이즈 설정
     window.addEventListener('resize', handlePageSize);
 
     return () => window.removeEventListener('resize', handlePageSize);
   }, []);
 
-  const handleLoad = useCallback(
-    async (options) => {
-      const result = await getProductAsync(options);
-      if (!result) return;
+  // 조건부 렌더링 처리
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!data || !data.list) return <div>No data found</div>;
 
-      const { list } = result;
+  // 데이터 정렬 및 필터링
+  const sortedItems = data.list.sort((a, b) => {
+    if (sortOrder === 'recent') {
+      return new Date(b.createdAt) - new Date(a.createdAt); // 날짜 비교로 수정
+    }
+    if (sortOrder === 'favorite') {
+      return b.favoriteCount - a.favoriteCount;
+    }
+    return 0;
+  });
 
-      const sortedList = list.sort((a, b) => {
-        if (sortOrder === 'recent') {
-          return b.createdAt - a.createdAt;
-        } else if (sortOrder === 'favorite') {
-          return b.favoriteCount - a.favoriteCount;
-        }
-        return 0;
-      });
-
-      setItems(sortedList);
-    },
-    [getProductAsync, sortOrder]
+  const filteredItems = sortedItems.filter((item) =>
+    item.name.toLowerCase().includes(keyword.toLowerCase())
   );
-
-  useEffect(() => {
-    handleLoad({ page: currentPage, pageSize: pageSize });
-  }, [currentPage, pageSize, handleLoad]);
-
-  useEffect(() => {
-    const filtered = items.filter((item) =>
-      item.name.toLowerCase().includes(keyword.toLowerCase())
-    );
-    setFilteredItems(filtered);
-  }, [items, keyword]);
 
   const totalPages = Math.ceil(filteredItems.length / pageSize);
   const currentItems = filteredItems.slice(
@@ -85,12 +81,7 @@ export default function ProductList() {
 
   return (
     <section>
-      <ProductListBar
-        value={sortOrder}
-        onChange={setSortOrder}
-        keyword={keyword}
-        onSearch={setKeyword}
-      />
+      <ProductListBar keyword={keyword} onSearch={setKeyword} />
       <div className="products">
         <div className="product-list">
           {currentItems.map((item) => (
