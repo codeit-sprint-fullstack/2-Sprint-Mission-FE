@@ -18,11 +18,7 @@ function FooterBarMenu({
     );
   } else if (linkType === "html") {
     return (
-      <a
-        className={`${className} ${styles.htmlLink}`}
-        style={style}
-        href={`/${address}`}
-      >
+      <a className={`${className} ${styles.htmlLink}`} style={style} href={`/`}>
         {children}
       </a>
     );

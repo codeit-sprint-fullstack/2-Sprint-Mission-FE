@@ -19,7 +19,7 @@ function FooterBar({ className }) {
         <FooterBarMenu
           className="footer-bar-menu-text"
           linkType={"html"}
-          address={"privacy.html"}
+          address={"/"}
           fontColor={"#E5E7EB"}
         >
           Privacy Policy
@@ -27,7 +27,7 @@ function FooterBar({ className }) {
         <FooterBarMenu
           className="footer-bar-menu-html"
           linkType={"html"}
-          address={"faq.html"}
+          address={"/"}
           fontColor={"#E5E7EB"}
         >
           FAQ

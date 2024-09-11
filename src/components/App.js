@@ -2,11 +2,9 @@ import "./App.css";
 import Nav from "./Nav/Nav.js";
 import Contents from "./Contents/Contents.js";
 import Footer from "./Footer/Footer.js";
-import { getProductList } from "../api/ProductService.js";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import axios from "axios";
-import test from "../api/test.js";
+import getProducts from "../api/ProductService.js";
 import styles from "./App.module.css";
 
 function App() {
@@ -17,13 +15,16 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
+  const PC_WIDTH = 1200;
+  const TABLET_WIDTH = 744;
+
   const getPageSize = (width) => {
-    if (width > 1200)
+    if (width > PC_WIDTH)
       return {
         bestList: 4,
         sellingList: 10,
       };
-    if (width > 744)
+    if (width > TABLET_WIDTH)
       return {
         bestList: 2,
         sellingList: 6,
@@ -36,20 +37,19 @@ function App() {
   const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth));
 
   useEffect(() => {
-    const handleReSize = () => {
+    const onResize = () => {
       setPageSize(getPageSize(window.innerWidth));
     };
-    window.addEventListener("resize", handleReSize);
-    return () => window.removeEventListener("resize", handleReSize);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const handleChangePageSize = () => {};
   const handleBestLoad = async (options) => {
-    const { list, totalCount } = await test(options);
+    const { list, totalCount } = await getProducts(options);
     setBestList(list);
   };
   const handleSellingLoad = async (options) => {
-    const { list, totalCount } = await test(options);
+    const { list, totalCount } = await getProducts(options);
     setSellingList(list);
     const nextTotalPage = Math.ceil(totalCount / options.pageSize);
     setTotalPage(nextTotalPage);
