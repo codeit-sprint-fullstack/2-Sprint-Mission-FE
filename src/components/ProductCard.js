@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductCard.css';
-import heartImg from './img/ic_heart.svg';
-import defaultImg from './img/img_default.svg';
+import heartImg from '../assets/ic_heart.svg';
+import defaultImg from '../assets/img_default.svg';
 
 const ProductCard = ({ product }) => {
   const imageUrl = product.images && Array.isArray(product.images) && product.images.length > 0 
