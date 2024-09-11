@@ -28,3 +28,23 @@
   --background-color-light-blue: #E6F2FF;
   --border-color: #DFDFDF;
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--secondary-color-gray700);
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  /* Responsive font-size */
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+

@@ -2,8 +2,6 @@ import { useEffect, useState, useCallback } from "react";
 import '../style.css';
 import '../items.css';
 import '../reset.css';
-import Footer from "../Footer.js";
-import Header from "../Header.js";
 import useAsync from "../hooks/useAsync.js";
 import BestItemsList from "../BestItemsList.js";
 import ItemsList from "../ItemsList.js";
