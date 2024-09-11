@@ -20,7 +20,7 @@
 
 .searchBar {
   position: relative;
-  margin: 0 0 80px 450px;
+  margin: 0 0 90px 450px;
 }
 
 .searchInput {
@@ -139,5 +139,50 @@
   }
   .toggle {
     grid-area: toggle;
+  }
+}
+
+/*SaleProduct CSS*/
+.SaleProduct .productImg {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+}
+
+.SaleProduct .productContent {
+  width: 221px;
+  height: 317px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/*반응형 CSS*/
+@media (min-width: 744px) and (max-width: 1199px) {
+  .productGrid {
+    width: 43.5rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 743px) {
+  .productGrid {
+    width: 21.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .SaleProduct .productImg {
+    width: 168px;
+    height: 168px;
+  }
+  .SaleProduct .productContent {
+    width: 168px;
+    height: 264px;
   }
 }
