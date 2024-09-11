@@ -50,9 +50,9 @@ export default function ProductList() {
       const result = await getProductAsync(options);
       if (!result) return;
 
-      const { list } = result;
+      const products = result;
 
-      const sortedList = list.sort((a, b) => {
+      const sortedList = products.sort((a, b) => {
         if (sortOrder === 'recent') {
           return b.createdAt - a.createdAt;
         } else if (sortOrder === 'favorite') {

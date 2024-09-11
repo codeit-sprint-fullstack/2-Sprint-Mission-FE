@@ -44,8 +44,8 @@ export default function BestProduct() {
       const result = await getProductAsync(params);
       if (!result) return;
 
-      const { list } = result;
-      setBestItems(list.sort((a, b) => b.favoriteCount - a.favoriteCount));
+      const products = result;
+      setBestItems(products.sort((a, b) => b.favoriteCount - a.favoriteCount));
     },
     [getProductAsync]
   );
