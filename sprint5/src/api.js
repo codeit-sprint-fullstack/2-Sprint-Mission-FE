@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://panda-market-api.vercel.app'
+  baseURL: 'https://welcome-panda-market-api.onrender.com'
 });
 
 instance.interceptors.response.use(
@@ -12,52 +12,44 @@ instance.interceptors.response.use(
   }
 );
 
-async function requestGet(url, params) {
-  try {
-    return instance.get(url, params);
-  } catch (err) {
-    console.error(err.message);
-  }
+async function get(url, params) {
+  return instance.get(url, params);
 }
 
-async function requestPost(url, body) {
+async function post(url, body) {
   return instance.post(url, body);
 }
 
-async function requestPatch(url, body) {
+async function patch(url, body) {
   return instance.patch(url, body);
 }
 
-async function requestDelete(url) {
+async function remove(url) {
   return instance.delete(url);
 }
 
 export async function getProductList(params = {}) {
-  try {
-    const res = await requestGet(`/products`, params);
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
+  const res = await get(`/products`, params);
+  return res.data;
 }
 
 export async function getProduct(id) {
-  const res = await requestGet(`/products${id}`);
+  const res = await get(`/products/${id}`);
   return res.data;
 }
 
 export async function createProduct(product) {
-  const res = await requestPost(`/products`, product);
+  const res = await post(`/products`, product);
   return res.data;
 }
 
 export async function patchProduct(id, product) {
-  const res = await requestPatch(`/products${id}`, product);
+  const res = await patch(`/products/${id}`, product);
   return res.data;
 }
 
 export async function deleteProduct(id) {
-  const res = await requestDelete(`/products${id}`);
+  const res = await remove(`/products/${id}`);
   return res.data;
 }
 
