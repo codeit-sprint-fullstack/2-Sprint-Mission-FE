@@ -2,6 +2,7 @@ import '../css/BestProduct.css';
 import { useCallback, useState, useEffect } from 'react';
 import useQuery from '../hooks/useQuery';
 import { getProductList } from '../api';
+import useResize from '../hooks/useResize';
 
 function BestProductItem({ bestItem }) {
   const { images, name, price, favoriteCount } = bestItem;
@@ -21,23 +22,8 @@ function BestProductItem({ bestItem }) {
 export default function BestProduct() {
   const [bestItems, setBestItems] = useState([]);
   const [data, isLoading, error] = useQuery(() => getProductList({}));
-  const [bestPageSize, setBestPageSize] = useState(4);
 
-  useEffect(() => {
-    const handlePageSize = () => {
-      if (window.innerWidth >= 1200) {
-        setBestPageSize(4);
-      } else if (window.innerWidth >= 744) {
-        setBestPageSize(2);
-      } else {
-        setBestPageSize(1);
-      }
-    };
-    handlePageSize();
-    window.addEventListener('resize', handlePageSize);
-
-    return () => window.removeEventListener('resize', handlePageSize);
-  }, []);
+  const pageSize = useResize(true);
 
   useEffect(() => {
     const handleLoadBestItems = async () => {
@@ -55,7 +41,7 @@ export default function BestProduct() {
         <h1 className="best-product-title">베스트 상품</h1>
         <div className="best-products">
           <div className="best-product-list">
-            {bestItems.slice(0, bestPageSize).map((bestItem) => (
+            {bestItems.slice(0, pageSize).map((bestItem) => (
               <div key={bestItem.id}>
                 <BestProductItem bestItem={bestItem} />
               </div>

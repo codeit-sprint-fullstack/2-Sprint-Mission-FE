@@ -4,6 +4,7 @@ import useQuery from '../hooks/useQuery';
 import { getProductList } from '../api';
 import Pagination from './Pagination';
 import ProductListBar from './ProductListBar';
+import useResize from '../hooks/useResize';
 
 function ProductListItem({ item }) {
   const { images, name, price, favoriteCount } = item;
@@ -21,7 +22,6 @@ function ProductListItem({ item }) {
 }
 
 export default function ProductList() {
-  const [pageSize, setPageSize] = useState(10);
   const [sortOrder, setSortOrder] = useState('recent');
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,21 +37,7 @@ export default function ProductList() {
   const [data, isLoading, error] = useQuery(fetchProductList);
 
   // 페이지 사이즈 조정
-  useEffect(() => {
-    const handlePageSize = () => {
-      if (window.innerWidth >= 1200) {
-        setPageSize(10);
-      } else if (window.innerWidth >= 744) {
-        setPageSize(6);
-      } else {
-        setPageSize(4);
-      }
-    };
-    handlePageSize(); // 초기 페이지 사이즈 설정
-    window.addEventListener('resize', handlePageSize);
-
-    return () => window.removeEventListener('resize', handlePageSize);
-  }, []);
+  const pageSize = useResize();
 
   // 조건부 렌더링 처리
   if (isLoading) return <div>Loading...</div>;
