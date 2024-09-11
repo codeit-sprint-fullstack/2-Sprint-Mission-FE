@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import ProductContent from "./ProductContent";
 import Pagination from "./Pagination";
 import "../style/SaleProduct.css";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 function SaleProduct() {
   const [saleProduct, setSaleProduct] = useState({ list: [] });
@@ -12,6 +13,13 @@ function SaleProduct() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [visibleProduct, setVisibleProduct] = useState(10);
+  const { isMobile, isTablet, isDesktop } = useMediaQuery();
+
+  useEffect(() => {
+    if (isMobile) setVisibleProduct(4);
+    else if (isTablet) setVisibleProduct(6);
+    else if (isDesktop) setVisibleProduct(10);
+  }, [isMobile, isTablet, isDesktop]);
 
   const sortSaleProduct = useCallback((list, order) => {
     if (order === "favoriteCount") {
@@ -23,22 +31,19 @@ function SaleProduct() {
     }
   }, []);
 
-  const fetchSaleProduct = useCallback(
-    async (order = "", searchProduct = "", page = 1) => {
-      const query = `sort=${order}&search=${searchProduct}&page=${page}&pageSize=100`;
-      const response = await fetch(
-        `https://panda-market-api.vercel.app/products?${query}`
-      );
-      const data = await response.json();
+  const fetchSaleProduct = async (order = "", searchProduct = "", page = 1) => {
+    const query = `sort=${order}&search=${searchProduct}&page=${page}&pageSize=999`;
+    const response = await fetch(
+      `https://panda-market-api.vercel.app/products?${query}`
+    );
+    const data = await response.json();
 
-      setSaleProduct(data);
+    setSaleProduct(data);
 
-      const totalProduct = data.list.length;
-      const totalPages = Math.ceil(totalProduct / visibleProduct);
-      setTotalPages(totalPages);
-    },
-    [visibleProduct]
-  );
+    const totalProduct = data.totalCount;
+    const totalPages = Math.ceil(totalProduct / visibleProduct);
+    setTotalPages(totalPages);
+  };
 
   const handleSearch = (e) => setSearchProduct(e.target.value);
 
@@ -54,26 +59,13 @@ function SaleProduct() {
     }
   };
 
-  const updateVisibleProduct = () => {
-    const width = window.innerWidth;
-    if (width >= 1199) {
-      setVisibleProduct(10);
-    } else if (width >= 768) {
-      setVisibleProduct(6);
-    } else {
-      setVisibleProduct(4);
-    }
-  };
-
   useEffect(() => {
-    updateVisibleProduct();
-    window.addEventListener("resize", updateVisibleProduct);
-    return () => window.removeEventListener("resize", updateVisibleProduct);
-  }, []);
+    setTotalPages(Math.ceil(saleProduct.totalCount, visibleProduct));
+  }, [visibleProduct]);
 
   useEffect(() => {
     fetchSaleProduct(order, searchProduct, page);
-  }, [order, searchProduct, page, fetchSaleProduct]);
+  }, []);
 
   const filteredProducts = saleProduct.list.filter((product) =>
     product.name.toLowerCase().includes(searchProduct.toLowerCase())
