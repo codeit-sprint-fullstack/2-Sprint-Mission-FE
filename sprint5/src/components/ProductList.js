@@ -1,10 +1,11 @@
 import '../css/ProductList.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useQuery from '../hooks/useQuery';
 import { getProductList } from '../api';
 import Pagination from './Pagination';
 import ProductListBar from './ProductListBar';
 import useResize from '../hooks/useResize';
+import { SortProvider, useSort } from '../contexts/SortContext';
 
 function ProductListItem({ item }) {
   const { images, name, price, favoriteCount } = item;
@@ -21,8 +22,8 @@ function ProductListItem({ item }) {
   );
 }
 
-export default function ProductList() {
-  const [sortOrder, setSortOrder] = useState('recent');
+function ProductListContent() {
+  const { sortOrder } = useSort();
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -83,5 +84,13 @@ export default function ProductList() {
         onPageChange={setCurrentPage}
       />
     </section>
+  );
+}
+
+export default function ProductList() {
+  return (
+    <SortProvider>
+      <ProductListContent />
+    </SortProvider>
   );
 }

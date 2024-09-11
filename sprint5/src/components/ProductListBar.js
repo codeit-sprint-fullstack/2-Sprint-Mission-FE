@@ -1,11 +1,8 @@
 import searchIcon from '../images/ic_search.png';
 import '../css/ProductListBar.css';
 import OrderMenu from './OrderMenu';
-import { useState } from 'react';
 
 export default function ProductListBar({ keyword, onSearch }) {
-  const [order, setOrder] = useState('recent');
-
   return (
     <section>
       <div className="product-bar">
@@ -22,7 +19,7 @@ export default function ProductListBar({ keyword, onSearch }) {
             />
           </div>
           <button className="product-add">상품 등록하기</button>
-          <OrderMenu className="order-menu" value={order} onChange={setOrder} />
+          <OrderMenu className="order-menu" />
         </div>
       </div>
     </section>

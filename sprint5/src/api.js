@@ -28,8 +28,15 @@ async function remove(url) {
   return instance.delete(url);
 }
 
-export async function getProductList(params = {}) {
-  const res = await get(`/products`, params);
+export async function getProductList({ page, pageSize, orderBy, keyword }) {
+  const res = await get(`/products`, {
+    params: {
+      page,
+      pageSize,
+      orderBy,
+      keyword
+    }
+  });
   return res.data;
 }
 
