@@ -30,7 +30,7 @@ const ProductList = () => {
     setSearch(e.target.value);
     setPage(1);
   };
-  const handleSort = (e) => {
+  const handleSortChange = (e) => {
     setSort(e.target.value);
   };
 
@@ -45,7 +45,7 @@ const ProductList = () => {
       />
       <select value={sort} onChange={handleSortChange}>
         <option value="recent">최신순</option>
-        <option value="favorite">좋아요 순</option> 
+        <option value="favorite">좋아요 순</option>
       </select>
 
       <ul>
