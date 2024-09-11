@@ -1,0 +1,143 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+.saleBar {
+  max-width: 1200px;
+  margin: 0 auto -70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sale {
+  color: #111827;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.searchBar {
+  position: relative;
+  margin: 0 0 80px 450px;
+}
+
+.searchInput {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  width: 325px;
+  height: 42px;
+  border-radius: 12px;
+  border: none;
+  padding: 11px 25px 9px 40px;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+}
+
+.searchImg {
+  position: absolute;
+  margin: 10px 0 0 13px;
+}
+
+.productRegistrationButton {
+  width: 133px;
+  height: 42px;
+  background-color: #3692ff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 18px 15px 18spx;
+  color: #f3f4f6;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 26px;
+}
+
+.toggleButton {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border-color: #e5e7eb;
+  border: 1px;
+  padding: 9px 15px;
+  color: #1f2937;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.createAt {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px 12px 0px 0px;
+  border: 1px solid;
+  border-color: #e5e7eb;
+  text-align: center;
+  padding: 11px 0 10px 0;
+  margin: 10px 0 0;
+}
+
+.favoriteCount {
+  width: 130px;
+  height: 42px;
+  border-radius: 0 0 12px 12px;
+  border: 1px solid;
+  border-color: #e5e7eb;
+  text-align: center;
+  padding: 11px 0 10px 0;
+}
+
+/*반응형 CSS*/
+@media (min-width: 744px) and (max-width: 1199px) {
+  .saleBar {
+    width: 43.5rem;
+    margin: 0 auto 15px;
+  }
+  .searchBar {
+    margin: 0 0 0 30px;
+  }
+  .searchInput {
+    width: 242px;
+  }
+}
+
+@media (max-width: 743px) {
+  .saleBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "sale productRegistrationButton"
+      "searchBar toggle";
+    width: 21.5rem;
+    margin: 0 auto 15px;
+  }
+  .sale {
+    grid-area: sale;
+  }
+  .searchBar {
+    margin: 0 0 0 0;
+  }
+  .productRegistrationButton {
+    grid-area: productRegistrationButton;
+  }
+  .searchBar {
+    grid-area: searchBar;
+  }
+  .searchInput {
+    width: 200px;
+    font-size: 11px;
+    padding: 9px 23px 7px 38px;
+  }
+  .toggle {
+    grid-area: toggle;
+  }
+}

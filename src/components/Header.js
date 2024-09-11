@@ -15,11 +15,11 @@ function Header() {
           </a>
         </div>
         <div>
-          <a className="market" href="/">
-            중고마켓
-          </a>
           <a className="community" href="/community">
             자유게시판
+          </a>
+          <a className="market" href="/">
+            중고마켓
           </a>
         </div>
       </div>
