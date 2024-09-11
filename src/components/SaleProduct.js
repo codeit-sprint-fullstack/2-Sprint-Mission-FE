@@ -61,10 +61,12 @@ function SaleProduct() {
 
   useEffect(() => {
     setTotalPages(Math.ceil(saleProduct.totalCount, visibleProduct));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visibleProduct]);
 
   useEffect(() => {
     fetchSaleProduct(order, searchProduct, page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filteredProducts = saleProduct.list.filter((product) =>
