@@ -1,8 +1,8 @@
-import "./Footer.css";
-import facebook from "./imgFile/facebook.png";
-import instagram from "./imgFile/instagram.png";
-import twitter from "./imgFile/twitter.png";
-import youtube from "./imgFile/youtube.png";
+import "../style/Footer.css";
+import facebook from "../imgFile/facebook.png";
+import instagram from "../imgFile/instagram.png";
+import twitter from "../imgFile/twitter.png";
+import youtube from "../imgFile/youtube.png";
 
 function Footer() {
   return (

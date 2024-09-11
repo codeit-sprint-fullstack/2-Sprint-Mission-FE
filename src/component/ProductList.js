@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "./ProductList.css";
-import arrowDown from "./imgFile/아래화살표이미지.png";
+import "../style/ProductList.css";
+import arrowDown from "../imgFile/아래화살표이미지.png";
 
 function ProductListItem({ item }) {
   return (

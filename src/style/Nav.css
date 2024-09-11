@@ -47,7 +47,7 @@
 }
 
 .Nav img {
-  content: url("./imgFile/판다마켓로고.png");
+  content: url("../imgFile/판다마켓로고.png");
 }
 
 /* tablet Size */
@@ -56,7 +56,7 @@
     padding: 1px 24px;
   }
   .Nav img {
-    content: url("./imgFile/판다마켓로고.png");
+    content: url("../imgFile/판다마켓로고.png");
   }
 }
 @media (max-width: 743px) {
@@ -67,7 +67,7 @@
     display: none;
   }
   .Nav img {
-    content: url("./imgFile/판다마켓글씨로고.png");
+    content: url("../imgFile/판다마켓글씨로고.png");
     width: 81px;
     height: 40px;
   }

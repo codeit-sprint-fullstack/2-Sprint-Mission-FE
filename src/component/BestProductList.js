@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./BestProductList.css";
+import "../style/BestProductList.css";
 
 function BestProductItem({ item }) {
   return (

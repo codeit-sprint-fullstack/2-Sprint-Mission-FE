@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./PageButton.css";
-import RightArrow from "./imgFile/오른쪽화살표.png";
-import LeftArrow from "./imgFile/왼쪽화살표.png";
+import "../style/PageButton.css";
+import RightArrow from "../imgFile/오른쪽화살표.png";
+import LeftArrow from "../imgFile/왼쪽화살표.png";
 
 const ITEMS_PER_PAGE = 10;
 const PAGE_BUTTON_COUNT = 5;

@@ -1,6 +1,6 @@
-import pandaLogo from "./imgFile/판다마켓로고.png";
-import kimAvatar from "./imgFile/김코드마크.png";
-import "./Nav.css";
+import pandaLogo from "../imgFile/판다마켓로고.png";
+import kimAvatar from "../imgFile/김코드마크.png";
+import "../style/Nav.css";
 
 export function Navbar() {
   return (

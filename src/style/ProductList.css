@@ -34,7 +34,7 @@
   line-height: 26px;
   color: #9ca3af;
   padding-left: 32px; /* 커서 위치 조정 */
-  background-image: url("./imgFile/돋보기아이콘.png");
+  background-image: url("../imgFile/돋보기아이콘.png");
   background-repeat: no-repeat;
   background-position: 8px center; /* 아이콘 위치 */
   background-size: 24px 24px; /* 돋보기 크기 조정 */
@@ -70,6 +70,7 @@
   box-sizing: border-box;
   padding: 0;
   position: relative;
+  cursor: pointer;
 }
 .ProductDropMenu {
   position: absolute;
@@ -77,6 +78,7 @@
   top: 100%;
   margin-top: 8px;
   width: 130px;
+  cursor: pointer;
 }
 .NewestList,
 .BestList {
@@ -138,7 +140,7 @@
     max-width: 344px;
   }
   .DropdownBox .ProductDropdown {
-    background: url("./imgFile/드롭다운모바일.png") no-repeat center;
+    background: url("../imgFile/드롭다운모바일.png") no-repeat center;
     background-size: contain;
     width: 40px; /* 이미지 크기에 맞춰 조정 */
     height: 40px; /* 이미지 크기에 맞춰 조정 */
