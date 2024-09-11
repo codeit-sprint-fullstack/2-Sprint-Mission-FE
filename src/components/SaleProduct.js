@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import ProductContent from "./ProductContent";
+import Pagination from "./Pagination";
 import "../style/SaleProduct.css";
 
 function SaleProduct() {
@@ -8,9 +9,9 @@ function SaleProduct() {
   const [searchProduct, setSearchProduct] = useState("");
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("최신순");
-  const [page] = useState(1);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [visibleProduct, setVisibleProduct] = useState(10);
-  const [sortedProducts, setSortedProducts] = useState([]);
 
   const sortSaleProduct = useCallback((list, order) => {
     if (order === "favoriteCount") {
@@ -29,14 +30,14 @@ function SaleProduct() {
         `https://panda-market-api.vercel.app/products?${query}`
       );
       const data = await response.json();
-      const sortedList = sortSaleProduct(data.list, order);
-      setSaleProduct({
-        ...data,
-        list: sortedList,
-      });
-      setSortedProducts(sortedList);
+
+      setSaleProduct(data);
+
+      const totalProduct = data.list.length;
+      const totalPages = Math.ceil(totalProduct / visibleProduct);
+      setTotalPages(totalPages);
     },
-    [sortSaleProduct]
+    [visibleProduct]
   );
 
   const handleSearch = (e) => setSearchProduct(e.target.value);
@@ -74,9 +75,20 @@ function SaleProduct() {
     fetchSaleProduct(order, searchProduct, page);
   }, [order, searchProduct, page, fetchSaleProduct]);
 
-  const filteredProducts = sortedProducts.filter((product) =>
+  const filteredProducts = saleProduct.list.filter((product) =>
     product.name.toLowerCase().includes(searchProduct.toLowerCase())
   );
+
+  const sortedProducts = sortSaleProduct(filteredProducts, order);
+
+  const paginatedProducts = sortedProducts.slice(
+    (page - 1) * visibleProduct,
+    page * visibleProduct
+  );
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
 
   return (
     <div className="SaleProduct">
@@ -117,7 +129,7 @@ function SaleProduct() {
         </div>
       </div>
       <div className="productGrid">
-        {filteredProducts.slice(0, visibleProduct).map((product) => (
+        {paginatedProducts.map((product) => (
           <ProductContent
             key={product.id}
             product={product}
@@ -125,6 +137,11 @@ function SaleProduct() {
           />
         ))}
       </div>
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

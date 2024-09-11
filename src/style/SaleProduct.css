@@ -59,16 +59,30 @@
   line-height: 26px;
 }
 
+.toggle {
+  position: relative;
+}
+
+.toggleOption {
+  position: absolute;
+  z-index: 1000;
+  width: 130px;
+}
+
+.toggleOption li {
+  border-top: none;
+}
+
 .toggleButton {
   width: 130px;
   height: 42px;
   border-radius: 12px;
-  border-color: #e5e7eb;
-  border: 1px;
+  border: 1px solid #e5e7eb;
   padding: 9px 15px;
-  color: #1f2937;
+  background-color: #ffffff;
   font-weight: 400;
   font-size: 16px;
+  color: #1f2937;
 }
 
 .createAt {
@@ -80,6 +94,8 @@
   text-align: center;
   padding: 11px 0 10px 0;
   margin: 10px 0 0;
+  background-color: #ffffff;
+  color: #1f2937;
 }
 
 .favoriteCount {
@@ -90,6 +106,8 @@
   border-color: #e5e7eb;
   text-align: center;
   padding: 11px 0 10px 0;
+  background-color: #ffffff;
+  color: #1f2937;
 }
 
 /*반응형 CSS*/

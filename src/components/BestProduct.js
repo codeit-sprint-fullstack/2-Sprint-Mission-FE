@@ -10,7 +10,7 @@ function BestProduct() {
   const fetchBestProduct = async (order = "") => {
     const query = `sort=${order}`;
     const response = await fetch(
-      `https://panda-market-api.vercel.app/products?${query}`
+      `https://panda-market-api.vercel.app/products?${query}$}&pageSize=100`
     );
     const data = await response.json();
 
