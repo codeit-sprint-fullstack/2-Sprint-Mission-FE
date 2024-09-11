@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  padding: 0 100px 50px;
+}
+label {
+  font-size: 18px;
+  font-weight: 700;
+}
+input {
+  border: none;
+  background-color: #f3f4f6;
+  width: 500px;
+  height: 56px;
+}
+
+.registration-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 57px 0 20px;
+}
+
+.register-button {
+  padding: 12px 23px;
+  font-weight: 700;
+  color: white;
+  background-color: #9ca3af;
+  border-radius: 7px;
+  border: none;
+}
+
+.product-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
