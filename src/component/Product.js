@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Navbar } from "./Nav.js";
 import BestProductList from "./BestProductList.js";
 import { getList, getListItem } from "./api.js";
 import ProductList from "./ProductList.js";
 import PageButton from "./PageButton.js";
-import Footer from "./Footer.js";
-
-const ITEMS_PER_PAGE = 10;
 
 function Product() {
   const [bestItems, setBestItems] = useState([]);
@@ -67,7 +63,6 @@ function Product() {
 
   return (
     <div>
-      <Navbar />
       <BestProductList items={bestItems} />
       <ProductList items={productItems} onChange={setOrder} />
       <PageButton
@@ -76,7 +71,6 @@ function Product() {
         onPageChange={handlePageChange}
         pageSize={pageSize}
       />
-      <Footer />
     </div>
   );
 }

@@ -1,0 +1,121 @@
+:root {
+  /*black scale*/
+  --black-700: #1f2937;
+  /* Gray scale */
+  --gray-900: #1b1d1f;
+  --gray-800: #26282b;
+  --gray-700: #4b5563;
+  --gray-600: #454c53;
+  --gray-500: #72787f;
+  --gray-400: #9ea4a8;
+  --gray-200: #e5e7eb;
+  --gray-100: #e8ebed;
+  --gray-50: #f7f7f8;
+  --coolGray-400: #9ca3af;
+  --coolGray-100: #f3f4f6;
+  /* Primary color */
+  --blue: #3692ff;
+
+  /* Layout dimensions */
+  --header-height: 70px;
+}
+
+.Main {
+  margin-bottom: 162px;
+}
+
+.PostProductMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.PostProductMenu p {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--black-700);
+  line-height: 32px;
+}
+
+.PostProductMenu button {
+  border-radius: 8px;
+  padding: 12px 23px;
+  background-color: var(--coolGray-400);
+  color: var(--coolGray-100);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form p {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: var(--black-700);
+  margin-bottom: 16px;
+}
+.form input {
+  border: none;
+  background-color: var(--coolGray-100);
+  border-radius: 12px;
+  padding: 16px 24px;
+  margin-bottom: 32px;
+}
+.form textarea {
+  border: none;
+  background-color: var(--coolGray-100);
+  width: 100%;
+  height: 282px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  padding: 16px 24px;
+  resize: none;
+}
+
+.form .Tags {
+  margin-bottom: 14px;
+}
+.TagName {
+  display: flex;
+  gap: 12px;
+  /* position: relative; */
+}
+
+.Tag1,
+.Tag2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--coolGray-100);
+  padding: 6px 12px;
+  border-radius: 26px;
+  gap: 10px;
+}
+.Tag1 p,
+.Tag2 p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--black-700);
+}
+.TagName img {
+  width: 22px;
+  height: 24px;
+}
+
+@media (max-width: 1199px) {
+  .Main {
+    margin-bottom: 194px;
+  }
+}
+
+@media (max-width: 743px) {
+  .Main {
+    margin-bottom: 186px;
+  }
+}

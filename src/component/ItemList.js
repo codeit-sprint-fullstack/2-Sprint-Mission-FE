@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import "../style/ProductList.css";
-import ProductMenuContainer from "./ProductMenuContainer.js";
+import itemImg from '../imgFile/디폴트이미지.png'
+import './ItemList.css'
 
 function ProductListItem({ item }) {
   return (
     <div className="ProductListItem">
-      <img src={item.images} alt={item.name} />
+      <img src={itemImg} alt={item.name} />
       <div>
         <p className="ListFont1">{item.name}</p>
         <p className="ListFont2">{item.price}</p>
-        <p className="ListFont3">♡ {item.favoriteCount}</p>
+        <p className="ListFont3">♡ 240</p>
       </div>
     </div>
   );
 }
 
-function ProductList({ items, onChange }) {
+function ItemList({ items}) {
   const [displayCount, setDisplayCount] = useState(10);
-  const [order, setOrder] = useState("recent");
+  
 
   useEffect(() => {
     const updateDisplayCount = () => {
@@ -36,25 +37,19 @@ function ProductList({ items, onChange }) {
     return () => window.removeEventListener("resize", updateDisplayCount);
   }, []);
 
-  const handleOrderChange = (order) => {
-    setOrder(order);
-    onChange(order);
-  };
+
 
   return (
     <>
-      <div className="Main">
-        <ProductMenuContainer onChange={handleOrderChange} />
-        <ul className="ProductListFrame">
-          {items.slice(0, displayCount).map((item) => (
-            <li key={item.id}>
-              <ProductListItem item={item} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className="ProductListFrame">
+        {items.slice(0, displayCount).map((item) => (
+          <li key={item.id}>
+            <ProductListItem item={item} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
 
-export default ProductList;
+export default ItemList;

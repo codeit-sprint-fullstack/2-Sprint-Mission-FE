@@ -73,11 +73,15 @@ header {
   padding: 0 16px;
   background-color: #ffffff;
   border-bottom: 1px solid #dfdfdf;
+  z-index: 1000000;
 }
 .headerNav {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.headerNav img {
+  content: url("../../imgFile/판다마켓글씨로고.png");
 }
 .headerNav button {
   padding: 21px 15px;
@@ -109,7 +113,6 @@ footer {
   flex-wrap: wrap;
   gap: 60px;
 }
-
 
 #copyright {
   order: 3;
@@ -182,6 +185,9 @@ h1 {
   header {
     padding: 0 24px;
   }
+  .headerNav img {
+    content: url("../images/logo/logo.svg");
+  }
 
   .wrapper {
     padding: 0 24px;
@@ -203,10 +209,12 @@ h1 {
   }
 }
 
-
 @media (min-width: 1280px) {
   header {
     padding: 0 200px;
+  }
+  .headerNav img {
+    content: url("../images/logo/logo.svg");
   }
 
   .wrapper {

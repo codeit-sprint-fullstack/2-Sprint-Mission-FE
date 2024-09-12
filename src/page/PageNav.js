@@ -1,9 +1,11 @@
 import "./HomeStyle/global.css";
 import "./HomeStyle/home.css";
-import { Link } from "react-router-dom";
-import logo from "./images/logo/logo.svg"
+import { Link, useLocation } from "react-router-dom";
+import logo from "./images/logo/logo.svg";
 
 function PageNav() {
+  const location = useLocation();
+
   return (
     <>
       <header>
@@ -11,8 +13,14 @@ function PageNav() {
           <Link to="/">
             <img src={logo} alt="판다마켓 로고" />
           </Link>
-          <button>자유게시판</button>
-          <button>중고마켓</button>
+          <Link to="/freeboard">
+            <button className="FreeBoard">자유게시판</button>
+          </Link>
+          <Link to="/items">
+            <button className={location.pathname === "/items" ? "InPage" : ""}>
+              중고마켓
+            </button>
+          </Link>
         </div>
         <a href="login.html" id="loginLink" className="button">
           로그인
