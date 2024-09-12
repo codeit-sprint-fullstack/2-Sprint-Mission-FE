@@ -32,8 +32,9 @@ export default function useOptionProducts(
       }
     } catch (err) {
       console.error("Error fetching items:", err);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   useEffect(() => {
