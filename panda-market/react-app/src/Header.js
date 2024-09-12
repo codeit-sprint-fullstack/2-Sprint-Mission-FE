@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import styles from './pages/CommonsPage.module.css';
 
 function getLinkStyle({ isActive }) {
 	return {
@@ -8,10 +9,10 @@ function getLinkStyle({ isActive }) {
 }
 
 function Header() {
-  return (<header>
-		<div className="sub">
-			<div className="sub-header">
-				<NavLink href="/"><img className="logo" src="/images/Property-1=lg.png" alt="판다마켓 Logo"/></NavLink>
+  return (<header className={styles.header}>
+		<div className={styles.sub}>
+			<div className={styles.sub_header}>
+				<NavLink href="/"><img className={styles.logo} src="/images/Property-1=lg.png" alt="판다마켓 Logo"/></NavLink>
 				<nav>
 					<ul>
 						<li><NavLink to="/boards" style={getLinkStyle}>자유게시판</NavLink></li>
@@ -19,7 +20,7 @@ function Header() {
 					</ul>
 				</nav>
 			</div>
-			<a href="/login" className="button">로그인</a>
+			<Link to="/login" className={styles.a_button}>로그인</Link>
 		</div>
 	</header>);
 }

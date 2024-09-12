@@ -1,7 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import '../style.css';
-import '../items.css';
-import '../reset.css';
+import styles from './ItemsPage.module.css';
 import useAsync from "../hooks/useAsync.js";
 import BestItemsList from "../BestItemsList.js";
 import ItemsList from "../ItemsList.js";
@@ -92,11 +90,11 @@ function ItemsPage() {
 	}, [pageBestSize, pageSize, pageNum, orderBy]);
 
 	return (
-	<main>
-		<BestItemsList bestItems={bestItems}/>
-		<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
-		<PageNum pageNum={pageNum} setPageNum={setPageNum} pageNumMax={pageNumMax}/>
-	</main>
+		<main className={styles.main}>
+			<BestItemsList bestItems={bestItems}/>
+			<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
+			<PageNum pageNum={pageNum} setPageNum={setPageNum} pageNumMax={pageNumMax}/>
+		</main>
 	);
 }
 

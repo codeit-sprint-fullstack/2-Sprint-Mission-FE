@@ -48,3 +48,27 @@ p {
   margin: 0;
 }
 
+* {
+	box-sizing: border-box;
+}
+
+img {
+	box-sizing: content-box;
+	max-width: 100%;
+}
+
+@media (max-width:1200px) {
+
+	html,
+	body {
+		font-size: 14px;
+	}
+}
+
+@media (max-width:744px) {
+
+	html,
+	body {
+		font-size: 12px;
+	}
+}

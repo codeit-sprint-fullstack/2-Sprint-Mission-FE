@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import '../login.css';
+// import '../login.css';
 import PopUp from "../PopUp.js";
 import USER_DATA from "../scripts/data.js";
 
