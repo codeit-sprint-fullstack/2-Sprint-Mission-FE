@@ -17,10 +17,10 @@ function getPageSize() {
 
 export default function BestProductList() {
   const [pageSize, setPageSize] = useState(getPageSize());
-  const [order] = useState("favoriteCount");
+  // const [order] = useState("favoriteCount");
   const { items } = useOptionProducts(2, pageSize, "favoriteCount");
 
-  const sortedItems = items.sort((a, b) => b[order] - a[order]);
+  const sortedItems = items.sort((a, b) => b[items.order] - a[items.order]);
 
   useEffect(() => {
     const handleResize = () => {
