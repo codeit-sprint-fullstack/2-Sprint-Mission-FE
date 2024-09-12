@@ -1,0 +1,126 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ffffff;
+}
+
+.top-bar {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 12.5rem;
+
+  width: 100%;
+  max-width: 120rem;
+  height: 4.375rem;
+}
+
+.top-bar-elements {
+  position: absolute;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.5625rem 0;
+
+  width: 100%;
+}
+
+.site-logo {
+  width: 9.5625rem;
+  height: 3.1875rem;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-start;
+
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.625rem;
+  text-align: center;
+
+  gap: 0.625rem;
+}
+
+.auth {
+  background-color: #3292FF;
+  padding: 0.75rem 3.125rem;
+  border-radius: 0.5rem;
+}
+
+.user-icon {
+  display: none;
+}
+
+.user-name {
+  display: none;
+}
+
+.mobile-logo {
+  display: none;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .menu {
+    font-size: 1rem;
+  }
+
+  .auth {
+    display: none;
+  }
+
+  .user-icon {
+    display: block;
+  }
+
+  .user-name {
+    display: block;
+  }
+}
+
+@media (max-width: 743px) {
+  .menu {
+    font-size: 1rem;
+  }
+
+  .auth {
+    display: none;
+  }
+
+  .user-icon {
+    display: block;
+  }
+
+  .site-logo {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: block;
+  }
+}

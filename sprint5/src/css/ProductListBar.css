@@ -1,0 +1,118 @@
+.product-bar {
+    display: flex;
+
+    width: 75rem;
+}
+
+.product-bar-info {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    gap: 0.625rem;
+}
+
+.product-list-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 2rem;
+
+    margin-right: auto;
+}
+
+.product-add {
+    background-color: #3692FF;
+    color: white;
+    border-radius: 0.5rem;
+    border-style: none;
+
+    width: 8.25rem;
+    height: 2.625rem;
+}
+
+.side {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+
+    width: 20.3rem;
+    height: 2.625rem;
+
+    border-radius: 0.75rem;
+    padding: 0.56rem 0.75rem;
+
+    background-color: #F3F4F6;
+}
+
+.search-input {
+    border: none;
+    background-color: #F3F4F6;
+    width: 100%;
+    margin-left: 1.875rem;
+}
+
+.search-img {
+    position: absolute;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .product-bar {
+        width: 43.5rem;
+    }
+
+    .search-bar {
+        width: 15rem;
+    }
+}
+
+@media (max-width: 743px) {
+    .product-bar {
+        width: 21.5rem;
+    }
+
+    .product-bar-info {
+        display: grid;
+        grid-template-areas:
+            "title add"
+            "search order";
+        width: auto;
+    }
+
+    .product-list-title {
+        grid-area: title;
+    }
+
+    .product-add {
+        grid-area: add;
+    }
+
+    .search-bar {
+        grid-area: search;
+        width: auto;
+    }
+
+    .order-menu {
+        grid-area: order;
+    }
+
+    .search-input::placeholder {
+        font-size: 0.625rem;
+    }
+}
