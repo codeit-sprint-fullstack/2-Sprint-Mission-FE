@@ -23,7 +23,7 @@ function getPageSize() {
 export default function ProductList() {
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("createdAt");
-  const [pageSize, setPageSize] = useState(getPageSize);
+  const [pageSize, setPageSize] = useState(getPageSize());
   const { items, totalCount } = useOptionProducts(page, pageSize, order);
   const [dropdown, setDropdown] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 743);
