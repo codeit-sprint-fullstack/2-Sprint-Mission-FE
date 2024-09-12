@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom';
-import './css/SignLayout.css';
+import "./css/SignLayout.css";
+import { Outlet } from "react-router-dom";
 
 function SignLayout() {
   return (

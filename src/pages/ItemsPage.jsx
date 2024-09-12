@@ -1,6 +1,6 @@
-import style from './css/ItemsPage.module.css';
-import BestProducts from '../components/BestProducts.js';
-import ProductsOnSale from '../components/ProductsOnSale.js';
+import style from "./css/ItemsPage.module.css";
+import BestProducts from "../components/BestProducts.jsx";
+import ProductsOnSale from "../components/ProductsOnSale.jsx";
 
 function ItemsPage() {
   return (

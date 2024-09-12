@@ -1,16 +1,16 @@
-import style from './css/SortOrderSelect.module.css';
-import { useState } from 'react';
-import { useViewport, VIEWPORT } from '../contexts/ViewportContext.js';
-import sortIcon from '../Image/ic_sort.svg';
-import arrowDown from '../Image/ic_arrow_down.svg';
+import style from "./css/SortOrderSelect.module.css";
+import { useState } from "react";
+import { useViewport, VIEWPORT } from "../contexts/ViewportContext.jsx";
+import sortIcon from "../Image/ic_sort.svg";
+import arrowDown from "../Image/ic_arrow_down.svg";
 
 export const SORT_ORDER = Object.freeze({
-  RECENT: 'recent'
+  RECENT: "recent",
   // FAVORITE: 'favorite'
 });
 
 const SORT_ORDER_MSG = Object.freeze({
-  [SORT_ORDER.RECENT]: '최신순'
+  [SORT_ORDER.RECENT]: "최신순",
   // [SORT_ORDER.FAVORITE]: '좋아요순'
 });
 
@@ -27,8 +27,8 @@ function SortOrderSelect({ initialSortOrder = SORT_ORDER.RECENT, onChange }) {
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   return (
-    <div className={`${style['sort-order-wrapper']}`}>
-      <div className={`${style['sort-order']}`} onClick={toggleDropdown}>
+    <div className={`${style["sort-order-wrapper"]}`}>
+      <div className={`${style["sort-order"]}`} onClick={toggleDropdown}>
         {viewport !== VIEWPORT.MOBILE && SORT_ORDER_MSG[sortOrder]}
         <img
           src={viewport !== VIEWPORT.MOBILE ? arrowDown : sortIcon}
@@ -36,7 +36,7 @@ function SortOrderSelect({ initialSortOrder = SORT_ORDER.RECENT, onChange }) {
         />
       </div>
       {dropdownOpen && (
-        <ul className={`${style['sort-order-list']}`}>
+        <ul className={`${style["sort-order-list"]}`}>
           {Object.values(SORT_ORDER).map((o) => {
             return (
               <li onClick={() => handleOrderChange(o)} key={o}>

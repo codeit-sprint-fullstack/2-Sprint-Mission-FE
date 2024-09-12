@@ -1,14 +1,14 @@
-import '../css/import.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ItemsPage from '../pages/ItemsPage.js';
-import LandingPage from '../pages/LandingPage.js';
-import GlobalContextProvider from './GlobalContextProvider.js';
-import Pandamarket from '../layouts/Pandamarket.js';
-import SignLayout from '../layouts/SignLayout.js';
-import LoginPage from '../pages/LoginPage.js';
-import SignupPage from '../pages/SignupPage.js';
-import RegistrationPage from '../pages/RegistrationPage.js';
-import ItemsDetailPage from '../pages/ItemsDetailPage.js';
+import "../css/import.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GlobalContextProvider from "./GlobalContextProvider.jsx";
+import Pandamarket from "../layouts/Pandamarket.jsx";
+import SignLayout from "../layouts/SignLayout.jsx";
+import ItemsPage from "../pages/ItemsPage.jsx";
+import LandingPage from "../pages/LandingPage.jsx";
+import LoginPage from "../pages/LoginPage.jsx";
+import SignupPage from "../pages/SignupPage.jsx";
+import RegistrationPage from "../pages/RegistrationPage.jsx";
+import ItemsDetailPage from "../pages/ItemsDetailPage.jsx";
 
 function App() {
   return (

@@ -1,9 +1,9 @@
 // <script type="module" src="../src/js/signup.js"></script>
-import style from './css/SignupPage.module.css';
-import { Link } from 'react-router-dom';
-import googleBtn from '../Image/GoogleBtn.png';
-import kakaoTalkBtn from '../Image/KakaoTalkBtn.png';
-import SignInput from '../components/SignInput.js';
+import style from "./css/SignupPage.module.css";
+import { Link } from "react-router-dom";
+import googleBtn from "../Image/GoogleBtn.png";
+import kakaoTalkBtn from "../Image/KakaoTalkBtn.png";
+import SignInput from "../components/SignInput.jsx";
 
 function SignupPage() {
   return (

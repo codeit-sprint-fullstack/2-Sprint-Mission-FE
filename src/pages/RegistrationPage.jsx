@@ -1,33 +1,33 @@
-import style from './css/RegistrationPage.module.css';
-import TagButton from '../components/TagButton.js';
-import { useEffect, useState } from 'react';
-import useValidation from '../hooks/useValidation.js';
+import style from "./css/RegistrationPage.module.css";
+import { useEffect, useState } from "react";
+import TagButton from "../components/TagButton.jsx";
+import useValidation from "../hooks/useValidation.js";
 
 function RegistrationPage() {
   const validation = useValidation();
   const [nameObj, setNameObj] = useState({
-    name: 'name',
-    value: '',
+    name: "name",
+    value: "",
     isOK: true,
-    errMsg: '',
+    errMsg: "",
   });
   const [descriptionObj, setDescriptionObj] = useState({
-    name: 'description',
-    value: '',
+    name: "description",
+    value: "",
     isOK: true,
-    errMsg: '',
+    errMsg: "",
   });
   const [priceObj, setPriceObj] = useState({
-    name: 'price',
-    value: '',
+    name: "price",
+    value: "",
     isOK: true,
-    errMsg: '',
+    errMsg: "",
   });
   const [tagObj, setTagObj] = useState({
-    name: 'tag',
-    value: '',
+    name: "tag",
+    value: "",
     isOK: true,
-    errMsg: '',
+    errMsg: "",
   });
   const [tags, setTags] = useState([]);
   const [canSubmit, setCanSubmit] = useState(false);
@@ -36,33 +36,33 @@ function RegistrationPage() {
     const name = e.target.name;
     const value = e.target.value;
     switch (name) {
-      case 'name':
+      case "name":
         validation(name, value, setNameObj);
         break;
-      case 'description':
+      case "description":
         validation(name, value, setDescriptionObj);
         break;
-      case 'price':
+      case "price":
         validation(name, value, setPriceObj);
         break;
-      case 'tag':
+      case "tag":
         validation(name, value, setTagObj);
         break;
       default:
     }
   };
   const handleAddTag = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       validation(tagObj.name, e.target.value, setTagObj);
       if (!tagObj.isOK) return;
       if (tags.includes(e.target.value))
         return setTagObj((prev) => {
-          return { ...prev, errMsg: '같은 태그가 존재합니다' };
+          return { ...prev, errMsg: "같은 태그가 존재합니다" };
         });
 
       setTags((prev) => [...prev, e.target.value]);
       setTagObj((prev) => {
-        return { ...prev, value: '' };
+        return { ...prev, value: "" };
       });
     }
   };
@@ -95,14 +95,14 @@ function RegistrationPage() {
           </button>
         </div>
         <div id={`${style.info}`}>
-          <div className={`${style['input-wrap']}`}>
+          <div className={`${style["input-wrap"]}`}>
             <label htmlFor="name">상품명</label>
             <input
               id="name"
               name="name"
               type="text"
               placeholder="상품명을 입력해주세요"
-              className={nameObj.isOK ? '' : `${style.error}`}
+              className={nameObj.isOK ? "" : `${style.error}`}
               value={nameObj.value}
               onChange={(e) =>
                 setNameObj((prev) => {
@@ -113,7 +113,7 @@ function RegistrationPage() {
             />
             <p>{nameObj.errMsg}</p>
           </div>
-          <div className={`${style['input-wrap']}`}>
+          <div className={`${style["input-wrap"]}`}>
             <label htmlFor="description">상품 소개</label>
             <textarea
               id="description"
@@ -121,7 +121,7 @@ function RegistrationPage() {
               cols="30"
               rows="10"
               placeholder="상품 소개를 입력해주세요"
-              className={descriptionObj.isOK ? '' : `${style.error}`}
+              className={descriptionObj.isOK ? "" : `${style.error}`}
               value={descriptionObj.value}
               onChange={(e) =>
                 setDescriptionObj((prev) => {
@@ -132,14 +132,14 @@ function RegistrationPage() {
             ></textarea>
             <p>{descriptionObj.errMsg}</p>
           </div>
-          <div className={`${style['input-wrap']}`}>
+          <div className={`${style["input-wrap"]}`}>
             <label htmlFor="price">판매가격</label>
             <input
               id="price"
               name="price"
               type="number"
               placeholder="판매 가격을 입력해주세요"
-              className={priceObj.isOK ? '' : `${style.error}`}
+              className={priceObj.isOK ? "" : `${style.error}`}
               value={priceObj.value}
               onChange={(e) =>
                 setPriceObj((prev) => {
@@ -150,14 +150,14 @@ function RegistrationPage() {
             />
             <p>{priceObj.errMsg}</p>
           </div>
-          <div className={`${style['input-wrap']} ${style['tag-wrap']}`}>
+          <div className={`${style["input-wrap"]} ${style["tag-wrap"]}`}>
             <label htmlFor="tag">태그</label>
             <input
               id="tag"
               name="tag"
               type="text"
               placeholder="태그를 입력해주세요"
-              className={tagObj.isOK ? '' : `${style.error}`}
+              className={tagObj.isOK ? "" : `${style.error}`}
               value={tagObj.value}
               onChange={(e) =>
                 setTagObj((prev) => {
@@ -167,7 +167,7 @@ function RegistrationPage() {
               onBlur={handleValidation}
               onKeyDown={handleAddTag}
             />
-            <p style={{ marginBottom: '0.8rem' }}>{tagObj.errMsg}</p>
+            <p style={{ marginBottom: "0.8rem" }}>{tagObj.errMsg}</p>
             <div className="tag-button-wrap">
               {tags.map((tag) => (
                 <TagButton name={tag} key={tag} onClick={handleRemoveTag} />

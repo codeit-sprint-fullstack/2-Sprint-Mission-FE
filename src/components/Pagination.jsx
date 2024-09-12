@@ -1,7 +1,7 @@
-import style from './css/Pagination.module.css';
-import { useCallback, useEffect, useState } from 'react';
-import { useViewport } from '../contexts/ViewportContext.js';
-import { ITEM_PAGE_SIZE } from './ProductsOnSale.js';
+import style from "./css/Pagination.module.css";
+import { useCallback, useEffect, useState } from "react";
+import { useViewport } from "../contexts/ViewportContext.jsx";
+import { ITEM_PAGE_SIZE } from "./ProductsOnSale.jsx";
 
 const BUNDLE_SIZE = 5;
 
@@ -51,7 +51,7 @@ function Pagination({ totalCount, onPageChange }) {
           <button
             key={p}
             onClick={() => handlePageChange(p)}
-            className={p === now ? `${style.now}` : ''}
+            className={p === now ? `${style.now}` : ""}
           >
             {p}
           </button>

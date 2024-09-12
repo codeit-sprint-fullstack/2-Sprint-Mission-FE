@@ -1,12 +1,12 @@
-import { Link, NavLink } from 'react-router-dom';
-import style from './css/Header.module.css';
-import logoImg from '../Image/logo.png';
-import smallLogoImg from '../Image/small_logo.png';
-import { useViewport, VIEWPORT } from '../contexts/ViewportContext.js';
+import { Link, NavLink } from "react-router-dom";
+import style from "./css/Header.module.css";
+import logoImg from "../Image/logo.png";
+import smallLogoImg from "../Image/small_logo.png";
+import { useViewport, VIEWPORT } from "../contexts/ViewportContext.jsx";
 
 function getLinkStyle({ isActive }) {
   return {
-    color: isActive ? '#3692ff' : undefined
+    color: isActive ? "#3692ff" : undefined,
   };
 }
 

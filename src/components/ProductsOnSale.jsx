@@ -1,17 +1,17 @@
-import style from './css/ProductsOnSale.module.css';
-import { useCallback, useEffect, useState } from 'react';
-import ProductCard from './ProductCard.js';
-import Pagination from './Pagination.js';
-import ProductOnSaleTitle from './ProductOnSaleTitle.js';
-import useAsync from '../hooks/useAsync.js';
-import { getProducts } from '../api.js';
-import { useViewport } from '../contexts/ViewportContext.js';
-import { SORT_ORDER } from './SortOrderSelect.js';
+import style from "./css/ProductsOnSale.module.css";
+import { useCallback, useEffect, useState } from "react";
+import { getProducts } from "../api.js";
+import useAsync from "../hooks/useAsync.js";
+import ProductCard from "./ProductCard.jsx";
+import Pagination from "./Pagination.jsx";
+import ProductOnSaleTitle from "./ProductOnSaleTitle.jsx";
+import { SORT_ORDER } from "./SortOrderSelect.jsx";
+import { useViewport } from "../contexts/ViewportContext.jsx";
 
 export const ITEM_PAGE_SIZE = Object.freeze({
   PC: 10,
   TABLET: 6,
-  MOBILE: 4
+  MOBILE: 4,
 });
 
 function ProductsOnSale() {
@@ -20,7 +20,7 @@ function ProductsOnSale() {
   const [totalCount, setTotalCount] = useState(0);
   const [now, setNow] = useState(1);
   const [sortOrder, setSortOrder] = useState(SORT_ORDER.RECENT);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const getProductsAsync = useAsync(getProducts);
 
   const handleLoadItem = useCallback(
@@ -43,7 +43,7 @@ function ProductsOnSale() {
       page: now,
       pageSize: ITEM_PAGE_SIZE[viewport],
       orderBy: sortOrder,
-      keyword: searchQuery
+      keyword: searchQuery,
     });
   }, [viewport, now, sortOrder, searchQuery, handleLoadItem]);
 

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useSetError } from '../contexts/ErrorContext.js';
-import { useSetPending } from '../contexts/PendingContext.js';
+import { useSetError } from '../contexts/ErrorContext.jsx';
+import { useSetPending } from '../contexts/PendingContext.jsx';
 
 function useAsync(asyncFunc) {
   const setPending = useSetPending();

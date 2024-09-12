@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom';
-import Footer from '../components/Footer.js';
-import Header from '../components/Header.js';
-import { useError } from '../contexts/ErrorContext.js';
-import Modal from '../components/Modal.js';
-import { useIsLoading } from '../contexts/PendingContext.js';
+import { Outlet } from "react-router-dom";
+import Footer from "../components/Footer.jsx";
+import Header from "../components/Header.jsx";
+import Modal from "../components/Modal.jsx";
+import { useError } from "../contexts/ErrorContext.jsx";
+import { useIsLoading } from "../contexts/PendingContext.jsx";
 
 function Pandamarket() {
   const isLoading = useIsLoading();
