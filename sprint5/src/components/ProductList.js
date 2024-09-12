@@ -4,17 +4,17 @@ import useAsync from '../hooks/useAsync';
 import { getProductList } from '../api';
 import Pagination from './Pagination';
 import ProductListBar from './ProductListBar';
+import defaultImg from '../images/img_default.png';
 
 function ProductListItem({ item }) {
-  const { images, name, price, favoriteCount } = item;
+  const { name, price } = item;
 
   return (
     <div className="product-item">
-      <img className="product-item-img" src={images} alt={name} />
+      <img className="product-item-img" src={defaultImg} alt={name} />
       <div className="product-info">
         <span className="product-name">{name}</span>
         <span className="product-price">{price}원</span>
-        <span className="product-favorite">♡ {favoriteCount}</span>
       </div>
     </div>
   );

@@ -2,17 +2,17 @@ import '../css/BestProduct.css';
 import { useCallback, useState, useEffect } from 'react';
 import useAsync from '../hooks/useAsync';
 import { getProductList } from '../api';
+import defaultImg from '../images/img_default.png';
 
 function BestProductItem({ bestItem }) {
-  const { images, name, price, favoriteCount, createdAt } = bestItem;
+  const { name, price } = bestItem;
 
   return (
     <div className="best-product-item">
-      <img className="best-product-item-img" src={images} alt={name} />
+      <img className="best-product-item-img" src={defaultImg} alt={name} />
       <div className="best-product-info">
         <span className="best-product-name">{name}</span>
         <span className="best-product-price">{price}원</span>
-        <span className="best-product-favorite">♡ {favoriteCount}</span>
       </div>
     </div>
   );
