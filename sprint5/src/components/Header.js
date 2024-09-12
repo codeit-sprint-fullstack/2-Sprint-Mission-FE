@@ -17,7 +17,7 @@ export default function Header() {
             />
             <div className="menu">
               <p>자유게시판</p>
-              <p>중고마켓</p>
+              <a href="/items">중고마켓</a>
             </div>
           </div>
           <div className="top-bar-right">

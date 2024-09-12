@@ -1,15 +1,13 @@
 import Header from './Header';
 import Footer from './Footer';
-import ProductList from './ProductList';
-import BestProduct from './BestProduct';
 import '../css/App.css';
+import { Outlet } from 'react-router-dom';
 
 export default function App() {
   return (
     <div>
       <Header />
-      <BestProduct />
-      <ProductList />
+      <Outlet />
       <Footer />
     </div>
   );

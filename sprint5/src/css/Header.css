@@ -58,6 +58,7 @@ header {
 .menu {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 
   font-size: 1.125rem;
   font-weight: 700;

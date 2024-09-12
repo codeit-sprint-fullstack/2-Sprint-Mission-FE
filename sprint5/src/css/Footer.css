@@ -1,19 +1,20 @@
-a {
+/* a {
   cursor: pointer;
 
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.625rem;
-  color: #F3F4F6;
-  text-decoration: none;
-  text-align: center;
-}
+  /* color: #F3F4F6; */
+/* text-decoration: none;
+text-align: center;
+} */
 
 footer {
   display: flex;
   justify-content: center;
 
   background-color: #111827;
+  color: #F3F4F6;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.1875rem;

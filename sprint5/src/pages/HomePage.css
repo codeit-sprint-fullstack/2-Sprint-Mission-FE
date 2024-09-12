@@ -1,0 +1,392 @@
+html,
+body {
+    margin: 0 auto;
+    padding: 0;
+
+    width: 100%;
+
+    font-size: 16px;
+
+    color: #374151;
+    font-family: "Pretendard Variable", Pretendard, sans-serif;
+}
+
+/* --- a 태그 기본 설정 --- */
+a {
+    cursor: pointer;
+    /* 
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.625rem;*/
+    /* color: #F3F4F6; */
+    text-decoration: none;
+    /* text-align: center; */
+}
+
+/* --- section 기본 설정 --- */
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner {
+    background-color: #CFE5FF;
+}
+
+/* --- 상위 배너 설정 --- */
+.banner-top {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 9.375rem 0 0;
+
+    width: 100%;
+    max-width: 120rem;
+    height: 33.75rem;
+}
+
+.banner-elements {
+    position: absolute;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.banner-top-button {
+    background-color: #3292FF;
+    border-radius: 1.25rem;
+
+    padding: 0.625rem 2.1875rem;
+
+    width: 22.3rem;
+    height: 3.5rem;
+
+    color: #F3F4F6;
+    font-size: 1.25rem;
+    line-height: 2rem;
+}
+
+.banner-top-img {
+    Width: 46.625rem;
+    Height: 21.25rem;
+}
+
+/* --- 배너 기본 설정 --- */
+.banner-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.banner-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+}
+
+/* --- 하위 배너 설정 --- */
+.banner-bottom {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 6.25rem 0 0;
+
+    width: 100%;
+    max-width: 120rem;
+    height: 33.75rem;
+}
+
+.banner-bottom-img {
+    width: 46.625rem;
+    height: 24.8125rem;
+}
+
+
+/* --- main 기본 설정 --- */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 6.25rem 0;
+    gap: 6.25rem;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+
+    padding: 4rem;
+}
+
+.main-bg {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+    color: #3692FF;
+}
+
+.main-img {
+    width: 36.75rem;
+    height: 27.75rem;
+    border-radius: 0.75rem;
+}
+
+.main-heading {
+    margin: 0;
+    padding: 0.625rem 0;
+
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+}
+
+.main-description {
+    margin: 0;
+    padding: 0;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 2rem;
+}
+
+.main-area {
+    background-color: #ffffff;
+}
+
+.main-top {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-right: 18.75rem;
+
+    width: 100%;
+    max-width: 120rem;
+    height: 45rem;
+}
+
+.main-top-elements {
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-middle {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-left: 18.75rem;
+
+    width: 100%;
+    max-width: 120rem;
+    height: 45rem;
+
+    text-align: right;
+}
+
+.main-middle-elements {
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-bottom {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-right: 18.75rem;
+
+    width: 100%;
+    max-width: 120rem;
+    height: 45rem;
+}
+
+.main-bottom-elements {
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* -- Mobile -- */
+@media screen and (min-width:375px) and (max-width:742px) {
+    .top-bar {
+        margin: 0 1rem;
+    }
+
+    .banner {
+        height: 100%;
+        padding: 8rem 0 0;
+    }
+
+    .banner-elements {
+        flex-direction: column;
+        align-items: center;
+
+        gap: 1rem;
+    }
+
+    .banner-heading {
+        text-align: center;
+    }
+
+    .banner-top-img {
+        padding: 0 2rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .banner-bottom-img {
+        padding: 0 2rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-top {
+        padding: 0;
+    }
+
+    .main-top-elements {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .main-img {
+        padding: 0 2rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-content {
+        padding: 0 2rem;
+    }
+
+    .main-middle {
+        padding: 0;
+    }
+
+    .main-middle-elements {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: 1rem;
+    }
+
+    .main-bottom {
+        padding: 0;
+    }
+
+    .main-bottom-elements {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .main-content h1 br {
+        display: inline-block;
+        content: " ";
+    }
+
+    .footer-elements {
+        padding: 2rem 1rem;
+    }
+}
+
+/* -- Tablet -- */
+@media screen and (min-width:744px) and (max-width:1199px) {
+    .top-bar {
+        margin: 0 1.5rem;
+    }
+
+    .banner {
+        height: 100%;
+        padding: 8rem 0 0;
+    }
+
+    .banner-elements {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .banner-content {
+        align-items: center;
+    }
+
+    .banner-heading {
+        text-align: center;
+    }
+
+    .banner-top h1 br {
+        display: inline-block;
+        content: " ";
+    }
+
+    .banner-bottom div {
+        gap: 3rem;
+    }
+
+    .main-top {
+        padding: 0;
+    }
+
+    .main-top-elements {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .main-content {
+        padding: 0;
+    }
+
+    .main-middle {
+        padding: 0;
+    }
+
+    .main-middle-elements {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: 1rem;
+    }
+
+    .main-bottom {
+        padding: 0;
+    }
+
+    .main-bottom-elements {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .main-content h1 br {
+        display: inline-block;
+        content: " ";
+    }
+
+    .footer-elements {
+        padding: 2rem 1.5rem;
+    }
+}
