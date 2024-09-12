@@ -1,0 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import App from "./Components/App.js";
+import HomePage from "./pages/HomePage.js";
+import ItemsPage from "./pages/ItemsPage.js";
+import RegistrationPage from "./pages/Registration.js";
+export default function Main() {
+  return (
+    <BrowserRouter>
+      <App>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="items" element={<ItemsPage />} />
+          <Route path="registration" element={<RegistrationPage />} />
+        </Routes>
+      </App>
+    </BrowserRouter>
+  );
+}
