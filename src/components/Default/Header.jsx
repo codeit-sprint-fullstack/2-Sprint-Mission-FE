@@ -1,12 +1,15 @@
 import React from "react";
 import logoImg from "../../images/icon/pandalogo.svg";
+import { useNavigate } from "react-router-dom";
 
 import "./HeaderFooter.css";
 
 function Header() {
-  // const handleMarketClick = () => {
-  // navigation("/items");
-  // };
+  const navigation = useNavigate();
+
+  const handleMarketClick = () => {
+    navigation("/items");
+  };
   return (
     <header className="header">
       <div className="nav-wrapper">
@@ -14,7 +17,9 @@ function Header() {
         <nav>
           <ul className="board">
             <li id="free-board">자유게시판</li>
-            <li id="used-market">중고마켓</li>
+            <li id="used-market" onClick={handleMarketClick}>
+              중고마켓
+            </li>
           </ul>
         </nav>
       </div>

@@ -13,8 +13,8 @@ const Registration = () => {
   };
 
   return (
-    <>
-      <div className="registration-container">
+    <div className="registration-container">
+      <div className="registration-wrapper">
         <h1 className="registration">상품 등록하기</h1>
         <button className="register-button">등록</button>
       </div>
@@ -58,7 +58,7 @@ const Registration = () => {
         <div className="tags-hardcoding">#상의</div>
         {/* 태그를 엔터쳤을 때 아래에 #추가와 text를 띄워야함 */}
       </form>
-    </>
+    </div>
   );
 };
 

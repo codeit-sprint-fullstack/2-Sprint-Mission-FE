@@ -9,10 +9,6 @@ html {
   font-size: 62.5%; /* 심화 요구사항 1rem = 10px */
 }
 
-main {
-  padding: 0;
-}
-
 #top {
   width: -100px;
 }
