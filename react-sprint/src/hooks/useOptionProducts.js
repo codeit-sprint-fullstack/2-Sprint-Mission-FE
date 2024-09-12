@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useOprtionProducts(
+export default function useOptionProducts(
   page = 1,
   pageSize = 10,
   order = "createdAt"
