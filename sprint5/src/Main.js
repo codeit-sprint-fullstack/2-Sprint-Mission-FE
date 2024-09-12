@@ -11,9 +11,9 @@ export default function Main() {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index path="/" element={<HomePage />} />
-          <Route path="/items" element={<Products />} />
-          <Route path="/registration" element={<ProductRegistration />} />
-          <Route path="/detail:id" element={<ProductDetail />} />
+          <Route path="items" element={<Products />} />
+          <Route path="registration" element={<ProductRegistration />} />
+          <Route path="detail" element={<ProductDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
