@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getProducts } from "../api.js";
 import useAsync from "../hooks/useAsync.js";
 import ProductCard from "./ProductCard.jsx";
-import Pagination from "./Pagination.jsx";
+import PaginationBar from "./PaginationBar.jsx";
 import ProductOnSaleTitle from "./ProductOnSaleTitle.jsx";
 import { SORT_ORDER } from "./SortOrderSelect.jsx";
 import { useViewport } from "../contexts/ViewportContext.jsx";
@@ -65,7 +65,10 @@ function ProductsOnSale() {
         })}
       </div>
       <div id={`${style.paginationWrapper}`}>
-        <Pagination totalCount={totalCount} onPageChange={handlePageChange} />
+        <PaginationBar
+          totalCount={totalCount}
+          onPageChange={handlePageChange}
+        />
       </div>
     </section>
   );
