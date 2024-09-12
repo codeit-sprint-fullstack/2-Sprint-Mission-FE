@@ -18,7 +18,9 @@ export default function ProductListBar({ keyword, onSearch, value, onChange }) {
               onChange={(e) => onSearch(e.target.value)}
             />
           </div>
-          <button className="product-add">상품 등록하기</button>
+          <button className="product-add">
+            <a href="/registration">상품 등록하기</a>
+          </button>
           <OrderMenu className="order-menu" value={value} onChange={onChange} />
         </div>
       </div>
