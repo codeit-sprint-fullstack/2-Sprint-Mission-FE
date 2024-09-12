@@ -30,7 +30,7 @@ esbuild.build({
   define: { 'process.env.NODE_ENV': '"production"' },
   jsxFactory: 'React.createElement',
   jsxFragment: 'React.Fragment',
-  // inject: ['./react-shim.js'], // 자동 주입 파일 추가
+  inject: ['./react-shim.js'], // 자동 주입 파일 추가
   // Other options...
 })
 .catch(() => process.exit(1));

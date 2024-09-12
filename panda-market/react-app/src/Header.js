@@ -12,7 +12,7 @@ function Header() {
   return (<header className={styles.header}>
 		<div className={styles.sub}>
 			<div className={styles.sub_header}>
-				<NavLink href="/"><img className={styles.logo} src="/images/Property-1=lg.png" alt="판다마켓 Logo"/></NavLink>
+				<Link to="/"><img className={styles.logo} src="/images/Property-1=lg.png" alt="판다마켓 Logo"/></Link>
 				<nav>
 					<ul>
 						<li><NavLink to="/boards" style={getLinkStyle}>자유게시판</NavLink></li>

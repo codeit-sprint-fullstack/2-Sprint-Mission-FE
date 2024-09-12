@@ -1,8 +1,10 @@
+import styles from './pages/LogInPage.module.css';
+
 function PopUp() {
 	return (
-		<div className="popup-container none">
-			<div className="popup">
-				<div className="popup-text"></div><button className="popup-button-ok">확인</button>
+		<div id="popup-container" className={[styles.popup_container, styles.none].join(" ")}>
+			<div id="popup" className={styles.popup}>
+				<div id="popup-text" className={styles.popup_text}></div><button id="popup-button-ok" className={styles.popup_button_ok}>확인</button>
 			</div>
 		</div>
 	);
