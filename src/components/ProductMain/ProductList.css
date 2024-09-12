@@ -35,27 +35,52 @@
 .product-controls {
   display: flex;
   align-items: center;
-  gap: 1.2rem;            /* 검색창, 버튼, 드롭다운 간의 간격 */
-  margin-left: auto;       /* 오른쪽 정렬을 위해 왼쪽으로 최대한 여백 추가 */
+  gap: 1.2rem;                    /* 검색창, 버튼, 드롭다운 간의 간격 */
+  margin-left: auto;              /* 오른쪽 정렬을 위해 왼쪽으로 최대한 여백 추가 */
 }
 
 .product-register,
 .product-search,
 .product-sort-btn {
-  margin-left: 1rem; /* 버튼들 간의 간격 */
+  margin-left: 1rem; 
+}
+
+.product-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.6rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
 }
 
 .product-search {
   width: 35.2rem;
   height: 4.2rem;
-  padding: 0.9rem 2rem 0.9rem 1.6rem;
+  padding: 0.9rem 2rem 0.9rem 3rem;
   border: none;
   border-radius: 1.2rem;
   background-color: #F3F4F6;
   font-size: 1.6rem;
   font-weight: 400;
-  color: #9CA3AF;
   margin-right: 1.2rem;
+  transition: box-shadow 0.2s;        /* 테두리 전환 효과 */
+}
+
+.product-search::placeholder {
+  color: var(input-placeholder-color);
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.product-search:focus {
+  box-shadow: 0 0 0 1px #4B5563;    /* 포커스 상태에서 테두리 효과 */
+  outline: none;                      /* 기본 포커스 아웃라인 제거 */
 }
 
 .product-register {
@@ -128,7 +153,7 @@
   padding: 1.5rem;
   border-radius: 0.8rem;
   margin: 2rem auto;
-  max-width: 50rem;                       /* 최대 너비 설정 */
+  max-width: 50rem;                       
   height: 30rem;
   border: 0.1rem solid #d9534f;         /* 붉은 색 테두리 */
 }
@@ -158,6 +183,7 @@
   }
 
   .product-grid {
+    max-width: 34.4rem;
     grid-template-columns: repeat(2, 1fr); /* Mobile: 2열 */
   }
 
@@ -171,6 +197,7 @@
     max-width: 34.4rem;
     margin: 0 auto 1.6rem; 
     align-items: center; 
+    padding: 0;
   }
 
   .product-section-title {
@@ -188,24 +215,35 @@
     grid-column: 2;                     /* 두 번째 열에 배치 */
     grid-row: 1;                        /* 첫 번째 행에 배치 */
     justify-self: start;                /* 왼쪽으로 정렬 */
-    transform: translateX(-136px);      /* 왼쪽으로 이동 */
+    transform: translateX(-13.6rem);    /* 왼쪽으로 이동 */
     height: 4.2rem;
+  }
+
+  .product-search-container {
+    margin: 0;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    margin: 0;
   }
 
   .product-search {
     grid-column: 1;                     /* 두 번째 행의 첫 번째 열 */
     grid-row: 2;                        /* 두 번째 행에 배치 */
     width: 28.8rem; 
-    height: 42px;
+    height: 4.2rem;
     display: flex;
     align-items: center;
+    margin: 0;
   }
 
   .product-sort-btn {
     grid-column: 2;                     /* 두 번째 행의 두 번째 열 */
     grid-row: 2;                        /* 두 번째 행에 배치 */
     justify-self: start; 
-    margin-left: 0; 
+    margin-right: 1.6rem;               /* margin-right 로 오른쪽 끝에 위치하게 함 */
     position: relative;                 /* 팝업 메뉴의 위치를 기준으로 하는 컨테이너 */
   }
 

@@ -3,12 +3,14 @@ import useFetchProducts from '../../hooks/useFetchProducts';
 import ProductItem from './ProductItem';
 import Pagination from './Pagination';
 import sortIcon from '../../assets/images/btn_sort.png'; 
+import searchIcon from '../../assets/images/icon/ic_search.png';
 import './ProductList.css';
 
 function ProductList() {
   const [maxItems, setMaxItems] = useState(10);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 743);
   const [isSortMenuVisible, setSortMenuVisible] = useState(false);
+  const [searchKeyword, setSearchKeyowrd] = useState('');
 
   const {
     products,
@@ -19,6 +21,7 @@ function ProductList() {
     setCurrentPage,
     totalCount,          
     isLoading,
+    setSearch,
   } = useFetchProducts(1, maxItems, 'recent');
 
   // totalCount를 사용하여 totalPages 계산
@@ -55,6 +58,19 @@ function ProductList() {
     setCurrentPage(page);
   };
 
+  const handleSearchChange = (event) => {
+    setSearchKeyowrd(event.target.value);
+  }
+  const handleSearchSubmit = () => {
+    setSearch(searchKeyword);      // 검색어 설정
+    setCurrentPage(1);
+  }
+
+  const handleKeyDown = (event) => {
+    if(event.key === 'Enter') {
+      handleSearchSubmit();
+    }
+  }
   if (error) {
     return <div className="error-message">{error}</div>;
   }
@@ -63,11 +79,17 @@ function ProductList() {
     <div className="product-list-container">
       <div className="product-toolbar">
         <h3 className="product-section-title">판매 중인 상품</h3>
-        <input
-          type="text"
-          className="product-search"
-          placeholder="검색할 상품을 입력해 주세요"
-        />
+        <div className="product-search-container">
+          <img src={searchIcon} alt="상품검색" className="search-icon" onClick={handleSearchSubmit} />
+          <input
+            type="text"
+            className="product-search"
+            placeholder="검색할 상품을 입력해 주세요"
+            value={searchKeyword}
+            onChange={handleSearchChange}  // 검색어 변경 이벤트 핸들러
+            onKeyDown={handleKeyDown}      // Enter 키 이벤트 핸들러
+          />
+        </div>
         <button className="product-register">상품 등록하기</button>
         {isMobile ? (
           <>

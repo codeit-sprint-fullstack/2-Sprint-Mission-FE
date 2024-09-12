@@ -8,13 +8,13 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [totalCount, setTotalCount] = useState(0); // 총 아이템 개수를 저장
   const [isLoading, setIsLoading] = useState(false);
+  const [ search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
       try {
-        const productList = await getProductList(currentPage, maxItems, sortOption);
-        console.log('Fetched products', productList.list);
+        const productList = await getProductList(currentPage, maxItems, sortOption, search);
         setProducts(productList.list || []);
         setTotalCount(productList.totalCount || 0); // 총 개수를 설정
       } catch (e) {
@@ -26,7 +26,7 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
     };
 
     fetchProducts();
-  }, [currentPage, maxItems, sortOption]);
+  }, [currentPage, maxItems, sortOption, search]);
 
   return {
     products,
@@ -36,7 +36,8 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
     currentPage,
     setCurrentPage,
     totalCount, // 총 개수를 반환
-    isLoading
+    isLoading,
+    setSearch,
   };
 };
 
