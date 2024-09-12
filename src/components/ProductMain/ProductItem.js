@@ -6,7 +6,7 @@ function ProductItem({ product, type }) {
   return (
     <div className={`product-item ${type}`}>
       <img
-        src={defaultProductImg}
+        src={product.images && product.images[0] ? product.images[0] : defaultProductImg}
         alt={product.name}
         className="product-image"
       />

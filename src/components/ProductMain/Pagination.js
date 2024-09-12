@@ -5,6 +5,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const isMobile = window.innerWidth <= 743; // 모바일 환경 감지
   const pageNumbers = [];
 
+  // 로딩 중이거나 totalPages가 0일 때, 페이지네이션을 표시하지 않음
+  if (totalPages <= 1) {
+    return null; 
+  }
+  
   if (isMobile) {
     const startPage = Math.max(1, currentPage - Math.floor(maxPageDisplay / 2));
     const endPage = Math.min(totalPages, startPage + maxPageDisplay - 1);

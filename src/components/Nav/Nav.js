@@ -6,8 +6,7 @@ import './Nav.css';
 
 function getLinkStyle({ isActive }) {
   return {
-    paddingBottom: '0.05rem',
-    borderBottom: isActive ? '1px solid black' : 'none',
+    color: isActive ? 'var(--primary-color)' : 'var(--nav-text-color)'
   }
 }
 function Nav() {
