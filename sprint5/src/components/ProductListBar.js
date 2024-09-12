@@ -21,7 +21,7 @@ export default function ProductListBar({ keyword, onSearch, value, onChange }) {
           <button className="product-add">
             <a href="/registration">상품 등록하기</a>
           </button>
-          <OrderMenu className="order-menu" value={value} onChange={onChange} />
+          <OrderMenu className="order-menu" />
         </div>
       </div>
     </section>

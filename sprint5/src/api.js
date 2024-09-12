@@ -28,18 +28,13 @@ async function remove(url) {
   return instance.delete(url);
 }
 
-export async function getProductList({
-  page = 1,
-  pageSize = 10,
-  order = 'recent',
-  keyword = ''
-}) {
+export async function getProductList({ page, pageSize, order, keyword }) {
   const res = await get(`/products`, {
     params: {
-      page: page,
-      pageSize: pageSize,
-      order: order,
-      keyword: keyword
+      page,
+      pageSize,
+      order,
+      keyword
     }
   });
   return res.data;

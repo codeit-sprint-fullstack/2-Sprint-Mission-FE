@@ -2,23 +2,28 @@ import React, { useState } from 'react';
 import '../css/OrderMenu.css';
 import arrowDown from '../images/ic_arrow_down.png';
 import sortIcon from '../images/ic_sort.png';
+import { useSort } from '../contexts/SortContext';
 
-const OrderMenu = ({ value, onChange }) => {
+const OrderMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { sortOrder, setSortOrder } = useSort();
+
   const options = [
-    { value: 'recent', label: '최신 순' },
-    { value: 'favorite', label: '좋아요 순' }
+    { value: 'recent', label: '최신 순' }
+    // { value: 'favorite', label: '좋아요 순' }
   ];
 
   const handleOptionClick = (val) => {
-    onChange(val);
+    console.log('Seleted sort order:', val);
+    setSortOrder(val);
     setIsOpen(false);
   };
 
   return (
     <div className="order-menu">
       <div className="order-menu-selected" onClick={() => setIsOpen(!isOpen)}>
-        {options.find((option) => option.value === value)?.label || 'Select...'}
+        {options.find((option) => option.value === sortOrder)?.label ||
+          'Select...'}
         <img className="sort-icon" src={arrowDown} />
         <img className="mobile-sort-icon" src={sortIcon} />
       </div>
