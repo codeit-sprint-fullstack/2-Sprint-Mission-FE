@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import styles from './LogInPage.module.css';
 import PopUp from "../PopUp.js";
 import USER_DATA from "../scripts/data.js";
+import { Link } from "react-router-dom";
 
 function SignUpPage() {
 	useEffect(() => {
@@ -176,39 +177,39 @@ function SignUpPage() {
 
 	return (
 	<>
-		<main>
-			<a href="/"><img className="logo" src="/images/Property-1=lg.png" alt="판다마켓 logo"/></a>
+		<main className={styles.main}>
+			<Link to="/"><img className={styles.logo} src="/images/Property-1=lg.png" alt="판다마켓 logo"/></Link>
 			<form>
-				<label for="email">이메일</label>
-				<input id="email" name="email" placeholder="이메일을 입력해주세요" type="email" autocomplete="on" required/>
-				<div id="email-error" className="email-error"></div>
-				<label for="nickname">닉네임</label>
-				<input id="nickname" name="nickname" placeholder="닉네임을 입력해주세요" type="text" autocomplete="on" required/>
-				<div id="nickname-error" className="nickname-error"></div>
-				<label for="password">비밀번호</label>
-				<div className="pwd-container">
+				<label htmlFor="email">이메일</label>
+				<input id="email" name="email" placeholder="이메일을 입력해주세요" type="email" autoComplete="on" required/>
+				<div id="email-error" className={styles.email_error}></div>
+				<label htmlFor="nickname">닉네임</label>
+				<input id="nickname" name="nickname" placeholder="닉네임을 입력해주세요" type="text" autoComplete="on" required/>
+				<div id="nickname-error" className={styles.nickname_error}></div>
+				<label htmlFor="password">비밀번호</label>
+				<div className={styles.pwd_container}>
 					<input id="password" name="password" placeholder="비밀번호를 입력해주세요" type="password" required/>
 					<img src="/images/btn_visibility_off_24px.svg" alt="Button visibility off"/>
 				</div>
-				<div id="pwd-error" className="pwd-error"></div>
-				<label for="password-confirm">비밀번호 확인</label>
-				<div className="pwd-container">
+				<div id="pwd-error" className={styles.pwd_error}></div>
+				<label htmlFor="password-confirm">비밀번호 확인</label>
+				<div className={styles.pwd_container}>
 					<input id="password-confirm" name="password-confirm" placeholder="비밀번호를 다시 한 번 입력해주세요" type="password" required/>
 					<img src="/images/btn_visibility_off_24px.svg" alt="Button visibility off"/>
 				</div>
-				<div id="pwd-cfm-error" className="pwd-cfm-error"></div>
+				<div id="pwd-cfm-error" className={styles.pwd_cfm_error}></div>
 				<button id="button-signup" type="button" disabled>회원가입</button>
 			</form>
-			<div className="oauth">
+			<div className={styles.oauth}>
 				<span>간편 로그인하기</span>
-				<div className="oauth-images">
-					<a href="https://www.google.com/"><img src="/images/oauth-Google.png" alt="구글로 로그인하기" className="img-oauth"/></a>
-					<a href="https://www.kakaocorp.com/page/"><img src="/images/oauth-Kakao.png" alt="카카오로 로그인하기" className="img-oauth"/></a>
+				<div className={styles.oauth_images}>
+					<Link to="https://www.google.com/"><img src="/images/oauth-Google.png" alt="구글로 로그인하기" className={styles.img_oauth}/></Link>
+					<Link to="https://www.kakaocorp.com/page/"><img src="/images/oauth-Kakao.png" alt="카카오로 로그인하기" className={styles.img_oauth}/></Link>
 				</div>
 			</div>
-			<div className="check-description">
-				이미 회원이신가요?
-				<a href="/login">로그인</a>
+			<div className={styles.check_description}>
+				이미 회원이신가요?{" "}
+				<Link to="/login">로그인</Link>
 			</div>
 		</main>
 		<PopUp/>
