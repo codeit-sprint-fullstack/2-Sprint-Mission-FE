@@ -1,11 +1,12 @@
 import heartIcon from '../../assets/images/icon/ic_heart.png';
+import defaultProductImg from '../../assets/images/img_default_product.png';
 import './ProductItem.css';
 
 function ProductItem({ product, type }) {
   return (
     <div className={`product-item ${type}`}>
       <img
-        src={product.images[0]}
+        src={defaultProductImg}
         alt={product.name}
         className="product-image"
       />

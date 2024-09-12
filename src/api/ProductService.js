@@ -1,5 +1,6 @@
 // src/api/ProductService.js
-const PRODUCT_API_BASE_URL = 'https://panda-market-api.vercel.app/products/';
+//const PRODUCT_API_BASE_URL = 'https://panda-market-api.vercel.app/products';
+const PRODUCT_API_BASE_URL = 'https://pandamarket-api.onrender.com/products';
 
 // Product 목록 가져오기
 export async function getProductList(

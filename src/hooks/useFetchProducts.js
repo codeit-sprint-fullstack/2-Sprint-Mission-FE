@@ -14,9 +14,10 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
       setIsLoading(true);
       try {
         const productList = await getProductList(currentPage, maxItems, sortOption);
-        setProducts(productList.list);
-        setTotalCount(productList.totalCount); // 총 개수를 설정
+        setProducts(productList.list || []);
+        setTotalCount(productList.totalCount || 0); // 총 개수를 설정
       } catch (e) {
+        console.log(e.message);
         setError('상품을 불러오는 데 실패하였습니다.');
       } finally {
         setIsLoading(false);
