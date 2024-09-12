@@ -60,30 +60,32 @@ const ProductList = () => {
 
   return (
     <div className="product-list-wrapper">
-      <div className="section-title">
-        <h1>판매 중인 상품</h1>
-      </div>
-      <div className="search-sort-bar">
-        <div className="search-bar-wrapper">
-          <input
-            className="search-bar-input"
-            type="text"
-            value={search}
-            placeholder="검색할 상품을 입력해주세요"
-            onChange={handleSearch}
-          />
+      <div className="product-control-panel">
+        <div className="section-title">
+          <h1>판매 중인 상품</h1>
         </div>
-        <button className="create-item-button" onClick={handleRegisterClick}>
-          상품 등록하기
-        </button>
-        <select
-          className="sort-dropdown"
-          value={sort}
-          onChange={handleSortChange}
-        >
-          <option value="recent">최신순</option>
-          <option value="favorite">좋아요 순</option>
-        </select>
+        <div className="search-sort-bar">
+          <div className="search-bar-wrapper">
+            <input
+              className="search-bar-input"
+              type="text"
+              value={search}
+              placeholder="검색할 상품을 입력해주세요"
+              onChange={handleSearch}
+            />
+          </div>
+          <button className="create-item-button" onClick={handleRegisterClick}>
+            상품 등록하기
+          </button>
+          <select
+            className="sort-dropdown"
+            value={sort}
+            onChange={handleSortChange}
+          >
+            <option value="recent">최신순</option>
+            <option value="favorite">좋아요 순</option>
+          </select>
+        </div>
       </div>
       <div className="product-list">
         {products.map((product) => (
