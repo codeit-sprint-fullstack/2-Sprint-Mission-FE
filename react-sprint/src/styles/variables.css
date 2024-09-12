@@ -1,0 +1,21 @@
+/* variables.css */
+:root {
+  --primary-blue-300: #1251aa;
+  --primary-blue-200: #1967d6;
+  --primary-blue-100: #3692ff;
+  --primary-blue: #2f80ed;
+
+  --secondary-black-900: #111827;
+  --secondary-black-800: #1f2937;
+  --secondary-gray-700: #374151;
+  --secondary-gray-600: #4b5563;
+  --secondary-gray-500: #6b7280;
+  --secondary-gray-400: #9ca3af;
+  --secondary-white-300: #dfdfdf;
+  --secondary-white-200: #e5e7eb;
+  --secondary-white-100: #f3f4f6;
+  --secondary-white-50: #f9fafb;
+  --secondary-white: #ffffff;
+
+  --error-color: #f74747;
+}

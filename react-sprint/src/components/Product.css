@@ -1,0 +1,51 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
+.productImg {
+  width: 22rem;
+  height: 22rem;
+  border-radius: 1.6rem;
+}
+
+.productText {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 0.6rem;
+  color: var(--secondary-black-800);
+}
+
+.productTextName {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+}
+
+.productTextPrice {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+}
+
+.heart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.heartImg {
+  display: flex;
+}
+
+.heartNextNum {
+  display: flex;
+  color: var(--secondary-gray-600);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+}

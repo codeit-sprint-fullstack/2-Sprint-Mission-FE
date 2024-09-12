@@ -1,0 +1,391 @@
+* {
+  box-sizing: border-box;
+}
+
+	/* colors */
+:root {
+	--background-color: #CFE5FF;
+	--white-color: #FFFFFF;
+	--blue-color: #3692FF;
+	--gray-color: #374151;
+	--black-color: #111827;
+	--secondary-color-white: #F3F4F6;
+	--secondary-color-gray: #FCFCFC;
+	--secondary-color-gray100: #9CA3AF;
+	--secondary-color-gray200: #E5E7EB;
+	--secondary-color-gray300: #E6F2FF;
+	--secondary-color-gray400: #F9FAFB;
+	--secondary-color-gray500: #DFDFDF;
+	--secondary-color-black: #1F2937;
+	--yellyow-color: #F5E14B;
+	--secondary-color-blue: #3182F6;
+}
+
+body{
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+nav {
+  width: 24.75rem;
+  height: 8.25rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav img {
+  width: 6.470625rem;
+  height: 6.4925rem;
+  border-radius: 1.808125rem 0 0 0;
+}
+
+nav h1 {
+  font-family: ROKAF Sans;
+  font-size: 4.14625rem;
+  font-weight: 700;
+  line-height: 5.5975rem;
+  text-align: left;
+  color: var(--blue-color);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3425rem;
+  text-align: left;
+  gap: 1rem;
+}
+
+label input {
+  width: 40rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  background-color: var(--secondary-color-white);
+  border: none;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  text-align: left;
+
+}
+
+label input:focus {
+  outline: none !important;
+  border: solid 2px;
+  border-color: var(--blue-color);
+}
+
+.eyeImg {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  left: 36.875rem;
+  bottom: 3.4rem;
+}
+
+.checkImg {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  left: 36.875rem;
+  bottom: 3.4rem;
+}
+
+form button {
+  width: 40rem;
+  padding: 1rem 7.75rem;
+  gap: 0.625rem;
+  border-radius: 2.5rem;
+  border: none;
+  background-color: var(--secondary-color-gray100);
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5625rem;
+  text-align: center;
+  color: var(--white-color);
+  position: relative;
+  bottom: 4rem;
+}
+
+.imgbox {
+  width: 40rem;
+  height: 4.625rem;
+  border-radius: 0.5rem;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-color-gray300);
+  position: relative;
+  bottom: 3.5rem;
+}
+
+.imgbox h4 {
+  font-family:Pretendard;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  text-align: left;
+  color: var(--secondary-color-black);
+  margin-left: 1.4375rem;
+}
+
+#google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  background-color: var(--secondary-color-gray400);
+  margin-left: 23.125rem;
+}
+
+#kakao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  background-color: var(--yellyow-color);
+  padding-top: 0.3125rem;
+  margin-right: 1.875rem;
+}
+
+footer {
+  margin-top: 1.25rem;
+  margin-bottom: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer span {
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.11875rem;
+  text-align: left;
+  color: var(--secondary-color-black);
+}
+
+footer a {
+  font-family: Pretendard;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.11875rem;
+  text-align: left;
+  color: var(--secondary-color-blue);
+  padding-left: 0.4375rem;
+}
+
+.password_check {
+  position: relative;
+  bottom: 2rem;
+}
+
+/* js */
+.borderRed {
+  outline: none;
+  border: solid 2px;
+  border-color: red;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 0.8rem;
+  font-family: Pretendard;
+  display: none;
+}
+
+.passwordBottom {
+  position: relative;
+  bottom: 2.5rem;
+}
+
+.btnColor {
+  background-color: var(--blue-color);
+}
+
+/* modal */
+.modal{
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalBoxStyle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: var(--white-color);
+  margin: 30rem auto;
+  padding-top: 7rem;
+  border-radius: 0.8rem;
+  width: 34rem;
+  height: 15.6rem;
+  bottom: 7.5rem;
+}
+
+.modalH1Style{
+  font-family: Pretendard;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  color: var(--secondary-color-black);
+  text-align: center;
+  position: relative;
+  top: 5rem;
+}
+
+.modalInputStyle{
+  position: relative;
+  top: 3rem;
+  right: 1.5rem;
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 0.5rem;
+  width: 7.5rem;
+  height: 3rem;
+  font-size: 1rem;
+  font-family: Pretendard;
+  line-height: 2rem;
+  align-self: end;
+  cursor: pointer;
+}
+
+/* PC */
+@media screen and (min-width: 1200px){
+
+} 
+
+/* Tablet */
+@media screen and (min-width: 744px) and (max-width: 1199px){
+
+}
+
+/* Mobile */
+@media screen and (min-width: 375px) and (max-width: 743px){
+  /* nav */
+  header{
+    padding-top: 0.7rem;
+    margin-bottom: 0.1rem;
+  }
+  nav{
+    padding: 0 6.4rem;
+  }
+  nav img{
+    width: 3rem;
+    height: auto;
+    border-radius: 1rem;
+  }
+  nav h1{
+    font-size: 2rem;
+  }
+  
+
+  /* login */
+  main{
+    max-width: 25rem;
+    padding: 0 1rem;
+  }
+  section{
+    position: relative;
+    bottom: 2rem;
+  }
+  #email, #password, #nickname, #passwordCheck{
+    width: 22rem;
+    padding: 1rem 1rem;
+  }
+  #password{
+    margin-bottom: 0.1rem;
+  }
+  .login_box h4{
+    font-size: 0.8rem;
+  }
+  .login_box button{
+    width: 22rem;
+
+  }
+  .eyeImg, .checkImg{
+    position: relative;
+    left: 19rem;
+    bottom: 3.5rem;
+  }
+  
+  /* imgbox */
+  .imgbox{
+    width: 22rem;
+    padding: 0 1rem;
+    justify-content: flex-start;
+    position: relative;
+    bottom: 4rem;
+  }
+  .imgbox h4{
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  #google, #kakao{
+    position: relative;
+    padding: 1rem;
+    right: 16rem;
+  }
+  #google{
+    right: 17rem;
+  }
+  #kakao{
+    padding-top: 1.2rem;
+  }
+  footer{
+    width: 22rem;
+    margin: 0 1rem;
+    position: relative;
+    bottom: 3rem;
+  }
+}
+

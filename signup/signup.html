@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ELV3FDXL1B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ELV3FDXL1B');
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css"/>
+  <link rel="stylesheet" href="signup.css">
+  <title>회원가입</title>
+  <link rel="stylesheet" type="text/css" href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css'>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Noto+Sans+KR:wght@100..900&family=Song+Myung&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <div>
+        <a href="../index.html" target="_self">
+          <img src="../img/panda.png">
+        </a>
+      </div>
+      <div>
+        <h1>판다마켓</h1>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="login_box">
+      <form>
+        <label>
+          <h4>이메일</h4>
+          <input id="email" type="email" name="email" placeholder="이메일을 입력해주세요">
+        </label>
+        <label>
+          <h4>닉네임</h4>
+          <input id = 'nickname' type="text" name="nickname" placeholder="닉네임을 입력해주세요">
+        </label>
+        <label>
+          <h4>비밀번호</h4>
+          <input id="password" type="password" name="password" placeholder="비밀번호를 입력해주세요">
+          <img src="../img/eyeshape.png" class="eyeImg">
+        </label>
+        <label class="password_check">
+          <h4>비밀번호 확인</h4>
+          <input id="passwordCheck"  type="password" name="password_check" placeholder="비밀번호를 다시 한 번 입력해주세요">
+          <img src="../img/eyeshape.png" class="checkImg">
+        </label>
+        <button id="signUpBtn" type="button" name="login">회원가입</button>
+      </form>
+    </section>
+    <section class="imgbox">
+      <div>
+        <h4>간편 로그인하기</h4>
+      </div>
+      <div id="google">
+        <a href="https://www.google.com/" target="_self" >
+          <img src="../img/google.png">
+        </a>
+      </div>
+      <div id="kakao"> 
+        <a href="https://www.kakaocorp.com/page/" target="_self" >
+          <img src="../img/kakaoIcon.png">
+        </a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <span>이미 회원이신가요?</span>
+    <a href="../login/login.html">로그인</a>
+  </footer>
+  <script src="signup.js" type="module"></script>
+</body>
+</html>
