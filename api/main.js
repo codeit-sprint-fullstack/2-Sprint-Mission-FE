@@ -1,36 +1,42 @@
-import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle } from "./ArticleService";
-import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./ProductService";
-
+import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle } from "./ArticleService.js";
+import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./ProductService.js";
 
 // Article
 
-getArticleList();
+console.log('getArticleList-----------')
+console.log(await getArticleList());
 
-getArticle(379);
+console.log('getArticle-----------')
+console.log(await getArticle(379));
 
+console.log('createArticle-----------')
 const newArticleData = {
   "title": "제목1",
   "content": "이것은 내용입니다.",
   "image": "이미지소스URL1"
 }
+console.log(await createArticle(newArticleData));
 
-createArticle(newArticleData);
-
+console.log('patchArticle-----------')
 const changeArticleData = {
   "image": "이미지소스URL2"
 }
+console.log(await patchArticle(380, changeArticleData));
 
-patchArticle(380, changeArticleData);
 
-deleteArticle(381);
+console.log('deleteArticle-----------')
+console.log(await deleteArticle(552));
 
 
 // Product
 
-getProductList();
+console.log('getProductList-----------')
+console.log(await getProductList());
 
-getProduct(243);
+console.log('getProduct-----------')
+console.log(await getProduct(243));
 
+console.log('createProduct-----------')
 const newProductData = {
   "name": "이름",
   "description": "이것은 판다마켓 제품입니다.",
@@ -43,13 +49,14 @@ const newProductData = {
     "이미지소스URL1"
   ]
 }
+console.log(await createProduct(newProductData));
 
-createProduct(newProductData);
-
+console.log('patchProduct-----------')
 const changeProductData = {
   "price": 999900
 }
 
-patchProduct(244, changeProductData);
+console.log(await patchProduct(244, changeProductData));
 
-deleteProduct(245);
+console.log('deleteProduct-----------')
+console.log(await deleteProduct(309));

@@ -6,29 +6,73 @@ const instance = axios.create({
 });
 
 export async function getProductList(page, pageSize, keyword = '') {
-  const products = await instance.get('/products', {
+  try {
+    const products = await instance.get('/products', {
     params: { page, pageSize, keyword }
   });
-
-  return products.data;
+    return products.data;
+  } catch(e) {
+    console.log(e.message);
+  }
 } 
 
 export async function getProduct(id) {
-  const products = await instance.get(`/products/${id}`);
-  return products.data;
+  try {
+    const products = await instance.get(`/products/${id}`);
+    return products.data;
+  } catch(e) {
+    console.log(e.message);
+  }
 }
 
 export async function createProduct(productData) {
-  const products = await instance.post('/products', productData)
-  return products.data;
+  const errors = [];
+
+  function ValidateData(key, type) {
+    if (typeof productData[key] !== type) {
+      const currentType = typeof productData[key];
+      errors.push({
+        path: key,
+        message: `Expected a(an) ${type}, but received: ${currentType}`
+      })
+    }
+  }
+
+  ValidateData('name', 'string');
+  ValidateData('description', 'string');
+  ValidateData('price', 'number');
+  ValidateData('tags', 'array');
+  ValidateData('images', 'array');
+
+  if (errors.length > 0) {
+    return {
+      message: '유효성 검사 오류입니다.',
+      errors: errors
+    }
+  }
+
+  try {
+    const products = await instance.post('/products', productData)
+    return products.data;
+  } catch(e) {
+    console.log(e.message);
+  }
 }
 
 export async function patchProduct(id, productData) {
-  const products = await instance.patch(`/products/${id}`, productData)
-  return products.data;
+  try {
+    const products = await instance.patch(`/products/${id}`, productData)
+    return products.data;
+  } catch(e) {
+    console.log(e.message);
+  }
 }
 
 export async function deleteProduct(id) {
-  const products = await instance.delete(`/products/${id}`)
-  return products.data;
+  try {
+    const products = await instance.delete(`/products/${id}`)
+    return `${id}번 글이 정상적으로 삭제되었습니다.`;
+  } catch(e) {
+    console.log(e.message);
+  }
 }
