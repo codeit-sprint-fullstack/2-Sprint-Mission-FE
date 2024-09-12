@@ -9,6 +9,8 @@ signup.html
 reset.css
 scripts/
 API/
+src/imgFile/
+src/page/images/
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,node
