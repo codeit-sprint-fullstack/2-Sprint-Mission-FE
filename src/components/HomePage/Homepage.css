@@ -13,6 +13,9 @@ main {
   padding: 0;
 }
 
+#top {
+  width: -100px;
+}
 /*main*/
 #lookforbtn {
   width: 30rem;
