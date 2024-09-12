@@ -1,6 +1,10 @@
 .product-list-container {
+  display: flex;
+  flex-direction: column;           /* 세로 방향으로 정렬 */
+  align-items: center;              /* 가로 중앙 정렬 */
+  min-height: 70vh;                 /* 콘텐츠 최소 높이 설정 */
+  position: relative;               /* 로딩 메시지의 위치 지정 가능하도록 설정 */
   width: 100%;
-  margin: 2.4rem auto 4rem;
 }
 
 .product-section-title {
@@ -8,6 +12,7 @@
   line-height: 3.2rem;
   font-weight: 700;
   color: #111827;  
+  margin-right: auto;
 }
 
 .product-grid {
@@ -15,19 +20,29 @@
   gap: 1.5rem;
   margin: 0;
   grid-template-columns: repeat(5, 1fr); 
+
 }
 
 .product-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   margin-bottom: 2.4rem; 
+  padding: 0 1rem;
 }
 
 .product-controls {
   display: flex;
   align-items: center;
   gap: 1.2rem;            /* 검색창, 버튼, 드롭다운 간의 간격 */
+  margin-left: auto;       /* 오른쪽 정렬을 위해 왼쪽으로 최대한 여백 추가 */
+}
+
+.product-register,
+.product-search,
+.product-sort-btn {
+  margin-left: 1rem; /* 버튼들 간의 간격 */
 }
 
 .product-search {
@@ -40,6 +55,7 @@
   font-size: 1.6rem;
   font-weight: 400;
   color: #9CA3AF;
+  margin-right: 1.2rem;
 }
 
 .product-register {
@@ -55,6 +71,7 @@
   line-height: 2.2rem;
   cursor: pointer;
   font-family: 'Pretendard', Poppins, 'Noto Sans KR', sans-serif; /* 기본 font 적용이 안되서 명시적으로 지정 */
+  margin-right: 1.2rem;
 }
 
 .product-sort {
@@ -82,19 +99,38 @@
   background-color: #F3F4F6;
 }
 
+.loading-message {
+  width: 100%;
+  height: calc(100% - 10rem); 
+  font-size: 1.5rem;
+  color: #555; 
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem; /* 여백 추가 */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute; 
+  top: 8rem; 
+  left: 0; 
+  z-index: 10; 
+}
+
 /* 오류 메시지 스타일링 */
 .error-message {
-  background-color: #fff4e5; /* 연한 주황색 배경 */
-  color: #d9534f; /* 오류 메시지 글씨 색상 */
+  background-color: #fff4e5;            /* 연한 주황색 배경 */
+  color: #d9534f;                       /* 오류 메시지 글씨 색상 */
   font-size: 1.6rem;
   font-weight: 600;
   text-align: center;
   padding: 1.5rem;
   border-radius: 0.8rem;
   margin: 2rem auto;
-  max-width: 50rem; /* 최대 너비 설정 */
+  max-width: 50rem;                       /* 최대 너비 설정 */
   height: 30rem;
-  border: 0.1rem solid #d9534f; /* 붉은 색 테두리 */
+  border: 0.1rem solid #d9534f;         /* 붉은 색 테두리 */
 }
 
 @media (max-width: 1199px) and (min-width: 744px) {
@@ -108,10 +144,6 @@
     grid-template-columns: repeat(3, 1fr); /* Tablet: 3열 */
   }
 
-  .product-controls {
-    gap: 1.2rem;         
-  }
-  
   .product-search {
     width: 24.2rem;
   }

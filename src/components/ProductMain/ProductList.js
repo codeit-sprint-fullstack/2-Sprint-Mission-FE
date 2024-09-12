@@ -17,7 +17,8 @@ function ProductList() {
     setSortOption,
     currentPage,
     setCurrentPage,
-    totalCount,           // totalCount 가져오기
+    totalCount,          
+    isLoading,
   } = useFetchProducts(1, maxItems, 'recent');
 
   // totalCount를 사용하여 totalPages 계산
@@ -94,17 +95,23 @@ function ProductList() {
             onChange={(e) => setSortOption(e.target.value)}
           >
             <option value="recent">최신순</option>
-            <option value="favorite">좋아요순</option>
+            {/*<option value="favorite">좋아요순</option>*/}
           </select>
         )}
       </div>
 
       <div className="product-grid">
-        {products.map((product) => (
-          <ProductItem key={product.id} product={product} type="" />
-        ))}
+        {isLoading ? (
+          <div className="loading-message">상품을 불러오는 중입니다...</div>
+        ) : (
+          products.map((product) => (
+            <ProductItem key={product._id} product={product} type="" />
+          ))
+        )}
       </div>
-      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+      {!isLoading && (
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+      )}
     </div>
   );
 }

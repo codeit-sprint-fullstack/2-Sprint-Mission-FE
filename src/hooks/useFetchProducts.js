@@ -14,6 +14,7 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
       setIsLoading(true);
       try {
         const productList = await getProductList(currentPage, maxItems, sortOption);
+        console.log('Fetched products', productList.list);
         setProducts(productList.list || []);
         setTotalCount(productList.totalCount || 0); // 총 개수를 설정
       } catch (e) {
