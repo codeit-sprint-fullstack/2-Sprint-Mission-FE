@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchApi } from "../../api/fetchApi";
 import img_default from "../../images/etc/img_default.svg";
+import likeButton from "../../images/etc/likeButton.svg";
+import "./ProductList.css";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState("");
@@ -15,12 +17,12 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [page, search]); //페이지, 검색으로 useEffect
+  }, [currentPage, search]); //페이지, 검색으로 useEffect
 
   const fetchProducts = async () => {
     try {
       const response = await fetchApi("/products", {
-        page,
+        currentPage,
         limit,
         sort,
         search,
@@ -35,43 +37,85 @@ const ProductList = () => {
   const handleSearch = (e) => {
     //검색
     setSearch(e.target.value);
-    setPage(1);
+    setCurrentPage(1);
   };
 
   const handleRegisterClick = () => {
     navigation("/registration");
   };
+
+  const handleSortChange = (e) => {
+    setSort(e.target.value);
+    setCurrentPage(1);
+  };
+
+  // 페이지네이션 처리
+  const handlePrevious = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
   return (
-    <div>
-      <h1>판매 중인 상품</h1>
-      <input
-        type="text"
-        value={search}
-        placeholder="검색할 상품을 입력해주세요"
-        onChange={handleSearch}
-      />
-      <button onClick={handleRegisterClick}>상품 등록하기</button>
-      <select value={sort}>
-        <option value="recent">최신순</option>
-        <option value="favorite">좋아요 순</option>
-      </select>
-
-      <ul>
+    <div className="product-list-wrapper">
+      <div className="section-title">
+        <h1>판매 중인 상품</h1>
+      </div>
+      <div className="search-sort-bar">
+        <div className="search-bar-wrapper">
+          <input
+            className="search-bar-input"
+            type="text"
+            value={search}
+            placeholder="검색할 상품을 입력해주세요"
+            onChange={handleSearch}
+          />
+        </div>
+        <button className="create-item-button" onClick={handleRegisterClick}>
+          상품 등록하기
+        </button>
+        <select
+          className="sort-dropdown"
+          value={sort}
+          onChange={handleSortChange}
+        >
+          <option value="recent">최신순</option>
+          <option value="favorite">좋아요 순</option>
+        </select>
+      </div>
+      <div className="product-list">
         {products.map((product) => (
-          <li key={product._id}>
+          <div key={product._id} className="item-card">
             <img src={img_default} alt="이미지 없음" />
-            <Link to={`/products/${product._id}`}>{product.name}</Link> - $
-            {product.price}
-          </li>
+            <h3 className="item-name">{product.name}</h3>
+            <p className="item-price">{product.price.toLocaleString()}원</p>
+            <div className="favorite-count">
+              <img src={likeButton} alt="좋아요 버튼" />
+              <p>240</p>
+              {/* 좋아요가 api에 없으므로 하드코딩 */}
+            </div>
+          </div>
         ))}
-      </ul>
-
-      <div>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button key={index} onClick={() => setPage(index + 1)}>
-            {index + 1}
+      </div>
+      {/* 페이지네이션 */}
+      <div className="pagination-bar-wrapper">
+        <button onClick={handlePrevious} disabled={currentPage === 1}>
+          &lt;
+        </button>
+        {[...Array(5)].map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentPage(i + 1)}
+            className={currentPage === i + 1 ? "active" : ""}
+          >
+            {i + 1}
           </button>
         ))}
+        <button onClick={handleNext} disabled={currentPage === totalPages}>
+          &gt;
+        </button>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ const Registration = () => {
     e.preventDefault(); //refresh 방지
     alert("Product Registered Successfully!");
   };
+
   return (
     <>
       <div className="registration-container">

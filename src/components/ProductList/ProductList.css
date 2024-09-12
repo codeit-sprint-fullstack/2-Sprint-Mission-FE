@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.product-list-wrapper {
+  padding: 0 100px;
+}
+
+.section-title {
+  color: #111827;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+s .product-list-header {
+  margin-bottom: 20px;
+}
+
+.search-sort-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-bar-wrapper {
+  flex: 1;
+  display: flex;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  padding: 9px 16px;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.search-bar-input {
+  border: none;
+  flex: 1;
+  background-color: inherit;
+  margin-left: 4px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-image: url("../../images/etc/reading-glasses.svg");
+  background-repeat: no-repeat;
+  background-position: left 5px center;
+}
+
+.search-bar-input::placeholder {
+  color: #9ca3af;
+  font-size: 16px;
+}
+
+.create-item-button {
+  background-color: #3692ff;
+  border: none;
+  color: #ffffff;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.sort-dropdown {
+  border-radius: 10px;
+  width: 110px;
+  height: 40px;
+  text-align: center;
+  border-color: #dfdfdf;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* 태블릿 (744px 이상) */
+@media (min-width: 744px) {
+  .product-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* PC (1200px 이상) */
+@media (min-width: 1200px) {
+  .product-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.item-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  color: #1f2937;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.item-card-thumb {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 16px;
+  aspect-ratio: 1;
+  margin-bottom: 16px;
+}
+
+.item-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-name {
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-price {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.favorite-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #4b5563;
+  font-size: 12px;
+}
+
+.pagination-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.pagination-bar-wrapper button {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pagination-bar-wrapper button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination-bar-wrapper button:hover {
+  background-color: #b3d6fc;
+  border-color: #b3d6fc;
+}
+
+/* 반응형 디자인 */
+@media (min-width: 744px) {
+  .allItemsCardSection {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 16px;
+  }
+
+  .allItemsSectionHeader {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+  }
+}
+
+@media (min-width: 1280px) {
+  .allItemsCardSection {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px 24px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .search-bar-input {
+    width: 206px;
+  }
+}
+
+@media (max-width: 744px) {
+  .search-bar-wrapper {
+    width: calc(100% - 60px);
+  }
+
+  .allItemsSectionHeader {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
