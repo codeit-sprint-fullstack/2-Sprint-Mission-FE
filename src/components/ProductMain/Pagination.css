@@ -1,0 +1,56 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1.25rem; /* 버튼 간 간격 */
+  margin-bottom: 14rem;
+}
+
+.pagination-button {
+  border: none;
+  background-color: #ffffff; /* 비활성화된 버튼의 배경색을 흰색으로 설정 */
+  color: #6B7280; /* 비활성화된 버튼의 텍스트 색상 */
+  margin: 0 0.5rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 4rem;
+  padding: 1.25rem;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1); /* 버튼에 약간의 그림자 추가 */
+}
+
+.pagination-button.active {
+  font-weight: 600;
+  color: #F9FAFB; /* 활성화된 상태의 텍스트 색상 */
+  background-color: #2F80ED; /* 활성화된 상태의 배경색 */
+}
+
+.pagination-button.disabled {
+  cursor: not-allowed;
+  color: #ccc;
+  background-color: #F3F4F6; /* 비활성화된 버튼 배경색을 더 연한 색으로 변경 */
+}
+
+.pagination-ellipsis {
+  margin: 0 0.5rem;
+  font-size: 1.6rem;
+  color: #aaa;
+}
+
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .pagination {
+    margin-bottom: 16.4rem;
+  }
+}
+@media (max-width: 743px) {
+  .pagination {
+    margin-bottom: 13.5rem;
+  }
+}

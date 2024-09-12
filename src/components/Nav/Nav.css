@@ -1,0 +1,142 @@
+.gnb-wrapper {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 0.1rem solid var(--nav-divider-color);
+  background-color: var(--background-color);
+}
+
+.gnb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 120rem;
+  height: 7rem;
+  padding: 0;
+}
+
+.gnb-logo-desktop {
+  display: block;
+  width: 15.3rem;
+}
+
+.gnb-logo-mobile {
+  display: none;
+}
+
+.gnb__nav {
+  width: 100%;
+  margin: 0 2rem;
+  padding: 0;
+}
+
+.gnb__nav-list {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.gnb__nav-list li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.gnb_user {
+  display: flex;
+  align-items: center;
+}
+
+.gnb__btn-login {
+  background: var(--primary-color);
+  color: var(--button-text-color);
+  width: 8.8rem;
+  height: 4.2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gnb__btn-login {
+  display: none;
+}
+
+.gnb__user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 9.2rem; /* gap 때문에 사이즈 약간 늘림 */
+}
+
+.user-profile-img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%; /* 원형 프로필 이미지 */
+}
+
+.user-name {
+  font-size: 1.8rem;
+  color: #4b5563;
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .gnb {
+    padding: 0 2.4rem; /* 좌우 여백 조정 */
+  }
+
+  .gnb-logo-desktop {
+    display: block;
+    width: 15.3rem;
+  }
+  .gnb-logo-mobile {
+    display: none;
+  }
+
+  .user-name {
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+
+  .gnb{
+    width: 100%;      
+    padding: 0 1.6rem;
+  }
+
+  .gnb__nav {
+    width: 100%;
+    margin: 0 1rem;
+    padding: 0;
+  }
+  .gnb__nav-list li a {
+    font-size: 1.6rem;
+  }
+  .gnb-logo-desktop {
+    display: none;
+  }
+  .gnb-logo-mobile {
+    display: block;
+    width: 8.1rem;
+  }
+  .gnb__user-info {
+    width: 4rem;
+  }
+  .user-name {
+    display: none;
+  }
+}
