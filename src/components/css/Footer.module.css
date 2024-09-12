@@ -1,0 +1,42 @@
+footer {
+  height: 16rem;
+  background-color: var(--gray-900);
+  padding: 3.2rem 20rem 10.8rem 20rem;
+  color: var(--gray-400);
+}
+
+.footer-link {
+  display: flex;
+  gap: 3rem;
+  color: var(--gray-200);
+}
+
+.sns-link {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.sns-link img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 1199px) {
+  footer {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Mobile */
+@media (max-width: 743px) {
+  footer {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+}

@@ -1,0 +1,43 @@
+.signInput label {
+  font-size: 1.8rem;
+  line-height: 2.148rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.signInput p {
+  font-size: 1.5rem;
+  line-height: 1.79rem;
+  font-weight: 600;
+  color: var(--error-red);
+  margin-top: 0.8rem;
+  margin-left: 1.6rem;
+}
+
+.signInput .input-wrap {
+  position: relative;
+}
+
+.signInput .input-wrap img {
+  position: absolute;
+  right: 2.4rem;
+  bottom: 1.6rem;
+}
+
+.signInput input {
+  width: 100%;
+  border-radius: 1.2rem;
+  height: 5.6rem;
+  margin-top: 1.6rem;
+  padding: 2.4rem 1.6rem;
+  background-color: var(--gray-100);
+  border: 0;
+}
+
+.signInput input:focus {
+  outline: thin solid var(--Primary-100);
+}
+
+.signInput input.error {
+  outline: thin solid var(--error-red);
+}

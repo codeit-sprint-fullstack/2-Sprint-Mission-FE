@@ -1,0 +1,46 @@
+#bestProductsTitle {
+  margin-bottom: 1.6rem;
+}
+
+#bestProductsTitle h3 {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 3.2rem;
+  color: var(--gray-900);
+}
+
+#bestProductsItems {
+  height: 37.8rem;
+
+  display: grid;
+  gap: 2.4rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 1199px) {
+  #bestProductsItems {
+    height: 43.4rem;
+
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #bestProductsItems .bestitem-product-img img {
+    width: 343px;
+    border-radius: 19.46px;
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Mobile */
+@media (max-width: 743px) {
+  #bestProductsItems {
+    height: 48.2rem;
+
+    grid-template-columns: 1fr;
+  }
+}
