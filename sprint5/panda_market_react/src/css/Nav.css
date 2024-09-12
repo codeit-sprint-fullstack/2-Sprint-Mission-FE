@@ -1,0 +1,55 @@
+header {
+  position: sticky;
+  top: 0;
+  height: 70px;
+  width: 100%;
+  background: #ffffff;
+  color: #4b5563;
+  padding: 9.5px;
+  z-index: 1;
+  margin: auto;
+  display: flex;
+  flex-shrink: inherit;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  height: 51px;
+  justify-content: space-between;
+  flex-shrink: inherit;
+  margin: 9.5px 200px 9.5px 200px;
+}
+
+.logo {
+  position: relative;
+  margin-left: 200px;
+}
+
+.quickLink {
+  color: #4b5563;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.loginButton {
+  width: 128px;
+  height: 48px;
+  margin-right: 200px;
+  border-radius: 8px;
+  border: 0;
+  flex-shrink: 0;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #3692ff;
+  color: #f3f4f6;
+  text-decoration: none;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+}
