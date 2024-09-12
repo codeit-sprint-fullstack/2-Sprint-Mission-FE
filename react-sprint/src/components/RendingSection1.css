@@ -1,0 +1,136 @@
+.rendingSection1 {
+  width: 100%;
+  height: 33rem;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.sectionBox {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  gap: 1rem;
+}
+
+.perchaseBox {
+  position: relative;
+  bottom: 7rem;
+}
+
+.perchaseText {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: Pretendard;
+  color: var(--secondary-gray-700);
+  line-height: 3.5rem;
+  text-align: left;
+  position: relative;
+  bottom: 1.5625rem;
+  left: 0.5rem;
+  white-space: nowrap;
+}
+
+.perchaseBtn {
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 2rem;
+  text-align: center;
+  width: 22.3125rem;
+  height: 3.5rem;
+  border-radius: 2.5rem;
+  padding: 1rem, 7.75rem;
+  gap: 0.625rem;
+  background-color: var(--primary-blue-100);
+  color: var(--secondary-white-100);
+  border: none;
+  cursor: pointer;
+}
+
+.pandaOneImg {
+  width: 46.625rem;
+  height: 21.25rem;
+}
+
+/*PC*/
+@media screen and (min-width: 1200px) {
+  .pandaOneImg {
+    width: 746px;
+    height: 340px;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 745px) and (max-width: 1199px) {
+  .rendingSection1,
+  .sectionBox {
+    width: 100%;
+  }
+  .rendingSection1 {
+    height: 60rem;
+  }
+  .perchaseBox {
+    width: 100%;
+    position: absolute;
+    bottom: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .perchaseText {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .perchaseBtn {
+    position: relative;
+    bottom: 1rem;
+  }
+  .pandaOneImg {
+    width: 100%;
+    height: auto;
+  }
+  .navBr {
+    display: block !important;
+  }
+}
+
+/*Mobile*/
+@media screen and (min-width: 375px) and (max-width: 744px) {
+  .rendingSection1,
+  .sectionBox {
+    width: 100%;
+  }
+  .perchaseBox {
+    width: 100%;
+    position: absolute;
+    bottom: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .perchaseText {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .perchaseBtn {
+    position: relative;
+    bottom: 1rem;
+  }
+  .pandaOneImg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/*br 제거*/
+@media screen and (max-width: 430px) {
+  .navBr {
+    display: block !important;
+  }
+}

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./Header.css";
-import logoImg from "../imgs/logoImg.svg";
-import mobileLogoImg from "../imgs/mobileLogoImg.svg";
-import userAvatar from "../imgs/userImg.svg";
+import logoImg from "../assets/logoImg.svg";
+import mobileLogoImg from "../assets/mobileLogoImg.svg";
+import userAvatar from "../assets/userImg.svg";
 
 export default function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);

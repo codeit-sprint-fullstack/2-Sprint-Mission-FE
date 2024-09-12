@@ -1,5 +1,5 @@
 import "./Product.css";
-import heartImg from "../imgs/heartImg.svg";
+import heartImg from "../assets/heartImg.svg";
 
 export default function Product({ item }) {
   if (!item || !item.images || item.images.length === 0) {
