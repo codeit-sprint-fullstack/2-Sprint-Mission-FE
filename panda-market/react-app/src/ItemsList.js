@@ -7,7 +7,7 @@ function ItemsList({ items, orderBy, setOrderBy, keyword, setKeyword, onSearch }
 		<section className={[styles.section, styles.sec_items].join(" ")}>
 			<div className={styles.items_head}>
 				<h2>판매 중인 상품</h2>
-				<div className={styles.head_blank}></div>
+				<div className={styles.head_blank}>{" "}</div>
 				<div className={styles.input_wrapper}>
 					<input type="text" value={keyword} onKeyDown={(e) => {
 						if (e.code === "Enter") {
