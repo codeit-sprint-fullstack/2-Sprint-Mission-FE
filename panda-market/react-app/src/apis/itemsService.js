@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: `https://panda-market-api.vercel.app`
+  baseURL: `https://two-sprint-mission-be-t2e7.onrender.com`
 });
 
 async function getProducts(params = { page: 1, pageSize: 10, orderBy: "recent", keyword: "" }) {
