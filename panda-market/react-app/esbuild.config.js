@@ -16,7 +16,7 @@ esbuild.build({
   platform: 'browser',
   entryPoints: [`src/${pageName}.js`],
   bundle: true,
-  minify: true,
+  minify: false,
   outfile: `dist/${dirName}esb-bundle.js`,
   write: true,
   loader: {
