@@ -13,7 +13,7 @@ export default function Main() {
           <Route index path="/" element={<HomePage />} />
           <Route path="items" element={<Products />} />
           <Route path="registration" element={<ProductRegistration />} />
-          <Route path="detail" element={<ProductDetail />} />
+          <Route path="detail/:id" element={<ProductDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>

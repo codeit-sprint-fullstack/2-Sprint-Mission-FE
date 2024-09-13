@@ -47,6 +47,8 @@ footer {
   width: 100%;
 
   gap: 1.875rem;
+
+  text-wrap: nowrap;
 }
 
 .footer-info {
@@ -80,3 +82,5 @@ footer {
   width: 1.125rem;
   height: 1.125rem;
 }
+
+@media (max-width: 743px) {}

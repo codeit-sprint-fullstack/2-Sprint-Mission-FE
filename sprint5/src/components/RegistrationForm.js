@@ -19,9 +19,16 @@ function RegistrationForm() {
         .split(',')
         .map((tag) => tag.trim())
         .filter((tag) => tag.length > 0);
+
       const product = { name, description, price, tags: tagArray };
-      const newProduct = await createProduct(product);
-      navigate(`/detail/${newProduct.id}`); // 상품 상세 페이지로
+      const response = await createProduct(product);
+
+      const productID = response.id;
+      if (productID) {
+        navigate(`/detail/${productID}`);
+      } else {
+        setError('상품 ID를 얻는 데 실패했습니다.');
+      }
     } catch (err) {
       setError('상품 등록에 실패했습니다.');
     }

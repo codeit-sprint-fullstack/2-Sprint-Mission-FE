@@ -56,3 +56,15 @@
     margin-top: 10px;
     text-align: center;
 }
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .registration-container {
+        max-width: 696px;
+    }
+}
+
+@media (max-width: 743px) {
+    .registration-container {
+        max-width: 344px;
+    }
+}
