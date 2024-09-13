@@ -1,9 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logoImg from "../assets/pndamarket_logo.png";
+
+function getLinkStyle({ isActive }) {
+  return {
+    color: isActive ? "#1967d6" : undefined,
+  };
+}
 
 export default function Nav() {
   const topics = [
-    { title: "자유게시판", id: "board", link: "/" },
+    { title: "자유게시판", id: "board", link: "/free" },
     { title: "중고마켓", id: "secondmarket", link: "items" },
   ];
 
@@ -15,7 +21,9 @@ export default function Nav() {
         </Link>
         {topics.map((topic) => (
           <p key={topic.id} className="menu">
-            <Link to={topic.link}>{topic.title}</Link>
+            <NavLink to={topic.link} style={getLinkStyle}>
+              {topic.title}
+            </NavLink>
           </p>
         ))}
       </div>

@@ -35,10 +35,11 @@ nav {
   height: 52px;
 }
 
-.menu {
+.menu a {
   font-size: 18px;
   font-weight: 700;
   color: var(--color-gray-600);
+  text-decoration: none;
 }
 
 .login {
