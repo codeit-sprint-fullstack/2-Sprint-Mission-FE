@@ -46,7 +46,7 @@ function PageNation({ currentPage, totalPages, onPageChange }) {
       <button
         onClick={handlePrevClick}
         disabled={currentPage === 1}
-        className="pagination-nav-button"
+        className="paginationButton"
       >
         &lt;
       </button>
@@ -54,7 +54,7 @@ function PageNation({ currentPage, totalPages, onPageChange }) {
       <button
         onClick={handleNextClick}
         disabled={currentPage === totalPages}
-        className="pagination-nav-button"
+        className="paginationButton"
       >
         &gt;
       </button>
