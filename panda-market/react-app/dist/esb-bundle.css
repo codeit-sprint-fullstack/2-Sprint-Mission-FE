@@ -380,6 +380,7 @@ img {
 .ItemsPage_main {
   max-width: 1920px;
   padding: 20px 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
