@@ -7,7 +7,7 @@ function RegistrationForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -15,7 +15,11 @@ function RegistrationForm() {
     event.preventDefault();
 
     try {
-      const product = { name, description, price, tags };
+      const tagArray = tags
+        .split(',')
+        .map((tag) => tag.trim())
+        .filter((tag) => tag.length > 0);
+      const product = { name, description, price, tags: tagArray };
       const newProduct = await createProduct(product);
       navigate(`/detail/${newProduct.id}`); // 상품 상세 페이지로
     } catch (err) {
