@@ -9,10 +9,12 @@ function PageNum({pageNum, setPageNum, pageNumMax}) {
 			if (isNaN(targetN)) {
 				if (!target.classList.contains("disabled")) {
 					if (target.innerText === "&lt;" || target.innerText === "<") {
-						setPageNum(Number(pages[1].innerText) - 1);
+						const pageNumCandi = Number(pages[1].innerText) - 1;
+						setPageNum(pageNumCandi <= 1 ? 1 : pageNumCandi);
 					}
 					else if (target.innerText === "&gt;" || target.innerText === ">") {
-						setPageNum(Number(pages[pages.length - 2].innerText) + 1);
+						const pageNumCandi = Number(pages[pages.length - 2].innerText) + 1;
+						setPageNum(pageNumCandi >= pageNumMax ? pageNumMax : pageNumCandi);
 					}
 				}
 			}
