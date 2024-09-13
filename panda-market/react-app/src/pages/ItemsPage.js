@@ -26,7 +26,7 @@ function ItemsPage() {
 
 	const handleSearch = useCallback(async () => {
 		try {
-			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
+			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize, pageSize, orderBy, keyword });
 			console.log(result1);
 			if (!result1) return;
 			setPageNumMax(Math.ceil(result1.totalCount / pageSize));
@@ -67,11 +67,11 @@ function ItemsPage() {
 		console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`);
 		(async function () {
 			try {
-				const result0 = await loadItemsAsync({ page: (pageNum-1)*pageBestSize + 1, pageSize: pageBestSize, orderBy: "favorite", keyword: "" });
+				const result0 = await loadItemsAsync({ page: (pageNum-1)*pageBestSize, pageSize: pageBestSize, orderBy: "favorite", keyword: "" });
 				console.log('result0', result0);
 				if (!result0) return;
 
-				const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize + 1, pageSize, orderBy, keyword });
+				const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize, pageSize, orderBy, keyword });
 				console.log('result1', result1);
 				if (!result1) return;
 
