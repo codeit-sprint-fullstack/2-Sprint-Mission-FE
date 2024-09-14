@@ -9101,7 +9101,7 @@
   init_react_shim();
   var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
   function Item({ item }) {
-    const { id, name, images, price, favoriteCount } = item;
+    const { name, images, price, favoriteCount } = item;
     return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("li", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: images[0], alt: name }),
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: ItemsPage_default.name, children: name }),
@@ -9114,7 +9114,7 @@
         " ",
         favoriteCount
       ] })
-    ] }, id);
+    ] });
   }
   var Item_default = Item;
 
@@ -9126,7 +9126,7 @@
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { children: "\uBCA0\uC2A4\uD2B8 \uC0C1\uD488" }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { children: " " })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("ul", { className: [ItemsPage_default.items, ItemsPage_default.best].join(" "), children: bestItems.map((item) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Item_default, { item }, item.id)) })
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("ul", { className: [ItemsPage_default.items, ItemsPage_default.best].join(" "), children: bestItems.map((item) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Item_default, { item }, item._id)) })
     ] });
   }
   var BestItemsList_default = BestItemsList;
@@ -9171,7 +9171,7 @@
           ] })
         ] })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("ul", { className: [ItemsPage_default.items, ItemsPage_default.normal].join(" "), children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Item_default, { item }, item.id)) })
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("ul", { className: [ItemsPage_default.items, ItemsPage_default.normal].join(" "), children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Item_default, { item }, item._id)) })
     ] });
   }
   var ItemsList_default = ItemsList;
