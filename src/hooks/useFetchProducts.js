@@ -8,7 +8,7 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [totalCount, setTotalCount] = useState(0); // 총 아이템 개수를 저장
   const [isLoading, setIsLoading] = useState(false);
-  const [ search, setSearch] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchProducts = async () => {

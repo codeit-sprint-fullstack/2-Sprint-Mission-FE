@@ -13,6 +13,7 @@
   --input-background-color: #f3f4f6;
   --focus-border-color: #3694ff;
   --submit-button-bg: #9ca3af;
+  --input-placeholder-color: #9ca3af;
   --social-login-bg: #e6f2ff;
   --link-color: #3182f6;
   --nav-divider-color: #dfdfdf;
@@ -35,18 +36,4 @@ body {
 }
 a {
   text-decoration: none;
-}
-
-.App {
-  display: flex;
-  flex-direction: column; /* column으로 설정해야  */
-}
-
-.with-header {
-  padding-top: 7rem;      /* margin-top 으로 했더니 ProductMain과 Footer가 겹침(이해 안됨) */
-}
-
-.content {
-  max-width: 120rem;
-  margin: 0 auto;
 }

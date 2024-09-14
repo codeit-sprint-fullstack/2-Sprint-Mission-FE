@@ -103,9 +103,11 @@ function ProductList() {
                   <div className="sort-option" onClick={() => handleSortOptionClick('recent')}>
                     최신순
                   </div>
+                  {/* 
                   <div className="sort-option" onClick={() => handleSortOptionClick('favorite')}>
                     좋아요순
                   </div>
+                  */}
                 </div>
               )}
             </button>
