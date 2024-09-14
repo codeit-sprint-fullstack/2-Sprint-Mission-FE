@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createProduct } from '../api'; // API 호출 함수
 import '../css/RegistrationForm.css'; // CSS 파일
+import Tags from './Tags';
 
 function RegistrationForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [tags, setTags] = useState('');
+  const [tags, setTags] = useState([]);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -15,12 +16,7 @@ function RegistrationForm() {
     event.preventDefault();
 
     try {
-      const tagArray = tags
-        .split(',')
-        .map((tag) => tag.trim())
-        .filter((tag) => tag.length > 0);
-
-      const product = { name, description, price, tags: tagArray };
+      const product = { name, description, price, tags };
       const response = await createProduct(product);
 
       const productID = response.id;
@@ -72,12 +68,7 @@ function RegistrationForm() {
         </div>
         <div className="form-group">
           <label htmlFor="tags">태그</label>
-          <input
-            id="tags"
-            value={tags}
-            placeholder="태그를 입력해주세요"
-            onChange={(e) => setTags(e.target.value)}
-          />
+          <Tags tags={tags} setTags={setTags} />
         </div>
         {error && <div className="error-message">{error}</div>}
       </form>

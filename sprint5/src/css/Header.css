@@ -78,14 +78,6 @@ header {
   border-radius: 0.5rem;
 }
 
-.user-icon {
-  display: none;
-}
-
-.user-name {
-  display: none;
-}
-
 .mobile-logo {
   display: none;
 }
@@ -94,31 +86,11 @@ header {
   .menu {
     font-size: 1rem;
   }
-
-  .auth {
-    display: none;
-  }
-
-  .user-icon {
-    display: block;
-  }
-
-  .user-name {
-    display: block;
-  }
 }
 
 @media (max-width: 743px) {
   .menu {
-    font-size: 1rem;
-  }
-
-  .auth {
-    display: none;
-  }
-
-  .user-icon {
-    display: block;
+    font-size: 0.875rem;
   }
 
   .site-logo {

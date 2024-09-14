@@ -29,13 +29,9 @@ export default function Header() {
               </Link>
             </div>
           </div>
-          <div className="top-bar-right">
-            <a className="auth" href="/login">
-              로그인
-            </a>
-            <img className="user-icon" src={userIcon} />
-            <span className="user-name">김코드</span>
-          </div>
+          <a className="auth" href="/login">
+            로그인
+          </a>
         </div>
       </div>
     </header>
