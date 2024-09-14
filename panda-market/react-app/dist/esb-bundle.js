@@ -9055,7 +9055,10 @@
     main: "ItemsPage_main",
     section: "ItemsPage_section",
     items_head: "ItemsPage_items_head",
-    head_blank: "ItemsPage_head_blank",
+    query_heads: "ItemsPage_query_heads",
+    input_wrapper: "ItemsPage_input_wrapper",
+    post_product: "ItemsPage_post_product",
+    select_order_by: "ItemsPage_select_order_by",
     items: "ItemsPage_items",
     normal: "ItemsPage_normal",
     name: "ItemsPage_name",
@@ -9063,9 +9066,6 @@
     favorite_count: "ItemsPage_favorite_count",
     heart: "ItemsPage_heart",
     best: "ItemsPage_best",
-    input_wrapper: "ItemsPage_input_wrapper",
-    post_product: "ItemsPage_post_product",
-    select_order_by: "ItemsPage_select_order_by",
     pagenation: "ItemsPage_pagenation",
     disabled: "ItemsPage_disabled",
     selected: "ItemsPage_selected",
@@ -9135,25 +9135,42 @@
   init_react_shim();
   var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
   function ItemsList({ items, orderBy, setOrderBy, keyword, setKeyword, onSearch }) {
+    const handleKeyDownInSearch = (e) => {
+      if (e.code === "Enter") {
+        e.preventDefault();
+        onSearch();
+      }
+    };
     return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("section", { className: [ItemsPage_default.section, ItemsPage_default.sec_items].join(" "), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: ItemsPage_default.items_head, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: ItemsPage_default.items_head, children: window.innerWidth > 744 ? /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(import_jsx_runtime7.Fragment, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h2", { children: "\uD310\uB9E4 \uC911\uC778 \uC0C1\uD488" }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: ItemsPage_default.head_blank, children: " " }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: ItemsPage_default.input_wrapper, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("input", { type: "text", value: keyword, onKeyDown: (e) => {
-            if (e.code === "Enter") {
-              e.preventDefault();
-              onSearch();
-            }
-          }, onChange: (e) => setKeyword(e.target.value) }),
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", onClick: onSearch })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Link, { to: "/registration", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: ItemsPage_default.post_product, children: "\uC0C1\uD488 \uB4F1\uB85D\uD558\uAE30" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("select", { className: ItemsPage_default.select_order_by, value: orderBy, onChange: (e) => setOrderBy(e.target.value), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: "recent", children: "\uCD5C\uC2E0\uC21C" }),
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: "favorite", children: "\uC88B\uC544\uC694\uC21C" })
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: ItemsPage_default.query_heads, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: ItemsPage_default.input_wrapper, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("input", { type: "text", value: keyword, onKeyDown: handleKeyDownInSearch, onChange: (e) => setKeyword(e.target.value) }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", onClick: onSearch })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Link, { to: "/registration", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: ItemsPage_default.post_product, children: "\uC0C1\uD488 \uB4F1\uB85D\uD558\uAE30" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("select", { className: ItemsPage_default.select_order_by, value: orderBy, onChange: (e) => setOrderBy(e.target.value), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: "recent", children: "\uCD5C\uC2E0\uC21C" }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: "favorite", children: "\uC88B\uC544\uC694\uC21C" })
+          ] })
         ] })
-      ] }),
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(import_jsx_runtime7.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: ItemsPage_default.query_heads, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h2", { children: "\uD310\uB9E4 \uC911\uC778 \uC0C1\uD488" }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Link, { to: "/registration", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: ItemsPage_default.post_product, children: "\uC0C1\uD488 \uB4F1\uB85D\uD558\uAE30" }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: ItemsPage_default.query_heads, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: ItemsPage_default.input_wrapper, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("input", { type: "text", value: keyword, onKeyDown: handleKeyDownInSearch, onChange: (e) => setKeyword(e.target.value) }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", onClick: onSearch })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("select", { className: ItemsPage_default.select_order_by, value: orderBy, onChange: (e) => setOrderBy(e.target.value), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: "recent", children: "\uCD5C\uC2E0\uC21C" }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: "favorite", children: "\uC88B\uC544\uC694\uC21C" })
+          ] })
+        ] })
+      ] }) }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("ul", { className: [ItemsPage_default.items, ItemsPage_default.normal].join(" "), children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Item_default, { item }, item.id)) })
     ] });
   }
@@ -11960,12 +11977,12 @@
     form: "RegisPage_form",
     error: "RegisPage_error",
     trigger: "RegisPage_trigger",
-    "images-list": "RegisPage_images-list",
-    "img-container": "RegisPage_img-container",
+    images_list: "RegisPage_images_list",
+    img_container: "RegisPage_img_container",
     delete: "RegisPage_delete",
-    "tags-list": "RegisPage_tags-list",
+    tags_list: "RegisPage_tags_list",
     tag: "RegisPage_tag",
-    "tag-name": "RegisPage_tag-name",
+    tag_name: "RegisPage_tag_name",
     none: "RegisPage_none"
   };
 
@@ -11980,8 +11997,8 @@
   var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
   function Delete() {
     return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("svg", { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("g", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("line", { x1: "5%", y1: "5%", x2: "95%", y2: "95%" }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("line", { x1: "95%", y1: "5%", x2: "5%", y2: "95%" })
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("line", { x1: "30%", y1: "30%", x2: "70%", y2: "70%" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("line", { x1: "70%", y1: "30%", x2: "30%", y2: "70%" })
     ] }) });
   }
   var Delete_default = Delete;
@@ -11992,10 +12009,10 @@
     const handleDeleteTag = (e, tagToBeDel) => {
       setValues((draft) => ({ ...draft, tags: tags.filter((tag) => tag !== tagToBeDel) }));
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("ul", { children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("ul", { className: RegisPage_default.tags_list, children: [
       tags.map((tag) => {
         return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("li", { className: RegisPage_default.tag, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("span", { className: RegisPage_default[".tag-name"], children: [
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("span", { className: RegisPage_default.tag_name, children: [
             "#",
             tag
           ] }),
@@ -12014,8 +12031,8 @@
     const handleDeleteImage = (e, image) => {
       setValues((draft) => ({ ...draft, images: images.filter((img) => img !== image) }));
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("ul", { children: images.map((image) => {
-      return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("li", { className: RegisPage_default[".img-container"], children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("ul", { className: RegisPage_default.images_list, children: images.map((image) => {
+      return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("li", { className: RegisPage_default.img_container, children: [
         /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("img", { src: image, alt: name }),
         /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: RegisPage_default.delete, onClick: (e) => handleDeleteImage(e, image), children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Delete_default, {}) })
       ] }, image);
@@ -12070,66 +12087,75 @@
       return false;
     }
   }
+  var INITIAL_VALUES = {
+    name: "",
+    description: "",
+    price: 0,
+    images: [],
+    tags: []
+  };
   function RegisPage() {
-    const buttonRegis = (0, import_react5.useRef)();
-    const nameError = (0, import_react5.useRef)();
-    const descriptionError = (0, import_react5.useRef)();
-    const priceError = (0, import_react5.useRef)();
     const imageUrlError = (0, import_react5.useRef)();
     const tagsError = (0, import_react5.useRef)();
-    const [values, setValues] = (0, import_react5.useState)({
-      name: "",
-      description: "",
-      price: 0,
-      images: [""],
-      tags: []
-    });
+    const [values, setValues] = (0, import_react5.useState)(INITIAL_VALUES);
     const [imageUrl, setImageUrl] = (0, import_react5.useState)("");
     const [tag, setTag] = (0, import_react5.useState)("");
     const [validation, setValidation] = (0, import_react5.useState)({
       name: false,
       description: true,
-      price: false,
+      price: true,
       images: true,
       tags: true
     });
     const [isPending, error, asyncPostProduct, setError] = useAsync_default(postProduct);
     const handleSubmit = async () => {
+      await handleImageInput({ code: "Enter" }, imageUrl);
+      await handleTagInput({ code: "Enter" }, tag);
       if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
-        await handleImageInput({ code: "Enter" });
-        await handleTagInput({ code: "Enter" });
         await asyncPostProduct(values);
+        if (!error) {
+          setValues(INITIAL_VALUES);
+        }
       }
     };
-    const handleImageInput = async (e) => {
+    const handleImageInput = async (e, imageUrl2) => {
       if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
-        e.preventDefault();
-        if (!imageUrl.length) {
+        e.preventDefault?.();
+        if (!imageUrl2.length) {
           imageUrlError.current.innerHTML = "";
+          setValidation((draft) => ({ ...draft, images: true }));
           return;
         }
-        if (values.images.some((img) => img === imageUrl)) {
+        if (values.images.some((img) => img === imageUrl2)) {
           imageUrlError.current.innerHTML = "\uC774\uBBF8 \uC785\uB825\uD55C \uC774\uBBF8\uC9C0\uC785\uB2C8\uB2E4.";
-        } else if (!await isImage(imageUrl)) {
+          setValidation((draft) => ({ ...draft, images: false }));
+        } else if (!await isImage(imageUrl2)) {
           imageUrlError.current.innerHTML = "\uD574\uB2F9 URL \uC740 \uC720\uD6A8\uD55C \uC774\uBBF8\uC9C0\uAC00 \uC544\uB2D9\uB2C8\uB2E4.";
+          setValidation((draft) => ({ ...draft, images: false }));
         } else {
           imageUrlError.current.innerHTML = "";
-          setValues((draft) => ({ ...draft, images: [...draft.images, imageUrl] }));
+          setImageUrl("");
+          setValues((draft) => ({ ...draft, images: [...draft.images, imageUrl2] }));
+          setValidation((draft) => ({ ...draft, images: true }));
         }
       }
     };
-    const handleTagInput = async (e) => {
+    const handleTagInput = async (e, tag2) => {
       if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
-        e.preventDefault();
-        if (!tag.length) {
+        e.preventDefault?.();
+        if (!tag2.length) {
           tagsError.current.innerHTML = "";
+          setValidation((draft) => ({ ...draft, tags: true }));
           return;
         }
-        if (values.tags.some((t) => t === tag)) {
+        if (values.tags.some((t) => t === tag2)) {
           tagsError.current.innerHTML = "\uC774\uBBF8 \uC785\uB825\uD55C \uD0DC\uADF8\uC785\uB2C8\uB2E4.";
+          setValidation((draft) => ({ ...draft, tags: false }));
         } else {
           tagsError.current.innerHTML = "";
-          setValues((draft) => ({ ...draft, tags: [...draft.tags, tag] }));
+          setTag("");
+          setValues((draft) => ({ ...draft, tags: [...draft.tags, tag2] }));
+          setValidation((draft) => ({ ...draft, tags: true }));
         }
       }
     };
@@ -12137,7 +12163,7 @@
       /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("main", { className: RegisPage_default.main, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("section", { className: RegisPage_default.section, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("form", { className: RegisPage_default.form, children: [
         /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: RegisPage_default.heads, children: [
           /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h1", { children: "\uC0C1\uD488 \uB4F1\uB85D\uD558\uAE30" }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { ref: buttonRegis, onClick: handleSubmit, type: "button", disabled: !(validation.name && validation.description && validation.price && validation.images && validation.tags) || isPending, children: "\uB4F1\uB85D" })
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { onClick: handleSubmit, type: "button", disabled: !(validation.name && validation.description && validation.price && validation.images && validation.tags) || isPending, children: "\uB4F1\uB85D" })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { htmlFor: "name", children: "\uC0C1\uD488\uBA85" }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "name", name: "name", placeholder: "\uC0C1\uD488\uBA85\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "text", required: true, value: values.name, onChange: (e) => {
@@ -12145,24 +12171,24 @@
           setValues((draft) => ({ ...draft, name: val }));
           setValidation((draft) => ({ ...draft, name: val.length >= 1 && val.length <= 10 }));
         } }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: nameError, children: validation.name ? "" : "\uC0C1\uD488\uBA85\uC740 1\uAE00\uC790 \uC774\uC0C1 10\uAE00\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, children: validation.name ? "" : "\uC0C1\uD488\uBA85\uC740 1\uAE00\uC790 \uC774\uC0C1 10\uAE00\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { htmlFor: "description", children: "\uC0C1\uD488 \uC18C\uAC1C" }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("textarea", { id: "description", name: "description", placeholder: "\uC0C1\uD488 \uC18C\uAC1C\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694.", required: true, value: values.description, onChange: (e) => {
           const val = e.target.value;
           setValues((draft) => ({ ...draft, description: val }));
           setValidation((draft) => ({ ...draft, description: val.length === 0 || val.length >= 10 && val.length <= 100 }));
         } }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: descriptionError, children: validation.description ? "" : "\uC0C1\uD488 \uC18C\uAC1C\uB294 \uC5C6\uAC70\uB098 10\uC790 \uC774\uC0C1, 100\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, children: validation.description ? "" : "\uC0C1\uD488 \uC18C\uAC1C\uB294 \uC5C6\uAC70\uB098 10\uC790 \uC774\uC0C1, 100\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { htmlFor: "price", children: "\uD310\uB9E4\uAC00\uACA9" }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "price", name: "price", placeholder: "\uD310\uB9E4 \uAC00\uACA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "number", required: true, value: values.price, onChange: (e) => {
-          const val = e.target.value;
+          const val = Number(e.target.value);
           setValues((draft) => ({ ...draft, price: val }));
-          setValidation((draft) => ({ ...draft, price: isNaN(Number(val)) }));
+          setValidation((draft) => ({ ...draft, price: !isNaN(val) && val >= 0 }));
         } }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: priceError }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, children: validation.price ? "" : "\uAC00\uACA9\uC740 0 \uC774\uC0C1\uC758 \uC22B\uC790\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { htmlFor: "imageUrl", children: [
           "\uC774\uBBF8\uC9C0 URL (\uC774\uBBF8\uC9C0\uB97C \uCD94\uAC00\uD558\uC2DC\uB824\uBA74 ",
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: RegisPage_default.trigger, onClick: () => handleImageInput({ code: "Enter" }), children: '"\uC5D4\uD130", ";", ","' }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: RegisPage_default.trigger, onClick: () => handleImageInput({ code: "Enter" }, imageUrl), children: '"\uC5D4\uD130", ";", ","' }),
           " (<= \uB97C \uD074\uB9AD \uD639\uC740) \uC911 \uD558\uB098\uB97C \uD0A4\uBCF4\uB4DC\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.)"
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "imageUrl", name: "imageUrl", placeholder: "\uC774\uBBF8\uC9C0 URL \uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "text", value: imageUrl, onChange: async (e) => {
@@ -12170,17 +12196,21 @@
           setImageUrl(val);
           const isValidImageUrl = val.length === 0 || await isImage(val);
           setValidation((draft) => ({ ...draft, images: isValidImageUrl }));
-        }, onInput: handleImageInput }),
+        }, onKeyDown: (e) => handleImageInput(e, imageUrl) }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Images_default, { name: values.name, images: values.images, setValues }) }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: imageUrlError, children: validation.images ? "" : "\uC720\uD6A8\uD55C \uC774\uBBF8\uC9C0 URL \uC774 \uC544\uB2D9\uB2C8\uB2E4." }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default[".images-list"], children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Images_default, { name: values.name, images: values.images, setValues }) }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { htmlFor: "tags", children: [
           "\uD0DC\uADF8 (\uD0DC\uADF8\uB97C \uCD94\uAC00\uD558\uC2DC\uB824\uBA74 ",
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: RegisPage_default.trigger, children: '"\uC5D4\uD130", ";", ","' }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: RegisPage_default.trigger, onClick: () => handleTagInput({ code: "Enter" }, tag), children: '"\uC5D4\uD130", ";", ","' }),
           " (<= \uB97C \uD074\uB9AD \uD639\uC740) \uC911 \uD558\uB098\uB97C \uD0A4\uBCF4\uB4DC\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.)"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "tags", name: "tags", placeholder: "\uD0DC\uADF8\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "text", value: tag, onChange: (e) => setTag(e.target.value), onInput: handleTagInput }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: tagsError }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default[".tags-list"], children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Tags_default, { tags: values.tags, setValues }) })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "tags", name: "tags", placeholder: "\uD0DC\uADF8\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "text", value: tag, onChange: (e) => {
+          const val = e.target.value;
+          setTag(val);
+          setValidation((draft) => ({ ...draft, tags: true }));
+        }, onKeyDown: (e) => handleTagInput(e, tag) }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Tags_default, { tags: values.tags, setValues }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: tagsError })
       ] }) }) }),
       /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PopUp_default, { error, setError })
     ] });

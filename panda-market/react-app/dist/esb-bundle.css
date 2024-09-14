@@ -397,7 +397,6 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
   flex-wrap: wrap;
   margin-bottom: var(--text-xl);
 }
@@ -405,8 +404,50 @@ img {
   font-size: var(--text-xl);
   font-weight: 700;
 }
-.ItemsPage_head_blank {
-  flex-grow: 1;
+.ItemsPage_query_heads {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ItemsPage_input_wrapper {
+  position: relative;
+  height: 43px;
+  width: 325px;
+}
+.ItemsPage_input_wrapper img {
+  position: absolute;
+  cursor: pointer;
+  left: 20px;
+  top: 14px;
+  bottom: 14px;
+  width: 17px;
+  z-index: 10;
+}
+.ItemsPage_input_wrapper input {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 9px 20px 9px 45px;
+  background-color: var(--secondary-color-gray100);
+  color: var(--secondary-color-gray400);
+  z-index: 1;
+}
+.ItemsPage_post_product {
+  padding: 12px 23px;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--secondary-color-gray100);
+  background-color: var(--primary-color-100);
+  border-radius: 8px;
+  display: inline-block;
+}
+.ItemsPage_select_order_by {
+  padding: 12px 20px;
+  background-color: white;
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--secondary-color-gray800);
 }
 ul.ItemsPage_items {
   list-style-type: none;
@@ -457,45 +498,6 @@ ul.ItemsPage_items li img {
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 16px;
-}
-.ItemsPage_input_wrapper {
-  position: relative;
-  height: 43px;
-  width: 325px;
-}
-.ItemsPage_input_wrapper img {
-  position: absolute;
-  cursor: pointer;
-  left: 20px;
-  top: 14px;
-  bottom: 14px;
-  width: 17px;
-  z-index: 10;
-}
-.ItemsPage_input_wrapper input {
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 9px 20px 9px 45px;
-  background-color: var(--secondary-color-gray100);
-  color: var(--secondary-color-gray400);
-  z-index: 1;
-}
-.ItemsPage_post_product {
-  padding: 12px 23px;
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--secondary-color-gray100);
-  background-color: var(--primary-color-100);
-  border-radius: 8px;
-  display: inline-block;
-}
-.ItemsPage_select_order_by {
-  padding: 12px 20px;
-  background-color: white;
-  font-size: var(--text-lg);
-  font-weight: 400;
-  color: var(--secondary-color-gray800);
 }
 .ItemsPage_pagenation {
   display: flex;
@@ -567,22 +569,11 @@ ul.ItemsPage_items li img {
     width: 100%;
     gap: 10px;
   }
-  .ItemsPage_items_head > :nth-child(1) {
-    order: 1;
-    flex-grow: 1;
-  }
-  .ItemsPage_items_head > :nth-child(2) {
-    order: 2;
-    flex-grow: 1;
-  }
-  .ItemsPage_items_head > :nth-child(3) {
-    order: 4;
-  }
-  .ItemsPage_items_head > :nth-child(4) {
-    order: 3;
-  }
-  .ItemsPage_items_head > :nth-child(5) {
-    order: 5;
+  .ItemsPage_items_head {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 12px;
   }
   .ItemsPage_input_wrapper {
     width: 100px;
@@ -599,7 +590,7 @@ ul.ItemsPage_items li img {
 /* src/pages/RegisPage.module.css */
 .RegisPage_main {
   max-width: 1920px;
-  padding: 20px 0;
+  padding: 20px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -661,8 +652,10 @@ ul.ItemsPage_items li img {
 }
 .RegisPage_form textarea {
   font-size: var(--text-lg);
-  min-height: 8em;
-  max-height: 10em;
+  min-height: 10em;
+  height: 15em;
+  max-height: 20em;
+  resize: vertical;
   overflow-y: auto;
   font-weight: 400;
   line-height: 24px;
@@ -678,12 +671,15 @@ ul.ItemsPage_items li img {
   border: 2px solid rgb(208, 255, 0);
   font-weight: 700;
 }
-.RegisPage_images-list {
+.RegisPage_images_list {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
-  & .RegisPage_img-container {
+  padding: 0;
+  margin: 0;
+  & .RegisPage_img_container {
     position: relative;
     display: inline-block;
     width: 120px;
@@ -702,23 +698,17 @@ ul.ItemsPage_items li img {
       height: 20px;
       border-radius: 9999px;
       background-color: var(--secondary-color-gray400);
-      & > svg {
-        width: 100%;
-        height: 100%;
-      }
-      & > svg > g {
-        stroke: white;
-        stroke-width: 5%;
-        stroke-linecap: square;
-      }
     }
   }
 }
-.RegisPage_tags-list {
+.RegisPage_tags_list {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
+  padding: 0;
+  margin: 0;
   & .RegisPage_tag {
     display: flex;
     justify-content: space-between;
@@ -726,31 +716,45 @@ ul.ItemsPage_items li img {
     gap: 10px;
     border-radius: 26px;
     padding: 6px 12px;
-    & .RegisPage_tag-name {
+    background-color: var(--secondary-color-gray100);
+    & .RegisPage_tag_name {
       font-size: var(--text-lg);
       font-weight: 400;
     }
     & .RegisPage_delete {
+      position: relative;
       display: inline-block;
       cursor: pointer;
       width: 20px;
       height: 20px;
       border-radius: 9999px;
       background-color: var(--secondary-color-gray400);
-      & > svg {
-        width: 100%;
-        height: 100%;
-      }
-      & > svg > g {
-        stroke: white;
-        stroke-width: 5%;
-        stroke-linecap: square;
-      }
     }
+  }
+}
+.RegisPage_delete > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  & > g {
+    stroke: white;
+    stroke-width: 10%;
+    stroke-linecap: square;
   }
 }
 .RegisPage_none {
   display: none;
+}
+@media (max-width:1200px) {
+  .RegisPage_main {
+    padding: 15px;
+  }
+}
+@media (max-width:744px) {
+  .RegisPage_main {
+    padding: 10px;
+  }
 }
 
 /* src/pages/LogInPage.module.css */
