@@ -9090,7 +9090,7 @@
         setPending(false);
       }
     };
-    return [pending, error, wrappedAsyncFunc];
+    return [pending, error, wrappedAsyncFunc, setError];
   }
   var useAsync_default = useAsync;
 
@@ -11850,6 +11850,14 @@
       return err?.response?.data || err;
     }
   }
+  async function postProduct(data = { images: [], tags: [], price: 0, description: "", name: "" }) {
+    try {
+      const resp = await instance.post(`/products`, data);
+      return resp.data;
+    } catch (err) {
+      return err?.response?.data || err;
+    }
+  }
 
   // src/pages/ItemsPage.js
   var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
@@ -11929,20 +11937,94 @@
   }
   var ItemsPage_default2 = ItemsPage;
 
-  // src/pages/RegisPage.js
+  // src/pages/BoardsPage.js
   init_react_shim();
   var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
-  function RegisPage() {
+  function BoardsPage() {
     return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("h1", { children: [
-      "Registration Page (To ",
+      "\uC790\uC720 \uAC8C\uC2DC\uD310 (To ",
       /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Link, { to: "/", children: "Home" }),
       ")"
     ] });
   }
+  var BoardsPage_default = BoardsPage;
 
-  // src/pages/LogInPage.js
+  // src/pages/RegisPage.js
   init_react_shim();
+
+  // src/pages/RegisPage.module.css
+  var RegisPage_default = {
+    main: "RegisPage_main",
+    section: "RegisPage_section",
+    heads: "RegisPage_heads",
+    form: "RegisPage_form",
+    error: "RegisPage_error",
+    trigger: "RegisPage_trigger",
+    "images-list": "RegisPage_images-list",
+    "img-container": "RegisPage_img-container",
+    delete: "RegisPage_delete",
+    "tags-list": "RegisPage_tags-list",
+    tag: "RegisPage_tag",
+    "tag-name": "RegisPage_tag-name",
+    none: "RegisPage_none"
+  };
+
+  // src/pages/RegisPage.js
   var import_react5 = __toESM(require_react(), 1);
+
+  // src/Tags.js
+  init_react_shim();
+
+  // src/Delete.js
+  init_react_shim();
+  var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
+  function Delete() {
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("svg", { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("g", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("line", { x1: "5%", y1: "5%", x2: "95%", y2: "95%" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("line", { x1: "95%", y1: "5%", x2: "5%", y2: "95%" })
+    ] }) });
+  }
+  var Delete_default = Delete;
+
+  // src/Tags.js
+  var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
+  function Tags({ tags, setValues }) {
+    const handleDeleteTag = (e, tagToBeDel) => {
+      setValues((draft) => ({ ...draft, tags: tags.filter((tag) => tag !== tagToBeDel) }));
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("ul", { children: [
+      tags.map((tag) => {
+        return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("li", { className: RegisPage_default.tag, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("span", { className: RegisPage_default[".tag-name"], children: [
+            "#",
+            tag
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: RegisPage_default.delete, onClick: (e) => handleDeleteTag(e, tag), children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Delete_default, {}) })
+        ] }, tag);
+      }),
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: RegisPage_default.tag })
+    ] });
+  }
+  var Tags_default = Tags;
+
+  // src/Images.js
+  init_react_shim();
+  var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
+  function Images({ name, images, setValues }) {
+    const handleDeleteImage = (e, image) => {
+      setValues((draft) => ({ ...draft, images: images.filter((img) => img !== image) }));
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("ul", { children: images.map((image) => {
+      return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("li", { className: RegisPage_default[".img-container"], children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("img", { src: image, alt: name }),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: RegisPage_default.delete, onClick: (e) => handleDeleteImage(e, image), children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Delete_default, {}) })
+      ] }, image);
+    }) });
+  }
+  var Images_default = Images;
+
+  // src/PopUp.js
+  init_react_shim();
 
   // src/pages/LogInPage.module.css
   var LogInPage_default = {
@@ -11965,15 +12047,148 @@
   };
 
   // src/PopUp.js
-  init_react_shim();
-  var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
-  function PopUp() {
-    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { id: "popup-container", className: [LogInPage_default.popup_container, LogInPage_default.none].join(" "), children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { id: "popup", className: LogInPage_default.popup, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { id: "popup-text", className: LogInPage_default.popup_text }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { id: "popup-button-ok", className: LogInPage_default.popup_button_ok, children: "\uD655\uC778" })
+  var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
+  function PopUp({ error, setError }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { id: "popup-container", className: [LogInPage_default.popup_container, error ? "" : LogInPage_default.none].join(" "), children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { id: "popup", className: LogInPage_default.popup, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { id: "popup-text", className: LogInPage_default.popup_text, children: error?.message }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { id: "popup-button-ok", className: LogInPage_default.popup_button_ok, onClick: () => {
+        setError(null);
+      }, children: "\uD655\uC778" })
     ] }) });
   }
   var PopUp_default = PopUp;
+
+  // src/pages/RegisPage.js
+  var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
+  async function isImage(url) {
+    try {
+      const response = await fetch(url);
+      const contentType = response.headers.get("content-type");
+      return contentType && contentType.startsWith("image/");
+    } catch (error) {
+      console.error("Error validating image URL:", error);
+      return false;
+    }
+  }
+  function RegisPage() {
+    const buttonRegis = (0, import_react5.useRef)();
+    const nameError = (0, import_react5.useRef)();
+    const descriptionError = (0, import_react5.useRef)();
+    const priceError = (0, import_react5.useRef)();
+    const imageUrlError = (0, import_react5.useRef)();
+    const tagsError = (0, import_react5.useRef)();
+    const [values, setValues] = (0, import_react5.useState)({
+      name: "",
+      description: "",
+      price: 0,
+      images: [""],
+      tags: []
+    });
+    const [imageUrl, setImageUrl] = (0, import_react5.useState)("");
+    const [tag, setTag] = (0, import_react5.useState)("");
+    const [validation, setValidation] = (0, import_react5.useState)({
+      name: false,
+      description: true,
+      price: false,
+      images: true,
+      tags: true
+    });
+    const [isPending, error, asyncPostProduct, setError] = useAsync_default(postProduct);
+    const handleSubmit = async () => {
+      if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
+        await handleImageInput({ code: "Enter" });
+        await handleTagInput({ code: "Enter" });
+        await asyncPostProduct(values);
+      }
+    };
+    const handleImageInput = async (e) => {
+      if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
+        e.preventDefault();
+        if (!imageUrl.length) {
+          imageUrlError.current.innerHTML = "";
+          return;
+        }
+        if (values.images.some((img) => img === imageUrl)) {
+          imageUrlError.current.innerHTML = "\uC774\uBBF8 \uC785\uB825\uD55C \uC774\uBBF8\uC9C0\uC785\uB2C8\uB2E4.";
+        } else if (!await isImage(imageUrl)) {
+          imageUrlError.current.innerHTML = "\uD574\uB2F9 URL \uC740 \uC720\uD6A8\uD55C \uC774\uBBF8\uC9C0\uAC00 \uC544\uB2D9\uB2C8\uB2E4.";
+        } else {
+          imageUrlError.current.innerHTML = "";
+          setValues((draft) => ({ ...draft, images: [...draft.images, imageUrl] }));
+        }
+      }
+    };
+    const handleTagInput = async (e) => {
+      if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
+        e.preventDefault();
+        if (!tag.length) {
+          tagsError.current.innerHTML = "";
+          return;
+        }
+        if (values.tags.some((t) => t === tag)) {
+          tagsError.current.innerHTML = "\uC774\uBBF8 \uC785\uB825\uD55C \uD0DC\uADF8\uC785\uB2C8\uB2E4.";
+        } else {
+          tagsError.current.innerHTML = "";
+          setValues((draft) => ({ ...draft, tags: [...draft.tags, tag] }));
+        }
+      }
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(import_jsx_runtime15.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("main", { className: RegisPage_default.main, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("section", { className: RegisPage_default.section, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("form", { className: RegisPage_default.form, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: RegisPage_default.heads, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h1", { children: "\uC0C1\uD488 \uB4F1\uB85D\uD558\uAE30" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { ref: buttonRegis, onClick: handleSubmit, type: "button", disabled: !(validation.name && validation.description && validation.price && validation.images && validation.tags) || isPending, children: "\uB4F1\uB85D" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { htmlFor: "name", children: "\uC0C1\uD488\uBA85" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "name", name: "name", placeholder: "\uC0C1\uD488\uBA85\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "text", required: true, value: values.name, onChange: (e) => {
+          const val = e.target.value;
+          setValues((draft) => ({ ...draft, name: val }));
+          setValidation((draft) => ({ ...draft, name: val.length >= 1 && val.length <= 10 }));
+        } }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: nameError, children: validation.name ? "" : "\uC0C1\uD488\uBA85\uC740 1\uAE00\uC790 \uC774\uC0C1 10\uAE00\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { htmlFor: "description", children: "\uC0C1\uD488 \uC18C\uAC1C" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("textarea", { id: "description", name: "description", placeholder: "\uC0C1\uD488 \uC18C\uAC1C\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694.", required: true, value: values.description, onChange: (e) => {
+          const val = e.target.value;
+          setValues((draft) => ({ ...draft, description: val }));
+          setValidation((draft) => ({ ...draft, description: val.length === 0 || val.length >= 10 && val.length <= 100 }));
+        } }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: descriptionError, children: validation.description ? "" : "\uC0C1\uD488 \uC18C\uAC1C\uB294 \uC5C6\uAC70\uB098 10\uC790 \uC774\uC0C1, 100\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { htmlFor: "price", children: "\uD310\uB9E4\uAC00\uACA9" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "price", name: "price", placeholder: "\uD310\uB9E4 \uAC00\uACA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "number", required: true, value: values.price, onChange: (e) => {
+          const val = e.target.value;
+          setValues((draft) => ({ ...draft, price: val }));
+          setValidation((draft) => ({ ...draft, price: isNaN(Number(val)) }));
+        } }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: priceError }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { htmlFor: "imageUrl", children: [
+          "\uC774\uBBF8\uC9C0 URL (\uC774\uBBF8\uC9C0\uB97C \uCD94\uAC00\uD558\uC2DC\uB824\uBA74 ",
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: RegisPage_default.trigger, onClick: () => handleImageInput({ code: "Enter" }), children: '"\uC5D4\uD130", ";", ","' }),
+          " (<= \uB97C \uD074\uB9AD \uD639\uC740) \uC911 \uD558\uB098\uB97C \uD0A4\uBCF4\uB4DC\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.)"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "imageUrl", name: "imageUrl", placeholder: "\uC774\uBBF8\uC9C0 URL \uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "text", value: imageUrl, onChange: async (e) => {
+          const val = e.target.value;
+          setImageUrl(val);
+          const isValidImageUrl = val.length === 0 || await isImage(val);
+          setValidation((draft) => ({ ...draft, images: isValidImageUrl }));
+        }, onInput: handleImageInput }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: imageUrlError, children: validation.images ? "" : "\uC720\uD6A8\uD55C \uC774\uBBF8\uC9C0 URL \uC774 \uC544\uB2D9\uB2C8\uB2E4." }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default[".images-list"], children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Images_default, { name: values.name, images: values.images, setValues }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { htmlFor: "tags", children: [
+          "\uD0DC\uADF8 (\uD0DC\uADF8\uB97C \uCD94\uAC00\uD558\uC2DC\uB824\uBA74 ",
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: RegisPage_default.trigger, children: '"\uC5D4\uD130", ";", ","' }),
+          " (<= \uB97C \uD074\uB9AD \uD639\uC740) \uC911 \uD558\uB098\uB97C \uD0A4\uBCF4\uB4DC\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.)"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "tags", name: "tags", placeholder: "\uD0DC\uADF8\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "text", value: tag, onChange: (e) => setTag(e.target.value), onInput: handleTagInput }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, ref: tagsError }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default[".tags-list"], children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Tags_default, { tags: values.tags, setValues }) })
+      ] }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PopUp_default, { error, setError })
+    ] });
+  }
+
+  // src/pages/LogInPage.js
+  init_react_shim();
+  var import_react6 = __toESM(require_react(), 1);
 
   // src/scripts/data.js
   init_react_shim();
@@ -11989,9 +12204,9 @@
   var data_default = USER_DATA;
 
   // src/pages/LogInPage.js
-  var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
+  var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
   function LogInPage() {
-    (0, import_react5.useEffect)(() => {
+    (0, import_react6.useEffect)(() => {
       const email = document.querySelector(`#email`);
       const emailError = document.querySelector(`#email-error`);
       const emailRegEx = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-_.]+@[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-_.]+\.[\w]{2,3}$/;
@@ -12081,45 +12296,45 @@
         }
       });
     }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(import_jsx_runtime12.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("main", { className: LogInPage_default.main, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Link, { to: "/", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("img", { className: LogInPage_default.logo, src: "/images/Property-1=lg.png", alt: "\uD310\uB2E4\uB9C8\uCF13 logo" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("form", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("label", { htmlFor: "email", children: "\uC774\uBA54\uC77C" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("input", { id: "email", name: "email", placeholder: "\uC774\uBA54\uC77C\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "email", autoComplete: "on", required: true }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { id: "email-error", className: LogInPage_default.email_error }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("label", { htmlFor: "password", children: "\uBE44\uBC00\uBC88\uD638" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: LogInPage_default.pwd_container, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("input", { id: "password", name: "password", placeholder: "\uBE44\uBC00\uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "password", required: true }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("img", { src: "/images/btn_visibility_off_24px.svg", alt: "Button visibility off" })
+    return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("main", { className: LogInPage_default.main, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Link, { to: "/", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("img", { className: LogInPage_default.logo, src: "/images/Property-1=lg.png", alt: "\uD310\uB2E4\uB9C8\uCF13 logo" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("form", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("label", { htmlFor: "email", children: "\uC774\uBA54\uC77C" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { id: "email", name: "email", placeholder: "\uC774\uBA54\uC77C\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "email", autoComplete: "on", required: true }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { id: "email-error", className: LogInPage_default.email_error }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("label", { htmlFor: "password", children: "\uBE44\uBC00\uBC88\uD638" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: LogInPage_default.pwd_container, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { id: "password", name: "password", placeholder: "\uBE44\uBC00\uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "password", required: true }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("img", { src: "/images/btn_visibility_off_24px.svg", alt: "Button visibility off" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { id: "pwd-error", className: LogInPage_default.pwd_error }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { id: "button-login", type: "button", disabled: true, children: "\uB85C\uADF8\uC778" })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { id: "pwd-error", className: LogInPage_default.pwd_error }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { id: "button-login", type: "button", disabled: true, children: "\uB85C\uADF8\uC778" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: LogInPage_default.oauth, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: "\uAC04\uD3B8 \uB85C\uADF8\uC778\uD558\uAE30" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: LogInPage_default.oauth_images, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Link, { to: "https://www.google.com/", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("img", { src: "/images/oauth-Google.png", alt: "\uAD6C\uAE00\uB85C \uB85C\uADF8\uC778\uD558\uAE30", className: LogInPage_default.img_oauth }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Link, { to: "https://www.kakaocorp.com/page/", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("img", { src: "/images/oauth-Kakao.png", alt: "\uCE74\uCE74\uC624\uB85C \uB85C\uADF8\uC778\uD558\uAE30", className: LogInPage_default.img_oauth }) })
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: LogInPage_default.oauth, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\uAC04\uD3B8 \uB85C\uADF8\uC778\uD558\uAE30" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: LogInPage_default.oauth_images, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Link, { to: "https://www.google.com/", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("img", { src: "/images/oauth-Google.png", alt: "\uAD6C\uAE00\uB85C \uB85C\uADF8\uC778\uD558\uAE30", className: LogInPage_default.img_oauth }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Link, { to: "https://www.kakaocorp.com/page/", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("img", { src: "/images/oauth-Kakao.png", alt: "\uCE74\uCE74\uC624\uB85C \uB85C\uADF8\uC778\uD558\uAE30", className: LogInPage_default.img_oauth }) })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: LogInPage_default.check_description, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: LogInPage_default.check_description, children: [
           "\uD310\uB2E4\uB9C8\uCF13\uC774 \uCC98\uC74C\uC774\uC2E0\uAC00\uC694?",
           " ",
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Link, { to: "/signup", children: "\uD68C\uC6D0\uAC00\uC785" })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Link, { to: "/signup", children: "\uD68C\uC6D0\uAC00\uC785" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PopUp_default, {})
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(PopUp_default, {})
     ] });
   }
   var LogInPage_default2 = LogInPage;
 
   // src/pages/SignUpPage.js
   init_react_shim();
-  var import_react6 = __toESM(require_react(), 1);
-  var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
+  var import_react7 = __toESM(require_react(), 1);
+  var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
   function SignUpPage() {
-    (0, import_react6.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       const email = document.querySelector(`#email`);
       const emailError = document.querySelector(`#email-error`);
       const emailRegEx = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-_.]+@[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9\-_.]+\.[\w]{2,3}$/;
@@ -12254,71 +12469,72 @@
         }
       });
     }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(import_jsx_runtime13.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("main", { className: LogInPage_default.main, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Link, { to: "/", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("img", { className: LogInPage_default.logo, src: "/images/Property-1=lg.png", alt: "\uD310\uB2E4\uB9C8\uCF13 logo" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("form", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("label", { htmlFor: "email", children: "\uC774\uBA54\uC77C" }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("input", { id: "email", name: "email", placeholder: "\uC774\uBA54\uC77C\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "email", autoComplete: "on", required: true }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { id: "email-error", className: LogInPage_default.email_error }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("label", { htmlFor: "nickname", children: "\uB2C9\uB124\uC784" }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("input", { id: "nickname", name: "nickname", placeholder: "\uB2C9\uB124\uC784\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "text", autoComplete: "on", required: true }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { id: "nickname-error", className: LogInPage_default.nickname_error }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("label", { htmlFor: "password", children: "\uBE44\uBC00\uBC88\uD638" }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: LogInPage_default.pwd_container, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("input", { id: "password", name: "password", placeholder: "\uBE44\uBC00\uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "password", required: true }),
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("img", { src: "/images/btn_visibility_off_24px.svg", alt: "Button visibility off" })
+    return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("main", { className: LogInPage_default.main, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Link, { to: "/", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("img", { className: LogInPage_default.logo, src: "/images/Property-1=lg.png", alt: "\uD310\uB2E4\uB9C8\uCF13 logo" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("form", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("label", { htmlFor: "email", children: "\uC774\uBA54\uC77C" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { id: "email", name: "email", placeholder: "\uC774\uBA54\uC77C\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "email", autoComplete: "on", required: true }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { id: "email-error", className: LogInPage_default.email_error }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("label", { htmlFor: "nickname", children: "\uB2C9\uB124\uC784" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { id: "nickname", name: "nickname", placeholder: "\uB2C9\uB124\uC784\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "text", autoComplete: "on", required: true }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { id: "nickname-error", className: LogInPage_default.nickname_error }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("label", { htmlFor: "password", children: "\uBE44\uBC00\uBC88\uD638" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: LogInPage_default.pwd_container, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { id: "password", name: "password", placeholder: "\uBE44\uBC00\uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "password", required: true }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("img", { src: "/images/btn_visibility_off_24px.svg", alt: "Button visibility off" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { id: "pwd-error", className: LogInPage_default.pwd_error }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("label", { htmlFor: "password-confirm", children: "\uBE44\uBC00\uBC88\uD638 \uD655\uC778" }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: LogInPage_default.pwd_container, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("input", { id: "password-confirm", name: "password-confirm", placeholder: "\uBE44\uBC00\uBC88\uD638\uB97C \uB2E4\uC2DC \uD55C \uBC88 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "password", required: true }),
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("img", { src: "/images/btn_visibility_off_24px.svg", alt: "Button visibility off" })
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { id: "pwd-error", className: LogInPage_default.pwd_error }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("label", { htmlFor: "password-confirm", children: "\uBE44\uBC00\uBC88\uD638 \uD655\uC778" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: LogInPage_default.pwd_container, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { id: "password-confirm", name: "password-confirm", placeholder: "\uBE44\uBC00\uBC88\uD638\uB97C \uB2E4\uC2DC \uD55C \uBC88 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "password", required: true }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("img", { src: "/images/btn_visibility_off_24px.svg", alt: "Button visibility off" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { id: "pwd-cfm-error", className: LogInPage_default.pwd_cfm_error }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { id: "button-signup", type: "button", disabled: true, children: "\uD68C\uC6D0\uAC00\uC785" })
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { id: "pwd-cfm-error", className: LogInPage_default.pwd_cfm_error }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { id: "button-signup", type: "button", disabled: true, children: "\uD68C\uC6D0\uAC00\uC785" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: LogInPage_default.oauth, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { children: "\uAC04\uD3B8 \uB85C\uADF8\uC778\uD558\uAE30" }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: LogInPage_default.oauth_images, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Link, { to: "https://www.google.com/", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("img", { src: "/images/oauth-Google.png", alt: "\uAD6C\uAE00\uB85C \uB85C\uADF8\uC778\uD558\uAE30", className: LogInPage_default.img_oauth }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Link, { to: "https://www.kakaocorp.com/page/", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("img", { src: "/images/oauth-Kakao.png", alt: "\uCE74\uCE74\uC624\uB85C \uB85C\uADF8\uC778\uD558\uAE30", className: LogInPage_default.img_oauth }) })
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: LogInPage_default.oauth, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\uAC04\uD3B8 \uB85C\uADF8\uC778\uD558\uAE30" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: LogInPage_default.oauth_images, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Link, { to: "https://www.google.com/", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("img", { src: "/images/oauth-Google.png", alt: "\uAD6C\uAE00\uB85C \uB85C\uADF8\uC778\uD558\uAE30", className: LogInPage_default.img_oauth }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Link, { to: "https://www.kakaocorp.com/page/", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("img", { src: "/images/oauth-Kakao.png", alt: "\uCE74\uCE74\uC624\uB85C \uB85C\uADF8\uC778\uD558\uAE30", className: LogInPage_default.img_oauth }) })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: LogInPage_default.check_description, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: LogInPage_default.check_description, children: [
           "\uC774\uBBF8 \uD68C\uC6D0\uC774\uC2E0\uAC00\uC694?",
           " ",
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Link, { to: "/login", children: "\uB85C\uADF8\uC778" })
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Link, { to: "/login", children: "\uB85C\uADF8\uC778" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(PopUp_default, {})
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PopUp_default, {})
     ] });
   }
   var SignUpPage_default = SignUpPage;
 
   // src/pages/NotFoundPage.js
   init_react_shim();
-  var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
+  var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
   function NotFoundPage() {
-    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("h1", { children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("h1", { children: [
       "Page Not Found, go to ",
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Link, { to: "/", children: "Home" })
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Link, { to: "/", children: "Home" })
     ] });
   }
 
   // src/index.js
-  var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
+  var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
   var root = import_client.default.createRoot(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(BrowserRouter, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Routes, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Route, { path: "/", element: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CommonsPage_default2, {}), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Route, { index: true, element: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(HomePage_default2, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Route, { path: "items", element: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ItemsPage_default2, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Route, { path: "registration", element: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(RegisPage, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Route, { path: "login", element: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(LogInPage_default2, {}) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Route, { path: "signup", element: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(SignUpPage_default, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(BrowserRouter, { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Routes, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Route, { path: "/", element: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(CommonsPage_default2, {}), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Route, { index: true, element: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(HomePage_default2, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Route, { path: "items", element: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ItemsPage_default2, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Route, { path: "boards", element: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(BoardsPage_default, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Route, { path: "registration", element: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(RegisPage, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Route, { path: "login", element: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(LogInPage_default2, {}) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Route, { path: "signup", element: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(SignUpPage_default, {}) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Route, { path: "*", element: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(NotFoundPage, {}) })
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Route, { path: "*", element: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(NotFoundPage, {}) })
     ] }) })
   );
 })();
