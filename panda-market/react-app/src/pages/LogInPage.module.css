@@ -158,6 +158,12 @@ button:disabled {
   border-radius: 8px;
 }
 
+.popup_img {
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+}
+
 .none {
   display: none;
 }

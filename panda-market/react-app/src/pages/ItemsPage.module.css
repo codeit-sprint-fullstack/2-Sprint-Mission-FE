@@ -102,10 +102,17 @@ ul.items li {
 	align-items: flex-start;
 	gap: 8px;
 	margin-bottom: 30px;
+
 	& .name {
-		font-size: var(--text-md);
+		font-size: var(--text-lg);
 		font-weight: 500;
 		line-height: var(--text-2xl);
+	}
+
+	& .description {
+		font-size: var(--text-md);
+		font-weight: 300;
+		line-height: 1.5;
 	}
 
 	& .price {

@@ -33,7 +33,7 @@ export default function RegisPage() {
 	const [tag, setTag] = useState("");
 	const [validation, setValidation] = useState({
 		name: false,
-		description: true,
+		description: false,
 		price: true,
 		images: true,
 		tags: true,
@@ -44,8 +44,14 @@ export default function RegisPage() {
 		await handleImageInput({ code: "Enter" }, imageUrl);
 		await handleTagInput({ code: "Enter" }, tag);
 		if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
-			await asyncPostProduct(values);
-			if (!error) {
+			const res = await asyncPostProduct(values);
+			console.log(res);
+			if (res?.message) {
+				console.log("error: ", error);
+				setError(res);
+			}
+			else {
+				setError(res);
 				setValues(INITIAL_VALUES);
 			}
 		}
@@ -77,8 +83,12 @@ export default function RegisPage() {
 	}
 
 	const handleTagInput = async (e, tag) => {
+		if (e.key === "Process") {
+			return;
+		}
 		if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
 			e.preventDefault?.();
+			tag = tag.trim();
 			if (!tag.length) {
 				tagsError.current.innerHTML = "";
 				setValidation(draft => ({...draft, tags: true}));
@@ -117,9 +127,9 @@ export default function RegisPage() {
 						<textarea id="description" name="description" placeholder="상품 소개를 입력해주세요." required value={values.description} onChange={(e) => {
 							const val = e.target.value;
 							setValues(draft => ({ ...draft, description: val }));
-							setValidation(draft => ({ ...draft, description: val.length === 0 || (val.length >= 10 && val.length <= 100) }))
+							setValidation(draft => ({ ...draft, description: (val.length >= 10 && val.length <= 100) }))
 						}}></textarea>
-						<div className={styles.error}>{validation.description ? "" : "상품 소개는 없거나 10자 이상, 100자 이하여야 합니다."}</div>
+						<div className={styles.error}>{validation.description ? "" : "상품 소개는 10자 이상, 100자 이하여야 합니다."}</div>
 						<label htmlFor="price">판매가격</label>
 						<input id="price" name="price" placeholder="판매 가격을 입력해주세요." type="number" required value={values.price} onChange={(e) => {
 							const val = Number(e.target.value);
