@@ -1,0 +1,340 @@
+@font-face {
+    font-family: 'ROKAF';
+    src: url('../assets/fonts/ROKAFSans.ttf') format('truetype');
+}
+
+.landing-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color:#E5E7EB;
+}
+
+.home-top {
+    margin-top: 7rem;
+}
+
+.home-top,
+.home-bottom {
+    display: flex;
+    width: 100%;
+    height: 54rem;
+    background-color: #CFE5FF;
+    justify-content: center;
+    align-items: end;
+}
+
+.home-top h1,
+.home-bottom h1 {
+    width: 30rem;
+    font-size: 4rem;
+    line-height: 5.6rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+.item-btn {
+    background-color: #3692FF;
+    width: 35.7rem;
+    height: 5.6rem;
+    border-radius: 4rem;
+    border: none;
+    padding: 1.6rem 0;
+    gap: 1rem;
+    color: #F9FAFB;
+    font-size: 2rem;
+    line-height: 3.2rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.home-top-img,
+.home-bottom-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* main */
+
+.best-item-section, 
+.search-section,
+.register-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 72rem;
+    background-color: white;
+}
+
+.section-category {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    font-weight: 700;
+    color: #3692FF;
+}
+
+.section-title {
+    font-size: 4rem;
+    line-height: 5.6rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+.section-description {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.hot-item,
+.landing-search, 
+.register {
+    width: 35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hot-item,
+.register {
+    margin-left: 3.2rem;
+}
+
+.landing-search {
+    text-align: end;
+    margin-right: 3.2rem;
+}
+
+.section {
+    display: flex;
+    width: 120rem;
+}
+
+.section1-hot-item,
+.section2-search,
+.section3-register {
+    display: flex;
+    width: 96.9rem;
+    height: 44.4rem;
+    background-color: #FCFCFC;
+    cursor: pointer;
+}
+
+.search-section section {
+    display: flex;
+    justify-content: end;
+}
+
+.section2-search {
+    margin-left: 23.1rem;
+    justify-content: flex-end;
+}
+
+
+@media (max-width: 1199px) and (min-width: 744px) {
+
+    .home-top,
+    .home-bottom {
+        height: 77.4rem;
+    }
+
+    .home-top h1,
+    .home-bottom h1 {
+      font-size: 4rem;
+      line-height: 5.6rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .home-top-img,
+    .home-bottom-img {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top,
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+        margin: 15rem;
+        text-align: center;
+    }
+
+    .top h1 br {
+        display: none;
+    }
+
+    .best-item-section,
+    .search-section,
+    .register-section {
+        height: 87rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .section1-hot-item,
+    .section2-search,
+    .section3-register {
+        display: flex;
+        flex-direction: column;
+        width: 69.6rem;
+        height: 70.8rem;
+
+    }
+
+    .section {
+      display: flex;
+      justify-content: center;
+      width:69.6rem;
+      height: 77rem;
+    }
+
+    .hot-image,
+    .search-image,
+    .register-image {
+        height: 52.4rem;
+        width: 69.6rem;
+    }
+
+    .hot-item,
+    .landing-search,
+    .register {
+        width: 100%;
+        margin: 0;
+        margin-top: 1rem;
+    }
+
+    .section-category {
+        font-size: 1.8rem;
+        margin: 1rem 0;
+    }
+
+    .section-title {
+        font-size: 3.2rem;
+        line-height: 4.48rem;
+        margin: 0;
+    }
+
+    .section-title br {
+        display: none;
+    }
+
+    .section-description {
+        font-size: 1.8rem;
+        line-height: 2.16rem;
+        margin: 1rem 0;
+    }
+
+    .section2-search {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0;
+    }
+
+}
+
+
+@media (max-width: 743px) {
+
+    .home-top,
+    .home-bottom {
+        height: 77.4rem;
+    }
+
+    .home-top h1 ,
+    .home-bottom h1 {
+        width: 100%;
+        font-size: 3.2rem;
+        line-height: 4.48rem;
+        text-align: center;
+    }
+
+    .home-top-img,
+    .home-bottom-img {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top,
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;    
+        margin: 15rem;
+        text-align: center;
+    }
+
+    .top h1 br {
+        display: block;
+    }
+
+    .best-item-section,
+    .search-section,
+    .register-section {
+        height: 55rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .section1-hot-item,
+    .section2-search,
+    .section3-register {
+        display: flex;
+        flex-direction: column;
+        width: 34.4rem;
+    }
+
+    .section {
+      display: flex;
+      justify-content: center;
+      width: 37.5rem;
+      height: 43rem;
+    }
+
+    .hot-image,
+    .search-image,
+    .register-image {
+        height: 52.4rem;
+        width: 69.6rem;
+    }
+
+    .hot-item,
+    .landing-search,
+    .register {
+        width: 100%;
+        margin: 0;
+    }
+
+    .section-category {
+        font-size: 1.6rem;
+        line-height: 2.24rem;
+        margin: 1rem 0;
+    }
+
+    .section-title {
+        font-size: 2.4rem;
+        line-height: 3.36rem;
+        margin: 0;
+    }
+
+    .section-description {
+        font-size: 1.6rem;
+        line-height: 1.92rem;
+        margin: 1rem 0;
+    }
+
+    .section2-search {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0;
+    }
+}
