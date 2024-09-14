@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Tags.css';
 import X from '../images/ic_X.png';
 
 const Tags = ({ tags, setTags }) => {
   const [inputValue, setInputValue] = useState('');
+  const [isComposing, setIsComposing] = useState(false);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && inputValue.trim()) {
+    if (e.key === 'Enter' && inputValue.trim() && !isComposing) {
       e.preventDefault();
       setTags([...tags, inputValue.trim()]);
       setInputValue('');
@@ -21,6 +22,14 @@ const Tags = ({ tags, setTags }) => {
     setTags(tags.filter((_, i) => i !== index));
   };
 
+  const handleCompositionStart = () => {
+    setIsComposing(true);
+  };
+
+  const handleCompositionEnd = () => {
+    setIsComposing(false);
+  };
+
   return (
     <div>
       <input
@@ -28,6 +37,8 @@ const Tags = ({ tags, setTags }) => {
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
+        onCompositionStart={handleCompositionStart}
+        onCompositionEnd={handleCompositionEnd}
         placeholder="태그를 입력하고 엔터를 누르세요"
       />
       <div style={{ marginTop: '10px' }}>
