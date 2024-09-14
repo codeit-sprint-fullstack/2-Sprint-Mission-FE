@@ -9062,6 +9062,7 @@
     items: "ItemsPage_items",
     normal: "ItemsPage_normal",
     name: "ItemsPage_name",
+    description: "ItemsPage_description",
     price: "ItemsPage_price",
     favorite_count: "ItemsPage_favorite_count",
     heart: "ItemsPage_heart",
@@ -9084,6 +9085,7 @@
         setPending(true);
         return await asyncFunc(...args);
       } catch (err) {
+        console.error(err);
         setError(err);
         return;
       } finally {
@@ -9101,10 +9103,11 @@
   init_react_shim();
   var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
   function Item({ item }) {
-    const { name, images, price, favoriteCount } = item;
+    const { name, description, images, price, favoriteCount } = item;
     return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("li", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: images[0], alt: name }),
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: ItemsPage_default.name, children: name }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: ItemsPage_default.description, children: description }),
       /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: ItemsPage_default.price, children: [
         price.toLocaleString("en-US"),
         "\uC6D0"
@@ -12060,6 +12063,7 @@
     popup: "LogInPage_popup",
     popup_text: "LogInPage_popup_text",
     popup_button_ok: "LogInPage_popup_button_ok",
+    popup_img: "LogInPage_popup_img",
     none: "LogInPage_none"
   };
 
@@ -12067,7 +12071,17 @@
   var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
   function PopUp({ error, setError }) {
     return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { id: "popup-container", className: [LogInPage_default.popup_container, error ? "" : LogInPage_default.none].join(" "), children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { id: "popup", className: LogInPage_default.popup, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { id: "popup-text", className: LogInPage_default.popup_text, children: error?.message }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { id: "popup-text", className: LogInPage_default.popup_text, children: error ? error?.message ? error.message : /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(import_jsx_runtime14.Fragment, { children: [
+        error?.name,
+        " : ",
+        error?.description,
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("br", {}),
+        error?.price,
+        " :: ",
+        error?.tags.join("/"),
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("br", {}),
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("img", { className: LogInPage_default.popup_img, src: error?.images[0], alt: error?.name })
+      ] }) : "" }),
       /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { id: "popup-button-ok", className: LogInPage_default.popup_button_ok, onClick: () => {
         setError(null);
       }, children: "\uD655\uC778" })
@@ -12102,7 +12116,7 @@
     const [tag, setTag] = (0, import_react5.useState)("");
     const [validation, setValidation] = (0, import_react5.useState)({
       name: false,
-      description: true,
+      description: false,
       price: true,
       images: true,
       tags: true
@@ -12112,8 +12126,13 @@
       await handleImageInput({ code: "Enter" }, imageUrl);
       await handleTagInput({ code: "Enter" }, tag);
       if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
-        await asyncPostProduct(values);
-        if (!error) {
+        const res = await asyncPostProduct(values);
+        console.log(res);
+        if (res?.message) {
+          console.log("error: ", error);
+          setError(res);
+        } else {
+          setError(res);
           setValues(INITIAL_VALUES);
         }
       }
@@ -12141,8 +12160,12 @@
       }
     };
     const handleTagInput = async (e, tag2) => {
+      if (e.key === "Process") {
+        return;
+      }
       if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
         e.preventDefault?.();
+        tag2 = tag2.trim();
         if (!tag2.length) {
           tagsError.current.innerHTML = "";
           setValidation((draft) => ({ ...draft, tags: true }));
@@ -12176,9 +12199,9 @@
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("textarea", { id: "description", name: "description", placeholder: "\uC0C1\uD488 \uC18C\uAC1C\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694.", required: true, value: values.description, onChange: (e) => {
           const val = e.target.value;
           setValues((draft) => ({ ...draft, description: val }));
-          setValidation((draft) => ({ ...draft, description: val.length === 0 || val.length >= 10 && val.length <= 100 }));
+          setValidation((draft) => ({ ...draft, description: val.length >= 10 && val.length <= 100 }));
         } }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, children: validation.description ? "" : "\uC0C1\uD488 \uC18C\uAC1C\uB294 \uC5C6\uAC70\uB098 10\uC790 \uC774\uC0C1, 100\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: RegisPage_default.error, children: validation.description ? "" : "\uC0C1\uD488 \uC18C\uAC1C\uB294 10\uC790 \uC774\uC0C1, 100\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4." }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { htmlFor: "price", children: "\uD310\uB9E4\uAC00\uACA9" }),
         /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { id: "price", name: "price", placeholder: "\uD310\uB9E4 \uAC00\uACA9\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.", type: "number", required: true, value: values.price, onChange: (e) => {
           const val = Number(e.target.value);

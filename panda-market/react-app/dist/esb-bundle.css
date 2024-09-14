@@ -470,9 +470,14 @@ ul.ItemsPage_items li {
   gap: 8px;
   margin-bottom: 30px;
   & .ItemsPage_name {
-    font-size: var(--text-md);
+    font-size: var(--text-lg);
     font-weight: 500;
     line-height: var(--text-2xl);
+  }
+  & .ItemsPage_description {
+    font-size: var(--text-md);
+    font-weight: 300;
+    line-height: 1.5;
   }
   & .ItemsPage_price {
     font-size: var(--text-lg);
@@ -896,6 +901,11 @@ button:disabled {
   background-color: var(--primary-color-100);
   padding: 12px 23px;
   border-radius: 8px;
+}
+.LogInPage_popup_img {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
 }
 .LogInPage_none {
   display: none;
