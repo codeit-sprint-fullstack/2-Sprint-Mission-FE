@@ -1,6 +1,6 @@
 .main {
 	max-width: 1920px;
-	padding: 20px 0;
+	padding: 20px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -71,8 +71,10 @@
 
 .form textarea {
 	font-size: var(--text-lg);
-	min-height: 8em;
-	max-height: 10em;
+	min-height: 10em;
+	height: 15em;
+	max-height: 20em;
+	resize: vertical;
 	overflow-y: auto;
 	font-weight: 400;
 	line-height: 24px;
@@ -175,4 +177,18 @@
 
 .none {
 	display: none;
+}
+
+@media (max-width:1200px) {
+
+	.main {
+		padding: 15px;
+	}
+}
+
+@media (max-width:744px) {
+
+	.main {
+		padding: 10px;
+	}
 }
