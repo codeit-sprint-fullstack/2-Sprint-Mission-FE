@@ -1,8 +1,8 @@
 import styles from './pages/ItemsPage.module.css';
 
 function Item({item}) {
-	const { id, name, images, price, favoriteCount } = item;
-	return (<li key={id}>
+	const { name, images, price, favoriteCount } = item;
+	return (<li>
 		<img src={images[0]} alt={name}/>
 		<div className={styles.name}>{name}</div>
 		<div className={styles.price}>{price.toLocaleString('en-US')}원</div>

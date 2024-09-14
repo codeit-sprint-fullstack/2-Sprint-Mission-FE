@@ -47,7 +47,7 @@ function ItemsList({ items, orderBy, setOrderBy, keyword, setKeyword, onSearch }
 				}
 			</div>
 			<ul className={[styles.items, styles.normal].join(" ")}>
-				{items.map(item => <Item key={item.id} item={item}/>)}
+				{items.map(item => <Item key={item._id} item={item}/>)}
 			</ul>
 		</section>
 	);
