@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./pages/Rendering page/Header";
-import Main1 from "./pages/Rendering page/Main1";
-import Main2 from "./pages/Rendering page/Main2";
-import Main3 from "./pages/Rendering page/Main3";
-import Main4 from "./pages/Rendering page/Main4";
-import Main5 from "./pages/Rendering page/Main5";
-import Footer from "./pages/Rendering page/Footer";
+import Header from "./pages/HomePage/Header";
+import Main1 from "./pages/HomePage/Main1";
+import Main2 from "./pages/HomePage/Main2"
+import Main3 from "./pages/HomePage/Main3";
+import Main4 from "./pages/HomePage/Main4";
+import Main5 from "./pages/HomePage/Main5";
+import Footer from "./pages/HomePage/Footer";
 import "./Rendering.css";
 
 function Rendering() {
