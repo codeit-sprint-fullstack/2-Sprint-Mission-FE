@@ -1,0 +1,94 @@
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  color: #111827;
+}
+
+.salesProductTitle {
+  display: grid;
+  grid-template-columns: 58.8rem 33.7rem 14.5rem 13rem ;
+}
+
+.searchArea {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 32.5rem;
+  height: 4.2rem;
+  padding: 0.9rem 1.6rem 0.9rem 1.6rem;
+  border-radius: 1.2rem;
+  background-color: #F3F4F6;
+}
+
+.searchInputArea {
+  border: none;
+  outline: none;
+  background-color: #F3F4F6;
+  width: 100%;
+  height: 100%;
+}
+
+.searchInputArea::placeholder {
+  font-size: var(--text-lg-16);
+  font-weight: 400;
+  line-height: 2.6rem;
+}
+
+.registButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 13.3rem;
+  height: 4.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: #3692FF;
+  cursor: pointer;
+  font-family: pretendard;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.6rem;
+  color: var(--secondary-color-gray100);
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .searchArea {
+    width: 24.2rem;
+  }
+
+  .salesProductTitle {
+    grid-template-columns: 16.6rem 25.4rem 14.5rem 13rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .salesProductTitle {
+    grid-template-columns: 28.8rem 4.2rem;; /* 1행의 열 너비 */
+    grid-template-rows: 4.2rem 4.2rem; /* 행의 높이 */
+    row-gap: 0.8rem; /* 행과 열의 간격 */
+    column-gap: 1.4rem;
+  }
+  .title {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  .registLink{
+    display: grid;
+    justify-self: end;
+  }
+  .registButton {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+  .searchArea {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    width: 28.8rem; /* 2행의 첫 번째 열 너비 */
+  }
+  .SortOrder {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    width: 4.2rem; /* 2행의 두 번째 열 너비 */
+  }
+}

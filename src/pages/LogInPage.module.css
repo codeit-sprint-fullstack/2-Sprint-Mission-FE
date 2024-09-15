@@ -1,0 +1,285 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: pretendard;
+  margin: 0;
+}
+.loginHeader {
+  margin: 6rem 0 4rem 0; /*60px 0 40px 0*/
+  cursor: pointer;
+}
+
+.logo {
+  width: 39.6rem;
+  height: 13.2rem;
+}
+
+.loginMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem; /*24px*/
+  max-width: 64rem;
+  width: 100%;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem; /*24px*/
+  width: 100%;
+}
+
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.loginForm label {
+  font-size: var(--text-2lg-18);
+  font-weight: 700;
+  line-height: 2.148rem; /*21.48px*/
+  text-align: left;
+  color: var(--secondary-color-gray800);
+}
+
+.pwContainer {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.loginForm input {
+  width: 100%; /*640px*/
+  height: 5.6rem; /*56px*/
+  padding: 1.6rem 2.4rem; /*16px 24px*/
+  border-radius: 1.2rem; /*12px*/
+  background-color: var(--secondary-color-gray100);
+  border: none;
+}
+
+/* 자동완성시 배경색 바뀌는거 막아줌 */ 
+.loginForm input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 500px whitesmoke inset !important;
+}
+
+.loginForm input:focus {
+  outline: 0.1rem solid var(--primary-color-100);
+} 
+
+.loginForm input::placeholder {
+  font-family: pretendard;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.4rem; /*24px*/
+  color: var(--secondary-color-gray400);
+}
+
+.togglePassword {
+  position: absolute;
+  right: 2.4rem; /*24px*/
+  cursor: pointer;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.togglePasswordHide {
+  content: url(../image/closed-eyes.png);
+}
+
+.loginButton {
+  font-family: pretendard;
+  padding: 1.6rem 12.4rem; /*16px 124px*/
+  border-radius: 4rem;
+  border: none;
+  background-color: var(--primary-color-100);
+  font-size: var(--text-xl-20);
+  font-weight: 600;
+  line-height: 2.4rem; /*24px*/
+  text-align: center;
+  color: var(--background-color-white);
+  cursor: pointer;
+}
+
+.loginButton:disabled {
+  background-color: var(--secondary-color-gray400);
+}
+
+.easyLogin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.8rem;
+  background-color: var(--background-color-light-blue);
+  width: 100%; /*640px*/
+  height: 7.4rem; /*74px*/
+  padding: 0 2.3rem;
+}
+
+.easyLoginText {
+  font-size: var(--text-lg-16);
+  font-weight: 500;
+  line-height: 2.4rem; /*24px*/
+  color: var(--secondary-color-gray800);
+}
+
+.snsIc {
+  display: flex;
+  gap: 1.6rem;
+}
+
+a.icImg {
+  width: 4.2rem; /*42px*/
+  height: 4.2rem; /*42px*/
+  cursor: pointer;
+}
+
+.icLink {
+  width: 4.2rem;
+  height: 4.2rem;
+}
+
+.signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem; /*4px*/
+  font-size: 1.5rem; /*15px*/
+  font-weight: 500;
+  line-height: 1.79rem; /*17.9px*/
+  width: 100%;
+}
+
+.signupText {
+  color: var(--secondary-color-gray800);
+}
+
+.signupLink {
+  display: block;
+  color: #3182F6;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.79rem;
+  color: var(--error-color);
+  position: relative;
+  top: 0.8rem;
+  left: 1.6rem;
+}
+
+.borderRed{
+  outline: 0.1rem solid var(--error-color);
+}
+
+.modalContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000B2;
+}
+
+.modal {
+  display: flex;
+  position: relative;
+  width: 54rem;
+  height: 25rem;
+  padding: 10.8rem 17.4rem 12.3rem 17.4rem ;
+  background-color: var(--background-color-white);
+  max-width: 54rem;
+  border-radius: 0.8rem;
+}
+
+.modalMessage {
+  font-size: var(--text-lg-16);
+  font-weight: 500;
+  line-height: 1.909rem;
+  color: var(--secondary-color-gray800);
+}
+
+.modalButton {
+  width: 12rem;
+  height: 4.8rem;
+  position: absolute;
+  top: 174px;
+  left: 392px;
+  padding: 1.2rem 2.3rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: var(--primary-color-100);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.909rem;
+  color: var(--background-color-white);
+}
+
+@media screen and (743px < width < 1200px) {
+  .easyLogin {
+    padding: 0 2.4rem;
+  }
+}
+
+@media screen and (374px < width < 744px) {
+  .loginPage {
+    padding: 2.4rem 1.6rem;
+  }
+
+  .loginHeader {
+    margin: 2.4rem 0;
+  }
+
+  .logo {
+    width: 19.8rem;
+    height: 6.6rem;
+  }
+
+  .loginMain {
+    max-width: 40rem;
+  }
+
+  .loginForm {
+    gap: 1.6rem;
+  }
+
+  .loginWrapper {
+    gap: 0.8rem;
+  }
+
+  .loginForm label {
+    font-size: var(--text-md-14);
+    line-height: 1.671rem;
+  }
+
+  .easyLogin {
+    padding: 0 2.4rem;
+  }
+  
+  .modalContainer {
+    padding: 0 2.4rem;
+  }
+
+  .modal {
+    flex-direction: column;
+    align-items: center;
+    height: 22rem;
+    padding: 8.1rem 0 0 0;
+    gap: 4.9rem;
+    max-width: 40rem;
+    
+  }
+
+  .modalButton {
+    position: static;
+  }
+}
