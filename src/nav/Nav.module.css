@@ -1,0 +1,48 @@
+.nav {
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.marginLeft {
+    margin-left: 20rem;
+}
+
+.marginRight {
+    margin-right: 20rem;
+}
+
+.navMarginLeft {
+    margin-left: 2.4rem;
+}
+
+@media(max-width: 1199px) {
+    .marginLeft {
+        margin-left: 2.4rem;
+    }
+
+    .marginRight {
+        margin-right: 2.4rem;
+    }
+
+    .navMarginLeft {
+        margin-left: 2rem;
+    }
+}
+
+@media(max-width: 743px) {
+    .marginLeft {
+        margin-left: 1.6rem;
+    }
+
+    .marginRight {
+        margin-right: 1.6rem;
+    }
+
+    .navMarginLeft {
+        margin-left: 0.8rem;
+    }
+}
