@@ -37,6 +37,10 @@ section {
   background-color: var(--color-gray-100);
 }
 
+#magnifier {
+  position: absolute;
+}
+
 #searchInput {
   position: absolute;
   border: none;
@@ -160,6 +164,8 @@ section {
 @media (min-width: 375px) and (max-width: 743px) {
   section {
     width: 100%;
+    padding: 0 16px;
+    margin: 0 16px;
   }
 
   .productsTool {
@@ -180,13 +186,14 @@ section {
   .productsListing {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
+    gap: 2px;
   }
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
   section {
-    max-width: 100%;
+    width: 100%;
+    padding: 0 32px;
   }
 
   .productsListing {

@@ -1,8 +1,3 @@
-// 함수명은 동사, 대문자 시작 안하게 조심
-// totalProducts도 함수명 수정
-// console.log 다 삭제하기
-//await 함수 usecallbak으로 감싸기
-
 import "./Product.css";
 import { getProducts, getTotalCount } from "../api.js";
 import { Link } from "react-router-dom";
@@ -19,10 +14,10 @@ function formatPrice(amount) {
 
 export default function Products() {
   const [items, setItems] = useState([]);
-  const [totalPages, setTotalPages] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [pagingPages, setPagingPages] = useState([]); // 5개씩 paging
+  const [pagingPages, setPagingPages] = useState([]);
   const [pageSize, setPageSize] = useState(10);
   const [sortLogo, setSortLogo] = useState("최신순");
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -41,42 +36,47 @@ export default function Products() {
       setSortLogo("최신순");
       setIsSmallScreen(false);
     }
-  }, []);
+  }, [sortLogo]);
 
   const getProductList = useCallback(async () => {
-    const productlist = await getProducts(currentPage, pageSize, search, "recent");
-    setItems(productlist);
+    try {
+      const productlist = await getProducts(currentPage, pageSize, search, "recent");
+      setItems(productlist);
+    } catch (error) {
+      // Handle error if needed
+    }
   }, [currentPage, pageSize, search]);
 
   const getTotalItemCount = useCallback(async () => {
-    const count = await getTotalCount(currentPage, pageSize, search, "recent");
-    setTotalPages(Math.ceil(count / 10));
+    try {
+      const count = await getTotalCount(currentPage, pageSize, search, "recent");
+      setTotalPages(Math.ceil(count / pageSize));
+    } catch (error) {
+      // Handle error if needed
+    }
   }, [currentPage, pageSize, search]);
 
-  const getTotalPages = useCallback(async () => {
-    const count = await getTotalCount(currentPage, pageSize, search, "recent");
-    const pageArray = Array.from({ length: count }, (_, i) => i + 1);
-    const start = currentPage - 1;
-    const end = start + 5;
+  const getPagingPages = useCallback(() => {
+    const pageArray = Array.from({ length: totalPages }, (_, i) => i + 1);
+    const start = Math.max(0, currentPage - 3);
+    const end = Math.min(pageArray.length, currentPage + 2);
     const pageSlice = pageArray.slice(start, end);
     setPagingPages(pageSlice);
-  }, [currentPage, pageSize, search]);
+  }, [currentPage, totalPages]);
 
   const handleSearchItem = (e) => {
-    console.log(e.target.value);
     setSearch(e.target.value);
   };
 
-  const handleNextPage = (e) => {
+  const handleNextPage = () => {
     if (currentPage < totalPages) {
-      let nextpage = currentPage + 1;
-      setCurrentPage(nextpage);
+      setCurrentPage((prev) => prev + 1);
     }
   };
 
   const handleBeforePage = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      setCurrentPage((prev) => prev - 1);
     }
   };
 
@@ -87,19 +87,20 @@ export default function Products() {
   useEffect(() => {
     getProductList();
     getTotalItemCount();
-    getTotalPages();
+    getPagingPages();
     updatePageSize();
 
-    window.addEventListener("resize", updatePageSize);
-    return () => window.removeEventListener("resize", updatePageSize);
-  }, [getProductList, getTotalItemCount, getTotalPages, updatePageSize]);
+    const handleResize = () => updatePageSize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [getProductList, getTotalItemCount, getPagingPages, updatePageSize]);
 
   return (
     <section>
       <div className="productsTool">
         <h1 className="header">판매 중인 상품</h1>
         {isSmallScreen ? (
-          // 작은 화면일 때
           <>
             <Link to="/registration">
               <button id="addProduct">상품 등록하기</button>
@@ -119,10 +120,9 @@ export default function Products() {
             <div className="selectContainer">{sortLogo}</div>
           </>
         ) : (
-          // 큰 화면일 때
           <div id="searchAndSort">
             <div className="searchBar">
-              <img src={magnifier} alt="Magnifier" />
+              <img src={magnifier} alt="Magnifier" id="magnifier" />
               <input
                 onInput={handleSearchItem}
                 id="searchInput"
@@ -139,19 +139,23 @@ export default function Products() {
         )}
       </div>
       <ul className="productsListing">
-        {items.map((item) => {
-          return (
-            <li className="productsContainer" key={item._id}>
-              <img className="productImg" src={item.images || defaultImage} alt={`the picture of ${item.title}`} />
-              <p className="name">{item.name}</p>
-              <p className="price"> {formatPrice(item.price)}원</p>
-              <p className="like">♡ {item.favoriteCount}</p>
-            </li>
-          );
-        })}
+        {items.map((item) => (
+          <li className="productsContainer" key={item._id}>
+            <img className="productImg" src={item.images || defaultImage} alt={`the picture of ${item.title}`} />
+            <p className="name">{item.name}</p>
+            <p className="price"> {formatPrice(item.price)}원</p>
+            <p className="like">♡ {item.favoriteCount}</p>
+          </li>
+        ))}
       </ul>
       <div className="pageButtons">
-        <img className="arrowButton" src={leftArrow} onClick={handleBeforePage} />
+        <img
+          className="arrowButton"
+          src={leftArrow}
+          onClick={handleBeforePage}
+          alt="Previous Page"
+          disabled={currentPage === 1}
+        />
         {pagingPages.map((page) => (
           <button
             key={page}
@@ -161,7 +165,13 @@ export default function Products() {
             {page}
           </button>
         ))}
-        <img className="arrowButton" src={rightArrow} onClick={handleNextPage} />
+        <img
+          className="arrowButton"
+          src={rightArrow}
+          onClick={handleNextPage}
+          alt="Next Page"
+          disabled={currentPage >= totalPages}
+        />
       </div>
     </section>
   );
