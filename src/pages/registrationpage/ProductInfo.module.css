@@ -1,0 +1,53 @@
+.info {
+    width: 100%;
+    height: 76.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.labelFont {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.6rem;
+    text-align: left;
+    color: #1F2937;
+}
+
+.inputFont {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+    text-align: left;
+}
+
+
+.name,
+.description,
+.price,
+.tag {
+    background-color: green;
+}
+
+
+
+.description {
+    width: 100%;
+    height: 32.4rem;
+}
+
+.price {
+    width: 100%;
+    height: 9.8rem;
+}
+
+.tag {
+    width: 100%;
+    height: 14.8rem;
+}
+
+@media(max-width: 1199px) {
+    .info {
+        height: 74rem;
+    }
+}

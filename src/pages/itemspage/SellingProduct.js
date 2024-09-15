@@ -1,10 +1,11 @@
 import styles from "./SellingProduct.module.css";
 import heart from "./image/heart.png";
+import defaultImage from "./image/default_image.png";
 function SellingProduct({ product }) {
   const { images, name, favoriteCount, price, id } = product;
   return (
     <div id="selling-product" className={styles.product}>
-      <img src={images} className={styles.img} />
+      <img src={defaultImage} className={styles.img} />
       <div className={styles.info}>
         <div className={styles.title}>{name}</div>
         <div className={styles.price}>{price}원</div>

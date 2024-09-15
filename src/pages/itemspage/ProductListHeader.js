@@ -1,6 +1,7 @@
 import styles from "./ProductListHeader.module.css";
 import CategoryTitle from "./CategoryTitle.js";
 import SortSelector from "./SortSelector.js";
+import { Link } from "react-router-dom";
 function ProductListHeader({ onChangeOrder, onChangeKeyword }) {
   const handleChangeKeyword = (e) => {
     onChangeKeyword(e.target.value);
@@ -13,9 +14,11 @@ function ProductListHeader({ onChangeOrder, onChangeKeyword }) {
         className={styles.searchInput}
         onChange={handleChangeKeyword}
       ></input>
-      <button id="register-btn" className={styles.registerBtn}>
-        상품 등록하기
-      </button>
+      <Link to="/registration">
+        <button id="register-btn" className={styles.registerBtn}>
+          상품 등록하기
+        </button>
+      </Link>
       <SortSelector
         className={styles.sortSelector}
         onChangeOrder={onChangeOrder}
