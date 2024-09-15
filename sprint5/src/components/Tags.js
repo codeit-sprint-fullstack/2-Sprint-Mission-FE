@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/Tags.css';
+import styles from '../css/Tags.module.css';
 import X from '../images/ic_X.png';
 
 const Tags = ({ tags, setTags }) => {
@@ -41,24 +41,41 @@ const Tags = ({ tags, setTags }) => {
         onCompositionEnd={handleCompositionEnd}
         placeholder="태그를 입력하고 엔터를 누르세요"
       />
-      <div style={{ marginTop: '10px' }}>
+      <div>
         {tags.map((tag, index) => (
           <div
             key={index}
             style={{
-              display: 'inline-block',
-              margin: '5px',
-              padding: '5px',
-              background: '#e0e0e0',
-              borderRadius: '3px'
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: '6px 12px 6px 16px',
+              background: '#F3F4F6',
+              borderRadius: '36px',
+              fontWeight: 400,
+              fontSize: '16px',
+              lineHeight: '26px',
+              height: '36px'
             }}
           >
             {tag}
             <button
               onClick={() => handleTagRemove(index)}
-              style={{ marginLeft: '5px', cursor: 'pointer' }}
+              style={{
+                marginLeft: '5px',
+                cursor: 'pointer',
+                backgroundColor: 'none',
+                border: 'none'
+              }}
             >
-              <img src={X} alt="X" />
+              <img
+                src={X}
+                alt="X"
+                style={{
+                  width: '20px',
+                  height: '20px',
+                  backgroundColor: 'none'
+                }}
+              />
             </button>
           </div>
         ))}
