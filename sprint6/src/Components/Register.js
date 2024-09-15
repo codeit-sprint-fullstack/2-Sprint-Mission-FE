@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { postProduct } from "../api.js";
 import "./Register.css";
+import closeIcon from "../assets/ic_X.png";
 
 // Custom Hook for validation
 function useValidation(value, validations) {
@@ -59,19 +60,13 @@ export default function Register() {
   }
 
   const handleSendRequest = (e) => {
-    // price가 숫자인지 확인하는 추가 검증
-    if (!isActive || isNaN(price)) {
-      alert("모든 필드를 올바르게 입력해주세요.");
-      return;
-    }
-
-    createProduct();
+    return createProduct();
   };
 
   const handleAddTag = (e) => {
     if (e.key === "Enter" && tagValidation.isValid && tag) {
       setTags([...tags, tag]);
-      setTag(""); // Clear input after adding tag
+      setTag("");
     }
   };
 
@@ -156,11 +151,12 @@ export default function Register() {
               />
             </div>
             {!tagValidation.isValid && <p className="errorText">{tagValidation.error}</p>}
-            <div className="tagsContainer">
+            <div className="tags">
               {tags.map((t, index) => (
-                <span key={index} className="tagChip">
-                  {t}
-                </span>
+                <div className="tagsContainer" key={index}>
+                  <span className="tagChip">#{t}</span>
+                  <img src={closeIcon} alt="close" />
+                </div>
               ))}
             </div>
           </div>
