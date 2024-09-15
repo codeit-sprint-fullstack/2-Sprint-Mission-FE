@@ -50,6 +50,10 @@
   padding: 2.1rem 1.5rem;
 }
 
+.page.active {
+  color: #3692ff;
+}
+
 .login {
   width: 12.8rem;
   height: 4.8rem;

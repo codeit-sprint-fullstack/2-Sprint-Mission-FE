@@ -4,7 +4,7 @@ export const initialProductData = {
   name: "",
   description: "",
   price: "",
-  tags: "",
+  tags: [],
 };
 
 function isProductNameValid(name) {
@@ -20,7 +20,10 @@ function isProductPriceValid(price) {
 }
 
 function isProductTagsValid(tags) {
-  return tags.length > 5;
+  for(let tag of tags) {
+    return (tag.length > 5);
+  }
+  // return tags.length > 5;
 }
 
 export function validationCheck(productData) {
@@ -46,6 +49,7 @@ export async function submitProductData(productData) {
   try {
     const response = await createProduct(product);
     console.log(response);
+    return response;
   } catch (e) {
     console.log('상품 등록에 실패했습니다.', e.response);
     throw new Error('상품 등록에 실패했습니다.');

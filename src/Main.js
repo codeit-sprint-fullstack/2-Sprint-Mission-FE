@@ -5,6 +5,7 @@ import LandingPage from "./page/LandingPage";
 import LoginPage from "./page/LoginPage";
 import SignupPage from "./page/SignupPage";
 import RegisterPage from "./page/RegisterPage";
+import ProductDetailPage from "./page/ProductDetailPage";
 
 export default function Main() {
   return (
@@ -13,6 +14,7 @@ export default function Main() {
             <Route path='/' element={<App />} >
                 <Route index element={<LandingPage />} />
                 <Route path="/items" element={<MarketPage />} />
+                <Route path="/items/:id" element={<ProductDetailPage />} />
                 <Route path='/registration' element={<RegisterPage />} />
             </Route>
             <Route path="/login" element={<LoginPage />} />

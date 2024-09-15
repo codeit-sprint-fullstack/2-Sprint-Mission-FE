@@ -9,10 +9,13 @@ import { getProductList } from "../api/ProductService";
 import Pagination from "../component/Pagination";
 import { Link } from "react-router-dom";
 
+const mobileSize = 743;
+const tabletSize = 1199;
+
 function MarketPage() {
   const [order, setOrder] = useState("favorite");
   const [products, setProducts] = useState([]);
-  const [keyword, setKeyword] = useState("");
+  const [search, setSearch ] = useState("");
   const [bestItems, setBestItems] = useState([]);
   const [isToggle, setIsToggle] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,10 +25,10 @@ function MarketPage() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 743) {
+      if (window.innerWidth <= mobileSize) {
         setPageSize(4);
         setBestItemSize(1);
-      } else if (window.innerWidth <= 1199) {
+      } else if (window.innerWidth <= tabletSize) {
         setPageSize(6);
         setBestItemSize(2);
       } else {
@@ -67,7 +70,16 @@ function MarketPage() {
     setCurrentPage(1);
   };
 
-  const handleKeywordChange = (e) => setKeyword(e.target.value);
+  const handleSearchKeyPress = (e) => {
+    if (e.key === "Enter") {
+      setCurrentPage(1);
+      handleGetProductList(order, 1);
+    }
+  };
+
+  const handlesearchChange = (e) => {
+    setSearch(e.target.value);
+  }
 
   const toggleSortMenu = () => setIsToggle(!isToggle);
 
@@ -79,22 +91,22 @@ function MarketPage() {
         pageSize: pageSize,
       };
 
-      if (keyword) {
-        queryParams.keyword = keyword;
+      if (search) {
+        queryParams.search = search;
       }
 
       const { data: productList, totalCount: fetchedTotalCount } =
         await getProductList(queryParams);
       setProducts(productList);
       setTotalCount(fetchedTotalCount);
-      // console.log(productList);
+      console.log(productList);
     },
-    [keyword, currentPage, pageSize]
+    [search, currentPage, pageSize]
   );
 
   useEffect(() => {
     handleGetProductList(order, currentPage);
-  }, [order, keyword, currentPage, handleGetProductList]);
+  }, [order, search, currentPage, handleGetProductList]);
 
   return (
     <Fragment>
@@ -112,8 +124,9 @@ function MarketPage() {
                 <input
                   className="search"
                   placeholder="검색할 상품을 입력해주세요"
-                  value={keyword}
-                  onChange={handleKeywordChange}
+                  value={search}
+                  onChange={handlesearchChange}
+                  onKeyDown={handleSearchKeyPress}
                 ></input>
               </div>
               <Link to='/registration'><button className="item-register">상품 등록하기</button></Link>
