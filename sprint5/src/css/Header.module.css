@@ -1,85 +1,70 @@
-header {
+.header {
   position: sticky;
   top: 0;
   z-index: 99999;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+
+  width: 100%;
+  max-width: 120rem;
+  height: 4.375rem;
+
+  margin: auto;
 
   background-color: #ffffff;
 }
 
-.active {
-  color: #3692ff;
-}
-
-.top-bar {
-  position: relative;
-
+.container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   margin: 0 12.5rem;
 
   width: 100%;
-  max-width: 120rem;
-  height: 4.375rem;
 }
 
-.top-bar-elements {
-  position: absolute;
-
+.leftSection {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
-  padding: 0.5625rem 0;
-
-  width: 100%;
+  gap: 1rem;
 }
 
-.site-logo {
+.logo {
   width: 9.5625rem;
   height: 3.1875rem;
 }
 
-.top-bar-left {
-  display: flex;
-  align-items: center;
-
-  gap: 1rem;
-}
-
-.top-bar-right {
-  display: flex;
-  align-items: center;
-
-  gap: 1rem;
+.mobile {
+  display: none;
 }
 
 .menu {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+
+  padding: 0;
 
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.625rem;
   text-align: center;
 
+  list-style: none;
+
   gap: 0.625rem;
 }
 
+.menu a {
+  color: #4B5563;
+}
+
 .auth {
+  color: white;
   background-color: #3292FF;
   padding: 0.75rem 3.125rem;
   border-radius: 0.5rem;
-}
-
-.mobile-logo {
-  display: none;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
@@ -93,11 +78,11 @@ header {
     font-size: 0.875rem;
   }
 
-  .site-logo {
+  .logo {
     display: none;
   }
 
-  .mobile-logo {
+  .mobile {
     display: block;
   }
 }
