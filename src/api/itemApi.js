@@ -1,15 +1,3 @@
-import mongoose from "mongoose";
-import { DATABASE_URL } from './env.js'
-import express from 'express'
-
-mongoose.connect(DATABASE_URL).then(() => console.log('Connected to DB'))
-const app = express();
-app.use(express.json())
-
-app.post('/product', async (req, res) => {
-  const newProduct= await Product.create(req.body);
-  res.status(201).send(newProduct)
-});
 
 export async function getProducts(params = {}) {
   const query = new URLSearchParams(params).toString();

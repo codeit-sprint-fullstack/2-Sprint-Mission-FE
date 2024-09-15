@@ -4,7 +4,7 @@ import './AddItemPage.css';
 
 function AddItemPage() {
   return (
-    <div>
+    <div className="additem">
       <AddItemsSection />
     </div>
   )
