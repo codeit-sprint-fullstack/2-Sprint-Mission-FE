@@ -92,3 +92,15 @@
 .addTagButton {
   margin-left: 10px;
 }
+
+.errorInput {
+  border: 1px solid #F74747;
+}
+
+.errorMessage {
+  color: #F74747; 
+  font-size: 1.4rem; 
+  line-height: 2.4rem;
+  margin-top: 0.8rem;
+  margin-left: 1.6rem;
+}
