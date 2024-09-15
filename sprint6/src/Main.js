@@ -9,10 +9,8 @@ export default function Main() {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
-          <Route path="items">
-            <Route index element={<ItemsPage />} />
-            <Route path="registration" element={<RegistrationPage />} />
-          </Route>
+          <Route path="items" element={<ItemsPage />} />
+          <Route path="registration" element={<RegistrationPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

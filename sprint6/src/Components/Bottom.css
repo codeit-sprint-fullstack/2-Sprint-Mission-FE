@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@import url("../styles/color.css");
+
+.blueAreaBottom {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 540px;
+  background-color: #cfe5ff;
+}
+
+.bottomContainer {
+  width: 1120px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headline {
+  color: var(--color-gray-700);
+  line-height: 56px;
+  font-weight: 700;
+  font-size: 40px;
+}

@@ -1,0 +1,69 @@
+@charset "UTF-8";
+@import url(../styles/color.css);
+
+section {
+  display: block;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.headerButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputHeader {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+button {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-100);
+  width: 74px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: var(--color-primary-100);
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputHeader {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+input {
+  border: 12px;
+  background-color: var(--color-gray-100);
+  width: 100%;
+  height: 56px;
+
+  & #description {
+    height: 282px;
+  }
+
+  &::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-gray-400);
+  }
+
+  &:focus {
+    border-color: none;
+    outline: none;
+  }
+}

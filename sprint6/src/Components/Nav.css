@@ -1,0 +1,61 @@
+@charset "UTF-8";
+@import url(../styles/color.css);
+
+nav {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #dfdfdf; /*color pallet에 없어서 임의로 추가*/
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1220px;
+  margin: 0 400px;
+}
+
+.logoMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 21px;
+}
+
+#logo {
+  width: 153px;
+  height: 52px;
+}
+
+.menu a {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-gray-600);
+  text-decoration: none;
+}
+
+.login {
+  cursor: pointer;
+  background-color: var(--color-primary-100);
+  width: 88px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  color: var(--color-gray-100);
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-gray-100);
+    background-color: var(--color-primary-200);
+    transition: 0.3s;
+  }
+}

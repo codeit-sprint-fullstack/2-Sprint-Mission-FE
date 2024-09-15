@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@import url(../styles/color.css);
+
+footer {
+  height: 125px;
+  background-color: var(--color-gray-900);
+  padding: 35px;
+}
+
+.footerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1220px;
+  margin: 0 400px;
+}
+
+#copyright {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-gray-400);
+}
+
+.externalPageContainer {
+  display: flex;
+  gap: 30px;
+}
+
+.externalPage {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-gray-200);
+  text-decoration: none;
+}
+
+.snsContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.snsLogo {
+  cursor: pointer;
+}

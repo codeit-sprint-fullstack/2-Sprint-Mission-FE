@@ -1,3 +1,5 @@
+import Register from "../Components/Register.js";
+
 export default function RegistrationPage() {
-  return <h1>Hello World</h1>;
+  return <Register />;
 }

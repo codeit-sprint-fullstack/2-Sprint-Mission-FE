@@ -1,0 +1,51 @@
+@charset "UTF-8";
+@import url("../styles/color.css");
+
+.blueArea {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 70px;
+  width: 100%;
+  height: 540px;
+  background-color: #cfe5ff;
+}
+
+.kvContainer {
+  width: 1120px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kvText {
+  width: 345px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 40px;
+}
+
+.headline {
+  color: var(--color-gray-700);
+  line-height: 56px;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.view {
+  cursor: pointer;
+  background-color: var(--color-primary-100);
+  width: 357px;
+  height: 56px;
+  border: none;
+  border-radius: 40px;
+  gap: 10px;
+  color: var(--color-gray-50);
+  font-weight: 600;
+  font-size: 20px;
+  font-family: Pretendard;
+  text-decoration: none;
+}
