@@ -7,12 +7,18 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
   const [sortOption, setSortOption] = useState(initialSortOption);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [totalCount, setTotalCount] = useState(0); // 총 아이템 개수를 저장
-  const [isLoading, setIsLoading] = useState(false);
+
   const [search, setSearch] = useState('');
+  const [showLoading, setShowLoading] = useState(false); // 로딩 화면을 표시할지 여부
+
+  const MIN_LOADING_TIME = 500; // 최소 로딩 시간 : 로딩 화면 보여주기 
 
   useEffect(() => {
     const fetchProducts = async () => {
-      setIsLoading(true);
+      const loadingTimeout = setTimeout(() => {
+        setShowLoading(true); // 최소 로딩시간이 지나면 로딩 화면을 표시
+      }, MIN_LOADING_TIME);
+
       try {
         const productList = await getProductList(currentPage, maxItems, sortOption, search);
         setProducts(productList.list || []);
@@ -21,7 +27,8 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
         console.log(e.message);
         setError('상품을 불러오는 데 실패하였습니다.');
       } finally {
-        setIsLoading(false);
+        clearTimeout(loadingTimeout);
+        setShowLoading(false);
       }
     };
 
@@ -36,8 +43,8 @@ const useFetchProducts = (initialPage = 1, maxItems = 10, initialSortOption = 'r
     currentPage,
     setCurrentPage,
     totalCount, // 총 개수를 반환
-    isLoading,
     setSearch,
+    showLoading,
   };
 };
 

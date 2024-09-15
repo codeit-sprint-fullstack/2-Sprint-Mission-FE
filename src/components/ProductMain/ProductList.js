@@ -21,8 +21,8 @@ function ProductList() {
     currentPage,
     setCurrentPage,
     totalCount,          
-    isLoading,
     setSearch,
+    showLoading,
   } = useFetchProducts(1, maxItems, 'recent');
 
   // totalCount를 사용하여 totalPages 계산
@@ -126,7 +126,7 @@ function ProductList() {
       </div>
 
       <div className="product-grid">
-        {isLoading ? (
+        {showLoading ? (
           <div className="loading-message">상품을 불러오는 중입니다...</div>
         ) : (
           products.map((product) => (
@@ -134,7 +134,7 @@ function ProductList() {
           ))
         )}
       </div>
-      {!isLoading && (
+      {!showLoading && (
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       )}
     </div>
