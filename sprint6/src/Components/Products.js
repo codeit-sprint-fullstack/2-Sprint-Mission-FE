@@ -11,7 +11,7 @@ import defaultImage from "../assets/defaultImg.png";
 import rightArrow from "../assets/arrow_active_right.png";
 import leftArrow from "../assets/arrow_active_left.png";
 import sortIcon from "../assets/ic_sort.png";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 function formatPrice(amount) {
   return amount.toLocaleString();
@@ -27,47 +27,40 @@ export default function Products() {
   const [sortLogo, setSortLogo] = useState("최신순");
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  function updatePageSize() {
+  const updatePageSize = useCallback(() => {
     if (window.matchMedia("(min-width: 375px) and (max-width: 743px)").matches) {
       setPageSize(4); // 375px ~ 743px
       setSortLogo(<img id="sortLogo" src={sortIcon} alt="Sort Icon" />);
-      setIsSmallScreen("true");
+      setIsSmallScreen(true);
     } else if (window.matchMedia("(min-width: 744px) and (max-width: 1199px)").matches) {
       setPageSize(6); // 744px ~ 1199px
       setSortLogo("최신순");
-      setIsSmallScreen("false");
+      setIsSmallScreen(false);
     } else {
       setPageSize(10);
       setSortLogo("최신순");
-      setIsSmallScreen("false");
+      setIsSmallScreen(false);
     }
-  }
+  }, []);
 
-  function getProductList() {
-    getProducts(currentPage, pageSize, search, "recent").then((productlist) => {
-      console.log("curP", currentPage);
-      setItems(productlist);
-    });
-  }
+  const getProductList = useCallback(async () => {
+    const productlist = await getProducts(currentPage, pageSize, search, "recent");
+    setItems(productlist);
+  }, [currentPage, pageSize, search]);
 
-  function getTotalItemCount() {
-    getTotalCount(currentPage, pageSize, search, "recent").then((productlist) => {
-      setTotalPages(Math.ceil(productlist / 10));
-    });
-  }
+  const getTotalItemCount = useCallback(async () => {
+    const count = await getTotalCount(currentPage, pageSize, search, "recent");
+    setTotalPages(Math.ceil(count / 10));
+  }, [currentPage, pageSize, search]);
 
-  function getTotalPages() {
-    getTotalCount(currentPage, pageSize, search, "recent").then((productlist) => {
-      const pageArray = [];
-      for (let i = 1; i <= productlist; i++) {
-        pageArray.push(i);
-      }
-      let start = currentPage - 1;
-      let end = start + 5;
-      const pageSlice = pageArray.slice(start, end);
-      setPagingPages(pageSlice);
-    });
-  }
+  const getTotalPages = useCallback(async () => {
+    const count = await getTotalCount(currentPage, pageSize, search, "recent");
+    const pageArray = Array.from({ length: count }, (_, i) => i + 1);
+    const start = currentPage - 1;
+    const end = start + 5;
+    const pageSlice = pageArray.slice(start, end);
+    setPagingPages(pageSlice);
+  }, [currentPage, pageSize, search]);
 
   const handleSearchItem = (e) => {
     console.log(e.target.value);
@@ -99,7 +92,7 @@ export default function Products() {
 
     window.addEventListener("resize", updatePageSize);
     return () => window.removeEventListener("resize", updatePageSize);
-  }, [search, currentPage, pageSize]);
+  }, [getProductList, getTotalItemCount, getTotalPages, updatePageSize]);
 
   return (
     <section>

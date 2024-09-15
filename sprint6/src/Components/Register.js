@@ -10,7 +10,7 @@ function useValidation(value, validations) {
 
   useEffect(() => {
     for (const validation of validations) {
-      const { rule, message } = validation;
+      const { rule, message } = validation; //destruction으로 arry 내 값 받기
       if (!rule(value)) {
         setIsValid(false);
         setError(message);
@@ -108,7 +108,7 @@ export default function Register() {
             <div className={`inputGreyBox ${!productNameValidation.isValid && touched.productName && "error"}`}>
               <input
                 onChange={(e) => setProductName(e.target.value)}
-                onBlur={() => handleBlur("productName")} // Mark as touched
+                onBlur={() => handleBlur("productName")}
                 id="productName"
                 type="text"
                 placeholder="상품명을 입력해주세요"
