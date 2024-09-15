@@ -1,6 +1,6 @@
 .rendingSection3 {
   width: 100%;
-  height: 33.75rem;
+  height: 47rem;
   background-color: var(--background-color);
   display: flex;
   flex-direction: row;
@@ -16,10 +16,10 @@
 }
 
 .rendingSection3 h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   font-family: Pretendard;
-  line-height: 3.5rem;
+  line-height: 5rem;
   text-align: left;
   color: var(--gray-color);
   white-space: nowrap;
@@ -51,7 +51,7 @@
 @media screen and (max-width: 1199px) {
   .rendingSection3 {
     width: 100%;
-    height: 50rem;
+    height: 70rem;
   }
   .pandaTwoBox {
     width: 100%;
@@ -62,8 +62,9 @@
     top: 10rem;
   }
   .pandaTwoText h1 {
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
+    line-height: 5.2rem;
   }
   .pandaTwoImg {
     width: 100%;
@@ -75,7 +76,7 @@
 @media screen and (min-width: 375px) and (max-width: 744px) {
   .rendingSection3 {
     width: 100%;
-    height: 40rem;
+    height: 60rem;
   }
   .pandaTwoBox {
     width: 100%;
@@ -83,10 +84,10 @@
   .pandaTwoText {
     width: 100%;
     position: absolute;
-    top: 4rem;
+    top: 6rem;
   }
   .pandaTwoText h1 {
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
   }
   .pandaTwoImg {

@@ -57,6 +57,9 @@
   font-weight: 400;
   line-height: 2rem;
 }
+.link {
+  text-decoration: none;
+}
 
 .createBtn {
   display: flex;

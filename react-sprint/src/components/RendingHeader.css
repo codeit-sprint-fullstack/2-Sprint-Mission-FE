@@ -9,7 +9,7 @@ header {
   top: 0;
   height: 6rem;
   padding: 0 20rem;
-  z-index: 2;
+  z-index: 3;
 }
 
 .user {

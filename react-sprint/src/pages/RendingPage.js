@@ -1,6 +1,6 @@
 import "../styles/reset.css";
 import "../styles/variables.css";
-import "./RendingPage";
+import "./RendingPage.css";
 import RendingHeader from "../components/RendingHeader.js";
 import Footer from "../components/Footer.js";
 import RendingSection1 from "../components/RendingSection1.js";

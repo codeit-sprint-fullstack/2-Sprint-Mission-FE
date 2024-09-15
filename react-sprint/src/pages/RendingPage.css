@@ -4,13 +4,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
-  width: 100%;
   font-family: pretendard;
-  background-color: var(--primary-white);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: #fcfcfc;
   box-sizing: border-box;
 }

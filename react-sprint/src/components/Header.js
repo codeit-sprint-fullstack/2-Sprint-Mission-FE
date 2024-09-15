@@ -36,7 +36,12 @@ export default function Header() {
             </a>
           </li>
           <li>
-            <a className="navbarList" href="/중고마켓" target="_self">
+            <a
+              id="secondhandText"
+              className="navbarList"
+              href="/중고마켓"
+              target="_self"
+            >
               중고마켓
             </a>
           </li>

@@ -1,6 +1,6 @@
 .rendingSection1 {
   width: 100%;
-  height: 33rem;
+  height: 47rem;
   background-color: var(--background-color);
   display: flex;
   flex-direction: row;
@@ -18,15 +18,15 @@
 
 .perchaseBox {
   position: relative;
-  bottom: 7rem;
+  bottom: 14rem;
 }
 
 .perchaseText {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   font-family: Pretendard;
   color: var(--secondary-gray-700);
-  line-height: 3.5rem;
+  line-height: 5rem;
   text-align: left;
   position: relative;
   bottom: 1.5625rem;
@@ -36,14 +36,14 @@
 
 .perchaseBtn {
   font-family: Pretendard;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 500;
   line-height: 2rem;
   text-align: center;
-  width: 22.3125rem;
-  height: 3.5rem;
+  width: 27rem;
+  height: 4rem;
   border-radius: 2.5rem;
-  padding: 1rem, 7.75rem;
+  padding: 3rem, 9rem;
   gap: 0.625rem;
   background-color: var(--primary-blue-100);
   color: var(--secondary-white-100);
@@ -71,20 +71,21 @@
     width: 100%;
   }
   .rendingSection1 {
-    height: 60rem;
+    height: 80rem;
   }
   .perchaseBox {
     width: 100%;
     position: absolute;
-    bottom: 40rem;
+    bottom: 60rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
   .perchaseText {
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
+    line-height: 5.2rem;
   }
   .perchaseBtn {
     position: relative;
@@ -105,10 +106,13 @@
   .sectionBox {
     width: 100%;
   }
+  .rendingSection1 {
+    height: 60rem;
+  }
   .perchaseBox {
     width: 100%;
     position: absolute;
-    bottom: 20rem;
+    bottom: 40rem;
     display: flex;
     flex-direction: column;
     align-items: center;

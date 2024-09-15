@@ -20,7 +20,7 @@
 .checkBox,
 .registerBox,
 .searchBox {
-  width: 59.6875rem;
+  width: 90rem;
   background-color: var(--primary-white);
   display: flex;
   flex-direction: row;
@@ -58,7 +58,7 @@
 .search h5,
 .register h5 {
   text-align: left;
-  font-size: 1.125rem;
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.625rem;
   font-family: Pretendard;
@@ -71,10 +71,10 @@
 .search h2,
 .register h2 {
   font-family: Pretendard;
-  font-size: 2.3rem;
+  font-size: 3.2rem;
   font-weight: 700;
   text-align: left;
-  line-height: 3.5rem;
+  line-height: 4.2rem;
   letter-spacing: 0.02em;
   color: var(--gray-color);
   position: relative;
@@ -84,9 +84,9 @@
 .search h4,
 .register h4 {
   font-family: Pretendard;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 500;
-  line-height: 2rem;
+  line-height: 3.2rem;
   text-align: left;
   color: var(--gray-color);
   position: relative;
@@ -114,7 +114,7 @@
 
 @media screen and (min-width: 1920px) {
   .section {
-    width: 120rem;
+    width: 192rem;
   }
 }
 
@@ -123,8 +123,8 @@
   .checkImg,
   .searchImg,
   .registerImg {
-    width: 588px;
-    height: 444px;
+    width: 58rem;
+    height: 44rem;
   }
 }
 
@@ -178,12 +178,12 @@
   .checkOneText h2,
   .searchOneText h2,
   .registerOneText h2 {
-    font-size: 1.5rem;
+    font-size: 2.3rem;
   }
   .checkOneText h4,
   .searchOneText h4,
   .registerOneText h4 {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
     position: relative;
     bottom: 1.5rem;
     white-space: pre-line;
@@ -191,6 +191,7 @@
   .checkTextBox h5,
   .searchTextBox h5,
   .registerTextBox h5 {
+    font-size: 1.8rem;
     position: relative;
     top: 0.7rem;
   }
