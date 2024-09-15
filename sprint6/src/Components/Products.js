@@ -10,6 +10,7 @@ import magnifier from "../assets/ic_search.png";
 import defaultImage from "../assets/defaultImg.png";
 import rightArrow from "../assets/arrow_active_right.png";
 import leftArrow from "../assets/arrow_active_left.png";
+import sortIcon from "../assets/ic_sort.png";
 import { useEffect, useState } from "react";
 
 function formatPrice(amount) {
@@ -22,7 +23,25 @@ export default function Products() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pagingPages, setPagingPages] = useState([]); // 5개씩 paging
-  const [pageSize, setPageSize] = useState(10); // 초기값 4로 설정
+  const [pageSize, setPageSize] = useState(10);
+  const [sortLogo, setSortLogo] = useState("최신순");
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  function updatePageSize() {
+    if (window.matchMedia("(min-width: 375px) and (max-width: 743px)").matches) {
+      setPageSize(4); // 375px ~ 743px
+      setSortLogo(<img id="sortLogo" src={sortIcon} alt="Sort Icon" />);
+      setIsSmallScreen("true");
+    } else if (window.matchMedia("(min-width: 744px) and (max-width: 1199px)").matches) {
+      setPageSize(6); // 744px ~ 1199px
+      setSortLogo("최신순");
+      setIsSmallScreen("false");
+    } else {
+      setPageSize(10);
+      setSortLogo("최신순");
+      setIsSmallScreen("false");
+    }
+  }
 
   function getProductList() {
     getProducts(currentPage, pageSize, search, "recent").then((productlist) => {
@@ -76,28 +95,55 @@ export default function Products() {
     getProductList();
     getTotalItemCount();
     getTotalPages();
-  }, [search, currentPage]);
+    updatePageSize();
+
+    window.addEventListener("resize", updatePageSize);
+    return () => window.removeEventListener("resize", updatePageSize);
+  }, [search, currentPage, pageSize]);
 
   return (
     <section>
       <div className="productsTool">
         <h1 className="header">판매 중인 상품</h1>
-        <div id="searchAndSort">
-          <div className="searchBar">
-            <img src={magnifier} alt="Magnifier" />
-            <input
-              onInput={handleSearchItem}
-              id="searchInput"
-              type="text"
-              placeholder="검색할 상품을 입력해주세요"
-              value={search}
-            />
+        {isSmallScreen ? (
+          // 작은 화면일 때
+          <>
+            <Link to="/registration">
+              <button id="addProduct">상품 등록하기</button>
+            </Link>
+            <div className="smallSearchandSort">
+              <div className="searchBar">
+                <img src={magnifier} alt="Magnifier" />
+                <input
+                  onInput={handleSearchItem}
+                  id="searchInput"
+                  type="text"
+                  placeholder="검색할 상품을 입력해주세요"
+                  value={search}
+                />
+              </div>
+            </div>
+            <div className="selectContainer">{sortLogo}</div>
+          </>
+        ) : (
+          // 큰 화면일 때
+          <div id="searchAndSort">
+            <div className="searchBar">
+              <img src={magnifier} alt="Magnifier" />
+              <input
+                onInput={handleSearchItem}
+                id="searchInput"
+                type="text"
+                placeholder="검색할 상품을 입력해주세요"
+                value={search}
+              />
+            </div>
+            <Link to="/registration">
+              <button id="addProduct">상품 등록하기</button>
+            </Link>
+            <div className="selectContainer">{sortLogo}</div>
           </div>
-          <Link to="/registration">
-            <button id="addProduct">상품 등록하기</button>
-          </Link>
-          <div className="selectContainer">최신순</div>
-        </div>
+        )}
       </div>
       <ul className="productsListing">
         {items.map((item) => {
