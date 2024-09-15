@@ -4,7 +4,7 @@
   justify-content: center;              /* 가로 정렬: 가운데 */
   align-items: flex-end;                /* 세로 정렬: 하단 */
   width: 100%;              
-  min-width: 37.5rem;
+  min-width: 37.1rem;
   height: auto;           
   background-color: var(--banner-bg);
 }
@@ -70,7 +70,7 @@
   justify-content: center;
   background-color: var(--background-color);
   margin: 0 auto;
-  min-width: 37.5rem;
+  min-width: 37.1rem;
 }
 .section {
   display: flex;
