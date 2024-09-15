@@ -5,16 +5,29 @@ import X from '../images/ic_X.png';
 const Tags = ({ tags, setTags }) => {
   const [inputValue, setInputValue] = useState('');
   const [isComposing, setIsComposing] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    const value = e.target.value;
+    setInputValue(value);
+
+    if (value.length > 5) {
+      setErrorMessage('5글자 이내로 입력해주세요');
+    } else {
+      setErrorMessage('');
+    }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && inputValue.trim() && !isComposing) {
       e.preventDefault();
-      setTags([...tags, inputValue.trim()]);
-      setInputValue('');
+      if (inputValue.length <= 5) {
+        setTags([...tags, inputValue.trim()]);
+        setInputValue('');
+        setErrorMessage('');
+      } else {
+        setErrorMessage('5글자 이내로 입력해주세요');
+      }
     }
   };
 
@@ -41,6 +54,9 @@ const Tags = ({ tags, setTags }) => {
         onCompositionEnd={handleCompositionEnd}
         placeholder="태그를 입력하고 엔터를 누르세요"
       />
+      {errorMessage && (
+        <div style={{ color: 'red', fontSize: '12px' }}>{errorMessage}</div>
+      )}
       <div>
         {tags.map((tag, index) => (
           <div

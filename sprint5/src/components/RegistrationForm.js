@@ -41,7 +41,7 @@ export default function RegistrationForm() {
       } else {
         setError('상품 ID를 얻는 데 실패했습니다.');
       }
-    } catch (err) {
+    } catch (error) {
       setError('상품 등록에 실패했습니다.');
     }
   };
@@ -63,7 +63,10 @@ export default function RegistrationForm() {
             value={values.name}
             onChange={handleChange}
             placeholder="상품명을 입력해주세요"
-            style={{ borderColor: errors.name ? 'red' : '' }}
+            style={{
+              borderColor: errors.name ? 'red' : '',
+              border: `1px solid ${errors.name ? 'red' : ''}`
+            }}
           />
           {errors.name && <div className="error-message">{errors.name}</div>}
         </div>
@@ -74,7 +77,10 @@ export default function RegistrationForm() {
             value={values.description}
             onChange={handleChange}
             placeholder="상품 소개를 입력해주세요"
-            style={{ borderColor: errors.description ? 'red' : '' }}
+            style={{
+              borderColor: errors.description ? 'red' : '',
+              border: `1px solid ${errors.description ? 'red' : ''}`
+            }}
           />
           {errors.description && (
             <div className="error-message">{errors.description}</div>
@@ -88,7 +94,10 @@ export default function RegistrationForm() {
             value={values.price}
             onChange={handleChange}
             placeholder="판매 가격을 입력해주세요"
-            style={{ borderColor: errors.price ? 'red' : '' }}
+            style={{
+              borderColor: errors.price ? 'red' : '',
+              border: `1px solid ${errors.price ? 'red' : ''}`
+            }}
           />
           {errors.price && <div className="error-message">{errors.price}</div>}
         </div>
