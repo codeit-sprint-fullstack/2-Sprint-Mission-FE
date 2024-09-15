@@ -40,4 +40,24 @@ export async function getProducts({
     return data;
   }
 }
-export default getProducts;
+
+export async function createProduct(params) {
+  const price = Number(params.price);
+  if (!validatePositiveInteger(price)) {
+    throw new Error("가격은 양의 정수여야 합니다.");
+  }
+  const { name, description, tags } = params;
+  const testParams = {
+    name,
+    description,
+    price,
+    tags
+  };
+  for (let option in testParams) {
+    if (isValid(testParams[option])) {
+      throw new Error(`${option}은 필수 기입사항입니다.`);
+    }
+  }
+  const res = await instance.post("", params);
+  return res.data;
+}

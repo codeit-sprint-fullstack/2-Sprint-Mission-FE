@@ -15,9 +15,7 @@ function ProductListHeader({ onChangeOrder, onChangeKeyword }) {
         onChange={handleChangeKeyword}
       ></input>
       <Link to="/registration">
-        <button id="register-btn" className={styles.registerBtn}>
-          상품 등록하기
-        </button>
+        <button className={styles.registerBtn}>상품 등록하기</button>
       </Link>
       <SortSelector
         className={styles.sortSelector}

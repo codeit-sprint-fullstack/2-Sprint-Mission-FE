@@ -1,7 +1,7 @@
 import styles from "./ItemsPage.module.css";
 import Contents from "./Contents.js";
 import { useEffect, useState } from "react";
-import getProducts from "../../api/ProductService.js";
+import { getProducts } from "../../api/ProductService.js";
 
 function ItemsPage() {
   const [bestList, setBestList] = useState([]);
