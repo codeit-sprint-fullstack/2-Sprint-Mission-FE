@@ -14,6 +14,8 @@ const INITIAL_VALUES = {
 function Registration() {
   const navigate = useNavigate();
   const [values, setValues] = useState(INITIAL_VALUES);
+  const [inputValue, setInputValue] = useState(""); // 입력 값을 저장할 상태변수
+  const [isTagAdd, setIsTagAdd] = useState(false); //태그 추가 여부 상태
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +23,30 @@ function Registration() {
       ...prevValues,
       [name]: value,
     }));
+  };
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim() !== "") {
+      setValues((prevValues) => ({
+        ...prevValues,
+        tags: [...prevValues.tags, inputValue.trim()],
+      }));
+      setInputValue("");
+      setIsTagAdd(true);
+    }
+  };
+
+  const handleTagRemove = (tagToRemove) => {
+    setValues((prevValues) => {
+      const updateTags = prevValues.tags.filter((tag) => tag !== tagToRemove);
+      if (updateTags.length === 0) {
+        setIsTagAdd(false);
+      }
+      return {
+        ...prevValues,
+        tags: updateTags,
+      };
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -32,11 +58,14 @@ function Registration() {
       price: values.price,
       tags: values.tags,
     };
-    await createItemList(formData);
-    setValues(INITIAL_VALUES);
-    navigate("/detailpage");
+    try {
+      await createItemList(formData); // 데이터베이스에 전송
+      setValues(INITIAL_VALUES); // 초기값으로 리셋
+      navigate("/detailpage"); // 페이지 이동
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
-
   return (
     <form className="Main" onSubmit={handleSubmit}>
       <div className="PostProductMenu">
@@ -73,27 +102,24 @@ function Registration() {
         <input
           name="tags"
           className="Tags"
-          value={values.tags}
-          onChange={handleChange}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleInputKeyDown}
           placeholder="태그를 입력해주세요"
         />
         <div className="TagName">
-          <div className="Tag1">
-            <p>#티셔츠</p>
-            <img
-              className="FirstCloseButton"
-              src={closeButton}
-              alt="closebutton"
-            />
-          </div>
-          <div className="Tag2">
-            <p>#상의</p>
-            <img
-              className="SecondCloasButton"
-              src={closeButton}
-              alt="closebutton"
-            />
-          </div>
+          {isTagAdd &&
+            values.tags.map((tag, index) => (
+              <div key={index} className="TagItem">
+                <p>{tag}</p>
+                <img
+                  className="CloseButton"
+                  src={closeButton}
+                  alt="closebutton"
+                  onClick={() => handleTagRemove(tag)}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </form>

@@ -81,22 +81,23 @@
 }
 .TagName {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  /* position: relative; */
 }
 
-.Tag1,
-.Tag2 {
+
+
+.TagItem {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--coolGray-100);
   padding: 6px 12px;
   border-radius: 26px;
+  align-items: center;
   gap: 10px;
 }
-.Tag1 p,
-.Tag2 p {
+.TagItem p {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
@@ -106,6 +107,7 @@
 .TagName img {
   width: 22px;
   height: 24px;
+  cursor: pointer;
 }
 
 @media (max-width: 1199px) {
