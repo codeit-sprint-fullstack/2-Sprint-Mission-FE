@@ -1,0 +1,22 @@
+.contents {
+    width: 120rem;
+    height: 82.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media(max-width: 1199px) {
+    .contents {
+        width: 69.6rem;
+        height: 83.2rem;
+    }
+}
+
+@media(max-width: 743px) {
+    .contents {
+        width: 34.4rem;
+        height: 75.4rem;
+    }
+}

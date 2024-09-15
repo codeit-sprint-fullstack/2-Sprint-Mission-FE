@@ -1,4 +1,4 @@
-import styles from "./Contents.module.css";
+import styles from "./HomePage.module.css";
 import TradeSection from "./TradeSection.js";
 import CommonSection from "./CommonSection.js";
 import SafetySection from "./SafetySection.js";
