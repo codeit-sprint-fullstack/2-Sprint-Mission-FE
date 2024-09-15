@@ -103,6 +103,7 @@ function RegisterProductForm() {
           onChange={(e) => setProductData({...productData, description: e.target.value})}
           onBlur={(e)=>handleBlur(e)}
         />
+        {errors.description && <p className={styles.errorMessage}>{errors.description}</p>}
       </div>
 
       <div className={styles.formGroup}>
@@ -116,6 +117,7 @@ function RegisterProductForm() {
           onChange={(e) => setProductData({...productData, price: e.target.value})}
           onBlur={(e)=>handleBlur(e)}
         />
+         {errors.price && <p className={styles.errorMessage}>{errors.price}</p>}
       </div>
 
       <div className={styles.formGroup}>

@@ -17,9 +17,7 @@ function useValidateProductForm(initialData) {
     }
 
     if (fieldName === 'description') {
-      if (!value.trim()) {
-        error = '상품 소개는 필수 항목입니다.';
-      } else if (value.length < 10 || value.length > 100) {
+      if (value.length < 10 || value.length > 100) {
         error = '10자 이상 100자 이내로 입력해 주세요.';
       }
     }
