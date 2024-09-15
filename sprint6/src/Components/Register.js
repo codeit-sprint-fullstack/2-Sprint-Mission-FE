@@ -3,7 +3,7 @@ import { postProduct } from "../api.js";
 import "./Register.css";
 import closeIcon from "../assets/ic_X.png";
 
-// Custom Hook for validation
+// 유효성 검사를 위한 hook
 function useValidation(value, validations) {
   const [isValid, setIsValid] = useState(false);
   const [error, setError] = useState("");
@@ -31,35 +31,44 @@ export default function Register() {
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState([]);
   const [isActive, setIsActive] = useState(false);
+  const [touched, setTouched] = useState({
+    productName: false,
+    description: false,
+    price: false,
+    tag: false,
+  });
 
-  // Validation Rules
+  function createProduct() {
+    const numericPrice = Number(price);
+
+    postProduct(productName, description, numericPrice, tags)
+      .then((newProduct) => {
+        console.log(newProduct);
+        window.location.href = `/product-detail/${newProduct.id}`;
+      })
+      .catch((error) => {
+        console.error("Error creating product:", error);
+      });
+  }
+
   const productNameValidation = useValidation(productName, [
-    { rule: (value) => value.length >= 1 && value.length <= 10, message: "상품명은 1자 이상, 10자 이내여야 합니다." },
+    { rule: (value) => value.length >= 1 && value.length <= 10, message: "10자 이내로 입력해주세요" },
   ]);
   const descriptionValidation = useValidation(description, [
     {
       rule: (value) => value.length >= 10 && value.length <= 100,
-      message: "상품 소개는 10자 이상, 100자 이내여야 합니다.",
+      message: "10자 이상 입력해주세요.",
     },
   ]);
   const priceValidation = useValidation(price, [
-    { rule: (value) => value.length >= 1 && !isNaN(value), message: "판매 가격은 숫자로 입력해주세요." },
+    { rule: (value) => value.length >= 1 && !isNaN(value), message: "숫자로 입력해주세요." },
   ]);
   const tagValidation = useValidation(tag, [
-    { rule: (value) => value.length <= 5, message: "태그는 5자 이내여야 합니다." },
+    { rule: (value) => value.length <= 5, message: "5글자 이내로 입력해주세요." },
   ]);
 
-  function createProduct() {
-    // price 값을 숫자로 변환
-    const numericPrice = Number(price);
-
-    postProduct(productName, description, numericPrice, tags).then((newProduct) => {
-      console.log(newProduct);
-      return newProduct;
-    });
-  }
-
   const handleSendRequest = (e) => {
+    e.preventDefault();
     return createProduct();
   };
 
@@ -70,11 +79,15 @@ export default function Register() {
     }
   };
 
+  const handleBlur = (field) => {
+    setTouched({ ...touched, [field]: true });
+  };
+
   useEffect(() => {
     if (productNameValidation.isValid && descriptionValidation.isValid && priceValidation.isValid && tags.length > 0) {
-      setIsActive(true); // 모든 값이 유효하면 버튼 활성화
+      setIsActive(true);
     } else {
-      setIsActive(false); // 값이 하나라도 유효하지 않으면 비활성화
+      setIsActive(false);
     }
   }, [productNameValidation, descriptionValidation, priceValidation, tags]);
 
@@ -92,65 +105,73 @@ export default function Register() {
             <label className="inputHeader" htmlFor="productName">
               상품명
             </label>
-            <div className={`inputGreyBox ${!productNameValidation.isValid && "error"}`}>
+            <div className={`inputGreyBox ${!productNameValidation.isValid && touched.productName && "error"}`}>
               <input
                 onChange={(e) => setProductName(e.target.value)}
+                onBlur={() => handleBlur("productName")} // Mark as touched
                 id="productName"
                 type="text"
                 placeholder="상품명을 입력해주세요"
                 value={productName}
               />
             </div>
-            {!productNameValidation.isValid && <p className="errorText">{productNameValidation.error}</p>}
+            {!productNameValidation.isValid && touched.productName && (
+              <p className="errorText">{productNameValidation.error}</p>
+            )}
           </div>
 
           <div className="inputBlock">
             <label className="inputHeader" htmlFor="productDescription">
               상품 소개
             </label>
-            <div className={`inputGreyBox ${!descriptionValidation.isValid && "error"}`}>
+            <div className={`inputGreyBox ${!descriptionValidation.isValid && touched.description && "error"}`}>
               <input
                 onChange={(e) => setDescription(e.target.value)}
+                onBlur={() => handleBlur("description")}
                 id="productDescription"
                 type="text"
                 placeholder="상품 소개를 입력해주세요"
                 value={description}
               />
             </div>
-            {!descriptionValidation.isValid && <p className="errorText">{descriptionValidation.error}</p>}
+            {!descriptionValidation.isValid && touched.description && (
+              <p className="errorText">{descriptionValidation.error}</p>
+            )}
           </div>
 
           <div className="inputBlock">
             <label className="inputHeader" htmlFor="price">
               판매 가격
             </label>
-            <div className={`inputGreyBox ${!priceValidation.isValid && "error"}`}>
+            <div className={`inputGreyBox ${!priceValidation.isValid && touched.price && "error"}`}>
               <input
                 onChange={(e) => setPrice(e.target.value)}
+                onBlur={() => handleBlur("price")}
                 id="price"
                 type="text"
                 placeholder="판매 가격을 입력해주세요"
                 value={price}
               />
             </div>
-            {!priceValidation.isValid && <p className="errorText">{priceValidation.error}</p>}
+            {!priceValidation.isValid && touched.price && <p className="errorText">{priceValidation.error}</p>}
           </div>
 
           <div className="inputBlock">
             <label className="inputHeader" htmlFor="tag">
               태그
             </label>
-            <div className={`inputGreyBox ${!tagValidation.isValid && "error"}`}>
+            <div className={`inputGreyBox ${!tagValidation.isValid && touched.tag && "error"}`}>
               <input
                 onChange={(e) => setTag(e.target.value)}
                 onKeyPress={handleAddTag}
+                onBlur={() => handleBlur("tag")}
                 id="tag"
                 type="text"
                 placeholder="태그를 입력 후 Enter를 누르세요"
                 value={tag}
               />
             </div>
-            {!tagValidation.isValid && <p className="errorText">{tagValidation.error}</p>}
+            {!tagValidation.isValid && touched.tag && <p className="errorText">{tagValidation.error}</p>}
             <div className="tags">
               {tags.map((t, index) => (
                 <div className="tagsContainer" key={index}>

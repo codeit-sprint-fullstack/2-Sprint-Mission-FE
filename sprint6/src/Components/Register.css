@@ -60,6 +60,10 @@ button {
   height: 56px;
   border-radius: 12px;
   background-color: var(--color-gray-100);
+
+  &.inputGreyBox.error {
+    border: solid 1px red;
+  }
 }
 
 #longForm {
@@ -67,7 +71,7 @@ button {
 }
 
 input {
-  width: 100%;
+  width: 1100px;
   height: 56px;
   background-color: transparent;
   padding-left: 20px;
@@ -90,16 +94,18 @@ input {
 
 .errorText {
   padding-left: 10px;
+  font-weight: 600;
   font-size: 14px;
   color: #f74747;
 }
 
 .tagsContainer {
-  width: 300px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  width: auto;
   height: 36px;
-  border-radius: 12px;
+  border-radius: 26px;
+  padding-right: 16px;
   background-color: var(--color-gray-100);
 }
 
@@ -110,7 +116,7 @@ input {
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
-  body {
+  .container {
     max-width: 100%;
     padding: 0 16px;
   }
