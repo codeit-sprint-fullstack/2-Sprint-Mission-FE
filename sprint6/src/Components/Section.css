@@ -53,7 +53,55 @@
   margin-top: 24px;
 }
 
-.body-image {
-  width: 588px;
-  height: 444px;
+@media (min-width: 375px) and (max-width: 743px) {
+  .whiteArea {
+    height: 750px;
+  }
+
+  .innerSection {
+    width: 100%;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  .heading {
+    line-height: 56px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .description {
+    line-height: 32px;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 26px;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .innerSection {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    margin: 0 42px;
+    display: block; /* display: block 명확하게 설정 */
+  }
+
+  .heading {
+    line-height: 56px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .description {
+    color: var(--color-gray-700);
+    line-height: 32px;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 26px;
+  }
 }
