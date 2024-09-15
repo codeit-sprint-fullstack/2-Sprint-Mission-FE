@@ -2,17 +2,20 @@
 @import url(../styles/color.css);
 
 footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   height: 125px;
   background-color: var(--color-gray-900);
-  padding: 35px;
+  padding: 35px 0;
 }
 
 .footerContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 1220px;
-  margin: 0 400px;
+  width: 1120px;
+  margin: 0 200px;
 }
 
 #copyright {
@@ -41,4 +44,22 @@ footer {
 
 .snsLogo {
   cursor: pointer;
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .footerContainer {
+    margin: 0 42px;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  body {
+    max-width: 100%;
+  }
+
+  .footerContainer {
+    width: 100%;
+    padding: 0 42px;
+    margin: 0 0;
+  }
 }

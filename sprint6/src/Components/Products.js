@@ -20,17 +20,33 @@ export default function Products() {
   const [items, setItems] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagingPages, setPagingPages] = useState([]); // 5개씩 paging
+  const [pageSize, setPageSize] = useState(10); // 초기값 4로 설정
 
   function getProductList() {
-    getProducts(1, 10, search, "recent").then((productlist) => {
-      console.log(productlist);
+    getProducts(currentPage, pageSize, search, "recent").then((productlist) => {
+      console.log("curP", currentPage);
       setItems(productlist);
     });
   }
 
   function getTotalItemCount() {
-    getTotalCount(1, 10, search, "recent").then((productlist) => {
-      setTotalPages(productlist);
+    getTotalCount(currentPage, pageSize, search, "recent").then((productlist) => {
+      setTotalPages(Math.ceil(productlist / 10));
+    });
+  }
+
+  function getTotalPages() {
+    getTotalCount(currentPage, pageSize, search, "recent").then((productlist) => {
+      const pageArray = [];
+      for (let i = 1; i <= productlist; i++) {
+        pageArray.push(i);
+      }
+      let start = currentPage - 1;
+      let end = start + 5;
+      const pageSlice = pageArray.slice(start, end);
+      setPagingPages(pageSlice);
     });
   }
 
@@ -39,10 +55,28 @@ export default function Products() {
     setSearch(e.target.value);
   };
 
+  const handleNextPage = (e) => {
+    if (currentPage < totalPages) {
+      let nextpage = currentPage + 1;
+      setCurrentPage(nextpage);
+    }
+  };
+
+  const handleBeforePage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   useEffect(() => {
     getProductList();
     getTotalItemCount();
-  }, [search]);
+    getTotalPages();
+  }, [search, currentPage]);
 
   return (
     <section>
@@ -77,6 +111,19 @@ export default function Products() {
           );
         })}
       </ul>
+      <div className="pageButtons">
+        <img className="arrowButton" src={leftArrow} onClick={handleBeforePage} />
+        {pagingPages.map((page) => (
+          <button
+            key={page}
+            className={`pageButton ${currentPage === page ? "active" : ""}`}
+            onClick={() => handlePageChange(page)}
+          >
+            {page}
+          </button>
+        ))}
+        <img className="arrowButton" src={rightArrow} onClick={handleNextPage} />
+      </div>
     </section>
   );
 }

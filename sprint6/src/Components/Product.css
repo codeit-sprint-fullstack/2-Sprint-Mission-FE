@@ -63,6 +63,7 @@ section {
   height: 42px;
   border-radius: 8px;
   background-color: var(--color-primary-100);
+  cursor: pointer;
 }
 
 .selectContainer {
@@ -118,4 +119,34 @@ section {
   height: 317px;
   width: 220px;
   margin: 16px 0;
+}
+
+.pageButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 40px;
+  margin-bottom: 120px;
+}
+
+.arrowButton {
+  cursor: pointer;
+}
+
+.pageButton {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  background-color: white;
+  border: 1px solid var(--color-gray-200);
+  width: 42px;
+  border-radius: 40px;
+  padding: 12.5px 12.5px;
+
+  &.active {
+    color: var(--color-gray-50);
+    background-color: #2f80ed;
+  }
 }

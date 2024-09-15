@@ -3,6 +3,7 @@
 
 nav {
   display: flex;
+  justify-content: center;
   align-items: center;
   position: fixed;
   top: 0;
@@ -18,8 +19,8 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 1220px;
-  margin: 0 400px;
+  width: 1120px;
+  margin: 0 200px;
 }
 
 .logoMenu {
@@ -57,5 +58,51 @@ nav {
     color: var(--color-gray-100);
     background-color: var(--color-primary-200);
     transition: 0.3s;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  body {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 16px;
+    margin: 0 0;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .logoMenu {
+    gap: 10px;
+  }
+
+  #logo {
+    width: 103px;
+    height: 51px;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  body {
+    max-width: 100%;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 42px;
+    margin: 0 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    max-width: 100%;
   }
 }
