@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useFetchProducts from '../../hooks/useFetchProducts';
 import ProductItem from './ProductItem';
 import Pagination from './Pagination';
@@ -90,7 +91,7 @@ function ProductList() {
             onKeyDown={handleKeyDown}      // Enter 키 이벤트 핸들러
           />
         </div>
-        <button className="product-register">상품 등록하기</button>
+        <Link to="/registration" className="product-register">상품 등록하기</Link>
         {isMobile ? (
           <>
             <button className="product-sort-btn" onClick={toggleSortMenu}>

@@ -17,6 +17,7 @@
   --social-login-bg: #e6f2ff;
   --link-color: #3182f6;
   --nav-divider-color: #dfdfdf;
+  --heading-text-color: #1F2937;
 }
 /* 공통 영역 */
 html {
@@ -29,11 +30,14 @@ html {
 }
 body {
   font-family: 'Pretendard', Poppins, 'Noto Sans KR', sans-serif;
-  color: var(--text-color); /* 기본 글꼴 색상 */
+  color: var(--text-color);           /* 기본 글꼴 색상 */
   background: var(--background-color); /* 기본 배경 색상 */
   margin: 0;
   padding: 0;
 }
 a {
   text-decoration: none;
+}
+button {
+  font-family: inherit;             /* 부모 요소의 폰트 스타일을 상속 */
 }

@@ -1,0 +1,94 @@
+.form {
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--background-color);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.4rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--heading-text-color);
+  line-height: 2.4rem;
+}
+
+.formGroup {
+  margin-bottom: 3.2rem;
+}
+
+.label {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.input {
+  width: 100%;
+  height: 5.6rem;
+  border-radius: 1.2rem;
+  padding: 1.6rem 2.4rem;
+  background-color: var(--input-background-color);
+  border: none;
+}
+
+.textarea {
+  width: 100%;
+  height: 28.2rem;
+  border-radius: 1.2rem;
+  padding: 1.6rem 2.4rem;
+  border: none;
+  background-color: var(--input-background-color);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--input-placeholder-color);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  background-color: #e5e7eb;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  color: var(--text-color);
+}
+
+.removeTagButton {
+  margin-left: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+.submitButton {
+  width: 7.4rem;
+  height: 4.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  padding: 1.2rem 2.3rem;
+  background-color: #9CA3AF;
+}
+
+.addTagButton {
+  margin-left: 10px;
+}
