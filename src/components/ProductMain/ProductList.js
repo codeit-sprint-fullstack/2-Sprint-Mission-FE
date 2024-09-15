@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFetchProducts from '../../hooks/useFetchProducts';
+import useMaxitems from '../../hooks/useMaxItems';
 import ProductItem from './ProductItem';
 import Pagination from './Pagination';
 import sortIcon from '../../assets/images/btn_sort.png'; 
 import searchIcon from '../../assets/images/icon/ic_search.png';
 import './ProductList.css';
+import useIsMobile from '../../hooks/useIsMobile';
 
 function ProductList() {
-  const [maxItems, setMaxItems] = useState(10);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 743);
+  const maxItems = useMaxitems();
+  const isMobile = useIsMobile();
   const [isSortMenuVisible, setSortMenuVisible] = useState(false);
   const [searchKeyword, setSearchKeyowrd] = useState('');
 
@@ -27,24 +29,6 @@ function ProductList() {
 
   // totalCount를 사용하여 totalPages 계산
   const totalPages = Math.ceil(totalCount / maxItems); 
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 743);
-      if (window.innerWidth >= 1200) {
-        setMaxItems(10);
-      } else if (window.innerWidth >= 744) {
-        setMaxItems(6);
-      } else {
-        setMaxItems(4);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const toggleSortMenu = () => {
     setSortMenuVisible((prev) => !prev);
