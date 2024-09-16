@@ -95,7 +95,6 @@ export default function Products() {
   useEffect(() => {
     const fetchProducts = async () => {
       await getProductList();
-      await getTotalItemCount();
       getPagingPages();
     };
 
