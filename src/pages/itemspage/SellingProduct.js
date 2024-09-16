@@ -11,7 +11,7 @@ function SellingProduct({ product }) {
         <div className={styles.price}>{price}원</div>
         <div className={styles.favoriteCount}>
           <img className={styles.favoriteCountImg} src={heart} />
-          {favoriteCount} id:{id}
+          {favoriteCount}
         </div>
       </div>
     </div>

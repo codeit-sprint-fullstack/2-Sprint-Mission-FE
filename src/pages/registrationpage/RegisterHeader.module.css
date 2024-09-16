@@ -21,19 +21,16 @@
     padding: 1.2rem 2.3rem;
     gap: 10px;
     border-radius: 0.8rem;
-    opacity: 0px;
     display: flex;
     font-size: 1.6rem;
     font-weight: 600;
     text-align: left;
     align-items: center;
     color: #F3F4F6;
-    background: #9CA3AF;
+    background: #3692FF;
     border: none;
 }
 
-@media(max-width: 1199px) {
-    .headerText {
-        height: 2.4rem;
-    }
+.headerButton.error {
+    background: #9CA3AF;
 }

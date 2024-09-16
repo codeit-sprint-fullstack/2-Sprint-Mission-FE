@@ -3,7 +3,7 @@ const instance = axios.create({
   baseURL: "https://pandamarket-zyyr.onrender.com/products"
   // timeout: 5000,
 });
-function validatePositiveInteger(data) {
+export function validatePositiveInteger(data) {
   if (Number.isInteger(data) && data > 0) {
     return true;
   } else {
