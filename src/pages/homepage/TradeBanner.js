@@ -1,4 +1,5 @@
 import styles from "./TradeBanner.module.css";
+import { Link } from "react-router-dom";
 
 import shoppingImage from "./image/shopping_image.png";
 function TradeBanner() {
@@ -9,7 +10,9 @@ function TradeBanner() {
           일상의 모든 물건을
           <br /> 거래해 보세요
         </div>
-        <button className={styles.button}>구경하러 가기</button>
+        <Link to="/items">
+          <button className={styles.button}>구경하러 가기</button>
+        </Link>
       </div>
       <img className={styles.image} src={shoppingImage} />
     </div>
