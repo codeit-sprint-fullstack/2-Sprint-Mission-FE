@@ -8,7 +8,7 @@ function SafeTradeNoticeBanner() {
         <br />
         판다마켓 중고 거래
       </div>
-      <img className={styles.image} src={tradeImage} />
+      <img className={styles.image} src={tradeImage} alt="거래하는이미지" />
     </div>
   );
 }

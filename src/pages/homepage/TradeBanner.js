@@ -14,7 +14,7 @@ function TradeBanner() {
           <button className={styles.button}>구경하러 가기</button>
         </Link>
       </div>
-      <img className={styles.image} src={shoppingImage} />
+      <img className={styles.image} src={shoppingImage} alt="홍보하는이미지" />
     </div>
   );
 }

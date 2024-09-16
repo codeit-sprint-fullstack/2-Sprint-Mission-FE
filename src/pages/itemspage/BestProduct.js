@@ -3,7 +3,7 @@ import heart from "./image/heart.png";
 function BestProduct({ name, price, image, favoriteCount, description }) {
   return (
     <div className={styles.bestProduct}>
-      <img className={styles.productImg} src={image} />
+      <img className={styles.productImg} src={image} alt="상품이미지" />
 
       <div className={styles.productInfo}>
         <div className={styles.productTitle}>{name}</div>
