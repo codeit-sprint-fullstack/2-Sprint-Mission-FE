@@ -1,5 +1,4 @@
 import styles from "./RegisterProductDescription.module.css";
-import { useState } from "react";
 function RegisterProductDescription({
   fieldStatus,
   errorMessage,

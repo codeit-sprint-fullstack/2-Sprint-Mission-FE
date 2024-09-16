@@ -6,7 +6,6 @@ function CommonBanner({ name }) {
   if (!name) {
     return;
   }
-  const br = <br />;
   const checkSeltor = {
     image: checkImage,
     title: "Hot item",

@@ -1,6 +1,6 @@
 import "./style/PageButton.css";
 function PageButton({ buttonPage, onChangePage, pageInfo, children }) {
-  const { currentPage, totalPage } = pageInfo;
+  const { currentPage } = pageInfo;
   const handleChangePageClick = () => {
     onChangePage(buttonPage);
   };
@@ -11,8 +11,13 @@ function PageButton({ buttonPage, onChangePage, pageInfo, children }) {
   };
 
   return (
-    <button id="page-button" onClick={handleChangePageClick}
-      className={highlightCurrentPage(buttonPage) ? 'current-page' : 'not-current-page'}>
+    <button
+      id="page-button"
+      onClick={handleChangePageClick}
+      className={
+        highlightCurrentPage(buttonPage) ? "current-page" : "not-current-page"
+      }
+    >
       {children}
     </button>
   );

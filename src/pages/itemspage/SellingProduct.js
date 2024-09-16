@@ -2,7 +2,7 @@ import styles from "./SellingProduct.module.css";
 import heart from "./image/heart.png";
 import defaultImage from "./image/default_image.png";
 function SellingProduct({ product }) {
-  const { images, name, favoriteCount, price, id } = product;
+  const { name, favoriteCount, price } = product;
   return (
     <div id="selling-product" className={styles.product}>
       <img src={defaultImage} className={styles.img} />

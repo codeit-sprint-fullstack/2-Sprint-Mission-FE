@@ -1,5 +1,4 @@
 import styles from "./RegisterProductPrice.module.css";
-import { useState } from "react";
 function RegisterProductPrice({
   fieldStatus,
   errorMessage,

@@ -47,7 +47,6 @@ function useValidation() {
         const { status, message } = await validateTags(tags, value);
         updateState("tags", status, message);
         return { status, message };
-        break;
       }
       default:
         break;

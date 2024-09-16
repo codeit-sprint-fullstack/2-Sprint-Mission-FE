@@ -1,5 +1,4 @@
 import styles from "./RegisterProductTag.module.css";
-import { useEffect, useState } from "react";
 import xImage from "./image/tagximage.png";
 function RegisterProductTag({
   fieldStatus,

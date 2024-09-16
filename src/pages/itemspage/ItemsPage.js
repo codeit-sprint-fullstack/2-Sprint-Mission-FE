@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../../api/ProductService.js";
 
 function ItemsPage() {
-  const [bestList, setBestList] = useState([]);
   const [sellingList, setSellingList] = useState([]);
   const [order, setOrder] = useState("recent");
   const [keyword, setKeyword] = useState("");
@@ -15,20 +14,9 @@ function ItemsPage() {
   const TABLET_WIDTH = 744;
 
   const getPageSize = (width) => {
-    if (width > PC_WIDTH)
-      return {
-        bestList: 4,
-        sellingList: 10
-      };
-    if (width > TABLET_WIDTH)
-      return {
-        bestList: 2,
-        sellingList: 6
-      };
-    return {
-      bestList: 1,
-      sellingList: 4
-    };
+    if (width > PC_WIDTH) return 10;
+    if (width > TABLET_WIDTH) return 6;
+    return 4;
   };
   const [pageSize, setPageSize] = useState(getPageSize(window.innerWidth));
 
@@ -40,10 +28,6 @@ function ItemsPage() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const handleBestLoad = async (options) => {
-    const { list, totalCount } = await getProducts(options);
-    setBestList(list);
-  };
   const handleSellingLoad = async (options) => {
     const { list, totalCount } = await getProducts(options);
     setSellingList(list);
@@ -69,17 +53,15 @@ function ItemsPage() {
   const handleChangeKeyword = (inputKeyword) => setKeyword(inputKeyword);
 
   useEffect(() => {
-    handleBestLoad({ pageSize: pageSize.bestList, orderBy: "favoriteCount" });
     handleSellingLoad({
       page: currentPage,
-      pageSize: pageSize.sellingList,
+      pageSize: pageSize,
       orderBy: order,
       keyword
     });
-  }, [order, currentPage, keyword, pageSize.bestList]);
+  }, [order, currentPage, keyword, pageSize]);
 
   const totalList = {
-    bestList,
     sellingList
   };
   const pageInfo = {

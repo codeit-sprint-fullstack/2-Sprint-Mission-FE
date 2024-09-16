@@ -1,5 +1,4 @@
 import styles from "./RegisterProductName.module.css";
-import { useState } from "react";
 function RegisterProductName({
   fieldStatus,
   errorMessage,
