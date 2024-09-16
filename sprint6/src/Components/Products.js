@@ -39,22 +39,30 @@ export default function Products() {
   }, [sortLogo]);
 
   const getProductList = useCallback(async () => {
-    try {
-      const productlist = await getProducts(currentPage, pageSize, search, "recent");
-      setItems(productlist);
-    } catch (error) {
-      // Handle error if needed
-    }
-  }, [currentPage, pageSize, search]);
+    getProducts(currentPage, pageSize, search, "recent")
+      .then((productlist) => {
+        setItems(productlist);
+      })
+      .catch(
+        (error) => {
+          console.error(`Error: ${error.message}`);
+        },
+        [currentPage, pageSize, search],
+      );
+  });
 
   const getTotalItemCount = useCallback(async () => {
-    try {
-      const count = await getTotalCount(currentPage, pageSize, search, "recent");
-      setTotalPages(Math.ceil(count / pageSize));
-    } catch (error) {
-      // Handle error if needed
-    }
-  }, [currentPage, pageSize, search]);
+    getTotalCount(currentPage, pageSize, search, "recent")
+      .then((count) => {
+        setTotalPages(Math.ceil(count / pageSize));
+      })
+      .catch(
+        (error) => {
+          console.error(`Error: ${error.message}`);
+        },
+        [currentPage, pageSize, search],
+      );
+  });
 
   const getPagingPages = useCallback(() => {
     const pageArray = Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -85,16 +93,30 @@ export default function Products() {
   };
 
   useEffect(() => {
-    getProductList();
-    getTotalItemCount();
-    getPagingPages();
-    updatePageSize();
+    const fetchProducts = async () => {
+      await getProductList();
+      await getTotalItemCount();
+      getPagingPages();
+    };
 
-    const handleResize = () => updatePageSize();
+    const handleResize = () => {
+      const prevPageSize = pageSize;
+      updatePageSize();
+
+      // 페이지가 상이할 때만 새 프로덕트 불러오기
+      if (prevPageSize !== pageSize) {
+        fetchProducts();
+      }
+    };
+
     window.addEventListener("resize", handleResize);
 
+    // 처음 렌더링 될 때 실행시키기
+    fetchProducts();
+
     return () => window.removeEventListener("resize", handleResize);
-  }, [getProductList, getTotalItemCount, getPagingPages, updatePageSize]);
+    // 함수들 제거, 원래 의존성으로 복귀
+  }, [currentPage, pageSize]);
 
   return (
     <section>
