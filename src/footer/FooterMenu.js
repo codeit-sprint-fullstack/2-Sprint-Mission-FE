@@ -5,7 +5,7 @@ function FooterMenu({ type, className, children, image }) {
   } else if (type === "linkText") {
     return <div className={`${className} ${styles.font}`}>{children}</div>;
   } else if (type === "linkImage") {
-    return <img src={image}></img>;
+    return <img src={image} alt="링크이미지"></img>;
   }
   return <div></div>;
 }
