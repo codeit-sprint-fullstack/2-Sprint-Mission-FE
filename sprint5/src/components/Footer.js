@@ -2,34 +2,33 @@ import facebook from '../images/ic_facebook.png';
 import twitter from '../images/ic_twitter.png';
 import youtube from '../images/ic_youtube.png';
 import instagram from '../images/ic_instagram.png';
-import '../css/Footer.css';
+import styles from '../css/Footer.module.css';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="footer-content">
-        <div className="footer-elements">
-          <div className="footer-info">@codeit-2024</div>
-          <div className="footer-customer-service">
-            <a href="./privacy">Privacy Policy</a>
-            <a href="./faq">FAQ</a>
-          </div>
-          <div className="sns">
-            <a href="https://www.facebook.com/?locale=ko_KR" target="_blank">
-              <img className="sns-logo" src={facebook} alt="페이스북" />
-            </a>
-            <a href="https://x.com/?lang=ko" target="_blank">
-              <img className="sns-logo" src={twitter} alt="트위터" />
-            </a>
-            <a href="https://www.youtube.com/" target="_blank">
-              <img className="sns-logo" src={youtube} alt="유튜브" />
-            </a>
-            <a href="https://www.instagram.com/" target="_blank">
-              <img className="sns-logo" src={instagram} alt="인스타그램" />
-            </a>
-          </div>
+    <div className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.info}>@codeit-2024</div>
+        <div className={styles.service}>
+          <Link to="/privacy">Privacy Policy</Link>
+          <Link to="/faq">FAQ</Link>
+        </div>
+        <div className={styles.sns}>
+          <Link to="https://www.facebook.com/?locale=ko_KR" target="_blank">
+            <img className={styles.snsLogo} src={facebook} alt="페이스북" />
+          </Link>
+          <Link to="https://x.com/?lang=ko" target="_blank">
+            <img className={styles.snsLogo} src={twitter} alt="트위터" />
+          </Link>
+          <Link to="https://www.youtube.com/" target="_blank">
+            <img className={styles.snsLogo} src={youtube} alt="유튜브" />
+          </Link>
+          <Link to="https://www.instagram.com/" target="_blank">
+            <img className={styles.snsLogo} src={instagram} alt="인스타그램" />
+          </Link>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }

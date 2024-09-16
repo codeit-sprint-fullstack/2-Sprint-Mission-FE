@@ -4,10 +4,9 @@
   z-index: 99999;
 
   display: flex;
+  justify-content: center;
   align-items: center;
 
-  width: 100%;
-  max-width: 120rem;
   height: 4.375rem;
 
   margin: auto;
@@ -20,14 +19,16 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 12.5rem;
-
+  max-width: 120rem;
   width: 100%;
+
+  margin: 0 12.5rem;
 }
 
 .leftSection {
   display: flex;
   align-items: center;
+
   gap: 1rem;
 }
 
@@ -49,7 +50,6 @@
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.625rem;
-  text-align: center;
 
   list-style: none;
 
@@ -61,10 +61,12 @@
 }
 
 .auth {
+  padding: 0.75rem 3.125rem;
+
+  border-radius: 0.5rem;
+
   color: white;
   background-color: #3292FF;
-  padding: 0.75rem 3.125rem;
-  border-radius: 0.5rem;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {

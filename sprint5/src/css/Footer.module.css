@@ -1,0 +1,58 @@
+.footer {
+  display: flex;
+  justify-content: center;
+
+  height: 10rem;
+
+  margin: auto;
+
+  color: #F3F4F6;
+  font-weight: 400;
+  line-height: 1.1875rem;
+
+  background-color: #111827;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+
+  max-width: 120rem;
+  width: 100%;
+
+  padding: 2rem 0;
+  margin: 0 12.5rem;
+
+  text-wrap: nowrap;
+
+  gap: 1.875rem;
+}
+
+.info {
+  color: #9CA3AF;
+}
+
+.service {
+  display: flex;
+
+  gap: 1.25rem;
+}
+
+.service a {
+  color: #E5E7EB;
+  font-weight: 400;
+}
+
+.sns {
+  display: flex;
+  justify-content: center;
+
+  gap: 0.75rem;
+}
+
+.snsLogo {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+@media (max-width: 743px) {}
