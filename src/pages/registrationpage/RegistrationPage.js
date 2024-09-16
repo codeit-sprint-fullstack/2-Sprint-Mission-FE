@@ -7,29 +7,20 @@ import RegisterProductDescription from "./RegisterProductDescription.js";
 import RegisterProductPrice from "./RegisterProductPrice.js";
 import RegisterProductTag from "./RegisterProductTag.js";
 import { createProduct } from "../../api/ProductService.js";
+import useValidation from "../../hooks/useValidation.js";
 function RegistrationPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [tags, setTags] = useState([]);
-  const [validationErrors, setValidationErrors] = useState({
-    name: "INITIAL",
-    description: "INITIAL",
-    price: "INITIAL",
-    tags: "INITIAL"
-  });
-  const checkValidationErrors = () =>
-    Object.values(validationErrors).every((value) => value === "PASS");
+  const { fieldStatus, errorMessage, validate } = useValidation();
   const navigate = useNavigate();
 
   const onChange = {
     name: (value) => setName(value),
     description: (value) => setDescription(value),
     price: (value) => setPrice(value),
-    tags: (value) => {
-      if (tags.length === 0) setTags([value]);
-      else setTags((prev) => [...prev, value]);
-    }
+    tags: (value) => setTags((prev) => [...prev, value])
   };
 
   const onSubmit = async () => {
@@ -44,37 +35,34 @@ function RegistrationPage() {
 
   const onDeleteTag = (index) =>
     setTags((prevTags) => prevTags.filter((tag, i) => i !== index));
-  const onValidate = (fieldName, isVlid) => {
-    const validationResult = isVlid === true ? "PASS" : "ERROR";
-    setValidationErrors((prev) => ({
-      ...prev,
-      [fieldName]: validationResult
-    }));
-  };
   return (
     <div className={styles.page}>
       <div className={styles.contents}>
-        <RegisterHeader onSubmit={onSubmit} isValid={checkValidationErrors()} />
+        <RegisterHeader onSubmit={onSubmit} fieldStatus={fieldStatus} />
         <RegisterProductName
+          fieldStatus={fieldStatus.name}
+          errorMessage={errorMessage.name}
+          validate={validate}
           onChange={onChange.name}
-          onValidate={onValidate}
-          error={validationErrors.name}
         />
         <RegisterProductDescription
+          fieldStatus={fieldStatus.description}
+          errorMessage={errorMessage.description}
+          validate={validate}
           onChange={onChange.description}
-          onValidate={onValidate}
-          error={validationErrors.description}
         />
         <RegisterProductPrice
+          fieldStatus={fieldStatus.price}
+          errorMessage={errorMessage.price}
+          validate={validate}
           onChange={onChange.price}
-          onValidate={onValidate}
-          error={validationErrors.price}
         />
         <RegisterProductTag
+          fieldStatus={fieldStatus.tags}
+          errorMessage={errorMessage.tags}
+          validate={validate}
           onChange={onChange.tags}
           onDelete={onDeleteTag}
-          onValidate={onValidate}
-          error={validationErrors.tags}
           tags={tags}
         />
       </div>
