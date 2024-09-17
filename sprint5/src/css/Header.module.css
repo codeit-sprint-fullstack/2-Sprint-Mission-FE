@@ -69,13 +69,23 @@
   background-color: #3292FF;
 }
 
+/* -- Tablet -- */
 @media (min-width: 744px) and (max-width: 1199px) {
+  .container {
+    margin: 0 1.5rem;
+  }
+
   .menu {
     font-size: 1rem;
   }
 }
 
-@media (max-width: 743px) {
+/* -- Mobile -- */
+@media screen and (min-width:375px) and (max-width:743px) {
+  .container {
+    margin: 0 1rem;
+  }
+
   .menu {
     font-size: 0.875rem;
   }

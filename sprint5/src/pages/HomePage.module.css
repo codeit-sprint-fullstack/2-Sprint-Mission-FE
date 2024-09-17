@@ -1,7 +1,10 @@
-.main {
+.layout {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    max-width: 120rem;
+    margin: auto;
 
     background-color: #ffffff;
 }
@@ -15,10 +18,7 @@
 
     padding: 9.375rem 0 0;
 
-    max-width: 120rem;
     width: 100%;
-
-    margin: auto;
 
     background-color: #CFE5FF;
 }
@@ -71,18 +71,24 @@
     height: 24.8125rem;
 }
 
+.main {
+    margin: 0 auto;
+}
+
 .mainContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    width: 61.75rem;
-
-    margin: 8.625rem 21.5rem;
+    margin: 8.625rem 0;
 
     background-color: #FCFCFC;
 
     gap: 4rem;
+}
+
+.main> :nth-child(2) {
+    text-align: right;
 }
 
 .mainImg {
@@ -107,168 +113,88 @@
     line-height: 2rem;
 }
 
-.middleContent {
-    text-align: right;
+/* -- Tablet -- */
+@media screen and (min-width:744px) and (max-width:1199px) {
+    .banner {
+        padding: 2rem 0 0;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+
+        gap: 7rem;
+    }
+
+    .br {
+        display: inline-block;
+        content: " ";
+    }
+
+    .mainContainer {
+        flex-direction: column;
+        align-items: flex-start;
+
+        background: none;
+
+        gap: 1rem;
+    }
+
+    .main> :nth-child(2) {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+    }
 }
 
 /* -- Mobile -- */
 @media screen and (min-width:375px) and (max-width:742px) {
-    .top-bar {
-        margin: 0 1rem;
-    }
-
     .banner {
-        height: 100%;
-        padding: 8rem 0 0;
+        padding: 2rem 0 0;
     }
 
-    .banner-elements {
+    .container {
         flex-direction: column;
         align-items: center;
 
-        gap: 1rem;
-    }
-
-    .banner-heading {
         text-align: center;
+        gap: 7rem;
     }
 
-    .banner-top-img {
+    .topImg {
         padding: 0 2rem;
         width: 100%;
         height: 100%;
     }
 
-    .banner-bottom-img {
+    .bottomImg {
         padding: 0 2rem;
         width: 100%;
         height: 100%;
     }
 
-    .main-top {
-        padding: 0;
+    .main .mainContainer .content .heading .br {
+        display: inline-block;
+        content: " ";
     }
 
-    .main-top-elements {
+    .mainContainer {
         flex-direction: column;
         align-items: flex-start;
+
+        padding: 0 2rem;
+
         gap: 1rem;
     }
 
-    .main-img {
-        padding: 0 2rem;
+    .mainImg {
         width: 100%;
         height: 100%;
     }
 
-    .main-content {
-        padding: 0 2rem;
-    }
-
-    .main-middle {
-        padding: 0;
-    }
-
-    .main-middle-elements {
+    .main> :nth-child(2) {
         flex-direction: column-reverse;
         align-items: flex-end;
+
         gap: 1rem;
-    }
-
-    .main-bottom {
-        padding: 0;
-    }
-
-    .main-bottom-elements {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .main-content h1 br {
-        display: inline-block;
-        content: " ";
-    }
-
-    .footer-elements {
-        padding: 2rem 1rem;
-    }
-}
-
-/* -- Tablet -- */
-@media screen and (min-width:744px) and (max-width:1199px) {
-    .top-bar {
-        margin: 0 1.5rem;
-    }
-
-    .banner {
-        height: 100%;
-        padding: 8rem 0 0;
-    }
-
-    .banner-elements {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .banner-content {
-        align-items: center;
-    }
-
-    .banner-heading {
-        text-align: center;
-    }
-
-    .banner-top h1 br {
-        display: inline-block;
-        content: " ";
-    }
-
-    .banner-bottom div {
-        gap: 3rem;
-    }
-
-    .main-top {
-        padding: 0;
-    }
-
-    .main-top-elements {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .main-content {
-        padding: 0;
-    }
-
-    .main-middle {
-        padding: 0;
-    }
-
-    .main-middle-elements {
-        flex-direction: column-reverse;
-        align-items: flex-end;
-        gap: 1rem;
-    }
-
-    .main-bottom {
-        padding: 0;
-    }
-
-    .main-bottom-elements {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .main-content h1 br {
-        display: inline-block;
-        content: " ";
-    }
-
-    .footer-elements {
-        padding: 2rem 1.5rem;
     }
 }

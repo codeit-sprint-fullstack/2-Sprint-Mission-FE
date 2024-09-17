@@ -8,13 +8,12 @@ import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   return (
-    <main className={styles.main}>
+    <div className={styles.layout}>
       <section className={styles.banner}>
         <div className={styles.container}>
           <div className={styles.content}>
             <h1 className={styles.heading}>
-              일상의 모든 물건을
-              <br />
+              일상의 모든 물건을 <br className={styles.br} />
               거래해 보세요
             </h1>
             <button className={styles.button}>
@@ -29,70 +28,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={styles.mainContainer}>
-        <img className={styles.mainImg} src={mainTopImg} alt="메인 이미지1" />
-        <div className={styles.content}>
-          <div className={styles.bg}>Hot item</div>
-          <h1 className={styles.heading}>
-            인기 상품을
-            <br />
-            확인해 보세요
-          </h1>
-          <p className={styles.description}>
-            가장 HOT한 중고거래 물품을
-            <br />
-            판다 마켓에서 확인해 보세요
-          </p>
+      <main className={styles.main}>
+        <div className={styles.mainContainer}>
+          <img className={styles.mainImg} src={mainTopImg} alt="메인 이미지1" />
+          <div className={styles.content}>
+            <div className={styles.bg}>Hot item</div>
+            <h1 className={styles.heading}>
+              인기 상품을 <br className={styles.br} />
+              확인해 보세요
+            </h1>
+            <p className={styles.description}>
+              가장 HOT한 중고거래 물품을 <br />
+              판다 마켓에서 확인해 보세요
+            </p>
+          </div>
         </div>
-      </section>
 
-      <section className={styles.mainContainer}>
-        <div className={styles.middleContent}>
-          <div className={styles.bg}>Search</div>
-          <h1 className={styles.heading}>
-            구매를 원하는
-            <br />
-            상품을 검색하세요
-          </h1>
-          <p className={styles.description}>
-            구매하고 싶은 물품은 검색해서
-            <br />
-            쉽게 찾아보세요
-          </p>
+        <div className={styles.mainContainer}>
+          <div className={styles.content}>
+            <div className={styles.bg}>Search</div>
+            <h1 className={styles.heading}>
+              구매를 원하는 <br className={styles.br} />
+              상품을 검색하세요
+            </h1>
+            <p className={styles.description}>
+              구매하고 싶은 물품은 검색해서 <br />
+              쉽게 찾아보세요
+            </p>
+          </div>
+          <img
+            className={styles.mainImg}
+            src={mainMiddleImg}
+            alt="메인 이미지2"
+          />
         </div>
-        <img
-          className={styles.mainImg}
-          src={mainMiddleImg}
-          alt="메인 이미지2"
-        />
-      </section>
 
-      <section className={styles.mainContainer}>
-        <img
-          className={styles.mainImg}
-          src={mainBottomImg}
-          alt="메인 이미지3"
-        />
-        <div className={styles.content}>
-          <div className={styles.bg}>Register</div>
-          <h1 className={styles.heading}>
-            판매를 원하는
-            <br />
-            상품을 등록하세요
-          </h1>
-          <p className={styles.description}>
-            어떤 물건이든 판매하고 싶은 상품을
-            <br />
-            쉽게 등록하세요
-          </p>
+        <div className={styles.mainContainer}>
+          <img
+            className={styles.mainImg}
+            src={mainBottomImg}
+            alt="메인 이미지3"
+          />
+          <div className={styles.content}>
+            <div className={styles.bg}>Register</div>
+            <h1 className={styles.heading}>
+              판매를 원하는 <br className={styles.br} />
+              상품을 등록하세요
+            </h1>
+            <p className={styles.description}>
+              어떤 물건이든 판매하고 싶은 상품을 <br />
+              쉽게 등록하세요
+            </p>
+          </div>
         </div>
-      </section>
+      </main>
 
       <section className={styles.banner}>
         <div className={styles.container}>
           <h1 className={styles.heading}>
-            믿을 수 있는
-            <br />
+            믿을 수 있는 <br className={styles.br} />
             판다마켓 중고 거래
           </h1>
           <img
@@ -102,6 +96,6 @@ export default function HomePage() {
           />
         </div>
       </section>
-    </main>
+    </div>
   );
 }

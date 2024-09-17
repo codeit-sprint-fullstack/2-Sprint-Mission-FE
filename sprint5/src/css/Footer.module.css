@@ -55,4 +55,16 @@
   height: 1.125rem;
 }
 
-@media (max-width: 743px) {}
+/* -- Tablet -- */
+@media screen and (min-width:744px) and (max-width:1199px) {
+  .container {
+    margin: 0 1.5rem;
+  }
+}
+
+/* -- Mobile -- */
+@media screen and (min-width:375px) and (max-width:742px) {
+  .container {
+    margin: 0 1rem;
+  }
+}
