@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/OrderMenu.css';
+import styles from '../css/OrderMenu.module.css';
 import arrowDown from '../images/ic_arrow_down.png';
 import sortIcon from '../images/ic_sort.png';
 import { useSort } from '../contexts/SortContext';
@@ -20,19 +20,19 @@ const OrderMenu = () => {
   };
 
   return (
-    <div className="order-menu">
-      <div className="order-menu-selected" onClick={() => setIsOpen(!isOpen)}>
+    <div className={styles.menu}>
+      <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>
         {options.find((option) => option.value === sortOrder)?.label ||
           'Select...'}
-        <img className="sort-icon" src={arrowDown} />
-        <img className="mobile-sort-icon" src={sortIcon} />
       </div>
+      <img className={styles.icon} src={arrowDown} />
+      <img className={styles.mobile} src={sortIcon} />
       {isOpen && (
-        <div className="order-menu-options">
+        <div className={styles.options}>
           {options.map((option) => (
             <div
               key={option.value}
-              className="order-menu-option"
+              className={styles.option}
               onClick={() => handleOptionClick(option.value)}
             >
               {option.label}
