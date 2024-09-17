@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Pagination.css';
+import styles from '../css/Pagination.module.css';
 import prevBtn from '../images/status=active@2x.png';
 import nextBtn from '../images/status=active@2x-1.png';
 
@@ -19,13 +19,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   }
 
   return (
-    <div className="pagination">
+    <div className={styles.pagination}>
       <button
         onClick={() => handleClick(currentPage - 1)}
         disabled={currentPage === 1}
-        className="pagination-nav-button"
+        className={styles.button}
       >
-        <img src={prevBtn} />
+        <img src={prevBtn} className={styles.img} />
       </button>
 
       {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
@@ -33,7 +33,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           key={startPage + index}
           onClick={() => handleClick(startPage + index)}
           disabled={currentPage === startPage + index}
-          className={currentPage === startPage + index ? 'active' : ''}
+          className={
+            currentPage === startPage + index ? styles.active : styles.button
+          }
         >
           {startPage + index}
         </button>
@@ -42,9 +44,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => handleClick(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="pagination-nav-button"
+        className={styles.button}
       >
-        <img src={nextBtn} />
+        <img src={nextBtn} className={styles.img} />
       </button>
     </div>
   );
