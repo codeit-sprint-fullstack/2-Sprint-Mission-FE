@@ -8,7 +8,7 @@ function NavMenu({ children, to }) {
   }
   return (
     <NavLink to={to} style={getLinkStyle}>
-      <div className={styles.menu}>{children}</div>
+      <li className={styles.menu}>{children}</li>
     </NavLink>
   );
 }
