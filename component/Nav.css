@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 68px;
+  background-color: #ffffff;
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: #dfdfdf;
+}
+
+.nav {
+  align-items: center;
+  width: 1920px;
+  height: 68px;
+  justify-content: space-between;
+  padding: 0 200px;
+  display: flex;
+}
+
+.title {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.select {
+  gap: 10px;
+  display: flex;
+}
+
+.freeBoard,
+.secondHand {
+  padding: 21px 15px;
+}
+
+.kim-code {
+  padding: 12px 23px;
+  gap: 10px;
+  align-items: center;
+}
