@@ -1,154 +1,104 @@
-html,
-body {
-    margin: 0 auto;
-    padding: 0;
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
+    background-color: #ffffff;
+}
+
+.banner {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 9.375rem 0 0;
+
+    max-width: 120rem;
     width: 100%;
 
-    font-size: 16px;
+    margin: auto;
 
-    color: #374151;
-    font-family: "Pretendard Variable", Pretendard, sans-serif;
+    background-color: #CFE5FF;
 }
 
-/* --- a 태그 기본 설정 --- */
-a {
-    cursor: pointer;
-    /* 
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 1.625rem;*/
-    /* color: #F3F4F6; */
-    text-decoration: none;
-    /* text-align: center; */
-}
-
-/* --- section 기본 설정 --- */
-section {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.banner {
-    background-color: #CFE5FF;
-}
-
-/* --- 상위 배너 설정 --- */
-.banner-top {
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-
-    padding: 9.375rem 0 0;
-
-    width: 100%;
-    max-width: 120rem;
-    height: 33.75rem;
-}
-
-.banner-elements {
-    position: absolute;
-    bottom: 0;
-
-    display: flex;
-    justify-content: center;
-}
-
-.banner-top-button {
-    background-color: #3292FF;
-    border-radius: 1.25rem;
-
-    padding: 0.625rem 2.1875rem;
-
-    width: 22.3rem;
-    height: 3.5rem;
-
-    color: #F3F4F6;
-    font-size: 1.25rem;
-    line-height: 2rem;
-}
-
-.banner-top-img {
-    Width: 46.625rem;
-    Height: 21.25rem;
-}
-
-/* --- 배너 기본 설정 --- */
-.banner-content {
+.content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
+
+    padding: 0 0 3.75rem 0;
 }
 
-.banner-heading {
+.heading {
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 3.5rem;
 }
 
-/* --- 하위 배너 설정 --- */
-.banner-bottom {
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-
-    padding: 6.25rem 0 0;
-
+.button {
     width: 100%;
-    max-width: 120rem;
-    height: 33.75rem;
+    height: 3.5rem;
+
+    padding: 1rem 7.75rem;
+
+    background-color: #3292FF;
+    border-radius: 2.5rem;
+    border: none;
 }
 
-.banner-bottom-img {
+.button a {
+    color: #F3F4F6;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.topImg {
+    Width: 46.625rem;
+    Height: 21.25rem;
+}
+
+.bottomImg {
     width: 46.625rem;
     height: 24.8125rem;
 }
 
-
-/* --- main 기본 설정 --- */
-main {
+.mainContainer {
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
-    padding: 6.25rem 0;
-    gap: 6.25rem;
+    width: 61.75rem;
+
+    margin: 8.625rem 21.5rem;
+
+    background-color: #FCFCFC;
+
+    gap: 4rem;
 }
 
-.main-content {
-    display: flex;
-    flex-direction: column;
-
-    padding: 4rem;
-}
-
-.main-bg {
-    font-size: 1.125rem;
-    font-weight: 700;
-    line-height: 1.625rem;
-    color: #3692FF;
-}
-
-.main-img {
+.mainImg {
     width: 36.75rem;
     height: 27.75rem;
     border-radius: 0.75rem;
 }
 
-.main-heading {
-    margin: 0;
-    padding: 0.625rem 0;
-
-    font-size: 2.5rem;
+.bg {
+    color: #3692FF;
+    font-size: 1.125rem;
     font-weight: 700;
-    line-height: 3.5rem;
+    line-height: 1.625rem;
 }
 
-.main-description {
+.description {
     margin: 0;
     padding: 0;
 
@@ -157,76 +107,8 @@ main {
     line-height: 2rem;
 }
 
-.main-area {
-    background-color: #ffffff;
-}
-
-.main-top {
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding-right: 18.75rem;
-
-    width: 100%;
-    max-width: 120rem;
-    height: 45rem;
-}
-
-.main-top-elements {
-    position: absolute;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.main-middle {
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding-left: 18.75rem;
-
-    width: 100%;
-    max-width: 120rem;
-    height: 45rem;
-
+.middleContent {
     text-align: right;
-}
-
-.main-middle-elements {
-    position: absolute;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.main-bottom {
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding-right: 18.75rem;
-
-    width: 100%;
-    max-width: 120rem;
-    height: 45rem;
-}
-
-.main-bottom-elements {
-    position: absolute;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 /* -- Mobile -- */
