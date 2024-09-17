@@ -1,4 +1,4 @@
-import '../css/ProductList.css';
+import styles from '../css/ProductList.module.css';
 import { useState } from 'react';
 import useQuery from '../hooks/useQuery';
 import { getProductList } from '../api';
@@ -6,26 +6,7 @@ import Pagination from './Pagination';
 import ProductListBar from './ProductListBar';
 import useResize from '../hooks/useResize';
 import { SortProvider, useSort } from '../contexts/SortContext';
-import defaultImg from '../images/img_default.png';
-
-function formatPrice(price) {
-  return new Intl.NumberFormat().format(price);
-}
-
-function ProductListItem({ item }) {
-  const { name, price, favoriteCount } = item;
-
-  return (
-    <div className="product-item">
-      <img className="product-item-img" src={defaultImg} alt={name} />
-      <div className="product-info">
-        <span className="product-name">{name}</span>
-        <span className="product-price">{formatPrice(price)}원</span>
-        <span className="product-favorite">♡ {favoriteCount}</span>
-      </div>
-    </div>
-  );
-}
+import ProductCard from './ProductCard';
 
 function ProductListContent() {
   const { sortOrder } = useSort();
@@ -51,7 +32,7 @@ function ProductListContent() {
   // 데이터 정렬 및 필터링
   const sortedItems = data.sort((a, b) => {
     if (sortOrder === 'recent') {
-      return new Date(b.createdAt) - new Date(a.createdAt); // 날짜 비교로 수정
+      return new Date(b.createdAt) - new Date(a.createdAt);
     }
   });
   //   if (sortOrder === 'favorite') {
@@ -72,16 +53,14 @@ function ProductListContent() {
   );
 
   return (
-    <section>
+    <section className={styles.layout}>
       <ProductListBar keyword={keyword} onSearch={setKeyword} />
-      <div className="products">
-        <div className="product-list">
-          {currentItems.map((item) => (
-            <div key={item.id}>
-              <ProductListItem item={item} />
-            </div>
-          ))}
-        </div>
+      <div className={styles.list}>
+        {currentItems.map((item) => (
+          <div key={item.id}>
+            <ProductCard item={item} />
+          </div>
+        ))}
       </div>
       <Pagination
         currentPage={currentPage}

@@ -63,8 +63,9 @@
 }
 
 /* -- Mobile -- */
-@media screen and (min-width:375px) and (max-width:742px) {
+@media screen and (max-width:743px) {
   .container {
+    flex-wrap: wrap;
     margin: 0 1rem;
   }
 }

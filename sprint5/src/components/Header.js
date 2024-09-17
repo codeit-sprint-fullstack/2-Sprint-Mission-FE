@@ -33,9 +33,9 @@ export default function Header() {
             </li>
           </ul>
         </div>
-        <Link to="/login" className={styles.auth}>
-          로그인
-        </Link>
+        <button className={styles.auth}>
+          <Link to="/login">로그인</Link>
+        </button>
       </div>
     </div>
   );

@@ -1,0 +1,60 @@
+.product {
+    display: flex;
+    flex-direction: column;
+
+    width: 13.75rem;
+
+    gap: 1rem;
+}
+
+.img {
+    width: 13.75rem;
+    height: 13.75rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+.price {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+}
+
+.favorite {
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.125rem;
+}
+
+/* -- Tablet -- */
+@media (min-width: 744px) and (max-width: 1199px) {
+    .product {
+        width: auto;
+    }
+
+    .img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* -- Mobile -- */
+@media screen and (min-width:375px) and (max-width:743px) {
+    .product {
+        width: auto;
+    }
+
+    .img {
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -1,0 +1,42 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 75rem;
+
+    padding: 0 1rem;
+    margin: 1rem auto;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    margin-top: 1rem;
+    gap: 2.5rem 1.25rem;
+}
+
+/* -- Tablet -- */
+@media (min-width: 744px) and (max-width: 1199px) {
+    .layout {
+        max-width: 43.5rem;
+    }
+
+    .list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* -- Mobile -- */
+@media screen and (max-width:743px) {
+    .layout {
+        width: 21.5rem;
+    }
+
+    .list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+}
