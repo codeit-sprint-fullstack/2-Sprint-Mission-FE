@@ -1,5 +1,5 @@
-import defaultImg from '../images/img_default.png';
 import styles from '../css/ProductCard.module.css';
+import defaultImg from '../images/img_default.png';
 
 function formatPrice(price) {
   return new Intl.NumberFormat().format(price);

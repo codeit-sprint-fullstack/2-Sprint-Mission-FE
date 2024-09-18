@@ -1,6 +1,6 @@
+import styles from '../css/Header.module.css';
 import siteLogo from '../images/logo.png';
 import mobileLogo from '../images/Property 1=Typo.png';
-import styles from '../css/Header.module.css';
 import { Link, NavLink } from 'react-router-dom';
 
 function getLinkStyle({ isActive }) {

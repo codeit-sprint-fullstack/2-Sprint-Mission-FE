@@ -1,9 +1,9 @@
+import styles from './HomePage.module.css';
 import bannerTopImg from '../images/Img_home_top.png';
 import bannerBottomImg from '../images/Img_home_bottom.png';
 import mainTopImg from '../images/Img_home_01.png';
 import mainMiddleImg from '../images/Img_home_02.png';
 import mainBottomImg from '../images/Img_home_03.png';
-import styles from './HomePage.module.css';
 import { Link } from 'react-router-dom';
 
 export default function HomePage() {

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import styles from '../css/OrderMenu.module.css';
 import arrowDown from '../images/ic_arrow_down.png';
 import sortIcon from '../images/ic_sort.png';
+import { useState } from 'react';
 import { useSort } from '../contexts/SortContext';
 
 const OrderMenu = () => {

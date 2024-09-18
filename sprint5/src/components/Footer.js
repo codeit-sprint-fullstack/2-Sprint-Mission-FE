@@ -1,8 +1,8 @@
+import styles from '../css/Footer.module.css';
 import facebook from '../images/ic_facebook.png';
 import twitter from '../images/ic_twitter.png';
 import youtube from '../images/ic_youtube.png';
 import instagram from '../images/ic_instagram.png';
-import styles from '../css/Footer.module.css';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {

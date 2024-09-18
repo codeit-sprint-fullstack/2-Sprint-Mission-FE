@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import X from '../images/ic_X.png';
 import styles from '../css/Tags.module.css';
+import X from '../images/ic_X.png';
+import { useState } from 'react';
 
 const Tags = ({ tags, setTags }) => {
   const [inputValue, setInputValue] = useState('');

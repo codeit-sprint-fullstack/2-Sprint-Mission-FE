@@ -1,6 +1,6 @@
 import ProductList from '../components/ProductList';
 
-export default function Products() {
+export default function ProductListPage() {
   return (
     <>
       <ProductList />

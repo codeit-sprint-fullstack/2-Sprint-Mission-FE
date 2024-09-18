@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../css/Pagination.module.css';
 import prevBtn from '../images/status=active@2x.png';
 import nextBtn from '../images/status=active@2x-1.png';

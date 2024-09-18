@@ -1,5 +1,5 @@
-import searchIcon from '../images/ic_search.png';
 import styles from '../css/ProductListBar.module.css';
+import searchIcon from '../images/ic_search.png';
 import OrderMenu from './OrderMenu';
 import { Link } from 'react-router-dom';
 

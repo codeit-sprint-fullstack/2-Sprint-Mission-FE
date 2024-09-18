@@ -1,12 +1,12 @@
 import styles from '../css/ProductList.module.css';
-import { useState } from 'react';
-import useQuery from '../hooks/useQuery';
-import { getProductList } from '../api';
-import Pagination from './Pagination';
 import ProductListBar from './ProductListBar';
-import useResize from '../hooks/useResize';
-import { SortProvider, useSort } from '../contexts/SortContext';
 import ProductCard from './ProductCard';
+import Pagination from './Pagination';
+import useQuery from '../hooks/useQuery';
+import useResize from '../hooks/useResize';
+import { getProductList } from '../api';
+import { useState } from 'react';
+import { SortProvider, useSort } from '../contexts/SortContext';
 
 function ProductListContent() {
   const { sortOrder } = useSort();
