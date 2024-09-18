@@ -87,7 +87,7 @@ export default function RegistrationForm() {
         <div className={styles.form}>
           <label htmlFor="price">판매가격</label>
           <input
-            type="number"
+            type="text"
             id="price"
             value={values.price}
             onChange={handleChange}

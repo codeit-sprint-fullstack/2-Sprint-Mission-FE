@@ -33,7 +33,7 @@
 .form input {
     width: 100%;
 
-    margin: 1rem 0;
+    margin: 1rem 0 0.5rem;
     padding: 1rem 1.5rem;
     border-radius: 0.75rem;
 
@@ -52,7 +52,7 @@
     width: 100%;
     height: 17.625rem;
 
-    margin: 1rem 0;
+    margin: 1rem 0 0.5rem;
     padding: 1rem 1.5rem;
     border-radius: 0.75rem;
 
@@ -85,6 +85,7 @@
 
 .error {
     color: red;
+    font-size: 0.875rem;
 }
 
 @media screen and (min-width: 744px) and (max-width: 1199px) {

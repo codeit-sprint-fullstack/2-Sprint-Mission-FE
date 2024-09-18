@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import styles from '../css/Tags.module.css';
+import { useState } from 'react';
 import X from '../images/ic_X.png';
+import styles from '../css/Tags.module.css';
 
 const Tags = ({ tags, setTags }) => {
   const [inputValue, setInputValue] = useState('');
@@ -53,45 +53,18 @@ const Tags = ({ tags, setTags }) => {
         onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
         placeholder="태그를 입력하고 엔터를 누르세요"
+        style={{ border: errorMessage.tags ? '1px solid red' : 'none' }}
       />
-      {errorMessage && (
-        <div style={{ color: 'red', fontSize: '12px' }}>{errorMessage}</div>
-      )}
+      {errorMessage && <div className={styles.error}>{errorMessage}</div>}
       <div>
         {tags.map((tag, index) => (
-          <div
-            key={index}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              padding: '6px 12px 6px 16px',
-              background: '#F3F4F6',
-              borderRadius: '36px',
-              fontWeight: 400,
-              fontSize: '16px',
-              lineHeight: '26px',
-              height: '36px'
-            }}
-          >
-            {tag}
+          <div key={index} className={styles.chip}>
+            #{tag}
             <button
               onClick={() => handleTagRemove(index)}
-              style={{
-                marginLeft: '5px',
-                cursor: 'pointer',
-                backgroundColor: 'none',
-                border: 'none'
-              }}
+              className={styles.remove}
             >
-              <img
-                src={X}
-                alt="X"
-                style={{
-                  width: '20px',
-                  height: '20px',
-                  backgroundColor: 'none'
-                }}
-              />
+              <img src={X} alt="X" className={styles.icon} />
             </button>
           </div>
         ))}
