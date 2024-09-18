@@ -90,12 +90,12 @@
 
 @media screen and (min-width: 744px) and (max-width: 1199px) {
     .container {
-        width: 43.5rem;
+        width: auto;
     }
 }
 
 @media screen and (max-width: 743px) {
     .container {
-        width: 21.5rem;
+        width: auto;
     }
 }
