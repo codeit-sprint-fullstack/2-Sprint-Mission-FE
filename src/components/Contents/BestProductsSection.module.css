@@ -1,0 +1,19 @@
+.bestProductsSection {
+    width: 100%;
+    height: 42.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media(max-width: 1199px) {
+    .bestProductsSection {
+        height: 43.4rem;
+    }
+}
+
+@media(max-width: 743px) {
+    .bestProductsSection {
+        height: 48.2rem;
+    }
+}

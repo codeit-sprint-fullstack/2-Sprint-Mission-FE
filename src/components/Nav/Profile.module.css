@@ -1,0 +1,66 @@
+.loginProfile {
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.isLoggedIn {
+    width: 10rem;
+    height: 4rem;
+    display: flex;
+}
+
+.image {
+    width: 4rem;
+    height: 4rem;
+}
+
+.nickname {
+    width: 4.5rem;
+    height: 1.9rem;
+    color: #4B5563;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.936rem;
+    text-align: left;
+    margin-left: 0.6rem;
+}
+
+.loginProfile {
+    display: none;
+}
+
+.loginButton {
+    width: 8.8rem;
+    height: 4.2rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    background: #3692FF;
+    color: #F3F4F6;
+    border-radius: 0.8rem;
+}
+
+@media(max-width: 1199px) {
+    .loginProfile {
+        display: flex;
+    }
+
+    .loginButton {
+        display: none;
+    }
+}
+
+@media(max-width: 743px) {
+    .loginProfile {
+        display: flex;
+    }
+
+    .nickname {
+        display: none;
+    }
+
+    .loginButton {
+        display: none;
+    }
+}
