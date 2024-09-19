@@ -1,0 +1,108 @@
+@charset "UTF-8";
+@import url(../styles/color.css);
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #dfdfdf; /*color pallet에 없어서 임의로 추가*/
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1120px;
+  margin: 0 200px;
+}
+
+.logoMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 21px;
+}
+
+#logo {
+  width: 153px;
+  height: 52px;
+}
+
+.menu a {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-gray-600);
+  text-decoration: none;
+}
+
+.login {
+  cursor: pointer;
+  background-color: var(--color-primary-100);
+  width: 88px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  color: var(--color-gray-100);
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-gray-100);
+    background-color: var(--color-primary-200);
+    transition: 0.3s;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  body {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 16px;
+    margin: 0 0;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .logoMenu {
+    gap: 10px;
+  }
+
+  #logo {
+    width: 103px;
+    height: 51px;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  body {
+    max-width: 100%;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 42px;
+    margin: 0 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    max-width: 100%;
+  }
+}

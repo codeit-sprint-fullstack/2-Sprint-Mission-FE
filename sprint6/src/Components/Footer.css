@@ -1,0 +1,65 @@
+@charset "UTF-8";
+@import url(../styles/color.css);
+
+footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 125px;
+  background-color: var(--color-gray-900);
+  padding: 35px 0;
+}
+
+.footerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1120px;
+  margin: 0 200px;
+}
+
+#copyright {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-gray-400);
+}
+
+.externalPageContainer {
+  display: flex;
+  gap: 30px;
+}
+
+.externalPage {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-gray-200);
+  text-decoration: none;
+}
+
+.snsContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.snsLogo {
+  cursor: pointer;
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .footerContainer {
+    margin: 0 42px;
+  }
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  body {
+    max-width: 100%;
+  }
+
+  .footerContainer {
+    width: 100%;
+    padding: 0 42px;
+    margin: 0 0;
+  }
+}
