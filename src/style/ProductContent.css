@@ -1,0 +1,48 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+.productContent {
+  width: 221px;
+  height: 317px;
+}
+
+.productImg {
+  width: 221px;
+  height: 221px;
+  border-radius: 16px;
+}
+
+.productContent {
+  color: #1f2937;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.productPrice {
+  color: #1f2937;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.heartImg {
+  width: 13.4px;
+  height: 11.65px;
+}
+
+.heartCount {
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
