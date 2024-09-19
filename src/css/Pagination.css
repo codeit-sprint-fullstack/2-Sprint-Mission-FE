@@ -1,0 +1,38 @@
+.paginationWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 1.9rem 0 14rem 0;
+}
+
+button {
+  width: 4rem;
+  height: 4rem;
+  font-weight: 600;
+  background-color: #ffffff;
+  border-radius: 99rem;
+  border: 0.1rem solid #E5E7EB;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: #6B7280;
+}
+
+.pageBtns {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.pageBtns button.active {
+  background-color: #2F80ED;
+  color: #F9FAFB;
+  border: none;
+}
+
+.pageBtns button:disabled {
+  cursor: not-allowed;
+  background-color: #ffffff;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {}
+
+@media (max-width: 743px) {}
