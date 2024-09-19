@@ -1,0 +1,15 @@
+.menu {
+    height: 100%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.6rem;
+    text-align: center;
+    padding: 2.1rem 1.5rem;
+    opacity: 0px;
+}
+
+@media(max-width: 743px) {
+    .menu {
+        font-size: 1.6rem;
+    }
+}

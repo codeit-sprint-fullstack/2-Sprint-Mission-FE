@@ -1,0 +1,39 @@
+/* 박스 모델 설정 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Pretendard-Regular', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    white-space: nowrap;
+}
+
+/* 기본 폰트 설정 */
+body {
+    font-family: 'Pretendard-Regular', sans-serif;
+    line-height: 1.6;
+    font-size: 62.5%;
+}
+
+button {
+    font-family: 'Pretendard-Regular', sans-serif;
+}
+
+/* 링크 스타일 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 기타 기본 스타일 */
+ul,
+ol {
+    list-style: none;
+}

@@ -1,0 +1,68 @@
+.footerBar {
+    width: 152rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.text {
+    width: 11.2rem;
+    height: 1.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.font {
+    font-family: Pretendard;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+    color: #E5E7EB;
+}
+
+.textContainer {
+    width: 15.9rem;
+    height: 1.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imageContainer {
+    width: 11.6rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media(max-width: 1199px) {
+    .footerBar {
+        width: 69.6rem;
+    }
+}
+
+@media(max-width: 743px) {
+    .footerBar {
+        width: 34.3rem;
+        height: 6.3rem;
+        display: grid;
+        grid-template-areas:
+            "p l"
+            "c .";
+        align-content: space-between;
+
+    }
+
+    .text {
+        grid-area: c;
+    }
+
+    .textContainer {
+        grid-area: p;
+    }
+
+    .imageContainer {
+        grid-area: l;
+    }
+}

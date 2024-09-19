@@ -1,0 +1,14 @@
+#page-entire {
+    width: 30.4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#page-button-list {
+    width: 21.6rem;
+    height: 100%;
+    display: flex;
+    list-style: none;
+    gap: 0.4rem;
+}

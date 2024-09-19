@@ -1,0 +1,10 @@
+.logoImage {
+    width: 4rem;
+    height: 4.014rem;
+}
+
+@media(max-width: 743px) {
+    .logoImage {
+        display: none;
+    }
+}

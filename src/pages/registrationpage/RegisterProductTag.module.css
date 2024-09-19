@@ -1,0 +1,81 @@
+.tags {
+    width: 100%;
+    height: 17.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container {
+    width: 100%;
+    height: 13.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.label {
+    width: 100%;
+    height: 2.6rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: left;
+    color: #1F2937;
+}
+
+.input {
+    width: 100%;
+    height: 5.6rem;
+    padding: 1.5rem 2.4rem;
+    border-radius: 1.2rem;
+    border: 0.1rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+    background: #F3F4F6;
+}
+
+.guide {
+    width: 100%;
+    height: 2.4rem;
+    padding-left: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2.4rem;
+    text-align: left;
+    border: none;
+    color: #F74747;
+}
+
+.tagList {
+    width: 100%;
+    height: 3.6rem;
+    display: flex;
+    gap: 1.2rem;
+}
+
+.inputTag {
+    height: 100%;
+    display: flex;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2.6rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+    text-align: left;
+    align-items: center;
+    background: #F3F4F6;
+}
+
+.button {
+    width: 2.2rem;
+    height: 2.4rem;
+    border: none;
+    margin-left: 0.8rem;
+}
+
+.input.error {
+    border: 0.1rem solid #F74747;
+}

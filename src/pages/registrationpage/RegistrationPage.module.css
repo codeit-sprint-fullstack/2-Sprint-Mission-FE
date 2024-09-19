@@ -1,0 +1,35 @@
+.page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contents {
+    width: 120rem;
+    height: 92.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 2.6rem;
+    margin-bottom: 7.6rem;
+}
+
+@media(max-width: 1199px) {
+    .contents {
+        width: 69.6rem;
+        height: 92.8rem;
+        margin-top: 1.8rem;
+        margin-bottom: 22.6rem;
+    }
+
+}
+
+@media(max-width: 743px) {
+    .contents {
+        width: 34.4rem;
+        height: 94.4rem;
+        margin-top: 2.4rem;
+        margin-bottom: 5.8rem;
+    }
+
+}

@@ -1,0 +1,47 @@
+.contents {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.checkMarginTop {
+    margin-top: 0;
+}
+
+.searchRegisterMarginTop {
+    margin-top: 0;
+}
+
+.safetyMarginTop {
+    margin-top: 13.8rem;
+}
+
+@media(max-width: 1199px) {
+    .checkMarginTop {
+        margin-top: 2.4rem;
+    }
+
+    .searchRegisterMarginTop {
+        margin-top: 5.2rem;
+    }
+
+    .safetyMarginTop {
+        margin-top: 5.6rem;
+    }
+}
+
+@media(max-width: 743px) {
+    .checkMarginTop {
+        margin-top: 5.2rem;
+    }
+
+    .searchRegisterMarginTop {
+        margin-top: 4rem;
+    }
+
+    .safetyMarginTop {
+        margin-top: 8.3rem;
+    }
+}
