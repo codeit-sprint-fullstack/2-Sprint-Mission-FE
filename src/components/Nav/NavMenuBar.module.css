@@ -1,0 +1,17 @@
+.menuBar {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    align-items: center;
+    padding: 2.1rem 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.6rem;
+    text-align: center;
+}
+
+@media(max-width: 743px) {
+    .menuBar {
+        padding: 2.2rem 0;
+    }
+}

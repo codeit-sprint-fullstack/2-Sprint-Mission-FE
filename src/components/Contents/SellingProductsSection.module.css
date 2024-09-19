@@ -1,0 +1,13 @@
+.sellingProductsSeciton {
+    width: 100%;
+    height: 74rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media(max-width: 743px) {
+    .sellingProductsSeciton {
+        height: 68.8rem;
+    }
+}

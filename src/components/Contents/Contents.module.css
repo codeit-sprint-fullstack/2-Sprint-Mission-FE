@@ -1,0 +1,39 @@
+.contents {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.productsEntire {
+    margin-top: 2.6rem;
+}
+
+.pageEntire {
+    margin-top: 4.3rem;
+    margin-bottom: 14rem;
+}
+
+@media(max-width: 1199px) {
+    .productsEntire {
+        margin-top: 2.4rem;
+    }
+
+    .pageEntire {
+        margin-top: 4rem;
+        margin-bottom: 16.5rem;
+    }
+}
+
+@media(max-width: 743px) {
+    .productsEntire {
+        margin-top: 1.7rem;
+    }
+
+    .pageEntire {
+        margin-top: 4rem;
+        margin-bottom: 13.5rem;
+    }
+}

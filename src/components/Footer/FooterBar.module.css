@@ -1,0 +1,54 @@
+.footerBar {
+    width: 152rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.textBox {
+    width: 15.9rem;
+    height: 1.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgBox {
+    width: 11.6rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width: 1199px) {
+    .footerBar {
+        width: 69.6rem;
+    }
+}
+
+/* .codeit */
+
+@media(max-width: 743px) {
+    .footerBar {
+        width: 34.3rem;
+        height: 6.3rem;
+        display: grid;
+        grid-template-areas:
+            "t i"
+            "c .";
+        align-content: space-between;
+    }
+
+    .codeit {
+        margin: 0;
+        grid-area: c;
+    }
+
+    .textBox {
+        grid-area: t;
+    }
+
+    .imgBox {
+        grid-area: i;
+    }
+}

@@ -1,0 +1,21 @@
+.textMenu {
+    width: 11.2rem;
+    height: 1.9rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.909rem;
+    text-align: center;
+}
+
+.htmlLink {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.909rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.webLink {
+    width: 2rem;
+    height: 2rem;
+}
