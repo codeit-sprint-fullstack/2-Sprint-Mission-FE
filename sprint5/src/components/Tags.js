@@ -53,7 +53,7 @@ const Tags = ({ tags, setTags }) => {
         onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
         placeholder="태그를 입력하고 엔터를 누르세요"
-        style={{ border: errorMessage.tags ? '1px solid red' : 'none' }}
+        style={{ border: errorMessage ? '1px solid red' : 'none' }}
       />
       {errorMessage && <div className={styles.error}>{errorMessage}</div>}
       <div>
