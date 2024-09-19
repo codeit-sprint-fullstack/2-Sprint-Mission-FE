@@ -6,38 +6,57 @@ const instance = axios.create({
 });
 
 async function getProductList(params = {}) {
-  return instance
-    .get(`/items`, { params })
-    .then((res) => res.data)
-    .catch((error) => console.log("Request failed:", error.message));
+  if (typeof params !== 'object') {
+    throw new Error('params should be an object');
+  }
+
+  return instance.get(`/products`, {params})
+  .then((res) => res.data)
+  .catch((error) =>  console.log('Request failed:', error.message));
 }
 
 async function getProduct(id) {
-  return instance
-    .get(`/items${id}`)
-    .then((res) => res.data)
-    .catch((error) => console.log("Request failed:", error.message));
+  if (typeof id !== 'string' || id.trim() === '') {
+    throw new Error('id should be a non-empty string');
+  }
+
+  return instance.get(`/products${id}`)
+  .then((res) => res.data)
+  .catch((error) =>  console.log('Request failed:', error.message));
 }
 
 async function createProduct(articleData) {
-  return instance
-    .post(`/items`, articleData)
-    .then((res) => res.data)
-    .catch((error) => console.log("Request failed:", error.message));
+  if (typeof articleData !== 'object' || Array.isArray(articleData)) {
+    throw new Error('articleData should be an object');
+  }
+
+  return instance.post(`/products`, articleData)
+  .then((res) => res.data)
+  .catch((error) =>  console.log('Request failed:', error.message));
 }
 
 async function patchProduct(id, articleData) {
-  return instance
-    .patch(`/items${id}`, articleData)
-    .then((res) => res.data)
-    .catch((error) => console.log("Request failed:", error.message));
+  if (typeof id !== 'string' || id.trim() === '') {
+    throw new Error('id should be a non-empty string');
+  }
+
+  if (typeof articleData !== 'object' || Array.isArray(articleData)) {
+    throw new Error('articleData should be an object');
+  }
+
+  return instance.patch(`/products${id}`, articleData)
+  .then((res) => res.data)
+  .catch((error) =>  console.log('Request failed:', error.message));
 }
 
 async function deleteProduct(id) {
-  return instance
-    .delete(`/items${id}`)
-    .then((res) => `${res.status} ${res.statusText} ${res.message}`)
-    .catch((error) => console.log("Request failed:", error.message));
+  if (typeof id !== 'string' || id.trim() === '') {
+    throw new Error('id should be a non-empty string');
+  }
+  
+  return instance.delete(`/products${id}`)
+  .then((res) => `${res.status} ${res.statusText} ${res.message}`)
+  .catch((error) =>  console.log('Request failed:', error.message));
 }
 
 export {

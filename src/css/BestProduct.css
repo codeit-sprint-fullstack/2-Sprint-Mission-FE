@@ -1,0 +1,33 @@
+.title {
+font-size: 2rem;
+font-weight: 700;
+line-height: 3.2rem;
+color: #111827;
+}
+
+.bestItemSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  max-width: 120rem;
+}
+
+.bestItems {
+  display: grid;
+  gap: 2.4rem;
+  list-style-type: none;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .bestItems {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .bestItems {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

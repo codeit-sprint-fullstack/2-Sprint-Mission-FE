@@ -3,15 +3,21 @@ import styles from './BestProduct.module.css';
 import { getProductList } from '../api.js';
 import { useCallback, useEffect, useState } from 'react';
 
+const TABLET_WIDTH = 1200
+const MOBILE_WIDTH = 744
+const PC_PAGE_SIZE = 4
+const TABLET_PAGE_SIZE = 2
+const MOBILE_PAGE_SIZE = 1
+
 function getPageSize() {
   const width = window.innerWidth;
 
-  if (width >= 1200) {
-    return 4;
-  } else if (width >= 744) {
-    return 2;
+  if (width >= TABLET_WIDTH) {
+    return PC_PAGE_SIZE;
+  } else if (width >= MOBILE_WIDTH) {
+    return TABLET_PAGE_SIZE;
   } else {
-    return 1;
+    return MOBILE_PAGE_SIZE;
   }
 }
 
@@ -39,12 +45,12 @@ export default function BestProduct() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 744) {
-        setPageSize(1);
-      } else if (window.innerWidth < 1200) {
-        setPageSize(2);
+      if (window.innerWidth < MOBILE_WIDTH) {
+        setPageSize(MOBILE_PAGE_SIZE);
+      } else if (window.innerWidth < TABLET_WIDTH) {
+        setPageSize(TABLET_PAGE_SIZE);
       } else {
-        setPageSize(4);
+        setPageSize(PC_PAGE_SIZE);
       }
     };
 
