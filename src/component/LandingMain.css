@@ -211,8 +211,8 @@
 
 .landing-bottom-content {
   display: flex;
-  justify-content: end;
   flex-direction: column;
+  align-items: center;
 }
 
 .landing-bottom-title {
@@ -222,4 +222,9 @@
   font-size: 40px;
   line-height: 56px;
   color: #374151;
+}
+
+.landing-bottom-img {
+  justify-content: center;
+  display: flex;
 }

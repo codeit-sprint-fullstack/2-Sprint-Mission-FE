@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useItem from "./hook/useItem";
 import Item from "./Item";
 import search from "../assets/ic_search.svg";
@@ -82,7 +83,7 @@ const ItemList = () => {
     <div className="itemList">
       <div className="itemHeader">
         <p>판매중인 상품</p>
-        <div className="search">
+        <div className="searchIcon">
           <img src={search} alt="Search" />
           <input
             type="text"
@@ -90,7 +91,9 @@ const ItemList = () => {
             className="searchInput"
           />
         </div>
-        <button className="updateProduct">상품 등록하기</button>
+        <Link to="/registration">
+          <button className="updateProduct">상품 등록하기</button>
+        </Link>
         <div className="dropdown" onClick={toggleDropdown}>
           <div className="dropdownSelect">
             {!mobile && (orderBy === "recent" ? "최신순" : "좋아요순")}
