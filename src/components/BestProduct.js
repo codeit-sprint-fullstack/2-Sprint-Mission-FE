@@ -9,12 +9,6 @@ const PC_PAGE_SIZE = 4;
 const TABLET_PAGE_SIZE = 2;
 const MOBILE_PAGE_SIZE = 1;
 
-const TABLET_WIDTH = 1200
-const MOBILE_WIDTH = 744
-const PC_PAGE_SIZE = 4
-const TABLET_PAGE_SIZE = 2
-const MOBILE_PAGE_SIZE = 1
-
 function getPageSize() {
   const width = window.innerWidth;
 
