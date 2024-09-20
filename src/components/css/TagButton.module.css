@@ -1,0 +1,15 @@
+.tag-button {
+  background-color: var(--gray-100);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.6rem 1.2rem 0.6rem 1.6rem;
+  border-radius: 26px;
+
+  height: 3.6rem;
+}
+
+.tag-button img {
+  margin-left: 0.8rem;
+}

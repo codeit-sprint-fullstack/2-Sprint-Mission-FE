@@ -1,0 +1,31 @@
+#itemsPage {
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+#bestProductWrapper {
+  margin: 2.4rem auto 4rem auto;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 1199px) {
+  #itemsPage {
+    padding: 0 2.4rem;
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* Mobile */
+@media (max-width: 743px) {
+  #bestProductWrapper {
+    max-width: 36rem;
+  }
+
+  #itemsPage {
+    padding: 0 1.6rem;
+  }
+}
