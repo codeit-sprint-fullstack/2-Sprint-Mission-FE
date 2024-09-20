@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import "./Header.css";
+import "./RendingHeader.css";
 import logoImg from "../assets/logoImg.svg";
 import mobileLogoImg from "../assets/mobileLogoImg.svg";
+import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function RendingHeader() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -23,28 +24,9 @@ export default function Header() {
 
   return (
     <header>
-      <a className="logo" href="/" target="_self">
+      <Link to="/">
         <img id="logo" alt="logo" src={isMobile ? mobileLogoImg : logoImg} />
-      </a>
-      <nav className="navbar">
-        <ul className="navbarMenu">
-          <li>
-            <a className="navbarList" href="/자유게시판">
-              자유게시판
-            </a>
-          </li>
-          <li>
-            <a
-              id="secondhandText"
-              className="navbarList"
-              href="/중고마켓"
-              target="_self"
-            >
-              중고마켓
-            </a>
-          </li>
-        </ul>
-      </nav>
+      </Link>
       <div className="user">
         <a href="/login" target="_self">
           <button className="userBtn">로그인</button>

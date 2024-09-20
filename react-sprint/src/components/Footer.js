@@ -1,8 +1,8 @@
 import "./Footer.css";
-import icFacebook from "../imgs/facebookImg.svg";
-import icTwitter from "../imgs/twitterImg.svg";
-import icYoutube from "../imgs/youtubeImg.svg";
-import icInstagram from "../imgs/instagranImg.svg";
+import icFacebook from "../assets/facebookImg.svg";
+import icTwitter from "../assets/twitterImg.svg";
+import icYoutube from "../assets/youtubeImg.svg";
+import icInstagram from "../assets/instagranImg.svg";
 
 export default function Footer() {
   return (

@@ -1,0 +1,97 @@
+.rendingSection3 {
+  width: 100%;
+  height: 47rem;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pandaTwoBox {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+
+.rendingSection3 h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  font-family: Pretendard;
+  line-height: 5rem;
+  text-align: left;
+  color: var(--gray-color);
+  white-space: nowrap;
+}
+
+.pandaTwoImg {
+  width: 46.625rem;
+  height: 24.8125rem;
+  position: relative;
+  top: 0.1rem;
+}
+
+.pandaTwoText {
+  position: relative;
+  bottom: 11rem;
+  gap: 10px;
+  margin-top: 3.75rem;
+}
+
+/* PC */
+@media screen and (min-width: 1200px) {
+  .pandaTwoImg {
+    width: 746px;
+    height: 397px;
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 1199px) {
+  .rendingSection3 {
+    width: 100%;
+    height: 70rem;
+  }
+  .pandaTwoBox {
+    width: 100%;
+  }
+  .pandaTwoText {
+    width: 100%;
+    position: absolute;
+    top: 10rem;
+  }
+  .pandaTwoText h1 {
+    font-size: 3rem;
+    text-align: center;
+    line-height: 5.2rem;
+  }
+  .pandaTwoImg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* mobile */
+@media screen and (min-width: 375px) and (max-width: 744px) {
+  .rendingSection3 {
+    width: 100%;
+    height: 60rem;
+  }
+  .pandaTwoBox {
+    width: 100%;
+  }
+  .pandaTwoText {
+    width: 100%;
+    position: absolute;
+    top: 6rem;
+  }
+  .pandaTwoText h1 {
+    font-size: 3rem;
+    text-align: center;
+  }
+  .pandaTwoImg {
+    width: 100%;
+    height: auto;
+  }
+}

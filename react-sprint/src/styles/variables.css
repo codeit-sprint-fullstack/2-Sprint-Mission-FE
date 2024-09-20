@@ -1,21 +1,29 @@
 /* variables.css */
 :root {
+  --background-color: #cfe5ff;
+
   --primary-blue-300: #1251aa;
   --primary-blue-200: #1967d6;
-  --primary-blue-100: #3692ff;
+  --primary-blue-150: #3182f6; /*--secondary-color-blue*/
+  --primary-blue-100: #3692ff; /*--blue-color*/
   --primary-blue: #2f80ed;
+  --primary-white: #fcfcfc; /*--secondary-color-gray*/
 
-  --secondary-black-900: #111827;
-  --secondary-black-800: #1f2937;
-  --secondary-gray-700: #374151;
-  --secondary-gray-600: #4b5563;
+  --secondary-black-900: #111827; /*--black-color*/
+  --secondary-black-800: #1f2937; /*--secondary-color-black*/
+  --secondary-gray-700: #374151; /*--gray-color*/
+  --secondary-gray-600: #4b5563; /*--secondary-color-gray600*/
   --secondary-gray-500: #6b7280;
-  --secondary-gray-400: #9ca3af;
-  --secondary-white-300: #dfdfdf;
+  --secondary-gray-400: #9ca3af; /*--secondary-color-gray100*/
+  --secondary-white-350: #dfdfdf; /*--secondary-color-gray500*/
+  --secondary-white-300: #dfdfdf; /*--secondary-color-gray500*/
+  --secondary-white-250: #e6f2ff; /*--secondary-color-gray300*/
   --secondary-white-200: #e5e7eb;
-  --secondary-white-100: #f3f4f6;
+  --secondary-white-150: #f9fafb; /*--secondary-color-gray400*/
+  --secondary-white-100: #f3f4f6; /*--secondary-color-white*/
   --secondary-white-50: #f9fafb;
-  --secondary-white: #ffffff;
+  --secondary-white: #ffffff; /*--white-color*/
+  --secondary-yello: #f5e14b; /*--yellyow-color*/
 
   --error-color: #f74747;
 }

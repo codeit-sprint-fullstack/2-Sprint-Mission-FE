@@ -1,0 +1,276 @@
+.rendingSection2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12.5rem;
+  background-color: val(--secondary-white);
+  gap: 10rem;
+}
+
+.check,
+.register,
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkBox,
+.registerBox,
+.searchBox {
+  width: 90rem;
+  background-color: var(--primary-white);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkImg,
+.searchImg,
+.registerImg {
+  width: 36.75rem;
+  height: 27.75rem;
+  border-radius: 12px;
+}
+
+.checkTextBox,
+.searchTextBox,
+.registerTextBox {
+  display: flex;
+  flex-direction: column;
+  margin-right: 3rem;
+  gap: 1.25rem;
+}
+
+.checkOneText,
+.searchOneText,
+.registerOneText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.check h5,
+.search h5,
+.register h5 {
+  text-align: left;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.625rem;
+  font-family: Pretendard;
+  color: var(--primary-blue-100);
+  position: relative;
+  bottom: 1.25rem;
+}
+
+.check h2,
+.search h2,
+.register h2 {
+  font-family: Pretendard;
+  font-size: 3.2rem;
+  font-weight: 700;
+  text-align: left;
+  line-height: 4.2rem;
+  letter-spacing: 0.02em;
+  color: var(--gray-color);
+  position: relative;
+}
+
+.check h4,
+.search h4,
+.register h4 {
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 3.2rem;
+  text-align: left;
+  color: var(--gray-color);
+  position: relative;
+}
+
+/* serach add-element*/
+
+.searchTextBox {
+  padding-left: 1.25rem;
+}
+
+.search h5,
+.search h2,
+.search h4 {
+  text-align: right;
+}
+
+/* register add-element */
+.register {
+  margin-bottom: 8.625rem;
+}
+.registerTextBox {
+  padding-left: 1.3rem;
+}
+
+@media screen and (min-width: 1920px) {
+  .section {
+    width: 192rem;
+  }
+}
+
+/* PC */
+@media screen and (min-width: 1200px) {
+  .checkImg,
+  .searchImg,
+  .registerImg {
+    width: 58rem;
+    height: 44rem;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 745px) and (max-width: 1199px) {
+  .rendingSection2 {
+    position: relative;
+    bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .check,
+  .search,
+  .register {
+    width: 100%;
+  }
+  .checkImg,
+  .searchImg,
+  .registerImg {
+    width: 100%;
+    height: auto;
+  }
+  .checkBox,
+  .searchBox,
+  .registerBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0 2.4rem;
+  }
+  .checkTextBox,
+  .searchTextBox,
+  .registerTextBox {
+    width: 100%;
+    margin: 0;
+    padding: 0 1.5rem;
+    gap: 0.5rem;
+  }
+  .searchTextBox {
+    order: 1;
+  }
+  .checkOneText {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+  .checkOneText h2,
+  .searchOneText h2,
+  .registerOneText h2 {
+    font-size: 2.3rem;
+  }
+  .checkOneText h4,
+  .searchOneText h4,
+  .registerOneText h4 {
+    font-size: 1.3rem;
+    position: relative;
+    bottom: 1.5rem;
+    white-space: pre-line;
+  }
+  .checkTextBox h5,
+  .searchTextBox h5,
+  .registerTextBox h5 {
+    font-size: 1.8rem;
+    position: relative;
+    top: 0.7rem;
+  }
+  .sectionBr {
+    display: inline-block;
+    content: " ";
+    padding: 0 0.3rem;
+  }
+}
+
+/* mobile */
+@media screen and (min-width: 375px) and (max-width: 744px) {
+  .rendingSection2 {
+    position: relative;
+    bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .check,
+  .search,
+  .register {
+    width: 100%;
+  }
+  .checkImg,
+  .searchImg,
+  .registerImg {
+    width: 100%;
+    height: auto;
+  }
+  .checkBox,
+  .searchBox,
+  .registerBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0 1.6rem;
+  }
+  .checkTextBox,
+  .searchTextBox,
+  .registerTextBox {
+    width: 100%;
+    margin: 0;
+    padding: 0 1.5rem;
+    gap: 0.5rem;
+  }
+  .searchTextBox {
+    order: 1;
+  }
+  .checkOneText {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+  .checkOneText h2,
+  .searchOneText h2,
+  .registerOneText h2 {
+    font-size: 1.5rem;
+  }
+  .checkOneText h4,
+  .searchOneText h4,
+  .registerOneText h4 {
+    font-size: 0.9rem;
+    position: relative;
+    bottom: 1.5rem;
+    white-space: pre-line;
+  }
+  .checkTextBox h5,
+  .searchTextBox h5,
+  .registerTextBox h5 {
+    position: relative;
+    top: 0.7rem;
+  }
+  .sectionBr {
+    display: inline-block;
+    content: " ";
+    padding: 0 0.3rem;
+  }
+}

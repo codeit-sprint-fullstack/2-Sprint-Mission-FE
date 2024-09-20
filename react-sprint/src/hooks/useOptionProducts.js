@@ -14,7 +14,7 @@ export default function useOptionProducts(
     const query = `page=${page}&pageSize=${pageSize}&order=${order}`;
     try {
       const response = await fetch(
-        `https://panda-market-api.vercel.app/products?${query}`
+        `https://two-sprint-mission-be-ss9z.onrender.com/products?${query}`
       );
 
       if (!response.ok) {
@@ -23,9 +23,9 @@ export default function useOptionProducts(
 
       const data = await response.json();
 
-      if (data) {
-        setItems(data.list);
-        setTotalCount(data.totalCount);
+      if (Array.isArray(data)) {
+        setItems(data);
+        setTotalCount(139);
       } else {
         setItems([]);
         setTotalCount(0);
