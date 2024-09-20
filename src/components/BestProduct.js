@@ -1,13 +1,13 @@
-import ProductItem from './ProductItem';
-import '../css/BestProduct.css';
-import { getProductList } from '../api';
-import { useCallback, useEffect, useState } from 'react';
+import ProductItem from "./ProductItem.js";
+import styles from "./BestProduct.module.css";
+import { getProductList } from "../api.js";
+import { useCallback, useEffect, useState } from "react";
 
-const TABLET_WIDTH = 1200
-const MOBILE_WIDTH = 744
-const PC_PAGE_SIZE = 4
-const TABLET_PAGE_SIZE = 2
-const MOBILE_PAGE_SIZE = 1
+const TABLET_WIDTH = 1200;
+const MOBILE_WIDTH = 744;
+const PC_PAGE_SIZE = 4;
+const TABLET_PAGE_SIZE = 2;
+const MOBILE_PAGE_SIZE = 1;
 
 function getPageSize() {
   const width = window.innerWidth;
@@ -25,21 +25,18 @@ export default function BestProduct() {
   const [bestItems, setBestItems] = useState([]);
   const [pageSize, setPageSize] = useState(getPageSize());
 
-  const handleLoadBestItem = useCallback(
-    async (params) => {
-      const data = await getProductList(params);
-      if (!data) return;
+  const handleLoadBestItem = useCallback(async (params) => {
+    const data = await getProductList(params);
+    if (!data) return;
 
-      setBestItems(data.list);
-    },
-    []
-  );
+    setBestItems(data.list);
+  }, []);
 
   useEffect(() => {
     handleLoadBestItem({
       page: 1,
       pageSize: pageSize,
-      orderBy: 'favorite'
+      orderBy: "favorite",
     });
   }, [pageSize, handleLoadBestItem]);
 
@@ -54,22 +51,22 @@ export default function BestProduct() {
       }
     };
 
-    handleResize(); 
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className='bestItemSection'>
-      <h1 className='title'>베스트 상품</h1>
-      <div className='bestItems'>
+    <div className={styles.bestItemSection}>
+      <h1 className={styles.title}>베스트 상품</h1>
+      <div className={styles.bestItems}>
         {bestItems.map((item) => {
           return (
             <li key={item.id}>
               <ProductItem item={item} classNames="BestProduct" />
             </li>
-          )
+          );
         })}
       </div>
     </div>

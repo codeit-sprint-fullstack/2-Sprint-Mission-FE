@@ -1,0 +1,17 @@
+.salesProduct {
+  display: flex;
+  padding-top: 2.4rem;
+  justify-content: center;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .salesProduct {
+    margin: 0 2.4rem 0 2.4rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .salesProduct {
+    margin: 0 1.6rem 0 1.6rem;
+  }
+}
