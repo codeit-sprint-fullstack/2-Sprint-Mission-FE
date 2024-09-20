@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  min-width: 37.1rem;       /* 갤럭시 S20+ 브라우저 사이즈가 374 x 699 */
   z-index: 1000;
   border-bottom: 0.1rem solid var(--nav-divider-color);
   background-color: var(--background-color);
@@ -45,7 +46,7 @@
 
 .gnb__nav-list li a {
   text-decoration: none;
-  color: var(--text-color);
+  color:  var(--nav-text-color);
   font-size: 1.8rem;
   font-weight: 700;
 }
@@ -68,9 +69,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.gnb__btn-login {
-  display: none;
 }
 
 .gnb__user-info {

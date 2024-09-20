@@ -1,18 +1,19 @@
 import './App.css';
 import Nav from './Nav/Nav';
+import Container from './Container';
 import Footer from './Footer/Footer';
-import ProductMain from './ProductMain/ProductMain';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Nav />
-      <main className="content with-header">
-        <ProductMain />
-      </main>
+      <Container>
+        <Outlet />
+      </Container>
       <Footer />
-    </div>
-  );
+    </>
+  )
 }
 
 export default App;

@@ -1,0 +1,19 @@
+.registerProductContainer {
+  width: 100%;
+  max-width: 120rem; 
+  margin: 0 auto;
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .registerProductContainer {
+    padding: 0 2.4rem;            /* 가운데 정렬을 유지하면서 좌우 여백을 주기 위해 padding 사용 */
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .registerProductContainer {
+    padding: 0 1.6rem; 
+  }
+}

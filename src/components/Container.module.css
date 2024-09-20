@@ -1,0 +1,8 @@
+.withHeader {
+  padding-top: 7rem;      /* margin-top 으로 했더니 ProductMain과 Footer가 겹침(이해 안됨) */
+}
+
+.content {
+  max-width: 120rem;
+  margin: 0 auto;
+}

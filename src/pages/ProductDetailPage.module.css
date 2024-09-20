@@ -1,0 +1,28 @@
+/* ProductDetailPage.module.css */
+
+.container {
+  height: calc(100vh - 7rem - 16rem - 10rem);
+}
+
+.title {
+  margin-top: 5rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.productInfo {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.loading,
+.error, 
+.noProduct {
+  height: calc(100vh - 7rem - 16rem - 10rem);
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

@@ -5,8 +5,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const isMobile = window.innerWidth <= 743; // 모바일 환경 감지
   const pageNumbers = [];
 
+  // 로딩 중이거나 totalPages가 0일 때, 페이지네이션을 표시하지 않음
+  if (totalPages <= 1) {
+    return null; 
+  }
+  
   if (isMobile) {
-    // 모바일 환경에서도 10개씩 표시
     const startPage = Math.max(1, currentPage - Math.floor(maxPageDisplay / 2));
     const endPage = Math.min(totalPages, startPage + maxPageDisplay - 1);
 
@@ -18,7 +22,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
     if (currentPage < totalPages) pageNumbers.push('>'); // 다음 버튼 추가
   } else {
-    // 데스크탑 환경에서 10개씩 표시
     pageNumbers.push(1);
 
     if (currentPage > Math.ceil(maxPageDisplay / 2)) pageNumbers.push('...');
