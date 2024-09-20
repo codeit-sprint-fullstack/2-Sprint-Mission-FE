@@ -1,9 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Header from "./components/Header";
-import BestProduct from "./components/BestProduct";
-import SaleProduct from "./components/SaleProduct";
-import Footer from "./components/Footer";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/Header.js";
+import Footer from "./components/Footer.js";
+import LandingPage from "./pages/LandingPage.js";
+import ItemsPage from "./pages/ItemsPage.js";
+import RegistrationPage from "./pages/RegistrationPage.js";
 
 function App() {
   return (
@@ -11,8 +12,11 @@ function App() {
       <div>
         <Header />
         <main>
-          <BestProduct />
-          <SaleProduct />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/items" element={<ItemsPage />} />
+            <Route path="/registration" element={<RegistrationPage />} />
+          </Routes>
         </main>
         <Footer />
       </div>

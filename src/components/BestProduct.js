@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProductContent from "./ProductContent";
+import ProductContent from "./ProductContent.js";
 import "../style/BestProduct.css";
 
 function BestProduct() {

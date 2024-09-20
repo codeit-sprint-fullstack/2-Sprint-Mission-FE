@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../style/Header.css";
 
 function Header() {
@@ -6,21 +7,21 @@ function Header() {
     <div className="nav">
       <div className="navLeft">
         <div className="logo">
-          <a href="/">
+          <Link to="/">
             <img
               className="logoImg"
               src="/img/logoImg.png"
               alt="판다마켓 로고"
             />
-          </a>
+          </Link>
         </div>
         <div>
-          <a className="community" href="/community">
+          <Link className="community" to="/community">
             자유게시판
-          </a>
-          <a className="market" href="/">
+          </Link>
+          <Link className="market" to="/items">
             중고마켓
-          </a>
+          </Link>
         </div>
       </div>
       <div className="login">

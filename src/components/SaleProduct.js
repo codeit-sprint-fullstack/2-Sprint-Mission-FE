@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
-import ProductContent from "./ProductContent";
-import Pagination from "./Pagination";
+import ProductContent from "./ProductContent.js";
+import Pagination from "./Pagination.js";
 import "../style/SaleProduct.css";
-import useMediaQuery from "../hooks/useMediaQuery";
+import useMediaQuery from "../hooks/useMediaQuery.js";
 
 function SaleProduct() {
   const [saleProduct, setSaleProduct] = useState({ list: [] });
