@@ -22,6 +22,10 @@
     color: white;
 }
 
+.button:hover img {
+    filter: brightness(0) saturate(100%) invert(100%);
+}
+
 .img {
     margin: auto;
     display: block;
