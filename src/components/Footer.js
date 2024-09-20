@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
-import icFacebook from './img/ic_facebook.svg';
-import icTwitter from './img/ic_twitter.svg';
-import icYoutube from './img/ic_youtube.svg';
-import icInstagram from './img/ic_instagram.svg';
+import icFacebook from '../assets/ic_facebook.svg';
+import icTwitter from '../assets/ic_twitter.svg';
+import icYoutube from '../assets/ic_youtube.svg';
+import icInstagram from '../assets/ic_instagram.svg';
 
 const Footer = () => {
   return (
     <footer>
       <p id="footer_codeit" className="footer">@codeit - 2024</p>
       <div id="footer_menu" className="footer">
-        <a href="/privacy" target="_self">Privacy Policy</a>
-        <a href="/faq" target="_self">FAQ</a>
+        <Link to="/privacy">Privacy Policy</Link>
+        <Link to="/faq">FAQ</Link>
       </div>
       <div id="footer_social-media" className="footer">
         <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">

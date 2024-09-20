@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import useProducts from '../hooks/useProducts';
 import ProductCard from './ProductCard';
 import './ProductList.css';
-import leftArrowImg from './img/arrow_left.svg';
-import rightArrowImg from './img/arrow_right.svg';
-import dropdownArrowImg from './img/ic_arrow_down.svg';
-import dropdownSortImg from './img/ic_sort.svg';
-import searchImg from './img/ic_search.svg';
+import leftArrowImg from '../assets/arrow_left.svg';
+import rightArrowImg from '../assets/arrow_right.svg';
+import dropdownArrowImg from '../assets/ic_arrow_down.svg';
+import dropdownSortImg from '../assets/ic_sort.svg';
+import searchImg from '../assets/ic_search.svg';
 
 const getPageSize = () => {
   const width = window.innerWidth;

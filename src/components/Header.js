@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
-import logoImg from './img/Group 19.svg';
-import mobileLogoImg from './img/판다마켓.svg';
-import userAvatar from './img/Frame 2609463.svg';
+import logoImg from '../assets/Group 19.svg';
+import mobileLogoImg from '../assets/판다마켓.svg';
+import userAvatar from '../assets/Frame 2609463.svg';
 
 const Header = () => {
   useEffect(() => {
@@ -22,11 +23,9 @@ const Header = () => {
       }
     };
 
-    // 페이지 로드 및 리사이즈 시 UI 업데이트
     window.addEventListener('resize', updateUI);
     window.addEventListener('load', updateUI);
 
-    // 최초 호출로 UI 업데이트
     updateUI();
 
     // Cleanup on unmount
@@ -38,13 +37,13 @@ const Header = () => {
 
   return (
     <header>
-      <a className="logo" href="/" target="_self">
+      <Link className="logo" to="/">
         <img id="logo" alt="logo" src={logoImg} />
-      </a>
+      </Link>
       <nav className="navbar">
         <ul className="navbar_menu">
-          <li><a className="navbar_menu_li" href="/자유게시판" target="_self">자유게시판</a></li>
-          <li><a className="navbar_menu_li" href="/중고마켓" target="_self">중고마켓</a></li>
+          <li><Link className="navbar_menu_li" to="/자유게시판">자유게시판</Link></li>
+          <li><Link className="navbar_menu_li" to="/items">중고마켓</Link></li>
         </ul>
       </nav>
       <div className="user">
