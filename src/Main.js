@@ -13,7 +13,7 @@ function Main() {
       <App>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="product" element={<Product />} />
+          <Route path="/product" element={<Product />} />
           <Route path="/items" element={<Items />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/detailpage" element={<DetailPage />} />

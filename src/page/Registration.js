@@ -25,14 +25,17 @@ function Registration() {
     }));
   };
 
-  const handleInputKeyDown = (e) => {
-    if (e.key === "Enter" && inputValue.trim() !== "") {
-      setValues((prevValues) => ({
-        ...prevValues,
-        tags: [...prevValues.tags, inputValue.trim()],
-      }));
-      setInputValue("");
-      setIsTagAdd(true);
+  const handleTagKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); //폼제출방지
+      if (inputValue.trim() !== "") {
+        setValues((prevValues) => ({
+          ...prevValues,
+          tags: [...prevValues.tags, inputValue.trim()],
+        }));
+        setInputValue("");
+        setIsTagAdd(true);
+      }
     }
   };
 
@@ -104,7 +107,7 @@ function Registration() {
           className="Tags"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={handleInputKeyDown}
+          onKeyDown={handleTagKeyDown}
           placeholder="태그를 입력해주세요"
         />
         <div className="TagName">
