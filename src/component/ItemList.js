@@ -82,7 +82,7 @@ const ItemList = () => {
     <div className="itemList">
       <div className="itemHeader">
         <p>판매중인 상품</p>
-        <div className="search">
+        <div className="searchIcon">
           <img src={search} alt="Search" />
           <input
             type="text"
