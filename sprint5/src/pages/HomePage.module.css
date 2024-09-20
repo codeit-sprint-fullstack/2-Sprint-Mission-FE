@@ -148,6 +148,16 @@
         flex-direction: column-reverse;
         align-items: flex-end;
     }
+
+    .main .mainContainer .content .heading {
+        font-size: 2rem;
+        line-height: 2.625rem;
+    }
+
+    .description {
+        font-size: 1.125rem;
+        line-height: 1.625rem;
+    }
 }
 
 /* -- Mobile -- */
@@ -200,5 +210,15 @@
         align-items: flex-end;
 
         gap: 1rem;
+    }
+
+    .main .mainContainer .content .heading {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        line-height: 1.625rem;
     }
 }
