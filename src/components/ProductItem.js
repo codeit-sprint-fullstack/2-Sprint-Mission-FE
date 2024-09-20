@@ -15,7 +15,7 @@ function isValidImageExtension(url) {
 }
 
 export default function ProductItem({ item, classNames }) {
-  const favoriteCount = `❤️ ${item.favoriteCount}`;
+  const favoriteCount = `❤️ ${item.favoriteCount || 0}`;
 
   return (
     <div className={styles[classNames]}>

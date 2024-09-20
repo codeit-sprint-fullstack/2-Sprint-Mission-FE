@@ -5,33 +5,40 @@ import { useCallback, useEffect, useState } from "react";
 import { getProductList } from "../api.js";
 import Pagination from "./Pagination.js";
 
+const TABLET_WIDTH = 1200;
+const MOBILE_WIDTH = 744;
+const PC_PAGE_SIZE = 10;
+const TABLET_PAGE_SIZE = 6;
+const MOBILE_PAGE_SIZE = 4;
+const SORT_ORDER_RECENT = "recent";
+
 function getPageSize() {
   const width = window.innerWidth;
 
-  if (width >= 1200) {
-    return 10;
-  } else if (width >= 744) {
-    return 6;
+  if (width >= TABLET_WIDTH) {
+    return PC_PAGE_SIZE;
+  } else if (width >= MOBILE_WIDTH) {
+    return TABLET_PAGE_SIZE;
   } else {
-    return 4;
+    return MOBILE_PAGE_SIZE;
   }
 }
 
 export default function SalesProduct() {
   const [salesItems, setSalesItems] = useState([]);
-  const [sortOrder, setSortOrder] = useState("recent");
+  const [sortOrder, setSortOrder] = useState(SORT_ORDER_RECENT);
   const [searchText, setSearchText] = useState("");
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(getPageSize);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 743);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_WIDTH);
 
   const handleSortOrderChange = (order) => setSortOrder(order);
 
   useEffect(() => {
     const handleResize = () => {
       setPageSize(getPageSize());
-      setIsMobile(window.innerWidth <= 743);
+      setIsMobile(window.innerWidth < MOBILE_WIDTH);
     };
 
     window.addEventListener("resize", handleResize);
@@ -44,7 +51,6 @@ export default function SalesProduct() {
   const handleLoadSalesItem = useCallback(async (params) => {
     const data = await getProductList(params);
     if (!data) return;
-
     setSalesItems(data.list);
     setTotalCount(data.totalCount);
   }, []);
@@ -66,15 +72,15 @@ export default function SalesProduct() {
         onSortOrderChange={handleSortOrderChange}
         isMobile={isMobile}
       />
-      <div className={styles.salesItems}>
+      <ul className={styles.salesItems}>
         {salesItems.map((item) => {
           return (
-            <li key={item.id}>
+            <li key={item._id}>
               <ProductItem item={item} classNames="SalesProduct" />
             </li>
           );
         })}
-      </div>
+      </ul>
       <Pagination
         page={currentPage}
         setPage={setCurrentPage}
