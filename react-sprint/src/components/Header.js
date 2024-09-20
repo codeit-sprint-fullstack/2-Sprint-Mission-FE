@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "./Header.css";
 import logoImg from "../assets/logoImg.svg";
 import mobileLogoImg from "../assets/mobileLogoImg.svg";
-import userAvatar from "../assets/userImg.svg";
 
 export default function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -21,7 +20,6 @@ export default function Header() {
   }, []);
 
   const isMobile = windowWidth <= 743;
-  const isTablet = windowWidth >= 744 && windowWidth < 1200;
 
   return (
     <header>
@@ -48,14 +46,9 @@ export default function Header() {
         </ul>
       </nav>
       <div className="user">
-        {isTablet || isMobile ? (
-          <img alt="userAvatar" src={userAvatar} />
-        ) : (
-          <a href="/login" target="_self">
-            <button className="userBtn">로그인</button>
-          </a>
-        )}
-        <p className="userName">{isTablet ? "김코드" : ""}</p>
+        <a href="/login" target="_self">
+          <button className="userBtn">로그인</button>
+        </a>
       </div>
     </header>
   );

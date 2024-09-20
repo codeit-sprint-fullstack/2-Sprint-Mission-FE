@@ -94,7 +94,7 @@ export default function ProductList() {
             className="productSearchInput"
           />
         </div>
-        <Link className="link" to={"/registration"}>
+        <Link className="link" to="/registration">
           <button className="createBtn">상품 등록하기</button>
         </Link>
         <div className="Dropdown" onClick={toggleDropdown}>
