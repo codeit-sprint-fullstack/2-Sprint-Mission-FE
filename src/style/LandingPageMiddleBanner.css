@@ -1,0 +1,143 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 2160px;
+}
+
+.middle1,
+.middle2,
+.middle3 {
+  background-color: #fcfcfc;
+  display: flex;
+}
+
+.middleRight1,
+.middleRight3 {
+  margin: 0 50px 0 0;
+}
+
+.middleLeft2 {
+  margin: 0 0 0 50px;
+}
+
+.middleImg1,
+.middleImg3 {
+  width: 588px;
+  height: 444px;
+  margin: 0 50px 0 0;
+}
+
+.middleImg2 {
+  margin: 0 0 0 50px;
+}
+
+.middleDetail1 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  color: #3692ff;
+  margin: 100px 0 15px 0;
+}
+
+.middleDetail2 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: #374151;
+  margin: 0 0 25px 0;
+}
+
+.middleDetail3 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #374151;
+}
+
+/*반응형 CSS*/
+@media (min-width: 744px) and (max-width: 1199px) {
+  .middle {
+    height: 2228px;
+  }
+  .middle1,
+  .middle2,
+  .middle3 {
+    flex-direction: column;
+  }
+  .middle2 {
+    flex-direction: column-reverse;
+  }
+  .middleLeft2 {
+    margin: 0 0 0 0;
+    text-align: right;
+  }
+  .middleImg1,
+  .middleImg2,
+  .middleImg3 {
+    width: 696px;
+    height: 524px;
+    margin: 0 0 0 0;
+  }
+  .middleDetailBr {
+    display: none;
+  }
+  .middleDetail1 {
+    margin: 15px 0 15px 0;
+  }
+  .middleDetail2 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 42px;
+  }
+  .middleDetail3 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 743px) {
+  .middle {
+    height: 1400px;
+  }
+  .middle1,
+  .middle2,
+  .middle3 {
+    flex-direction: column;
+  }
+  .middle2 {
+    flex-direction: column-reverse;
+  }
+  .middleLeft2 {
+    text-align: right;
+  }
+  .middleImg1,
+  .middleImg2,
+  .middleImg3 {
+    width: 344px;
+    height: 259px;
+    margin: 0 0 0 0;
+  }
+  .middleDetailBr {
+    display: none;
+  }
+  .middleDetail1 {
+    font-size: 16px;
+    margin: 15px 0 15px 0;
+  }
+  .middleDetail2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .middleDetail3 {
+    font-size: 16px;
+    line-height: 26px;
+  }
+}

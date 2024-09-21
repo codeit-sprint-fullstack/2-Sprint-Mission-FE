@@ -25,9 +25,9 @@ function Header() {
         </div>
       </div>
       <div className="login">
-        <a href="/login">
+        <Link className="login" to="/login">
           <button className="loginButton">로그인</button>
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,107 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+.top {
+  background-color: #cfe5ff;
+  width: 100%;
+  height: 540px;
+  display: flex;
+  justify-content: center;
+}
+
+.topLeft {
+  display: flex;
+  flex-direction: column;
+  padding: 240px 0 0 0;
+}
+
+.topRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.topDetail {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: #374151;
+  margin: 0 0 30px 0;
+}
+
+.topButton {
+  width: 357px;
+  height: 56px;
+  border-radius: 40px;
+  border-style: none;
+  background-color: #3692ff;
+  color: #f9fafb;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.topImg {
+  width: 746px;
+  height: 340px;
+}
+
+/*반응형 CSS*/
+@media (min-width: 744px) and (max-width: 1199px) {
+  .topDetailBr {
+    display: none;
+  }
+  .top {
+    height: 771px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .topLeft {
+    align-items: center;
+    padding: 70px 0 0 0;
+  }
+  .topRight {
+    height: 100%;
+  }
+  .topImg {
+    width: 744px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 743px) {
+  .top {
+    height: 540px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .topLeft {
+    align-items: center;
+    padding: 70px 0 0 0;
+  }
+  .topRight {
+    height: 100%;
+  }
+  .topDetail {
+    font-size: 32px;
+    line-height: 44.8px;
+    text-align: center;
+  }
+  .topButton {
+    width: 240px;
+    height: 48px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .topImg {
+    width: 448px;
+    height: 204px;
+  }
+}

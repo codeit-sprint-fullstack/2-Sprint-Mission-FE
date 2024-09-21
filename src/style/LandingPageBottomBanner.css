@@ -1,0 +1,81 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+.bottom {
+  background-color: #cfe5ff;
+  width: 100%;
+  height: 540px;
+  display: flex;
+  justify-content: center;
+}
+
+.bottomLeft {
+  display: flex;
+  flex-direction: column;
+  padding: 270px 100px 0 0;
+}
+
+.bottomRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.bottomDetail {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+  color: #374151;
+}
+
+.bottomImg {
+  width: 746px;
+  height: 397px;
+}
+
+/*반응형 CSS*/
+@media (min-width: 744px) and (max-width: 1199px) {
+  .bottom {
+    height: 744px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bottomLeft {
+    align-items: center;
+    padding: 120px 0 0 0;
+  }
+  .bottomRight {
+    height: 100%;
+  }
+  .bottomImg {
+    width: 744px;
+    height: 397px;
+  }
+}
+
+@media (max-width: 743px) {
+  .bottom {
+    height: 540px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bottomLeft {
+    align-items: center;
+    padding: 100px 0 0 0;
+  }
+  .bottomRight {
+    height: 100%;
+  }
+  .bottomDetail {
+    font-size: 32px;
+    line-height: 44.8px;
+    text-align: center;
+  }
+  .bottomImg {
+    width: 375px;
+    height: 198px;
+  }
+}
