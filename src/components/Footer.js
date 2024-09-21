@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../style/Footer.css";
 
 function Footer() {
@@ -6,8 +7,8 @@ function Footer() {
     <div className="footer">
       <div className="codeit">@codeit-2024</div>
       <div>
-        <div>Privacy Policy</div>
-        <div>FAQ</div>
+        <Link to="/privacy">Privacy Policy</Link>
+        <Link to="/faq">FAQ</Link>
       </div>
       <div>
         <a href="https://www.facebook.com/?locale=ko_KR" target="blank">

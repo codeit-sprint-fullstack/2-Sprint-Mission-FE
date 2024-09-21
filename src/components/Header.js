@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Header.css";
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <div className="nav">
       <div className="navLeft">
@@ -25,9 +27,9 @@ function Header() {
         </div>
       </div>
       <div className="login">
-        <Link className="login" to="/login">
-          <button className="loginButton">로그인</button>
-        </Link>
+        <button className="loginButton" onClick={() => navigate("/login")}>
+          로그인
+        </button>
       </div>
     </div>
   );
