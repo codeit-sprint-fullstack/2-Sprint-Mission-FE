@@ -7,6 +7,7 @@ import defaultImg from '../images/img_default.png';
 function BestProductItem({ item }) {
   const { name, price, favoriteCount } = item;
 
+
   return (
     <div className="best-product-item">
       <img className="best-product-item-img" src={defaultImg} alt={name} />
