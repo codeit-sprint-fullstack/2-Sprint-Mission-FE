@@ -1,0 +1,129 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.register1 {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0 0 0;
+}
+
+.register2,
+.register3,
+.register4,
+.register5 {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register5 {
+  margin: 0 0 60px 0;
+}
+
+.registerTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.registerButton {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background-color: #9ca3af;
+  color: #f3f4f6;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+}
+
+.itemName,
+.itemDescription,
+.itemPrice,
+.tag {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.itemNameInput,
+.itemDescriptionInput,
+.itemPriceInput,
+.tagInput {
+  border: none;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  width: 1200px;
+  padding: 16px 24px;
+}
+
+.itemNameInput:focus,
+.itemDescriptionInput:focus,
+.itemPriceInput:focus,
+.tagInput:focus {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #3692ff;
+  outline: none;
+  color: #1f2937;
+}
+
+.itemNameInput {
+  height: 56px;
+}
+
+.itemDescriptionInput {
+  height: 282px;
+}
+
+.itemPriceInput {
+  height: 56px;
+}
+
+.tagInput {
+  height: 56px;
+}
+
+/*반응형 CSS*/
+@media (min-width: 744px) and (max-width: 1199px) {
+  .register1 {
+    width: 696px;
+  }
+  .itemNameInput,
+  .itemDescriptionInput,
+  .itemPriceInput,
+  .tagInput {
+    width: 696px;
+  }
+}
+
+@media (max-width: 743px) {
+  .register1 {
+    width: 344px;
+  }
+  .itemNameInput,
+  .itemDescriptionInput,
+  .itemPriceInput,
+  .tagInput {
+    width: 344px;
+  }
+}

@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import ProductContent from "./ProductContent.js";
 import Pagination from "./Pagination.js";
 import "../style/SaleProduct.css";
 import useMediaQuery from "../hooks/useMediaQuery.js";
 
 function SaleProduct() {
+  const navigate = useNavigate();
   const [saleProduct, setSaleProduct] = useState({ list: [] });
   const [order, setOrder] = useState("createdAt");
   const [searchProduct, setSearchProduct] = useState("");
@@ -98,7 +100,12 @@ function SaleProduct() {
             className="searchInput"
           />
         </div>
-        <button className="productRegistrationButton">상품 등록하기</button>
+        <button
+          className="productRegistrationButton"
+          onClick={() => navigate("/registration")}
+        >
+          상품 등록하기
+        </button>
         <div className={`toggle ${open ? "open" : ""}`}>
           <button onClick={toggleOption} className="toggleButton">
             {selectedOption}

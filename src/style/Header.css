@@ -43,6 +43,14 @@
   text-decoration: none;
 }
 
+.inMarket {
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  color: #3692ff;
+  text-decoration: none;
+}
+
 .loginButton {
   width: 128px;
   height: 48px;
@@ -67,6 +75,7 @@
     gap: 20px;
   }
   .market,
+  .inMarket,
   .community {
     font-size: 1.05rem;
   }
@@ -83,6 +92,7 @@
     gap: 10px;
   }
   .market,
+  .inMarket,
   .community {
     font-size: 1rem;
   }
