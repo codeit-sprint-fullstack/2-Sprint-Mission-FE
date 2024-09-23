@@ -1,18 +1,20 @@
 import '../css/BestProduct.css';
 import useQuery from '../hooks/useQuery';
-import { getProductList } from '../api';
 import useResize from '../hooks/useResize';
+import { getProductList } from '../api';
+import defaultImg from '../images/img_default.png';
 
 function BestProductItem({ item }) {
-  const { images, name, price, favoriteCount } = item;
+  const { name, price, favoriteCount } = item;
+
 
   return (
     <div className="best-product-item">
-      <img className="best-product-item-img" src={images} alt={name} />
+      <img className="best-product-item-img" src={defaultImg} alt={name} />
       <div className="best-product-info">
         <span className="best-product-name">{name}</span>
         <span className="best-product-price">{price}원</span>
-        <span className="best-product-favorite">♡ {favoriteCount}</span>
+        <span className="product-favorite">♡ {favoriteCount}</span>
       </div>
     </div>
   );
@@ -25,11 +27,9 @@ export default function BestProduct() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-  if (!data || !data.list) return <div>No data found</div>;
+  if (!data || !data) return <div>No data found</div>;
 
-  const bestProducts = data.list.sort(
-    (a, b) => b.favoriteCount - a.favoriteCount
-  );
+  const bestProducts = data.sort((a, b) => b.favoriteCount - a.favoriteCount);
 
   return (
     <section>

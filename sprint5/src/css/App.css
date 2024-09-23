@@ -14,9 +14,12 @@ body {
   font-family: "Pretendard Variable", Pretendard, sans-serif;
 }
 
-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
 }

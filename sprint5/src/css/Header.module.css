@@ -1,0 +1,113 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 4.375rem;
+
+  margin: auto;
+  border-bottom: 1px solid #DFDFDF;
+
+  background-color: #ffffff;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  max-width: 120rem;
+  width: 100%;
+
+  margin: 0 12.5rem;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.logo {
+  width: 9.5625rem;
+  height: 3.1875rem;
+}
+
+.mobile {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+
+  padding: 0;
+
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.625rem;
+
+  list-style: none;
+
+  gap: 0.625rem;
+}
+
+.menu a {
+  color: #4B5563;
+}
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: auto;
+  height: 2.2625rem;
+
+  padding: 0.75rem 1.4375rem;
+
+  border-radius: 0.5rem;
+
+  background-color: #3292FF;
+}
+
+.auth a {
+  color: white;
+  font-weight: 600;
+  line-height: 1.625rem;
+}
+
+/* -- Tablet -- */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .container {
+    margin: 0 1.5rem;
+  }
+
+  .menu {
+    font-size: 1rem;
+  }
+}
+
+/* -- Mobile -- */
+@media screen and (max-width:743px) {
+  .container {
+    margin: 0 1rem;
+  }
+
+  .menu {
+    font-size: 0.875rem;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+}

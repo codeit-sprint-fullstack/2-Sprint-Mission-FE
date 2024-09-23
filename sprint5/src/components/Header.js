@@ -1,34 +1,42 @@
+import styles from '../css/Header.module.css';
 import siteLogo from '../images/logo.png';
-import userIcon from '../images/size=large.png';
 import mobileLogo from '../images/Property 1=Typo.png';
-import '../css/Header.css';
+import { Link, NavLink } from 'react-router-dom';
+
+function getLinkStyle({ isActive }) {
+  return {
+    color: isActive ? '#3692ff' : ''
+  };
+}
 
 export default function Header() {
   return (
-    <header>
-      <div className="top-bar">
-        <div className="top-bar-elements">
-          <div className="top-bar-left">
-            <img className="site-logo" src={siteLogo} alt="사이트 로고" />
+    <div className={styles.header}>
+      <div className={styles.container}>
+        <div className={styles.leftSection}>
+          <Link to="/">
+            <img className={styles.logo} src={siteLogo} alt="사이트 로고" />
             <img
-              className="mobile-logo"
+              className={styles.mobile}
               src={mobileLogo}
               alt="모바일 사이트 로고"
             />
-            <div className="menu">
-              <p>자유게시판</p>
-              <p>중고마켓</p>
-            </div>
-          </div>
-          <div className="top-bar-right">
-            <a className="auth" href=".../login">
-              로그인
-            </a>
-            <img className="user-icon" src={userIcon} />
-            <span className="user-name">김코드</span>
-          </div>
+          </Link>
+          <ul className={styles.menu}>
+            <li>
+              <NavLink to="/">자유게시판</NavLink>
+            </li>
+            <li>
+              <NavLink to="/items" style={getLinkStyle}>
+                중고마켓
+              </NavLink>
+            </li>
+          </ul>
         </div>
+        <button className={styles.auth}>
+          <Link to="/login">로그인</Link>
+        </button>
       </div>
-    </header>
+    </div>
   );
 }

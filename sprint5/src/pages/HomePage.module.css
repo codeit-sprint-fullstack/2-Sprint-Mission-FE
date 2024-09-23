@@ -1,0 +1,224 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    max-width: 120rem;
+    margin: auto;
+
+    background-color: #ffffff;
+}
+
+.banner {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 9.375rem 0 0;
+
+    width: 100%;
+
+    background-color: #CFE5FF;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 0 3.75rem 0;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 3.5rem;
+
+    padding: 1rem 7.75rem;
+
+    background-color: #3292FF;
+    border-radius: 2.5rem;
+    border: none;
+}
+
+.button a {
+    color: #F3F4F6;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.topImg {
+    Width: 46.625rem;
+    Height: 21.25rem;
+}
+
+.bottomImg {
+    width: 46.625rem;
+    height: 24.8125rem;
+}
+
+.main {
+    margin: 0 auto;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 8.625rem 0;
+
+    background-color: #FCFCFC;
+
+    gap: 4rem;
+}
+
+.main> :nth-child(2) {
+    text-align: right;
+}
+
+.mainImg {
+    width: 36.75rem;
+    height: 27.75rem;
+    border-radius: 0.75rem;
+}
+
+.bg {
+    color: #3692FF;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+}
+
+.description {
+    margin: 0;
+    padding: 0;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 2rem;
+}
+
+/* -- Tablet -- */
+@media screen and (min-width:744px) and (max-width:1199px) {
+    .banner {
+        padding: 2rem 0 0;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+
+        gap: 7rem;
+    }
+
+    .br {
+        display: inline-block;
+        content: " ";
+    }
+
+    .mainContainer {
+        flex-direction: column;
+        align-items: flex-start;
+
+        background: none;
+
+        gap: 1rem;
+    }
+
+    .main> :nth-child(2) {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+    }
+
+    .main .mainContainer .content .heading {
+        font-size: 2rem;
+        line-height: 2.625rem;
+    }
+
+    .description {
+        font-size: 1.125rem;
+        line-height: 1.625rem;
+    }
+}
+
+/* -- Mobile -- */
+@media screen and (min-width:375px) and (max-width:742px) {
+    .banner {
+        padding: 2rem 0 0;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+        gap: 7rem;
+    }
+
+    .topImg {
+        padding: 0 2rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .bottomImg {
+        padding: 0 2rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main .mainContainer .content .heading .br {
+        display: inline-block;
+        content: " ";
+    }
+
+    .mainContainer {
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 0 2rem;
+
+        gap: 1rem;
+    }
+
+    .mainImg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main> :nth-child(2) {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+
+        gap: 1rem;
+    }
+
+    .main .mainContainer .content .heading {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        line-height: 1.625rem;
+    }
+}

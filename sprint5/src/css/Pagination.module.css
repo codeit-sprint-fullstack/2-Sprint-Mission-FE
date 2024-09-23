@@ -1,0 +1,43 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+
+    margin: 3rem 0 10rem;
+    gap: 0.32rem;
+}
+
+.button {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    border-radius: 6.25rem;
+    border: 1px solid #E5E7EB;
+
+    background-color: white;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #2F80ED;
+    color: white;
+}
+
+.button:hover img {
+    filter: brightness(0) saturate(100%) invert(100%);
+}
+
+.img {
+    margin: auto;
+    display: block;
+}
+
+.active {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    border-radius: 6.25rem;
+    border: 1px solid #E5E7EB;
+
+    background-color: #2F80ED;
+    color: white;
+}

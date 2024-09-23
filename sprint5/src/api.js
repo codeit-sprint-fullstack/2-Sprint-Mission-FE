@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://panda-market-api.vercel.app'
+  baseURL: 'https://welcome-panda-market-api.onrender.com'
 });
 
 instance.interceptors.response.use(
@@ -12,7 +12,7 @@ instance.interceptors.response.use(
   }
 );
 
-async function get(url, params) {
+async function get(url, params = {}) {
   return instance.get(url, { params });
 }
 
@@ -28,12 +28,12 @@ async function remove(url) {
   return instance.delete(url);
 }
 
-export async function getProductList({ page, pageSize, orderBy, keyword }) {
+export async function getProductList({ page, pageSize, order, keyword }) {
   const res = await get(`/products`, {
     params: {
       page,
       pageSize,
-      orderBy,
+      order,
       keyword
     }
   });
