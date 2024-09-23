@@ -23,7 +23,7 @@
   flex-grow: 1;
 }
 
-.search {
+.searchIcon {
   gap: 4px;
   display: flex;
   align-items: center;
