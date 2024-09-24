@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://sprintpanda.onrender.com/products",
+  baseURL: "https://sprint-panda.onrender.com/products",
 });
 
 //GET
