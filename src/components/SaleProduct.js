@@ -58,7 +58,7 @@ function SaleProduct() {
   useEffect(() => {
     if (totalPages < page) setPage(totalPages);
     else setPage(1);
-  }, [totalPages]);
+  }, [totalPages, page]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
