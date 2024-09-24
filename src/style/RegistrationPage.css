@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: pretendard;
 }
 
 .register {
@@ -55,6 +56,13 @@
 .registerButton:disabled {
   background-color: #9ca3af;
   cursor: not-allowed;
+}
+
+textarea {
+  color: #9ca3af;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .itemName,
@@ -143,6 +151,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* 오류 */
+input.error,
+textarea.error {
+  border-color: #f74747 !important;
+}
+
+.errorMessage {
+  color: #f74747;
+  font-weight: 600px;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 0 0 0 16px;
 }
 
 /*반응형 CSS*/

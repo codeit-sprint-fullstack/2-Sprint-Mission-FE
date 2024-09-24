@@ -2,6 +2,13 @@
 
 * {
   box-sizing: border-box;
+  font-family: pretendard;
+}
+
+.loadingMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .SaleProduct {
@@ -101,18 +108,6 @@
   background-color: #ffffff;
   color: #1f2937;
 }
-
-/* .favoriteCount {
-  width: 130px;
-  height: 42px;
-  border-radius: 0 0 12px 12px;
-  border: 1px solid;
-  border-color: #e5e7eb;
-  text-align: center;
-  padding: 11px 0 10px 0;
-  background-color: #ffffff;
-  color: #1f2937;
-} */
 
 /*반응형 CSS*/
 @media (min-width: 744px) and (max-width: 1199px) {

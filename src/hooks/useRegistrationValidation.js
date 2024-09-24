@@ -1,65 +1,52 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const useRegistrationValidation = () => {
+const useValidation = (itemName, itemDescription, itemPrice, tagInput) => {
   const [errors, setErrors] = useState({
     itemName: "",
     itemDescription: "",
     itemPrice: "",
-    tag: "",
+    tagInput: "",
   });
 
-  const validateItemName = (itemName) => {
-    if (itemName.length < 1 || itemName.length > 10) {
-      setErrors((prev) => ({
-        ...prev,
-        itemName: "10자 이내로 입력해주세요",
-      }));
-      return false;
+  const validate = () => {
+    const newErrors = {
+      itemName: "",
+      itemDescription: "",
+      itemPrice: "",
+      tagInput: "",
+    };
+
+    if (!itemName || itemName.length < 1 || itemName.length > 10) {
+      newErrors.itemName = "10자 이내로 입력해주세요";
     }
-    setErrors((prev) => ({ ...prev, itemName: "" }));
-    return true;
+
+    if (
+      !itemDescription ||
+      itemDescription.length < 10 ||
+      itemDescription.length > 100
+    ) {
+      newErrors.itemDescription = "10자 이상 입력해주세요";
+    }
+
+    if (!itemPrice || isNaN(Number(itemPrice))) {
+      newErrors.itemPrice = "숫자로 입력해주세요";
+    }
+
+    if (tagInput.length > 5) {
+      newErrors.tagInput = "태그는 5자 이내여야 합니다.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.values(newErrors).every((error) => error === "");
   };
 
-  const validateItemDescription = (itemDescription) => {
-    if (itemDescription.length < 10 || itemDescription.length > 100) {
-      setErrors((prev) => ({
-        ...prev,
-        itemDescription: "10자 이상 입력해주세요",
-      }));
-      return false;
-    }
-    setErrors((prev) => ({ ...prev, itemDescription: "" }));
-    return true;
-  };
+  useEffect(() => {
+    validate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemName, itemDescription, itemPrice, tagInput]);
 
-  const validateItemPrice = (itemPrice) => {
-    if (isNaN(itemPrice) || itemPrice.length < 1) {
-      setErrors((prev) => ({
-        ...prev,
-        itemPrice: "숫자로 입력해주세요",
-      }));
-      return false;
-    }
-    setErrors((prev) => ({ ...prev, itemPrice: "" }));
-    return true;
-  };
-
-  const validateTag = (tag) => {
-    if (tag.length > 5) {
-      setErrors((prev) => ({ ...prev, tag: "5글자 이내로 입력해주세요" }));
-      return false;
-    }
-    setErrors((prev) => ({ ...prev, tag: "" }));
-    return true;
-  };
-
-  return {
-    errors,
-    validateItemName,
-    validateItemDescription,
-    validateItemPrice,
-    validateTag,
-  };
+  return { errors, validate };
 };
 
-export default useRegistrationValidation;
+export default useValidation;
