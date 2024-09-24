@@ -1,0 +1,254 @@
+/* -----------Mobile------------ */
+.mainBanner {
+  background-color: #CFE5FF;
+  height: 540px;
+  width: 100%;
+  background-image: url('../assets/main-banner.png');
+  background-size: 626.12px 281px;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+
+.mainContents {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainText {
+  color: var(--gray-700);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 44.8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+  white-space: pre-wrap;
+}
+
+.shopButton {
+  text-decoration: none;
+  background: var(--primary-100);
+  padding: 16px 124px;
+  border-radius: 40px;
+  color: #FFFFFF;
+  font-size: 2rem;
+  line-height: 24px;
+  width: 357px;
+}
+
+.banners {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 0 32px 0;
+}
+
+.midBanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.bannerLeftAligned, .bannerRightAligned {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #FCFCFC;
+  padding: 32px 16px;
+}
+
+.bannerLeftAligned {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bannerRightAligned {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  gap: 8px;
+}
+
+.banImg {
+  width: 100%;
+}
+
+.leftsided {
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightsided {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-100);
+}
+
+.subtitle {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 33.6px;
+}
+
+.text {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.6rem;
+}
+
+.bottomBanner {
+  background-color: #CFE5FF;
+  height: 540px;
+  width: 100%;
+  background-image: url('../assets/bottom-banner.png');
+  background-size: 498px 270px;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+
+.mainTextBottom {
+  color: var(--gray-700);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 44.8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+  white-space: pre-wrap;
+  margin-top: 90px;
+}
+
+
+/* ---------Tablet---------- */
+@media (min-width: 744px) {
+  .mainBanner {
+    height: 771px;
+    background-size: 996px 447px;
+  }
+
+  .mainText {
+    font-size: 4rem;
+    gap: 24px;
+    margin-top: 114px;
+    line-height: 56px;
+  }
+
+  .title,
+  .text {
+    font-size: 1.8rem;
+    line-height: 21.6px;
+  }
+
+  .subtitle {
+    font-size: 3.2rem;
+  }
+
+  .bottomBanner {
+    height: 771px;
+    background-size: 996px 540px;
+  }
+}
+
+
+/* -----------PC------------ */
+@media (min-width: 1200px) {
+  .mainBanner {
+    height: 540px;
+    background-position-x: 80%;
+    background-size: 996px 447px;
+    display: flex;
+    align-items: center;
+  }
+
+  .mainContents {
+    align-items: center;
+  }
+
+  .mainText {
+    text-align: left;
+    align-items: flex-start;
+    margin: 0 0 0 -700px;
+    white-space: pre-wrap;
+  }
+
+  .mainTextBottom {
+    margin-top: 0;
+    text-align: left;
+    align-items: flex-start;
+    margin: 0 0 0 -700px;
+    white-space: pre-wrap;
+  }
+
+  .midBanner {
+    max-width: 1120px;
+    gap: 276px;
+    margin: 138px 0;
+  }
+
+  .bannerLeftAligned, .bannerRightAligned {
+    width: 969px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+  }
+
+  .rightAligned {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .banImg {
+    width: 588px;
+  }
+
+  .leftsided {
+    padding-left: 30px;
+  }
+
+  .rightsided {
+    padding-right: 30px;
+  }
+
+  .title {
+    line-height: 25.2px;
+  }
+
+  .subtitle {
+    font-size: 4rem;
+    line-height: 56px;
+    white-space: pre-wrap;
+  }
+
+  .text {
+    font-size: 2.4rem;
+    line-height: 28.8px;
+  }
+
+  .bottomBanner {
+    height: 540px;
+    background-position-x: 80%;
+    display: flex;
+    align-items: center;
+  }
+}

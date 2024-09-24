@@ -5,6 +5,7 @@ nav {
   background-color: #FFFFFF;
   border: 1px solid #DFDFDF;
   margin: 0 0 26px 0;
+  color: var(--gray-600);
 }
 
 .navContents {
@@ -23,6 +24,7 @@ nav {
   width: 153px;
   justify-content: space-between;
   gap: 10px;
+  margin-right: 20px;
 }
 
 .logo1 {
@@ -44,21 +46,28 @@ nav {
 
 .navRight {
   font-size: 1.6rem;
-  padding: 12px 23px;
   border-radius: 8px;
   margin-right: 16px;
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--gray-600);
 }
 
 .menu {
   font-size: 1.8rem;
-  font-weight: 700px;
+  font-weight: 700;
   white-space: nowrap;
   display: flex;
-  gap: 10px;
+  gap: 30px;
+}
+
+.navLinkStyle {
+  text-decoration: none;
+  color: var(--gray-600);
+}
+
+.menu a:hover {
+  color: #3692FF;
 }
 
 .profileImg {
@@ -71,5 +80,14 @@ nav {
 @media (max-width: 744px) {
   .logo1 {
     display: none;
+  }
+
+  .logoImg {
+    width: 100px;
+    margin-right: 0;
+  }
+
+  .menu {
+    gap: 10px;
   }
 }

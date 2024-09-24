@@ -1,9 +1,9 @@
-const BASE_URL = "https://panda-market-api.vercel.app";
+const BASE_URL = "https://codeit-sprint6-api.onrender.com";
 
 export async function getProducts({
   page = 1,
   pageSize = 10,
-  orderBy = "favorite",
+  orderBy = "createdAt",
 }) {
   const query = `page=${page}&pageSize=${pageSize}&orderBy=${orderBy}`;
   const res = await fetch(`${BASE_URL}/products?${query}`);

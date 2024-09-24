@@ -1,59 +1,40 @@
 /* -----------PC------------ */
 
-h1 {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+.title {
   font-size: 2rem;
   font-weight: 700;
   line-height: 3.2px;
 }
 
-.wrapper {
-  max-width: 1200px;
-  margin: 40px auto;
-}
-
-.subTitle {
+.menus {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 24px 0;
-}
-
-.subTitleMenus {
-  display: flex;
   gap: 12px;
 }
 
-form {
-  display: flex;
-  gap: 12px;
-  font-size: 1.6rem;
-}
-
-input {
+.itemSearchInput {
   background-color: var(--gray-100);
   border-radius: 12px;
   border: none;
   padding: 9px 20px 9px 16px;
   width: 325px;
-}
-
-input::placeholder {
-  color: var(--gray-400);
-  background-image: url("/src/assets/search-icon.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.formButton {
-  cursor: pointer;
-  width: 133px;
   height: 42px;
-  border-radius: 8px;
-  padding: 12px 23px;
-  background-color: var(--primary-100);
-  font-weight: 400;
-  border: none;
-  color: var(--gray-100);
+  font-size: 1.6rem;
+  
+  &::placeholder {
+    color: var(--gray-400);
+    background-image: url("/src/assets/search-icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }
 
 select {
@@ -63,6 +44,9 @@ select {
   border-radius: 12px;
   border: solid 1px var(--gray-200);
   padding: 12px 20px;
+  appearance: none;
+  background: url(/src/assets/select-arrow.png) no-repeat 90% 50%/24px auto;
+  font-size: 1.6rem;
 }
 
 .allProductList {
@@ -142,7 +126,7 @@ select {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  input {
+  .itemSearchInput {
     width: 242px;
   }
 }
@@ -150,6 +134,40 @@ select {
 
 /* -----------Mobile------------ */
 @media (max-width: 744px) {
+  .menus {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  form {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .itemSearchInput {
+    width: 288px;
+    order: 2;
+  }
+  
+  .registrationPageButton {
+    order: 1;
+  }
+
+  .customSelect {
+    position: relative;
+    display: inline-block;
+  }
+
+  select {
+    color: transparent;
+    z-index: 1;
+    position: relative;
+    background: url(/src/assets/sort-icon.png) no-repeat 50% 50%/30px auto;
+    width: 42px;
+    height: 42px;
+  }
+
   .allProductList {
     grid-template-columns: repeat(2, 1fr);
   }

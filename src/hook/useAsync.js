@@ -15,8 +15,7 @@ function useAsync(asyncFunction) {
       } finally {
         setPending(false);
       }
-    },
-    [asyncFunction]
+    }, [asyncFunction]
   );
 
   return [pending, error, wrappedFunction];
