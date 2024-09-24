@@ -58,7 +58,8 @@ function SaleProduct() {
   useEffect(() => {
     if (totalPages < page) setPage(totalPages);
     else setPage(1);
-  }, [totalPages, page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalPages]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
