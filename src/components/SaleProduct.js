@@ -52,8 +52,13 @@ function SaleProduct() {
 
   // 페이지 기능 코드
   useEffect(() => {
-    setTotalPages(Math.ceil(saleProduct.totalCount / visibleProduct));
-  }, [visibleProduct, saleProduct.totalCount]);
+    setTotalPages(Math.ceil(saleProduct.products.length / visibleProduct));
+  }, [visibleProduct, saleProduct.products.length]);
+
+  useEffect(() => {
+    if (totalPages < page) setPage(totalPages);
+    else setPage(1);
+  }, [totalPages]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
@@ -65,13 +70,12 @@ function SaleProduct() {
     page * visibleProduct
   );
 
-  const fetchSaleProduct = async (order = "", searchProduct = "", page = 1) => {
+  const fetchSaleProduct = async (order = "", searchProduct = "") => {
     setLoading(true);
     const params = {
       sort: order,
       keyword: searchProduct,
-      page: page,
-      pageSize: visibleProduct,
+      pageSize: 999,
     };
 
     const data = await getProductList(params);
@@ -89,7 +93,7 @@ function SaleProduct() {
   useEffect(() => {
     fetchSaleProduct(order, searchProduct, page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [order, searchProduct, page]);
+  }, [order, searchProduct]);
 
   //return
   return (
