@@ -4,9 +4,13 @@
   box-sizing: border-box;
 }
 
+.SaleProduct {
+  margin: 50px 0 0 0;
+}
+
 .saleBar {
   max-width: 1200px;
-  margin: 0 auto -70px;
+  margin: 0 auto -50px;
   display: flex;
   justify-content: space-between;
 }
@@ -88,7 +92,7 @@
 .createAt {
   width: 130px;
   height: 42px;
-  border-radius: 12px 12px 0px 0px;
+  border-radius: 12px 12px 12px 12px;
   border: 1px solid;
   border-color: #e5e7eb;
   text-align: center;
@@ -98,7 +102,7 @@
   color: #1f2937;
 }
 
-.favoriteCount {
+/* .favoriteCount {
   width: 130px;
   height: 42px;
   border-radius: 0 0 12px 12px;
@@ -108,13 +112,13 @@
   padding: 11px 0 10px 0;
   background-color: #ffffff;
   color: #1f2937;
-}
+} */
 
 /*반응형 CSS*/
 @media (min-width: 744px) and (max-width: 1199px) {
   .saleBar {
     width: 43.5rem;
-    margin: 0 auto 15px;
+    margin: 0 auto 40px;
   }
   .searchBar {
     margin: 0 0 0 30px;
@@ -136,7 +140,7 @@
       "sale productRegistrationButton"
       "searchBar toggle";
     width: 21.5rem;
-    margin: 0 auto 15px;
+    margin: 0 auto 40px;
   }
   .sale {
     grid-area: sale;

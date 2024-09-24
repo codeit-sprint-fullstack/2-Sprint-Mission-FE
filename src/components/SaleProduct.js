@@ -24,25 +24,26 @@ function SaleProduct() {
   }, [isMobile, isTablet, isDesktop]);
 
   const sortSaleProduct = useCallback((list, order) => {
-    if (order === "favoriteCount") {
-      return [...list].sort((a, b) => b.favoriteCount - a.favoriteCount);
-    } else {
-      return [...list].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
-    }
+    // if (order === "favoriteCount") {
+    //   return [...list].sort((a, b) => b.favoriteCount - a.favoriteCount);
+    // } else {
+    return [...list].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    // }
   }, []);
 
   const fetchSaleProduct = async (order = "", searchProduct = "", page = 1) => {
-    const query = `sort=${order}&search=${searchProduct}&page=${page}&pageSize=999`;
+    const query = `sort=${order}&keyword=${searchProduct}&page=${page}&pageSize=999`;
+    // 본인이 만든 백엔드 API 주소로 변경
     const response = await fetch(
-      `https://panda-market-api.vercel.app/products?${query}`
+      `https://sprintpanda.onrender.com/products?${query}`
     );
     const data = await response.json();
 
     setSaleProduct(data);
 
-    const totalProduct = data.totalCount;
+    const totalProduct = data.totalProducts; // totalProducts로 변경해야 함
     const totalPages = Math.ceil(totalProduct / visibleProduct);
     setTotalPages(totalPages);
   };
@@ -56,9 +57,10 @@ function SaleProduct() {
     setOpen(false);
     if (option === "최신순") {
       setOrder("createdAt");
-    } else if (option === "좋아요순") {
-      setOrder("favoriteCount");
     }
+    // else if (option === "좋아요순") {
+    //   setOrder("favoriteCount");
+    // }
   };
 
   useEffect(() => {
@@ -119,12 +121,12 @@ function SaleProduct() {
               >
                 최신순
               </li>
-              <li
+              {/* <li
                 onClick={() => handleOptionClick("좋아요순")}
                 className="favoriteCount"
               >
                 좋아요순
-              </li>
+              </li> */}
             </ul>
           )}
         </div>

@@ -4,7 +4,7 @@ import "../style/ProductContent.css";
 function ProductContent({ product, useDescription }) {
   return (
     <div className="productContent">
-      <img src={product.images} alt="상품 이미지" className="productImg" />
+      <img src="/img/defaultImg.png" alt="상품 이미지" className="productImg" />
       <h1 className="productName">
         {useDescription ? product.description : product.name}
       </h1>
