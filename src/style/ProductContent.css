@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+.productName {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1f2937;
+  margin: 10px 0 0 0;
+}
+
 .productContent {
   width: 221px;
   height: 317px;

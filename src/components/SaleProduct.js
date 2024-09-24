@@ -4,10 +4,14 @@ import ProductContent from "./ProductContent.js";
 import Pagination from "./Pagination.js";
 import "../style/SaleProduct.css";
 import useMediaQuery from "../hooks/useMediaQuery.js";
+import { getProductList } from "../api.js";
 
 function SaleProduct() {
   const navigate = useNavigate();
-  const [saleProduct, setSaleProduct] = useState({ list: [] });
+  const [saleProduct, setSaleProduct] = useState({
+    products: [],
+    totalCount: 0,
+  });
   const [order, setOrder] = useState("createdAt");
   const [searchProduct, setSearchProduct] = useState("");
   const [open, setOpen] = useState(false);
@@ -24,61 +28,52 @@ function SaleProduct() {
   }, [isMobile, isTablet, isDesktop]);
 
   const sortSaleProduct = useCallback((list, order) => {
-    // if (order === "favoriteCount") {
-    //   return [...list].sort((a, b) => b.favoriteCount - a.favoriteCount);
-    // } else {
     return [...list].sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
-    // }
   }, []);
 
   const fetchSaleProduct = async (order = "", searchProduct = "", page = 1) => {
-    const query = `sort=${order}&keyword=${searchProduct}&page=${page}&pageSize=999`;
-    // 본인이 만든 백엔드 API 주소로 변경
-    const response = await fetch(
-      `https://sprintpanda.onrender.com/products?${query}`
-    );
-    const data = await response.json();
-
-    setSaleProduct(data);
-
-    const totalProduct = data.totalProducts; // totalProducts로 변경해야 함
-    const totalPages = Math.ceil(totalProduct / visibleProduct);
-    setTotalPages(totalPages);
+    const params = {
+      sort: order,
+      keyword: searchProduct,
+      page: page,
+      pageSize: visibleProduct,
+    };
+    const data = await getProductList(params);
+    if (data && data.products) {
+      setSaleProduct(data);
+      const totalProduct = data.totalCount;
+      const totalPages = Math.ceil(totalProduct / visibleProduct);
+      setTotalPages(totalPages);
+    }
   };
 
   const handleSearch = (e) => setSearchProduct(e.target.value);
 
   const toggleOption = () => setOpen(!open);
-
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setOpen(false);
     if (option === "최신순") {
       setOrder("createdAt");
     }
-    // else if (option === "좋아요순") {
-    //   setOrder("favoriteCount");
-    // }
   };
 
   useEffect(() => {
-    setTotalPages(Math.ceil(saleProduct.totalCount, visibleProduct));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visibleProduct]);
+    setTotalPages(Math.ceil(saleProduct.totalCount / visibleProduct));
+  }, [visibleProduct, saleProduct.totalCount]);
 
   useEffect(() => {
     fetchSaleProduct(order, searchProduct, page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [order, searchProduct, page]);
 
-  const filteredProducts = saleProduct.list.filter((product) =>
+  const filteredProducts = saleProduct.products.filter((product) =>
     product.name.toLowerCase().includes(searchProduct.toLowerCase())
   );
 
   const sortedProducts = sortSaleProduct(filteredProducts, order);
-
   const paginatedProducts = sortedProducts.slice(
     (page - 1) * visibleProduct,
     page * visibleProduct
@@ -121,12 +116,6 @@ function SaleProduct() {
               >
                 최신순
               </li>
-              {/* <li
-                onClick={() => handleOptionClick("좋아요순")}
-                className="favoriteCount"
-              >
-                좋아요순
-              </li> */}
             </ul>
           )}
         </div>
@@ -134,7 +123,7 @@ function SaleProduct() {
       <div className="productGrid">
         {paginatedProducts.map((product) => (
           <ProductContent
-            key={product.id}
+            key={product._id}
             product={product}
             useDescription={true}
           />
