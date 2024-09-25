@@ -7,18 +7,24 @@
   margin: 40px auto;
 }
 
+.menus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px 0;
+  gap: 12px;
+}
+
 .title {
   font-size: 2rem;
   font-weight: 700;
   line-height: 3.2px;
+  flex: 1;
 }
-
-.menus {
-  display: flex;
-  align-items: center;
-  margin: 24px 0;
-  gap: 12px;
-}
+/* 
+.blankSpace {
+  flex-grow: 1;
+} */
 
 .itemSearchInput {
   background-color: var(--gray-100);
@@ -37,7 +43,7 @@
   }
 }
 
-select {
+.orderSelect {
   cursor: pointer;
   width: 130px;
   height: 42px;
@@ -135,38 +141,37 @@ select {
 /* -----------Mobile------------ */
 @media (max-width: 744px) {
   .menus {
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-start;
+    flex-wrap: wrap;
   }
 
-  form {
-    flex-direction: column;
+  .title {
+    flex: 1 1 50%;
+  }
+
+  .rightSide {
+    flex-wrap: wrap;
     justify-content: space-between;
-  }
-
-  .itemSearchInput {
-    width: 288px;
-    order: 2;
   }
   
   .registrationPageButton {
     order: 1;
+    flex: 1 1 50%;
   }
 
-  .customSelect {
-    position: relative;
-    display: inline-block;
+  .itemSearchInput {
+    order: 2;
+    flex-grow: 1;
   }
 
-  select {
+  .orderSelect {
     color: transparent;
     z-index: 1;
     position: relative;
     background: url(/src/assets/sort-icon.png) no-repeat 50% 50%/30px auto;
     width: 42px;
     height: 42px;
-  }
+    order: 2;
+    }
 
   .allProductList {
     grid-template-columns: repeat(2, 1fr);

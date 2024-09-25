@@ -38,6 +38,7 @@ function AllProducts() {
   const [order, setOrder] = useState("createdAt");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(pageSizeTable[`${viewport}`]);
+  const [search, setSearch] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, loadingError, getProductsAsync] = useAsync(getProducts);
 
@@ -71,32 +72,41 @@ function AllProducts() {
     pagination.push(i);
   };
 
+  const handleKeyUp = (e) => {
+    if (e.key === "Enter") {
+      const searchQuery = e.target.value.trim();
+      setSearch(searchQuery);
+    }
+  }
+
   useEffect(() => {
     setPageSize(pageSizeTable[`${viewport}`]);
   }, [viewport]);
 
   useEffect(() => {
     if (pageSize > 0) {
-      handleLoad({ orderBy: order, page: page, pageSize: pageSize });
+      handleLoad({ orderBy: order, page, pageSize, search });
     }
-  }, [order, page, pageSize, handleLoad]);
+  }, [order, page, pageSize, search, handleLoad]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.menus}>
         <p className={styles.title}>판매 중인 상품</p>
-        <input className={styles.itemSearchInput} placeholder="      검색할 상품을 입력해주세요" />
+        <input className={styles.itemSearchInput} placeholder="      검색할 상품을 입력해주세요" onKeyUp={handleKeyUp} />
         <NavLink to={"/registration"}>
-          <RegistrationPageButton>상품 등록하기</RegistrationPageButton>
+          <RegistrationPageButton className='registrationPageButton'>
+            상품 등록하기
+          </RegistrationPageButton>
         </NavLink>
-        <select onChange={handleChange}>
+        <select className={styles.orderSelect} onChange={handleChange}>
           <option value="createdAt">최신순</option>
           <option value="favoriteCount">좋아요순</option>
         </select>
       </div>
       <div className={styles.allProductList}>
         {items.map((item) => (
-          <AllProductList key={item.id} item={item} />
+          <AllProductList key={item._id} item={item} />
         ))}
       </div>
       <div className={styles.pagination}>

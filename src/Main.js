@@ -15,6 +15,7 @@ function Main() {
             <Route path="items" element={<SecondhandMarket />} />
             <Route path="registration" element={<Registration />} />
           </Route>
+          <Route path="details" />
         </Routes>
       </BrowserRouter>
     </ViewportProvider>

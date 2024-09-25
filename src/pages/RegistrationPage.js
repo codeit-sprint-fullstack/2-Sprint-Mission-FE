@@ -2,20 +2,37 @@ import createButton from '../components/Button';
 import styles from './RegistrationPage.module.css';
 import xIcon from '../assets/x-icon.png';
 import useRegisterValidation from '../hook/useRegisterValidation'
+import { createProduct } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationButton = createButton({
   style: "btn_small_40"
 })
 
 function Registration() {
+  const navigate = useNavigate();
   const {
     name, setName, nameError, validateName, description, setDescription, descriptionError, validateDescription, price, setPrice, priceError, validatePrice, tag, tags, setTag, handleKeyUp, removeTag, tagError, isFormValid
   } = useRegisterValidation();
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  }
 
+    const productData = {
+      "name": name, 
+      "description": description, 
+      "price": Number(price), 
+      "tags": tags.join(",")
+    }
+
+    const result = await createProduct(productData);
+    if (!result) {
+      return;
+    } else {
+      navigate("/details")
+    }
+  }
+  
   return (
     <div className={styles.wrapper}>
       <form className={styles.registrationForm} onSubmit={handleSubmit}>

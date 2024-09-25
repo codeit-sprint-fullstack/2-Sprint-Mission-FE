@@ -22,3 +22,4 @@ function useAsync(asyncFunction) {
 }
 
 export default useAsync;
+
