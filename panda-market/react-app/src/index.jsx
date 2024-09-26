@@ -1,17 +1,19 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './root.css';
-import CommonsPage from './pages/CommonsPage.js';
-import HomePage from './pages/HomePage.js';
-import ItemsPage from './pages/ItemsPage.js';
-import BoardsPage from './pages/BoardsPage.js';
-import RegisPage from './pages/RegisPage.js';
-import LogInPage from './pages/LogInPage.js';
-import SignUpPage from './pages/SignUpPage.js';
-import NotFoundPage from './pages/NotFoundPage.js';
+import CommonsPage from './pages/CommonsPage.jsx';
+import HomePage from './pages/HomePage.jsx';
+import ItemsPage from './pages/ItemsPage.jsx';
+import BoardsPage from './pages/BoardsPage.jsx';
+import RegisPage from './pages/RegisPage.jsx';
+import LogInPage from './pages/LogInPage.jsx';
+import SignUpPage from './pages/SignUpPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
+import ViewportProvider from './context/ViewportProvider.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+	<ViewportProvider>
 	<BrowserRouter>
 		<Routes>
 			<Route path="/" element={<CommonsPage/>}>
@@ -25,4 +27,5 @@ root.render(
 			<Route path="*" element={<NotFoundPage/>}/>
 		</Routes>
 	</BrowserRouter>
+	</ViewportProvider>
 );
