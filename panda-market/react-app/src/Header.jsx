@@ -10,12 +10,12 @@ function getLinkStyle({ isActive }) {
 }
 
 function Header() {
-	const value = useViewport();
+	const viewport = useViewport();
 
   return (<header className={styles.header}>
 		<div className={styles.sub}>
 			<div className={styles.sub_header}>
-				<Link to="/"><img className={styles.logo} src={value.width > 744 ? "/images/Property-1=lg.png" : "/images/logo-text-only.png"} alt="판다마켓 Logo"/></Link>
+				<Link to="/"><img className={styles.logo} src={viewport === "phone" ? "/images/logo-text-only.png" : "/images/Property-1=lg.png"} alt="판다마켓 Logo"/></Link>
 				<nav>
 					<ul>
 						<li><NavLink to="/boards" style={getLinkStyle}>자유게시판</NavLink></li>

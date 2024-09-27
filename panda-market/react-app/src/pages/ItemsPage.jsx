@@ -5,20 +5,22 @@ import BestItemsList from "../BestItemsList.jsx";
 import ItemsList from "../ItemsList.jsx";
 import PageNum from "../PageNum.jsx";
 import { getProducts } from "../apis/itemsService.js";
+import { useViewport } from "../context/ViewportProvider.jsx";
 
 const loadItems = async function (params) { // * { page, pageSize, orderBy, keyword }
 	return await getProducts(params);
 }
 
-const initialPageBestSize = window.innerWidth > 1200 ? 4 : (window.innerWidth > 744 ? 2 : 1);
-const initialPageSize = window.innerWidth > 1200 ? 10 : (window.innerWidth > 744 ? 6 : 4);
 
 function ItemsPage() {
+	const viewport = useViewport();
+	const initialPageBestSize = viewport === "PC" ? 4 : viewport === "tablet" ? 2 : 1;
+	const initialPageSize = viewport === "PC" ? 10 : viewport === "tablet" ? 6 : 4;
 	const [pageBestSize, setPageBestSize] = useState(initialPageBestSize);
 	const [bestItems, setBestItems] = useState([]);
 	const [pageSize, setPageSize] = useState(initialPageSize);
 	const [pageNum, setPageNum] = useState(1);
-	const [pageNumMax, setPageNumMax] = useState(10); // TODO: find pageNumMax from loadItemsAsync data.
+	const [pageNumMax, setPageNumMax] = useState(10);
 	const [items, setItems] = useState([]);
 	const [orderBy, setOrderBy] = useState("recent");
 	const [keyword, setKeyword] = useState("");
@@ -28,7 +30,12 @@ function ItemsPage() {
 		try {
 			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize, pageSize, orderBy, keyword });
 			console.log(result1);
-			if (!result1) return;
+			if (!result1) {
+				if (errorLoadingItems) {
+					setItems([]);
+				}
+				return;
+			}
 			setPageNumMax(Math.ceil(result1.totalCount / pageSize));
 			setPageNum(1);
 			setItems(result1.list);
@@ -36,14 +43,14 @@ function ItemsPage() {
 		catch (err) {
 			console.error(err);
 		}
-	}, [pageNum, pageSize, orderBy, keyword]);
+	}, [pageNum, pageSize, orderBy, keyword, errorLoadingItems, loadItemsAsync]);
 
 	const handleResize = useCallback(function () {
-		if (window.innerWidth > 1200) {
+		if (viewport === "PC") {
 			setPageBestSize(4);
 			setPageSize(10);
 		}
-		else if (window.innerWidth > 744) {
+		else if (viewport === "tablet") {
 			setPageBestSize(2);
 			setPageSize(6);
 		}
@@ -51,7 +58,7 @@ function ItemsPage() {
 			setPageBestSize(1);
 			setPageSize(4);
 		}
-	}, []);
+	}, [viewport]);
 
 	useEffect(() => {
 		console.log(`useEffect with dependancy []`);
@@ -87,12 +94,12 @@ function ItemsPage() {
 		return () => {
 			console.log(`[pageBestSize, pageSize, pageNum, orderBy] unmounted.`);
 		};
-	}, [pageBestSize, pageSize, pageNum, orderBy]);
+	}, [pageBestSize, pageSize, pageNum, orderBy, keyword, loadItemsAsync]);
 
 	return (
 		<main className={styles.main}>
 			<BestItemsList bestItems={bestItems}/>
-			<ItemsList items={items} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
+			<ItemsList items={items} isLoadingItems={isLoadingItems} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
 			<PageNum pageNum={pageNum} setPageNum={setPageNum} pageNumMax={pageNumMax}/>
 		</main>
 	);

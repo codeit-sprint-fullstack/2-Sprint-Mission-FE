@@ -8882,22 +8882,26 @@
   init_react_shim();
   var import_react2 = __toESM(require_react(), 1);
   var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
-  var ViewportContext = import_react2.default.createContext({
-    width: window.innerWidth,
-    height: window.innerHeight
-  });
+  var defaultValue = window.innerWidth > 1200 ? "PC" : window.innerWidth > 744 ? "tablet" : "phone";
+  var ViewportContext = import_react2.default.createContext(defaultValue);
   function useViewport() {
-    const { value } = (0, import_react2.useContext)(ViewportContext);
+    const value = (0, import_react2.useContext)(ViewportContext);
     if (value === void 0) {
       throw new Error("useViewport should be used within ViewportContainer.");
     }
     return value;
   }
-  function ViewportProvider({ children }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ViewportContext.Provider, { value: {
-      width: window.innerWidth,
-      height: window.innerHeight
-    }, children });
+  function ViewportProvider({ defValue = defaultValue, children }) {
+    const [value, setValue] = (0, import_react2.useState)(defaultValue);
+    (0, import_react2.useEffect)(() => {
+      window.addEventListener("resize", () => {
+        setValue(
+          window.innerWidth > 1200 ? "PC" : window.innerWidth > 744 ? "tablet" : "phone"
+        );
+      });
+      window.dispatchEvent(new Event("resize"));
+    }, []);
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ViewportContext.Provider, { value, children });
   }
   var ViewportProvider_default = ViewportProvider;
 
@@ -8910,10 +8914,10 @@
     };
   }
   function Header() {
-    const value = useViewport();
+    const viewport = useViewport();
     return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("header", { className: CommonsPage_default.header, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: CommonsPage_default.sub, children: [
       /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: CommonsPage_default.sub_header, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Link, { to: "/", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { className: CommonsPage_default.logo, src: value.width > 744 ? "/images/Property-1=lg.png" : "/images/logo-text-only.png", alt: "\uD310\uB2E4\uB9C8\uCF13 Logo" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Link, { to: "/", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { className: CommonsPage_default.logo, src: viewport === "phone" ? "/images/logo-text-only.png" : "/images/Property-1=lg.png", alt: "\uD310\uB2E4\uB9C8\uCF13 Logo" }) }),
         /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("nav", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("ul", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(NavLink, { to: "/boards", style: getLinkStyle, children: "\uC790\uC720\uAC8C\uC2DC\uD310" }) }),
           /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(NavLink, { to: "/items", style: getLinkStyle, children: "\uC911\uACE0\uB9C8\uCF13" }) })
@@ -8931,14 +8935,14 @@
     return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("footer", { className: CommonsPage_default.footer, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: CommonsPage_default.sub, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: CommonsPage_default.sub_footer, children: [
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: CommonsPage_default.codeit_2024, children: "@codeit - 2024" }),
       /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: CommonsPage_default.privacy_policy_and_FAQ, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { href: "/privacy", children: "Privacy Policy" }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { href: "/faq", children: "FAQ" })
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { to: "/privacy", children: "Privacy Policy" }),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { to: "/faq", children: "FAQ" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: CommonsPage_default.sns_icons, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { target: "_blank", href: "/", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("img", { src: "/images/ic_facebook.svg", alt: "facebook link" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { target: "_blank", href: "/", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("img", { src: "/images/ic_twitter.svg", alt: "X-twitter link" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { target: "_blank", href: "/", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("img", { src: "/images/ic_youtube.svg", alt: "youtube link" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { target: "_blank", href: "/", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("img", { src: "/images/ic_instagram.svg", alt: "instagram link" }) })
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { target: "_blank", rel: "noopener noreferrer", to: "https://facebook.com/", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("img", { src: "/images/ic_facebook.svg", alt: "facebook link" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { target: "_blank", rel: "noopener noreferrer", to: "https://X.com/", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("img", { src: "/images/ic_twitter.svg", alt: "X-twitter link" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { target: "_blank", rel: "noopener noreferrer", to: "https://www.youtube.com/", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("img", { src: "/images/ic_youtube.svg", alt: "youtube link" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Link, { target: "_blank", rel: "noopener noreferrer", to: "https://www.instagram.com/", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("img", { src: "/images/ic_instagram.svg", alt: "instagram link" }) })
       ] })
     ] }) }) });
   }
@@ -8980,8 +8984,8 @@
   // src/pages/HomePage.jsx
   var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
   function HomePage() {
-    return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("main", { className: HomePage_default.main, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("article", { className: HomePage_default.sub, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_sec_top].join(" "), style: { backgroundImage: `url("/images/Img_home_top.png")` }, children: [
+    function HeroSection() {
+      return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_sec_top].join(" "), style: { backgroundImage: `url("/images/Img_home_top.png")` }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: HomePage_default.description, children: [
           /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h2", { children: [
             "\uC77C\uC0C1\uC758 \uBAA8\uB4E0 \uBB3C\uAC74\uC744",
@@ -8991,67 +8995,78 @@
           /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Link, { to: "/items", className: HomePage_default.a_button, children: "\uAD6C\uACBD\uD558\uB7EC \uAC00\uAE30" })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: HomePage_default.img_home_top })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_left].join(" "), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: "/images/Img_home_01.png", alt: "\uC778\uAE30 \uC0C1\uD488", className: HomePage_default.img_home_middle }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: HomePage_default.description, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h3", { children: "Hot item" }),
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h2", { children: [
-            "\uC778\uAE30 \uC0C1\uD488\uC744",
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
-            "\uD655\uC778\uD574 \uBCF4\uC138\uC694"
+      ] });
+    }
+    function FeaturesSection() {
+      return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(import_jsx_runtime5.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_left].join(" "), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: "/images/Img_home_01.png", alt: "\uC778\uAE30 \uC0C1\uD488", className: HomePage_default.img_home_middle }),
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: HomePage_default.description, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h3", { children: "Hot item" }),
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h2", { children: [
+              "\uC778\uAE30 \uC0C1\uD488\uC744",
+              /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
+              "\uD655\uC778\uD574 \uBCF4\uC138\uC694"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { children: [
+              "\uAC00\uC7A5 HOT\uD55C \uC911\uACE0\uAC70\uB798 \uBB3C\uD488\uC744",
+              /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
+              "\uD310\uB2E4 \uB9C8\uCF13\uC5D0\uC11C \uD655\uC778\uD574 \uBCF4\uC138\uC694"
+            ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { children: [
-            "\uAC00\uC7A5 HOT\uD55C \uC911\uACE0\uAC70\uB798 \uBB3C\uD488\uC744",
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
-            "\uD310\uB2E4 \uB9C8\uCF13\uC5D0\uC11C \uD655\uC778\uD574 \uBCF4\uC138\uC694"
-          ] })
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: [HomePage_default.cBoth, HomePage_default.no_float].join(" ") })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: [HomePage_default.cBoth, HomePage_default.no_float].join(" ") })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_right].join(" "), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: "/images/Img_home_02.png", alt: "Search", className: HomePage_default.img_home_middle }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: HomePage_default.description, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h3", { children: "Search" }),
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h2", { children: [
-            "\uAD6C\uB9E4\uB97C \uC6D0\uD558\uB294",
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
-            "\uC0C1\uD488\uC744 \uAC80\uC0C9\uD558\uC138\uC694"
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_right].join(" "), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: "/images/Img_home_02.png", alt: "Search", className: HomePage_default.img_home_middle }),
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: HomePage_default.description, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h3", { children: "Search" }),
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h2", { children: [
+              "\uAD6C\uB9E4\uB97C \uC6D0\uD558\uB294",
+              /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
+              "\uC0C1\uD488\uC744 \uAC80\uC0C9\uD558\uC138\uC694"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { children: [
+              "\uAD6C\uB9E4\uD558\uACE0 \uC2F6\uC740 \uBB3C\uD488\uC740 \uAC80\uC0C9\uD574\uC11C",
+              /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
+              "\uC27D\uAC8C \uCC3E\uC544\uBCF4\uC138\uC694"
+            ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { children: [
-            "\uAD6C\uB9E4\uD558\uACE0 \uC2F6\uC740 \uBB3C\uD488\uC740 \uAC80\uC0C9\uD574\uC11C",
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
-            "\uC27D\uAC8C \uCC3E\uC544\uBCF4\uC138\uC694"
-          ] })
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: [HomePage_default.cBoth, HomePage_default.no_float].join(" ") })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: [HomePage_default.cBoth, HomePage_default.no_float].join(" ") })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_left].join(" "), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: "/images/Img_home_03.png", alt: "Register", className: HomePage_default.img_home_middle }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: HomePage_default.description, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h3", { children: "Register" }),
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h2", { children: [
-            "\uD310\uB9E4\uB97C \uC6D0\uD558\uB294",
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
-            "\uC0C1\uD488\uC744 \uB4F1\uB85D\uD558\uC138\uC694"
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_left].join(" "), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: "/images/Img_home_03.png", alt: "Register", className: HomePage_default.img_home_middle }),
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: HomePage_default.description, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h3", { children: "Register" }),
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h2", { children: [
+              "\uD310\uB9E4\uB97C \uC6D0\uD558\uB294",
+              /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
+              "\uC0C1\uD488\uC744 \uB4F1\uB85D\uD558\uC138\uC694"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { children: [
+              "\uC5B4\uB5A4 \uBB3C\uAC74\uC774\uB4E0 \uD310\uB9E4\uD558\uACE0 \uC2F6\uC740 \uC0C1\uD488\uC744",
+              /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
+              "\uC27D\uAC8C \uB4F1\uB85D\uD558\uC138\uC694"
+            ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { children: [
-            "\uC5B4\uB5A4 \uBB3C\uAC74\uC774\uB4E0 \uD310\uB9E4\uD558\uACE0 \uC2F6\uC740 \uC0C1\uD488\uC744",
-            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
-            "\uC27D\uAC8C \uB4F1\uB85D\uD558\uC138\uC694"
-          ] })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: [HomePage_default.cBoth, HomePage_default.no_float].join(" ") })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("section", { className: [HomePage_default.section, HomePage_default.section_sec_bottom_divider].join(" ") }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_sec_bottom].join(" "), style: { backgroundImage: `url("/images/Img_home_bottom.png")` }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: [HomePage_default.cBoth, HomePage_default.no_float].join(" ") })
+        ] })
+      ] });
+    }
+    function CTASection() {
+      return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("section", { className: [HomePage_default.section, HomePage_default.section_sec_bottom].join(" "), style: { backgroundImage: `url("/images/Img_home_bottom.png")` }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h2", { children: [
           "\uBBFF\uC744 \uC218 \uC788\uB294",
           /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("br", {}),
           "\uD310\uB2E4\uB9C8\uCF13 \uC911\uACE0 \uAC70\uB798"
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: HomePage_default.img_home_bottom })
-      ] })
+      ] });
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("main", { className: HomePage_default.main, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("article", { className: HomePage_default.sub, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(HeroSection, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(FeaturesSection, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("section", { className: [HomePage_default.section, HomePage_default.section_sec_bottom_divider].join(" ") }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(CTASection, {})
     ] }) });
   }
   var HomePage_default2 = HomePage;
@@ -9089,7 +9104,7 @@
   function useAsync(asyncFunc) {
     const [pending, setPending] = (0, import_react3.useState)(false);
     const [error, setError] = (0, import_react3.useState)(null);
-    const wrappedAsyncFunc = async (...args) => {
+    const wrappedAsyncFunc = (0, import_react3.useCallback)(async (...args) => {
       try {
         setError(null);
         setPending(true);
@@ -9101,7 +9116,7 @@
       } finally {
         setPending(false);
       }
-    };
+    }, [asyncFunc]);
     return [pending, error, wrappedAsyncFunc, setError];
   }
   var useAsync_default = useAsync;
@@ -9147,7 +9162,7 @@
   // src/ItemsList.jsx
   init_react_shim();
   var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
-  function ItemsList({ items, orderBy, setOrderBy, keyword, setKeyword, onSearch }) {
+  function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKeyword, onSearch }) {
     const handleKeyDownInSearch = (e) => {
       if (e.code === "Enter") {
         e.preventDefault();
@@ -9156,7 +9171,7 @@
     };
     function InputKeyword() {
       return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: ItemsPage_default.input_wrapper, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "text", value: keyword, onKeyDown: handleKeyDownInSearch, onChange: (e) => setKeyword(e.target.value) }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "text", value: keyword, disabled: isLoadingItems, onKeyDown: handleKeyDownInSearch, onChange: (e) => setKeyword(e.target.value) }),
         /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", onClick: onSearch })
       ] });
     }
@@ -9539,8 +9554,8 @@
   };
   var noop = () => {
   };
-  var toFiniteNumber = (value, defaultValue) => {
-    return value != null && Number.isFinite(value = +value) ? value : defaultValue;
+  var toFiniteNumber = (value, defaultValue2) => {
+    return value != null && Number.isFinite(value = +value) ? value : defaultValue2;
   };
   var ALPHA = "abcdefghijklmnopqrstuvwxyz";
   var DIGIT = "0123456789";
@@ -11900,9 +11915,10 @@
   var loadItems = async function(params) {
     return await getProducts(params);
   };
-  var initialPageBestSize = window.innerWidth > 1200 ? 4 : window.innerWidth > 744 ? 2 : 1;
-  var initialPageSize = window.innerWidth > 1200 ? 10 : window.innerWidth > 744 ? 6 : 4;
   function ItemsPage() {
+    const viewport = useViewport();
+    const initialPageBestSize = viewport === "PC" ? 4 : viewport === "tablet" ? 2 : 1;
+    const initialPageSize = viewport === "PC" ? 10 : viewport === "tablet" ? 6 : 4;
     const [pageBestSize, setPageBestSize] = (0, import_react4.useState)(initialPageBestSize);
     const [bestItems, setBestItems] = (0, import_react4.useState)([]);
     const [pageSize, setPageSize] = (0, import_react4.useState)(initialPageSize);
@@ -11916,26 +11932,31 @@
       try {
         const result1 = await loadItemsAsync({ page: (pageNum - 1) * pageSize, pageSize, orderBy, keyword });
         console.log(result1);
-        if (!result1) return;
+        if (!result1) {
+          if (errorLoadingItems) {
+            setItems([]);
+          }
+          return;
+        }
         setPageNumMax(Math.ceil(result1.totalCount / pageSize));
         setPageNum(1);
         setItems(result1.list);
       } catch (err) {
         console.error(err);
       }
-    }, [pageNum, pageSize, orderBy, keyword]);
+    }, [pageNum, pageSize, orderBy, keyword, errorLoadingItems, loadItemsAsync]);
     const handleResize = (0, import_react4.useCallback)(function() {
-      if (window.innerWidth > 1200) {
+      if (viewport === "PC") {
         setPageBestSize(4);
         setPageSize(10);
-      } else if (window.innerWidth > 744) {
+      } else if (viewport === "tablet") {
         setPageBestSize(2);
         setPageSize(6);
       } else {
         setPageBestSize(1);
         setPageSize(4);
       }
-    }, []);
+    }, [viewport]);
     (0, import_react4.useEffect)(() => {
       console.log(`useEffect with dependancy []`);
       window.addEventListener("resize", handleResize);
@@ -11964,10 +11985,10 @@
       return () => {
         console.log(`[pageBestSize, pageSize, pageNum, orderBy] unmounted.`);
       };
-    }, [pageBestSize, pageSize, pageNum, orderBy]);
+    }, [pageBestSize, pageSize, pageNum, orderBy, keyword, loadItemsAsync]);
     return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("main", { className: ItemsPage_default.main, children: [
       /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(BestItemsList_default, { bestItems }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ItemsList_default, { items, orderBy, setOrderBy, keyword, setKeyword, onSearch: handleSearch }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ItemsList_default, { items, isLoadingItems, orderBy, setOrderBy, keyword, setKeyword, onSearch: handleSearch }),
       /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PageNum_default, { pageNum, setPageNum, pageNumMax })
     ] });
   }
@@ -12594,7 +12615,7 @@
   var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
   var root = import_client.default.createRoot(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ViewportProvider_default, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(BrowserRouter, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Routes, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ViewportProvider_default, { defValue: "phone", children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(BrowserRouter, { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Routes, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Route, { path: "/", element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(CommonsPage_default2, {}), children: [
         /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Route, { index: true, element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(HomePage_default2, {}) }),
         /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Route, { path: "items", element: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ItemsPage_default2, {}) }),

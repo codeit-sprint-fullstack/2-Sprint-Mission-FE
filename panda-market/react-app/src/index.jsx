@@ -13,7 +13,7 @@ import ViewportProvider from './context/ViewportProvider.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<ViewportProvider>
+	<ViewportProvider defValue={"phone"}>
 	<BrowserRouter>
 		<Routes>
 			<Route path="/" element={<CommonsPage/>}>

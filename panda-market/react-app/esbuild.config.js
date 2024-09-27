@@ -31,6 +31,6 @@ esbuild.build({
   jsxFactory: 'React.createElement',
   jsxFragment: 'React.Fragment',
   inject: ['./react-shim.js'], // 자동 주입 파일 추가
-  // Other options...
+  treeShaking: true,
 })
 .catch(() => process.exit(1));

@@ -1,24 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-const ViewportContext = React.createContext({
-	width: window.innerWidth,
-	height: window.innerHeight
-});
+const defaultValue
+	= window.innerWidth > 1200 ? "PC" :
+	window.innerWidth > 744 ? "tablet" : "phone";
+
+const ViewportContext = React.createContext(defaultValue);
 
 export function useViewport() {
-	const { value } = useContext(ViewportContext);
+	const value = useContext(ViewportContext);
 	if (value === undefined) {
 		throw new Error("useViewport should be used within ViewportContainer.");
 	}
 	return value;
 }
 
-function ViewportProvider({ children }) {
+function ViewportProvider({ defValue = defaultValue, children }) {
+	const [value, setValue] = useState(defaultValue);
+
+	useEffect(() => {
+		window.addEventListener("resize", () => {
+			setValue(
+				window.innerWidth > 1200 ? "PC" :
+				window.innerWidth > 744 ? "tablet" : "phone"
+			);
+		});
+		window.dispatchEvent(new Event("resize"));
+	}, []);
+
 	return (
-		<ViewportContext.Provider value={{
-			width: window.innerWidth,
-			height: window.innerHeight
-		}}>{children}</ViewportContext.Provider>
+		<ViewportContext.Provider value={value}>{children}</ViewportContext.Provider>
 	)
 }
 
