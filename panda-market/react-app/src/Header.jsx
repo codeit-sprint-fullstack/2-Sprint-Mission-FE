@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import styles from './pages/CommonsPage.module.css';
-import { useContext } from "react";
-import ViewportProvider from "./context/ViewportProvider";
+import { useViewport } from "./context/ViewportProvider";
 
 function getLinkStyle({ isActive }) {
 	return {
@@ -11,12 +10,12 @@ function getLinkStyle({ isActive }) {
 }
 
 function Header() {
-	const { value } = useContext(ViewportProvider);
+	const value = useViewport();
 
   return (<header className={styles.header}>
 		<div className={styles.sub}>
 			<div className={styles.sub_header}>
-				<Link to="/"><img className={styles.logo} src={"/images/Property-1=lg.png"} alt="판다마켓 Logo"/></Link>
+				<Link to="/"><img className={styles.logo} src={value.width > 744 ? "/images/Property-1=lg.png" : "/images/logo-text-only.png"} alt="판다마켓 Logo"/></Link>
 				<nav>
 					<ul>
 						<li><NavLink to="/boards" style={getLinkStyle}>자유게시판</NavLink></li>

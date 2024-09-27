@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
 import styles from './ItemsPage.module.css';
 import useAsync from "../hooks/useAsync.js";
-import BestItemsList from "../BestItemsList.js";
-import ItemsList from "../ItemsList.js";
-import PageNum from "../PageNum.js";
+import BestItemsList from "../BestItemsList.jsx";
+import ItemsList from "../ItemsList.jsx";
+import PageNum from "../PageNum.jsx";
 import { getProducts } from "../apis/itemsService.js";
 
 const loadItems = async function (params) { // * { page, pageSize, orderBy, keyword }

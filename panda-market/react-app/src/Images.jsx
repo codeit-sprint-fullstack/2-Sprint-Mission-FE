@@ -1,4 +1,4 @@
-import Delete from './Delete.js';
+import Delete from './Delete.jsx';
 import styles from './pages/RegisPage.module.css';
 
 function Images({ name, images, setValues }) {

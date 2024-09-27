@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import styles from './LogInPage.module.css';
-import PopUp from "../PopUp.js";
+import PopUp from "../PopUp.jsx";
 import USER_DATA from "../scripts/data.js";
 import { Link } from "react-router-dom";
 

@@ -1,10 +1,10 @@
 import styles from './RegisPage.module.css';
 import { useRef, useState } from "react";
-import Tags from "../Tags.js";
-import Images from "../Images.js";
+import Tags from "../Tags.jsx";
+import Images from "../Images.jsx";
 import { postProduct } from "../apis/itemsService.js";
-import PopUp from '../PopUp.js';
-import useAsync from '../hooks/useAsync.js';
+import PopUp from "../PopUp.jsx";
+import useAsync from "../hooks/useAsync.js";
 
 export async function isImage(url) {
 	try {

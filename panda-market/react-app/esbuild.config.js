@@ -5,7 +5,7 @@ let pageName = process.argv[2];
 let dirName = `${pageName}/`;
 
 if (!pageName) {
-  console.log('Default is index[.js]');
+  console.log('Default is index[.jsx]');
   pageName = 'index';
   dirName = '';
 }
@@ -14,7 +14,7 @@ esbuild.build({
   sourcemap: true,
   logLevel: 'info',
   platform: 'browser',
-  entryPoints: [`src/${pageName}.js`],
+  entryPoints: [`src/${pageName}.jsx`],
   bundle: true,
   minify: false,
   outfile: `dist/${dirName}esb-bundle.js`,

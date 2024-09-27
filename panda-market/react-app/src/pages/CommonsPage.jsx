@@ -1,5 +1,5 @@
-import Header from "../Header.js";
-import Footer from "../Footer.js";
+import Header from "../Header.jsx";
+import Footer from "../Footer.jsx";
 import { Outlet } from "react-router-dom";
 
 function CommonsPage() {

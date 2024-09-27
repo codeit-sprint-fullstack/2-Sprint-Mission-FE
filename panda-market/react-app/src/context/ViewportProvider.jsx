@@ -6,7 +6,7 @@ const ViewportContext = React.createContext({
 });
 
 export function useViewport() {
-	const value = useContext(ViewportContext);
+	const { value } = useContext(ViewportContext);
 	if (value === undefined) {
 		throw new Error("useViewport should be used within ViewportContainer.");
 	}

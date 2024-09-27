@@ -1,4 +1,4 @@
-import Item from './Item.js';
+import Item from './Item.jsx';
 import styles from './pages/ItemsPage.module.css';
 
 function BestItemsList({ bestItems }) {
