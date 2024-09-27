@@ -9,7 +9,7 @@ const ViewportContext = React.createContext(defaultValue);
 export function useViewport() {
 	const value = useContext(ViewportContext);
 	if (value === undefined) {
-		throw new Error("useViewport should be used within ViewportContainer.");
+		throw new Error("useViewport should be used within ViewportProvider.");
 	}
 	return value;
 }
@@ -29,7 +29,7 @@ function ViewportProvider({ defValue = defaultValue, children }) {
 
 	return (
 		<ViewportContext.Provider value={value}>{children}</ViewportContext.Provider>
-	)
+	);
 }
 
 export default ViewportProvider;

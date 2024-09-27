@@ -8887,7 +8887,7 @@
   function useViewport() {
     const value = (0, import_react2.useContext)(ViewportContext);
     if (value === void 0) {
-      throw new Error("useViewport should be used within ViewportContainer.");
+      throw new Error("useViewport should be used within ViewportProvider.");
     }
     return value;
   }
@@ -11945,26 +11945,21 @@
         console.error(err);
       }
     }, [pageNum, pageSize, orderBy, keyword, errorLoadingItems, loadItemsAsync]);
-    const handleResize = (0, import_react4.useCallback)(function() {
-      if (viewport === "PC") {
+    const handleResize = (0, import_react4.useCallback)(function(viewport2) {
+      if (viewport2 === "PC") {
         setPageBestSize(4);
         setPageSize(10);
-      } else if (viewport === "tablet") {
+      } else if (viewport2 === "tablet") {
         setPageBestSize(2);
         setPageSize(6);
       } else {
         setPageBestSize(1);
         setPageSize(4);
       }
-    }, [viewport]);
+    }, []);
     (0, import_react4.useEffect)(() => {
-      console.log(`useEffect with dependancy []`);
-      window.addEventListener("resize", handleResize);
-      window.dispatchEvent(new Event("resize"));
-      return () => {
-        console.log(`[] unmounted.`);
-      };
-    }, [handleResize]);
+      handleResize(viewport);
+    }, [viewport, handleResize]);
     (0, import_react4.useEffect)(() => {
       console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`);
       (async function() {

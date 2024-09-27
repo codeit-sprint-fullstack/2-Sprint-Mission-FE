@@ -45,7 +45,7 @@ function ItemsPage() {
 		}
 	}, [pageNum, pageSize, orderBy, keyword, errorLoadingItems, loadItemsAsync]);
 
-	const handleResize = useCallback(function () {
+	const handleResize = useCallback(function (viewport) {
 		if (viewport === "PC") {
 			setPageBestSize(4);
 			setPageSize(10);
@@ -58,17 +58,11 @@ function ItemsPage() {
 			setPageBestSize(1);
 			setPageSize(4);
 		}
-	}, [viewport]);
+	}, []);
 
 	useEffect(() => {
-		console.log(`useEffect with dependancy []`);
-		window.addEventListener("resize", handleResize);
-		window.dispatchEvent(new Event('resize'));
-
-		return () => {
-			console.log(`[] unmounted.`);
-		};
-	}, [handleResize]);
+		handleResize(viewport);
+	}, [viewport, handleResize]);
 
 	useEffect(() => {
 		console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`);
