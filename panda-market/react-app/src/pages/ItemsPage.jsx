@@ -26,9 +26,9 @@ function ItemsPage() {
 	const [keyword, setKeyword] = useState("");
 	const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync(loadItems);
 
-	const handleSearch = useCallback(async () => {
+	const handleSearch = useCallback(async (keyword) => {
 		try {
-			const result1 = await loadItemsAsync({ page: (pageNum-1)*pageSize, pageSize, orderBy, keyword });
+			const result1 = await loadItemsAsync({ skip: (pageNum-1)*pageSize, take: pageSize, sort: orderBy, keyword });
 			console.log(result1);
 			if (!result1) {
 				if (errorLoadingItems) {
@@ -43,7 +43,7 @@ function ItemsPage() {
 		catch (err) {
 			console.error(err);
 		}
-	}, [pageNum, pageSize, orderBy, keyword, errorLoadingItems, loadItemsAsync]);
+	}, [pageNum, pageSize, orderBy, errorLoadingItems, loadItemsAsync]);
 
 	const handleResize = useCallback(function (viewport) {
 		if (viewport === "PC") {

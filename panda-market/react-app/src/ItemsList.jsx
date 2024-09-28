@@ -8,7 +8,7 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 	const handleKeyDownInSearch = (e) => {
 		if (e.code === "Enter") {
 			e.preventDefault();
-			onSearch();
+			onSearch(keyword);
 		}
 	};
 
@@ -16,7 +16,7 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 		return (
 			<div className={styles.input_wrapper}>
 				<input type="text" value={keyword} disabled={isLoadingItems} onKeyDown={handleKeyDownInSearch} onChange={(e) => setKeyword(e.target.value)}/>
-				<img src="/images/ic_search.svg" alt="Search" onClick={onSearch}/>
+				<img src="/images/ic_search.svg" alt="Search" onClick={() => onSearch(keyword)}/>
 			</div>
 		);
 	}

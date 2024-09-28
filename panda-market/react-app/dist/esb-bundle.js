@@ -9166,13 +9166,13 @@
     const handleKeyDownInSearch = (e) => {
       if (e.code === "Enter") {
         e.preventDefault();
-        onSearch();
+        onSearch(keyword);
       }
     };
     function InputKeyword() {
       return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: ItemsPage_default.input_wrapper, children: [
         /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "text", value: keyword, disabled: isLoadingItems, onKeyDown: handleKeyDownInSearch, onChange: (e) => setKeyword(e.target.value) }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", onClick: onSearch })
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", onClick: () => onSearch(keyword) })
       ] });
     }
     function SelectOrder() {
@@ -11893,7 +11893,7 @@
   var instance = axios_default.create({
     baseURL: `https://two-sprint-mission-be-t2e7.onrender.com`
   });
-  async function getProducts(params = { page: 0, pageSize: 10, orderBy: "recent", keyword: "" }) {
+  async function getProducts(params = { skip: 0, take: 10, sort: "recent", keyword: "" }) {
     try {
       const products = await instance.get(`/products`, { params });
       return products.data;
@@ -11928,9 +11928,9 @@
     const [orderBy, setOrderBy] = (0, import_react4.useState)("recent");
     const [keyword, setKeyword] = (0, import_react4.useState)("");
     const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync_default(loadItems);
-    const handleSearch = (0, import_react4.useCallback)(async () => {
+    const handleSearch = (0, import_react4.useCallback)(async (keyword2) => {
       try {
-        const result1 = await loadItemsAsync({ page: (pageNum - 1) * pageSize, pageSize, orderBy, keyword });
+        const result1 = await loadItemsAsync({ skip: (pageNum - 1) * pageSize, take: pageSize, sort: orderBy, keyword: keyword2 });
         console.log(result1);
         if (!result1) {
           if (errorLoadingItems) {
@@ -11944,7 +11944,7 @@
       } catch (err) {
         console.error(err);
       }
-    }, [pageNum, pageSize, orderBy, keyword, errorLoadingItems, loadItemsAsync]);
+    }, [pageNum, pageSize, orderBy, errorLoadingItems, loadItemsAsync]);
     const handleResize = (0, import_react4.useCallback)(function(viewport2) {
       if (viewport2 === "PC") {
         setPageBestSize(4);
