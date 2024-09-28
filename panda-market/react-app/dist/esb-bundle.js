@@ -11961,14 +11961,11 @@
       handleResize(viewport);
     }, [viewport, handleResize]);
     (0, import_react4.useEffect)(() => {
-      console.log(`useEffect with dependancy [pageBestSize, pageSize, pageNum, orderBy]`);
       (async function() {
         try {
-          const result0 = await loadItemsAsync({ page: (pageNum - 1) * pageBestSize, pageSize: pageBestSize, orderBy: "favorite", keyword: "" });
-          console.log("result0", result0);
+          const result0 = await loadItemsAsync({ skip: (pageNum - 1) * pageBestSize, take: pageBestSize, sort: "favorite", keyword });
           if (!result0) return;
-          const result1 = await loadItemsAsync({ page: (pageNum - 1) * pageSize, pageSize, orderBy, keyword });
-          console.log("result1", result1);
+          const result1 = await loadItemsAsync({ skip: (pageNum - 1) * pageSize, take: pageSize, sort: orderBy, keyword });
           if (!result1) return;
           setPageNumMax(Math.ceil(result1.totalCount / pageSize));
           setBestItems(result0.list);
@@ -11977,10 +11974,7 @@
           console.error(err);
         }
       })();
-      return () => {
-        console.log(`[pageBestSize, pageSize, pageNum, orderBy] unmounted.`);
-      };
-    }, [pageBestSize, pageSize, pageNum, orderBy, keyword, loadItemsAsync]);
+    }, [pageBestSize, pageSize, pageNum, orderBy, loadItemsAsync]);
     return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("main", { className: ItemsPage_default.main, children: [
       /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(BestItemsList_default, { bestItems }),
       /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ItemsList_default, { items, isLoadingItems, orderBy, setOrderBy, keyword, setKeyword, onSearch: handleSearch }),
