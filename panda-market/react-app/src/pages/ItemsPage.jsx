@@ -28,16 +28,16 @@ function ItemsPage() {
 
 	const handleSearch = useCallback(async (keyword) => {
 		try {
+			setPageNum(1);
 			const result1 = await loadItemsAsync({ skip: (pageNum-1)*pageSize, take: pageSize, sort: orderBy, keyword });
 			console.log(result1);
 			if (!result1) {
 				if (errorLoadingItems) {
-					setItems([]);
+					setItems([{name: errorLoadingItems.name, description: errorLoadingItems.message}]);
 				}
 				return;
 			}
 			setPageNumMax(Math.ceil(result1.totalCount / pageSize));
-			setPageNum(1);
 			setItems(result1.list);
 		}
 		catch (err) {

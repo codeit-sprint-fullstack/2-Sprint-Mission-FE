@@ -9164,17 +9164,15 @@
   var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
   function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKeyword, onSearch }) {
     const handleKeyDownInSearch = (e) => {
+      if (e.key === "Process") return;
       if (e.code === "Enter") {
         e.preventDefault();
         onSearch(keyword);
       }
     };
-    function InputKeyword() {
-      return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: ItemsPage_default.input_wrapper, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "text", value: keyword, disabled: isLoadingItems, onKeyDown: handleKeyDownInSearch, onChange: (e) => setKeyword(e.target.value) }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", onClick: () => onSearch(keyword) })
-      ] });
-    }
+    const handleKeywordChange = (e) => {
+      setKeyword(e.target.value);
+    };
     function SelectOrder() {
       return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("select", { className: ItemsPage_default.select_order_by, value: orderBy, onChange: (e) => setOrderBy(e.target.value), children: [
         /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("option", { value: "recent", children: "\uCD5C\uC2E0\uC21C" }),
@@ -9191,7 +9189,10 @@
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: ItemsPage_default.items_head, children: window.innerWidth > 744 ? /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(import_jsx_runtime8.Fragment, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { children: "\uD310\uB9E4 \uC911\uC778 \uC0C1\uD488" }),
         /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: ItemsPage_default.query_heads, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(InputKeyword, {}),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: ItemsPage_default.input_wrapper, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "text", value: keyword, onKeyDown: handleKeyDownInSearch, onChange: handleKeywordChange }),
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", disabled: isLoadingItems, onClick: () => onSearch(keyword) })
+          ] }),
           /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(RegisProduct, {}),
           /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(SelectOrder, {})
         ] })
@@ -9201,7 +9202,10 @@
           /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(RegisProduct, {})
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: ItemsPage_default.query_heads, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(InputKeyword, {}),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: ItemsPage_default.input_wrapper, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { type: "text", value: keyword, onKeyDown: handleKeyDownInSearch, onChange: handleKeywordChange }),
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("img", { src: "/images/ic_search.svg", alt: "Search", disabled: isLoadingItems, onClick: () => onSearch(keyword) })
+          ] }),
           /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(SelectOrder, {})
         ] })
       ] }) }),
@@ -11930,16 +11934,16 @@
     const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync_default(loadItems);
     const handleSearch = (0, import_react4.useCallback)(async (keyword2) => {
       try {
+        setPageNum(1);
         const result1 = await loadItemsAsync({ skip: (pageNum - 1) * pageSize, take: pageSize, sort: orderBy, keyword: keyword2 });
         console.log(result1);
         if (!result1) {
           if (errorLoadingItems) {
-            setItems([]);
+            setItems([{ name: errorLoadingItems.name, description: errorLoadingItems.message }]);
           }
           return;
         }
         setPageNumMax(Math.ceil(result1.totalCount / pageSize));
-        setPageNum(1);
         setItems(result1.list);
       } catch (err) {
         console.error(err);

@@ -6,19 +6,15 @@ import styles from './pages/ItemsPage.module.css';
 
 function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKeyword, onSearch }) {
 	const handleKeyDownInSearch = (e) => {
+		if (e.key === "Process") return;
 		if (e.code === "Enter") {
 			e.preventDefault();
 			onSearch(keyword);
 		}
 	};
 
-	function InputKeyword() {
-		return (
-			<div className={styles.input_wrapper}>
-				<input type="text" value={keyword} disabled={isLoadingItems} onKeyDown={handleKeyDownInSearch} onChange={(e) => setKeyword(e.target.value)}/>
-				<img src="/images/ic_search.svg" alt="Search" onClick={() => onSearch(keyword)}/>
-			</div>
-		);
+	const handleKeywordChange = (e) => {
+		setKeyword(e.target.value);
 	}
 
 	function SelectOrder() {
@@ -49,7 +45,10 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 				<>
 					<h2>판매 중인 상품</h2>
 					<div className={styles.query_heads}>
-						<InputKeyword/>
+						<div className={styles.input_wrapper}>
+							<input type="text" value={keyword} onKeyDown={handleKeyDownInSearch} onChange={handleKeywordChange}/>
+							<img src="/images/ic_search.svg" alt="Search" disabled={isLoadingItems} onClick={() => onSearch(keyword)}/>
+						</div>
 						<RegisProduct/>
 						<SelectOrder/>
 					</div>
@@ -60,7 +59,10 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 						<RegisProduct/>
 					</div>
 					<div className={styles.query_heads}>
-						<InputKeyword/>
+						<div className={styles.input_wrapper}>
+							<input type="text" value={keyword} onKeyDown={handleKeyDownInSearch} onChange={handleKeywordChange}/>
+							<img src="/images/ic_search.svg" alt="Search" disabled={isLoadingItems} onClick={() => onSearch(keyword)}/>
+						</div>
 						<SelectOrder/>
 					</div>
 				</>
