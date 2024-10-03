@@ -17,13 +17,13 @@ function Footer() {
           <a href="https://www.facebook.com">
             <img src={logoFB} alt="facebook" />
           </a>
-          <a href="https://www.twitter.com">
+          <a href="https://www.instagram.com">
             <img src={logoIG} alt="instagram" />
           </a>
-          <a href="https://www.youtube.com">
+          <a href="https://www.twitter.com">
             <img src={logoTW} alt="twitter" />
           </a>
-          <a href="https://www.instagram.com">
+          <a href="https://www.youtube.com">
             <img src={logoYT} alt="youtube" />
           </a>
         </div>

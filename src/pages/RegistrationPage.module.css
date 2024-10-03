@@ -1,0 +1,90 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px 200px 10px;
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.titles {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  margin: 0;
+}
+
+.inputTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+}
+
+input {
+  background-color: var(--gray-100);
+  border-radius: 12px;
+  border: none;
+  font-size: 1.6rem;
+  width: 100%;
+  padding: 16px 24px;
+
+  &::placeholder {
+    color: var(--gray-400);
+  }
+}
+
+.descriptionInput {
+  font-family: Pretendard;
+  background-color: var(--gray-100);
+  border-radius: 12px;
+  border: none;
+  font-size: 1.6rem;
+  width: 100%;
+  padding: 16px 24px;
+  height: 282px;
+  line-height: 2.6rem;
+  resize: none;
+  
+  &::placeholder {
+    color: var(--gray-400);
+  }
+}
+
+.error {
+  border: 1px solid var(--error-red);
+}
+
+.tagWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 26px;
+  background-color: var(--gray-100);
+  font-size: 1.6rem;
+  color: var(--gray-800);
+}
+
+.errorMessage {
+  color: var(--error-red);
+  font-size: 1.4rem;
+  margin-left: 15px;
+}

@@ -2,55 +2,66 @@ import { useCallback, useEffect, useState } from "react";
 import { getProducts } from "../api";
 import useAsync from "../hook/useAsync";
 import styles from "./AllProducts.module.css";
+import defaultImage from "../assets/default-image.png";
+import createButton from './Button';
+import { useViewport } from '../contexts/viewportContext';
+import { NavLink } from 'react-router-dom';
 
 function AllProductList({ item }) {
   return (
     <div className={styles.allProduct}>
-      <img className={styles.productImage} src={item.images} alt={item.name} />
+      <img className={styles.productImage} 
+      src={item.images ? item.images : defaultImage} 
+      alt={item.name} />
       <div className={styles.productInfo}>
         <p className={styles.description}>{item.description}</p>
-        <p className={styles.price}>{item.price}원</p>
-        <p className={styles.favoriteCount}>♡ {item.favoriteCount}</p>
+        <p className={styles.price}>{item.price.toLocaleString()}원</p>
+        <p className={styles.favoriteCount}>♡ {item.favoriteCount || 0}</p>
       </div>
     </div>
   );
 }
 
+const pageSizeTable = Object.freeze({
+  desktop: 10,
+  tablet: 6,
+  mobile: 4
+})
+
+const RegistrationPageButton = createButton({
+  style: "btn_small_40"
+})
+
 function AllProducts() {
+  const viewport = useViewport();
   const [items, setItems] = useState([]);
-  const [order, setOrder] = useState("recent");
+  const [order, setOrder] = useState("createdAt");
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(pageSizeTable[`${viewport}`]);
+  const [search, setSearch] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, loadingError, getProductsAsync] = useAsync(getProducts);
-  const [width, setWidth] = useState(0);
 
   const handleLoad = useCallback(
     async (options) => {
       const result = await getProductsAsync(options);
       if (!result) return;
 
-      const { list, totalCount } = result;
-      setItems(list);
+      const { products, totalCount } = result;
+      setItems(products);
       setPage(options.page);
-
       const pages = Math.ceil(totalCount / options.pageSize);
       setTotalPages(pages);
-    },
-    [getProductsAsync]
+    }, [getProductsAsync]
   );
 
   const handleChange = (e) => {
     setPage(1);
-    if (e.target.value === "recent") {
-      setOrder("recent");
+    if (e.target.value === "createdAt") {
+      setOrder("-createdAt");
     } else {
-      setOrder("favorite");
+      setOrder("-favoriteCount");
     }
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
   };
 
   const startPage =
@@ -59,51 +70,43 @@ function AllProducts() {
   const pagination = [];
   for (let i = startPage; i <= endPage; i++) {
     pagination.push(i);
+  };
+
+  const handleKeyUp = (e) => {
+    if (e.key === "Enter") {
+      const searchQuery = e.target.value.trim();
+      setSearch(searchQuery);
+    }
   }
 
   useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+    setPageSize(pageSizeTable[`${viewport}`]);
+  }, [viewport]);
 
   useEffect(() => {
-    if (width >= 1200) {
-      setPageSize(10);
-    } else if (width >= 744) {
-      setPageSize(6);
-    } else {
-      setPageSize(4);
+    if (pageSize > 0) {
+      handleLoad({ orderBy: order, page, pageSize, search });
     }
-
-    handleLoad({ orderBy: order, page: page, pageSize: pageSize });
-  }, [order, page, pageSize, width, handleLoad]);
+  }, [order, page, pageSize, search, handleLoad]);
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.subTitle}>
-        <h1>판매 중인 상품</h1>
-        <div className={styles.subTitleMenus}>
-          <form>
-            <input placeholder="      검색할 상품을 입력해주세요" />
-            <button className={styles.formButton} onClick={handleClick}>
-              상품 등록하기
-            </button>
-          </form>
-          <select onChange={handleChange}>
-            <option value="recent">최신순</option>
-            <option value="favorite">좋아요순</option>
-          </select>
-        </div>
+      <div className={styles.menus}>
+        <p className={styles.title}>판매 중인 상품</p>
+        <input className={styles.itemSearchInput} placeholder="      검색할 상품을 입력해주세요" onKeyUp={handleKeyUp} />
+        <NavLink to={"/registration"}>
+          <RegistrationPageButton className='registrationPageButton'>
+            상품 등록하기
+          </RegistrationPageButton>
+        </NavLink>
+        <select className={styles.orderSelect} onChange={handleChange}>
+          <option value="createdAt">최신순</option>
+          <option value="favoriteCount">좋아요순</option>
+        </select>
       </div>
       <div className={styles.allProductList}>
         {items.map((item) => (
-          <AllProductList key={item.id} item={item} />
+          <AllProductList key={item._id} item={item} />
         ))}
       </div>
       <div className={styles.pagination}>
