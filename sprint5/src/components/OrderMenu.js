@@ -14,7 +14,6 @@ const OrderMenu = () => {
   ];
 
   const handleOptionClick = (val) => {
-    console.log('Seleted sort order:', val);
     setSortOrder(val);
     setIsOpen(false);
   };

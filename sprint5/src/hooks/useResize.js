@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 
+const VIEWPORT = Object.freeze({
+  DESKTOP: 1200,
+  TABLET: 744,
+  MOBILE: 743
+});
+
+const DESKTOP_SIZE_PRODUCT_LIST = 10;
+const TABLET_SIZE_PRODUCT_LIST = 6;
+const MOBILE_SIZE_PRODUCT_LIST = 4;
+
+const DESKTOP_SIZE_BEST_PRODUCT_LIST = 4;
+const TABLET_SIZE_BEST_PRODUCT_LIST = 2;
+const MOBLIE_SIZE_BEST_PRODUCT_LIST = 1;
+
 export default function useResize(isBestProductList = false) {
-  const VIEWPORT = Object.freeze({
-    DESKTOP: 1200,
-    TABLET: 744,
-    MOBILE: 743
-  });
-
-  const DESKTOP_SIZE_PRODUCT_LIST = 10;
-  const TABLET_SIZE_PRODUCT_LIST = 6;
-  const MOBILE_SIZE_PRODUCT_LIST = 4;
-
-  const DESKTOP_SIZE_BEST_PRODUCT_LIST = 4;
-  const TABLET_SIZE_BEST_PRODUCT_LIST = 2;
-  const MOBLIE_SIZE_BEST_PRODUCT_LIST = 1;
-
   const [pageSize, setPageSize] = useState(
     isBestProductList
       ? DESKTOP_SIZE_BEST_PRODUCT_LIST

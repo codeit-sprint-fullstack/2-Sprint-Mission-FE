@@ -27,7 +27,7 @@ function ProductListContent() {
   // 조건부 렌더링 처리
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-  if (!data || !data) return <div>No data found</div>;
+  if (!data) return <div>No data found</div>;
 
   // 데이터 정렬 및 필터링
   const sortedItems = data.sort((a, b) => {

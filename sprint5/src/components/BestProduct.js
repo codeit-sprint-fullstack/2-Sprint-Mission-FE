@@ -7,7 +7,6 @@ import defaultImg from '../images/img_default.png';
 function BestProductItem({ item }) {
   const { name, price, favoriteCount } = item;
 
-
   return (
     <div className="best-product-item">
       <img className="best-product-item-img" src={defaultImg} alt={name} />
@@ -27,7 +26,7 @@ export default function BestProduct() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-  if (!data || !data) return <div>No data found</div>;
+  if (!data) return <div>No data found</div>;
 
   const bestProducts = data.sort((a, b) => b.favoriteCount - a.favoriteCount);
 
