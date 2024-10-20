@@ -1,0 +1,16 @@
+.btn_small_40 {
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: var(--primary-100);
+  border: none;
+  color: var(--gray-100);
+  padding: 12px 23px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  width: auto;
+
+  &:disabled {
+    background-color: var(--gray-400);
+    color: #ffffff;
+  }
+}
