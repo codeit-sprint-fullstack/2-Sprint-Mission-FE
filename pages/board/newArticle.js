@@ -20,7 +20,6 @@ export default function NewArticle() {
               className={styles.titleInput}
               type="text"
               placeholder="제목을 입력해주세요"
-              value=""
             />
           </div>
 
@@ -30,7 +29,6 @@ export default function NewArticle() {
               className={styles.contentInput}
               type="text"
               placeholder="내용을 입력해주세요"
-              value=""
             />
           </div>
         </div>
