@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import Header from './Header.js';
+import style from '@/styles/Posting.module.css';
 
 export default function Posting() {
   return (
     <>
-      <Header> 베스트 게시글 </Header>
       <Header> 게시글 </Header>
-      <Link href="/free-board/create-post">글쓰기</Link>
+      <Link href="/free-board/create-post">
+        <button className={style.button}>글쓰기</button>
+      </Link>
     </>
   );
 }
