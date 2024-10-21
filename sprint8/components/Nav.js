@@ -5,8 +5,11 @@ import style from '@/styles/Nav.module.css';
 import logo from '@/public/assets/pndamarket_logo.png';
 
 export default function Nav() {
-  const router = useRouter();
-  const { pathname } = router;
+  function menuActiveStyle(location) {
+    const router = useRouter();
+    const { pathname } = router;
+    return pathname.startsWith(location) ? style.active : '';
+  }
 
   return (
     <>
@@ -16,17 +19,13 @@ export default function Nav() {
           <div className={style.menus}>
             <Link
               href="/free-board"
-              className={`${style.menu} ${
-                pathname === '/free-board' ? style.active : ''
-              }`}
+              className={`${style.menu} ${menuActiveStyle('/free-board')}`}
             >
               자유게시판
             </Link>
             <Link
               href="/market"
-              className={`${style.menu} ${
-                pathname === '/market' ? style.active : ''
-              }`}
+              className={`${style.menu} ${menuActiveStyle('/market')}`}
             >
               중고마켓
             </Link>
