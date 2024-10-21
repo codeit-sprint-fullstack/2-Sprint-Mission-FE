@@ -1,13 +1,6 @@
 import Link from 'next/link';
 import styles from './GNB.module.css';
-import Image from 'next/image';
 import createButton from './Button';
-
-function getLinkStyle({ isActive }) {
-  return {
-    color: isActive ? '#3692FF' : '',
-  };
-}
 
 const LoginButton = createButton({
   style: 'btn_small_40',
@@ -28,14 +21,12 @@ export default function GNB() {
             <Link
               href="/board"
               className={styles.navLinkStyle}
-              style={{ getLinkStyle }}
             >
               <p>자유게시판</p>
             </Link>
             <Link
               href="/items"
               className={styles.navLinkStyle}
-              style={{ getLinkStyle }}
             >
               <p>중고마켓</p>
             </Link>

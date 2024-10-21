@@ -29,3 +29,7 @@ body {
   --gray-50: #f9fafb;
   --error-red: #f74747;
 }
+
+p {
+  margin: 0;
+}
