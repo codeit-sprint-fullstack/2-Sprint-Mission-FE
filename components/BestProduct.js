@@ -1,7 +1,7 @@
 import '../css/BestProduct.css';
 import useQuery from '../hooks/useQuery';
 import useResize from '../hooks/useResize';
-import { getProductList } from '../api';
+import { getProductList } from '../lib/api';
 import defaultImg from '../images/img_default.png';
 
 function BestProductItem({ item }) {

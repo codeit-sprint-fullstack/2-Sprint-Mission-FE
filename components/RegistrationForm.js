@@ -3,7 +3,7 @@ import Tags from './Tags';
 import useValidate from '../hooks/useValidate';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createProduct } from '../api';
+import { createProduct } from '../lib/api';
 
 export default function RegistrationForm() {
   const { values, errors, handleChange, validate } = useValidate({

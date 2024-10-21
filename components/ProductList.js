@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import useQuery from '../hooks/useQuery';
 import useResize from '../hooks/useResize';
-import { getProductList } from '../api';
+import { getProductList } from '../lib/api';
 import { useState } from 'react';
 import { SortProvider, useSort } from '../contexts/SortContext';
 
