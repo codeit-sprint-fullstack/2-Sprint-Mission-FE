@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import Head from 'next/head';
 import Nav from '@/components/Nav/Nav';
 import Footer from '@/components/Footer/Footer';
+import Container from '@/components/Common/Container';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -11,7 +12,9 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <Component {...pageProps} />
+      <Container>
+        <Component {...pageProps} />
+      </Container>
       <Footer />
     </>
   );
