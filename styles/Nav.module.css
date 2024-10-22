@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 0.1rem solid #dfdfdf;
+  z-index: 100;
+}
+
+.logoMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2.2rem;
+  margin-left: 20rem;
+}
+
+.logo {
+  position: relative;
+  width: 15.3rem;
+  height: 5.1rem;
+  cursor: pointer;
+}
+
+.menus {
+  display: flex;
+}
+
+.menu {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  text-decoration: none;
+  margin: 2.4rem 1.5rem;
+  cursor: pointer;
+}
+
+.menu.active {
+  color: var(--primary-100);
+}
+
+.login {
+  width: 8.8rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--primary-100);
+  cursor: pointer;
+  margin-right: 20rem;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .logoMenu {
+    margin-left: 2.4rem;
+  }
+  .login {
+    margin-right: 2.4rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .logoMenu {
+    gap: 1rem;
+    margin-left: 1.6rem;
+  }
+
+  .menu {
+    margin: 2.4rem 1rem;
+  }
+
+  .login {
+    margin-right: 1.6rem;
+  }
+}
