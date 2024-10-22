@@ -1,0 +1,73 @@
+.nav {
+  width: 100%;
+  max-width: 192rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 12rem;
+  position: relative;
+}
+
+.navPanda {
+  position: relative;
+  width: 15rem;
+  height: 5rem;
+}
+
+.menu {
+  display: flex;
+  gap: 2rem;
+  position: absolute;
+  left: 30rem;
+}
+
+.menu h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.menu h3:nth-child(1) {
+  color: var(--primary-blue);
+}
+
+.menu h3:nth-child(2) {
+  color: var(--secondary-gray-100);
+}
+
+.login {
+  width: 100%;
+  max-width: 10rem;
+  height: 4.2rem;
+  padding: 1.2rem 2.3rem;
+  gap: 1rem;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: var(--primary-blue);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.9rem;
+  text-align: left;
+  color: var(--primary-white);
+  white-space: nowrap;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .nav {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .nav {
+    padding: 1rem 1.2rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .menu {
+    position: static;
+  }
+}
