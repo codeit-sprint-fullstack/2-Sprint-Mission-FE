@@ -35,7 +35,7 @@ export default function Home() {
 
   async function getArticles() {
     const res = await axios.get('/articles', { params: paramsAll });
-    const articles = res.data ?? [];
+    const articles = Array.isArray(res.data) ? res.data : [];
     setArticles(articles);
     setFilteredArticles(res.data ?? []);
   }
@@ -69,7 +69,7 @@ export default function Home() {
           <Search keyword={keyword} onSearch={setKeyword} />
           <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
         </div>
-        <ArticleList articles={filteredArticles} />
+        <ArticleList articles={filteredArticles || []} />
       </div>
     </div>
   );

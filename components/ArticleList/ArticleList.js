@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import formatDate from '@/lib/formatDate';
 
-export default function ArticleList({ articles }) {
+export default function ArticleList({ articles = [] }) {
   return (
     <>
       <ul className={styles[`article-list`]}>

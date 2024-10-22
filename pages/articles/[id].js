@@ -72,6 +72,9 @@ export default function article() {
         </div>
         <p>{article.content}</p>
       </div>
+      <div className={styles.comments}>
+        <ArticleCommentList />
+      </div>
     </div>
   );
 }
