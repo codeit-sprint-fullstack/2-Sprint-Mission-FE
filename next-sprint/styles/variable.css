@@ -1,6 +1,9 @@
 :root {
   --primary-blue: #3692ff;
   --primary-white: #ffffff;
+  --primary-black: #111827;
 
-  --secondary-gray-100: #4b5563;
+  --secondary-gray-500: #4b5563;
+  --secondary-gray-300: #9ca3af;
+  --secondary-gray-100: #e5e7eb;
 }
