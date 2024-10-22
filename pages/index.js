@@ -1,11 +1,24 @@
-import Head from 'next/head';
-import Image from 'next/image';
 import styles from '@/styles/Home.module.css';
+import { useState, useEffect } from 'react';
+import axios from '@/lib/axios';
+import ArticleList from '@/components/ArticleList/ArticleList';
 
 export default function Home() {
+  const [articles, setArticles] = useState([]);
+
+  async function getArticles() {
+    const res = await axios.get('/articles');
+    const articles = res.data ?? [];
+    setArticles(articles);
+  }
+
+  useEffect(() => {
+    getArticles();
+  }, []);
+
   return (
     <>
-      <h1>홈</h1>
+      <ArticleList articles={articles} />
     </>
   );
 }

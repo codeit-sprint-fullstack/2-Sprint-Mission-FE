@@ -1,4 +1,4 @@
-import styles from '@/components/Nav/Nav.module.css';
+import styles from './Nav.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
