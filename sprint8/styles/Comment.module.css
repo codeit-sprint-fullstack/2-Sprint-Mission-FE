@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  height: 100%;
+  background-color: #fcfcfc;
+  border-bottom: 0.1rem solid var(--color-gray-200);
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.profile {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 2.2rem;
+}
+
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.nickname {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.8rem;
+  color: var(--color-gray-600);
+}
+
+.date {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.8rem;
+  color: var(--color-gray-400);
+}
