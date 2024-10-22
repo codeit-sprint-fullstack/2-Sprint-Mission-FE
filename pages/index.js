@@ -12,6 +12,7 @@ export default function Home() {
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [keyword, setKeyword] = useState('');
+  const [sortOrder, setSortOrder] = useState('recent');
 
   const paramsBest = {
     page: 1,
@@ -22,7 +23,7 @@ export default function Home() {
   const paramsAll = {
     page: 1,
     pageSize: 5,
-    order: 'recent',
+    order: 'sortOrder',
     keyword: ''
   };
 
@@ -55,6 +56,10 @@ export default function Home() {
     }
   }, [keyword, articles]);
 
+  useEffect(() => {
+    getArticles();
+  }, [sortOrder]);
+
   return (
     <div className={styles.wrapper}>
       <BestArticleList bestArticles={bestArticles} />
@@ -62,7 +67,7 @@ export default function Home() {
         <ArticleHeader />
         <div className={styles[`article-search`]}>
           <Search keyword={keyword} onSearch={setKeyword} />
-          <Dropdown />
+          <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
         </div>
         <ArticleList articles={filteredArticles} />
       </div>

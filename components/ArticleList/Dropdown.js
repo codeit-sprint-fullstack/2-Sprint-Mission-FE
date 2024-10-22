@@ -1,75 +1,50 @@
 import styles from './Dropdown.module.css';
+import Image from 'next/image';
+import { useState } from 'react';
 
-export default function Dropdown({
-  className,
-  name,
-  value,
-  options,
-  onChange
-}) {
-  // const [isOpen, setIsOpen] = useState(false);
-  // const inputRef = useRef(null);
+export default function Dropdown({ sortOrder, setSortOrder }) {
+  const [isOpen, setIsOpen] = useState(false);
 
-  // function handleInputClick() {
-  //   setIsOpen((prevIsOpen) => !prevIsOpen);
-  // }
+  const options = [{ value: 'recent', label: '최신 순' }];
 
-  // function handleBlur() {
-  //   setIsOpen(false);
-  // }
-
-  // useEffect(() => {
-  //   function handleClickOutside(e) {
-  //     const isInside = inputRef.current?.contains(e.target);
-  //     if (!isInside) {
-  //       setIsOpen(false);
-  //     }
-  //   }
-
-  //   window.addEventListener('click', handleClickOutside);
-  //   return () => {
-  //     window.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, []);
-
-  // const classNames = `${styles.input} ${
-  //   isOpen ? styles.opened : ''
-  // } ${className}`;
-  // const selectedOption = options.find((option) => option.value === value);
+  const handleOptionClick = (val) => {
+    setSortOrder(val);
+    setIsOpen(false);
+  };
 
   return (
-    <div
-      className={styles.menu}
-      // className={classNames}
-      // onClick={handleInputClick}
-      // onBlur={handleBlur}
-      // ref={inputRef}
-    >
-      {/* {selectedOption.label}
-      <img
-        className={styles.arrow}
-        src={arrowImg.src}
-        width={12}
-        height={9}
-        alt="▲"
-      />
-      <div className={styles.options}>
-        {options.map((option) => {
-          const selected = value === option.value;
-          const className = `${styles.option} ${
-            selected ? styles.selected : ''
-          }`;
-          return (
+    <div className={styles.menu}>
+      <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>
+        {options.find((option) => option.value === sortOrder)?.label ||
+          'Select...'}
+        <Image
+          className={styles.icon}
+          src="/images/ic_arrow_down.png"
+          width={20}
+          height={20}
+          alt="정렬 아이콘"
+        />
+        <Image
+          className={styles.mobile}
+          src="/images/ic_sort.png"
+          width={24}
+          height={24}
+          alt="모바일 정렬 아이콘"
+        />
+      </div>
+      {isOpen && (
+        <div className={styles.options}>
+          {options.map((option) => (
             <div
-              className={className}
               key={option.value}
-              onClick={() => onChange(name, option.value)}
+              className={styles.option}
+              onClick={() => handleOptionClick(option.value)}
             >
               {option.label}
             </div>
-          );
-        })}
-      </div> */}
+          ))}
+        </div>
+      )}
     </div>
   );
 }
