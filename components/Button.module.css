@@ -14,3 +14,15 @@
     color: #ffffff;
   }
 }
+
+.btn_medium {
+  cursor: pointer;
+  border-radius: 40px;
+  background-color: var(--primary-100);
+  border: none;
+  color: var(--gray-100);
+  padding: 12px 64px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  width: fit-content;
+}

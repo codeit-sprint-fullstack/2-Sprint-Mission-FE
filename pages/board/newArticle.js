@@ -6,9 +6,21 @@ const SubmitButton = createButton({
 });
 
 export default function NewArticle() {
+
+	async function handleSubmit(e) {
+    e.preventDefault();
+    const data = {
+      ...formValue, // FIXME
+    };
+    const res = await axios.post('/articles/', data);
+    const addedArticle = res.data;
+		console.log(addedArticle);
+  }
+// FIXME: submit 후 페이지 이동 추가
+
   return (
     <div className={styles.wrapper}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.header}>
           <p className={styles.title}>게시글 쓰기</p>
           <SubmitButton>등록</SubmitButton>

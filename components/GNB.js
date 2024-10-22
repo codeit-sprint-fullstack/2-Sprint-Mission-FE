@@ -18,16 +18,10 @@ export default function GNB() {
             </div>
           </Link>
           <div className={styles.menu}>
-            <Link
-              href="/board"
-              className={styles.navLinkStyle}
-            >
+            <Link href="/board" className={styles.navLinkStyle}>
               <p>자유게시판</p>
             </Link>
-            <Link
-              href="/items"
-              className={styles.navLinkStyle}
-            >
+            <Link href="/items" className={styles.navLinkStyle}>
               <p>중고마켓</p>
             </Link>
           </div>

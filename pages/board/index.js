@@ -38,7 +38,7 @@ export default function Board({ articles, bestArticles }) {
           <p className={styles.title}>베스트 게시글</p>
           <div className={styles.bestArticles}>
             {bestArticles?.map((article) => (
-              <BestArticle article={article} />
+              <BestArticle key={article.id} article={article} />
             ))}
           </div>
         </div>
@@ -61,7 +61,9 @@ export default function Board({ articles, bestArticles }) {
           </div>
           <div className={styles.allArticles}>
             {articles?.map((article) => (
-              <ArticleList article={article} />
+              <Link href={`/board/${article.id}`}>
+                <ArticleList key={article.id} article={article} />
+              </Link>
             ))}
           </div>
         </div>

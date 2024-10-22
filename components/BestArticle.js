@@ -11,7 +11,7 @@ export default function BestArticle({ article }) {
       </div>
       <div className={styles.titles}>
         <p className={styles.title}>{article.title}</p>
-        <Image borderRadius={10} width={72} height={72} src="/no_image.png" alt="no image" />
+        <Image width={72} height={72} src="/no_image.png" alt="no image" />
       </div>
       <div className={styles.articleInfo}>
         <div className={styles.names}>
