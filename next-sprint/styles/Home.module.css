@@ -1,0 +1,24 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recentSection {
+  width: 100%;
+  width: 120rem;
+  height: 21.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.recentSection span {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.3rem;
+  text-align: left;
+  align-self: flex-start;
+}
