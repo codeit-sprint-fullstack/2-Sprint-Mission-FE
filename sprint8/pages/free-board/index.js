@@ -1,8 +1,9 @@
 import Posting from '@/components/Posting.js';
+import style from '@/styles/free-board.module.css';
 import BestProduct from '@/components/BestProduct';
 import Header from '@/components/Header.js';
-import style from '@/styles/free-board.module.css';
-import SearchBar from '@/components/SearchBar';
+import SearchBar from '@/components/SearchBar.js';
+import Sorting from '@/components/Sorting.js';
 
 export default function FreeBoard() {
   return (
@@ -10,7 +11,10 @@ export default function FreeBoard() {
       <Header> 베스트 게시글 </Header>
       <BestProduct />
       <Posting />
-      <SearchBar />
+      <div>
+        <SearchBar />
+        <Sorting />
+      </div>
     </div>
   );
 }
