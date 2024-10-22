@@ -9,9 +9,10 @@
   margin-top: 2.4rem;
 }
 
-.searchAndSort {
+.headerAndButton {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 @media (max-width: 1199px) and (min-width: 744px) {

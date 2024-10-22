@@ -1,4 +1,3 @@
-import Posting from '@/components/Posting.js';
 import Header from '@/components/Header.js';
 import Button from '@/components/Button.js';
 
