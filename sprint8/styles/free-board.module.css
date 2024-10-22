@@ -13,3 +13,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .body {
+    max-width: 69.6rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .body {
+    max-width: 34.3rem;
+  }
+}
