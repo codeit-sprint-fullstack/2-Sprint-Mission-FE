@@ -4,6 +4,7 @@ import BestProduct from '@/components/BestProduct';
 import Header from '@/components/Header.js';
 import SearchBar from '@/components/SearchBar.js';
 import Sorting from '@/components/Sorting.js';
+import PostList from '@/components/PostList.js';
 
 export default function FreeBoard() {
   return (
@@ -15,6 +16,7 @@ export default function FreeBoard() {
         <SearchBar />
         <Sorting />
       </div>
+      <PostList />
     </div>
   );
 }

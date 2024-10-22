@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import style from '@/styles/BestProduct.module.css';
 import bestBedge from '@/public/assets/img_badge.png';
+import heartIcon from '@/public/assets/ic_heart.png';
 
 //UI만 잡음
 export default function BestProduct() {
@@ -16,6 +17,7 @@ export default function BestProduct() {
       <div className={style.blockBottom}>
         <div className={style.bottomLeft}>
           <p className={style.bottom}>총명한판다</p>
+          <Image src={heartIcon} alt="heart icon" />
           <p className={style.bottom}>9999+</p>
         </div>
         <p className={style.date}>2024. 04. 16</p>
