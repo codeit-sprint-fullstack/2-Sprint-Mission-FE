@@ -34,7 +34,9 @@
 }
 
 .header .logo {
+  position: relative;
   height: 40px;
+  aspect-ratio: 3 / 1;
 }
 
 .header nav ul {
@@ -65,7 +67,7 @@
 }
 
 .header .a_button {
-  padding: 11px 43px;
+  padding: 11px 23px;
   border-radius: 8px;
 }
 
@@ -127,6 +129,7 @@
 
 	.header .logo {
 		height: 27px;
+    aspect-ratio: 2.892857143 / 1;
 	}
 
 	.header .sub,

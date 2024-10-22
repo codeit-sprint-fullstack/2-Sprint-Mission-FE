@@ -1,6 +1,7 @@
 import styles from '@/styles/CommonsPage.module.css';
 import { useViewport } from "@/context/ViewportProvider";
 import Link from 'next/link';
+import Image from 'next/image';
 
 // function getLinkStyle({ isActive }) {
 // 	return {
@@ -15,7 +16,7 @@ function Header() {
   return (<header className={styles.header}>
 		<div className={styles.sub}>
 			<div className={styles.sub_header}>
-				<Link href="/"><img className={styles.logo} src={viewport === "phone" ? "/images/logo-text-only.png" : "/images/Property-1=lg.png"} alt="판다마켓 Logo"/></Link>
+				<Link href="/"><div className={styles.logo}><Image fill src={viewport === "phone" ? "/images/logo-text-only.png" : "/images/Property-1=lg.png"} alt="판다마켓 Logo"/></div></Link>
 				<nav>
 					<ul>
 						<li><Link href="/boards">자유게시판</Link></li>

@@ -20,8 +20,8 @@ function HomePage() {
 			<>
 				<section className={[styles.section, styles.section_left].join(" ")}>
 					<div className={styles.img_home_middle}>
-            <Image fill src="/images/Img_home_01.png" alt="인기 상품" />
-          </div>
+						<Image fill src="/images/Img_home_01.png" alt="인기 상품" />
+					</div>
 					<div className={styles.description}>
 						<h3>Hot item</h3>
 						<h2>인기 상품을<br />확인해 보세요</h2>
@@ -34,8 +34,8 @@ function HomePage() {
 				</section>
 				<section className={[styles.section, styles.section_right].join(" ")}>
 					<div className={styles.img_home_middle}>
-            <Image fill src="/images/Img_home_02.png" alt="Search" />
-          </div>
+						<Image fill src="/images/Img_home_02.png" alt="Search" />
+					</div>
 					<div className={styles.description}>
 						<h3>Search</h3>
 						<h2>구매를 원하는<br />상품을 검색하세요</h2>
@@ -48,8 +48,8 @@ function HomePage() {
 				</section>
 				<section className={[styles.section, styles.section_left].join(" ")}>
 					<div className={styles.img_home_middle}>
-            <Image fill src="/images/Img_home_03.png" alt="Register" />
-          </div>
+						<Image fill src="/images/Img_home_03.png" alt="Register" />
+					</div>
 					<div className={styles.description}>
 						<h3>Register</h3>
 						<h2>판매를 원하는<br />상품을 등록하세요</h2>
@@ -73,7 +73,7 @@ function HomePage() {
 		);
 	}
 
-  return (<main className={styles.main}>
+	return (<main className={styles.main}>
 		<article className={styles.sub}>
 			<HeroSection/>
 			<FeaturesSection/>
