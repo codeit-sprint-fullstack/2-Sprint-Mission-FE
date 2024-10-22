@@ -5,14 +5,15 @@ export default function RecentArticle({ articles }) {
   return (
     <ul className={styles.ul}>
       {articles.map((article) => {
-        const formattedDate = new Date(article.createdAt).toLocaleDateString(
-          'ko-KR',
-          {
+        const formattedDate = new Date(article.createdAt)
+          .toLocaleDateString('ko-KR', {
             year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          }
-        );
+            month: '2-digit',
+            day: '2-digit'
+          })
+          .replace(/\s/g, '') // 공백 제거
+          .replace(/\./g, '.') // 모든 점(.)을 유지
+          .slice(0, -1); // 마지막 점(.) 제거
 
         return (
           <li key={article.id} className={styles.recentArticle}>
@@ -22,7 +23,12 @@ export default function RecentArticle({ articles }) {
             <div className={styles.title}>
               <h3>{article.title}</h3>
               <div className={styles.sample}>
-                <Image fill src="/images/sample_img.svg" alt="샘플 이미지" />
+                <Image
+                  width={48}
+                  height={44.57}
+                  src="/images/sample_img.svg"
+                  alt="샘플 이미지"
+                />
               </div>
             </div>
             <div className={styles.user}>
