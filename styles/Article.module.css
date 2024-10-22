@@ -1,0 +1,89 @@
+.article {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2.4rem
+}
+
+.article p {
+    color: #1F2937;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+}
+
+.article-header {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 1.6rem;
+    border-bottom: 0.1rem solid #E5E7EB;
+
+    gap: 1.6rem;
+}
+
+.article-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-title h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+
+    gap: 3.2rem;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 1.6rem;
+}
+
+.user-info>:nth-child(2) {
+    color: #4B5563;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+}
+
+.user-info>:last-child {
+    color: #9CA3AF;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+}
+
+.like-wrap {
+    border-left: 0.1rem solid #E5E7EB;
+}
+
+.like {
+    display: flex;
+    align-items: center;
+
+    height: 4rem;
+
+    margin-left: 3.2rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: 3.5rem;
+    border: 0.1rem solid #E5E7EB;
+
+    gap: 1rem;
+}
+
+.like p {
+    color: #6B7280;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2.6rem;
+}
