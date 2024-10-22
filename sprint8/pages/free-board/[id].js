@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
+import PostDetailInfo from '@/components/PostDetailInfo.js';
 
-export default function Post() {
+export default function PostDetail() {
   const router = useRouter();
   const { id } = router.query;
 
   return (
     <>
-      <h1>게시글 쓰기{id}</h1>
+      <PostDetailInfo />
     </>
   );
 }
