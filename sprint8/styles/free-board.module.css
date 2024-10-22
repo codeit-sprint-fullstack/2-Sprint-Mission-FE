@@ -5,4 +5,11 @@
   justify-content: center;
   flex-direction: column;
   margin: auto;
+  gap: 2.4rem;
+  margin-top: 2.4rem;
+}
+
+.searchAndSort {
+  display: flex;
+  justify-content: space-between;
 }

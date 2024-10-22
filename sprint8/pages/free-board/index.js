@@ -11,7 +11,7 @@ export default function FreeBoard() {
       <Header> 베스트 게시글 </Header>
       <BestProduct />
       <Posting />
-      <div>
+      <div className={style.searchAndSort}>
         <SearchBar />
         <Sorting />
       </div>
