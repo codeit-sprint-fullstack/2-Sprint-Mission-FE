@@ -9,17 +9,16 @@ export default function Home() {
   const [articles, setArticles] = useState([]);
   const [searchArticle, setSearchArticle] = useState([]);
   const [value, setValue] = useState('');
+  const [sort, setSort] = useState('');
 
   async function getRecentArticles() {
-    const res = await fetch(
-      'http://localhost:5000/articles?sort=recent&limit=3'
-    );
+    const res = await fetch('http://localhost:5000/articles?sort=recent');
     const articles = await res.json();
     setRecentArticles(articles);
   }
 
-  async function getArticleList() {
-    const res = await fetch('http://localhost:5000/articles');
+  async function getArticleList(sort) {
+    const res = await fetch(`http://localhost:5000/articles?sort=${sort}`);
     const articles = await res.json();
     setArticles(articles);
   }
@@ -36,27 +35,28 @@ export default function Home() {
 
   useEffect(() => {
     getRecentArticles();
+    getArticleList(sort);
 
     if (value) {
       getSearchArticle(value);
     } else {
       getArticleList();
     }
-  }, [value]);
+  }, [value, sort]);
 
   return (
     <>
       <div className={styles.home}>
         <section className={styles.recentSection}>
           <span>베스트 게시글</span>
-          <RecentArticle articles={recentArticles} />
+          <RecentArticle articles={recentArticles.slice(0, 3)} />
         </section>
         <section className={styles.articleSection}>
           <div className={styles.btnContainer}>
             <h2>게시글</h2>
             <button>글쓰기</button>
           </div>
-          <SearchForm initialValue={value} onChange={setValue} />
+          <SearchForm initialValue={value} onChange={setValue} sort={setSort} />
           {value ? (
             <ArticleList articles={searchArticle} />
           ) : (

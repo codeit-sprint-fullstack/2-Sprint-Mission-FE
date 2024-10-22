@@ -1,8 +1,9 @@
 import styles from './SearchForm.module.css';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Dropdown from './Dropdown';
 
-export default function SearchForm({ initialValue, onChange }) {
+export default function SearchForm({ initialValue, onChange, sort }) {
   const [value, setValue] = useState(initialValue);
 
   function handleChange(e) {
@@ -25,8 +26,8 @@ export default function SearchForm({ initialValue, onChange }) {
             <Image fill src="/images/ic_search.svg" alt="검색 이미지" />
           </div>
         )}
+        <Dropdown setSortOption={sort} />
       </label>
-      <div></div>
     </form>
   );
 }
