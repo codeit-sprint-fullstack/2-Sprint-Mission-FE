@@ -1,6 +1,6 @@
 .wrapper {
   max-width: 1200px;
-  background-color: #fcfcfc;
+  background-color: var(--gray-50);
   display: flex;
   flex-direction: column;
   gap: 16px;

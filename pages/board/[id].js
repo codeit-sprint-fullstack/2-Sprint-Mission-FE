@@ -4,6 +4,8 @@ import styles from '@/styles/article.module.css';
 import axios from '@/lib/axios';
 import CommentList from '@/components/CommentList';
 import createButton from '@/components/Button';
+import { useState } from 'react';
+import Link from 'next/link';
 
 const RegisterButton = createButton({
   style: 'btn_small_40',
@@ -15,17 +17,38 @@ const BackButton = createButton({
 export async function getServerSideProps(context) {
   const articleId = context.params['id'];
 
-  const res = await axios.get(`/articles/${articleId}`);
-  const article = res.data;
+  const resArticle = await axios.get(`/articles/${articleId}`);
+  const article = resArticle.data;
+
+  const resComments = await axios.get(`/article/${articleId}/comments`);
+  const comments = resComments.data;
 
   return {
     props: {
       article,
+      comments,
     },
   };
 }
 
-export default function Article({ article }) {
+export default function Article({ article, comments: initialComments }) {
+  const [comments, setComments] = useState(initialComments);
+  const [content, setContent] = useState();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const data = { content: content };
+    try {
+      const res = await axios.post(`/article/comments/${article.id}`, data);
+      const newContent = res.data;
+      setComments((prev) => [newContent, ...prev]);
+      console.log('댓글이 등록되었습니다.');
+    } catch {
+      console.log('댓글 등록에 실패했습니다.');
+    }
+  }
+
   return (
     <div className={styles.article}>
       <div className={styles.wrapper}>
@@ -52,25 +75,31 @@ export default function Article({ article }) {
           </div>
           <p className={styles.articleContent}>{article.content}</p>
         </div>
-        <form className={styles.commentForm}>
+        <form className={styles.commentForm} onSubmit={handleSubmit}>
           <p className={styles.commentTitle}>댓글달기</p>
           <input
             className={styles.commentInput}
             type="text"
+            name="content"
             placeholder="댓글을 입력해주세요."
+            onChange={(e) => setContent(e.target.value)}
           />
           <div className={styles.registerButton}>
-            <RegisterButton>등록</RegisterButton>
+            <RegisterButton type="submit" disabled={!content}>
+              등록
+            </RegisterButton>
           </div>
         </form>
-        <CommentList articleId={article.id} />
+        <CommentList comments={comments} />
       </div>
-      <BackButton>
-        <div className={styles.buttonContent}>
-          <p>목록으로 돌아가기</p>
-          <Image width={24} height={24} src="/ic_back.png" alt="back" />
-        </div>
-      </BackButton>
+      <Link href={'/Board'}>
+        <BackButton>
+          <div className={styles.buttonContent}>
+            <p>목록으로 돌아가기</p>
+            <Image width={24} height={24} src="/ic_back.png" alt="back" />
+          </div>
+        </BackButton>
+      </Link>
     </div>
   );
 }

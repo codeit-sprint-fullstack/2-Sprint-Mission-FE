@@ -1,10 +1,11 @@
 import createButton from '@/components/Button';
-import styles from '@/styles/board.module.css';
 import axios from '@/lib/axios';
 import { useState } from 'react';
 import BestArticle from '@/components/BestArticle';
 import ArticleList from '@/components/ArticleList';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import styles from '@/styles/board.module.css';
 
 const WriteButton = createButton({
   style: 'btn_small_40',
@@ -29,7 +30,28 @@ export async function getServerSideProps(context) {
 }
 
 export default function Board({ articles, bestArticles }) {
+  const router = useRouter();
   const [sort, setSort] = useState('');
+	const [keyword, setKeyword] = useState('');
+	
+		const handleSelect = (e) => {
+			const newSort = e.target.value;
+			setSort(newSort);
+			router.push(`/board?order=${sort}&search=${keyword}`)
+		};
+
+  const handleChange = (e) => {
+    const newKeyword = e.target.value.trim();
+
+    if (!newKeyword) {
+			setKeyword('');
+      router.push(`/board?order=${sort}`);
+      return;
+    }
+		setKeyword(newKeyword);
+		console.log('new: ', newKeyword, 'set: ', keyword);
+    router.push(`/board?order=${sort}&search=${newKeyword}`);
+  };
 
   return (
     <div className={styles.board}>
@@ -38,7 +60,9 @@ export default function Board({ articles, bestArticles }) {
           <p className={styles.title}>베스트 게시글</p>
           <div className={styles.bestArticles}>
             {bestArticles?.map((article) => (
-              <BestArticle key={article.id} article={article} />
+              <Link href={`/board/${article.id}`} className={styles.links}>
+                <BestArticle key={article.id} article={article} />
+              </Link>
             ))}
           </div>
         </div>
@@ -53,10 +77,11 @@ export default function Board({ articles, bestArticles }) {
             <input
               className={styles.searchInput}
               placeholder="검색할 상품을 입력해주세요"
+              onChange={handleChange}
             />
-            <select>
-              <option>최신 순</option>
-              <option>좋아요 순</option>
+            <select onChange={handleSelect}>
+              <option value="recent">최신 순</option>
+              <option value="popular">좋아요 순</option>
             </select>
           </div>
           <div className={styles.allArticles}>
