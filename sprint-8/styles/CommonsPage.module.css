@@ -1,0 +1,168 @@
+.header,
+.footer {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.sub {
+  flex-grow: 1;
+  margin: 0 12.5rem;
+}
+
+.header {
+  height: 70px;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header .sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .sub_header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header .logo {
+  height: 40px;
+}
+
+.header nav ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  padding-left: 1em;
+  margin: 0;
+}
+
+.header nav ul li {
+  padding: .2em 1em;
+  font-size: var(--text-2lg);
+  font-weight: 700;
+}
+
+.a_button {
+  text-decoration: none;
+  display: inline-block;
+  font-size: var(--text-lg);
+  background-color: var(--primary-color-100);
+  color: var(--secondary-color-gray100);
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+}
+
+.header .a_button {
+  padding: 11px 43px;
+  border-radius: 8px;
+}
+
+.footer {
+  height: 160px;
+  padding: 36px 0;
+  font-size: var(--text-lg);
+  background-color: var(--secondary-color-gray900);
+  color: var(--secondary-color-gray100);
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer .sub_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.codeit_2024 {
+  color: var(--secondary-color-gray400);
+}
+
+.privacy_policy_and_FAQ {
+  display: flex;
+  gap: 30px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: var(--secondary-color-gray100);
+}
+
+.footer .sns_icons {
+  display: flex;
+  gap: 12px;
+  color: var(--secondary-color-gray100);
+}
+
+.snsImageContainer {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.footer .sns_icons img {
+  height: 20px;
+}
+
+@media (max-width:1200px) {
+
+	.header .sub,
+	.footer .sub {
+		margin: 0 24px;
+	}
+}
+
+@media (max-width:744px) {
+
+	.header .logo {
+		height: 27px;
+	}
+
+	.header .sub,
+	.footer .sub {
+		margin: 0 16px;
+	}
+
+	.header nav ul li {
+		padding: .2em .2em;
+		font-size: var(--text-2lg);
+		font-weight: 700;
+	}
+
+	.header .a_button {
+		padding: 11px 7px;
+	}
+
+	.footer .sub_footer {
+		display: grid;
+		grid-template: repeat(2, auto) / 1fr auto;
+		grid-template-areas:
+			"privacyFAQ SNS"
+			"codeit SNS";
+		gap: 13px;
+	}
+
+	.footer .codeit_2024 {
+		grid-area: codeit;
+	}
+
+	.footer .privacy_policy_and_FAQ {
+		grid-area: privacyFAQ;
+		gap: 15px;
+	}
+
+	.footer .sns_icons {
+		grid-area: SNS;
+	}
+}
