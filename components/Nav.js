@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 export default function Nav() {
   const navClass =
-    "w-full h-[70px] bg-ffffff border-b border-dfdfdf flex items-center justify-between sticky top-0";
+    "w-full h-[70px] bg-ffffff border-b border-dfdfdf flex items-center justify-between sticky top-0 z-10";
   const logoFrame = `flex items-center justify-between
   w-[153px] h-[51px] ml-[200px]
   md:ml-[24px]

@@ -3,25 +3,29 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
+    /* Regular */
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-SemiBold.woff') format('woff');
     font-weight: 600;
+    /* SemiBold */
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Bold.woff') format('woff');
     font-weight: 700;
+    /* Bold */
     font-style: normal;
 }
+
 
 * {
     margin: 0;
@@ -36,7 +40,7 @@ html {
 }
 
 body {
-    font-family: 'Pretendard-Regular', sans-serif;
+    font-family: 'Pretendard', sans-serif;
 }
 
 /* 추가적인 리셋 스타일 */
