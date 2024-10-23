@@ -24,7 +24,7 @@ async function getArticleWithId(id) {
 	}
 }
 
-async function postArticle(data = { images: [], tags: [], price: 0, description: "", name: "" }) {
+async function postArticle(data = { title: "", content: "", favoriteCount: 0, authorId: "86f32cda-cc20-49e5-a1c8-a69ff98e5ebf" }) {
 	try {
 		const resp = await instance.post(`/articles`, data);
 		return resp.data;
@@ -55,6 +55,21 @@ async function deleteArticleWithId(id) {
 	}
 }
 
+async function postArticleComment(articleId, data = { commenterId: "", content: "" }) {
+	try {
+		const resp = await instance.post(`/articles/${articleId}/comment`, data);
+		return resp.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
 export {
 	getArticles,
+	getArticleWithId,
+	postArticle,
+	patchArticleWithId,
+	deleteArticleWithId,
+	postArticleComment
 };

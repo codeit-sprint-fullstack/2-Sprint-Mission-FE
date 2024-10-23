@@ -4,6 +4,7 @@ import Articles from '@/components/Articles.jsx';
 import BestArticles from '@/components/BestArticles.jsx';
 import styles from '@/styles/Boards.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export async function getServerSideProps() {
 	const { list: bestArticles } = await getArticles({ skip: 0, take: 3, sort: 'recent' });
@@ -39,7 +40,7 @@ function Boards({ bestArticles, articles: initialArticles }) {
 			<article className={styles.sub}>
 				<div className={styles.head}>
 					<h2>게시글</h2>
-					<a className={styles.a_button}>글쓰기</a>
+					<Link href="/boards/write" className={styles.a_button}>글쓰기</Link>
 				</div>
 				<div className={styles.head}>
 					<div className={styles.inputWrapper}>

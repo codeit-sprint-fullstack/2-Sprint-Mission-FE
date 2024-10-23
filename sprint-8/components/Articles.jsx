@@ -1,5 +1,6 @@
 import styles from '@/styles/Boards.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function Articles({ articles }) {
 	return (<div>
@@ -7,7 +8,7 @@ function Articles({ articles }) {
 			{articles.map((article) => (
 				<li key={article.id}>
 					<div className={styles.titleWrapper}>
-						<div className={styles.title}>{article.title}</div>
+						<div className={styles.title}><Link href={`/articles/${article.id}`}>{article.title}</Link></div>
 						<div className={styles.imageWrapper}>
 							<Image fill src="/images/def-img.png" alt="상품" />
 						</div>

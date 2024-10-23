@@ -1,6 +1,7 @@
 import { useViewport } from '@/context/ViewportProvider';
 import styles from '@/styles/Boards.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -28,7 +29,7 @@ function BestArticles({ articles: initialArticles }) {
 						<Image fill src="/images/img_badge.png" alt="Best" />
 					</div>
 					<div className={styles.titleWrapper}>
-						<div className={styles.title}>{article.title}</div>
+						<div className={styles.title}><Link href={`/articles/${article.id}`}>{article.title}</Link></div>
 						<div className={styles.imageWrapper}>
 							<Image fill src="/images/def-img.png" alt="상품 이미지" />
 						</div>
