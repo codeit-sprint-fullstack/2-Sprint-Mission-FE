@@ -2,9 +2,8 @@ import Image from 'next/image';
 import style from '@/styles/Comment.module.css';
 import profileImg from '@/public/assets/img_profile.png';
 
-export default function Comment({ data }) {
-  const comments = data.comments || [];
-
+export default function Comment({ comments }) {
+  console.log('Comments:', comments);
   return (
     <>
       {comments.length > 0 ? (

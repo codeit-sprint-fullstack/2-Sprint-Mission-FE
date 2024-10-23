@@ -1,9 +1,13 @@
 import style from '@/styles/Button.module.css';
 
-export default function Button({ children, status }) {
+export default function Button({ children, status, onClick }) {
   const buttonClass = `${style.button} ${
     status ? style.active : style.inactive
   }`;
 
-  return <button className={buttonClass}>{children}</button>;
+  return (
+    <button onClick={onClick} className={buttonClass}>
+      {children}
+    </button>
+  );
 }
