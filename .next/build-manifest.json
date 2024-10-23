@@ -28,10 +28,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/board.js"
     ],
-    "/board/[id]": [
+    "/board/register": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/board/[id].js"
+      "static/chunks/pages/board/register.js"
     ]
   },
   "ampFirstPages": []
