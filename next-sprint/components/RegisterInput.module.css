@@ -27,7 +27,6 @@
   padding: 1.2rem 2.3rem;
   gap: 1rem;
   border-radius: 0.8rem;
-  background-color: var(--secondary-gray-300);
   border: none;
   font-weight: 600;
   line-height: 2.3rem;
@@ -85,4 +84,12 @@
 
 .footer textarea::placeholder {
   color: var(--secondary-gray-300);
+}
+
+.btnAction {
+  background-color: var(--primary-blue);
+}
+
+.btnDisabled {
+  background-color: var(--secondary-gray-300);
 }
