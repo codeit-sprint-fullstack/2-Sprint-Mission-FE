@@ -16,6 +16,7 @@ export default function Nav() {
       color: router.pathname === path ? 'var(--primary-color)' : 'var(--nav-text-color)',
     };
   }
+  
   return (
     <div className={styles.gnbWrapper}>
       <div className={styles.gnb}>
