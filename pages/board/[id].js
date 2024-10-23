@@ -26,6 +26,7 @@ export default function Board() {
   const [newComment, setNewComment] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
   const fetchArticle = async () => {
     if (id) {
@@ -68,7 +69,9 @@ export default function Board() {
     setIsButtonEnabled(newComment.trim() !== "");
   }, [newComment]);
 
-  const toggleModal = () => {
+  const toggleModal = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    setModalPosition({ top: rect.top + 25, left: rect.left - 130 });
     setIsModalOpen((prev) => !prev);
   };
 
@@ -173,6 +176,11 @@ export default function Board() {
         <EditDeleteModal
           onEdit={handleEditClick}
           onDelete={handleDeleteClick}
+          style={{
+            position: "absolute",
+            top: `${modalPosition.top}px`,
+            left: `${modalPosition.left}px`,
+          }}
         />
       )}
     </>

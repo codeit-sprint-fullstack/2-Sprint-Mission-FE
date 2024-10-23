@@ -107,6 +107,7 @@
   margin-top: 20px;
 }
 .detail_title {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
