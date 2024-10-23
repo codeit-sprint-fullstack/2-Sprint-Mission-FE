@@ -1,7 +1,43 @@
 import styles from './ArticleCommentList.module.css';
 import Image from 'next/image';
+import axios from '@/lib/axios';
+import CommentDropdown from './CommentDropdown';
+import { useState, useRef } from 'react';
+import { useRouter } from 'next/router';
 
 export default function ArticleCommentList({ articleComments }) {
+  const [selectedComment, setSelectedComment] = useState(false);
+  const [editingCommentId, setEditingCommentId] = useState('');
+  const [editingContent, setEditingContent] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const router = useRouter();
+  const articleId = router.query['id'];
+
+  const handleMenuClick = (comment) => {
+    setSelectedComment(comment);
+    setDropdownOpen((prev) => !prev);
+  };
+
+  const handleEditClick = (comment) => {
+    setEditingCommentId(comment.id);
+    setEditingContent(comment.content);
+    setDropdownOpen(false);
+  };
+
+  const handleEdit = async (commentId) => {
+    try {
+      await axios.patch(`/articles/${articleId}/comments/${commentId}`, {
+        content: editingContent
+      });
+      setEditingCommentId(null);
+      window.location.reload();
+    } catch (err) {
+      console.error('댓글 수정 중 오류 발생:', err);
+    }
+  };
+
   return (
     <div>
       {articleComments && articleComments.length > 0 ? (
@@ -9,13 +45,44 @@ export default function ArticleCommentList({ articleComments }) {
           {articleComments.map((comment) => (
             <li className={styles.container} key={comment.id}>
               <div className={styles.content}>
-                <p>{comment.content}</p>
-                <Image
-                  src="/images/ic_kebab.png"
-                  width={24}
-                  height={24}
-                  alt="메뉴 아이콘"
-                />
+                {editingCommentId === comment.id ? (
+                  <div className={styles.edit}>
+                    <textarea
+                      type="text"
+                      value={editingContent}
+                      onChange={(e) => setEditingContent(e.target.value)}
+                    />
+                    <div className={styles.buttons}>
+                      <button onClick={() => handleEdit(comment.id)}>
+                        완료
+                      </button>
+                      <button onClick={() => setEditingCommentId(null)}>
+                        취소
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <p>{comment.content}</p>
+                    <div className={styles.menu}>
+                      <Image
+                        src="/images/ic_kebab.png"
+                        width={24}
+                        height={24}
+                        onClick={() => handleMenuClick(comment)}
+                        alt="메뉴 아이콘"
+                      />
+                      {selectedComment?.id === comment.id && dropdownOpen && (
+                        <div ref={dropdownRef} className={styles.dropdown}>
+                          <CommentDropdown
+                            commentId={comment.id}
+                            onEditClick={() => handleEditClick(comment)}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
               <div className={styles.info}>
                 <Image

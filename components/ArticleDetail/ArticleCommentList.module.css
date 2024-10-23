@@ -29,6 +29,69 @@
     align-items: center;
 }
 
+.edit {
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+}
+
+.edit textarea {
+    width: 100rem;
+    height: 10rem;
+
+    padding: 1.6rem 2.4rem;
+    border: none;
+    border-radius: 1.2rem;
+
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+
+    background-color: #F3F4F6;
+}
+
+.edit textarea:focus {
+    outline: none;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+.buttons button {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 4.2rem;
+
+    margin-left: auto;
+    padding: 1.2rem 2.3rem;
+    border-radius: 0.8rem;
+
+    color: #F3F4F6;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2.6rem;
+
+    background-color: #3692FF;
+}
+
+.menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 50%;
+}
+
 .info {
     display: flex;
     align-items: center;

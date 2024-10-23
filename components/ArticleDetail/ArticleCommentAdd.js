@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 export default function ArticleCommentAdd() {
   const [content, setContent] = useState('');
-  const [error, setError] = useState('');
 
   const router = useRouter();
   const id = router.query['id'];
@@ -25,7 +24,7 @@ export default function ArticleCommentAdd() {
       await axios.post(`/articles/${id}/comments`, { content });
       window.location.reload();
     } catch (err) {
-      setError('댓글 등록에 실패하였습니다.');
+      console.log('댓글 등록에 실패하였습니다.');
     }
   };
   return (

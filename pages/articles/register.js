@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 export default function Register() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [error, setError] = useState('');
 
   const router = useRouter();
 
@@ -26,7 +25,7 @@ export default function Register() {
       const articleId = res.data.id;
       return router.push(`/articles/${articleId}`);
     } catch (err) {
-      setError('게시글 등록에 실패하였습니다.');
+      console.log('게시글 등록에 실패하였습니다.');
     }
   };
 
