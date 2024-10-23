@@ -2,7 +2,7 @@ import Image from 'next/image';
 import style from '@/styles/Comment.module.css';
 import profileImg from '@/public/assets/img_profile.png';
 
-export default function Comment() {
+export default function Comment(data) {
   return (
     <div className={style.container}>
       <div>
