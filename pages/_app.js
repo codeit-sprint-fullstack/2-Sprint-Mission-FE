@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }) {
     <>
       <main className={`${notoSans.className} ${notoSansKR.className}`}>
         <Header />
+        <Component {...pageProps} />
         <Footer />
       </main>
     </>

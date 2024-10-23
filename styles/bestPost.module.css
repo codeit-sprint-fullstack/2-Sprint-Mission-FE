@@ -1,0 +1,85 @@
+.notBestPost {
+  font-weight: 600;
+  font-size: 20px;
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  margin: 80px 0;
+}
+
+.bestPostMap {
+  display: flex;
+  margin: 0 auto 40px;
+  max-width: 1200px;
+  gap: 24px;
+}
+
+.bestPostCard {
+  width: 384px;
+  height: 169px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+}
+
+.bestPostCardTop {
+  margin: 0 0 16px 24px;
+}
+
+.bestPostCardMiddle {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 24px 18px 24px;
+}
+
+.bestPostCardBottom {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 14px;
+  color: #4b5563;
+  padding: 0 24px 9px;
+}
+
+.bestPostTitle {
+  font-weight: 600;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.defaultImg {
+  border: 2px solid #9ca3af;
+  border-radius: 6px;
+}
+
+.bestPostCardBottomLeft {
+  display: flex;
+  gap: 8px;
+}
+
+.bestPostCardCreatedAt {
+  font-weight: 400;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+/* 반응형 CSS */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .bestPostMap {
+    margin: 0 auto 24px;
+    max-width: 696px;
+    gap: 16px;
+  }
+  .bestPostTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .bestPostMap {
+    margin: 0 auto 24px;
+    max-width: 343px;
+  }
+  .bestPostTitle {
+    font-size: 18px;
+  }
+}
