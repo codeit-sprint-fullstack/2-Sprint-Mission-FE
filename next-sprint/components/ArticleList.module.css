@@ -86,3 +86,7 @@
 .article:last-child {
   margin-bottom: 20rem;
 }
+
+.link {
+  text-decoration: none;
+}
