@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import style from '@/styles/Comment.module.css';
 import profileImg from '@/public/assets/img_profile.png';
+import DropBox from './DropBox';
 
 export default function Comment({ comments }) {
   console.log('Comments:', comments);
@@ -9,8 +10,9 @@ export default function Comment({ comments }) {
       {comments.length > 0 ? (
         comments.map((item, index) => (
           <div key={index} className={style.container}>
-            <div>
+            <div className={style.titleAndKebab}>
               <h1 className={style.title}>{item.content}</h1>
+              <DropBox />
             </div>
             <div className={style.profile}>
               <Image
@@ -25,7 +27,7 @@ export default function Comment({ comments }) {
           </div>
         ))
       ) : (
-        <p>댓글이 없습니다.</p>
+        <p className={style.noComment}>댓글이 없습니다.</p>
       )}
     </>
   );

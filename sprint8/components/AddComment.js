@@ -40,9 +40,11 @@ export default function AddComment({ id, onNewComment }) {
           onChange={(e) => setComment(e.target.value)}
         />
       </div>
-      <Button status={isButtonActive} onClick={sendComment}>
-        작성
-      </Button>
+      <div className={style.buttonContainer}>
+        <Button status={isButtonActive} onClick={sendComment}>
+          작성
+        </Button>
+      </div>
     </div>
   );
 }
