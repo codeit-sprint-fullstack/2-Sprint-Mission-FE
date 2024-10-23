@@ -1,0 +1,62 @@
+.bestTitle {
+  font-weight: 700;
+  font-size: 20px;
+  color: #111827;
+  margin: 24px auto;
+  display: flex;
+  max-width: 1200px;
+}
+
+.postBar {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 24px;
+}
+
+.postBarTitle {
+  font-weight: 700;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.createPostButton {
+  padding: 12px 23px;
+  border-radius: 8px;
+  background-color: #3692ff;
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.createPostButton a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* 반응형 CSS */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .bestTitle {
+    max-width: 696px;
+  }
+  .postBar {
+    max-width: 696px;
+    margin: 0 auto 48px;
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .bestTitle {
+    max-width: 343px;
+    font-size: 18px;
+    margin: 16px auto;
+  }
+  .postBar {
+    max-width: 343px;
+    margin: 0 auto 16px;
+  }
+  .postBarTitle {
+    font-size: 18px;
+  }
+}
