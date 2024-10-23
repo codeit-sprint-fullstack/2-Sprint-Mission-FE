@@ -3,6 +3,7 @@ import styles from './ArticleDetail.module.css';
 import Image from 'next/image';
 import ArticleReview from './ArticleReivew';
 import Link from 'next/link';
+import ArticelDropdown from './ArticleDropdown';
 
 export default function ArticleDetail({ article, id }) {
   const [articleReview, setArticleReivew] = useState(null);
@@ -35,6 +36,7 @@ export default function ArticleDetail({ article, id }) {
         <header className={styles.header}>
           <div className={styles.title}>
             <h3>{article.title}</h3>
+            <ArticelDropdown />
           </div>
           <div className={styles.user}>
             <div className={styles.userLeft}>

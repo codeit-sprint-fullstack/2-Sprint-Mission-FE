@@ -17,6 +17,12 @@
   border-bottom: 0.1rem solid var(--secondary-gray-100);
 }
 
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title h3 {
   font-size: 2rem;
   font-weight: 700;

@@ -1,3 +1,4 @@
+import ArticelDropdown from './ArticleDropdown';
 import styles from './ArticleReview.module.css';
 import Image from 'next/image';
 
@@ -37,6 +38,7 @@ export default function ArticleReview({ reviews }) {
           <li key={review.id} className={styles.li}>
             <div className={styles.sectionHeader}>
               <h3 className={styles.content}>{review.content}</h3>
+              <ArticelDropdown />
             </div>
             <div className={styles.sectionFooter}>
               <div className={styles.profile}>
