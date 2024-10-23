@@ -64,6 +64,17 @@
     line-height: 3.2rem;
 }
 
+.menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 70%;
+    right: 50%;
+}
+
 .info {
     display: flex;
     align-items: center;
@@ -77,6 +88,10 @@
     align-items: center;
 
     gap: 1.6rem;
+}
+
+.user-info>:first-child {
+    position: relative;
 }
 
 .user-info>:nth-child(2) {

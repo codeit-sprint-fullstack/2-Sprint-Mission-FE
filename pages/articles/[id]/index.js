@@ -1,15 +1,19 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/Article.module.css';
 import axios from '@/lib/axios';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/formatDate';
+import Dropdown from '@/components/ArticleDetail/Dropdown';
 
-export default function article() {
+export default function Article() {
   const [article, setArticle] = useState();
   const [articleComments, setArticleComments] = useState([]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
   const router = useRouter();
   const id = router.query['id'];
 
@@ -34,9 +38,8 @@ export default function article() {
 
   if (!article) return null;
 
-  function handleBackList() {
-    return router.push('/');
-  }
+  const handleBackList = () => router.push('/');
+  const handleMenuClick = () => setDropdownOpen((prev) => !prev);
 
   return (
     <div className={styles.wrapper}>
@@ -44,12 +47,20 @@ export default function article() {
         <div className={styles[`article-header`]}>
           <div className={styles[`article-title`]}>
             <h1>{article.title}</h1>
-            <Image
-              src="/images/ic_kebab.png"
-              width={24}
-              height={24}
-              alt="메뉴 아이콘"
-            />
+            <div className={styles.menu}>
+              <Image
+                src="/images/ic_kebab.png"
+                width={24}
+                height={24}
+                onClick={() => handleMenuClick(!dropdownOpen)}
+                alt="메뉴 아이콘"
+              />
+              {dropdownOpen && (
+                <div ref={dropdownRef} className={styles.dropdown}>
+                  <Dropdown />
+                </div>
+              )}
+            </div>
           </div>
           <div className={styles.info}>
             <div className={styles[`user-info`]}>
