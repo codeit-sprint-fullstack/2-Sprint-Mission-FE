@@ -25,7 +25,7 @@ export default function NewArticle() {
 		if (newArticle) {
 			router.push(`/board/${newArticle.id}`)
 		} else {
-			console.log('게시글을 생성하지 못했습니다!')
+			alert('게시글을 생성하지 못했습니다!')
 		}
   }
 

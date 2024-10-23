@@ -48,7 +48,7 @@ export default function Article({ article, comments: initialComments }) {
       setComments((prev) => [...prev, newContent]);
 			setContent('');
     } catch {
-      console.log('댓글 등록에 실패했습니다.');
+      alert('댓글 등록에 실패했습니다.');
     }
   }
 
@@ -58,7 +58,7 @@ export default function Article({ article, comments: initialComments }) {
       const prevArticle = res.data;
       router.push('/board');
     } catch (e) {
-      console.log('삭제에 실패했습니다.');
+      alert('삭제에 실패했습니다.');
     }
   }
 

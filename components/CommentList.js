@@ -2,7 +2,6 @@ import formatDate from '@/lib/formatDate';
 import Image from 'next/image';
 import styles from './CommentList.module.css';
 import KebabMenu from './KebabMenu';
-import { useState } from 'react';
 import axios from '@/lib/axios';
 import { useRouter } from 'next/router';
 
@@ -14,7 +13,7 @@ export default function CommentList({ comments }) {
       const res = await axios.delete(`/article/comments/${id}`);
       router.reload();
     } catch (e) {
-      console.log('삭제에 실패했습니다.');
+      alert('삭제에 실패했습니다.');
     }
   }
 
