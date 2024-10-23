@@ -15,7 +15,12 @@ export default function Nav() {
     <>
       <div className={style.container}>
         <div className={style.logoMenu}>
-          <Image src={logo} className={style.logo} alt="pandamarket logo" />
+          <Image
+            priority={true}
+            src={logo}
+            className={style.logo}
+            alt="pandamarket logo"
+          />
           <div className={style.menus}>
             <Link
               href="/free-board"
