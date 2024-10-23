@@ -13,6 +13,7 @@
   border-radius: 10px;
   border: none;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .option_form {
@@ -25,6 +26,12 @@
 .post_content {
   width: 100%;
 }
+
+.post_link {
+  color: #1f2937;
+  text-decoration: none;
+}
+
 .post_title {
   display: flex;
   justify-content: space-between;
@@ -111,6 +118,12 @@
 .create_at {
   color: #9ca3af;
   font-weight: lighter;
+}
+.empty_comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
 }
 .detail_user_stats {
   display: flex;

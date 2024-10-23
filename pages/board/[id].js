@@ -1,14 +1,16 @@
 import styles from "./board.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditDeleteModal from "@/components/EditDeleteModal/EditDeleteModal";
+import { fetchApi } from "@/utils/fetchApi";
 
 import select from "../../images/board/select_img.svg";
 import user from "../../images/board/profile_img.svg";
 import like_button from "../../images/board/heart_btn.svg";
 import back from "../../images/board/back_icon.svg";
 import empty from "../../images/board/reply_empty.svg";
+import { useRouter } from "next/router";
 
 /** TODO
  * 1. 전체적인 이미지에 alt 넣기
@@ -16,22 +18,74 @@ import empty from "../../images/board/reply_empty.svg";
  */
 
 export default function Board() {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const [article, setArticle] = useState(null);
   const [comment, setComment] = useState([]);
+  const [newComment, setNewComment] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const fetchArticle = async () => {
+    if (id) {
+      try {
+        const data = await fetchApi(`/articles/${id}`);
+        console.log(data);
+        setArticle(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  const fetchComments = async () => {
+    if (id) {
+      try {
+        const data = await fetchApi(`/articles/${id}/comments`);
+        setComment(data);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchArticle();
+  }, [id]);
 
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
   };
   const handleEditClick = () => {
     setIsModalOpen(false);
-    Router.push("/board/:id");
+    router.push("/board/edit/${id}");
+  };
+
+  const handleCommentChange = (e) => {
+    setNewComment(e.target.value);
+  };
+
+  const handleCommentSubmit = async () => {
+    try {
+      await fetchApi(
+        `/articles/${id}/comments`,
+        {
+          content: newComment,
+        },
+        "POST"
+      );
+      setNewComment("");
+      fetchComments();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
     <>
       <div className={styles.detail_content_container}>
         <div className={styles.detail_title}>
-          <h3>맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?</h3>
+          <h3>{article?.title}</h3>
           <Image src={select} onClick={toggleModal} />
         </div>
         <div className={styles.detail_user_stats}>
@@ -42,7 +96,7 @@ export default function Board() {
           <Image src={like_button} />
         </div>
         <div className={styles.post_content}>
-          <p>맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?</p>
+          <p>{article?.content}</p>
         </div>
       </div>
       <div className={styles.comment_register_container}>
@@ -50,33 +104,42 @@ export default function Board() {
         <textarea
           placeholder="댓글을 입력해주세요."
           className={styles.comment_textarea}
+          value={newComment}
+          onChange={handleCommentChange}
         ></textarea>
         <div className={styles.buttion_container}>
-          <button className={styles.register_buttion}>등록</button>
+          <button
+            className={styles.register_buttion}
+            onClick={handleCommentSubmit}
+          >
+            등록
+          </button>
         </div>
       </div>
 
       <div className={styles.comment_container}>
-        {/* {comment.length === 0 ? ( */}
-        {/* // <> */}
-        {/* <Image src={empty} /> */}
-        {/* <p>아직 댓글이 없어요</p> */}
-        {/* </> */}
-        {/* // ) : ( */}
-        <>
-          <div className={styles.comment_title}>
-            <p>혹시 사용기간이 어떻게 되실까요?</p>
-            <Image src={select} onClick={toggleModal} />
+        {comment.length === 0 ? (
+          <div className={styles.empty_comment}>
+            <Image src={empty} />
+            <p>아직 댓글이 없어요</p>
           </div>
-          <div className={styles.detail_user_stats}>
-            <Image src={user} className={styles.user_img} />
-            <div className={styles.comment_user_stats_content}>
-              <h5 className={styles.nickname}>총명한판다</h5>
-              <h5 className={styles.create_at}>1시간 전</h5>
-            </div>
-          </div>
-        </>
-        {/* )} */}
+        ) : (
+          comment.map((comment) => (
+            <>
+              <div className={styles.comment_title} key={comment.id}>
+                <p>{comment.content}</p>
+                <Image src={select} onClick={toggleModal} />
+              </div>
+              <div className={styles.detail_user_stats}>
+                <Image src={user} className={styles.user_img} />
+                <div className={styles.comment_user_stats_content}>
+                  <h5 className={styles.nickname}>총명한판다</h5>
+                  <h5 className={styles.create_at}>1시간 전</h5>
+                </div>
+              </div>
+            </>
+          ))
+        )}
       </div>
       <div className={styles.return_button_container}>
         <Link href={"/board"} className={styles.link_button}>

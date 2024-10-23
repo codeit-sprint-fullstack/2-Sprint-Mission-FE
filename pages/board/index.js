@@ -42,10 +42,12 @@ export default function Home() {
       </div>
       {posts.map((post) => (
         <div key={post.id} className={styles.post_content}>
-          <div className={styles.post_title}>
-            <h3>{post.title}</h3>
-            <Image src={laptop} />
-          </div>
+          <Link href={`/board/${post.id}`} className={styles.post_link}>
+            <div className={styles.post_title}>
+              <h3>{post.title}</h3>
+              <Image src={laptop} />
+            </div>
+          </Link>
           <div className={styles.user_wrapper}>
             <div className={styles.user_stats}>
               <Image src={user} />
