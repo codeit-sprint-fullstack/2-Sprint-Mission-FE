@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import style from '@/styles/BestProduct.module.css';
+import style from '@/styles/BestPosts.module.css';
 import bestBedge from '@/public/assets/img_badge.png';
 import heartIcon from '@/public/assets/ic_heart.png';
 import defaultImg from '@/public/assets/img_default.png';
+import formatDate from '@/utils/formatDate.js';
 
 export default function BestProduct({ data }) {
   const topThree = data.slice(0, 3);
@@ -26,7 +27,7 @@ export default function BestProduct({ data }) {
               <Image src={heartIcon} alt="heart icon" />
               <p className={style.bottom}>9999+</p>
             </div>
-            <p className={style.date}>2024. 04. 16</p>
+            <p className={style.date}>{formatDate(item.createdAt)}</p>
           </div>
         </div>
       ))}

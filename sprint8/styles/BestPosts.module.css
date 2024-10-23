@@ -58,3 +58,37 @@
   font-weight: 400;
   color: var(--color-gray-400);
 }
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .container {
+    display: grid;
+    grid-template-columns: (2, 1fr);
+    gap: 1.6rem;
+  }
+
+  .itemBlock {
+    width: 29.2em;
+    height: 19.8rem;
+  }
+
+  .itemBlock:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    display: grid;
+    grid-template-columns: (1, 1fr);
+    gap: 1.6rem;
+  }
+
+  .itemBlock {
+    width: 29.2em;
+    height: 19.8rem;
+  }
+
+  .itemBlock:nth-child(n + 2) {
+    display: none;
+  }
+}
