@@ -19,7 +19,7 @@ export default function PostDetail() {
 
   useEffect(() => {
     fetchArticle(id);
-  }, []);
+  }, [id]);
 
   return (
     <div className={style.body}>
