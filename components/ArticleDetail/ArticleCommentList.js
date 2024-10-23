@@ -4,6 +4,7 @@ import axios from '@/lib/axios';
 import CommentDropdown from './CommentDropdown';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
+import formatTime from '@/lib/formatTime';
 
 export default function ArticleCommentList({ articleComments }) {
   const [selectedComment, setSelectedComment] = useState(false);
@@ -93,7 +94,7 @@ export default function ArticleCommentList({ articleComments }) {
                 />
                 <div className={styles.user}>
                   <p>귀여운판다</p>
-                  <p>{comment.createdAt}</p>
+                  <p>{formatTime(comment.createdAt)}</p>
                 </div>
               </div>
             </li>
