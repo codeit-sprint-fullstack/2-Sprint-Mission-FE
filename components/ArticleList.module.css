@@ -38,3 +38,8 @@
   gap: 8px;
   font-size: 1.6rem;
 }
+
+.linkStyle {
+  text-decoration: none;
+  color: inherit;
+}

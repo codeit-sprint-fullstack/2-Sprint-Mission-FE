@@ -6,6 +6,8 @@ import CommentList from '@/components/CommentList';
 import createButton from '@/components/Button';
 import { useState } from 'react';
 import Link from 'next/link';
+import KebabMenu from '@/components/KebabMenu';
+import { useRouter } from 'next/router';
 
 const RegisterButton = createButton({
   style: 'btn_small_40',
@@ -32,6 +34,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Article({ article, comments: initialComments }) {
+  const router = useRouter();
   const [comments, setComments] = useState(initialComments);
   const [content, setContent] = useState();
 
@@ -42,10 +45,20 @@ export default function Article({ article, comments: initialComments }) {
     try {
       const res = await axios.post(`/article/comments/${article.id}`, data);
       const newContent = res.data;
-      setComments((prev) => [newContent, ...prev]);
-      console.log('댓글이 등록되었습니다.');
+      setComments((prev) => [...prev, newContent]);
+			setContent('');
     } catch {
       console.log('댓글 등록에 실패했습니다.');
+    }
+  }
+
+  async function handleDelete(e) {
+    try {
+      const res = await axios.delete(`/articles/${article.id}`);
+      const prevArticle = res.data;
+      router.push('/board');
+    } catch (e) {
+      console.log('삭제에 실패했습니다.');
     }
   }
 
@@ -55,7 +68,10 @@ export default function Article({ article, comments: initialComments }) {
         <div className={styles.head}>
           <div className={styles.head_title}>
             <p className={styles.title}>{article.title}</p>
-            <Image width={24} height={24} src="/ic_kebab.png" alt="kebab" />
+            <KebabMenu
+              onEditClick={() => router.push(`${router.asPath}/edit`)}
+              onDeleteClick={handleDelete}
+            />
           </div>
           <div className={styles.head_info}>
             <div className={styles.head_profile}>
@@ -81,6 +97,7 @@ export default function Article({ article, comments: initialComments }) {
             className={styles.commentInput}
             type="text"
             name="content"
+						value={content}
             placeholder="댓글을 입력해주세요."
             onChange={(e) => setContent(e.target.value)}
           />

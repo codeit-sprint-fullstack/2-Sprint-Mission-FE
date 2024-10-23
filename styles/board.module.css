@@ -55,8 +55,3 @@
   flex-direction: column;
   gap: 24px;
 }
-
-.linkStyle {
-  text-decoration: none;
-  color: inherit;
-}

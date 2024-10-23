@@ -1,37 +1,51 @@
 import createButton from '@/components/Button';
 import styles from '@/styles/newArticle.module.css';
+import axios from '@/lib/axios';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const SubmitButton = createButton({
   style: 'btn_small_40',
 });
 
 export default function NewArticle() {
+	const router = useRouter();
+	const [title, setTitle] = useState('');
+	const [content, setContent] = useState('');
 
 	async function handleSubmit(e) {
     e.preventDefault();
     const data = {
-      ...formValue, // FIXME
+			title,
+			content,
     };
     const res = await axios.post('/articles/', data);
-    const addedArticle = res.data;
-		console.log(addedArticle);
+    const newArticle = res.data;
+		
+		if (newArticle) {
+			router.push(`/board/${newArticle.id}`)
+		} else {
+			console.log('게시글을 생성하지 못했습니다!')
+		}
   }
-// FIXME: submit 후 페이지 이동 추가
 
   return (
     <div className={styles.wrapper}>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.form}>
         <div className={styles.header}>
           <p className={styles.title}>게시글 쓰기</p>
-          <SubmitButton>등록</SubmitButton>
+          <SubmitButton type='submit' onClick={handleSubmit} disabled={!title || !content}>등록</SubmitButton>
         </div>
+
         <div className={styles.inputs}>
           <div className={styles.input}>
             <p className={styles.inputName}>*제목</p>
             <input
               className={styles.titleInput}
+							name='title'
               type="text"
               placeholder="제목을 입력해주세요"
+							onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
@@ -39,12 +53,14 @@ export default function NewArticle() {
             <p className={styles.inputName}>*내용</p>
             <input
               className={styles.contentInput}
+							name='content'
               type="text"
               placeholder="내용을 입력해주세요"
+							onChange={(e) => setContent(e.target.value)}
             />
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

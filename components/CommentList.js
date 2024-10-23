@@ -1,8 +1,23 @@
 import formatDate from '@/lib/formatDate';
 import Image from 'next/image';
 import styles from './CommentList.module.css';
+import KebabMenu from './KebabMenu';
+import { useState } from 'react';
+import axios from '@/lib/axios';
+import { useRouter } from 'next/router';
 
 export default function CommentList({ comments }) {
+  const router = useRouter();
+
+  async function handleDelete(id) {
+    try {
+      const res = await axios.delete(`/article/comments/${id}`);
+      router.reload();
+    } catch (e) {
+      console.log('삭제에 실패했습니다.');
+    }
+  }
+
   if (!comments || comments.length === 0) {
     return (
       <div className={styles.empty}>
@@ -20,7 +35,9 @@ export default function CommentList({ comments }) {
         <div className={styles.wrapper} key={comment.id}>
           <div className={styles.commentContent}>
             <p>{comment.content}</p>
-            <Image width={24} height={24} src="/ic_kebab.png" alt="kebab" />
+            <KebabMenu
+              onDeleteClick={() => handleDelete(comment.id)}
+            />
           </div>
           <div className={styles.profile}>
             <Image width={24} height={24} src="/ic_profile.png" alt="profile" />

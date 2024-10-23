@@ -47,3 +47,8 @@
 .date {
   color: var(--gray-400);
 }
+
+.linkStyle {
+  text-decoration: none;
+  color: inherit;
+}

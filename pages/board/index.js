@@ -32,24 +32,24 @@ export async function getServerSideProps(context) {
 export default function Board({ articles, bestArticles }) {
   const router = useRouter();
   const [sort, setSort] = useState('');
-	const [keyword, setKeyword] = useState('');
-	
-		const handleSelect = (e) => {
-			const newSort = e.target.value;
-			setSort(newSort);
-			router.push(`/board?order=${sort}&search=${keyword}`)
-		};
+  const [keyword, setKeyword] = useState('');
+
+  const handleSelect = (e) => {
+    const newSort = e.target.value;
+    setSort(newSort);
+    router.push(`/board?order=${sort}&search=${keyword}`);
+  };
 
   const handleChange = (e) => {
     const newKeyword = e.target.value.trim();
 
     if (!newKeyword) {
-			setKeyword('');
+      setKeyword('');
       router.push(`/board?order=${sort}`);
       return;
     }
-		setKeyword(newKeyword);
-		console.log('new: ', newKeyword, 'set: ', keyword);
+    setKeyword(newKeyword);
+    console.log('new: ', newKeyword, 'set: ', keyword);
     router.push(`/board?order=${sort}&search=${newKeyword}`);
   };
 
@@ -60,9 +60,7 @@ export default function Board({ articles, bestArticles }) {
           <p className={styles.title}>베스트 게시글</p>
           <div className={styles.bestArticles}>
             {bestArticles?.map((article) => (
-              <Link href={`/board/${article.id}`} className={styles.linkStyle}>
-                <BestArticle key={article.id} article={article} />
-              </Link>
+              <BestArticle key={article.id} article={article} />
             ))}
           </div>
         </div>
@@ -86,9 +84,7 @@ export default function Board({ articles, bestArticles }) {
           </div>
           <div className={styles.allArticles}>
             {articles?.map((article) => (
-              <Link href={`/board/${article.id}`} className={styles.linkStyle}>
-                <ArticleList key={article.id} article={article} />
-              </Link>
+              <ArticleList key={article.id} article={article} />
             ))}
           </div>
         </div>
