@@ -1,9 +1,9 @@
-import styles from './Dropdown.module.css';
+import styles from './CommentDropdown.module.css';
 import axios from '@/lib/axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function DropdownMenu() {
+export default function CommentDropdown() {
   const router = useRouter();
   const id = router.query['id'];
 

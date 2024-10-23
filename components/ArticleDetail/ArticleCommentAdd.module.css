@@ -5,7 +5,7 @@
     gap: 1.6rem;
 }
 
-.comment h1 {
+.comment label {
     color: #111827;
     font-size: 1.6rem;
     font-weight: 600;
@@ -20,18 +20,19 @@
     border: none;
     border-radius: 1.2rem;
 
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+
     background-color: #F3F4F6;
 }
 
 .comment textarea:focus {
-    outline: 0.1rem solid #9CA3AF;
+    outline: none;
 }
 
 .comment textarea::placeholder {
     color: #9CA3AF;
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 2.6rem;
 }
 
 .comment button {
@@ -50,4 +51,8 @@
     line-height: 2.6rem;
 
     background-color: #3692FF;
+}
+
+.comment button:disabled {
+    background-color: #9CA3AF;
 }

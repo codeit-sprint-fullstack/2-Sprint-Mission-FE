@@ -6,7 +6,7 @@ import axios from '@/lib/axios';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/formatDate';
-import Dropdown from '@/components/ArticleDetail/Dropdown';
+import ArticleDropdown from '@/components/ArticleDetail/ArticleDropdown';
 
 export default function Article() {
   const [article, setArticle] = useState();
@@ -57,7 +57,7 @@ export default function Article() {
               />
               {dropdownOpen && (
                 <div ref={dropdownRef} className={styles.dropdown}>
-                  <Dropdown />
+                  <ArticleDropdown />
                 </div>
               )}
             </div>
