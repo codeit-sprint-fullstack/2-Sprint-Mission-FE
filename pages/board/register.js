@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./board.module.css";
 import { fetchApi } from "@/utils/fetchApi";
 import { useRouter } from "next/router";
@@ -8,6 +8,7 @@ export default function Register() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,20 +22,32 @@ export default function Register() {
         },
         "POST"
       );
-      router.push("/board");
+      router.push(`/board/${response.id}`);
     } catch (e) {
       console.error(e);
     }
   };
+
+  useEffect(() => {
+    if (title.trim() !== "" && content.trim() !== "") {
+      setIsButtonEnabled(true);
+    } else {
+      setIsButtonEnabled(false);
+    }
+  }, [title, content]);
+
   return (
     <>
       <div className={styles.register_container}>
         <div className={styles.register_title}>
           <h2>게시글 쓰기</h2>
           <button
-            className={styles.register_buttion}
+            className={`${styles.register_buttion} ${
+              isButtonEnabled ? styles.active_button : ""
+            }`}
             onClick={handleSubmit}
             type="submit"
+            disabled={!isButtonEnabled}
           >
             등록
           </button>

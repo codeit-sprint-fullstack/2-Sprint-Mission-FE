@@ -1,5 +1,5 @@
 import styles from "./EditDeleteModal.module.css";
-export default function EditDeleteModal(onEdit, onDelete) {
+export default function EditDeleteModal({ onEdit, onDelete }) {
   return (
     <>
       <div className={styles.modal}>

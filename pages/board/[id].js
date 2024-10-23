@@ -25,6 +25,7 @@ export default function Board() {
   const [comment, setComment] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   const fetchArticle = async () => {
     if (id) {
@@ -49,14 +50,28 @@ export default function Board() {
     }
   };
 
+  const handleDeleteClick = async () => {
+    try {
+      await fetchApi(`/articles/${id}`, null, "DELETE");
+      router.push("/board");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     fetchArticle();
     fetchComments();
   }, [id]);
 
+  useEffect(() => {
+    setIsButtonEnabled(newComment.trim() !== "");
+  }, [newComment]);
+
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
   };
+
   const handleEditClick = () => {
     setIsModalOpen(false);
     router.push("/board/edit/${id}");
@@ -67,6 +82,7 @@ export default function Board() {
   };
 
   const handleCommentSubmit = async () => {
+    if (newComment.trim() === "") return;
     try {
       await fetchApi(
         `/articles/${id}/comments`,
@@ -110,8 +126,11 @@ export default function Board() {
         ></textarea>
         <div className={styles.buttion_container}>
           <button
-            className={styles.register_buttion}
+            className={`${styles.register_buttion} ${
+              isButtonEnabled ? styles.active_button : ""
+            }`}
             onClick={handleCommentSubmit}
+            disabled={!isButtonEnabled}
           >
             등록
           </button>
@@ -150,7 +169,12 @@ export default function Board() {
           </button>
         </Link>
       </div>
-      {isModalOpen && <EditDeleteModal onEdit={handleEditClick} />}
+      {isModalOpen && (
+        <EditDeleteModal
+          onEdit={handleEditClick}
+          onDelete={handleDeleteClick}
+        />
+      )}
     </>
   );
 }

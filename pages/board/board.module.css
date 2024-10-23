@@ -70,6 +70,10 @@
   color: white;
   font-weight: 600;
 }
+.register_buttion.active_button {
+  background-color: #3692ff;
+  cursor: pointer;
+}
 
 .register_form {
   display: flex;
