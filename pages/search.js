@@ -7,14 +7,21 @@ import PostList from "@/components/PostList";
 import styles from "../styles/community.module.css";
 
 export async function getServerSideProps(context) {
+  const { q } = context.query;
+
   try {
     const articlesRes = await axios.get("/articles");
     const posts = articlesRes.data;
     const topThreePosts = posts.slice(0, 3);
+
+    const searchRes = await axios.get(`/search?q=${q}`);
+    const searchPosts = searchRes.data ?? [];
+
     return {
       props: {
         topThreePosts,
         posts,
+        searchPosts,
       },
     };
   } catch (e) {
@@ -23,10 +30,10 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Community({ topThreePosts, posts, searchPosts }) {
+export default function Search({ topThreePosts, searchPosts }) {
   const [dividePosts, setDividePosts] = useState([]);
 
-  //크기에 따른 bestPost
+  // 크기에 따른 bestPost
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
@@ -55,7 +62,7 @@ export default function Community({ topThreePosts, posts, searchPosts }) {
         </button>
       </div>
       <SearchBar />
-      <PostList posts={posts} />
+      <PostList posts={searchPosts} />
     </>
   );
 }
