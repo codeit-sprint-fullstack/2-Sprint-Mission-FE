@@ -3,6 +3,7 @@ import style from '@/styles/PostDetailInfo.module.css';
 import profileImg from '@/public/assets/img_profile.png';
 import heartIcon from '@/public/assets/ic_heart.png';
 import formatDate from '@/utils/formatDate.js';
+import DropBox from './DropBox.js';
 
 export default function PostDetail({ data }) {
   return (
@@ -10,6 +11,7 @@ export default function PostDetail({ data }) {
       <div className={style.container}>
         <div className={style.titleAndKebab}>
           <h1 className={style.title}>{data.title}</h1>
+          <DropBox />
         </div>
         <div className={style.bottom}>
           <div className={style.profileContainer}>

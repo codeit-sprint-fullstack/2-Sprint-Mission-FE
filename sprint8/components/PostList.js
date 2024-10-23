@@ -10,7 +10,7 @@ export default function PostList({ data }) {
   return (
     <div>
       {data.map((item, index) => (
-        <Link href={`/free-board/${item.id}`}>
+        <Link key={index} href={`/free-board/${item.id}`}>
           <div key={index} className={style.container}>
             <div className={style.titleAndImage}>
               <h1 className={style.title}>{item.title}</h1>
