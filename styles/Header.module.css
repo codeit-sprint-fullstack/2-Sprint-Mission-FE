@@ -57,6 +57,7 @@
   background-color: #3692ff;
   border-radius: 8px;
   border-style: none;
+  cursor: pointer;
 }
 
 /* 반응형 CSS */
