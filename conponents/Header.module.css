@@ -1,0 +1,14 @@
+.header {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.387rem;
+  color: var(--gray-900);
+}
+
+@media (max-width: 743px) {
+  .header {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    color: var(--gray-800);
+  }
+}

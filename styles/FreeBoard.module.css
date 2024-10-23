@@ -1,0 +1,44 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+  width: 100%;
+  max-width: 120rem;
+  margin: 9.4rem auto 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.articleListTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postBnt {
+  width: 8.8rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--primary-100);
+  cursor: pointer;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .body {
+    max-width: 69.6rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .body {
+    max-width: 34.3rem;
+  }
+}
