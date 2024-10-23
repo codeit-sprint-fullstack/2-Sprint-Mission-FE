@@ -1,0 +1,252 @@
+.main {
+	width: 100%;
+	max-width: 1920px;
+	margin: 0 auto;
+	padding: 18px 0;
+	height: auto;
+	background-color: white;
+
+	@media (max-width: 1200px) {
+		padding: 15px;
+	}
+
+	@media (max-width: 744px) {
+		padding: 10px;
+	}
+
+	& .head {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 16px;
+	}
+
+	& h2 {
+		font-size: var(--text-xl);
+		margin: 0 0 var(--text-xl);
+		font-weight: 700;
+	}
+
+	& .kebabContainer {
+		position: relative;
+		width: 24px;
+		height: 24px;
+
+		& .menu {
+			position: absolute;
+			top: 24px;
+			right: 12px;
+			width: 130px;
+			height: 92px;
+
+			& button {
+				border: 1px solid var(--secondary-color-gray200);
+				background-color: white;
+				z-index: 100;
+			}
+
+			& button:first-child {
+				border-bottom: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 46px;
+				border-radius: 8px 8px 0 0;
+			}
+
+			& button:last-child {
+				border-top: 0;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 46px;
+				border-radius: 0 0 8px 8px;
+			}
+		}
+	}
+
+	& .profileAndLikes {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+
+	& .authorAndDate {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		height: 40px;
+		padding-right: 20px;
+		gap: 8px;
+		border-right: 1px solid var(--secondary-color-gray200);
+
+		& .profileContainer {
+			position: relative;
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+		}
+
+		& .author {
+			font-size: var(--text-md)
+		}
+
+		& .date {
+			font-size: var(--text-md);
+			color: var(--secondary-color-gray400);
+		}
+	}
+
+	& .likes {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		width: max-content;
+		margin-left: 20px;
+		gap: 8px;
+		height: 40px;
+		padding: 4px 12px 4px 12px;
+		border-radius: 20px;
+		border: 1px solid var(--secondary-color-gray200);
+
+		& .heartContainer {
+			position: relative;
+			left: 0;
+			width: 32px;
+			height: 32px;
+		}
+	}
+
+	& .content {
+		font-size: var(--text-2lg);
+		padding: var(--text-2lg) 0;
+		border-top: 1px solid var(--secondary-color-gray200);
+	}
+}
+
+.sub {
+	& .comments {
+		& .center {
+			text-align: center;
+			font-size: var(--text-lg);
+			color: var(--secondary-color-gray400);
+
+			& .imgReplyEmptyContainer {
+				position: relative;
+				width: 140px;
+				height: 140px;
+				margin: 24px auto;
+			}
+		}
+	}
+}
+
+.sub {
+	& h3 {
+		margin: 32px 0 16px;
+	}
+
+	& .comment {
+		width: 100%;
+		height: 104px;
+		resize: none;
+		background-color: var(--secondary-color-gray100);
+		border: 0;
+		padding: 1em;
+		border-radius: 12px;
+	}
+
+	& .a_button {
+		text-decoration: none;
+		font-size: var(--text-lg);
+		background-color: var(--primary-color-100);
+		color: var(--secondary-color-gray100);
+		font-weight: 600;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 0;
+		margin: 8px 0;
+		float: right;
+		padding: 6px 16px;
+		border-radius: 8px;
+	}
+}
+
+.cBoth.noFloat {
+	float: none;
+	clear: both;
+}
+
+.sub .comments {
+	& ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+		& li {
+			padding: 32px 0 16px;
+			border-bottom: 1px solid var(--secondary-color-gray200);
+		}
+
+		& .commentContent {
+			font-size: var(--text-md);
+			font-weight: 400;
+		}
+
+		& .profileAndNicknameAndTime {
+			display: flex;
+			justify-content: flex-start;
+			gap: 8px;
+			align-items: flex-start;
+
+			& .profileContainer {
+				position: relative;
+				width: 32px;
+				height: 32px;
+			}
+
+			& .nicknameAndTime {
+				display: flex;
+				flex-direction: column;
+				gap: 0;
+				align-items: flex-start;
+				font-size: var(--text-xs);
+
+				& .nickname {
+					color: var(--secondary-color-gray600);
+				}
+
+				& .time {
+					color: var(--secondary-color-gray400);
+				}
+			}
+		}
+	}
+}
+
+.sub {
+	& .backToBoards {
+		text-decoration: none;
+		font-size: var(--text-2lg);
+		background-color: var(--primary-color-100);
+		color: var(--secondary-color-gray100);
+		font-weight: 600;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 0;
+		margin: 64px auto;
+		padding: 6px 16px;
+		border-radius: 100px;
+
+		& .imgBack {
+			position: relative;
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
