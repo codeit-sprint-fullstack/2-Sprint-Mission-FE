@@ -13,11 +13,15 @@ import { fetchApi } from "@/utils/fetchApi";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [search, setSearch] = useState("");
 
   const fetchPosts = async () => {
     try {
       const data = await fetchApi("/articles");
-      setPosts(data);
+      const sortedData = data.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      setPosts(sortedData);
     } catch (e) {
       console.error(e);
     }
@@ -25,6 +29,14 @@ export default function Home() {
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  const handleSearch = (word) => {
+    setSearch(word);
+  };
+
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <>
@@ -37,10 +49,10 @@ export default function Home() {
         </Link>
       </div>
       <div className={styles.option_form}>
-        <SearchForm />
+        <SearchForm onSearch={handleSearch} />
         <Dropbox />
       </div>
-      {posts.map((post) => (
+      {filteredPosts.map((post) => (
         <div key={post.id} className={styles.post_content}>
           <Link href={`/board/${post.id}`} className={styles.post_link}>
             <div className={styles.post_title}>
@@ -52,7 +64,7 @@ export default function Home() {
             <div className={styles.user_stats}>
               <Image src={user} />
               <p>총명한판다</p>
-              <div>2024. 04. 16</div>
+              <div>{new Date(post.createdAt).toLocaleDateString()}</div>
             </div>
             <div className={styles.like}>
               <Image src={heart} />

@@ -51,6 +51,7 @@ export default function Board() {
 
   useEffect(() => {
     fetchArticle();
+    fetchComments();
   }, [id]);
 
   const toggleModal = () => {

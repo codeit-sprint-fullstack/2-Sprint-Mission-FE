@@ -2,12 +2,13 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "./SearchForm.module.css";
 
-export default function SearchForm({ initialValue = "" }) {
+export default function SearchForm({ onSearch }) {
   const router = useRouter();
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState("");
 
   function handleChange(e) {
     setValue(e.target.value);
+    onSearch(e.target.value);
   }
 
   function handleSubmit(e) {
