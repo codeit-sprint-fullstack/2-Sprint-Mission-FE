@@ -10,12 +10,12 @@ export default function FreeBoard() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  async function postArticle() {
+  async function patchArticle(id) {
     const data = { title: title, content: content };
 
     if (title && content) {
       try {
-        const res = await axios.post('/articles', data);
+        const res = await axios.patch(`/articles/${id}`, data);
         console.log(res.data);
       } catch (error) {
         console.error('Error posting article:', error);
@@ -44,8 +44,8 @@ export default function FreeBoard() {
   return (
     <div className={style.body}>
       <div className={style.headerAndButton}>
-        <Header>게시글 쓰기</Header>
-        <Button status={isButtonActive} onClick={postArticle}>
+        <Header>게시글 수정하기</Header>
+        <Button status={isButtonActive} onClick={patchArticle}>
           등록
         </Button>
       </div>

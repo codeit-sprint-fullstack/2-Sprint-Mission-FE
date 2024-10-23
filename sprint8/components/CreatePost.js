@@ -12,7 +12,7 @@ export default function CreatePost({ title, placehold, onDataChange }) {
   };
 
   useEffect(() => {
-    console.log(enterInput); // 상태가 업데이트될 때마다 실행
+    console.log(enterInput, inputType); // 상태가 업데이트될 때마다 실행, 추후 삭제
   }, [enterInput]);
 
   return (
