@@ -150,13 +150,21 @@
   padding: 1.2rem 2.3rem;
   gap: 1rem;
   border-radius: 0.8rem;
-  background-color: var(--secondary-gray-300);
   font-weight: 600;
   line-height: 2rem;
   text-align: left;
   color: var(--secondary-gray-700);
   border: none;
   align-self: flex-end;
+  cursor: pointer;
+}
+
+.btnAction {
+  background-color: var(--primary-blue);
+}
+
+.btnDisabled {
+  background-color: var(--secondary-gray-300);
 }
 
 .footer {

@@ -1,19 +1,38 @@
 import { useEffect, useState } from 'react';
 import styles from './ArticleDetail.module.css';
 import Image from 'next/image';
-import ArticleReview from './ArticleReivew';
+import ArticleReview from './ArticleReview';
 import Link from 'next/link';
 import ArticelDropdown from './ArticleDropdown';
 
 export default function ArticleDetail({ article, id }) {
-  const [articleReview, setArticleReivew] = useState(null);
+  const [articleReview, setArticleReview] = useState([]);
+  const [value, setValue] = useState('');
 
   async function getArticleReview(articleId) {
     const res = await fetch(
       `http://localhost:5000/articleComments/${articleId}`
     );
     const review = await res.json();
-    setArticleReivew(review);
+    setArticleReview(review);
+  }
+
+  async function postArticleReview() {
+    const res = await fetch(`http://localhost:5000/articleComments`, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        content: value,
+        articleId: id
+      })
+    });
+
+    if (res.ok) {
+      await getArticleReview(id);
+      setValue('');
+    } else {
+      console.error('Failed to post review:', await res.text());
+    }
   }
 
   useEffect(() => {
@@ -29,6 +48,18 @@ export default function ArticleDetail({ article, id }) {
     .replace(/\s/g, '')
     .replace(/\./g, '.')
     .slice(0, -1);
+
+  function handleChange(e) {
+    const newValue = e.target.value;
+    setValue(newValue);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!value) return;
+
+    postArticleReview();
+  }
 
   return (
     <ul className={styles.ul}>
@@ -60,10 +91,21 @@ export default function ArticleDetail({ article, id }) {
         </header>
         <main className={styles.main}>
           <h4 className={styles.content}>{article.content}</h4>
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <h4>댓글 달기</h4>
-            <textarea placeholder="댓글을 입력해주세요."></textarea>
-            <button type="submit">등록</button>
+            <textarea
+              name="content"
+              value={value}
+              onChange={handleChange}
+              placeholder="댓글을 입력해주세요."
+            ></textarea>
+            <button
+              className={value ? styles.btnAction : styles.btnDisabled}
+              disabled={!value}
+              type="submit"
+            >
+              등록
+            </button>
           </form>
         </main>
         <footer className={styles.footer}>
