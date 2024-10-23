@@ -1,4 +1,4 @@
-import styles from '@/styles/ArticleRegister.module.css';
+import styles from '@/styles/ArticleEdit.module.css';
 import axios from '@/lib/axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
@@ -9,6 +9,7 @@ export default function Register() {
   const [error, setError] = useState('');
 
   const router = useRouter();
+  const id = router.query['id'];
 
   const isInputEmpty = () => {
     return title.trim() !== '' && content.trim() !== '';
@@ -22,9 +23,8 @@ export default function Register() {
     }
 
     try {
-      const res = await axios.post('/articles', { title, content });
-      const articleId = res.data.id;
-      return router.push(`/articles/${articleId}`);
+      await axios.patch(`/articles/${id}`, { title, content });
+      return router.push(`/articles/${id}`);
     } catch (err) {
       setError('게시글 등록에 실패하였습니다.');
     }
