@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import styles from './ArticleDropdown.module.css';
+import { useRouter } from 'next/router';
 
-export default function ArticelDropdown({ setSortOption }) {
+export default function ArticelDropdown({ articleId }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOprtion] = useState('old');
   const dropdownRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -26,10 +27,21 @@ export default function ArticelDropdown({ setSortOption }) {
     { value: 'delete', label: '삭제하기' }
   ];
 
+  async function deleteArticle(articleId) {
+    await fetch(`http://localhost:5000/articles/${articleId}`, {
+      method: 'DELETE'
+    });
+  }
+
   const handleOptionClick = (value) => {
-    setSelectedOprtion(value);
-    setSortOption(value);
     setIsOpen(false);
+
+    if (value === 'patch') {
+      router.push(`/patchArticle/${articleId}`);
+    } else {
+      deleteArticle(articleId);
+      router.push('/');
+    }
   };
 
   return (

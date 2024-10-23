@@ -36,7 +36,7 @@ export default function ArticleDetail({ article, id }) {
         <header className={styles.header}>
           <div className={styles.title}>
             <h3>{article.title}</h3>
-            <ArticelDropdown />
+            <ArticelDropdown articleId={article.id} />
           </div>
           <div className={styles.user}>
             <div className={styles.userLeft}>
