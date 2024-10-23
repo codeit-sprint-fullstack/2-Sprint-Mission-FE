@@ -6,10 +6,12 @@ import Image from "next/image";
 
 export default function Header() {
   const router = useRouter();
-  const { pathName } = router;
+  const pathname = router.pathname;
+
   const [imageSrc, setImageSrc] = useState("/logoImg.png");
   const [imageWidth, setImageWidth] = useState(153);
   const [imageHeight, setImageHeight] = useState(51);
+
   useEffect(() => {
     const windowResize = () => {
       if (window.innerWidth <= 743 && window.innerWidth >= 375) {
@@ -37,21 +39,22 @@ export default function Header() {
               alt="판다마켓 로고"
               width={imageWidth}
               height={imageHeight}
+              priority
             />
           </Link>
         </div>
         <div>
           <Link
             className={
-              pathName === "/items" ? styles.inCommunity : styles.community
+              pathname === "/items" ? styles.inCommunity : styles.community
             }
             href="/community"
           >
             자유게시판
           </Link>
           <Link
-            className={pathName === "/items" ? styles.inMarket : styles.market}
-            href="/items"
+            className={pathname === "/market" ? styles.inMarket : styles.market}
+            href="/market"
           >
             중고마켓
           </Link>
