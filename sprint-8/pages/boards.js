@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { getArticles } from '@/apis/articlesService.js';
 import Articles from '@/components/Articles.jsx';
 import BestArticles from '@/components/BestArticles.jsx';
 import styles from '@/styles/Boards.module.css';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 export async function getServerSideProps() {
 	const { list: bestArticles } = await getArticles({ skip: 0, take: 3, sort: 'recent' });
@@ -39,7 +39,7 @@ function Boards({ bestArticles, articles: initialArticles }) {
 			<article className={styles.sub}>
 				<div className={styles.head}>
 					<h2>게시글</h2>
-					<a className={styles.button}>글쓰기</a>
+					<a className={styles.a_button}>글쓰기</a>
 				</div>
 				<div className={styles.head}>
 					<div className={styles.inputWrapper}>
@@ -48,7 +48,7 @@ function Boards({ bestArticles, articles: initialArticles }) {
 							<Image fill src="/images/ic_search.svg" alt="Search" />
 						</div>
 					</div>
-					<select value={sort} onChange={(e) => setSort(e.target.value)}>
+					<select className={styles.sort} value={sort} onChange={(e) => setSort(e.target.value)}>
 						<option value="recent">최신순</option>
 						<option value="favorite">좋아요 순</option>
 					</select>
