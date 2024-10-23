@@ -1,0 +1,58 @@
+.comment-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 1.2rem;
+    border-bottom: 0.1rem solid #E5E7EB;
+
+    background-color: #FCFCFC;
+
+    gap: 2.4rem;
+}
+
+.container p {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+
+    gap: 0.8rem;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.4rem;
+}
+
+.user p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.8rem;
+}
+
+.user>:first-child {
+    color: #4B5563;
+}
+
+.user>:last-child {
+    color: #9CA3AF;
+}

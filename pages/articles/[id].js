@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import styles from '@/styles/Article.module.css';
 import axios from '@/lib/axios';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
-import ArticleCommentList from '@/components/ArticleList/ArticleList';
+import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/formatDate';
 
 export default function article() {
@@ -75,7 +75,7 @@ export default function article() {
       </div>
       <div className={styles.comments}>
         <ArticleCommentAdd id={id} />
-        <ArticleCommentList />
+        <ArticleCommentList articleComments={articleComments} />
       </div>
     </div>
   );
