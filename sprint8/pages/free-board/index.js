@@ -29,7 +29,7 @@ export default function FreeBoard() {
       <div className={style.headerAndButton}>
         <Header> 게시글 </Header>
         <Link href="/free-board/create-post">
-          <Button className={style.button}>글쓰기</Button>
+          <Button status={true}>글쓰기</Button>
         </Link>
       </div>
       <div className={style.headerAndButton}>
