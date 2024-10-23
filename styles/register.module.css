@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
-  margin-bottom: 7rem;
+  margin: 0 2.4rem 7rem 2.4rem;
 }
 
 .title {
@@ -76,4 +76,42 @@
 .textareaSection {
   height: 28.2rem;
   resize: none;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .layout {
+    max-width: 69.6rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .layout {
+    max-width: 34.5rem;
+  }
+
+  .container {
+    gap: 2.4rem;
+    margin: 0 1.6rem 7rem 1.6rem;
+  }
+
+  .title h1 {
+    line-height: 2.387rem;
+  }
+
+  .registerBtn {
+    line-height: 1.909rem;
+  }
+
+  .formSection h2 {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+  }
+
+  .inputSection {
+    margin-bottom: 1.6rem;
+  }
+
+  .textareaSection {
+    height: 20rem;
+  }
 }
