@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Nav.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Nav() {
   const [windowWidth, setWindowWidth] = useState();
@@ -29,7 +30,9 @@ export default function Nav() {
           )}
         </div>
         <div className={styles.menu}>
-          <h3>자유게시판</h3>
+          <Link href="/" className={styles.link}>
+            <h3>자유게시판</h3>
+          </Link>
           <h3>중고마켓</h3>
         </div>
         <button type="submit" className={styles.login}>

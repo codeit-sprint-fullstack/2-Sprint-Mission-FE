@@ -35,6 +35,10 @@
   white-space: nowrap;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .menu h3:nth-child(1) {
   color: var(--primary-blue);
 }

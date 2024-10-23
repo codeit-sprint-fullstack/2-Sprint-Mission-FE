@@ -3,6 +3,7 @@ import RecentArticle from '@/components/RecentArticle';
 import ArticleList from '@/components/ArticleList';
 import { useEffect, useState } from 'react';
 import SearchForm from '@/components/SearchForm';
+import Link from 'next/link';
 
 export default function Home() {
   const [recentArticles, setRecentArticles] = useState([]);
@@ -54,7 +55,9 @@ export default function Home() {
         <section className={styles.articleSection}>
           <div className={styles.btnContainer}>
             <h2>게시글</h2>
-            <button>글쓰기</button>
+            <Link href="/registerArticle">
+              <button>글쓰기</button>
+            </Link>
           </div>
           <SearchForm initialValue={value} onChange={setValue} sort={setSort} />
           {value ? (

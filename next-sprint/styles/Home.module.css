@@ -60,4 +60,5 @@
   text-align: left;
   color: var(--primary-white);
   border: none;
+  cursor: pointer;
 }
