@@ -34,6 +34,10 @@ export default function article() {
 
   if (!article) return null;
 
+  function handleBackList() {
+    return router.push('/');
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.article}>
@@ -75,7 +79,7 @@ export default function article() {
       </div>
       <ArticleCommentAdd id={id} />
       <ArticleCommentList articleComments={articleComments} />
-      <button className={styles[`back-list`]}>
+      <button className={styles[`back-list`]} onClick={handleBackList}>
         목록으로 돌아가기
         <Image
           src="/images/ic_back.png"
