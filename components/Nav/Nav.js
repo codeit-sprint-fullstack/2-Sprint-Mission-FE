@@ -6,12 +6,6 @@ import { useRouter } from 'next/router';
 export default function Nav() {
   const router = useRouter();
 
-  const getLinkStyle = (path) => {
-    return {
-      color: router.pathname === path ? '#3692ff' : ''
-    };
-  };
-
   return (
     <header className={styles.nav}>
       <div className={styles.container}>
@@ -33,7 +27,7 @@ export default function Nav() {
             />
           </Link>
           <ul className={styles.menu}>
-            <li>
+            <li className={router.pathname === '/' ? styles.active : ''}>
               <Link href="/">자유게시판</Link>
             </li>
             <li>

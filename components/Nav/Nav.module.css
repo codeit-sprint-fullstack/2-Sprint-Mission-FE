@@ -56,6 +56,10 @@
     color: #4B5563;
 }
 
+.menu .active a {
+    color: #3692ff;
+}
+
 .auth {
     display: flex;
     justify-content: center;
