@@ -1,0 +1,42 @@
+.footer {
+  color: #e5e7eb;
+  background-color: #111827;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 400px 108px;
+}
+
+.footer div {
+  display: flex;
+  gap: 12px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.codeit {
+  color: #9ca3af;
+}
+
+/* 반응형 CSS */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .footer {
+    padding: 32px 23px 108px;
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .footer {
+    padding: 32px 16px 65px;
+  }
+  .facebookIcon {
+    margin: 0 0 0 20px;
+  }
+  .codeit {
+    margin: 0 20px 0 0;
+  }
+}

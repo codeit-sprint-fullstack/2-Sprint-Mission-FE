@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { Noto_Sans, Noto_Sans_KR } from "next/font/google";
 import "../styles/globals.css";
 
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }) {
     <>
       <main className={`${notoSans.className} ${notoSansKR.className}`}>
         <Header />
+        <Footer />
       </main>
     </>
   );
