@@ -23,6 +23,34 @@
     font-style: normal;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
     font-family: 'Pretendard-Regular', sans-serif;
 }
+
+/* 추가적인 리셋 스타일 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+/* 필요한 다른 리셋 스타일 추가 */

@@ -17,7 +17,10 @@ module.exports = {
         ffffff: "#FFFFFF",
         "3692ff": "#3692FF",
         dfdfdf: "#DFDFDF",
-        "4b5563": "4B5563"
+        "4b5563": "4B5563",
+        footerbg: "#111827",
+        "9ca3af": "#9CA3AF",
+        e5e7eb: "#E5E7EB"
       },
       borderRadius: {
         "8px": "8px"
