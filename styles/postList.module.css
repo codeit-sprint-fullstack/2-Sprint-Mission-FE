@@ -1,0 +1,104 @@
+.notPosts {
+  font-weight: 600;
+  font-size: 20px;
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.postsMap {
+  gap: 24px;
+  height: 786px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.postsMap::-webkit-scrollbar {
+  display: none;
+}
+
+.postCard {
+  width: 1200px;
+  height: 138px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.postTitle {
+  font-weight: 600;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.defaultImg {
+  border: 2px solid #959ba5;
+  border-radius: 6px;
+}
+
+.PostCardLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.PostCardLeftBottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.postCardRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.postCardRightBottom {
+  display: flex;
+  gap: 3px;
+}
+
+.useName {
+  font-weight: 400;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.postCardCreatedAt {
+  font-weight: 400;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.favoriteCount {
+  font-weight: 400;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* 반응형 CSS */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .postCard {
+    width: 696px;
+  }
+  .postsMap {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .postCard {
+    width: 343px;
+  }
+  .postsMap {
+    height: 456px;
+  }
+}
