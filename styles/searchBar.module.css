@@ -1,0 +1,70 @@
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 24px;
+}
+
+.searchInput {
+  width: 1054px;
+  height: 42px;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  border: none;
+  color: #9ca3af;
+  font-weight: 400;
+  font-size: 16px;
+  padding-left: 44px;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  margin: 9px 0 9px 16px;
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.searchInput:focus {
+  outline: none;
+  border: solid 1px #3692ff;
+}
+
+.dropdownButton {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: solid 1px #e5e7eb;
+  background-color: #ffffff;
+  font-weight: 400;
+  font-size: 16px;
+  color: #1f2937;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* 반응형 CSS */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .searchBar {
+    max-width: 696px;
+    margin: 0 auto 40px;
+  }
+  .searchInput {
+    width: 550px;
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .searchBar {
+    max-width: 343px;
+    margin: 0 auto 16px;
+    gap: 13px;
+  }
+  .searchInput {
+    width: 288px;
+  }
+}
