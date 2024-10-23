@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 반응형 */
+
+/* 판매중 상품 - Desktop: 2행 5열 */
+.on-sale-product .product-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  /* 판매중 상품 - Tablet: 2행 3열 */
+  .on-sale-product .product-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 744px) {
+  /* 판매중 상품 - Mobile: 2행 2열 */
+  .on-sale-product .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.product-wrapper {
+  padding: 0 100px;
+}
+
+.search-sort-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 20px;
+  padding: 50px;
+}
+
+/* 검색 */
+input {
+  background-color: #f3f4f6;
+  border: none;
+  width: 260px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  background-image: url("../images/etc/reading-glasses.svg");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+
+/* 등록 버튼 */
+.register-product {
+  background-color: #3692ff;
+  border: none;
+  color: #ffffff;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* 선택 버튼 */
+select {
+  border-radius: 10px;
+  width: 110px;
+  height: 40px;
+  text-align: center;
+  border-color: #dfdfdf;
+}
+
+.product-list {
+  overflow: hidden;
+  width: 100%;
+}
+
+.product-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.product-item img {
+  width: 221px;
+  height: 221px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.like-wrapper img {
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+}
+/* 페이지네이션 */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0 100px 0;
+}
+
+.pagination button {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination button:hover {
+  background-color: #b3d6fc;
+  border-color: #b3d6fc;
+}

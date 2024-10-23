@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.product-wrapper {
+  width: 100%; /* 전체 너비 사용 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+/* 베스트 상품 - Desktop: 4열 */
+.best-product .product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 기본: 4열 */
+}
+
+/* 베스트 상품 - Tablet: 2열 */
+@media (max-width: 1199px) {
+  .best-product .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 베스트 상품 - Mobile: 1열 */
+@media (max-width: 743px) {
+  .best-product .product-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 베스트 상품 */
+.best-product {
+  padding: 100px 0;
+}
+s .product-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.product-item img {
+  width: 282px;
+  height: 282px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.like-wrapper img {
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+}
