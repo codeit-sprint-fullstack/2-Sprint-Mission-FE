@@ -22,5 +22,5 @@ export default function Article() {
 
   if (!article) return;
 
-  return <ArticleDetail article={article} />;
+  return <ArticleDetail article={article} id={id} />;
 }

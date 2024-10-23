@@ -1,7 +1,24 @@
+import { useEffect, useState } from 'react';
 import styles from './ArticleDetail.module.css';
 import Image from 'next/image';
+import ArticleReview from './ArticleReivew';
+import Link from 'next/link';
 
-export default function ArticleDetail({ article }) {
+export default function ArticleDetail({ article, id }) {
+  const [articleReview, setArticleReivew] = useState(null);
+
+  async function getArticleReview(articleId) {
+    const res = await fetch(
+      `http://localhost:5000/articleComments/${articleId}`
+    );
+    const review = await res.json();
+    setArticleReivew(review);
+  }
+
+  useEffect(() => {
+    getArticleReview(id);
+  }, [id]);
+
   const formattedDate = new Date(article.createdAt)
     .toLocaleDateString('ko-KR', {
       year: 'numeric',
@@ -27,7 +44,7 @@ export default function ArticleDetail({ article }) {
               <h3>총명한 판다</h3>
               <h3>{formattedDate}</h3>
             </div>
-            <bar className={styles.bar}></bar>
+            <div className={styles.bar}></div>
             <div className={styles.userRight}>
               <Image
                 width={32}
@@ -47,7 +64,20 @@ export default function ArticleDetail({ article }) {
             <button type="submit">등록</button>
           </form>
         </main>
-        <footer></footer>
+        <footer className={styles.footer}>
+          <ArticleReview reviews={articleReview} />
+          <Link href="/" className={styles.link}>
+            <button>
+              목록으로 돌아가기
+              <Image
+                width={24}
+                height={24}
+                alt="버튼 이미지"
+                src="/images/ic_back.svg"
+              />
+            </button>
+          </Link>
+        </footer>
       </li>
     </ul>
   );
