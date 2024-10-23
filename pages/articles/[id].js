@@ -35,7 +35,7 @@ export default function article() {
   if (!article) return null;
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div className={styles.article}>
         <div className={styles[`article-header`]}>
           <div className={styles[`article-title`]}>
@@ -73,10 +73,17 @@ export default function article() {
         </div>
         <p>{article.content}</p>
       </div>
-      <div className={styles.comments}>
-        <ArticleCommentAdd id={id} />
-        <ArticleCommentList articleComments={articleComments} />
-      </div>
+      <ArticleCommentAdd id={id} />
+      <ArticleCommentList articleComments={articleComments} />
+      <button className={styles[`back-list`]}>
+        목록으로 돌아가기
+        <Image
+          src="/images/ic_back.png"
+          width={24}
+          height={24}
+          alt="목록 아이콘"
+        />
+      </button>
     </div>
   );
 }

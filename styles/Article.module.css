@@ -1,3 +1,33 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 10rem;
+
+    gap: 6.4rem;
+}
+
+.back-list {
+    display: flex;
+    align-items: center;
+
+    width: auto;
+    height: 4.8rem;
+
+    margin: 0 auto;
+    padding: 1.2rem 3.95rem;
+    border-radius: 4rem;
+
+    color: #F3F4F6;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2.6rem;
+
+    background-color: #3692FF;
+
+    gap: 0.8rem;
+}
+
 .article {
     display: flex;
     flex-direction: column;

@@ -45,15 +45,6 @@ export default function ArticleCommentList({ articleComments }) {
             <br />
             지금 댓글을 달아보세요!
           </p>
-          <button>
-            목록으로 돌아가기
-            <Image
-              src="/images/ic_back.png"
-              width={24}
-              height={24}
-              alt="목록 아이콘"
-            />
-          </button>
         </div>
       )}
     </div>
