@@ -1,0 +1,84 @@
+.form {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 70rem;
+
+    gap: 3.2rem;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-header h1 {
+    color: #1F2937;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+.form-header button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 4.2rem;
+
+    padding: 1.2rem 2.3rem;
+    border-radius: 0.8rem;
+
+    color: #F3F4F6;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2.6rem;
+
+    background-color: #3692FF;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.2rem;
+}
+
+.group label {
+    color: #1F2937;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.6rem;
+}
+
+.group input,
+.group textarea {
+    padding: 1.6rem 2.4rem;
+    border: none;
+    border-radius: 1.2rem;
+
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+
+    background-color: #F3F4F6;
+}
+
+.group input {
+    height: 5.6rem;
+}
+
+.group textarea {
+    height: 28.2rem;
+}
+
+.group input:focus,
+.group textarea:focus {
+    outline: none;
+}
+
+.group input::placeholder,
+.group textarea::placeholder {
+    color: #9CA3AF;
+}
