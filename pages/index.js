@@ -6,11 +6,15 @@ import BestArticleList from '@/components/BestArticleList/BestArticleList';
 import Search from '@/components/ArticleList/Search';
 import Dropdown from '@/components/ArticleList/Dropdown';
 import ArticleHeader from '@/components/ArticleList/ArticleHeader';
+import Pagination from '@/components/ArticleList/Pagination';
 
 export default function Home() {
   const [bestArticles, setBestArticles] = useState([]);
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
 
@@ -22,7 +26,6 @@ export default function Home() {
 
   const paramsAll = {
     page: 1,
-    pageSize: 5,
     order: 'sortOrder',
     keyword: ''
   };
@@ -60,6 +63,13 @@ export default function Home() {
     getArticles();
   }, [sortOrder]);
 
+  const totalPages = Math.ceil(filteredArticles.length / pageSize);
+
+  const currentArticles = filteredArticles.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   return (
     <div className={styles.wrapper}>
       <BestArticleList bestArticles={bestArticles} />
@@ -69,8 +79,13 @@ export default function Home() {
           <Search keyword={keyword} onSearch={setKeyword} />
           <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
         </div>
-        <ArticleList articles={filteredArticles || []} />
+        <ArticleList articles={currentArticles || []} />
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 }
