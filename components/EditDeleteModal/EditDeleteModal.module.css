@@ -1,0 +1,33 @@
+.modal {
+  position: absolute;
+  top: 140px;
+  right: 210px;
+  width: 150px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.option_list {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+}
+
+.option_item {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #6b7280;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.option_item:last-child {
+  border-bottom: none;
+}
+
+.option_item:hover {
+  background-color: #e5e7eb;
+  color: #3692ff;
+}

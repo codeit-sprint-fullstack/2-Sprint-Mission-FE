@@ -110,6 +110,7 @@
 }
 .create_at {
   color: #9ca3af;
+  font-weight: lighter;
 }
 .detail_user_stats {
   display: flex;
@@ -179,4 +180,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.link_button,
+.return_list {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.return_button_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
