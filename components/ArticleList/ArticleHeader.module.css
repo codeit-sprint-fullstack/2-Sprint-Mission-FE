@@ -1,0 +1,26 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper h1 {
+    color: #1F2937;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+.wrapper button {
+    height: 4.2rem;
+
+    padding: 1.2rem 2.3rem;
+    border-radius: 0.8rem;
+
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.909rem;
+
+    background-color: #3692FF;
+}
