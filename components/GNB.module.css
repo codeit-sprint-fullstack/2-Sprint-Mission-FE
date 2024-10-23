@@ -62,13 +62,14 @@
   gap: 30px;
 }
 
-.navLinkStyle {
+.linkStyle {
   text-decoration: none;
   color: var(--gray-600);
 }
 
-.menu a:hover {
-  color: #3692ff;
+.menu a:hover,
+.isActive {
+  color: var(--primary-100);
 }
 
 .profileImg {

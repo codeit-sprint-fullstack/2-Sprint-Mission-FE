@@ -60,7 +60,7 @@ export default function Board({ articles, bestArticles }) {
           <p className={styles.title}>베스트 게시글</p>
           <div className={styles.bestArticles}>
             {bestArticles?.map((article) => (
-              <Link href={`/board/${article.id}`} className={styles.links}>
+              <Link href={`/board/${article.id}`} className={styles.linkStyle}>
                 <BestArticle key={article.id} article={article} />
               </Link>
             ))}
@@ -86,7 +86,7 @@ export default function Board({ articles, bestArticles }) {
           </div>
           <div className={styles.allArticles}>
             {articles?.map((article) => (
-              <Link href={`/board/${article.id}`}>
+              <Link href={`/board/${article.id}`} className={styles.linkStyle}>
                 <ArticleList key={article.id} article={article} />
               </Link>
             ))}
