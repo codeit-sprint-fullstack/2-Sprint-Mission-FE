@@ -109,7 +109,7 @@ export default function Article({ article, comments: initialComments }) {
         </form>
         <CommentList comments={comments} />
       </div>
-      <Link href={'/Board'}>
+      <Link href={'/board'}>
         <BackButton>
           <div className={styles.buttonContent}>
             <p>목록으로 돌아가기</p>
