@@ -1,0 +1,29 @@
+.wrapper {
+  position: relative;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  z-index: 999;
+  right: 5px;
+  top: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid var(--gray-300);
+  padding: 0;
+
+  & li {
+    cursor: pointer;
+    width: 139px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--gray-500);
+  }
+}
