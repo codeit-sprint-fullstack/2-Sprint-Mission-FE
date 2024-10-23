@@ -29,6 +29,9 @@
 		justify-content: space-between;
 
 		& li {
+			display: flex;
+			flex-direction: column;
+			gap: 14px;
 			padding: 0 24px 12px;
 			background-color: var(--secondary-color-gray50);
 
