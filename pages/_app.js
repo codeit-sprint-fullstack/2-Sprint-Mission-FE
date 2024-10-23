@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import Head from "next/head";
 import Nav from "@/components/Nav/Nav";
 import Container from "@/components/Container";
+import Footer from "@/components/Footer/Footer";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -14,7 +15,7 @@ export default function App({ Component, pageProps }) {
     <Container>
       <Component {...pageProps} />
     </Container>
-    
+    <Footer />
   </>
   )
 }

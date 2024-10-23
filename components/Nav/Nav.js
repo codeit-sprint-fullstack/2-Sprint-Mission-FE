@@ -21,20 +21,22 @@ export default function Nav() {
       <div className={styles.gnb}>
         <div className={styles.gnbLogo}>
           <Link href="/">
-            <Image 
-              src={GnbLogoImg} 
-              width={153}
-              height={51}
-              alt="Logo" 
-              className={styles.gnbLogoDesktop} 
-            />
-            <Image 
-              src={GnbLogoImgMobile} 
-              width={81}
-              height={40}
-              alt="Logo" 
-              className={styles.gnbLogoMobile} 
-            />
+            <div className={styles.gnbLogoDesktop}>
+              <Image
+                src={GnbLogoImg}
+                alt="Logo"
+                fill
+                className={styles.logoImage}
+              />
+            </div>
+            <div className={styles.gnbLogoMobile}>
+              <Image
+                src={GnbLogoImgMobile}
+                alt="Logo"
+                fill
+                className={styles.logoImage}
+              />
+            </div>
           </Link>
         </div>
         <nav className={styles.gnbNav}>
@@ -49,13 +51,14 @@ export default function Nav() {
             <Link href="/login" className={styles.gnbBtnLogin}>로그인</Link>
           ) : (
             <div className={styles.gnbUserInfo}>
-              <Image 
-                src={UserProfileImg} 
-                width={40}
-                height={40}
-                alt="User" 
-                className={styles.userProfileImg} 
-              />
+              <div className={styles.userProfileImg}>
+                <Image 
+                  src={UserProfileImg} 
+                  alt="User"
+                  fill 
+                  className={styles.profileImg} 
+                />
+              </div>
               <span className={styles.userName}>김코드</span>
             </div>
           )}

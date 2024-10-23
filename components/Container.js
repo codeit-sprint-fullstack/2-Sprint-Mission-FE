@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import styles from './Container.module.css';
 
 export default function Container({ children }) {
@@ -8,7 +7,7 @@ export default function Container({ children }) {
   return (
     <>
     {/* <div className={`${styles.withHeader} ${isHomepage ? styles.content : styles.content}`}> */}
-    <div className={styles.content}>
+    <div className={`${styles.withHeader} ${styles.content}`}>
       {children}
     </div>
     </>
