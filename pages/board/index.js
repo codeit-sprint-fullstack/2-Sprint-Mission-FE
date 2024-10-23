@@ -56,7 +56,7 @@ export default function Board({ articles, bestArticles }) {
   return (
     <div className={styles.board}>
       <div className={styles.wrapper}>
-        <div>
+        <div className={styles.bestWrapper}>
           <p className={styles.title}>베스트 게시글</p>
           <div className={styles.bestArticles}>
             {bestArticles?.map((article) => (
