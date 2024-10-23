@@ -1,0 +1,92 @@
+.ul {
+  width: 100%;
+  gap: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article {
+  width: 120rem;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 2.4rem;
+  background-color: var(--secondary-gray-600);
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 3.2rem;
+  text-align: left;
+  color: var(--secondary-black-100);
+}
+
+.sample {
+  position: relative;
+  width: 7.2rem;
+  height: 7.2rem;
+  border: 1px solid var(--secondary-gray-100);
+  background-color: var(--primary-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.8rem;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.user h3 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  text-align: left;
+}
+
+.user h3:nth-child(2) {
+  color: #4b5563;
+  position: absolute;
+  left: 3rem;
+}
+
+.user h3:nth-child(3) {
+  color: #9ca3af;
+  position: absolute;
+  left: 11.6rem;
+}
+
+.user h3:last-child {
+  color: #6b7280;
+}
+
+.profile {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.heart {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+  left: 55rem;
+}
+
+.article:last-child {
+  margin-bottom: 20rem;
+}
+
+.link {
+  text-decoration: none;
+}

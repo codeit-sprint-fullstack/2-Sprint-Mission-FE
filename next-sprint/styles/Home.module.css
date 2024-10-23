@@ -1,0 +1,64 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recentSection {
+  width: 100%;
+  max-width: 120rem;
+  height: 21.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.recentSection span {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.3rem;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.articleSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.btnContainer {
+  width: 120rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.btnContainer h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  color: var(--secondary-black-100);
+  text-align: left;
+}
+
+.btnContainer button {
+  width: 9.5rem;
+  height: 4.2rem;
+  padding: 1.2rem 2.3rem;
+  gap: 1rem;
+  border-radius: 0.8rem;
+  background-color: var(--primary-blue);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.9rem;
+  text-align: left;
+  color: var(--primary-white);
+  border: none;
+  cursor: pointer;
+}

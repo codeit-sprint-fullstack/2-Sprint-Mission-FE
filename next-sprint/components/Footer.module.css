@@ -1,0 +1,80 @@
+.footerContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  width: 100%;
+  max-width: 192rem;
+  height: 16rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 12rem;
+  position: relative;
+  background-color: var(--primary-black);
+}
+
+.copy {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.9rem;
+  text-align: center;
+  color: var(--secondary-gray-300);
+  white-space: nowrap;
+}
+
+.notice {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.notice h3 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.9rem;
+  text-align: center;
+  color: var(--secondary-gray-100);
+  white-space: nowrap;
+}
+
+.logoContainer {
+  display: flex;
+  width: 11.6rem;
+  height: 2rem;
+  gap: 1rem;
+}
+
+.logoImg {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .footer {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .footer {
+    padding: 3rem 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+  }
+  .logoContainer {
+    justify-self: end;
+  }
+
+  .copy {
+    display: flex;
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .notice {
+    justify-content: flex-start;
+    gap: 3rem;
+  }
+}

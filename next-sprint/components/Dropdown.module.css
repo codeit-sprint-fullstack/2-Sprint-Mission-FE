@@ -1,0 +1,52 @@
+.menu {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 13rem;
+  height: 4.2rem;
+  gap: 1rem;
+  border: 0.1rem solid var(--secondary-gray-100);
+  border-radius: 1.2rem;
+  background-color: var(--primary-white);
+  color: var(--secondary-black-100);
+  font-weight: 400;
+  line-height: 2.6rem;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+}
+
+.selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  width: 100%;
+  gap: 0.8rem;
+}
+
+.arrow {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.options {
+  position: absolute;
+  top: 5rem;
+  width: 100%;
+  white-space: nowrap;
+  border: 0.1rem solid var(--secondary-gray-100);
+  border-radius: 1rem;
+  background-color: var(--primary-white);
+  z-index: 2;
+}
+
+.options li {
+  padding: 1.15rem 1.6rem;
+  list-style: none;
+}
+
+.options li:not(:last-child) {
+  border-bottom: 0.1rem solid var(--secondary-gray-100);
+}
