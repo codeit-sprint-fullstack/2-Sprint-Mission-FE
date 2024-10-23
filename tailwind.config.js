@@ -14,9 +14,10 @@ module.exports = {
         lg: "1200px"
       },
       colors: {
-        FFFFFF: "#FFFFFF", // 사용자 정의 색상 추가
-        "3692FF": "#3692FF",
-        DFDFDF: "#DFDFDF"
+        ffffff: "#FFFFFF",
+        "3692ff": "#3692FF",
+        dfdfdf: "#DFDFDF",
+        "4b5563": "4B5563"
       },
       borderRadius: {
         "8px": "8px"
