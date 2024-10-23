@@ -132,3 +132,28 @@
     font-weight: 500;
     line-height: 2.6rem;
 }
+
+/* -- Mobile -- */
+@media screen and (max-width:743px) {
+    .user-info>:nth-child(2) {
+        color: #4B5563;
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 2.4rem;
+    }
+
+    .user-info>:last-child {
+        color: #9CA3AF;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 2.4rem;
+    }
+
+    .info {
+        gap: 1rem;
+    }
+
+    .like {
+        margin-left: 1rem;
+    }
+}

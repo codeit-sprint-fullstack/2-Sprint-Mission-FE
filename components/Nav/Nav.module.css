@@ -99,8 +99,13 @@
         margin: 0 1.6rem;
     }
 
+    .leftSection {
+        gap: 2rem;
+    }
+
     .menu {
         font-size: 1.4rem;
+        gap: 1rem;
     }
 
     .logo {

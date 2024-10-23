@@ -7,6 +7,7 @@ import Search from '@/components/ArticleList/Search';
 import Dropdown from '@/components/ArticleList/Dropdown';
 import ArticleHeader from '@/components/ArticleList/ArticleHeader';
 import Pagination from '@/components/ArticleList/Pagination';
+import useResize from '@/hooks/useResize';
 
 export default function Home() {
   const [bestArticles, setBestArticles] = useState([]);
@@ -15,12 +16,13 @@ export default function Home() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
+  const bestPageSize = useResize();
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
 
   const paramsBest = {
     page: 1,
-    pageSize: 3,
+    pageSize: bestPageSize,
     order: 'recent'
   };
 
@@ -45,6 +47,9 @@ export default function Home() {
 
   useEffect(() => {
     getBestArticles();
+  }, [bestPageSize]);
+
+  useEffect(() => {
     getArticles();
   }, []);
 

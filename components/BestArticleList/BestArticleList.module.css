@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
 
+    width: 100%;
+
     gap: 2.4rem;
 }
 
@@ -14,9 +16,8 @@
 }
 
 .best-articles {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 2.4rem;
 }
@@ -91,4 +92,26 @@
     align-items: center;
 
     gap: 0.4rem;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .best-articles {
+        grid-template-columns: repeat(2, 1fr);
+        margin: auto;
+    }
+
+    .container {
+        width: 34rem;
+    }
+}
+
+@media (max-width: 743px) {
+    .best-articles {
+        grid-template-columns: repeat(1, 1fr);
+        margin: auto;
+    }
+
+    .container {
+        width: 34rem;
+    }
 }
