@@ -1,0 +1,166 @@
+.gnbWrapper {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 37.1rem; /* 갤럭시 S20+ 브라우저 사이즈가 374 x 699 */
+  z-index: 1000;
+  border-bottom: 0.1rem solid var(--nav-divider-color);
+  background-color: var(--background-color);
+}
+
+.gnb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 120rem;
+  height: 7rem;
+  padding: 0;
+}
+
+.gnbLogoDesktop,
+.gnbLogoMobile {
+  position: relative; /* Image fill 사용을 위해 부모 요소에 position: relative를 설정 */
+}
+
+.gnbLogoDesktop {
+  display: block;
+  width: 15.3rem;
+  height: 5.1rem;
+}
+
+.gnbLogoMobile {
+  display: none;
+}
+
+.logoImage {
+  object-fit: contain; /* 이미지 비율 유지 */
+}
+
+.gnbNav {
+  width: 100%;
+  margin: 0 2rem;
+  padding: 0;
+}
+
+.gnbNavList {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.gnbNavList li a {
+  text-decoration: none;
+  color: var(--nav-text-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.gnbUser {
+  display: flex;
+  align-items: center;
+}
+
+.gnbBtnLogin {
+  background: var(--primary-color);
+  color: var(--button-text-color);
+  width: 8.8rem;
+  height: 4.2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gnbUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 9.2rem; /* gap 때문에 사이즈 약간 늘림 */
+}
+
+.userProfileImg {
+  position: relative; /* Image fill 사용을 위해 부모 요소에 position: relative를 설정 */
+}
+
+.userProfileImg {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%; /* 원형 프로필 이미지 */
+  overflow: hidden;
+}
+
+.profileImage {
+  object-fit: cover;
+}
+
+.userName {
+  font-size: 1.8rem;
+  color: #4b5563;
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .gnb {
+    padding: 0 2.4rem; /* 좌우 여백 조정 */
+  }
+
+  .gnbLogoDesktop {
+    display: block;
+    width: 15.3rem;
+    height: 5.1rem;
+  }
+
+  .gnbLogoMobile {
+    display: none;
+  }
+
+  .userName {
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .gnb {
+    width: 100%;
+    padding: 0 1.6rem;
+  }
+
+  .gnbNav {
+    width: 100%;
+    margin: 0 1rem;
+    padding: 0;
+  }
+
+  .gnbNavList li a {
+    font-size: 1.6rem;
+  }
+
+  .gnbLogoDesktop {
+    display: none;
+  }
+
+  .gnbLogoMobile {
+    display: block;
+    width: 8.1rem;
+    height: 4rem;
+  }
+
+  .gnbUserInfo {
+    width: 4rem;
+  }
+
+  .userName {
+    display: none;
+  }
+}
