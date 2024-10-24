@@ -127,6 +127,11 @@
   cursor: pointer;
 }
 
+.register_buttion.active_button {
+  background-color: #3692ff;
+  cursor: pointer;
+}
+
 .edit_button {
   background-color: #3692ff;
 }
