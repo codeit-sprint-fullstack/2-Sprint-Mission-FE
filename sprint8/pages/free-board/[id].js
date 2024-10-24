@@ -27,11 +27,17 @@ export default function PostDetail() {
     setComments((prevComments) => [...prevComments, newComment]);
   };
 
+  const handleDeleteComment = (commentId) => {
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.id !== commentId)
+    );
+  };
+
   return (
     <div className={style.body}>
       <PostDetailInfo data={article} />
       <AddComment id={id} onNewComment={handleNewComment} />
-      <Comment comments={comments} />
+      <Comment comments={comments} onDeleteComment={handleDeleteComment} />
     </div>
   );
 }
