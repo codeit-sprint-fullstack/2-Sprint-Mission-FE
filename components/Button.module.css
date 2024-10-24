@@ -15,6 +15,16 @@
   }
 }
 
+.btn_small_40_noBackground {
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  padding: 12px 23px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  width: auto;
+}
+
 .btn_medium {
   cursor: pointer;
   border-radius: 40px;

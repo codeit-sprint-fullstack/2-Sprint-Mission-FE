@@ -97,7 +97,6 @@ export default function Article({ article, comments: initialComments }) {
             className={styles.commentInput}
             type="text"
             name="content"
-						value={content}
             placeholder="댓글을 입력해주세요."
             onChange={(e) => setContent(e.target.value)}
           />
