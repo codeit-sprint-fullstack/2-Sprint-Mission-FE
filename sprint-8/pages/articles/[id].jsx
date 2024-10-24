@@ -1,11 +1,12 @@
 import styles from '@/styles/ArticleDetail.module.css';
-import { getArticleWithId, postArticleComment } from "@/apis/articlesService";
+import { deleteArticleWithId, getArticleWithId, postArticleComment } from "@/apis/articlesService";
 import Image from "next/image";
 import { useState } from 'react';
 import Comments from '@/components/Comments.jsx';
 import Link from 'next/link';
 import PopUp from '@/components/PopUp.jsx';
 import KebabMenu from '@/components/KebabMenu';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
 	const { id } = context.params;
@@ -19,8 +20,9 @@ export async function getServerSideProps(context) {
 
 function ArticleDetail({ article }) {
 	const [comment, setComment] = useState("");
-	const [articleComments, setArticleComments] = useState(article.articleComments);
+	const [articleComments, setArticleComments] = useState(article.articleComments ?? []);
 	const [error, setError] = useState(null);
+	const router = useRouter();
 
 	const handleWriteComment = async () => {
 		const res = await postArticleComment(article.id, { content: comment, commenterId: "86f32cda-cc20-49e5-a1c8-a69ff98e5ebf" });
@@ -32,16 +34,23 @@ function ArticleDetail({ article }) {
 		}
 	};
 
-	const toggleEditOrDel = (e) => {
-
-	};
-
 	return (
 		<main className={styles.main}>
 			<article className={styles.sub}>
 				<div className={styles.head}>
 					<h2>{article.title}</h2>
-					<KebabMenu onEdit={() => {}} onDel={() => {}}/>
+					<KebabMenu
+					onEdit={() => {
+						router.push(`/boards/write?id=${article.id}`);
+					}}
+					onDel={async (e) => {
+						const res = await deleteArticleWithId(article.id);
+						if (res?.message) {
+							setError(res);
+						} else {
+							router.push("/boards");
+						}
+					}}/>
 				</div>
 				<div className={styles.profileAndLikes}>
 					<div className={styles.authorAndDate}>
@@ -68,7 +77,7 @@ function ArticleDetail({ article }) {
 			</div>
 			<div className={styles.sub}>
 				<div className={styles.comments}>
-					<Comments comments={articleComments} />
+					<Comments comments={articleComments} articleId={article.id} />
 				</div>
 			</div>
 			<div className={styles.sub}>

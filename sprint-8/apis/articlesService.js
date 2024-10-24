@@ -65,11 +65,33 @@ async function postArticleComment(articleId, data = { commenterId: "", content: 
 	}
 }
 
+async function patchArticleComment(articleId, commentId, data = { content: "" }) {
+	try {
+		const resp = await instance.patch(`/articles/${articleId}/comment/${commentId}`, data);
+		return resp.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
+async function deleteArticleComment(articleId, commentId) {
+	try {
+		const resp = await instance.delete(`/articles/${articleId}/comment/${commentId}`);
+		return resp.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
 export {
 	getArticles,
 	getArticleWithId,
 	postArticle,
 	patchArticleWithId,
 	deleteArticleWithId,
-	postArticleComment
+	postArticleComment,
+	patchArticleComment,
+	deleteArticleComment
 };

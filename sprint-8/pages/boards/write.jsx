@@ -2,12 +2,28 @@ import { useEffect, useState } from "react";
 import styles from '@/styles/Write.module.css';
 import { useRouter } from "next/router";
 import PopUp from "@/components/PopUp";
-import { postArticle } from "@/apis/articlesService";
+import { getArticleWithId, patchArticleWithId, postArticle } from "@/apis/articlesService";
 
-function Write() {
+export async function getServerSideProps(context) {
+	const { id: articleId } = context.query;
+	if (articleId) {
+		const res = await getArticleWithId(articleId);
+		return {
+			props: {
+				id: articleId,
+				article: res,
+			},
+		};
+	}
+	return {
+		props: {},
+	};
+}
+
+function Write({ id, article }) {
 	const [error, setError] = useState(null);
-	const [title, setTitle] = useState("");
-	const [content, setContent] = useState("");
+	const [title, setTitle] = useState(article?.title ?? "");
+	const [content, setContent] = useState(article?.content ?? "");
 	const router = useRouter();
 
 	const handleWrite = () => {
@@ -19,7 +35,19 @@ function Write() {
 				setError(res);
 			}
 		}
-		postArticleDo();
+		const patchArticleWithIdDo = async () => {
+			const res = await patchArticleWithId(id, { title, content });
+			if (res?.message) {
+				setError(res);
+			} else {
+				router.push(`/articles/${id}`);
+			}
+		}
+		if (id) {
+			patchArticleWithIdDo();
+		} else {
+			postArticleDo();
+		}
 	};
 
 	useEffect(() => {
@@ -32,7 +60,7 @@ function Write() {
 				<article className={styles.sub}>
 					<div className={styles.head}>
 						<h2>게시글 쓰기</h2>
-						<button type="button" className={styles.btnWrite} disabled={!title.trim() || !content.trim()} onClick={handleWrite}>등록</button>
+						<button type="button" className={styles.btnWrite} disabled={!title.trim() || !content.trim()} onClick={handleWrite}>{id ? '수정' : '등록'}</button>
 					</div>
 					<h3>*제목</h3>
 					<input type="text" placeholder="제목을 입력해주세요." value={title} onChange={(e) => setTitle(e.target.value)} />
