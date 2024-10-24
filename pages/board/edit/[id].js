@@ -1,4 +1,4 @@
-import styles from "../board.module.css";
+import styles from "../styles/register.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { fetchApi } from "@/utils/fetchApi";

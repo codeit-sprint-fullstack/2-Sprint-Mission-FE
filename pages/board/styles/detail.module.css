@@ -1,107 +1,3 @@
-.post_wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 0;
-}
-.post_button {
-  background-color: #3692ff;
-  color: white;
-  font-weight: 700;
-  width: 90px;
-  height: 40px;
-  border-radius: 10px;
-  border: none;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.option_form {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.post_content {
-  width: 100%;
-}
-
-.post_link {
-  color: #1f2937;
-  text-decoration: none;
-}
-
-.post_title {
-  display: flex;
-  justify-content: space-between;
-}
-.user_wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.user_stats {
-  display: flex;
-  gap: 7px;
-}
-.like {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-/* 등록 */
-.register_container {
-  margin-bottom: 70px;
-}
-.register_title {
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 0;
-}
-
-.register_buttion,
-.edit_button {
-  width: 74px;
-  height: 42px;
-  border: none;
-  border-radius: 7px;
-  background-color: #9ca3af;
-  color: white;
-  font-weight: 600;
-}
-.register_buttion.active_button {
-  background-color: #3692ff;
-  cursor: pointer;
-}
-
-.register_form {
-  display: flex;
-  flex-direction: column;
-}
-
-.register_input {
-  width: 100%;
-  background-color: #f3f4f6;
-  border: none;
-  height: 56px;
-  margin-bottom: 15px;
-  text-indent: 20px;
-  border-radius: 10px;
-}
-
-.register_form h3 {
-  margin-bottom: 15px;
-}
-
-.register_textarea {
-  height: 282px;
-  font-family: sans-serif;
-  resize: none;
-  padding-top: 20px;
-}
-
 /* 상세페이지 */
 .detail_content_container {
   margin-top: 20px;
@@ -218,6 +114,28 @@
   width: 90%;
 }
 
+.register_buttion,
+.edit_button {
+  width: 74px;
+  height: 42px;
+  border: none;
+  border-radius: 7px;
+  background-color: #9ca3af;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .edit_button {
   background-color: #3692ff;
+}
+
+.select_button {
+  cursor: pointer;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+}
+
+@media (max-width: 743px) {
 }

@@ -1,7 +1,7 @@
 import BestPost from "../../components/BestPost/BestPost";
 import Dropbox from "../../components/Dropbox/Dropbox";
 import SearchForm from "../../components/SearchForm/SearchForm";
-import styles from "./board.module.css";
+import styles from "./styles/board.module.css";
 import Image from "next/image";
 
 import laptop from "../../images/board/laptop_img.svg";

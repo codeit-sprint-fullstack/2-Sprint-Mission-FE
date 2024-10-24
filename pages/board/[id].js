@@ -1,4 +1,4 @@
-import styles from "./board.module.css";
+import styles from "./styles/detail.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -134,6 +134,7 @@ export default function Board() {
     if (editComment.trim() === "") return;
     try {
       console.log(editCommentId, editComment);
+
       const response = await fetchApi(
         `/articles/${id}/comments/${editCommentId}`,
         { content: editComment },
@@ -153,7 +154,12 @@ export default function Board() {
       <div className={styles.detail_content_container}>
         <div className={styles.detail_title}>
           <h3>{article?.title}</h3>
-          <Image src={select} alt="선택" onClick={toggleModal} />
+          <Image
+            src={select}
+            alt="선택"
+            onClick={toggleModal}
+            className={styles.select_button}
+          />
         </div>
         <div className={styles.detail_user_stats}>
           <Image src={user} alt="유저이미지" className={styles.user_img} />
@@ -218,6 +224,7 @@ export default function Board() {
                       src={select}
                       alt="선택"
                       onClick={(e) => toggleModal(e, true, comment.id)}
+                      className={styles.select_button}
                     />
                   </>
                 )}

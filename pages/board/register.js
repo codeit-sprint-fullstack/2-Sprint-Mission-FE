@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./board.module.css";
+import styles from "../styles/register.module.css";
 import { fetchApi } from "@/utils/fetchApi";
 import { useRouter } from "next/router";
 
