@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "./Dropbox.module.css";
+// import Image from "next/image";
+// import arrow from "@/images/board/arrow.svg";
 
 export default function Dropbox() {
   const [sortOption, setSortOption] = useState("recent");
