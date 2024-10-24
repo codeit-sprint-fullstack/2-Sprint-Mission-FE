@@ -22,7 +22,7 @@
 
 .selected {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     cursor: pointer;
@@ -58,12 +58,18 @@
     cursor: pointer;
 }
 
-.option+.option {
-    border-top: 0.1rem solid #E5E7EB;
-}
-
 .mobile {
     display: none;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .selected {
+        font-size: 1.4rem;
+    }
+
+    .option {
+        font-size: 1.4rem;
+    }
 }
 
 @media (max-width: 743px) {
@@ -71,8 +77,12 @@
         width: 20%;
     }
 
-    .selected {
+    .label {
         display: none;
+    }
+
+    .options {
+        width: 10rem;
     }
 
     .icon {

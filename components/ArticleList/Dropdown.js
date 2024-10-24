@@ -15,8 +15,10 @@ export default function Dropdown({ sortOrder, setSortOrder }) {
   return (
     <div className={styles.menu}>
       <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>
-        {options.find((option) => option.value === sortOrder)?.label ||
-          'Select...'}
+        <span className={styles.label}>
+          {options.find((option) => option.value === sortOrder)?.label ||
+            'Select...'}
+        </span>
         <Image
           className={styles.icon}
           src="/images/ic_arrow_down.png"
