@@ -1,5 +1,5 @@
 import styles from '@/styles/ArticleRegister.module.css';
-import axios from '@/lib/axios';
+import axios from '@/lib/api/ArticleService';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 

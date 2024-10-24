@@ -1,5 +1,5 @@
 import styles from '@/styles/ArticleEdit.module.css';
-import axios from '@/lib/axios';
+import axios from '@/lib/api/ArticleService';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 

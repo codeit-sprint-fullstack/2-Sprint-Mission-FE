@@ -1,5 +1,5 @@
 import styles from './ArticleCommentAdd.module.css';
-import axios from '@/lib/axios';
+import axios from '@/lib/api/ArticleService';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 

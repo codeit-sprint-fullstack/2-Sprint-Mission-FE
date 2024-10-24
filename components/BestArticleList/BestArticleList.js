@@ -3,12 +3,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import formatDate from '@/lib/formatDate';
 
-export default function BestArticleList({ bestArticles }) {
+export default function BestArticleList({ bestArticles, bestPageSize }) {
   return (
     <div className={styles.wrapper}>
       <h1>베스트 게시글</h1>
       <ul className={styles[`best-articles`]}>
-        {bestArticles.map((article) => (
+        {bestArticles.slice(0, bestPageSize).map((article) => (
           <li className={styles.container} key={article.id}>
             <Image
               src="/images/img_badge.png"

@@ -1,6 +1,6 @@
 import styles from '@/styles/Home.module.css';
 import { useState, useEffect } from 'react';
-import axios from '@/lib/axios';
+import { getArticleList } from '@/lib/api/ArticleService';
 import ArticleList from '@/components/ArticleList/ArticleList';
 import BestArticleList from '@/components/BestArticleList/BestArticleList';
 import Search from '@/components/ArticleList/Search';
@@ -10,15 +10,18 @@ import Pagination from '@/components/ArticleList/Pagination';
 import useResize from '@/hooks/useResize';
 
 export async function getServerSideProps() {
-  const resBest = await axios.get('/articles', {
-    params: { page: 1, pageSize: 3, order: 'recent' }
+  const bestArticles = await getArticleList({
+    page: 1,
+    pageSize: 3,
+    order: 'recent'
   });
-  const bestArticles = Array.isArray(resBest.data) ? resBest.data : [];
 
-  const resArticles = await axios.get(`/articles`, {
-    params: { page: 1, order: 'recent', keyword: '' }
+  const articles = await getArticleList({
+    page: 1,
+    pageSize: 5,
+    order: 'recent',
+    keyword: ''
   });
-  const articles = Array.isArray(resArticles.data) ? resArticles.data : [];
 
   return {
     props: {
@@ -40,12 +43,13 @@ export default function Home({ articles, bestArticles: initialBestArticles }) {
 
   useEffect(() => {
     async function fetchBestArticles() {
-      const res = await axios.get('/articles', {
-        params: { page: 1, pageSize: bestPageSize, order: 'recent' }
+      const res = await getArticleList({
+        page: 1,
+        pageSize: bestPageSize,
+        order: 'recent'
       });
-      setBestArticles(res.data ?? []);
+      setBestArticles(res);
     }
-
     fetchBestArticles();
   }, [bestPageSize]);
 
@@ -68,7 +72,10 @@ export default function Home({ articles, bestArticles: initialBestArticles }) {
 
   return (
     <div className={styles.wrapper}>
-      <BestArticleList bestArticles={bestArticles} />
+      <BestArticleList
+        bestArticles={bestArticles}
+        bestPageSize={bestPageSize}
+      />
       <div className={styles.articles}>
         <ArticleHeader />
         <div className={styles[`article-search`]}>

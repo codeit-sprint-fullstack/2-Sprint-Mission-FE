@@ -1,5 +1,5 @@
 import styles from './ArticleDropdown.module.css';
-import axios from '@/lib/axios';
+import axios from '@/lib/api/ArticleService';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 

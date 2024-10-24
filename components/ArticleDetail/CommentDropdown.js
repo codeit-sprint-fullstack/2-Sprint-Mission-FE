@@ -1,5 +1,5 @@
 import styles from './CommentDropdown.module.css';
-import axios from '@/lib/axios';
+import axios from '@/lib/api/ArticleService';
 import { useRouter } from 'next/router';
 
 export default function CommentDropdown({ commentId, onEditClick }) {

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/Article.module.css';
-import axios from '@/lib/axios';
+import axios from '@/lib/api/ArticleService';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/formatDate';

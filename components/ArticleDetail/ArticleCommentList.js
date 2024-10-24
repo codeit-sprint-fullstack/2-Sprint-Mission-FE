@@ -1,6 +1,6 @@
 import styles from './ArticleCommentList.module.css';
 import Image from 'next/image';
-import axios from '@/lib/axios';
+import axios from '@/lib/api/ArticleService';
 import CommentDropdown from './CommentDropdown';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
