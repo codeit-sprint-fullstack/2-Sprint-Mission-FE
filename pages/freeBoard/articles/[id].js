@@ -5,14 +5,38 @@ import profileIcon from "@/public/ic_profile.png";
 import heartIcon from "@/public/ic_heart.png";
 import backIcon from "@/public/ic_back.svg";
 import Link from "next/link";
+import axios from "@/lib/axios";
+import formatDate from "@/lib/formatDate";
 
-export default function Article() {
+export async function getServerSideProps(context) {
+  const articleId = context.params["id"];
+  let article;
+  try {
+    const res = await axios.get(`articles/${articleId}`);
+    article = res.data ?? [];
+  } catch {
+    return {
+      notFound: true
+    };
+  }
+  const res = await axios.get(`articles/${articleId}/comments`);
+  const articleComments = res.data ?? [];
+
+  return {
+    props: {
+      article,
+      articleComments
+    }
+  };
+}
+
+export default function Article({ article, articleComments }) {
   return (
     <div className={styles.layout}>
       <div className={styles.contentContainer}>
         <div className={styles.articleContainer}>
           <div className={styles.title}>
-            <p>맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?</p>
+            <p>{article.title}</p>
             <Image width="24" height="24" src={kebabIcon} alt="kebabIcon" />
           </div>
           <div className={styles.articleInfo}>
@@ -25,7 +49,7 @@ export default function Article() {
                 alt="profileIcon"
               />
               <p className={styles.nickname}>총명한판다</p>
-              <p className={styles.createAt}>2024. 01. 02</p>
+              <p className={styles.createAt}>{formatDate(article.createdAt)}</p>
             </div>
             <div className={styles.line}></div>
             <button className={styles.likeBtn}>
@@ -36,7 +60,7 @@ export default function Article() {
             </button>
           </div>
           <div className={styles.content}>
-            <p>맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?</p>
+            <p>{article.content}</p>
           </div>
         </div>
 
@@ -54,7 +78,7 @@ export default function Article() {
 
           <div className={styles.commentListContainer}>
             <div className={styles.commentTitle}>
-              <p>혹시 사용기간이 어떻게 되실까요?</p>
+              <p>{articleComments[0].content}</p>
               <Image width="24" height="24" src={kebabIcon} alt="kebabIcon" />
             </div>
             <div className={styles.commentUserInfo}>
@@ -67,7 +91,9 @@ export default function Article() {
               />
               <div className={styles.commentUserInfoText}>
                 <p className={styles.commentUserNickname}>총명한판다</p>
-                <p className={styles.commentCreateAt}>1시간 전</p>
+                <p className={styles.commentCreateAt}>
+                  {formatDate(articleComments[0].createdAt)}
+                </p>
               </div>
             </div>
           </div>

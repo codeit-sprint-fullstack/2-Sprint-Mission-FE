@@ -8,9 +8,11 @@ export default function Nav() {
     <>
       <div className={styles.container}>
         <div className={styles.logoMenu}>
-          <div className={styles.logo}>
-            <Image fill priority src={logo} alt="pandamarket logo" />
-          </div>
+          <Link href="/">
+            <div className={styles.logo}>
+              <Image fill priority src={logo} alt="pandamarket logo" />
+            </div>
+          </Link>
           <div className={styles.menu}>
             <Link className={`${styles.menu}`} href="/freeBoard">
               자유게시판
