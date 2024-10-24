@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState, useRef } from 'react';
+import { useRouter } from 'next/router';
 import styles from '@/styles/Article.module.css';
 import axios from '@/lib/axios';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
@@ -34,6 +35,8 @@ export async function getServerSideProps(context) {
 export default function Article({ article, articleComments }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const router = useRouter();
 
   if (!article) return null;
 
