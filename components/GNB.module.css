@@ -89,6 +89,7 @@
   }
 
   .menu {
+    font-size: 1.6rem;
     gap: 10px;
   }
 }
