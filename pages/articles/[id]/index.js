@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/router';
+import { useState, useRef } from 'react';
 import styles from '@/styles/Article.module.css';
 import axios from '@/lib/axios';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
@@ -8,33 +7,33 @@ import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/formatDate';
 import ArticleDropdown from '@/components/ArticleDetail/ArticleDropdown';
 
-export default function Article() {
-  const [article, setArticle] = useState();
-  const [articleComments, setArticleComments] = useState([]);
+export async function getServerSideProps(context) {
+  const articleId = context.params['id'];
+
+  try {
+    const resArticle = await axios.get(`/articles/${articleId}`);
+    const article = resArticle.data;
+
+    const resComments = await axios.get(`/articles/${articleId}/comments`);
+    const articleComments = resComments.data ?? [];
+
+    return {
+      props: {
+        article,
+        articleComments
+      }
+    };
+  } catch (error) {
+    console.error('Error fetching article or comments:', error);
+    return {
+      notFound: true
+    };
+  }
+}
+
+export default function Article({ article, articleComments }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  const router = useRouter();
-  const id = router.query['id'];
-
-  async function loadArticle(targetId) {
-    const res = await axios.get(`/articles/${targetId}`);
-    const article = res.data;
-    setArticle(article);
-  }
-
-  async function loadArticleCommnets(targetId) {
-    const res = await axios.get(`/articles/${targetId}/comments`);
-    const articleComments = res.data ?? [];
-    setArticleComments(articleComments);
-  }
-
-  useEffect(() => {
-    if (id) {
-      loadArticle(id);
-      loadArticleCommnets(id);
-    }
-  }, [id]);
 
   if (!article) return null;
 
@@ -88,7 +87,7 @@ export default function Article() {
         </div>
         <p>{article.content}</p>
       </div>
-      <ArticleCommentAdd id={id} />
+      <ArticleCommentAdd />
       <ArticleCommentList articleComments={articleComments} />
       <button className={styles[`back-list`]} onClick={handleBackList}>
         목록으로 돌아가기

@@ -15,10 +15,10 @@ export async function getServerSideProps() {
   });
   const bestArticles = Array.isArray(resBest.data) ? resBest.data : [];
 
-  const res = await axios.get(`/articles`, {
+  const resArticles = await axios.get(`/articles`, {
     params: { page: 1, order: 'recent', keyword: '' }
   });
-  const articles = Array.isArray(res.data) ? res.data : [];
+  const articles = Array.isArray(resArticles.data) ? resArticles.data : [];
 
   return {
     props: {
