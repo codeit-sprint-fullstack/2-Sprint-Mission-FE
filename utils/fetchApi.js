@@ -15,7 +15,10 @@ export const fetchApi = async (url, params = {}, method = "GET") => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: method === "POST" ? JSON.stringify(params) : undefined,
+      body:
+        method === "POST" || method === "PATCH"
+          ? JSON.stringify(params)
+          : undefined,
     });
 
     if (!response.ok) {

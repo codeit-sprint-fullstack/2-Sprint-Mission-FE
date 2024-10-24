@@ -9,12 +9,12 @@ import select from "../../images/board/select_img.svg";
 import user from "../../images/board/profile_img.svg";
 import like_button from "../../images/board/heart_btn.svg";
 import back from "../../images/board/back_icon.svg";
-import empty from "../../images/board/reply_empty.svg";
+import empty_img from "../../images/board/reply_empty.svg";
 import { useRouter } from "next/router";
 
 /** TODO
- * 1. 전체적인 이미지에 alt 넣기
- * 2. 삭제하기는 피그마에 없어서 추후 업데이트 예정
+ * 1. 전체적인 이미지에 alt 넣기 (완)
+ * 2. 수정하기는 피그마에 없어서 추후 업데이트 예정 (완)
  */
 
 export default function Board() {
@@ -36,7 +36,6 @@ export default function Board() {
     if (id) {
       try {
         const data = await fetchApi(`/articles/${id}`);
-        console.log(data);
         setArticle(data);
       } catch (error) {
         console.error(error);
@@ -191,7 +190,7 @@ export default function Board() {
       <div className={styles.comment_container}>
         {comment.length === 0 ? (
           <div className={styles.empty_comment}>
-            <Image src={empty} alt="빈 이미지" />
+            <Image src={empty_img} alt="빈 이미지" />
             <p>아직 댓글이 없어요</p>
           </div>
         ) : (
