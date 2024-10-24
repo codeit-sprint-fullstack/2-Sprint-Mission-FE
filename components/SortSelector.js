@@ -7,7 +7,6 @@ const options = [
 ];
 
 function SortSelector({ onChangeOrder, className }) {
-  //
   const sortSelector = `w-[130px] h-[42px] text-[16px] leading-26px
         sm: w-[42px]`;
   const [isMobile, setIsMobile] = useState(false);
@@ -21,9 +20,9 @@ function SortSelector({ onChangeOrder, className }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  const handleSelectChange = (selectedOption) => {
+  const handleSelectChange = (selectedOption) =>
     onChangeOrder(selectedOption.value); // 선택된 값 전달
-  };
+
   const pcArrowImage = "/images/pc_arrow.png";
   const mobileArrowImage = "/images/mobile_arrow.png";
   const customStyles = {

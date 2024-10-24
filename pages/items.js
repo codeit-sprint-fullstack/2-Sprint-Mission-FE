@@ -186,7 +186,7 @@ export default function Items() {
           </button>
           <ul className={pageButtonContainer}>
             {buttonList.map((buttonPage) => (
-              <li>
+              <li key={buttonPage}>
                 <button
                   onClick={onClickPageButton}
                   className={
