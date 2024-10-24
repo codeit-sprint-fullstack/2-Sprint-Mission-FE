@@ -27,7 +27,8 @@
   color: var(--gray-800);
 }
 
-.registerBtn {
+.registerBtn,
+.editBtn {
   width: 7.4rem;
   height: 4.2rem;
   border: none;
@@ -37,6 +38,11 @@
   font-weight: 600;
   line-height: 2.6rem;
   color: #ffffff;
+}
+
+.active {
+  background-color: var(--primary-100);
+  cursor: pointer;
 }
 
 .formSection {

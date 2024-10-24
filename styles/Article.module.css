@@ -157,50 +157,8 @@
   color: var(--gray-100);
 }
 
-.commentListContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-  height: 10rem;
-  padding-bottom: 1.2rem;
-  background-color: #fcfcfc;
-  border-bottom: 0.1rem solid var(--gray-200);
-}
-
-.commentTitle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.commentTitle p {
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 2.4rem;
-  color: var(--gray-800);
-}
-
-.commentUserInfo {
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-}
-
-.commentUserInfoText {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.8rem;
-}
-
-.commentUserNickname {
-  color: var(--gray-600);
-}
-
-.commentCreateAt {
-  color: var(--gray-400);
+.active {
+  background-color: var(--primary-100);
 }
 
 .returnBtnContainer {
@@ -288,10 +246,5 @@
 
   .commentContainer {
     gap: 2.4rem;
-  }
-
-  .commentListContainer {
-    height: 9.6rem;
-    padding-bottom: 0.8rem;
   }
 }

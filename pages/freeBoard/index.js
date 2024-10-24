@@ -38,7 +38,7 @@ export default function FreeBoard({ articles, bestArticles }) {
       <div className={styles.section}>
         <div className={styles.articleListTitle}>
           <Header>게시글</Header>
-          <Link href={`/freeBoard/register`}>
+          <Link href={`/freeBoard/registerArticle`}>
             <button className={styles.postBnt}>글쓰기</button>
           </Link>
         </div>
