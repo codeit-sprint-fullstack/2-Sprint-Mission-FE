@@ -27,7 +27,9 @@ export default function Nav() {
                 src={GnbLogoImg}
                 alt="Logo"
                 fill
+                sizes = "15.3rem"
                 className={styles.logoImage}
+                priority 
               />
             </div>
             <div className={styles.gnbLogoMobile}>
@@ -35,14 +37,16 @@ export default function Nav() {
                 src={GnbLogoImgMobile}
                 alt="Logo"
                 fill
+                sizes = "8.1rem"
                 className={styles.logoImage}
               />
             </div>
           </Link>
         </div>
+        
         <nav className={styles.gnbNav}>
           <ul className={styles.gnbNavList}>
-            <li><Link href="/" style={getLinkStyle('/')}>자유게시판</Link></li>
+            <li><Link href="/articles" style={getLinkStyle('/articles')}>자유게시판</Link></li>
             <li><Link href="/items" style={getLinkStyle('/items')}>중고마켓</Link></li>
           </ul>
         </nav>
@@ -57,6 +61,7 @@ export default function Nav() {
                   src={UserProfileImg} 
                   alt="User"
                   fill 
+                  sizes="4rem"
                   className={styles.profileImg} 
                 />
               </div>

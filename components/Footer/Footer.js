@@ -27,28 +27,36 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image src={FacebookIcon} alt="Facebook" />
+            <div className={styles.iconWrapper}>
+              <Image src={FacebookIcon} fill alt="Facebook" sizes="2rem" /> 
+            </div>
           </a>
           <a
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image src={TwitterIcon} alt="Twitter" />
+            <div className={styles.iconWrapper}>
+              <Image src={TwitterIcon} fill alt="Twitter" sizes="2rem" />
+            </div>
           </a>
           <a
             href="https://youtube.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image src={YoutubeIcon} alt="Youtube" />
+            <div className={styles.iconWrapper}>
+              <Image src={YoutubeIcon} fill alt="Youtube" sizes="2rem" />
+            </div>
           </a>
           <a
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image src={InstagramIcon} alt="Instagram" />
+            <div className={styles.iconWrapper}>
+            <Image src={InstagramIcon} fill alt="Instagram" sizes="2rem" />
+            </div>
           </a>
         </div>
       </div>

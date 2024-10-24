@@ -30,9 +30,21 @@
   display: flex;
   gap: 2rem;                
 }
-#sns img {
-  width: 2rem;
-  height: 2rem;
+
+.sns {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;   
+}
+
+.sns .iconWrapper {
+  position: relative;  
+  width: 2rem;         
+  height: 2rem;   
+}
+
+.sns img {
+  object-fit: cover;
 }
 
 /* Tablet 사이즈 */
@@ -58,6 +70,7 @@
     width: 50%;                         /* 두 요소를 한 줄에 배치되도록 너비 설정 */
   }
   .sns {
+    max-width: 11.6rem;
     text-align: right;
   }
   .copyright {

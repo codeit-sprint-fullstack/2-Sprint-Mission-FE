@@ -1,0 +1,20 @@
+.sectionTitle {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--heading-text-color);
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .sectionTitle {
+    padding-left: 2.4rem; 
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .sectionTitle {
+    padding-left: 1.6rem;
+  }
+}
