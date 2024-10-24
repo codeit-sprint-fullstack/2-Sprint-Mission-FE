@@ -11,21 +11,30 @@ import axios from '@/lib/axios.js';
 
 export default function FreeBoard() {
   const [articles, setArticles] = useState([]);
+  const [bestArticles, setBestArticles] = useState([]);
+  const [keyword, setKeyword] = useState('');
 
-  async function fetchArticles() {
-    const res = await axios.get('/articles');
+  async function fetchBestArticles() {
+    const res = await axios.get(`/articles`);
+    const data = await res.data;
+    setBestArticles(data);
+  }
+
+  async function fetchArticles(searchKeyword) {
+    const res = await axios.get(`/articles?&search=${searchKeyword}`);
     const data = await res.data;
     setArticles(data);
   }
 
   useEffect(() => {
-    fetchArticles();
-  }, []);
+    fetchBestArticles();
+    fetchArticles(keyword);
+  }, [keyword]);
 
   return (
     <div className={style.body}>
       <Header> 베스트 게시글 </Header>
-      <BestPosts data={articles} />
+      <BestPosts data={bestArticles} />
       <div className={style.headerAndButton}>
         <Header> 게시글 </Header>
         <Link href="/free-board/create-post">
@@ -33,7 +42,7 @@ export default function FreeBoard() {
         </Link>
       </div>
       <div className={style.headerAndButton}>
-        <SearchBar />
+        <SearchBar onKeywordChange={setKeyword} />
         <Sorting />
       </div>
       <PostList data={articles} />
