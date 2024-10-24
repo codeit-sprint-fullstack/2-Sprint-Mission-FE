@@ -181,6 +181,10 @@
 		padding: 6px 16px;
 		border-radius: 8px;
 	}
+
+	& .a_button:disabled {
+		background-color: var(--gray-800);
+	}
 }
 
 .cBoth.noFloat {

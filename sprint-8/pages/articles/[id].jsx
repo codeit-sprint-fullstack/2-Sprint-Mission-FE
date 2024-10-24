@@ -72,7 +72,7 @@ function ArticleDetail({ article }) {
 			<div className={styles.sub}>
 				<h3>댓글달기</h3>
 				<textarea className={styles.comment} placeholder="댓글을 입력해주세요." value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
-				<button type="button" className={styles.a_button} onClick={handleWriteComment}>등록</button>
+				<button type="button" className={styles.a_button} onClick={handleWriteComment} disabled={!comment}>등록</button>
 				<div className={`${styles.cBoth} ${styles.noFloat}`}></div>
 			</div>
 			<div className={styles.sub}>
