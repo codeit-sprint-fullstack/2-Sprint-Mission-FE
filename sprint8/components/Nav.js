@@ -7,7 +7,7 @@ import logo from '@/public/assets/pndamarket_logo.png';
 export default function Nav() {
   function menuActiveStyle(location) {
     const pathname = usePathname();
-    return pathname.startsWith(location) ? style.active : '';
+    return pathname && pathname.startsWith(location) ? style.active : '';
   }
 
   return (

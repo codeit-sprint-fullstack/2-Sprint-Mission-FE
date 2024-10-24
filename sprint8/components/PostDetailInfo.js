@@ -12,8 +12,12 @@ export default function PostDetail({ data }) {
   const { id } = router.query;
 
   async function deleteArticle(id) {
-    const res = await axios.delete(`/articles/${id}`);
+    return await axios.delete(`/articles/${id}`);
   }
+
+  const handleEdit = () => {
+    router.push(`/free-board/edit-post/${id}`);
+  };
 
   const handleDelete = () => {
     deleteArticle(id).then(() => {
@@ -26,7 +30,7 @@ export default function PostDetail({ data }) {
       <div className={style.container}>
         <div className={style.titleAndKebab}>
           <h1 className={style.title}>{data.title}</h1>
-          <DropBox onClick={handleDelete} />
+          <DropBox editOnClick={handleEdit} deleteOnClick={handleDelete} />
         </div>
         <div className={style.bottom}>
           <div className={style.profileContainer}>
