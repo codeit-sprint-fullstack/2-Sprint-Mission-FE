@@ -3,7 +3,7 @@ import kebab from '@/public/assets/ic_kebab.png';
 import style from '@/styles/DropBox.module.css';
 import { useState } from 'react';
 
-export default function DropBox() {
+export default function DropBox({ onClick }) {
   const [isToggle, setIsToggle] = useState(false);
   const toggleMenuList = () => setIsToggle(!isToggle);
 
@@ -13,7 +13,9 @@ export default function DropBox() {
       {isToggle && (
         <div className={style.optionList}>
           <button className={style.option}>수정하기</button>
-          <button className={style.option}>삭제하기</button>
+          <button className={style.option} onClick={onClick}>
+            삭제하기
+          </button>
         </div>
       )}
     </div>
