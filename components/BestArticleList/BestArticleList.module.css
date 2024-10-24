@@ -19,14 +19,13 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
-    gap: 2.4rem;
+    grid-gap: 2rem;
 }
 
 .container {
     display: flex;
     flex-direction: column;
 
-    width: 38.4rem;
     height: 16.9rem;
 
     padding: 0 2.4rem;
@@ -44,8 +43,6 @@
 }
 
 .title h1 {
-    width: 25.6rem;
-
     color: #1F2937;
     font-size: 2rem;
     font-weight: 600;
