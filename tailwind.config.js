@@ -25,7 +25,8 @@ module.exports = {
         fcfcfc: "#FCFCFC",
         "1f2937": "#1F2937",
         f3f4f6: "#F3F4F6",
-        "6b7280": "#6B7280"
+        "6b7280": "#6B7280",
+        "2f80ed": "#2F80ED"
       },
       lineHeight: {
         "56px": "56px",
