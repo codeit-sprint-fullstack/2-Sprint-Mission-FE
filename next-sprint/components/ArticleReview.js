@@ -17,7 +17,7 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
       setReviews(review);
     }
     getArticleReview(articleId);
-  }, [articleId]);
+  }, [articleId, reviews]);
 
   const handleEditClick = (review) => {
     setEditingReviewId(review.id);

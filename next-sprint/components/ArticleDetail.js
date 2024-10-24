@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './ArticleDetail.module.css';
 import Image from 'next/image';
 import ArticleReview from './ArticleReview';
@@ -8,18 +8,6 @@ import ArticelDropdown from './ArticleDropdown';
 export default function ArticleDetail({ article, id }) {
   const [articleReview, setArticleReview] = useState([]);
   const [value, setValue] = useState('');
-
-  useEffect(() => {
-    getArticleReview(id);
-  }, [id]);
-
-  async function getArticleReview(articleId) {
-    const res = await fetch(
-      `http://localhost:5000/articleComments/${articleId}`
-    );
-    const review = await res.json();
-    setArticleReview(review);
-  }
 
   async function postArticleReview() {
     const res = await fetch(`http://localhost:5000/articleComments`, {
@@ -32,7 +20,8 @@ export default function ArticleDetail({ article, id }) {
     });
 
     if (res.ok) {
-      getArticleReview(id);
+      const newReview = await res.json();
+      setArticleReview((prevReviews) => [...prevReviews, newReview]);
       setValue('');
     } else {
       console.error('Failed to post review:', await res.text());
