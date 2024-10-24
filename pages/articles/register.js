@@ -1,5 +1,5 @@
 import styles from '@/styles/ArticleRegister.module.css';
-import axios from '@/lib/api/ArticleService';
+import { createArticle } from '@/lib/api/ArticleService';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -21,11 +21,11 @@ export default function Register() {
     }
 
     try {
-      const res = await axios.post('/articles', { title, content });
-      const articleId = res.data.id;
+      const res = await createArticle({ title, content });
+      const articleId = res.id;
       return router.push(`/articles/${articleId}`);
     } catch (err) {
-      console.log('게시글 등록에 실패하였습니다.');
+      console.error('게시글 등록에 실패하였습니다.');
     }
   };
 

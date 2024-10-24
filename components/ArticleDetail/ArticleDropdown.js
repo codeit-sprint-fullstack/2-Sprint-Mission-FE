@@ -1,5 +1,5 @@
 import styles from './ArticleDropdown.module.css';
-import axios from '@/lib/api/ArticleService';
+import { deleteArticle } from '@/lib/api/ArticleService';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -9,7 +9,7 @@ export default function DropdownMenu() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/articles/${id}`);
+      await deleteArticle(id);
       return router.push('/');
     } catch (err) {
       console.error('삭제 요청 중 오류 발생:', err);

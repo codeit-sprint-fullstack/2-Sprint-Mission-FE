@@ -1,12 +1,11 @@
 import styles from '@/styles/ArticleEdit.module.css';
-import axios from '@/lib/api/ArticleService';
+import { getArticle, patchArticle } from '@/lib/api/ArticleService';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Register() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [error, setError] = useState('');
 
   const router = useRouter();
   const id = router.query['id'];
@@ -14,11 +13,11 @@ export default function Register() {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const res = await axios.get(`/articles/${id}`);
-        setTitle(res.data.title);
-        setContent(res.data.content);
+        const res = await getArticle(id);
+        setTitle(res.title);
+        setContent(res.content);
       } catch (err) {
-        setError('게시글을 불러오는데 실패했습니다.');
+        console.error('게시글을 불러오는데 실패했습니다.');
       }
     };
 
@@ -37,10 +36,10 @@ export default function Register() {
     }
 
     try {
-      await axios.patch(`/articles/${id}`, { title, content });
+      await patchArticle(id, { title, content });
       return router.push(`/articles/${id}`);
     } catch (err) {
-      setError('게시글 수정에 실패하였습니다.');
+      console.error('게시글 수정에 실패하였습니다.');
     }
   };
 
