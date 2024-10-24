@@ -30,7 +30,7 @@ export default function EditCommentModal({
         />
       </div>
       <div className={style.buttonContainer}>
-        <Button onClick={onCancelClick}>취소</Button>
+        <button className={style.editButton} onClick={onCancelClick}>취소</button>
         <Button status={isButtonActive} onClick={handleSaveClick}>
           수정 완료
         </Button>
