@@ -1,8 +1,43 @@
-import ArticelDropdown from './ArticleDropdown';
 import styles from './ArticleReview.module.css';
 import Image from 'next/image';
+import ArticelReviewDropdown from './ArticleReviewDropdown';
+import { useState } from 'react';
 
 export default function ArticleReview({ reviews }) {
+  const [editingReviewId, setEditingReviewId] = useState(null);
+  const [editValue, setEditValue] = useState('');
+  const [updatedReviews, setUpdatedReviews] = useState(reviews);
+
+  const handleEditClick = (review) => {
+    setEditingReviewId(review.id);
+    setEditValue(review.content);
+  };
+
+  const handleSaveClick = async (reviewId) => {
+    const res = await fetch(
+      `http://localhost:5000/articleComments/${reviewId}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          content: editValue
+        })
+      }
+    );
+
+    if (res.ok) {
+      await res.json();
+      setUpdatedReviews((prevReviews) =>
+        prevReviews.map((review) =>
+          review.id === reviewId ? { ...review, content: editValue } : review
+        )
+      );
+      setEditingReviewId(null);
+    }
+  };
+
   if (!reviews || reviews.length === 0) {
     return (
       <div className={styles.noneSection}>
@@ -23,7 +58,7 @@ export default function ArticleReview({ reviews }) {
 
   return (
     <ul className={styles.ul}>
-      {reviews.map((review) => {
+      {updatedReviews.map((review) => {
         const formattedDate = new Date(review.createdAt)
           .toLocaleDateString('ko-KR', {
             year: 'numeric',
@@ -37,8 +72,19 @@ export default function ArticleReview({ reviews }) {
         return (
           <li key={review.id} className={styles.li}>
             <div className={styles.sectionHeader}>
-              <h3 className={styles.content}>{review.content}</h3>
-              <ArticelDropdown />
+              {editingReviewId === review.id ? (
+                <textarea
+                  type="text"
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value)}
+                  className={styles.editInput}
+                ></textarea>
+              ) : (
+                <h3 className={styles.content}>{review.content}</h3>
+              )}
+              <ArticelReviewDropdown
+                onEditClick={() => handleEditClick(review)}
+              />
             </div>
             <div className={styles.sectionFooter}>
               <div className={styles.profile}>
@@ -49,6 +95,14 @@ export default function ArticleReview({ reviews }) {
                 <h3>{formattedDate}</h3>
               </div>
             </div>
+            {editingReviewId === review.id && (
+              <button
+                className={styles.saveBtn}
+                onClick={() => handleSaveClick(review.id)}
+              >
+                저장하기
+              </button>
+            )}
           </li>
         );
       })}

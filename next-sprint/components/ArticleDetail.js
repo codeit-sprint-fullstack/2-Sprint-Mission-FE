@@ -111,7 +111,7 @@ export default function ArticleDetail({ article, id }) {
         <footer className={styles.footer}>
           <ArticleReview reviews={articleReview} />
           <Link href="/" className={styles.link}>
-            <button>
+            <button className={styles.returnBtn}>
               목록으로 돌아가기
               <Image
                 width={24}
