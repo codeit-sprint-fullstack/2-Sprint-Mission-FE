@@ -1,7 +1,7 @@
 import styles from './Search.module.css';
 import Image from 'next/image';
 
-export default function Search({ keyword, onSearch }) {
+export default function Search({ keyword, onSearch, onKeyDown }) {
   return (
     <div className={styles.search}>
       <Image
@@ -17,6 +17,7 @@ export default function Search({ keyword, onSearch }) {
         placeholder="검색할 게시글을 입력해주세요"
         value={keyword}
         onChange={(e) => onSearch(e.target.value)}
+        onKeyDown={onKeyDown}
       />
     </div>
   );

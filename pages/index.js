@@ -9,64 +9,55 @@ import ArticleHeader from '@/components/ArticleList/ArticleHeader';
 import Pagination from '@/components/ArticleList/Pagination';
 import useResize from '@/hooks/useResize';
 
-export default function Home() {
-  const [bestArticles, setBestArticles] = useState([]);
-  const [articles, setArticles] = useState([]);
-  const [filteredArticles, setFilteredArticles] = useState([]);
+export async function getServerSideProps() {
+  const resBest = await axios.get('/articles', {
+    params: { page: 1, pageSize: 3, order: 'recent' }
+  });
+  const bestArticles = Array.isArray(resBest.data) ? resBest.data : [];
+
+  const res = await axios.get(`/articles`, {
+    params: { page: 1, order: 'recent', keyword: '' }
+  });
+  const articles = Array.isArray(res.data) ? res.data : [];
+
+  return {
+    props: {
+      articles,
+      bestArticles
+    }
+  };
+}
+
+export default function Home({ articles, bestArticles: initialBestArticles }) {
+  const [bestArticles, setBestArticles] = useState(initialBestArticles);
+  const bestPageSize = useResize();
+  const [filteredArticles, setFilteredArticles] = useState(articles);
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
-  const bestPageSize = useResize();
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
 
-  const paramsBest = {
-    page: 1,
-    pageSize: bestPageSize,
-    order: 'recent'
-  };
-
-  const paramsAll = {
-    page: 1,
-    order: 'sortOrder',
-    keyword: ''
-  };
-
-  async function getBestArticles() {
-    const res = await axios.get('/articles', { params: paramsBest });
-    const bestArticles = res.data ?? [];
-    setBestArticles(bestArticles);
-  }
-
-  async function getArticles() {
-    const res = await axios.get('/articles', { params: paramsAll });
-    const articles = Array.isArray(res.data) ? res.data : [];
-    setArticles(articles);
-    setFilteredArticles(res.data ?? []);
-  }
-
   useEffect(() => {
-    getBestArticles();
+    async function fetchBestArticles() {
+      const res = await axios.get('/articles', {
+        params: { page: 1, pageSize: bestPageSize, order: 'recent' }
+      });
+      setBestArticles(res.data ?? []);
+    }
+
+    fetchBestArticles();
   }, [bestPageSize]);
 
-  useEffect(() => {
-    getArticles();
-  }, []);
-
-  useEffect(() => {
-    if (keyword) {
+  const handleSearch = (event) => {
+    if (event.key === 'Enter') {
       const filtered = articles.filter((article) =>
         article.title.toLowerCase().includes(keyword.toLowerCase())
       );
       setFilteredArticles(filtered);
-    } else {
-      setFilteredArticles(articles);
+      setCurrentPage(1);
     }
-  }, [keyword, articles]);
-
-  useEffect(() => {
-    getArticles();
-  }, [sortOrder]);
+  };
 
   const totalPages = Math.ceil(filteredArticles.length / pageSize);
 
@@ -81,7 +72,11 @@ export default function Home() {
       <div className={styles.articles}>
         <ArticleHeader />
         <div className={styles[`article-search`]}>
-          <Search keyword={keyword} onSearch={setKeyword} />
+          <Search
+            keyword={keyword}
+            onSearch={setKeyword}
+            onKeyDown={handleSearch}
+          />
           <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
         </div>
         <ArticleList articles={currentArticles || []} />
