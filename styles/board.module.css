@@ -62,3 +62,19 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.selectBox {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  padding-left: 12px;
+  appearance: none;
+  background: url(/ic_arrow_down.png) no-repeat 90% 50%/24px auto;
+
+  @media (max-width: 744px) {
+    color: transparent;
+    background: url(/ic_sort.png) no-repeat 50% 50%/30px auto;
+    width: 42px;
+  }
+}

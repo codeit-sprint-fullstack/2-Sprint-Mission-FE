@@ -77,7 +77,7 @@ export default function Board({ articles, bestArticles }) {
               placeholder="검색할 상품을 입력해주세요"
               onChange={handleChange}
             />
-            <select onChange={handleSelect}>
+            <select className={styles.selectBox} onChange={handleSelect}>
               <option value="recent">최신 순</option>
               <option value="popular">좋아요 순</option>
             </select>
