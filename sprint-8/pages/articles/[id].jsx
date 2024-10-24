@@ -1,7 +1,7 @@
 import styles from '@/styles/ArticleDetail.module.css';
-import { deleteArticleWithId, getArticleWithId, postArticleComment } from "@/apis/articlesService";
-import Image from "next/image";
-import { useState } from 'react';
+import { deleteArticleWithId, getArticleWithId, postArticleComment } from '@/apis/articlesService.js';
+import Image from 'next/image';
+import React, { useState } from 'react';
 import Comments from '@/components/Comments.jsx';
 import Link from 'next/link';
 import PopUp from '@/components/PopUp.jsx';
@@ -43,7 +43,7 @@ function ArticleDetail({ article }) {
 					onEdit={() => {
 						router.push(`/boards/write?id=${article.id}`);
 					}}
-					onDel={async (e) => {
+					onDel={async () => {
 						const res = await deleteArticleWithId(article.id);
 						if (res?.message) {
 							setError(res);
@@ -67,7 +67,7 @@ function ArticleDetail({ article }) {
 						{article.favoriteCount}
 					</div>
 				</div>
-				<div className={styles.content}>{article.content}</div>
+				<div className={styles.content}>{article.content.split('\n').map((line, index) => (<React.Fragment key={index}>{line}<br /></React.Fragment>))}</div>
 			</article>
 			<div className={styles.sub}>
 				<h3>댓글달기</h3>
