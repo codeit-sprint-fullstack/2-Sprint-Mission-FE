@@ -27,6 +27,8 @@ export default function Board() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+  const [isCommentModal, setIsCommentModal] = useState(false);
+  const [selectedCommentId, setSelectedCommentId] = useState(null);
 
   const fetchArticle = async () => {
     if (id) {
@@ -53,8 +55,17 @@ export default function Board() {
 
   const handleDeleteClick = async () => {
     try {
-      await fetchApi(`/articles/${id}`, null, "DELETE");
-      router.push("/board");
+      if (isCommentModal && selectedCommentId) {
+        await fetchApi(
+          `/articles/${id}/comments/${selectedCommentId}`,
+          null,
+          "DELETE"
+        );
+        fetchComments();
+      } else {
+        await fetchApi(`/articles/${id}`, null, "DELETE");
+        router.push("/board");
+      }
     } catch (e) {
       console.error(e);
     }
@@ -69,15 +80,21 @@ export default function Board() {
     setIsButtonEnabled(newComment.trim() !== "");
   }, [newComment]);
 
-  const toggleModal = (e) => {
+  const toggleModal = (e, isComment = false, commentId = null) => {
     const rect = e.target.getBoundingClientRect();
     setModalPosition({ top: rect.top + 25, left: rect.left - 130 });
     setIsModalOpen((prev) => !prev);
+    setIsCommentModal(isComment);
+    setSelectedCommentId(commentId);
   };
 
   const handleEditClick = () => {
     setIsModalOpen(false);
-    router.push("/board/edit/${id}");
+    if (isCommentModal && selectedCommentId) {
+      // router.push(); TODO: 댓글 수정 어떻게 해야할 지 미정
+    } else {
+      router.push(`/board/edit/${id}`);
+    }
   };
 
   const handleCommentChange = (e) => {
@@ -151,7 +168,10 @@ export default function Board() {
             <>
               <div className={styles.comment_title} key={comment.id}>
                 <p>{comment.content}</p>
-                <Image src={select} onClick={toggleModal} />
+                <Image
+                  src={select}
+                  onClick={(e) => toggleModal(e, true, comment.id)}
+                />
               </div>
               <div className={styles.detail_user_stats}>
                 <Image src={user} className={styles.user_img} />

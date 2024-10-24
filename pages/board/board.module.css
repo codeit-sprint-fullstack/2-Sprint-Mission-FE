@@ -97,7 +97,6 @@
 .register_textarea {
   height: 282px;
   font-family: sans-serif;
-  box-sizing: border-box;
   resize: none;
   padding-top: 20px;
 }
