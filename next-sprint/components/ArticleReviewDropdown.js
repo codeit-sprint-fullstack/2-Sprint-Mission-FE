@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import styles from './ArticleDropdown.module.css';
 
-export default function ArticelReviewDropdown({ onEditClick }) {
+export default function ArticelReviewDropdown({ onEditClick, onDeleteClick }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -30,6 +30,8 @@ export default function ArticelReviewDropdown({ onEditClick }) {
 
     if (value === 'patch') {
       onEditClick();
+    } else {
+      onDeleteClick();
     }
   };
 

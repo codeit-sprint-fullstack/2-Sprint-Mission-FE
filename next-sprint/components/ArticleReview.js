@@ -1,12 +1,23 @@
 import styles from './ArticleReview.module.css';
 import Image from 'next/image';
 import ArticelReviewDropdown from './ArticleReviewDropdown';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function ArticleReview({ reviews }) {
+export default function ArticleReview({ reviews: initialReviews, articleId }) {
+  const [reviews, setReviews] = useState(initialReviews);
   const [editingReviewId, setEditingReviewId] = useState(null);
   const [editValue, setEditValue] = useState('');
-  const [updatedReviews, setUpdatedReviews] = useState(reviews);
+
+  useEffect(() => {
+    async function getArticleReview(articleId) {
+      const res = await fetch(
+        `http://localhost:5000/articleComments/${articleId}`
+      );
+      const review = await res.json();
+      setReviews(review);
+    }
+    getArticleReview(articleId);
+  }, [articleId]);
 
   const handleEditClick = (review) => {
     setEditingReviewId(review.id);
@@ -29,12 +40,28 @@ export default function ArticleReview({ reviews }) {
 
     if (res.ok) {
       await res.json();
-      setUpdatedReviews((prevReviews) =>
+      setReviews((prevReviews) =>
         prevReviews.map((review) =>
           review.id === reviewId ? { ...review, content: editValue } : review
         )
       );
       setEditingReviewId(null);
+      setEditValue('');
+    }
+  };
+
+  const handleRemoveClick = async (reviewId) => {
+    const res = await fetch(
+      `http://localhost:5000/articleComments/${reviewId}`,
+      {
+        method: 'DELETE'
+      }
+    );
+
+    if (res.ok) {
+      setReviews((prevReviews) =>
+        prevReviews.filter((review) => review.id !== reviewId)
+      );
     }
   };
 
@@ -58,7 +85,7 @@ export default function ArticleReview({ reviews }) {
 
   return (
     <ul className={styles.ul}>
-      {updatedReviews.map((review) => {
+      {reviews.map((review) => {
         const formattedDate = new Date(review.createdAt)
           .toLocaleDateString('ko-KR', {
             year: 'numeric',
@@ -84,6 +111,7 @@ export default function ArticleReview({ reviews }) {
               )}
               <ArticelReviewDropdown
                 onEditClick={() => handleEditClick(review)}
+                onDeleteClick={() => handleRemoveClick(review.id)}
               />
             </div>
             <div className={styles.sectionFooter}>

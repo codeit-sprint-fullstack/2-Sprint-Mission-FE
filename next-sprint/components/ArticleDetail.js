@@ -9,6 +9,10 @@ export default function ArticleDetail({ article, id }) {
   const [articleReview, setArticleReview] = useState([]);
   const [value, setValue] = useState('');
 
+  useEffect(() => {
+    getArticleReview(id);
+  }, [id]);
+
   async function getArticleReview(articleId) {
     const res = await fetch(
       `http://localhost:5000/articleComments/${articleId}`
@@ -28,16 +32,12 @@ export default function ArticleDetail({ article, id }) {
     });
 
     if (res.ok) {
-      await getArticleReview(id);
+      getArticleReview(id);
       setValue('');
     } else {
       console.error('Failed to post review:', await res.text());
     }
   }
-
-  useEffect(() => {
-    getArticleReview(id);
-  }, [id]);
 
   const formattedDate = new Date(article.createdAt)
     .toLocaleDateString('ko-KR', {
@@ -109,7 +109,7 @@ export default function ArticleDetail({ article, id }) {
           </form>
         </main>
         <footer className={styles.footer}>
-          <ArticleReview reviews={articleReview} />
+          <ArticleReview reviews={articleReview} articleId={id} />
           <Link href="/" className={styles.link}>
             <button className={styles.returnBtn}>
               목록으로 돌아가기
