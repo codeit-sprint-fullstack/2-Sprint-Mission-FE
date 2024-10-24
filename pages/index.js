@@ -19,7 +19,7 @@ export default function Home() {
               <Image
                 fill
                 sizes="(max-width: 768px) 100vw, 588px"
-                src="/sBanner1.png"
+                src="/sbanner1.png"
                 alt="banner1"
               />
             </div>
@@ -51,7 +51,7 @@ export default function Home() {
                   <Image
                     fill
                     sizes="(max-width: 768px) 100vw, 588px"
-                    src="/sBanner2.png"
+                    src="/sbanner2.png"
                     alt="banner2"
                   />
                 </div>
@@ -63,7 +63,7 @@ export default function Home() {
               <Image
                 fill
                 sizes="(max-width: 768px) 100vw, 588px"
-                src="/sBanner3.png"
+                src="/sbanner3.png"
                 alt="banner3"
               />
             </div>
