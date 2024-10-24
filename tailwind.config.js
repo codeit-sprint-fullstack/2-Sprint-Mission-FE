@@ -22,7 +22,10 @@ module.exports = {
         "9ca3af": "#9CA3AF",
         e5e7eb: "#E5E7EB",
         cfe5ff: "#CFE5FF",
-        fcfcfc: "#FCFCFC"
+        fcfcfc: "#FCFCFC",
+        "1f2937": "#1F2937",
+        f3f4f6: "#F3F4F6",
+        "6b7280": "#6B7280"
       },
       lineHeight: {
         "56px": "56px",
@@ -31,10 +34,13 @@ module.exports = {
         "33.6px": "33.6px",
         "32px": "32px",
         "26px": "26px",
-        "19.2px": "19.2px"
+        "24px": "24px",
+        "19.2px": "19.2px",
+        "18px": "18px"
       },
       borderRadius: {
         "8px": "8px",
+        "12px": "12px",
         "40px": "40px"
       },
       fontWeight: {
