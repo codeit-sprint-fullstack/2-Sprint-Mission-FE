@@ -1,5 +1,5 @@
 import styles from './ArticleCommentAdd.module.css';
-import axios from '@/lib/api/ArticleService';
+import { createArticleComment } from '@/lib/api/ArticleCommentService';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -7,7 +7,7 @@ export default function ArticleCommentAdd() {
   const [content, setContent] = useState('');
 
   const router = useRouter();
-  const id = router.query['id'];
+  const articleId = router.query['id'];
 
   const isInputEmpty = () => {
     return content.trim() !== '';
@@ -21,10 +21,10 @@ export default function ArticleCommentAdd() {
     }
 
     try {
-      await axios.post(`/articles/${id}/comments`, { content });
+      await createArticleComment(articleId, { content });
       window.location.reload();
     } catch (err) {
-      console.log('댓글 등록에 실패하였습니다.');
+      console.error('댓글 등록에 실패하였습니다.');
     }
   };
   return (

@@ -1,6 +1,6 @@
 import styles from './ArticleCommentList.module.css';
 import Image from 'next/image';
-import axios from '@/lib/api/ArticleService';
+import { patchArticleComment } from '@/lib/api/ArticleCommentService';
 import CommentDropdown from './CommentDropdown';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
@@ -10,6 +10,7 @@ export default function ArticleCommentList({ articleComments }) {
   const [selectedComment, setSelectedComment] = useState(false);
   const [editingCommentId, setEditingCommentId] = useState('');
   const [editingContent, setEditingContent] = useState('');
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -29,7 +30,7 @@ export default function ArticleCommentList({ articleComments }) {
 
   const handleEdit = async (commentId) => {
     try {
-      await axios.patch(`/articles/${articleId}/comments/${commentId}`, {
+      await patchArticleComment(articleId, commentId, {
         content: editingContent
       });
       setEditingCommentId(null);
