@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: `http://localhost:3000`
+  baseURL: `http://localhost:3100`
 });
 
 async function getArticles(params = { skip: 0, take: 10, sort: "recent", keyword: "" }) {
