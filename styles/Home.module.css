@@ -1,0 +1,360 @@
+@font-face {
+  font-family: "ROKAF";
+  src: url("/fonts/ROKAFSans.ttf") format("truetype");
+}
+
+.landingBody {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.homeTop {
+  margin-top: 7rem;
+}
+
+.homeTop,
+.homeBottom {
+  display: flex;
+  width: 100%;
+  height: 54rem;
+  background-color: #cfe5ff;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.homeTop h1,
+.homeBottom h1 {
+  font-size: 4rem;
+  line-height: 5.6rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.itemBtn {
+  background-color: #3692ff;
+  width: 35.7rem;
+  height: 5.6rem;
+  border-radius: 4rem;
+  border: none;
+  padding: 1.6rem 0;
+  gap: 1rem;
+  color: #f9fafb;
+  font-size: 2rem;
+  line-height: 3.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.homeTopImg,
+.homeBottomImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topImg {
+  width: 74.6rem;
+  height: 34rem;
+}
+
+.bottomImg {
+  width:74.6rem;
+  height: 39.7rem;
+}
+
+/* main */
+
+.hotImg,
+.searchImg,
+.registerImg {
+  width: 58.8rem;
+  height: 44.4rem;
+}
+
+.bestItemSection,
+.searchSection,
+.registerSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 72rem;
+  background-color: white;
+}
+
+.sectionCategory {
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  font-weight: 700;
+  color: #3692ff;
+}
+
+.sectionTitle {
+  font-size: 4rem;
+  line-height: 5.6rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.sectionDescription {
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.hotItem,
+.landingSearch,
+.register {
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hotItem,
+.register {
+  margin-left: 3.2rem;
+}
+
+.landingSearch {
+  text-align: flex-end;
+  margin-right: 3.2rem;
+}
+
+.section {
+  display: flex;
+  width: 120rem;
+}
+
+.section1HotItem,
+.section2Search,
+.section3Register {
+  display: flex;
+  width: 96.9rem;
+  height: 44.4rem;
+  background-color: #fcfcfc;
+  cursor: pointer;
+}
+
+.searchSection section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.section2Search {
+  margin-left: 23.1rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .homeTop,
+  .homeBottom {
+    height: 77.4rem;
+  }
+
+  .homeTop h1,
+  .homeBottom h1 {
+    font-size: 4rem;
+    line-height: 5.6rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .homeTopImg,
+  .homeBottomImg {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topImg,
+  .bottomImg {
+    width: 74.4rem;
+  }
+
+  .top,
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15rem 0;
+    text-align: center;
+  }
+
+  .top h1 br {
+    display: none;
+  }
+
+  .bestItemSection,
+  .searchSection,
+  .registerSection {
+    height: 87rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .section1HotItem,
+  .section2Search,
+  .section3Register {
+    display: flex;
+    flex-direction: column;
+    width: 69.6rem;
+    height: 70.8rem;
+  }
+
+  .section {
+    display: flex;
+    justify-content: center;
+    width: 69.6rem;
+    height: 77rem;
+  }
+
+  .hotImg,
+  .searchImg,
+  .registerImg {
+    height: 52.4rem;
+    width: 69.6rem;
+  }
+
+  .hotItem,
+  .landingSearch,
+  .register {
+    width: 100%;
+    margin: 0;
+    margin-top: 1rem;
+  }
+
+  .sectionCategory {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+  }
+
+  .sectionTitle {
+    font-size: 3.2rem;
+    line-height: 4.48rem;
+    margin: 0;
+  }
+
+  .sectionTitle br {
+    display: none;
+  }
+
+  .sectionDescription {
+    font-size: 1.8rem;
+    line-height: 2.16rem;
+    margin: 1rem 0;
+  }
+
+  .section2Search {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 0;
+  }
+}
+
+@media (max-width: 743px) {
+  .homeTop,
+  .homeBottom {
+    height: 77.4rem;
+  }
+
+  .homeTop h1,
+  .homeBottom h1 {
+    width: 100%;
+    font-size: 3.2rem;
+    line-height: 4.48rem;
+    text-align: center;
+  }
+
+  .homeTopImg,
+  .homeBottomImg {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topImg {
+    width: 44.8rem;
+    height: 20.4rem;
+  }
+
+  .bottomImg {
+    width: 37.5rem;
+    height: 19.8rem;
+  }
+
+  .top,
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15rem 0;
+    text-align: center;
+  }
+
+  .top h1 br {
+    display: block;
+  }
+
+  .bestItemSection,
+  .searchSection,
+  .registerSection {
+    height: 55rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .section1HotItem,
+  .section2Search,
+  .section3Register {
+    display: flex;
+    flex-direction: column;
+    width: 34.4rem;
+  }
+
+  .section {
+    display: flex;
+    justify-content: center;
+    width: 37.5rem;
+    height: 43rem;
+  }
+
+  .hotImg,
+  .searchImg,
+  .registerImg {
+    height: 25.9rem;
+    width: 34.4rem;
+  }
+
+  .hotItem,
+  .landingSearch,
+  .register {
+    width: 100%;
+    margin: 0;
+  }
+
+  .sectionCategory {
+    font-size: 1.6rem;
+    line-height: 2.24rem;
+    margin: 1rem 0;
+  }
+
+  .sectionTitle {
+    font-size: 2.4rem;
+    line-height: 3.36rem;
+    margin: 0;
+  }
+
+  .sectionDescription {
+    font-size: 1.6rem;
+    line-height: 1.92rem;
+    margin: 1rem 0;
+  }
+
+  .section2Search {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 0;
+  }
+}

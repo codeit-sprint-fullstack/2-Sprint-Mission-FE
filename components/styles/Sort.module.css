@@ -1,0 +1,84 @@
+.sortMenu {
+  position: relative;
+}
+
+.sortToggle {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  width: 13rem;
+  height: 4.2rem;
+  border-radius: 1.2rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.sortOptions {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 13rem;
+  height: 8.4rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.2rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sortButton {
+  width: 13rem;
+  height: 4.2rem;
+  border: none;
+  border-radius: 1.2rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+  color: #1f2937;
+}
+
+.sortContext {
+  display: flex;
+  width: 10rem;
+  justify-content: space-between;
+  align-self: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+  color: #1f2937;
+}
+
+.arrow {
+  align-self: center;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.sortOptions span {
+  border: 1px solid #e5e7eb;
+}
+
+@media (max-width: 743px) {
+  .sortMenu {
+    position: relative;
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+
+  .sortToggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 1.2rem;
+  }
+
+  .sortOptions {
+    left: -212%;
+  }
+}

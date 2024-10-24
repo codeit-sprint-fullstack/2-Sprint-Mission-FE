@@ -1,0 +1,111 @@
+.marketSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2rem;
+}
+
+.bestSection {
+  margin-top: 7.4rem;
+  width: 120rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bestTitle {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  justify-content: flex-start;
+}
+
+.itemSection {
+  margin: 4rem 0;
+  width: 120rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.itemSearch {
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemTitle {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemRegister {
+  width: 13.3rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: #3692ff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.6rem;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .itemTitle,
+  .bestTitle {
+    font-size: 2rem;
+    line-height: 3.2rem;
+  }
+
+  .bestSection,
+  .itemSection {
+    width: 100%;
+  }
+}
+
+@media (max-width: 743px) {
+  .bestSection,
+  .itemSection {
+    width: 100%;
+  }
+
+  .itemTitle,
+  .bestTitle {
+    font-size: 2rem;
+    line-height: 3.2rem;
+  }
+
+  .sort {
+    margin-bottom: 1.5rem;
+  }
+
+  .itemSearch {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .itemRegister {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-180%) translateX(-61%);
+  }
+}

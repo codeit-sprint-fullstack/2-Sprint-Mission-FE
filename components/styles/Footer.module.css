@@ -1,0 +1,60 @@
+.footerIcon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3.2rem 12.5rem;
+  gap: 1rem;
+  width: 192rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  background-color: #111827;
+  width: 100%;
+  height: 16rem;
+  border: 0.1rem solid;
+  border-color: #111827;
+}
+
+.codeit {
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.PF {
+  display: flex;
+  gap: 3.2rem;
+}
+
+.footer img {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.icon {
+  display: flex;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .footerIcon {
+    margin: 2.4rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .footer-icon {
+    margin: 1.6rem;
+  }
+
+  .footer-icon p {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+}
