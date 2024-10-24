@@ -6,9 +6,11 @@ import pluginReact from "eslint-plugin-react";
 export default [
   {files: ["**/*.{js,mjs,cjs,jsx}"]},
   {languageOptions: { globals: globals.browser }},
-  {"rules": {
-		"prettier/prettier": ["error", { "endOfLine": "auto" }],
-	}},
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {"rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "singleQuote": "on",
+	}},
 ];
