@@ -1,18 +1,27 @@
-.search_input {
+.search_input_container {
   background-color: #f3f4f6;
   height: 40px;
   border-radius: 10px;
   flex: 1;
-  padding-left: 40px;
   display: flex;
+  align-items: center;
+  padding-left: 20px;
 }
-.search_input input {
+.search_input_container input {
   background-color: #f3f4f6;
   width: 100%;
   border: none;
   border-radius: 10px;
 }
-.search_input::placeholder {
+.search_input_container::placeholder {
   color: #9ca3af;
   border: none;
+}
+
+.search_input:focus {
+  outline: none;
+}
+
+.search_input {
+  text-indent: 10px;
 }

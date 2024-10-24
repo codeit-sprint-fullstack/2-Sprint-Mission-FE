@@ -25,6 +25,7 @@
   flex-direction: column;
   align-items: center;
   background-color: white;
+  color: #9ca3af;
 }
 .detail_user_stats {
   display: flex;
@@ -132,10 +133,4 @@
 
 .select_button {
   cursor: pointer;
-}
-
-@media (min-width: 744px) and (max-width: 1199px) {
-}
-
-@media (max-width: 743px) {
 }

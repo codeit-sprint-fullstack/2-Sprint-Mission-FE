@@ -197,7 +197,8 @@ export default function Board() {
         {comment.length === 0 ? (
           <div className={styles.empty_comment}>
             <Image src={empty_img} alt="빈 이미지" />
-            <p>아직 댓글이 없어요</p>
+            <p>아직 댓글이 없어요,</p>
+            <p>지금 댓글을 달아보세요!</p>
           </div>
         ) : (
           comment.map((comment) => (

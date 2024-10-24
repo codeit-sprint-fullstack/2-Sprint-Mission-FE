@@ -25,6 +25,8 @@
 
 .post_content {
   width: 100%;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 10px;
 }
 
 .post_link {
@@ -35,11 +37,13 @@
 .post_title {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 .user_wrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 .user_stats {
   display: flex;
@@ -49,13 +53,4 @@
   display: flex;
   align-items: center;
   gap: 7px;
-}
-
-@media (min-width: 744px) and (max-width: 1199px) {
-  .post_wrapper {
-    margin: 0;
-  }
-}
-
-@media (max-width: 743px) {
 }

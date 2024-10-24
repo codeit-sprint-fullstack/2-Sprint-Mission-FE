@@ -28,10 +28,24 @@ export default function BestPost() {
     fetchBestPosts();
   }, []);
 
+  const getVisiblePosts = () => {
+    if (typeof window !== "undefined") {
+      const width = window.innerWidth;
+      if (width <= 744) {
+        return 1;
+      } else if (width <= 1200) {
+        return 2;
+      }
+    }
+    return 3;
+  };
+
+  const visiblePosts = recentPost.slice(0, getVisiblePosts());
+
   return (
     <>
       <div className={styles.best_container}>
-        {recentPost.map((post) => (
+        {visiblePosts.map((post) => (
           <div key={post.id} className={styles.best_wrapper}>
             <Image src={badge} />
             <div className={styles.title_img}>
