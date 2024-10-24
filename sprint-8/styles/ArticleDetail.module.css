@@ -208,6 +208,38 @@
 			font-weight: 400;
 		}
 
+		& .editButton {
+			text-decoration: none;
+			font-size: var(--text-lg);
+			background-color: var(--primary-color-100);
+			color: var(--secondary-color-gray100);
+			font-weight: 600;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 0;
+			margin: 8px 0;
+			float: right;
+			padding: 6px 16px;
+			border-radius: 8px;
+		}
+
+		& .cancelButton {
+			text-decoration: none;
+			font-size: var(--text-lg);
+			background-color: var(--gray-800);
+			color: var(--secondary-color-gray100);
+			font-weight: 600;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 0;
+			margin: 8px 10px;
+			float: right;
+			padding: 6px 16px;
+			border-radius: 8px;
+		}
+
 		& .profileAndNicknameAndTime {
 			display: flex;
 			justify-content: flex-start;
@@ -234,38 +266,6 @@
 				& .time {
 					color: var(--secondary-color-gray400);
 				}
-			}
-
-			& .editButton {
-				text-decoration: none;
-				font-size: var(--text-lg);
-				background-color: var(--primary-color-100);
-				color: var(--secondary-color-gray100);
-				font-weight: 600;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				border: 0;
-				margin: 8px 0;
-				float: right;
-				padding: 6px 16px;
-				border-radius: 8px;
-			}
-
-			& .cancelButton {
-				text-decoration: none;
-				font-size: var(--text-lg);
-				background-color: var(--gray-800);
-				color: var(--secondary-color-gray100);
-				font-weight: 600;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				border: 0;
-				margin: 8px 0;
-				float: right;
-				padding: 6px 16px;
-				border-radius: 8px;
 			}
 		}
 	}

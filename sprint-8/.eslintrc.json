@@ -6,7 +6,6 @@
 	},
 	"root": true,
 	"extends": [
-    "next/core-web-vitals",
 		"airbnb",
 		"eslint:recommended",
 		"react-app",
@@ -15,7 +14,8 @@
 		"plugin:jsx-a11y/recommended",
 		"plugin:react-hooks/recommended",
 		"prettier",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"next/core-web-vitals"
 	],
 	"plugins": ["prettier"],
 	"rules": {

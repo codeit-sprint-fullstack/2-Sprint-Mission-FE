@@ -1,6 +1,6 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import ViewportProvider from "@/context/ViewportProvider";
+import Footer from "@/components/Footer.jsx";
+import Header from "@/components/Header.jsx";
+import ViewportProvider from "@/context/ViewportProvider.jsx";
 import "@/styles/globals.css";
 import Head from "next/head";
 
