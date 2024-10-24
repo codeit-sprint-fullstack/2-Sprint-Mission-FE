@@ -57,17 +57,17 @@ export default function Home() {
           <Link href={`/board/${post.id}`} className={styles.post_link}>
             <div className={styles.post_title}>
               <h3>{post.title}</h3>
-              <Image src={laptop} />
+              <Image src={laptop} alt="디폴트 이미지" />
             </div>
           </Link>
           <div className={styles.user_wrapper}>
             <div className={styles.user_stats}>
-              <Image src={user} />
+              <Image src={user} alt="유저 이미지" />
               <p>총명한판다</p>
               <div>{new Date(post.createdAt).toLocaleDateString()}</div>
             </div>
             <div className={styles.like}>
-              <Image src={heart} />
+              <Image src={heart} alt="좋아요" />
               <p>9999+</p>
             </div>
           </div>

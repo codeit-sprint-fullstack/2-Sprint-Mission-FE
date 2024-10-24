@@ -29,6 +29,8 @@ export default function Board() {
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [isCommentModal, setIsCommentModal] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
+  const [editCommentId, setEditCommentId] = useState(null);
+  const [editComment, setEditComment] = useState("");
 
   const fetchArticle = async () => {
     if (id) {
@@ -90,8 +92,15 @@ export default function Board() {
 
   const handleEditClick = () => {
     setIsModalOpen(false);
+
     if (isCommentModal && selectedCommentId) {
-      // router.push(); TODO: 댓글 수정 어떻게 해야할 지 미정
+      setEditCommentId(selectedCommentId);
+      const commentToEdit = comment.find(
+        (comment) => comment.id === selectedCommentId
+      );
+      if (commentToEdit) {
+        setEditComment(commentToEdit.content);
+      }
     } else {
       router.push(`/board/edit/${id}`);
     }
@@ -118,19 +127,41 @@ export default function Board() {
     }
   };
 
+  const handleEditCommentChange = (e) => {
+    setEditComment(e.target.value);
+  };
+
+  const handleEditCommentSubmit = async () => {
+    if (editComment.trim() === "") return;
+    try {
+      console.log(editCommentId, editComment);
+      const response = await fetchApi(
+        `/articles/${id}/comments/${editCommentId}`,
+        { content: editComment },
+        "PATCH"
+      );
+      console.log(response);
+      setEditCommentId(null);
+      setEditComment("");
+      await fetchComments();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <>
       <div className={styles.detail_content_container}>
         <div className={styles.detail_title}>
           <h3>{article?.title}</h3>
-          <Image src={select} onClick={toggleModal} />
+          <Image src={select} alt="선택" onClick={toggleModal} />
         </div>
         <div className={styles.detail_user_stats}>
-          <Image src={user} className={styles.user_img} />
+          <Image src={user} alt="유저이미지" className={styles.user_img} />
           <h4 className={styles.nickname}>총명한판다</h4>
           <h4 className={styles.create_at}>2024. 01. 02</h4>
           <div className={styles.line}></div>
-          <Image src={like_button} />
+          <Image src={like_button} alt="좋아요버튼" />
         </div>
         <div className={styles.post_content}>
           <p>{article?.content}</p>
@@ -160,21 +191,44 @@ export default function Board() {
       <div className={styles.comment_container}>
         {comment.length === 0 ? (
           <div className={styles.empty_comment}>
-            <Image src={empty} />
+            <Image src={empty} alt="빈 이미지" />
             <p>아직 댓글이 없어요</p>
           </div>
         ) : (
           comment.map((comment) => (
             <>
               <div className={styles.comment_title} key={comment.id}>
-                <p>{comment.content}</p>
-                <Image
-                  src={select}
-                  onClick={(e) => toggleModal(e, true, comment.id)}
-                />
+                {editCommentId === comment.id ? (
+                  <>
+                    <textarea
+                      value={editComment}
+                      onChange={handleEditCommentChange}
+                      className={styles.comment_edit_textarea}
+                    />
+                    <button
+                      onClick={handleEditCommentSubmit}
+                      className={styles.edit_button}
+                    >
+                      수정
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <p>{comment.content}</p>
+                    <Image
+                      src={select}
+                      alt="선택"
+                      onClick={(e) => toggleModal(e, true, comment.id)}
+                    />
+                  </>
+                )}
               </div>
               <div className={styles.detail_user_stats}>
-                <Image src={user} className={styles.user_img} />
+                <Image
+                  src={user}
+                  alt="유저이미지"
+                  className={styles.user_img}
+                />
                 <div className={styles.comment_user_stats_content}>
                   <h5 className={styles.nickname}>총명한판다</h5>
                   <h5 className={styles.create_at}>1시간 전</h5>
@@ -188,7 +242,7 @@ export default function Board() {
         <Link href={"/board"} className={styles.link_button}>
           <button className={styles.return_list}>
             목록으로 돌아가기
-            <Image src={back} />
+            <Image src={back} alt="목록으로 돌아가기" />
           </button>
         </Link>
       </div>

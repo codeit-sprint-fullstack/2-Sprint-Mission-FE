@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <h1>watchit</h1>
+      <h1>기본 홈페이지</h1>
     </>
   );
 }
