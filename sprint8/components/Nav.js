@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import style from '@/styles/Nav.module.css';
 import logo from '@/public/assets/pndamarket_logo.png';
 
 export default function Nav() {
   function menuActiveStyle(location) {
-    const router = useRouter();
-    const { pathname } = router;
+    const pathname = usePathname();
     return pathname.startsWith(location) ? style.active : '';
   }
 
