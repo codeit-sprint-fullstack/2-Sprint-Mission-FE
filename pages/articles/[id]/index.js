@@ -2,7 +2,8 @@ import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/Article.module.css';
-import axios from '@/lib/api/ArticleService';
+import { getArticle } from '@/lib/api/ArticleService';
+import { getArticleCommentList } from '@/lib/api/ArticleCommentService';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/formatDate';
@@ -11,25 +12,15 @@ import ArticleDropdown from '@/components/ArticleDetail/ArticleDropdown';
 export async function getServerSideProps(context) {
   const articleId = context.params['id'];
 
-  try {
-    const resArticle = await axios.get(`/articles/${articleId}`);
-    const article = resArticle.data;
+  const article = await getArticle(articleId);
+  const articleComments = await getArticleCommentList(articleId);
 
-    const resComments = await axios.get(`/articles/${articleId}/comments`);
-    const articleComments = resComments.data ?? [];
-
-    return {
-      props: {
-        article,
-        articleComments
-      }
-    };
-  } catch (error) {
-    console.error('Error fetching article or comments:', error);
-    return {
-      notFound: true
-    };
-  }
+  return {
+    props: {
+      article,
+      articleComments
+    }
+  };
 }
 
 export default function Article({ article, articleComments }) {
