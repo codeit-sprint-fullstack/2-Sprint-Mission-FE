@@ -14,6 +14,15 @@
 		padding: 10px;
 	}
 
+	& .sub {
+		flex-grow: 1;
+		margin: 0 12.5rem;
+
+		@media (max-width: 1200px) {
+			margin: 0 auto;
+		}
+	}
+
 	& .head {
 		display: flex;
 		justify-content: space-between;
