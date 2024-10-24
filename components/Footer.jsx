@@ -13,25 +13,26 @@ export default function Footer() {
       <footer className={styles.footer_container}>
         <div className={styles.footer_content}>
           <div className={styles.copyright}> @codeit - 2024 </div>
+          <div className={styles.link_icon}>
+            <div className={styles.footerlink}>
+              <Link href="privacy.html">Privacy Policy</Link>
+              <Link href="faq.html">FAQ</Link>
+            </div>
 
-          <div className={styles.footerlink}>
-            <Link href="privacy.html">Privacy Policy</Link>
-            <Link href="faq.html">FAQ</Link>
-          </div>
-
-          <div className={styles.snsicon}>
-            <Link href="https://www.facebook.com/">
-              <Image src={facebookImg} alt="페이스북" id="facebookicon" />
-            </Link>
-            <Link href="https://twitter.com/">
-              <Image src={twitterImg} alt="트위터" id="twittericon" />
-            </Link>
-            <Link href="https://www.youtube.com/">
-              <Image src={youtubeImg} alt="유튜브" id="youtubeicon" />
-            </Link>
-            <Link href="https://www.instagram.com/">
-              <Image src={instagramImg} alt="인스타그램" id="instagramicon" />
-            </Link>
+            <div className={styles.snsicon}>
+              <Link href="https://www.facebook.com/">
+                <Image src={facebookImg} alt="페이스북" id="facebookicon" />
+              </Link>
+              <Link href="https://twitter.com/">
+                <Image src={twitterImg} alt="트위터" id="twittericon" />
+              </Link>
+              <Link href="https://www.youtube.com/">
+                <Image src={youtubeImg} alt="유튜브" id="youtubeicon" />
+              </Link>
+              <Link href="https://www.instagram.com/">
+                <Image src={instagramImg} alt="인스타그램" id="instagramicon" />
+              </Link>
+            </div>
           </div>
         </div>
       </footer>
