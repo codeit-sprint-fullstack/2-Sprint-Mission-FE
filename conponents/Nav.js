@@ -1,6 +1,6 @@
 import styles from "./Nav.module.css";
 import Image from "next/image";
-import logo from "@/public/pandamarket_logo.png";
+import logo from "@/public/pandamarket_logo.svg";
 import mobileLogo from "@/public/mobileLogo.svg";
 import Link from "next/link";
 import { useEffect, useState } from "react";

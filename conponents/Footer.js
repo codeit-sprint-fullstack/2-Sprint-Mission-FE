@@ -1,10 +1,10 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
 import Image from "next/image";
-import facebookIcon from "@/public/ic_facebook.png";
-import twitterIcon from "@/public/ic_twitter.png";
-import youtubeIcon from "@/public/ic_youtube.png";
-import instagramIcon from "@/public/ic_instagram.png";
+import facebookIcon from "@/public/ic_facebook.svg";
+import twitterIcon from "@/public/ic_twitter.svg";
+import youtubeIcon from "@/public/ic_youtube.svg";
+import instagramIcon from "@/public/ic_instagram.svg";
 
 export default function Footer() {
   return (

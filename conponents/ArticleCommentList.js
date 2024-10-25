@@ -1,6 +1,6 @@
 import styles from "./ArticleCommentList.module.css";
 import Image from "next/image";
-import profileIcon from "@/public/ic_profile.png";
+import profileIcon from "@/public/ic_profile.svg";
 import emptyImg from "@/public/Img_reply_empty.svg";
 import KebabMenu from "./KebabMenu";
 import formatDate from "@/lib/formatDate";

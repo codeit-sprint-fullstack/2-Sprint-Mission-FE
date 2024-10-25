@@ -1,5 +1,5 @@
 import styles from "./KebabMenu.module.css";
-import kebabIcon from "@/public/ic_kebab.png";
+import kebabIcon from "@/public/ic_kebab.svg";
 import Image from "next/image";
 import { useState } from "react";
 

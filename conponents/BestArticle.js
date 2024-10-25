@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styles from "./BestArticle.module.css";
-import bestBedge from "@/public/img_badge.png";
-import productImg from "@/public/productImg.png";
-import heartIcon from "@/public/ic_heart.png";
+import bestBedge from "@/public/img_badge.svg";
+import productImg from "@/public/productImg.svg";
+import heartIcon from "@/public/ic_heart.svg";
 import formatDate from "@/lib/formatDate";
 import Link from "next/link";
 
