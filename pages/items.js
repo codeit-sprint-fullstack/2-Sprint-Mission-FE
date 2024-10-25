@@ -84,7 +84,7 @@ function MarketPage() {
 
   useEffect(() => {
     handleGetProductList(order);
-  }, [order, search, currentPage, pageSize]);
+  }, [order, search, currentPage, pageSize, handleGetProductList]);
 
   return (
     <Fragment>
