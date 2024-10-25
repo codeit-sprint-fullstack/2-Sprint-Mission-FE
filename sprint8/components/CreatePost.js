@@ -3,8 +3,8 @@ import Header from '@/components/Header.js';
 import style from '@/styles/CreatePost.module.css';
 
 export default function CreatePost({ title, placehold, onDataChange }) {
-  const [enterInput, setEnterInput] = useState('');
-  const inputType = title === '*제목' ? 'postTitle' : 'contnet';
+  const [enterInput, setEnterInput] = useState(''); //이 또한 추후 삭제
+  const inputType = title === '*제목' ? 'postTitle' : 'content';
 
   const handleInputChange = (e) => {
     setEnterInput(e.target.value);
@@ -24,6 +24,7 @@ export default function CreatePost({ title, placehold, onDataChange }) {
             id={inputType}
             onChange={handleInputChange}
             placeholder={placehold}
+            input={handleInputChange}
             className={style.input}
           />
         ) : (
@@ -31,6 +32,7 @@ export default function CreatePost({ title, placehold, onDataChange }) {
             id={inputType}
             onChange={handleInputChange}
             placeholder={placehold}
+            input={handleInputChange}
             className={style.textarea}
           />
         )}
