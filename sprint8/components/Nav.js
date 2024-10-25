@@ -1,14 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useMediaQuery } from 'react-responsive';
 import style from '@/styles/Nav.module.css';
-import logo from '@/public/assets/pndamarket_logo.png';
+import pcLogo from '@/public/assets/pndamarket_logo.png';
+import mobileLogo from '@/public/assets/m_pandamarket_logo.png';
 
 export default function Nav() {
   function menuActiveStyle(location) {
     const pathname = usePathname();
     return pathname && pathname.startsWith(location) ? style.active : '';
   }
+  const isMobile = useMediaQuery({ query: '(max-width: 744px)' }); // 모바일 미디어 쿼리
+  const displayImg = isMobile ? mobileLogo : pcLogo;
 
   return (
     <>
@@ -16,7 +20,7 @@ export default function Nav() {
         <div className={style.logoMenu}>
           <Image
             priority={true}
-            src={logo}
+            src={displayImg}
             className={style.logo}
             alt="pandamarket logo"
           />

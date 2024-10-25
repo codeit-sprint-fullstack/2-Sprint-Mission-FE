@@ -59,6 +59,11 @@
 }
 
 @media (max-width: 743px) {
+  .logo {
+    width: 8.1rem;
+    height: 4rem;
+  }
+
   .logoMenu {
     gap: 1rem;
     margin-left: 1.6rem;

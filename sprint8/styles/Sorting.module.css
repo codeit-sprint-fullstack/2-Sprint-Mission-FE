@@ -9,10 +9,13 @@
 }
 
 .sortMenuList {
+  position: absolute;
   display: flex;
+  width: 13rem;
   flex-direction: column;
   border-radius: 1.2rem;
   border: 0.1rem solid var(--color-gray-200);
+  background-color: white;
   margin-top: 0.7rem;
 }
 
