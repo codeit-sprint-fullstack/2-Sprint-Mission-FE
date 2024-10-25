@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.elementList {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9fafb;
+  padding: 0 24px;
+  border-radius: 8px;
+  width: 384px;
+  height: 169px;
+}
+.bestMark {
+  display: flex;
+  align-items: center;
+  background-color: #3692ff;
+  border-radius: 0 0 16px 16px;
+  padding: 2px 24px;
+  width: 102px;
+  margin-bottom: 16px;
+  gap: 4px;
+}
+.bestMark img{
+  width: 16px;
+  height: 16px;
+}
+.bestMark p {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+}
+.contentTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.titleFont{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+    color: #1f2937;
+    margin-bottom: 18px;
+}
+.bottomTable{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.author{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.nickNames{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #4b5563;
+}
+.like {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #6b7280
+}
+.date{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #9ca3af;
+}
