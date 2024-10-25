@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import useResponsiveItemCount from "@/hooks/useResponsiveItemCount";
 import axios from "@/lib/axios";
 import SortSelector from "@/components/SortSelector";
 export default function Items() {
@@ -42,16 +43,9 @@ export default function Items() {
   const currentPageButton = `w-[40px] h-[40px] flex justify-center items-center rounded-full
     text-ffffff font-semibold bg-2f80ed`;
   const pageButtonContainer = `w-[216px] flex gap-x-[4px]`;
-  const PC_WIDTH = 1200;
-  const TABLET_WIDTH = 744;
-  const getPageSize = (width) => {
-    if (width > PC_WIDTH) return 10;
-    if (width > TABLET_WIDTH) return 6;
-    return 4;
-  };
   const [order, setOrder] = useState("newest");
   const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState();
+  const { count: pageSize } = useResponsiveItemCount({ sm: 4, md: 6, lg: 10 });
   const [totalPage, setTotalPage] = useState();
   const [keyword, setKeyword] = useState("");
   const [productsList, setProductsList] = useState([]);
@@ -79,14 +73,6 @@ export default function Items() {
   };
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
   const handleOnChangeKeyword = (e) => setKeyword(e.target.value);
-  useEffect(() => {
-    setPageSize(getPageSize(window.innerWidth));
-    const onResize = () => {
-      setPageSize(getPageSize(window.innerWidth));
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
   useEffect(() => {
     const dataFetch = async () => {
       try {
