@@ -37,10 +37,8 @@ export default function EditPost() {
   const handleData = (inputType, data) => {
     if (inputType === 'postTitle') {
       setTitle(data);
-      console.log('title', title);
     } else if (inputType === 'content') {
       setContent(data);
-      console.log('content', content);
     }
   };
 
