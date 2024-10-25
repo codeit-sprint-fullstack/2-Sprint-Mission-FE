@@ -17,7 +17,6 @@ export default function Items() {
     lg:ml-[475px]
     md:w-[242px] md:ml-[50px]
     sm:w-[288px] sm:ml-0 sm:absolute sm:bottom-0 sm:left-0`;
-
   const searchIcon =
     "absolute left-[16px] top-[50%] transform -translate-y-[50%]";
   const searchInput =
@@ -45,9 +44,9 @@ export default function Items() {
   const pageButtonContainer = `w-[216px] flex gap-x-[4px]`;
   const [order, setOrder] = useState("newest");
   const [page, setPage] = useState(0);
-  const { count: pageSize } = useResponsiveItemCount({ sm: 4, md: 6, lg: 10 });
-  const [totalPage, setTotalPage] = useState();
+  const { pageSize } = useResponsiveItemCount({ sm: 4, md: 6, lg: 10 });
   const [keyword, setKeyword] = useState("");
+  const [totalPage, setTotalPage] = useState();
   const [productsList, setProductsList] = useState([]);
   const [buttonList, setButtonList] = useState([]);
   const onClickPageButton = (e) => setPage(Number(e.target.value));

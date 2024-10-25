@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 
 const options = [
-  { value: "newest", label: "최신순" },
+  { value: "recent", label: "최신순" },
   { value: "favoritest", label: "좋아요순" }
 ];
 
