@@ -8,6 +8,7 @@ import profile from "@/public/ic_profile.png";
 import heart from "@/public/ic_heart.png";
 import Spinner from "@/components/Spinner";
 import { formatDate } from "@/utils/formatDate";
+import Comment from "@/components/Comment";
 
 export default function ArticleDetail() {
   const router = useRouter();
@@ -67,6 +68,9 @@ export default function ArticleDetail() {
               placeholder="댓글을 입력해주세요" />
             <button className={style.submitBtn}>등록</button>
         </div>
+        {/* <div className={style.commentList}>
+            <Comment />
+        </div> */}
       </div>
     </div>
   );
