@@ -7,10 +7,10 @@ import pcLogo from '@/public/assets/pndamarket_logo.png';
 import mobileLogo from '@/public/assets/m_pandamarket_logo.png';
 
 export default function Nav() {
+  const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
 
   function menuActiveStyle(location) {
-    const pathname = usePathname();
     return pathname && pathname.startsWith(location) ? style.active : '';
   }
 
