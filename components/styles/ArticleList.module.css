@@ -1,0 +1,47 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4rem;
+  padding-top: 2.4rem;
+}
+
+.cardSection {
+  width: 100%;
+  height: 13.8rem;
+  background-color: #fcfcfc;
+}
+
+.titleImgGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.img {
+  width: 7.2rem;
+  height: 7.2rem;
+}
+
+.favDateGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date,
+.favoriteCnt {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.favoriteCnt {
+  padding-right: 1rem;
+}

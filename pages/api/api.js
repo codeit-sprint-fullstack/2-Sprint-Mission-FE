@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://two-sprint-mission-be.onrender.com",
+  baseURL: "https://pandamarket-3uzp.onrender.com",
 //   timeout: 10000,
 });
 

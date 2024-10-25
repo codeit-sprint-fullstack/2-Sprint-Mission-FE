@@ -1,0 +1,53 @@
+.top {
+    margin-top: 7.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 120rem;
+}
+
+.articleTitle {
+    font-size: 2rem;
+    line-height: 2.4rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.titleBtnGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 2.4rem;
+}
+
+.articleBtn {
+    width: 8.8rem;
+    height: 4.2rem;
+    border-radius: 0.8rem;
+    background-color: #3692FF;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    border: none;
+}
+
+.searchSortGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.search {
+    width: 90%;
+}
