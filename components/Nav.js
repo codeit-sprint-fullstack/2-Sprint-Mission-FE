@@ -19,7 +19,10 @@ export default function Nav() {
   const activeClass = "text-3692ff";
   const router = useRouter();
   const isFreeBoard = router.pathname === "/freeboard" ? activeClass : "";
-  const isItems = router.pathname === "/items" ? activeClass : "";
+  const isItems =
+    router.pathname === "/items" || router.pathname === "/register"
+      ? activeClass
+      : "";
   return (
     <div className={navClass}>
       <Link href="/">
