@@ -1,94 +1,75 @@
 import { useEffect, useState } from 'react';
-import axios from '@/lib/axios';
 import BestArticleList from '@/components/Articles/BestArticleList';
 import { generateRandomNickname, getRandomInt } from '@/lib/utils';
 import formatDate from '@/lib/formatDate';
 import styles from '@/components/Articles/ArticlePage.module.css';
 import useMaxItems from '@/hooks/useMaxItems';
 import ArticleList from '@/components/Articles/ArticleList';
+import { getArticleList } from '@/lib/api/ArticleService';
 
 const ARTICLE_COUNT = 5;
 
 export default function ArticlesPage() {
   const [bestArticles, setBestArticles] = useState([]);
   const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const maxBestArticleCount = useMaxItems();        // 베스트 게시글의 개수는 윈도우즈 사이즈에 따라 결정
+  const [bestArticlesLoading, setBestArticlesLoading] = useState(false);
+  const [articlesLoading, setArticlesLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const maxBestArticleCount = useMaxItems();
 
   useEffect(() => {
-    async function fetchBestArticles() {
-      setIsLoading(true);
+    const fetchArticlesData = async (fetchFunc, setFunc, setLoadingFunc) => {
+      setLoadingFunc(true);
       try {
-        const res = await axios.get('/articles', {
-          params: {
-            page: 1,
-            pageSize: maxBestArticleCount,
-            orderBy: 'recent',
-          },
-        });
-        const { list } = res.data || [];
-
-        const bestArticlesWithExtras = list.map((article) => ({
+        const data = await fetchFunc();
+        const articlesWithExtras = data.map((article) => ({
           ...article,
           imageUrl: '/images/articles/img_default_article.png',
           nickname: generateRandomNickname(),
           likes: getRandomInt(0, 20000),
           formattedDate: formatDate(article.createdAt),
         }));
-
-        setBestArticles(bestArticlesWithExtras);
-      } catch (error) {
-        console.error('베스트 게시글을 가져오는데 실패했습니다:', error);
-      }
-      setIsLoading(false);
-    }
-
-    async function fetchArticles() {
-      setIsLoading(true);
-      try {
-        const res = await axios.get('/articles', {
-          params: {
-            page: 1,
-            pageSize: ARTICLE_COUNT,
-            orderBy: 'recent',
-          },
-        });
-        const { list } = res.data || [];
-
-        const articlesWithExtras = list.map((article) => ({
-          ...article,
-          imageUrl: '/images/articles/img_default_article.png',
-          nickname: generateRandomNickname(),
-          likes: getRandomInt(0, 20000),
-          formattedDate: formatDate(article.createdAt),
-        }));
-
-        setArticles(articlesWithExtras);
+        setFunc(articlesWithExtras);
       } catch (error) {
         console.error('게시글을 가져오는데 실패했습니다:', error);
+        setError('게시글을 불러오는 데 문제가 발생했습니다.');
+      } finally {
+        setLoadingFunc(false);
       }
-      setIsLoading(false);
-    }
+    };
+
     if (maxBestArticleCount !== null) {
-      fetchBestArticles(); // maxItems가 있을 때만 함수 호출
-      fetchArticles();
+      fetchArticlesData(
+        () => getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' }),
+        setBestArticles,
+        setBestArticlesLoading
+      );
+      fetchArticlesData(
+        () => getArticleList({ page: 1, pageSize: ARTICLE_COUNT, orderBy: 'recent' }),
+        setArticles,
+        setArticlesLoading
+      );
     }
   }, [maxBestArticleCount]);
 
   return (
     <div>
       <h2 className={styles.sectionTitle}>베스트 게시글</h2>
-      {isLoading ? (
+      {bestArticlesLoading ? (
         <p>로딩 중...</p>
+      ) : error ? (
+        <p className={styles.error}>{error}</p>
       ) : bestArticles.length > 0 ? (
         <BestArticleList articles={bestArticles} />
       ) : (
-        <p>게시글이 없습니다.</p>
+        <p>베스트 게시글이 없습니다.</p>
       )}
 
       <h2 className={styles.sectionTitle}>게시글</h2>
-      {isLoading ? (
+      {articlesLoading ? (
         <p>로딩 중...</p>
+      ) : error ? (
+        <p className={styles.error}>{error}</p>
       ) : articles.length > 0 ? (
         <ArticleList articles={articles} />
       ) : (
