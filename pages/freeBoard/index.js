@@ -7,16 +7,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SearchForm from "@/conponents/SeachForm";
 import SortDropbox from "@/conponents/SortDropbox";
+import Pagination from "@/conponents/Pagination";
 
-export async function getServerSideProps(context) {
-  const sort = context.query["orderBy"] || "";
-  const keyword = context.query["keyword"] || "";
-
-  const resAll = await axios.get(
-    `/articles?orderBy=${sort}&keyword=${keyword}`
-  );
+export async function getServerSideProps() {
+  const resAll = await axios.get(`/articles`);
   const articles = resAll.data.list ?? [];
-
+  console.log("articles", articles);
   const resBest = await axios.get(`/articles?pageSize=3`);
   const bestArticles = resBest.data.list || [];
 
@@ -28,24 +24,34 @@ export async function getServerSideProps(context) {
   };
 }
 
+const ITEMS_PER_PAGE = 5;
+
 export default function FreeBoard({ articles: initialArticles, bestArticles }) {
   const [articles, setArticles] = useState(initialArticles);
   const [keyword, setKeyword] = useState("");
   const [order, setOrder] = useState("");
+  const [page, setPage] = useState(1);
 
-  // 검색 및 정렬을 적용한 결과를 계산
+  // 페이지에 따른 게시글 슬라이싱
+  const paginatedArticles = articles.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE
+  );
+
   useEffect(() => {
     let filteredArticles = initialArticles;
 
-    // 1. 검색 필터 적용
+    // 검색 필터
     if (keyword) {
-      const normalizedKeyword = keyword.replace(/\s+/g, ""); // 검색어에서 띄어쓰기 제거
-      filteredArticles = filteredArticles.filter((article) =>
-        article.title.replace(/\s+/g, "").includes(normalizedKeyword)
+      const normalizedKeyword = keyword.replace(/\s+/g, "");
+      filteredArticles = filteredArticles.filter(
+        (article) =>
+          article.title.replace(/\s+/g, "").includes(normalizedKeyword) ||
+          article.content.replace(/\s+/g, "").includes(normalizedKeyword)
       );
     }
 
-    // 2. 정렬 적용 (최신순만 적용)
+    // 정렬 (최신순)
     if (order === "recent") {
       filteredArticles = [...filteredArticles].sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -53,6 +59,7 @@ export default function FreeBoard({ articles: initialArticles, bestArticles }) {
     }
 
     setArticles(filteredArticles);
+    setPage(1); // 새로운 검색이나 정렬 시 페이지를 첫 번째 페이지로 초기화
   }, [keyword, order, initialArticles]);
 
   return (
@@ -73,7 +80,13 @@ export default function FreeBoard({ articles: initialArticles, bestArticles }) {
             <SearchForm setKeyword={setKeyword} />
             <SortDropbox setOrder={setOrder} />
           </div>
-          <ArticleList articles={articles} />
+          <ArticleList articles={paginatedArticles} />
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalCount={articles.length}
+            pageSize={ITEMS_PER_PAGE}
+          />
         </div>
       </div>
     </div>
