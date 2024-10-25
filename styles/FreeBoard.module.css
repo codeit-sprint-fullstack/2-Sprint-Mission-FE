@@ -8,7 +8,8 @@
   margin: 9.4rem auto 0;
 }
 
-.section {
+.BestArticlesection,
+.articleListSection {
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
@@ -31,14 +32,45 @@
   cursor: pointer;
 }
 
+.articleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.optionSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (max-width: 1199px) and (min-width: 744px) {
   .body {
     max-width: 69.6rem;
+    gap: 2.4rem;
+  }
+
+  .articleListSection {
+    gap: 4.8rem;
+  }
+
+  .articleSection {
+    gap: 4rem;
   }
 }
 
 @media (max-width: 743px) {
   .body {
     max-width: 34.3rem;
+    gap: 2.4rem;
+  }
+
+  .BestArticlesection,
+  .articleListSection {
+    gap: 1.6rem;
+  }
+
+  .articleSection {
+    gap: 1.6rem;
   }
 }

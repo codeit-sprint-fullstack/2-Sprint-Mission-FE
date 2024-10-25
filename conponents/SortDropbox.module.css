@@ -1,0 +1,49 @@
+.wrapper {
+  position: relative;
+}
+
+.sortButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 13rem;
+  height: 4.2rem;
+  border-radius: 1.2rem;
+  border: 0.1rem solid var(--gray-200);
+  background-color: var(--background-color-white);
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.arrowDownIcon {
+  margin-left: 2rem;
+}
+
+.sortMenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 13rem;
+  border: 0.1rem solid var(--gray-200);
+  border-radius: 1.2rem;
+  background-color: var(--background-color-white);
+  margin-top: 0.7rem;
+}
+
+.sortOption {
+  height: 4.2rem;
+  background-color: transparent;
+  font-size: 1.6rem;
+  font-weight: 400;
+  border-bottom: 0.1rem solid var(--gray-200);
+}
+
+.sortOption:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 743px) {
+  .sortMenu {
+    right: 0;
+  }
+}
