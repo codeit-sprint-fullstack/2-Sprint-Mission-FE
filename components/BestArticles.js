@@ -2,16 +2,9 @@ import Image from "next/image";
 import style from "./styles/BestCard.module.css";
 import img_default from '@/public/img_default.png';
 import img_badge from '@/public/img_badge.png';
+import { formatDate } from "@/utils/formatDate";
 
 export default function BestArticles({ articles }) {
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}. ${month}. ${day}`;
-  };
-  
   return (
     <div className={style.card}>
       {articles.map((article) => (

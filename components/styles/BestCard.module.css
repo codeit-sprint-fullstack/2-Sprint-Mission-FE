@@ -53,3 +53,17 @@
     font-weight: 400;
     color: #9CA3AF;
 }
+
+@media (max-width: 1199px) and (min-width: 744px) {
+    .cardSection {
+        width: 42%;
+        height: 19.8rem;
+    }
+}
+
+@media (max-width: 743px) {
+    .cardSection {
+        width: 90%;
+        height: 24rem;
+    }
+}

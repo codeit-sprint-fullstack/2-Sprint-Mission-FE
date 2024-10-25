@@ -8,7 +8,6 @@ import {
   export async function getArticleList(params = {}) {
     try {
       const response = await requestGet(`/articles`, params);
-      console.log("API Response:", response.data);  // 응답 데이터 확인
       return response.data;
     } catch(e) {
       console.error(e.message);
@@ -21,7 +20,16 @@ import {
   }
   
   export async function createArticle(ArticleData) {
-    const response = await requestPost(`/articles`, ArticleData);
+    const formData = new FormData();
+    formData.append("title", ArticleData.title);
+    formData.append("content", ArticleData.content);
+    ArticleData.images.forEach((image) => {
+      formData.append("images", image);
+    });
+
+    const response = await requestPost(`/articles`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     return response.data;
   }
   

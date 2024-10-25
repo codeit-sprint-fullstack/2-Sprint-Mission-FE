@@ -8,7 +8,7 @@ export default function BestItem({ products }) {
       <div className={style.itemList}>
         {products.length > 0 ? (
           products.map((product) => (
-            <div key={product._id} className={style.item}>
+            <div key={product.id} className={style.item}>
               <Image className={style.itemImg} 
               src={product.images.length > 0 ? product.images[0] : img_default} 
               alt={product.name}

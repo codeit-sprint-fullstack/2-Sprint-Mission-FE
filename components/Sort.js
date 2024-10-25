@@ -2,10 +2,17 @@ import Image from "next/image";
 import style from './styles/Sort.module.css';
 import ic_sort from "@/public/ic_sort.png";
 import ic_arrow_down from "@/public/ic_arrow_down.png";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
-export default function Sort({ pageSize, order, setOrder, setCurrentPage, setIsToggle, isToggle }) {
-    const MOBILE_PAGE_SIZE = 4;
+export default function Sort({ pageSize, order, setOrder, setCurrentPage }) {
+  const [isToggle, setIsToggle] = useState(false); // 토글 상태를 저장
+  const router = useRouter();
+  const isItem = router.pathname === '/items';
 
+  let MOBILE_PAGE_SIZE;
+  if (isItem) MOBILE_PAGE_SIZE = 4;
+  else MOBILE_PAGE_SIZE = 1;
 
   const toggleSortMenu = () => {
     setIsToggle((prev) => !prev);  // 토글 상태를 변경

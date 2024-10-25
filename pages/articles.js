@@ -6,42 +6,57 @@ import ArticleList from '@/components/ArticleList';
 import { getArticleList } from '@/pages/api/ArticleService';
 import { useState, useEffect } from 'react';
 import Pagination from '@/components/Pagination';
+import Link from 'next/link';
+
+const mobileSize = 743;
+const tabletSize = 1199;
 
 export default function Article() {
   const [articles, setArticles] = useState([]);
   const [bestArticles, setBestArticles] = useState([]);
   const [search, setSearch ] = useState("");
-  const [order, setOrder] = useState("favorite");
+  const [order, setOrder] = useState("recent");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(1);
-  const pageSize = 10;
-  const [isToggle, setIsToggle] = useState(false);
+  const [pageSize, setPageSize] = useState(3);
+
+  useEffect(() => {
+    const updatePageSize = () => {
+      if (window.innerWidth < mobileSize) setPageSize(1); // 작은 화면
+      else if (window.innerWidth < tabletSize) setPageSize(2); // 중간 화면
+      else setPageSize(3); // 큰 화면
+    };
+
+    window.addEventListener('resize', updatePageSize);
+    updatePageSize();  // 처음 로드 시에 호출
+
+    return () => window.removeEventListener('resize', updatePageSize);
+  }, []);
 
   useEffect(() => {
     const fetchBestArticles = async () => {
       const { data: bestArticleList } = await getArticleList({
-        orderBy: "favorite",
-        pageSize: 3,
+        order: "favorite",
+        pageSize: pageSize,
         page: 0,
       });
       setBestArticles(bestArticleList);
-      console.log("Best Articles:", bestArticleList);  // 콘솔에 데이터 확인
     };
 
     fetchBestArticles();
-  }, []);
+  }, [pageSize]);
 
   useEffect(() => {
     const fetchArticles = async () => {
       const { data: articleList, totalCount } = await getArticleList({
-        orderBy: order,
-        pageSize: pageSize,
+        order: order,
+        pageSize: 10,
         page: currentPage - 1,
         search: search,
       });
       setArticles(articleList);
       setTotalCount(totalCount);
-      console.log("Fetched Articles:", articleList);  // 콘솔에 데이터 확인
+      // console.log("Fetched Articles:", articleList); 
     };
 
     fetchArticles();
@@ -56,11 +71,16 @@ export default function Article() {
         </div>
         <div className={style.titleBtnGroup}>
           <h1 className={style.articleTitle}>게시글</h1>
-          <button className={style.articleBtn}>글쓰기</button>
+          <Link href='/post'>
+            <button className={style.articleBtn}>글쓰기</button>
+          </Link>
         </div>
         <div className={style.searchSortGroup}>
             <Search className={style.search} setSearch={setSearch} />
-            <Sort pageSize={pageSize} order={order} setOrder={setOrder} setCurrentPage={setCurrentPage} setIsToggle={setIsToggle} isToggle={isToggle}  />
+            <Sort 
+              pageSize={pageSize} 
+              order={order} setOrder={setOrder} 
+              setCurrentPage={setCurrentPage} />
         </div>
         <div>
           <ArticleList articles={articles} />

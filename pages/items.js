@@ -18,11 +18,10 @@ const DESKTOP_PAGE_SIZE = 10;
 const DESKTOP_BEST_ITEM_SIZE = 4;
 
 function MarketPage() {
-  const [order, setOrder] = useState("favorite");
+  const [order, setOrder] = useState("recent");
   const [products, setProducts] = useState([]);
   const [search, setSearch ] = useState("");
   const [bestItems, setBestItems] = useState([]);
-  const [isToggle, setIsToggle] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(1);
   const [pageSize, setPageSize] = useState(DESKTOP_PAGE_SIZE);
@@ -52,7 +51,7 @@ function MarketPage() {
   useEffect(() => {
     const fetchBestItems = async () => {
       const { data: productList } = await getProductList({
-        orderBy: "favorite",
+        order: "favorite",
         pageSize: bestItemSize,
       });
       setBestItems(productList.sort((a, b) => b.favorite - a.favorite));
@@ -63,8 +62,9 @@ function MarketPage() {
 
   const handleGetProductList = useCallback(
     async (orderQuery) => {
+      console.log('Current Order:', orderQuery); // 로그 추가
       let queryParams = {
-        orderBy: orderQuery,
+        order: orderQuery,
         page: currentPage,
         pageSize: pageSize,
       };
@@ -77,14 +77,14 @@ function MarketPage() {
         await getProductList(queryParams);
       setProducts(productList);
       setTotalCount(fetchedTotalCount);
-      console.log(productList);
+      // console.log(productList);
     },
     [search, currentPage, pageSize]
   );
 
   useEffect(() => {
     handleGetProductList(order);
-  }, [order, search, currentPage, pageSize, bestItemSize, handleGetProductList]);
+  }, [order, search, currentPage, pageSize]);
 
   return (
     <Fragment>
@@ -105,8 +105,6 @@ function MarketPage() {
                 order={order}
                 setOrder={setOrder}
                 setCurrentPage={setCurrentPage}
-                setIsToggle={setIsToggle}
-                isToggle={isToggle}
               />
             </div>
           </div>

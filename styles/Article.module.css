@@ -39,6 +39,7 @@
     color: #ffffff;
     text-align: center;
     border: none;
+    cursor: pointer;
 }
 
 .searchSortGroup {
@@ -51,3 +52,4 @@
 .search {
     width: 90%;
 }
+
