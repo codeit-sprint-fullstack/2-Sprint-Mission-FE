@@ -6,7 +6,7 @@ import Button from '@/src/components/Button.js';
 import CreateEditPost from '@/src/components/CreateEditPost.js';
 import axios from '@/src/lib/axios.js';
 
-export default function FreeBoard() {
+export default function CreatePost() {
   const router = useRouter();
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [title, setTitle] = useState('');
@@ -19,7 +19,6 @@ export default function FreeBoard() {
       try {
         const res = await axios.post('/articles', data);
         const articleId = res.data.id;
-        console.log(res.data.id);
         router.push(`/free-board/${articleId}`);
       } catch (error) {
         console.error('Error posting article:', error);
@@ -38,10 +37,8 @@ export default function FreeBoard() {
   const handleData = (inputType, data) => {
     if (inputType === 'postTitle') {
       setTitle(data);
-      console.log('title', title);
     } else if (inputType === 'content') {
       setContent(data);
-      console.log('content', content);
     }
   };
 

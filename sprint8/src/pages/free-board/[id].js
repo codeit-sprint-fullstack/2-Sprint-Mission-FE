@@ -12,15 +12,19 @@ export default function PostDetail() {
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
 
-  async function fetchArticle(id) {
-    const res = await axios.get(`/articles/${id}`);
-    const data = await res.data;
-    setArticle(data);
-    setComments(data.comments || []);
+  async function getArticle(id) {
+    try {
+      const res = await axios.get(`/articles/${id}`);
+      const data = await res.data;
+      setArticle(data);
+      setComments(data.comments || []);
+    } catch (error) {
+      console.error('failed to fetch article', error);
+    }
   }
 
   useEffect(() => {
-    fetchArticle(id);
+    getArticle(id);
   }, [id]);
 
   const handleNewComment = (newComment) => {

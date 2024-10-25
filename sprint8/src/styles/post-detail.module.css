@@ -6,7 +6,7 @@
   flex-direction: column;
   margin: auto;
   gap: 2.4rem;
-  margin-top: 2.4rem;
+  margin-top: 10rem;
 }
 
 @media (max-width: 1199px) and (min-width: 744px) {

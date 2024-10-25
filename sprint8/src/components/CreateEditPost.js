@@ -1,6 +1,6 @@
 // import { useEffect, useState } from 'react';
 import Header from '@/src/components/Header.js';
-import style from '@/styles/CreatePost.module.css';
+import style from '@/src/styles/CreateEditPost.module.css';
 
 export default function CreatePost({ title, placehold, onDataChange }) {
   // const [enterInput, setEnterInput] = useState(''); //이 또한 추후 삭제
@@ -24,7 +24,6 @@ export default function CreatePost({ title, placehold, onDataChange }) {
             id="postTitle"
             onChange={handleInputChange}
             placeholder={placehold}
-            input={handleInputChange}
             className={style.input}
           />
         ) : (
@@ -32,7 +31,6 @@ export default function CreatePost({ title, placehold, onDataChange }) {
             id="content"
             onChange={handleInputChange}
             placeholder={placehold}
-            input={handleInputChange}
             className={style.textarea}
           />
         )}

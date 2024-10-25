@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import kebab from '@/public/assets/ic_kebab.png';
-import style from '@/styles/DropBox.module.css';
+import style from '@/src/styles/DropBox.module.css';
 import { useState } from 'react';
 
 export default function DropBox({ editOnClick, deleteOnClick }) {

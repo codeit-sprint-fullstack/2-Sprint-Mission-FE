@@ -1,12 +1,8 @@
-import style from '@/styles/EditComment.module.css';
+import style from '@/src/styles/EditComment.module.css';
 import Button from '@/src/components/Button.js';
 import { useState, useEffect } from 'react';
 
-export default function EditCommentModal({
-  comment,
-  onCancelClick,
-  onEditClick
-}) {
+export default function EditComment({ comment, onCancelClick, onEditClick }) {
   const [newComment, setNewComment] = useState(comment);
   const [isButtonActive, setIsButtonActive] = useState(false);
 
@@ -22,7 +18,7 @@ export default function EditCommentModal({
     <div className={style.container}>
       <div className={style.comment}>
         <textarea
-          id="comment"
+          id="edit comment"
           placeholder="수정할 코멘트를 입력해주세요"
           className={style.textarea}
           value={newComment}

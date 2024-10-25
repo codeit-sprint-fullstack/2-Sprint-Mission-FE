@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import style from '@/styles/PostDetailInfo.module.css';
+import style from '@/src/styles/PostDetailInfo.module.css';
 import profileImg from '@/public/assets/img_profile.png';
 import heartIcon from '@/public/assets/ic_heart.png';
 import formatDate from '@/src/utils/formatDate.js';
