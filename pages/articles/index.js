@@ -8,14 +8,14 @@ import useMaxItems from '@/hooks/useMaxItems';
 import ArticleList from '@/components/Articles/ArticleList';
 
 const ARTICLE_COUNT = 5;
+
 export default function ArticlesPage() {
   const [bestArticles, setBestArticles] = useState([]);
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const maxBestArticleCount = useMaxItems();
+  const maxBestArticleCount = useMaxItems();        // 베스트 게시글의 개수는 윈도우즈 사이즈에 따라 결정
 
   useEffect(() => {
-    // useEffect 내부에서 fetchBestArticles 함수를 정의하고 즉시 호출
     async function fetchBestArticles() {
       setIsLoading(true);
       try {
@@ -26,7 +26,7 @@ export default function ArticlesPage() {
             orderBy: 'recent',
           },
         });
-        const { list } = res.data;
+        const { list } = res.data || [];
 
         const bestArticlesWithExtras = list.map((article) => ({
           ...article,
@@ -49,11 +49,11 @@ export default function ArticlesPage() {
         const res = await axios.get('/articles', {
           params: {
             page: 1,
-            pageSize: ARTICLE_COUNT, 
+            pageSize: ARTICLE_COUNT,
             orderBy: 'recent',
           },
         });
-        const { list } = res.data;
+        const { list } = res.data || [];
 
         const articlesWithExtras = list.map((article) => ({
           ...article,
@@ -73,7 +73,7 @@ export default function ArticlesPage() {
       fetchBestArticles(); // maxItems가 있을 때만 함수 호출
       fetchArticles();
     }
-  }, [maxBestArticleCount]); // maxItems가 변경될 때만 API 호출
+  }, [maxBestArticleCount]);
 
   return (
     <div>
