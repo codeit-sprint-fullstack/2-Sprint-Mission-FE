@@ -1,11 +1,13 @@
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import style from '@/styles/create-post.module.css';
 import Header from '@/components/Header.js';
 import Button from '@/components/Button.js';
-import CreatePost from '@/components/CreatePost';
-import { useState, useEffect } from 'react';
+import CreateEditPost from '@/components/CreateEditPost.js';
 import axios from '@/lib/axios.js';
 
 export default function FreeBoard() {
+  const router = useRouter();
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -16,7 +18,9 @@ export default function FreeBoard() {
     if (title && content) {
       try {
         const res = await axios.post('/articles', data);
-        console.log(res.data);
+        const articleId = res.data.id;
+        console.log(res.data.id);
+        router.push(`/free-board/${articleId}`);
       } catch (error) {
         console.error('Error posting article:', error);
       }
@@ -49,12 +53,12 @@ export default function FreeBoard() {
           등록
         </Button>
       </div>
-      <CreatePost
+      <CreateEditPost
         title={'*제목'}
         placehold={'제목을 입력해주세요'}
         onDataChange={handleData}
       />
-      <CreatePost
+      <CreateEditPost
         title={'*내용'}
         placehold={'내용을 입력해주세요'}
         onDataChange={handleData}

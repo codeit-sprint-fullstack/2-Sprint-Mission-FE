@@ -8,14 +8,14 @@ export default function AddComment({ id, onNewComment }) {
   const [comment, setComment] = useState('');
 
   async function postComment(data) {
-    try {
-      if (comment) {
+    if (comment) {
+      try {
         const res = await axios.post(`/articles/${id}/comments`, data);
         onNewComment(res.data);
         setComment('');
+      } catch (error) {
+        console.error('Error posting comment:', error);
       }
-    } catch (error) {
-      console.error('Error posting comment:', error);
     }
   }
 

@@ -17,16 +17,17 @@ export default function CommentList({
   const [editingCommentId, setEditingCommentId] = useState(null);
 
   async function updateComment(articleId, commentId, data) {
-    try {
-      if (data) {
+    if (data && Object.values(data)[0] !== '') {
+      try {
+        console.log(Object.values(data));
         const res = await axios.patch(
           `/articles/${articleId}/comments/${commentId}`,
           data
         );
         onUpdateComment(res.data);
+      } catch (error) {
+        console.error('Error patching comment:', error);
       }
-    } catch (error) {
-      console.error('Error patching comment:', error);
     }
   }
 
