@@ -2,12 +2,7 @@ import formatDate from "@/lib/formatDate";
 import styles from "./ArticleBestList.module.css";
 import Link from "next/link";
 
-
-
-//임의의 닉네임 값 설정하는 함수
-
 export default function ArticleBestList({ articles }) {
- 
   return (
     <ul className={styles.container}>
       {articles.map((article) => (
