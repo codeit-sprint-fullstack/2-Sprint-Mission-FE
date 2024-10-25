@@ -12,16 +12,19 @@ import axios from '@/lib/axios.js';
 export default function FreeBoard({ initialBestArticles }) {
   const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState('');
+  const [order, setOrder] = useState('');
 
-  async function fetchArticles(searchKeyword) {
-    const res = await axios.get(`/articles?&search=${searchKeyword}`);
+  async function fetchArticles(order, searchKeyword) {
+    const res = await axios.get(
+      `/articles?order=${order}&search=${searchKeyword}`
+    );
     const data = await res.data;
     setArticles(data);
   }
 
   useEffect(() => {
-    fetchArticles(keyword);
-  }, [keyword]);
+    fetchArticles(order, keyword);
+  }, [order, keyword]);
 
   return (
     <div className={style.body}>
@@ -35,7 +38,7 @@ export default function FreeBoard({ initialBestArticles }) {
       </div>
       <div className={style.headerAndButton}>
         <SearchBar onKeywordChange={setKeyword} />
-        <Sorting />
+        <Sorting onOrderChange={setOrder} />
       </div>
       <PostList data={articles} />
     </div>
