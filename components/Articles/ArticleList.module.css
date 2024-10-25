@@ -122,6 +122,13 @@
   color: #9CA3AF;
 }
 
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem; /* SearchBar와 리스트 사이의 간격 */
+}
+
 /* Tablet 사이즈 */
 @media (max-width: 1199px) and (min-width: 744px) {
   .articleItem {

@@ -50,6 +50,7 @@ export default function SearchBar({ initialValue = '', onSearch }) {
                 src="/images/search/ic_clear.png"
                 alt="클리어 아이콘"
                 fill
+                sizes='1.6rem'
               />
             </div>
           </div>
@@ -59,6 +60,7 @@ export default function SearchBar({ initialValue = '', onSearch }) {
                 src="/images/search/ic_search.svg"
                 alt="검색 아이콘"
                 fill
+                sizes='2.4rem'
               />
             </div>
           </div>

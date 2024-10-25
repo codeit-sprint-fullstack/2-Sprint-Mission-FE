@@ -7,21 +7,17 @@ import useMaxItems from '@/hooks/useMaxItems';
 import ArticleList from '@/components/Articles/ArticleList';
 import { getArticleList } from '@/lib/api/ArticleService';
 
-const ARTICLE_COUNT = 5;
-
 export default function ArticlesPage() {
   const [bestArticles, setBestArticles] = useState([]);
-  const [articles, setArticles] = useState([]);
   const [bestArticlesLoading, setBestArticlesLoading] = useState(false);
-  const [articlesLoading, setArticlesLoading] = useState(false);
   const [error, setError] = useState(null);
   const maxBestArticleCount = useMaxItems();
 
   useEffect(() => {
-    const fetchArticlesData = async (fetchFunc, setFunc, setLoadingFunc) => {
-      setLoadingFunc(true);
+    const fetchBestArticles = async () => {
+      setBestArticlesLoading(true);
       try {
-        const data = await fetchFunc();
+        const data = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
         const articlesWithExtras = data.map((article) => ({
           ...article,
           imageUrl: '/images/articles/img_default_article.png',
@@ -29,26 +25,17 @@ export default function ArticlesPage() {
           likes: getRandomInt(0, 20000),
           formattedDate: formatDate(article.createdAt),
         }));
-        setFunc(articlesWithExtras);
+        setBestArticles(articlesWithExtras);
       } catch (error) {
-        console.error('게시글을 가져오는데 실패했습니다:', error);
-        setError('게시글을 불러오는 데 문제가 발생했습니다.');
+        console.error('베스트 게시글을 가져오는데 실패했습니다:', error);
+        setError('베스트 게시글을 불러오는 데 문제가 발생했습니다.');
       } finally {
-        setLoadingFunc(false);
+        setBestArticlesLoading(false);
       }
     };
 
     if (maxBestArticleCount !== null) {
-      fetchArticlesData(
-        () => getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' }),
-        setBestArticles,
-        setBestArticlesLoading
-      );
-      fetchArticlesData(
-        () => getArticleList({ page: 1, pageSize: ARTICLE_COUNT, orderBy: 'recent' }),
-        setArticles,
-        setArticlesLoading
-      );
+      fetchBestArticles();
     }
   }, [maxBestArticleCount]);
 
@@ -66,15 +53,7 @@ export default function ArticlesPage() {
       )}
 
       <h2 className={styles.sectionTitle}>게시글</h2>
-      {articlesLoading ? (
-        <p>로딩 중...</p>
-      ) : error ? (
-        <p className={styles.error}>{error}</p>
-      ) : articles.length > 0 ? (
-        <ArticleList articles={articles} />
-      ) : (
-        <p>게시글이 없습니다.</p>
-      )}
+      <ArticleList />    {/*  ArticleList 자체적으로 데이터 로딩*/}
     </div>
   );
 }
