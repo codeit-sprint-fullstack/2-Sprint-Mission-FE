@@ -15,8 +15,12 @@ import {
   }
   
   export async function getArticle(id) {
+    try {
     const response = await requestGet(`/articles/${id}`);
     return response.data;
+    } catch (e) {
+      console.error(e.message);
+    }
   }
   
   export async function createArticle(ArticleData) {

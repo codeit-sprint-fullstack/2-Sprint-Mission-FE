@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "https://pandamarket-3uzp.onrender.com",
-//   timeout: 10000,
+  timeout: 10000,
 });
 
 export async function requestGet(url, params = {}) {

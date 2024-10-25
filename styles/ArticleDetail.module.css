@@ -1,0 +1,150 @@
+.top {
+    margin-top: 7.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 120rem;
+}
+
+.loading {
+    margin: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+    color: #1F2937;
+}
+
+.kebabIcon {
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.dateFavSection {
+    display: flex;
+    align-items: center;
+    margin-top: 1.6rem;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 3.2rem;
+}
+
+.userName {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    font-weight: 500;
+    color: #4B5563;
+}
+
+.date {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    font-weight: 400;
+    color: #9CA3AF;
+}
+
+.favSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 8.7rem;
+    height: 4rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 3.5rem;
+    background-color: #FFFFFF;
+}
+
+.heardIcon {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.favoriteCnt {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    font-weight: 400;
+    color: #9CA3AF;
+}
+
+.hr {
+    width: 100%;
+    border: 1px solid #E5E7EB;
+    margin: 1rem 0;
+}
+
+.contentSection {
+    width: 100%;
+}
+
+.content {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    font-weight: 400;
+    color: #1F2937;
+}
+
+.commentSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.comment {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.commentInput {
+    width: 100%;
+    max-width: 120rem;
+    height: 10.4rem;
+    border-radius: 1.2rem;
+    border: none;
+    padding: 1.6rem 2.4rem;
+    background-color: #F3F4F6;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.submitBtn {
+    width: 7.4rem;
+    height: 4.2rem;
+    border: none;
+    border-radius: 0.8rem;
+    padding: 1.2rem 2.3rem;
+    box-sizing: border-box;
+    background-color: #9CA3AF;
+    align-self: flex-end;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 600;
+    color: #F3F4F6;
+}

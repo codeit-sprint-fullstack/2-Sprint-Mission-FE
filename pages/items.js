@@ -62,7 +62,7 @@ function MarketPage() {
 
   const handleGetProductList = useCallback(
     async (orderQuery) => {
-      console.log('Current Order:', orderQuery); // 로그 추가
+      // console.log('Current Order:', orderQuery); // 로그 추가
       let queryParams = {
         order: orderQuery,
         page: currentPage,
