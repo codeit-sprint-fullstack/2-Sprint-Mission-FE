@@ -45,7 +45,7 @@ export default function FreeBoard({ initialBestArticles }) {
   );
 }
 
-//Best 게시글은 고정된 값이니까 서버에서 받아올 수 있지 않을까? 싶어서 시도
+//NOTE: Best 게시글은 고정된 값이니까 서버에서 받아올 수 있지 않을까? 싶어서 시도
 export async function getServerSideProps() {
   try {
     const res = await axios.get(`/articles`);
@@ -57,11 +57,6 @@ export async function getServerSideProps() {
       }
     };
   } catch (error) {
-    console.error('Failed to get Best Articles:', error);
-    return {
-      props: {
-        initialBestArticles: []
-      }
-    };
+    return console.error('Failed to get Best Articles:', error);
   }
 }
