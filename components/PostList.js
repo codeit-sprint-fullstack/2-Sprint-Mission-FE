@@ -10,7 +10,7 @@ export default function PostList({ posts }) {
   return (
     <div className={styles.postsMap}>
       {posts.map((post) => (
-        <Link key={post.id} href={`/posts?id=${post.id}`}>
+        <Link key={post.id} href={`/posts/${post.id}`}>
           <div key={post.id} className={styles.postCard}>
             <div className={styles.PostCardLeft}>
               <div className={styles.postTitle}>{post.title}</div>
