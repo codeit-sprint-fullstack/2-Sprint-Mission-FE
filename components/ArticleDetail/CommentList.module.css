@@ -1,0 +1,23 @@
+.noComments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  color: #9CA3AF; 
+}
+
+.noComments p {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  color: #9CA3AF;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 100rem;
+  height: 10rem;
+}
+
+.hasComments {
+  margin-top: 4rem;
+}

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { getArticleList } from '@/lib/api/ArticleService';
 import { generateRandomNickname, getRandomInt } from '@/lib/utils';
 import formatDate from '@/lib/formatDate';
+import Link from 'next/link';
 
 const ARTICLE_COUNT = 5;
 
@@ -84,17 +85,22 @@ export default function ArticleList() {
         {filteredArticles.map((article) => (
           <li key={article.id} className={styles.articleItem}>
             <div className={styles.articleWrapper}>
+
               <div className={styles.articleTop}>
-                <h3 className={styles.articleTitle}>{article.title}</h3>
-                <div className={styles.articleImageWrapper}>
-                  <Image
-                    src={article.imageUrl}
-                    alt="게시글 이미지"
-                    fill
-                    sizes="8rem"
-                    className={styles.articleImage}
-                  />
-                </div>
+                <Link href={`/articles/${article.id}`} passHref>
+                  <h3 className={styles.articleTitle}>{article.title}</h3>
+                </Link>
+                <Link href={`/articles/${article.id}`} passHref>
+                  <div className={styles.articleImageWrapper}>
+                    <Image
+                      src={article.imageUrl}
+                      alt="게시글 이미지"
+                      fill
+                      sizes="8rem"
+                      className={styles.articleImage}
+                    />
+                  </div>
+                </Link>
               </div>
 
               <div className={styles.articleBottom}>
@@ -115,7 +121,7 @@ export default function ArticleList() {
                 <div className={styles.likes}>
                   <div className={styles.likesIcon}>
                     <Image
-                      src="/images/articles/ic_heart.png"
+                      src="/images/articles/ic_heart.svg"
                       alt="좋아요 아이콘"
                       fill
                       sizes="2.4rem"
@@ -124,6 +130,7 @@ export default function ArticleList() {
                   {article.likes > 9999 ? '9999+' : article.likes}
                 </div>
               </div>
+              
             </div>
           </li>
         ))}

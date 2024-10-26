@@ -1,0 +1,96 @@
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* 작성자 및 날짜 정보 */
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  color: var(--secondary-text-color);
+}
+
+.authorIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+}
+
+.date {
+  font-size: 1.4rem;
+  color: var(--secondary-gray-500);
+}
+
+/* 게시글 본문 스타일 */
+.content {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 3rem;
+}
+
+/* 댓글 작성 섹션 */
+.commentSection {
+  margin-top: 4rem;
+}
+
+.commentInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.commentInput {
+  flex-grow: 1;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--secondary-gray-300);
+  font-size: 1.6rem;
+  background-color: var(--background-color-light);
+}
+
+.commentButton {
+  padding: 0.8rem 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+}
+
+.commentList {
+  margin-top: 2rem;
+}
+
+.commentItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--secondary-gray-200);
+}
+
+.commentContent {
+  flex-grow: 1;
+  font-size: 1.6rem;
+  color: var(--text-color);
+}
+
+.commentDate {
+  font-size: 1.2rem;
+  color: var(--secondary-gray-500);
+}
