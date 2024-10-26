@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://sprint8back.onrender.com/'
+  baseURL: process.env.NEXT_PUBLIC_API_SERVER
 });
 
 export default instance;

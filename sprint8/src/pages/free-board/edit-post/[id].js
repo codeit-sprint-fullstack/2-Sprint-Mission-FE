@@ -16,13 +16,12 @@ export default function EditPost() {
   async function updateArticle(id) {
     const data = { title, content };
 
-    if (title && content) {
-      try {
-        const res = await axios.patch(`/articles/${id}`, data);
-        router.push(`/free-board/${id}`);
-      } catch (error) {
-        console.error('Error patching article:', error);
-      }
+    if (!title || !content) return;
+    try {
+      const res = await axios.patch(`/articles/${id}`, data);
+      router.push(`/free-board/${id}`);
+    } catch (error) {
+      console.error('Error patching article:', error);
     }
   }
 

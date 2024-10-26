@@ -15,14 +15,13 @@ export default function CreatePost() {
   async function postArticle() {
     const data = { title, content };
 
-    if (title && content) {
-      try {
-        const res = await axios.post('/articles', data);
-        const articleId = res.data.id;
-        router.push(`/free-board/${articleId}`);
-      } catch (error) {
-        console.error('Error posting article:', error);
-      }
+    if (!title || !content) return;
+    try {
+      const res = await axios.post('/articles', data);
+      const articleId = res.data.id;
+      router.push(`/free-board/${articleId}`);
+    } catch (error) {
+      console.error('Error posting article:', error);
     }
   }
 
