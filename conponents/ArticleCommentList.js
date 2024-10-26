@@ -86,7 +86,11 @@ export default function ArticleCommentList({
         <ul className={styles.wrapper}>
           {articleComments.map((articleComment) => (
             <li key={articleComment.id}>
-              <div className={styles.commentListContainer}>
+              <div
+                className={`${styles.commentListContainer} ${
+                  editMode ? styles.editModeContainer : ""
+                }`}
+              >
                 {editMode === articleComment.id ? (
                   <div className={styles.commentEditMode}>
                     <textarea

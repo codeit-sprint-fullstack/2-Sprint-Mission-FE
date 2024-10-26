@@ -8,6 +8,10 @@
   border-bottom: 0.1rem solid var(--gray-200);
 }
 
+.editModeContainer {
+  height: 16rem;
+}
+
 .commentTitle {
   display: flex;
   align-items: center;
@@ -112,5 +116,8 @@
   .commentListContainer {
     height: 9.6rem;
     padding-bottom: 0.8rem;
+  }
+  .editModeContainer {
+    height: 16rem;
   }
 }
