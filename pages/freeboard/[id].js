@@ -66,6 +66,7 @@ export default function article() {
   const [isPost, setIsPost] = useState(false);
   const handleDropDownChange = async (chosenItem) => {
     if (chosenItem === "수정하기") {
+      router.push(`/freeboard/write/${article.id}`);
     } else if (chosenItem === "삭제하기") {
       try {
         await axios.delete(`/articles/${id}`);
@@ -75,6 +76,10 @@ export default function article() {
       router.push("/freeboard");
     }
   };
+  useEffect(() => {
+    if (comment === "") setIsPost(false);
+    else setIsPost(true);
+  }, [comment]);
   const handleChangeComment = (e) => setComment(e.target.value);
   const handleSumbitComment = async (e) => {
     e.preventDefault();
@@ -85,12 +90,13 @@ export default function article() {
     };
     try {
       const response = await axios.post("/article-comments", sumbitData);
+      setArticle((prev) => [sumbitData, prev[0], prev[1]]);
+      setComment("");
     } catch (e) {
       console.log(`데이터 전송 실패: ${e.message}`);
     }
   };
   const handleDeleteComment = async (deleteId) => {
-    console.log(deleteId);
     try {
       axios.delete(`/article-comments/${deleteId}`);
     } catch (e) {
@@ -138,6 +144,7 @@ export default function article() {
             id="postComment"
             className={commentTextArea}
             onChange={handleChangeComment}
+            value={comment}
             placeholder="댓글을 입력해주세요"
             spellCheck="false"
           />

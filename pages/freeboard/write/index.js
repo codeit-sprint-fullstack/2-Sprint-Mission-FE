@@ -19,10 +19,10 @@ export default function Write() {
   const textAreaClass = `w-full h-[282px] mt-[12px] px-[24px] py-[16px] rounded-[12px] focus:outline-none bg-f3f4f6`;
   const on = "bg-3692ff";
   const off = "bg-9ca3af";
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isPost, setIsPost] = useState(false);
-  const router = useRouter();
   const handleChangeTitle = (e) => setTitle((prev) => e.target.value);
   const handleChangeContent = (e) => setContent(e.target.value);
   const validate = () => {
