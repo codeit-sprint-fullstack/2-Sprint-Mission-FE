@@ -11,7 +11,7 @@ export default function EditComment({ comment, onCancelClick, onEditClick }) {
   };
 
   useEffect(() => {
-    setIsButtonActive(newComment.length > 0);
+    setIsButtonActive(!!newComment);
   }, [newComment]);
 
   return (
