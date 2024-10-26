@@ -103,6 +103,7 @@
   font-weight: 600;
   line-height: 2.6rem;
   color: var(--gray-100);
+  cursor: pointer;
 }
 
 .inactive {

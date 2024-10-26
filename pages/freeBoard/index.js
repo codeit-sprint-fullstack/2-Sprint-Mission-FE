@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
     props: {
       initialArticles: articles,
       bestArticles,
-      totalCount
+      initialTotalCount: totalCount
     }
   };
 }
@@ -40,12 +40,13 @@ export async function getServerSideProps(context) {
 export default function FreeBoard({
   initialArticles,
   bestArticles,
-  totalCount
+  initialTotalCount
 }) {
   const [articles, setArticles] = useState(initialArticles || []);
   const [keyword, setKeyword] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(initialTotalCount || 0);
   const router = useRouter();
 
   // 서버에서 새로운 페이지의 데이터를 요청하는 함수
@@ -54,7 +55,16 @@ export default function FreeBoard({
       const response = await axios.get(
         `/articles?page=${page}&pageSize=${ITEMS_PER_PAGE}&orderBy=${order}&keyword=${keyword}`
       );
-      setArticles(response.data.list ?? []);
+      const { list, totalCount } = response.data;
+
+      setArticles(list ?? []);
+      setTotalCount(totalCount ?? 0);
+
+      // 현재 페이지가 totalPage보다 클 경우 페이지를 첫 페이지로 리셋
+      const totalPage = Math.ceil(totalCount / ITEMS_PER_PAGE);
+      if (page > totalPage) {
+        setPage(1);
+      }
     } catch (error) {
       console.error("Failed to fetch articles:", error);
     }
@@ -92,7 +102,7 @@ export default function FreeBoard({
           <Pagination
             page={page}
             setPage={setPage}
-            totalCount={totalCount || 0}
+            totalCount={totalCount}
             pageSize={ITEMS_PER_PAGE}
           />
         </div>

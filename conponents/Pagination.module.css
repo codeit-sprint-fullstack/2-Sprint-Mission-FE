@@ -12,10 +12,11 @@
   font-weight: 600;
   background-color: #ffffff;
   border-radius: 99rem;
-  border: 0.1rem solid #E5E7EB;
+  border: 0.1rem solid #e5e7eb;
   font-size: 1.6rem;
   line-height: 2.6rem;
-  color: #6B7280;
+  color: #6b7280;
+  cursor: pointer;
 }
 
 .pageBtns {
@@ -24,8 +25,8 @@
 }
 
 .pageBtns button.active {
-  background-color: #2F80ED;
-  color: #F9FAFB;
+  background-color: #2f80ed;
+  color: #f9fafb;
   border: none;
 }
 
@@ -34,6 +35,8 @@
   background-color: #ffffff;
 }
 
-@media (min-width: 744px) and (max-width: 1199px) {}
+@media (min-width: 744px) and (max-width: 1199px) {
+}
 
-@media (max-width: 743px) {}
+@media (max-width: 743px) {
+}

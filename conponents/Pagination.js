@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import styles from './Pagination.module.css'
+import styles from "./Pagination.module.css";
 // const ITEMS_PER_PAGE = 10;
 const BUNDLE_LIMIT = 5;
 
-export default function Pagination({ page, setPage, totalCount, pageSize}) {
+export default function Pagination({ page, setPage, totalCount, pageSize }) {
   const [currentPageArray, setCurrentPageArray] = useState([]);
   const [totalPageArray, setTotalPageArray] = useState([]);
   const totalPage = Math.ceil(totalCount / pageSize);
@@ -29,17 +29,21 @@ export default function Pagination({ page, setPage, totalCount, pageSize}) {
     const slicedPageArray = sliceArrayByLimit(totalPage, BUNDLE_LIMIT);
     setTotalPageArray(slicedPageArray);
     setCurrentPageArray(slicedPageArray[0]);
-  }, [totalPage]);
+  }, [totalPage, totalCount]);
 
   return (
     <div className={styles.paginationWrapper}>
-      <button className={styles.prevPageBtn} onClick={() => setPage(page - 1)} disabled={page === 1}>
+      <button
+        className={styles.prevPageBtn}
+        onClick={() => setPage(page - 1)}
+        disabled={page === 1}
+      >
         &lt;
       </button>
       <div className={styles.pageBtns}>
         {currentPageArray?.map((i) => (
           <button
-            className={page === i + 1 ? styles.active : ''}
+            className={page === i + 1 ? styles.active : ""}
             key={i + 1}
             onClick={() => setPage(i + 1)}
           >
@@ -47,7 +51,11 @@ export default function Pagination({ page, setPage, totalCount, pageSize}) {
           </button>
         ))}
       </div>
-      <button className={styles.nextPageBtn} onClick={() => setPage(page + 1)} disabled={page === totalPage}>
+      <button
+        className={styles.nextPageBtn}
+        onClick={() => setPage(page + 1)}
+        disabled={page === totalPage}
+      >
         &gt;
       </button>
     </div>
