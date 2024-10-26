@@ -17,6 +17,10 @@
 .policyFaqWrapper {
   display: flex;
   gap: 3rem;
+}
+
+.privacyPolicy,
+.faq {
   color: var(--gray-200);
   text-decoration: none;
 }

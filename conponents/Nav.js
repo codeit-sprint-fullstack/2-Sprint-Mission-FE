@@ -56,7 +56,9 @@ export default function Nav() {
             </Link>
           </div>
         </div>
-        <button className={styles.login}>로그인</button>
+        <Link href="/login">
+          <button className={styles.login}>로그인</button>
+        </Link>
       </div>
     </>
   );

@@ -12,8 +12,12 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.copyright}>©codeit - 2024</div>
         <div className={styles.policyFaqWrapper}>
-          <span className={styles.privacyPolicy}>Privacy Policy</span>
-          <span className={styles.faq}>FAQ</span>
+          <Link href="/privacy">
+            <span className={styles.privacyPolicy}>Privacy Policy</span>
+          </Link>
+          <Link href="/faq">
+            <span className={styles.faq}>FAQ</span>
+          </Link>
         </div>
         <div className={styles.linkIcons}>
           <Link href="https://www.facebook.com">

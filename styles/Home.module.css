@@ -1,6 +1,313 @@
-.landing {
+.mainSection {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin: 7rem auto;
+  margin: 0 auto;
   font-size: 10rem;
+}
+
+.topBottomSection {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-color);
+  height: 54rem;
+  overflow: hidden;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-100);
+  color: var(--background-color-white);
+}
+
+.textSection {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 5.6rem;
+  color: var(--gray-700);
+}
+
+.wrapper {
+  max-width: 120rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.topWrapper,
+.bottomWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 10.7rem;
+  justify-content: center;
+}
+
+/* top */
+.topSection .textSection {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.homeTopImg {
+  position: relative;
+  width: 74.6rem;
+  height: 34rem;
+  margin-top: 9.3rem;
+}
+
+.shoppingButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35.7rem;
+  height: 5.6rem;
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius: 4rem;
+  line-height: 2.4rem;
+  text-decoration: none;
+}
+
+/* center */
+.centerMainSection {
+  display: flex;
+  align-items: center;
+  gap: 6.4rem;
+  padding: 13.8rem 0;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.52rem;
+  color: var(--primary-100);
+  margin-bottom: 1.2rem;
+}
+
+.centerContent h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 5.6rem;
+  letter-spacing: 0.02em;
+  color: var(--gray-700);
+  margin-bottom: 2.4rem;
+}
+
+.contentDescription {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 2.88rem;
+  letter-spacing: 0.08em;
+  color: var(--gray-700);
+}
+
+.search {
+  justify-content: flex-end;
+}
+
+.search .centerContent {
+  text-align: right;
+}
+
+.homeImg {
+  position: relative;
+  width: 58.8rem;
+  height: 44.4rem;
+}
+
+/* bottom */
+.bottomWrapper {
+  margin-top: 14.5rem;
+}
+
+.bottomSection {
+  margin-top: 13.8rem;
+}
+
+.homeBottomImg {
+  position: relative;
+  width: 74.6rem;
+  height: 39.7rem;
+}
+
+@media screen and (743px < width < 1200px) {
+  /* 공통 */
+  .topBottomSection {
+    height: 77.1rem;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topBreakLine,
+  .breakLine {
+    content: " ";
+    display: inline-block;
+    width: 1rem;
+  }
+
+  /* top */
+  .topSection .textSection {
+    align-items: center;
+    gap: 2.4rem;
+    margin-bottom: 9.4rem;
+  }
+
+  .topWrapper {
+    margin-top: 0;
+  }
+
+  .homeTopImg {
+    margin-top: 9.4rem;
+  }
+
+  /* center */
+  .centerSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .homeImg {
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+
+  .centerMainSection {
+    flex-direction: column;
+    align-items: normal;
+    gap: 1.6rem;
+    padding: 4rem 2.4rem;
+  }
+
+  .title {
+    margin-bottom: 0.8rem;
+  }
+
+  .centerContent h1 {
+    font-size: 3.2rem;
+    line-height: 4.48rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .contentDescription {
+    font-size: 1.8rem;
+    line-height: 2.16rem;
+  }
+
+  .search {
+    flex-direction: column-reverse;
+  }
+
+  /* bottom */
+  .bottomSection {
+    margin-top: 2.4rem;
+  }
+
+  .homeBottomImg {
+    margin-top: 5.9rem;
+  }
+
+  .bottomSection h1 {
+    text-align: center;
+  }
+}
+
+@media screen and (374px < width < 744px) {
+  /* 공통 */
+  .topBottomSection {
+    overflow: hidden;
+  }
+
+  .textSection {
+    font-size: 3.2rem;
+    line-height: 4.48rem;
+    text-align: center;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .breakLine {
+    content: " ";
+    display: inline-block;
+    width: 0.5rem;
+  }
+
+  /* top */
+  .topSection .textSection {
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .shoppingButton {
+    width: 24rem;
+    height: 4.8rem;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+  }
+
+  .homeTopImg {
+    width: 44.8rem;
+    height: 20.4rem;
+    margin-top: 9.3rem;
+  }
+
+  /* center */
+
+  .centerMainSection {
+    flex-direction: column;
+    align-items: normal;
+    gap: 0.8rem;
+    padding: 3.2rem 1.6rem;
+  }
+
+  .homeImg {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 1.6rem;
+    line-height: 2.24rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .centerContent h1 {
+    font-size: 2.4rem;
+    line-height: 3.36rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .contentDescription {
+    font-size: 1.6rem;
+    line-height: 1.92rem;
+  }
+
+  .search {
+    flex-direction: column-reverse;
+  }
+
+  /* bottom */
+  .bottomWrapper {
+    margin-top: 3rem;
+  }
+
+  .bottomSection {
+    margin-top: 3.2rem;
+    padding-top: 9rem;
+  }
+
+  .homeBottomImg {
+    width: 37.5rem;
+    height: 19.8rem;
+    margin-top: 14rem;
+  }
 }
