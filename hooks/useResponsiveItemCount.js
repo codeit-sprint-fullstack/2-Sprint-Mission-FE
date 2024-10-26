@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-export default function useResponsiveItemC1ount({ sm, md, lg }) {
+export default function useResponsiveItemCount({ sm, md, lg }) {
   const [pageSize, setPageSize] = useState();
   const PC_WIDTH = 1200;
   const TABLET_WIDTH = 744;
@@ -9,12 +9,13 @@ export default function useResponsiveItemC1ount({ sm, md, lg }) {
     return sm;
   };
   useEffect(() => {
-    setPageSize(getSize(window.innerWidth));
+    //setPageSize(getSize(window.innerWidth));
     const onResize = () => {
       setPageSize(getSize(window.innerWidth));
     };
+    onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
-  return { pageSize };
+  return pageSize;
 }

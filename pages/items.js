@@ -44,7 +44,7 @@ export default function Items() {
   const pageButtonContainer = `w-[216px] flex gap-x-[4px]`;
   const [order, setOrder] = useState("newest");
   const [page, setPage] = useState(0);
-  const { pageSize } = useResponsiveItemCount({ sm: 4, md: 6, lg: 10 });
+  const pageSize = useResponsiveItemCount("productsStandard");
   const [keyword, setKeyword] = useState("");
   const [totalPage, setTotalPage] = useState();
   const [productsList, setProductsList] = useState([]);

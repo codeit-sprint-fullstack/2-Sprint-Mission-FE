@@ -57,12 +57,20 @@ export default function ValidatedInputBox({
   const isDescription = type === "description";
   return (
     <div className={boxClass}>
-      <label className={labelClass}>{labelMessage}</label>
+      <label htmlFor={type} className={labelClass}>
+        {labelMessage}
+      </label>
       <div>
         {isDescription ? (
-          <textarea onChange={onChange} className={inputClass} value={value} />
+          <textarea
+            id={type}
+            onChange={onChange}
+            className={inputClass}
+            value={value}
+          />
         ) : (
           <input
+            id={type}
             onChange={onChange}
             onKeyDown={istag ? onKeyDown : undefined}
             value={value}

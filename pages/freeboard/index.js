@@ -6,7 +6,7 @@ import axios from "@/lib/axios";
 import Image from "next/image";
 import convertData from "@/utils/convertData";
 import SortSelector from "@/components/SortSelector";
-import article from "../articles/[id]";
+import article from "./[id]";
 export default function FreeBoard() {
   const freeBoardPage = `flex justify-center whitespace-nowrap`;
   const freeBoardContents = `w-[1200px] h-[1013px] mt-[24px] mb-[293px] flex flex-col justify-between
@@ -65,30 +65,33 @@ export default function FreeBoard() {
   const standardArticleFavorite = `h-full flex gap-[8px]`;
   const standardArticleHeart = ``;
   const standardFavoriteCount = `w-[50px] text-[16px] text-6b7280 leading-26px`;
+
   const [order, setOrder] = useState("recent");
-  const { pageSize: bestSize } = useResponsiveItemCount({
-    sm: 1,
-    md: 2,
-    lg: 3
-  });
-  const { pageSize: standardSize } = useResponsiveItemCount({
-    sm: 3,
-    md: 6,
-    lg: 4
-  });
-  const { bestList, bestTotalCount } = useDataFetch({
-    model: "articles",
-    returnName: { list: "bestList", count: "bestTotalCount" },
+  const bestSize = useResponsiveItemCount({ sm: 1, md: 2, lg: 3 });
+  const standardSize = useResponsiveItemCount({ sm: 3, md: 6, lg: 4 });
+  // const { bestList, bestTotalCount } = useDataFetch({
+  //   type: "articleBestList",
+  //   order: "favoritest",
+  //   count: bestSize
+  // });
+  // const { standardList, standardTotalCount } = useDataFetch({
+  //   type: "articleStandardList",
+  //   order: order,
+  //   count: standardSize
+  // });
+  const { articles: bestList, totalCount: bestTotalCount } = useDataFetch({
+    type: "articleBestList",
     order: "favoritest",
     count: bestSize
   });
-  const { standardList, standardTotalCount } = useDataFetch({
-    model: "articles",
-    returnName: { list: "standardList", count: "standardTotalCount" },
-    order: order,
-    count: standardSize
-  });
+  const { articles: standardList, totalCount: standardTotalCount } =
+    useDataFetch({
+      type: "articleStandardList",
+      order: order,
+      count: standardSize
+    });
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
+
   return (
     <div className={freeBoardPage}>
       <div className={freeBoardContents}>
@@ -96,7 +99,7 @@ export default function FreeBoard() {
           <h1 className={bestSectionTitle}>베스트 게시글</h1>
           <div className={bestArticleListClass}>
             {bestList.map((article) => (
-              <Link href={`/articles/${article.id}`} key={article.id}>
+              <Link href={`/freeboard/${article.id}`} key={article.id}>
                 <div className={bestAricleFrameClass}>
                   <Image
                     width={102}
@@ -162,7 +165,7 @@ export default function FreeBoard() {
           </div>
           <ul className={standardArticleListClass}>
             {standardList?.map((article) => (
-              <Link href={`/articles/${article.id}`} key={article.id}>
+              <Link href={`/freeboard/${article.id}`} key={article.id}>
                 <li className={standardArticleClass}>
                   <div className={standardArticleTitleAndImage}>
                     <h1 className={standardArticleTitle}>{article.title}</h1>
