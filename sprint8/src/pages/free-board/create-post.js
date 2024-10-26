@@ -13,7 +13,7 @@ export default function CreatePost() {
   const [content, setContent] = useState('');
 
   async function postArticle() {
-    const data = { title: title, content: content };
+    const data = { title, content };
 
     if (title && content) {
       try {
