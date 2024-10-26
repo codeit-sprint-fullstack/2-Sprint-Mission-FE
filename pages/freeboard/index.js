@@ -4,7 +4,7 @@ import useResponsiveItemCount from "@/hooks/useResponsiveItemCount";
 import useDataFetch from "@/hooks/useDataFetch";
 import axios from "@/lib/axios";
 import Image from "next/image";
-import convertData from "@/utils/convertData";
+import convertDate from "@/utils/convertDate";
 import SortSelector from "@/components/SortSelector";
 import article from "./[id]";
 export default function FreeBoard() {
@@ -69,16 +69,6 @@ export default function FreeBoard() {
   const [order, setOrder] = useState("recent");
   const bestSize = useResponsiveItemCount({ sm: 1, md: 2, lg: 3 });
   const standardSize = useResponsiveItemCount({ sm: 3, md: 6, lg: 4 });
-  // const { bestList, bestTotalCount } = useDataFetch({
-  //   type: "articleBestList",
-  //   order: "favoritest",
-  //   count: bestSize
-  // });
-  // const { standardList, standardTotalCount } = useDataFetch({
-  //   type: "articleStandardList",
-  //   order: order,
-  //   count: standardSize
-  // });
   const { articles: bestList, totalCount: bestTotalCount } = useDataFetch({
     type: "articleBestList",
     order: "favoritest",
@@ -132,7 +122,7 @@ export default function FreeBoard() {
                       </span>
                     </div>
                     <span className={bestArticleListTime}>
-                      {convertData(article.createdAt)}
+                      {convertDate(article.createdAt)}
                     </span>
                   </div>
                 </div>
@@ -187,7 +177,7 @@ export default function FreeBoard() {
                       />
                       <span className={standardNickName}>총명한 판다</span>
                       <span className={standardArticleDate}>
-                        {convertData(article.createdAt)}
+                        {convertDate(article.createdAt)}
                       </span>
                     </div>
                     <div className={standardArticleFavorite}>

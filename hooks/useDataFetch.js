@@ -47,7 +47,6 @@ export default function useDataFetch({
     updatedAt: ""
   });
   useEffect(() => {
-    console.log(url);
     const dataFetch = async () => {
       const response = await axios.get(url);
       const testData = response.data;

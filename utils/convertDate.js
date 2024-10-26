@@ -1,4 +1,4 @@
-export default function convertData(dateString) {
+export default function convertDate(dateString) {
   const date = new Date(dateString);
   const formattedDate = date
     .toLocaleDateString("ko-KR", {

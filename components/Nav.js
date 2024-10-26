@@ -18,7 +18,9 @@ export default function Nav() {
   text-[18px] font-[700] sm:text-[16px]`;
   const activeClass = "text-3692ff";
   const router = useRouter();
-  const isFreeBoard = router.pathname === "/freeboard" ? activeClass : "";
+  const isFreeBoard = router.pathname.startsWith("/freeboard")
+    ? activeClass
+    : "";
   const isItems =
     router.pathname === "/items" || router.pathname === "/register"
       ? activeClass
