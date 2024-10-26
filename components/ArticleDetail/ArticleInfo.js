@@ -15,12 +15,15 @@ export default function ArticleInfo({ article }) {
     if (confirmed) {
       try {
         await deleteArticle(article.id);
-
         router.push('/articles');
       } catch (error) {
         alert('게시글 삭제에 실패했습니다.');
       }
     } 
+  };
+
+  const handleEdit = () => {
+    router.push(`/articles/edit?id=${article.id}`);
   };
 
   return (
@@ -42,7 +45,6 @@ export default function ArticleInfo({ article }) {
             <span className={styles.nickname}>{article.author || '익명'}</span>
             <span className={styles.date}>{article.formattedDate}</span>
           </div>
-
         </div>
 
         <div className={styles.likesWrapper}>
@@ -66,18 +68,17 @@ export default function ArticleInfo({ article }) {
                 src="/images/articles/ic_kebab.svg"
                 alt="더보기 메뉴 아이콘"
                 fill
-                sizes='2.4rem'
+                sizes="2.4rem"
               />
             </div>
           </button>
           {dropdownOpen && (
             <div className={styles.dropdownMenu}>
-              <button className={styles.dropdownItem}>수정하기</button>
+              <button className={styles.dropdownItem} onClick={handleEdit}>수정하기</button>
               <button className={styles.dropdownItem} onClick={handleDelete}>삭제하기</button>
             </div>
           )}
         </div>
-
       </div>
       <div className={styles.content}>{article.content}</div>
     </div>

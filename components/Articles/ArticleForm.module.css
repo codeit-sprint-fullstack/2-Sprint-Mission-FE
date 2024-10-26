@@ -11,7 +11,6 @@
 }
 
 .sectionTitle {
-  font-family: 'Pretendard', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--heading-text-color);
@@ -22,54 +21,53 @@
   flex-direction: column;
 }
 
+/* Label 스타일 */
 .label {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 0.8rem;
 }
 
-.input {
+/* 제목 및 텍스트 입력 필드 스타일 */
+.input, .textarea {
   font-size: 1.6rem;
   padding: 1.6rem 2.4rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 2rem;
   border: none;
   border-radius: 8px;
   background-color: #F3F4F6;
 }
 
-.input::placeholder {
+.input::placeholder, .textarea::placeholder {
   font-size: 1.6rem;
   font-weight: 400;
   color: #9CA3AF;
 }
 
 .textarea {
-  font-size: 1.6rem;
-  padding: 1.6rem 2.4rem;
-  margin-bottom: 40rem;
-  border: none;
   border-radius: 1.2rem;
-  background-color: #F3F4F6;
   height: 28.2rem;
   resize: none;
+  margin-bottom: 4rem;
 }
 
+/* 등록 버튼 스타일 */
 .submitBtn {
-  background-color: #9CA3AF; 
+  background-color: #9CA3AF;
   color: #fff;
   font-size: 1.6rem;
   font-weight: 600;
   padding: 1rem 2rem;
   border: none;
   border-radius: 8px;
-  cursor: not-allowed; 
   text-align: center;
   width: 7.4rem;
+  cursor: not-allowed;
 }
 
 .submitBtn.active {
   background-color: var(--primary-color);
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .submitBtn:disabled {
