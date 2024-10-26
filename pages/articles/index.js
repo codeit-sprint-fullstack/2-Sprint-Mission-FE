@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import BestArticleList from '@/components/Articles/BestArticleList';
 import { generateRandomNickname, getRandomInt } from '@/lib/utils';
 import formatDate from '@/lib/formatDate';
-import styles from '@/components/Articles/ArticlePage.module.css';
+import styles from './ArticlePage.module.css';
 import useMaxItems from '@/hooks/useMaxItems';
 import ArticleList from '@/components/Articles/ArticleList';
 import { getArticleList } from '@/lib/api/ArticleService';
+import Link from 'next/link';
 
 export default function ArticlesPage() {
   const [bestArticles, setBestArticles] = useState([]);
@@ -52,7 +53,10 @@ export default function ArticlesPage() {
         <p>베스트 게시글이 없습니다.</p>
       )}
 
-      <h2 className={styles.sectionTitle}>게시글</h2>
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>게시글</h2>
+        <Link href="/articles/write" className={styles.writeBtn}>글쓰기</Link>
+      </div>
       <ArticleList />    {/*  ArticleList 자체적으로 데이터 로딩*/}
     </div>
   );

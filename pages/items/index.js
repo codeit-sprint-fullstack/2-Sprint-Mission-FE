@@ -1,6 +1,6 @@
 export default function ItemsPage() {
   return (
-    <div>
+    <div className="content-spacer">
       중고마켓
     </div>
   );

@@ -26,3 +26,7 @@ button {
   /* 부모 요소의 폰트 스타일을 상속 */
   font-family: inherit;
 }
+
+.content-spacer {
+  min-height: 70vh; 
+}
