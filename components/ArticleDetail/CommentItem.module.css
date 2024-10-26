@@ -1,4 +1,5 @@
 .commentItem {
+  position: relative;
   width: 100%;
   margin-bottom: 2.4rem;
   background-color: #FCFCFC;
@@ -43,4 +44,10 @@
 .nicknameAndDate {
   display: flex;
   flex-direction: column;
+}
+
+.dropdownContainer {
+  position: absolute;
+  top: 0.5rem;    
+  right: 0.5rem; 
 }

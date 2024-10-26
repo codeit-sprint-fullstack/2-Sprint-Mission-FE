@@ -1,11 +1,19 @@
+import { useState } from 'react';
 import CommentItem from './CommentItem';
 import Image from 'next/image';
 import styles from './CommentList.module.css';
 
 export default function CommentList({ comments }) {
+  const [commentList, setCommentList] = useState(comments); // 초기값으로 전달된 comments 사용
+
+  // 댓글 삭제 처리 함수
+  const handleDeleteComment = (commentId) => {
+    setCommentList((prevComments) => prevComments.filter(comment => comment.id !== commentId));
+  };
+
   return (
     <div>
-      {comments.length === 0 ? (
+      {commentList.length === 0 ? (
         <div className={styles.noComments}>
           <div className={styles.iconWrapper}>
             <Image
@@ -19,9 +27,9 @@ export default function CommentList({ comments }) {
         </div>
       ) : (
         <div className={styles.hasComments}>
-        {comments.map((comment) => (
-          <CommentItem key={comment.id} comment={comment} />
-        ))}
+          {commentList.map((comment) => (
+            <CommentItem key={comment.id} comment={comment} onDelete={handleDeleteComment} />
+          ))}
         </div>
       )}
     </div>
