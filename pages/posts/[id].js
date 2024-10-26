@@ -1,6 +1,6 @@
 import Head from "next/head";
 // import styles from "@/styles/Post.module.css";
-import { fetchPost } from "../../lib/api";
+import { getArticle } from "../../lib/api";
 import { useEffect, useState } from "react";
 import axios from "../../lib/axios";
 
@@ -8,7 +8,7 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
 
   try {
-    const post = await fetchPost(id);
+    const post = await getArticle(id);
     return {
       props: {
         post,
