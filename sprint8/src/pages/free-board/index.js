@@ -57,6 +57,7 @@ export async function getServerSideProps() {
       }
     };
   } catch (error) {
-    return console.error('Failed to get Best Articles:', error);
+    console.error('Failed to get Best Articles:', error);
+    throw error;
   }
 }
