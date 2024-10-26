@@ -8,59 +8,66 @@ import Link from "next/link";
 import SearchForm from "@/conponents/SeachForm";
 import SortDropbox from "@/conponents/SortDropbox";
 import Pagination from "@/conponents/Pagination";
+import { useRouter } from "next/router";
 
-export async function getServerSideProps() {
-  const resAll = await axios.get(`/articles`);
+const ITEMS_PER_PAGE = 5;
+
+export async function getServerSideProps(context) {
+  const page = context.query.page || 1;
+  const orderBy = context.query.orderBy || "recent";
+  const keyword = context.query.keyword || "";
+
+  const resAll = await axios.get(
+    `/articles?page=${page}&pageSize=${ITEMS_PER_PAGE}&orderBy=${orderBy}&keyword=${keyword}`
+  );
+
   const articles = resAll.data.list ?? [];
-  console.log("articles", articles);
+  const totalCount = resAll.data.totalCount ?? 0;
+
   const resBest = await axios.get(`/articles?pageSize=3`);
   const bestArticles = resBest.data.list || [];
 
   return {
     props: {
-      articles,
-      bestArticles
+      initialArticles: articles,
+      bestArticles,
+      totalCount
     }
   };
 }
 
-const ITEMS_PER_PAGE = 5;
-
-export default function FreeBoard({ articles: initialArticles, bestArticles }) {
-  const [articles, setArticles] = useState(initialArticles);
+export default function FreeBoard({
+  initialArticles,
+  bestArticles,
+  totalCount
+}) {
+  const [articles, setArticles] = useState(initialArticles || []);
   const [keyword, setKeyword] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(1);
+  const router = useRouter();
 
-  // 페이지에 따른 게시글 슬라이싱
-  const paginatedArticles = articles.slice(
-    (page - 1) * ITEMS_PER_PAGE,
-    page * ITEMS_PER_PAGE
-  );
+  // 서버에서 새로운 페이지의 데이터를 요청하는 함수
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get(
+        `/articles?page=${page}&pageSize=${ITEMS_PER_PAGE}&orderBy=${order}&keyword=${keyword}`
+      );
+      setArticles(response.data.list ?? []);
+    } catch (error) {
+      console.error("Failed to fetch articles:", error);
+    }
+  };
 
+  // 검색, 정렬, 페이지 변경 시 데이터 재요청
   useEffect(() => {
-    let filteredArticles = initialArticles;
+    fetchArticles();
 
-    // 검색 필터
-    if (keyword) {
-      const normalizedKeyword = keyword.replace(/\s+/g, "");
-      filteredArticles = filteredArticles.filter(
-        (article) =>
-          article.title.replace(/\s+/g, "").includes(normalizedKeyword) ||
-          article.content.replace(/\s+/g, "").includes(normalizedKeyword)
-      );
-    }
-
-    // 정렬 (최신순)
-    if (order === "recent") {
-      filteredArticles = [...filteredArticles].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
-    }
-
-    setArticles(filteredArticles);
-    setPage(1); // 새로운 검색이나 정렬 시 페이지를 첫 번째 페이지로 초기화
-  }, [keyword, order, initialArticles]);
+    const query = { page, orderBy: order, keyword };
+    router.replace({ pathname: router.pathname, query }, undefined, {
+      shallow: true
+    });
+  }, [page, keyword, order]);
 
   return (
     <div className={styles.body}>
@@ -80,11 +87,11 @@ export default function FreeBoard({ articles: initialArticles, bestArticles }) {
             <SearchForm setKeyword={setKeyword} />
             <SortDropbox setOrder={setOrder} />
           </div>
-          <ArticleList articles={paginatedArticles} />
+          <ArticleList articles={articles} />
           <Pagination
             page={page}
             setPage={setPage}
-            totalCount={articles.length}
+            totalCount={totalCount || 0}
             pageSize={ITEMS_PER_PAGE}
           />
         </div>
