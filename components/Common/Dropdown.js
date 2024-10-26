@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import styles from './Dropdown.module.css';
 
 export default function Dropdown({
@@ -7,17 +8,14 @@ export default function Dropdown({
   value,
   options,
   onChange,
+  iconMode = false,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef(null);
 
-  function handleInputClick() {
+  const handleInputClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
-  }
-
-  function handleBlur() {
-    setIsOpen(false);
-  }
+  };
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -26,46 +24,36 @@ export default function Dropdown({
         setIsOpen(false);
       }
     }
-
     window.addEventListener('click', handleClickOutside);
     return () => {
       window.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
-  const classNames = `${styles.input} ${
-    isOpen ? styles.opened : ''
-  } ${className}`;
-
-  
-  const selectedOption = options.find((option) => option.value === value);
-
   return (
     <div
-      className={classNames}
+      className={`${iconMode ? styles.iconMode : styles.input} ${isOpen ? styles.opened : ''} ${className}`}
       onClick={handleInputClick}
-      onBlur={handleBlur}
       ref={inputRef}
     >
-      {selectedOption.label}
-      <span className={styles.arrow}>▲</span>
-      <div className={styles.options}>
-        {options.map((option) => {
-          const selected = value === option.value;
-          const className = `${styles.option} ${
-            selected ? styles.selected : ''
-          }`;
-          return (
+      {iconMode ? (
+        <Image src="/images/articles/ic_kebab.svg" alt="더보기 메뉴 아이콘" width={24} height={24} />
+      ) : (
+        options.find((option) => option.value === value)?.label || '선택'
+      )}
+      {isOpen && (
+        <div className={`${styles.options} ${iconMode ? styles.iconModeOptions : ''}`}>
+          {options.map((option) => (
             <div
-              className={className}
               key={option.value}
+              className={`${styles.option} ${value === option.value ? styles.selected : ''}`}
               onClick={() => onChange(name, option.value)}
             >
               {option.label}
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

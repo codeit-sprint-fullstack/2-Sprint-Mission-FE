@@ -1,15 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import styles from './ArticleInfo.module.css';
 import Image from 'next/image';
 import { deleteArticle } from '@/lib/api/ArticleService';
 import { useRouter } from 'next/router';
+import Dropdown from '@/components/Common/Dropdown';
 
 export default function ArticleInfo({ article }) {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
-  const dropdownRef = useRef();
-
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const handleDelete = async () => {
     const confirmed = window.confirm('삭제하시겠습니까?');
@@ -20,27 +17,18 @@ export default function ArticleInfo({ article }) {
       } catch (error) {
         alert('게시글 삭제에 실패했습니다.');
       }
-    } 
+    }
   };
 
   const handleEdit = () => {
     router.push(`/articles/edit?id=${article.id}`);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      // 드롭다운 영역 외부를 클릭했는지 확인
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-    };
+  const handleDropdownChange = (name, value) => {
+    if (value === 'edit') handleEdit();
+    if (value === 'delete') handleDelete();
+  };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-  
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{article.title}</h1>
@@ -76,23 +64,18 @@ export default function ArticleInfo({ article }) {
         </div>
 
         {/* 드롭다운 메뉴 */}
-        <div className={styles.dropdownContainer} ref={dropdownRef}>
-          <button className={styles.dropdownToggle} onClick={toggleDropdown}>
-            <div className={styles.dropdownIcon}>
-              <Image
-                src="/images/articles/ic_kebab.svg"
-                alt="더보기 메뉴 아이콘"
-                fill
-                sizes="2.4rem"
-              />
-            </div>
-          </button>
-          {dropdownOpen && (
-            <div className={styles.dropdownMenu}>
-              <button className={styles.dropdownItem} onClick={handleEdit}>수정하기</button>
-              <button className={styles.dropdownItem} onClick={handleDelete}>삭제하기</button>
-            </div>
-          )}
+        <div className={styles.dropdownContainer}>
+          <Dropdown
+            name="articleOptions"
+            iconMode={true}
+            options={[
+              { label: '수정하기', value: 'edit' },
+              { label: '삭제하기', value: 'delete' },
+            ]}
+            value="" // 기본 선택 없음
+            onChange={handleDropdownChange}
+            className={styles.dropdownToggle}
+          />
         </div>
       </div>
       <div className={styles.content}>{article.content}</div>
