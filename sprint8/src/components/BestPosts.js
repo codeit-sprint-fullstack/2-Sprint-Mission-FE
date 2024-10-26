@@ -10,8 +10,8 @@ export default function BestProduct({ data }) {
 
   return (
     <div className={style.container}>
-      {topThree.map((item, index) => (
-        <div key={index} className={style.itemBlock}>
+      {topThree.map((item) => (
+        <div key={item.id} className={style.itemBlock}>
           <Image src={bestBedge} alt="best item badge" />
           <div className={style.titleImg}>
             <h1 className={style.title}>{item.title}</h1>

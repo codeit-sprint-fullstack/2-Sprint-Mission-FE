@@ -9,9 +9,9 @@ import defaultImg from '@/public/assets/img_default.png';
 export default function PostList({ data }) {
   return (
     <div>
-      {data.map((item, index) => (
-        <Link key={index} href={`/free-board/${item.id}`}>
-          <div key={index} className={style.container}>
+      {data.map((item) => (
+        <Link key={item.id} href={`/free-board/${item.id}`}>
+          <div className={style.container}>
             <div className={style.titleAndImage}>
               <h1 className={style.title}>{item.title}</h1>
               <Image

@@ -19,7 +19,7 @@ export default function CommentList({
   async function updateComment(articleId, commentId, data) {
     if (data && Object.values(data)[0] !== '') {
       try {
-\        const res = await axios.patch(
+        const res = await axios.patch(
           `/articles/${articleId}/comments/${commentId}`,
           data
         );
