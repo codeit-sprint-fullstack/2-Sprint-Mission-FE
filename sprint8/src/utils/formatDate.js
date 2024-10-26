@@ -1,4 +1,5 @@
+import dayjs from 'dayjs';
+
 export default function formatDate(date) {
-  const onlyDate = String(date).slice(0, 10);
-  return onlyDate.replace(/-/g, '.');
+  return dayjs(date).format('YYYY-MM-DD');
 }
