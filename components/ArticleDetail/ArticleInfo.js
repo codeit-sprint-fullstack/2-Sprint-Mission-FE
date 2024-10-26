@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './ArticleInfo.module.css';
 import Image from 'next/image';
 import { deleteArticle } from '@/lib/api/ArticleService';
@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 export default function ArticleInfo({ article }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
+  const dropdownRef = useRef();
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
@@ -26,6 +27,20 @@ export default function ArticleInfo({ article }) {
     router.push(`/articles/edit?id=${article.id}`);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // 드롭다운 영역 외부를 클릭했는지 확인
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{article.title}</h1>
@@ -61,7 +76,7 @@ export default function ArticleInfo({ article }) {
         </div>
 
         {/* 드롭다운 메뉴 */}
-        <div className={styles.dropdownContainer}>
+        <div className={styles.dropdownContainer} ref={dropdownRef}>
           <button className={styles.dropdownToggle} onClick={toggleDropdown}>
             <div className={styles.dropdownIcon}>
               <Image
