@@ -17,14 +17,15 @@ export async function getServerSideProps(context) {
   const orderBy = context.query.orderBy || "recent";
   const keyword = context.query.keyword || "";
 
-  const resAll = await axios.get(
-    `/articles?page=${page}&pageSize=${ITEMS_PER_PAGE}&orderBy=${orderBy}&keyword=${keyword}`
-  );
+  const [resAll, resBest] = await Promise.all([
+    axios.get(
+      `/articles?page=${page}&pageSize=${ITEMS_PER_PAGE}&orderBy=${orderBy}&keyword=${keyword}`
+    ),
+    axios.get(`/articles?pageSize=3`)
+  ]);
 
   const articles = resAll.data.list ?? [];
   const totalCount = resAll.data.totalCount ?? 0;
-
-  const resBest = await axios.get(`/articles?pageSize=3`);
   const bestArticles = resBest.data.list || [];
 
   return {
