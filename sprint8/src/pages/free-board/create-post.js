@@ -27,11 +27,7 @@ export default function CreatePost() {
   }
 
   useEffect(() => {
-    if (title && content) {
-      setIsButtonActive(true);
-    } else {
-      setIsButtonActive(false);
-    }
+    setIsButtonActive(!!title && !!content);
   }, [title, content]);
 
   const handleData = (inputType, data) => {
