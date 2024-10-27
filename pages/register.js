@@ -53,7 +53,7 @@ export default function Register() {
     };
     try {
       const response = await axios.post("/products", submitData);
-      router.push("/items");
+      router.push(`/items/${response.data.id}`);
     } catch (e) {
       console.error(`데이터 전송 실패: ${e.message}`);
     }
