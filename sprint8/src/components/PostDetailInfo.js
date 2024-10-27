@@ -5,14 +5,14 @@ import profileImg from '@/public/assets/img_profile.png';
 import heartIcon from '@/public/assets/ic_heart.png';
 import formatDate from '@/src/utils/formatDate.js';
 import DropBox from './DropBox.js';
-import axios from '@/src/lib/axios.js';
+import { deleteArticle } from '@/src/api/articleServices';
 
 export default function PostDetail({ data }) {
   const router = useRouter();
   const { id } = router.query;
 
-  async function deleteArticle(id) {
-    return await axios.delete(`/articles/${id}`);
+  async function removeArticle() {
+    return await deleteArticle(id);
   }
 
   const handleEdit = () => {
@@ -20,7 +20,7 @@ export default function PostDetail({ data }) {
   };
 
   const handleDelete = () => {
-    deleteArticle(id).then(() => {
+    removeArticle(id).then(() => {
       router.push('/free-board');
     });
   };

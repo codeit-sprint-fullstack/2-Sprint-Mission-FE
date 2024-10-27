@@ -4,7 +4,7 @@ import style from '@/src/styles/create-post.module.css';
 import Header from '@/src/components/Header.js';
 import Button from '@/src/components/Button.js';
 import CreateEditPost from '@/src/components/CreateEditPost.js';
-import axios from '@/src/lib/axios.js';
+import { postArticle } from '@/src/api/articleServices';
 
 export default function CreatePost() {
   const router = useRouter();
@@ -12,17 +12,13 @@ export default function CreatePost() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  async function postArticle() {
+  async function createArticle() {
     const data = { title, content };
 
     if (!title || !content) return;
-    try {
-      const res = await axios.post('/articles', data);
-      const articleId = res.data.id;
-      router.push(`/free-board/${articleId}`);
-    } catch (error) {
-      console.error('Error posting article:', error);
-    }
+    const res = await postArticle(data);
+    const articleId = res.id;
+    router.push(`/free-board/${articleId}`);
   }
 
   useEffect(() => {
@@ -41,7 +37,7 @@ export default function CreatePost() {
     <div className={style.body}>
       <div className={style.headerAndButton}>
         <Header>게시글 쓰기</Header>
-        <Button status={isButtonActive} onClick={postArticle}>
+        <Button status={isButtonActive} onClick={createArticle}>
           등록
         </Button>
       </div>

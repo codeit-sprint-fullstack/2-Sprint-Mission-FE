@@ -4,8 +4,8 @@ import style from '@/src/styles/Comment.module.css';
 import profileImg from '@/public/assets/img_profile.png';
 import DropBox from './DropBox';
 import EditComment from './EditComment.js';
-import axios from '@/src/lib/axios.js';
 import { useState } from 'react';
+import { patchComment, deleteComment } from '@/src/api/commentServices.js';
 
 export default function CommentList({
   comments,
@@ -18,26 +18,17 @@ export default function CommentList({
 
   async function updateComment(articleId, commentId, data) {
     if (!data || Object.values(data)[0] == '') return;
-    try {
-      const res = await axios.patch(
-        `/articles/${articleId}/comments/${commentId}`,
-        data
-      );
-      onUpdateComment(res.data);
-    } catch (error) {
-      console.error('Error patching comment:', error);
-    }
+    const res = await patchComment(articleId, commentId, data);
+    onUpdateComment(res);
   }
 
-  async function deleteComment(articleId, commentId) {
-    const res = await axios.delete(
-      `/articles/${articleId}/comments/${commentId}`
-    );
+  async function removeComment(articleId, commentId) {
+    await deleteComment(articleId, commentId);
     onDeleteComment(commentId);
   }
 
   const handleDelete = (commentId) => {
-    deleteComment(id, commentId);
+   removeComment(id, commentId);
   };
 
   const handleEditClick = (commentId) => {

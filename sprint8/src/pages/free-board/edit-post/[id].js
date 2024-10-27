@@ -5,6 +5,7 @@ import Header from '@/src/components/Header.js';
 import Button from '@/src/components/Button.js';
 import CreateEditPost from '@/src/components/CreateEditPost.js';
 import axios from '@/src/lib/axios.js';
+import { patchArticle } from '@/src/api/articleServices';
 
 export default function EditPost() {
   const router = useRouter();
@@ -17,12 +18,8 @@ export default function EditPost() {
     const data = { title, content };
 
     if (!title || !content) return;
-    try {
-      const res = await axios.patch(`/articles/${id}`, data);
-      router.push(`/free-board/${id}`);
-    } catch (error) {
-      console.error('Error patching article:', error);
-    }
+    const res = await patchArticle(id, data);
+    router.push(`/free-board/${id}`);
   }
 
   useEffect(() => {

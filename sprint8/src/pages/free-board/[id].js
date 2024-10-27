@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import PostDetailInfo from '@/src/components/PostDetailInfo.js';
 import AddComment from '@/src/components/AddComment.js';
 import CommentList from '@/src/components/CommentList.js';
-import axios from '@/src/lib/axios.js';
+import { getArticle } from '@/src/api/articleServices.js';
 
 export default function PostDetail() {
   const router = useRouter();
@@ -12,19 +12,14 @@ export default function PostDetail() {
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
 
-  async function getArticle(id) {
-    try {
-      const res = await axios.get(`/articles/${id}`);
-      const data = await res.data;
-      setArticle(data);
-      setComments(data.comments || []);
-    } catch (error) {
-      console.error('failed to fetch article', error);
-    }
+  async function fetchArticle(id) {
+    const data = await getArticle(id);
+    setArticle(data);
+    setComments(data.comments || []);
   }
 
   useEffect(() => {
-    getArticle(id);
+    fetchArticle(id);
   }, [id]);
 
   const handleNewComment = (newComment) => {

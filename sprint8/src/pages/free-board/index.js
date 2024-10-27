@@ -7,18 +7,15 @@ import Button from '@/src/components/Button';
 import SearchBar from '@/src/components/SearchBar.js';
 import Sorting from '@/src/components/Sorting.js';
 import PostList from '@/src/components/PostList.js';
-import axios from '@/src/lib/axios.js';
+import { getArticles } from '@/src/api/articleServices.js';
 
 export default function FreeBoard({ initialBestArticles }) {
   const [articles, setArticles] = useState([]);
   const [keyword, setKeyword] = useState('');
   const [order, setOrder] = useState('');
 
-  async function fetchArticles(order, searchKeyword) {
-    const res = await axios.get(
-      `/articles?order=${order}&search=${searchKeyword}`
-    );
-    const data = await res.data;
+  async function fetchArticles() {
+    const data = await getArticles({ order, searchKeyword: keyword });
     setArticles(data);
   }
 
@@ -48,8 +45,7 @@ export default function FreeBoard({ initialBestArticles }) {
 //NOTE: Best 게시글은 고정된 값이니까 서버에서 받아올 수 있지 않을까? 싶어서 시도
 export async function getServerSideProps() {
   try {
-    const res = await axios.get(`/articles`);
-    const data = await res.data;
+    const data = await getArticles();
 
     return {
       props: {
@@ -58,6 +54,6 @@ export async function getServerSideProps() {
     };
   } catch (error) {
     console.error('Failed to get Best Articles:', error);
-    throw error;
+    throw Error;
   }
 }

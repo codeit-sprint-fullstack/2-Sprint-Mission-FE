@@ -1,26 +1,23 @@
 import style from '@/src/styles/AddComment.module.css';
 import Button from '@/src/components/Button.js';
 import { useState, useEffect } from 'react';
-import axios from '@/src/lib/axios.js';
+import { postComment } from '../api/commentServices';
 
 export default function AddComment({ id, onNewComment }) {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [comment, setComment] = useState('');
 
-  async function postComment(data) {
+  async function createComment(id, data) {
     if (!comment) return;
-    try {
-      const res = await axios.post(`/articles/${id}/comments`, data);
-      onNewComment(res.data);
-      setComment('');
-    } catch (error) {
-      console.error('Error posting comment:', error);
-    }
+    const res = await postComment(id, data);
+    onNewComment(res);
+    setComment('');
   }
 
+  //TODO: 없애기
   const sendComment = (e) => {
     e.preventDefault();
-    postComment({ content: comment });
+    createComment(id, { content: comment });
   };
 
   useEffect(() => {
