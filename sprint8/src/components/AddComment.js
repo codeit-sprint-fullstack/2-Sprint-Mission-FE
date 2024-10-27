@@ -10,14 +10,14 @@ export default function AddComment({ id, onNewComment }) {
   async function createComment(id) {
     const data = { content: comment };
 
-    if (!comment) return;
+    if (!comment?.trim().length) return;
     const res = await postComment(id, data);
     onNewComment(res);
     setComment('');
   }
 
   useEffect(() => {
-    setIsButtonActive(!!comment?.trim());
+    setIsButtonActive(comment?.trim().length);
   }, [comment]);
 
   return (

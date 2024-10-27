@@ -16,13 +16,19 @@ export default function EditPost() {
   async function updateArticle(id) {
     const data = { title, content };
 
-    if (!title || !content) return;
+    if (!title?.trim().length || !content?.trim().length) return;
     const res = await patchArticle(id, data);
-    router.push(`/free-board/${id}`);
+    return res;
   }
 
+  const handleUpdatePost = () => {
+    updateArticle(id).then((res) => {
+      if (res) router.push(`/free-board/${res.id}`);
+    });
+  };
+
   useEffect(() => {
-    setIsButtonActive(!!title && !!content);
+    setIsButtonActive(title?.trim().length && content?.trim().length);
   }, [title, content]);
 
   const handleData = (inputType, data) => {
@@ -37,7 +43,7 @@ export default function EditPost() {
     <div className={style.body}>
       <div className={style.headerAndButton}>
         <Header>게시글 수정하기</Header>
-        <Button status={isButtonActive} onClick={() => updateArticle(id)}>
+        <Button status={isButtonActive} onClick={handleUpdatePost}>
           등록
         </Button>
       </div>

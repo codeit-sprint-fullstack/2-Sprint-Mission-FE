@@ -15,19 +15,19 @@ export default function CreatePost() {
   async function createArticle() {
     const data = { title, content };
 
-    if (!title || !content) return;
+    if (!title?.trim().length || !content?.trim().length) return;
     const res = await postArticle(data);
     return res.id;
   }
 
   const handleCreatePost = () => {
     createArticle().then((articleId) => {
-      router.push(`/free-board/${articleId}`);
+      if (articleId) router.push(`/free-board/${articleId}`);
     });
   };
 
   useEffect(() => {
-    setIsButtonActive(!!title && !!content);
+    setIsButtonActive(title?.trim().length && content?.trim().length);
   }, [title, content]);
 
   const handleData = (inputType, data) => {
