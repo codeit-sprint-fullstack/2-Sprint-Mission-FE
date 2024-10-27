@@ -8,7 +8,7 @@ export default function useDataFetch({
   order = "recent",
   page = 0,
   keyword = "",
-  id = "297f335f-b678-4653-9fe0-186a0e99d037"
+  id
 }) {
   function convertName() {
     let url;
@@ -20,7 +20,7 @@ export default function useDataFetch({
         url = `/articles?keyword=${keyword}&order=${order}&page =${page}&pageSize=${count}`;
         return url;
       case "articleWithComments":
-        url = `/articles/${id}/withcomments?${keyword}order=${order}&page=${page}&pageSize=${count}`;
+        url = `/articles/${id}/withcomments?order=${order}&page=${page}&pageSize=${count}`;
         return url;
     }
   }
@@ -30,19 +30,23 @@ export default function useDataFetch({
   const url = convertName(type);
   useEffect(() => {
     const dataFetch = async () => {
+      console.log(url);
       const response = await axios.get(url);
       let comments, totalCount, article, articles, products, articleComments;
       switch (type) {
         case "articleWithComments":
           ({ article, articleComments } = response.data);
           ({ comments, totalCount } = articleComments);
+          console.log(article);
+          console.log(comments);
+          console.log(totalCount);
           setData(article);
           setDataList(comments);
           setTotalCount(totalCount);
           break;
       }
     };
-    dataFetch();
+    if (id) dataFetch();
   }, [url, count, order, page, keyword, type]);
   if (type === "articleWithComments") {
     return {
