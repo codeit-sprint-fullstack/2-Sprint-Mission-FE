@@ -5,8 +5,8 @@ const TABLET_ITEMS = 2;
 const MOBILE_ITEMS = 1;
 
 export default function useMaxItems() {
-  //const [maxItems, setMaxItems] = useState(null); // 초기값을 null로 설정하여 서버사이드 렌더링에서 값이 나오지 않도록 함(SSR이 아닌 방식에선 정상 동작)
-  const [maxItems, setMaxItems] = useState(3);  
+  const [maxItems, setMaxItems] = useState(null); // 초기값을 null로 설정하여 서버사이드 렌더링에서 값이 나오지 않도록 함(SSR이 아닌 방식에선 정상 동작)
+  //const [maxItems, setMaxItems] = useState(3);  
   /*
   // 모바일에서 3개가 표시되었다가 1개로 바뀌는 걸 막기 위해 초기값을 NULL로 했었는데, 
   // SSR 적용하면서 NULL을 초기값으로 주면 여러개가 보였다가 화면사이즈에 맞는 갯수로 변함
