@@ -1,14 +1,25 @@
-import { useState } from "react";
-import { createArticle } from "./api/ArticleService";
+import { useEffect, useState } from "react";
+import { createArticle, patchArticle } from "./api/ArticleService";
 import style from "../styles/Post.module.css";
 import Image from "next/image";
 import ic_plus from "@/public/ic_plus.png";
+import { useRouter } from "next/router";
 
 export default function Post() {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { id, title: initialTitle, content: initialContent, images: initialImages } = router.query; // 쿼리 파라미터에서 제목과 내용 받기
+
+  const isEditing = !!id;
+
+  useEffect(() => {
+    if (initialTitle) setTitle(initialTitle);
+    if (initialContent) setContent(initialContent);
+    if (initialImages) setImages(initialImages);
+  }, [initialTitle, initialContent, initialImages]);
 
   const isValid = title.trim() !== "" && content.trim() !== "" && content.length >= 10;
 
@@ -18,13 +29,19 @@ export default function Post() {
     setIsSubmitting(true);
 
     try {
-      const postData = { title, content, images, };
-      const result = await createArticle(postData);
-      console.log(result);
+      const postData = { title, content, images };
+      let result;
+      if (isEditing) {
+        result = await patchArticle(id, postData);
+      } else {
+        result = await createArticle(postData);
+      }
+      console.log("게시글 결과:", result); // 결과 확인
 
       setTitle("");
       setContent("");
       setImages([]);
+      router.push(`/articles/${result.id}`);
     } catch (error) {
       console.error("게시글 작성 실패:", error);
     } finally {
@@ -36,12 +53,12 @@ export default function Post() {
     <div className={style.top}>
       <div className={style.body}>
         <div className={style.titleBtnGroup}>
-          <h1 className={style.post}>게시글 쓰기</h1>
+          <h1 className={style.post}>{isEditing ? "게시글 수정" : "게시글 쓰기"}</h1>
           <button 
             className={`${style.postBtn} ${isValid ? style.active : ""}`}
             onClick={handleSubmit}
             disabled={!isValid || isSubmitting}>
-            등록
+            {isEditing ? "수정" : "등록"}
           </button>
         </div>
         <div className={style.postBody}>

@@ -24,18 +24,21 @@ import {
   }
   
   export async function createArticle(ArticleData) {
-    const formData = new FormData();
-    formData.append("title", ArticleData.title);
-    formData.append("content", ArticleData.content);
-    ArticleData.images.forEach((image) => {
-      formData.append("images", image);
-    });
-
-    const response = await requestPost(`/articles`, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    return response.data;
+    // const formData = new FormData();
+    // formData.append("title", ArticleData.title);
+    // formData.append("content", ArticleData.content);
+    // ArticleData.images.forEach((image) => {
+    //   formData.append("images", image);
+    // });
+  
+    try {
+      const response = await requestPost(`/articles`, ArticleData);
+      return response.data;
+    } catch (e) {
+      console.error(e.message);
+    }
   }
+  
   
   export async function patchArticle(id, ArticleData) {
     const response = await requestPatch(`/articles/${id}`, ArticleData);

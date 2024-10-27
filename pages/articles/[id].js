@@ -1,21 +1,37 @@
 import style from "@/styles/ArticleDetail.module.css";
 import { useEffect, useState } from "react";
-import { getArticle } from "@/pages/api/ArticleService";
+import { getArticle, deleteArticle } from "@/pages/api/ArticleService";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import kebab from "@/public/ic_kebab.png";
 import profile from "@/public/ic_profile.png";
 import heart from "@/public/ic_heart.png";
 import Spinner from "@/components/Spinner";
 import { formatDate } from "@/utils/formatDate";
 import Comment from "@/components/Comment";
+import KebabMenu from "@/components/KebabMenu";
 
 export default function ArticleDetail() {
   const router = useRouter();
   const { id } = router.query;
   const [article, setArticle] = useState(null);
 
-  console.log(id);
+  const handleEditArticle = () => {
+    router.push({
+      pathname: '/post',
+      query: { id, title: article.title, content: article.content, images: article.images },
+    })
+  };
+
+  const handleDelete = async () => {
+    if (confirm("정말 삭제하시겠습니까?")) {
+      try {
+        await deleteArticle(id);
+        router.push('/articles');
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -43,7 +59,7 @@ export default function ArticleDetail() {
       <div className={style.body}>
         <div className={style.titleSection}>
           <h1 className={style.title}>{article.title}</h1>
-          <Image className={style.kebabIcon} src={kebab} alt="kebab"></Image>
+          <KebabMenu onEdit={handleEditArticle} onDelete={handleDelete}/>
         </div>
         <div className={style.dateFavSection}>
           <div className={style.profile}>
@@ -52,7 +68,7 @@ export default function ArticleDetail() {
             <p className={style.date}>{formatDate(article.createdAt)}</p>
           </div>
           <div className={style.favSection}>
-            <Image className={style.heartIcon} src={heart} alt="heart"></Image>
+            <Image className={style.heartIcon} src={heart} alt="heart" />
             <p className={style.favoriteCnt}>{article.favoriteCnt}</p>
           </div>
         </div>
@@ -60,17 +76,9 @@ export default function ArticleDetail() {
         <div className={style.contentSection}>
           <p className={style.content}>{article.content}</p>
         </div>
-        <div className={style.commentSection}>
-            <label className={style.comment} htmlFor="commentInput">댓글 달기</label>
-            <textarea 
-              id="commentInput" 
-              className={style.commentInput}
-              placeholder="댓글을 입력해주세요" />
-            <button className={style.submitBtn}>등록</button>
-        </div>
-        {/* <div className={style.commentList}>
+        <div className={style.commentList}>
             <Comment />
-        </div> */}
+        </div>
       </div>
     </div>
   );

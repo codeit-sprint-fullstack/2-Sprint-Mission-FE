@@ -1,10 +1,21 @@
-body {
+html, body {
   font-family: 'Pretendard', sans-serif;
   margin: 0;
+  height: 100%;
 }
 
 button,
 input,
 textarea {
   font-family: 'Pretendard', sans-serif;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+main {
+  flex: 1;
 }

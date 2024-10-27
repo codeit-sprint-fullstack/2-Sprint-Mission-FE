@@ -5,6 +5,10 @@
   gap: 2.4rem;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .cardSection {
     width: 38.4rem;
     height: 16.9rem;
@@ -14,6 +18,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 0 2.4rem;
+    cursor: pointer;
 }
 
 .bestIcon {
