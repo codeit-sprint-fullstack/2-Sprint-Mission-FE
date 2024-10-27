@@ -7,7 +7,7 @@ import useDataFetch from "@/hooks/useDataFetchNew";
 import CommentItem from "@/components/CommentItem";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import convertDate from "@/utils/convertDate";
-export default function article() {
+export default function Article() {
   const articlePage = `w-full flex justify-center`;
   const articePageContents = `w-[1200px] flex flex-col items-center
     mt-[34px] mb-[193px]
