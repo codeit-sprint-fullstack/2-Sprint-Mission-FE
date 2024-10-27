@@ -20,6 +20,8 @@ export default function Write() {
   const on = "bg-3692ff";
   const off = "bg-9ca3af";
   const router = useRouter();
+  const { slug } = router.query;
+  const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isPost, setIsPost] = useState(false);
@@ -30,6 +32,22 @@ export default function Write() {
     else setIsPost(true);
   };
   const handleSumit = async (e) => {
+    e.preventDefault();
+    const active = editMode ? axios.patch : axios.post;
+    const url = editMode ? `/articles/${slug}` : "/articles";
+    const submitData = {
+      title,
+      content,
+      ...(editMode ? {} : { userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18" })
+    };
+    try {
+      const res = await active(url, submitData);
+      router.push(`/freeboard/${res.data.id}`);
+    } catch (e) {
+      console.log(`데이터 전송 중 오류: ${e.message}`);
+    }
+  };
+  const handleSumitPost = async (e) => {
     e.preventDefault();
     const submitData = {
       userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18",
@@ -47,6 +65,23 @@ export default function Write() {
   useEffect(() => {
     validate();
   }, [title, content]);
+  useEffect(() => {
+    if (slug) {
+      // 슬러그를 기반으로 게시글 데이터를 가져오는 API 호출
+      const fetchPostData = async () => {
+        try {
+          const response = await axios.get(`/articles/${slug}`);
+          const { title, content } = response.data;
+          setTitle(title);
+          setContent(content);
+          setEditMode(true);
+        } catch (e) {
+          console.log(`데이터 가져오기 실패:${e.message}`);
+        }
+      };
+      fetchPostData();
+    }
+  }, [slug]);
   return (
     <div className={writePage}>
       <form className={writeFrame}>
@@ -58,7 +93,7 @@ export default function Write() {
             onClick={handleSumit}
             disabled={!isPost}
           >
-            등록
+            {editMode ? "수정" : "생성"}
           </button>
         </div>
         <div className={inputBox}>
