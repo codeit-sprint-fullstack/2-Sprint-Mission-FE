@@ -67,6 +67,7 @@ export default function FreeBoard() {
   const standardFavoriteCount = `w-[50px] text-[16px] text-6b7280 leading-26px`;
 
   const [order, setOrder] = useState("recent");
+  const [keyword, setKeyword] = useState("");
   const bestSize = useResponsiveItemCount({ sm: 1, md: 2, lg: 3 });
   const standardSize = useResponsiveItemCount({ sm: 3, md: 6, lg: 4 });
   const { articles: bestList, totalCount: bestTotalCount } = useDataFetch({
@@ -78,10 +79,11 @@ export default function FreeBoard() {
     useDataFetch({
       type: "articleStandardList",
       order: order,
-      count: standardSize
+      count: standardSize,
+      keyword
     });
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
-
+  const handleChnageKeyword = (e) => setKeyword(e.target.value);
   return (
     <div className={freeBoardPage}>
       <div className={freeBoardContents}>
@@ -141,6 +143,7 @@ export default function FreeBoard() {
             <div className={searchBox}>
               <input
                 className={searchInput}
+                onChange={handleChnageKeyword}
                 placeholder="검색할 상품을 입력해주세요"
               ></input>
               <Image
