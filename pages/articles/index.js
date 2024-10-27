@@ -40,8 +40,10 @@ export async function getServerSideProps() {
   } catch (error) {
     console.error('데이터 로드 오류', error);
     return {
-      initialBestArticles: [],
-      initialArticles: []
+      props: {
+        initialBestArticles: [],
+        initialArticles: []
+      }
     }
   }
 }
