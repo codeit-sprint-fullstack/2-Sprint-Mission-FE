@@ -5,7 +5,7 @@ import formatTimeAgo from '@/lib/formatTimeAgo';
 import Dropdown from '@/components/Common/Dropdown';
 import { deleteArticleComment } from '@/lib/api/ArticleService';
 
-export default function CommentItem({ comment, onDelete }) {
+export default function CommentItem({ comment, onDelete, onEdit }) {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = async () => {
@@ -22,6 +22,10 @@ export default function CommentItem({ comment, onDelete }) {
         setIsDeleting(false);
       }
     }
+  };
+
+  const handleEdit = () => {
+    onEdit(comment); // 수정할 댓글 정보를 상위 컴포넌트로 전달
   };
 
   return (
@@ -45,9 +49,15 @@ export default function CommentItem({ comment, onDelete }) {
           <Dropdown
             name="commentOptions"
             iconMode={true}
-            options={[{ label: '삭제하기', value: 'delete' }]}
+            options={[
+              { label: '수정하기', value: 'edit' },
+              { label: '삭제하기', value: 'delete' }
+            ]}
             value=""
-            onChange={(name, value) => value === 'delete' && handleDelete()}
+            onChange={(name, value) => {
+              if (value === 'delete') handleDelete();
+              if (value === 'edit') handleEdit();
+            }}
           />
         </div>
       </div>
