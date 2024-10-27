@@ -28,7 +28,7 @@ export default function CommentList({
   }
 
   const handleDelete = (commentId) => {
-   removeComment(id, commentId);
+    removeComment(id, commentId);
   };
 
   const handleEditClick = (commentId) => {

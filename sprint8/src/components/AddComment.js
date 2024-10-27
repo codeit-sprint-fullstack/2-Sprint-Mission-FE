@@ -7,18 +7,14 @@ export default function AddComment({ id, onNewComment }) {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [comment, setComment] = useState('');
 
-  async function createComment(id, data) {
+  async function createComment(id) {
+    const data = { content: comment };
+
     if (!comment) return;
     const res = await postComment(id, data);
     onNewComment(res);
     setComment('');
   }
-
-  //TODO: 없애기
-  const sendComment = (e) => {
-    e.preventDefault();
-    createComment(id, { content: comment });
-  };
 
   useEffect(() => {
     setIsButtonActive(!!comment);
@@ -37,7 +33,12 @@ export default function AddComment({ id, onNewComment }) {
         />
       </div>
       <div className={style.buttonContainer}>
-        <Button status={isButtonActive} onClick={sendComment}>
+        <Button
+          status={isButtonActive}
+          onClick={() => {
+            createComment(id);
+          }}
+        >
           작성
         </Button>
       </div>

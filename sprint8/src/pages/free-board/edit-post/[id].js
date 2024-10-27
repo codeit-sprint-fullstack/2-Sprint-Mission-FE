@@ -4,7 +4,6 @@ import style from '@/src/styles/create-post.module.css';
 import Header from '@/src/components/Header.js';
 import Button from '@/src/components/Button.js';
 import CreateEditPost from '@/src/components/CreateEditPost.js';
-import axios from '@/src/lib/axios.js';
 import { patchArticle } from '@/src/api/articleServices';
 
 export default function EditPost() {

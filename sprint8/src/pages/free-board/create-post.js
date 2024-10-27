@@ -17,9 +17,14 @@ export default function CreatePost() {
 
     if (!title || !content) return;
     const res = await postArticle(data);
-    const articleId = res.id;
-    router.push(`/free-board/${articleId}`);
+    return res.id;
   }
+
+  const handleCreatePost = () => {
+    createArticle().then((articleId) => {
+      router.push(`/free-board/${articleId}`);
+    });
+  };
 
   useEffect(() => {
     setIsButtonActive(!!title && !!content);
@@ -37,7 +42,7 @@ export default function CreatePost() {
     <div className={style.body}>
       <div className={style.headerAndButton}>
         <Header>게시글 쓰기</Header>
-        <Button status={isButtonActive} onClick={createArticle}>
+        <Button status={isButtonActive} onClick={handleCreatePost}>
           등록
         </Button>
       </div>
