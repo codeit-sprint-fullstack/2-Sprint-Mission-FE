@@ -29,15 +29,24 @@
   cursor: pointer;
 }
 
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .arrow {
-  transform: rotate(180deg);
+  display: inline-block;
+  transform: rotate(180deg); /* 기본 닫힘 상태 */
   transition: transform 0.2s ease;
   color: #6b7280;
 }
 
 .opened .arrow {
-  transform: rotate(0);
+  transform: rotate(0); /* 열림 상태에서 회전 */
 }
+
 
 .options {
   position: absolute;

@@ -8,46 +8,73 @@ import ArticleList from '@/components/Articles/ArticleList';
 import { getArticleList } from '@/lib/api/ArticleService';
 import Link from 'next/link';
 
-export default function ArticlesPage() {
-  const [bestArticles, setBestArticles] = useState([]);
-  const [bestArticlesLoading, setBestArticlesLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const maxBestArticleCount = useMaxItems();
+export async function getServerSideProps() {
+  const maxBestArticleCount = 3;
+  const maxArticleCount = 5;
 
+  try {
+    const bestArticlesData = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
+    const bestArticles = bestArticlesData.map((article) => ({
+      ...article,
+      imageUrl: '/images/articles/img_default_article.png',
+      nickname: generateRandomNickname(),
+      likes: getRandomInt(0, 20000),
+      formattedDate: formatDate(article.createdAt),
+    }));
+
+    const articlesData = await getArticleList({ page: 1, pageSize: maxArticleCount, orderBy: 'recent' });
+    const articles = articlesData.map((article) => ({
+      ...article,
+      imageUrl: '/images/articles/img_default_article.png',
+      nickname: generateRandomNickname(),
+      likes: getRandomInt(0, 20000),
+      formattedDate: formatDate(article.createdAt),
+    }));
+    
+    return {
+      props: {
+        initialBestArticles: bestArticles,
+        initialArticles: articles
+      }
+    }  
+  } catch (error) {
+    console.error('데이터 로드 오류', error);
+    return {
+      initialBestArticles: [],
+      initialArticles: []
+    }
+  }
+}
+
+export default function ArticlesPage({ initialBestArticles, initialArticles }) {
+  const [bestArticles, setBestArticles] = useState(initialBestArticles);
+  const maxBestArticleCount = useMaxItems(); // 클라이언트에서만 접근 가능
+
+  // 화면 사이즈에 맞춰 베스트 게시글 수 업데이트
   useEffect(() => {
-    const fetchBestArticles = async () => {
-      setBestArticlesLoading(true);
+    const fetchAdjustedBestArticles = async () => {
       try {
-        const data = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
-        const articlesWithExtras = data.map((article) => ({
+        const adjustedData = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
+        const adjustedArticles = adjustedData.map((article) => ({
           ...article,
           imageUrl: '/images/articles/img_default_article.png',
           nickname: generateRandomNickname(),
           likes: getRandomInt(0, 20000),
           formattedDate: formatDate(article.createdAt),
         }));
-        setBestArticles(articlesWithExtras);
+        setBestArticles(adjustedArticles);
       } catch (error) {
-        console.error('베스트 게시글을 가져오는데 실패했습니다:', error);
-        setError('베스트 게시글을 불러오는 데 문제가 발생했습니다.');
-      } finally {
-        setBestArticlesLoading(false);
+        console.error('화면 크기에 맞춘 베스트 게시글 로드 실패:', error);
       }
     };
-
-    if (maxBestArticleCount !== null) {
-      fetchBestArticles();
-    }
-  }, [maxBestArticleCount]);
+    fetchAdjustedBestArticles();
+  }, [maxBestArticleCount]); 
 
   return (
     <div>
       <h2 className={styles.sectionTitle}>베스트 게시글</h2>
-      {bestArticlesLoading ? (
-        <p>로딩 중...</p>
-      ) : error ? (
-        <p className={styles.error}>{error}</p>
-      ) : bestArticles.length > 0 ? (
+
+      {bestArticles.length > 0 ? (
         <BestArticleList articles={bestArticles} />
       ) : (
         <p>베스트 게시글이 없습니다.</p>
@@ -57,7 +84,7 @@ export default function ArticlesPage() {
         <h2 className={styles.sectionTitle}>게시글</h2>
         <Link href="/articles/write" className={styles.writeBtn}>글쓰기</Link>
       </div>
-      <ArticleList />    {/*  ArticleList 자체적으로 데이터 로딩*/}
+      <ArticleList initialArticles={initialArticles} />  
     </div>
   );
 }

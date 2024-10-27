@@ -39,7 +39,10 @@ export default function Dropdown({
       {iconMode ? (
         <Image src="/images/articles/ic_kebab.svg" alt="더보기 메뉴 아이콘" width={24} height={24} />
       ) : (
-        options.find((option) => option.value === value)?.label || '선택'
+        <div className={styles.labelWrapper}>
+        {options.find((option) => option.value === value)?.label || '선택'}
+        <span className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ''}`}>▲</span> {/* 화살표 추가 */}
+        </div>
       )}
       {isOpen && (
         <div className={`${styles.options} ${iconMode ? styles.iconModeOptions : ''}`}>
