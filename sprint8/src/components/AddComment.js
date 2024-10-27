@@ -17,7 +17,7 @@ export default function AddComment({ id, onNewComment }) {
   }
 
   useEffect(() => {
-    setIsButtonActive(!!comment);
+    setIsButtonActive(!!comment?.trim());
   }, [comment]);
 
   return (
