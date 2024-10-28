@@ -1,0 +1,251 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6.4rem;
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto 7rem;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.articleContainer {
+  margin-top: 3.2rem;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+
+.title p {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  color: var(--gray-800);
+}
+
+.articleInfo {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 0.1rem solid var(--gray-200);
+  margin-bottom: 2.4rem;
+}
+
+.userInfo {
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+}
+
+.nickname,
+.createAt {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+}
+
+.nickname {
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.createAt {
+  font-weight: 400;
+  color: var(--gray-400);
+}
+
+.line {
+  border-left: 1px solid var(--gray-200);
+  height: 3.4rem;
+}
+
+.likeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 8.7rem;
+  height: 4rem;
+  background-color: #ffffff;
+  border: 0.1rem solid var(--gray-200);
+  border-radius: 3.5rem;
+}
+
+.heartIcon {
+  position: relative;
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.likeBtn p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.6rem;
+  color: var(--gray-500);
+}
+
+.content p {
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+  color: var(--gray-800);
+}
+
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.commentRegisterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.commentRegisterContainer p {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.6rem;
+  color: var(--gray-900);
+}
+
+.commentTextarea {
+  height: 10.4rem;
+  background-color: var(--gray-100);
+  border: none;
+  border-radius: 1.2rem;
+  resize: none;
+  padding: 1.6rem 2.4rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+  color: var(--gray-800);
+}
+
+.commentTextarea::placeholder {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+  color: var(--gray-400);
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.registerBtn {
+  width: 7.4rem;
+  height: 4.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: var(--gray-400);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.6rem;
+  color: var(--gray-100);
+}
+
+.active {
+  background-color: var(--primary-100);
+  cursor: pointer;
+}
+
+.returnBtnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.linkBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  width: 24rem;
+  height: 4.8rem;
+  background-color: var(--primary-100);
+  border: none;
+  border-radius: 4rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 2.6rem;
+  color: var(--gray-100);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .layout {
+    gap: 5.6rem;
+    max-width: 69.6rem;
+  }
+
+  .contentContainer {
+    gap: 4rem;
+  }
+
+  .articleContainer {
+    margin-top: 2.4rem;
+  }
+
+  .articleInfo {
+    margin-bottom: 1.6rem;
+  }
+
+  .content p {
+    font-size: 1.6rem;
+  }
+
+  .commentContainer {
+    gap: 3.2rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .layout {
+    gap: 4rem;
+    max-width: 34.5rem;
+  }
+
+  .contentContainer {
+    gap: 3.2rem;
+  }
+
+  .articleContainer {
+    margin-top: 2.4rem;
+  }
+
+  .articleInfo {
+    gap: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .likeBtn {
+    width: 7.9rem;
+    height: 3.2rem;
+  }
+
+  .heartIcon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .content p {
+    font-size: 1.6rem;
+  }
+
+  .commentContainer {
+    gap: 2.4rem;
+  }
+}

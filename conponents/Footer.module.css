@@ -1,0 +1,43 @@
+.container {
+  background-color: var(--gray-900);
+  height: 160px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.909rem;
+  padding: 3.2rem 20rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.copyright {
+  color: var(--gray-400);
+}
+
+.policyFaqWrapper {
+  display: flex;
+  gap: 3rem;
+}
+
+.privacyPolicy,
+.faq {
+  color: var(--gray-200);
+  text-decoration: none;
+}
+
+.linkIcons {
+  display: flex;
+  gap: 1.2rem;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .container {
+    padding: 3.2rem 2.4rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    padding: 3.2rem 1.6rem;
+  }
+}
