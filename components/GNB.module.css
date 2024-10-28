@@ -1,0 +1,95 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf;
+  margin: 0 0 26px 0;
+  color: var(--gray-600);
+  z-index: 999;
+}
+
+.GNBcontents {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1520px;
+  height: 70px;
+  justify-content: space-between;
+}
+
+.logoImg {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 153px;
+  justify-content: space-between;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.logo1 {
+  display: block;
+  width: 40px;
+}
+
+.logo2 {
+  width: 103px;
+}
+
+.GNBLeft {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: 16px;
+  width: 232px;
+}
+
+.GNBRight {
+  font-size: 1.6rem;
+  border-radius: 8px;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu {
+  font-size: 1.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  gap: 30px;
+}
+
+.linkStyle {
+  text-decoration: none;
+  color: var(--gray-600);
+}
+
+.menu a:hover,
+.isActive {
+  color: var(--primary-100);
+}
+
+.profileImg {
+  width: 40px;
+  height: 40px;
+}
+
+/* -----------Mobile------------ */
+@media (max-width: 744px) {
+  .logo1 {
+    display: none;
+  }
+
+  .logoImg {
+    width: 100px;
+    margin-right: 0;
+  }
+
+  .menu {
+    font-size: 1.6rem;
+    gap: 10px;
+  }
+}

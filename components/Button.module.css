@@ -1,0 +1,38 @@
+.btn_small_40 {
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: var(--primary-100);
+  border: none;
+  color: var(--gray-100);
+  padding: 12px 23px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  width: auto;
+
+  &:disabled {
+    background-color: var(--gray-400);
+    color: #ffffff;
+  }
+}
+
+.btn_small_40_noBackground {
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  padding: 12px 23px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  width: auto;
+}
+
+.btn_medium {
+  cursor: pointer;
+  border-radius: 40px;
+  background-color: var(--primary-100);
+  border: none;
+  color: var(--gray-100);
+  padding: 12px 64px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  width: fit-content;
+}

@@ -1,0 +1,88 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px 200px 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  gap: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  margin: 0;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputName {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+  margin: 0;
+}
+
+.titleInput {
+  background-color: var(--gray-100);
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+
+  &::placeholder {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    color: var(--gray-400);
+  }
+}
+
+.contentInput {
+  background-color: var(--gray-100);
+  width: 100%;
+  height: 282px;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+
+  &::placeholder {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    color: var(--gray-400);
+  }
+}
+
+@media (max-width: 744px) {
+  .inputName {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+  }
+
+  .contentInput {
+    height: 200px;
+  }
+}
