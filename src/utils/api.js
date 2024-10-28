@@ -1,4 +1,4 @@
-import { axiosGet, axiosPatch, axiosPost } from './axiosUtils.js';
+import { axiosDelete, axiosGet, axiosPatch, axiosPost } from './axiosUtils.js';
 
 // const SERVER = 'https://panda-market-api.vercel.app/products';
 // const SERVER = 'https://pandamarket-be.onrender.com/products'; // mongodb
@@ -32,5 +32,15 @@ export async function postArticle(data = {}) {
 
 export async function patchArticle(id, data = {}) {
   return await axiosPatch(SERVER, `/articles/${id}`, data);
+}
+//#endregion
+
+//#region comment
+export async function patchComment(id, data = {}) {
+  return await axiosPatch(SERVER, `/comments/${id}`, data);
+}
+
+export async function deleteComment(id) {
+  return await axiosDelete(SERVER, `/comments/${id}`);
 }
 //#endregion

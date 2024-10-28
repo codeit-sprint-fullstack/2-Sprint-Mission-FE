@@ -2,6 +2,13 @@
 import { css } from '@emotion/react';
 import DropdownMenu from './DropdownMenu';
 import c from '@/src/utils/constants';
+import { useDropdownItem } from '../contexts/DropdownContext';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import useAsync from '@/src/hooks/useAsync';
+import { patchComment, deleteComment } from '@/src/utils/api';
+import Input from '@/src/components/Input';
+import Modal from '@/src/components/Modal';
 
 const style = {
   comment: css`
@@ -48,17 +55,75 @@ const style = {
       }
     }
   `,
+  editButton: css`
+    display: block;
+    margin-left: auto;
+
+    padding: 1.2rem 2.3rem;
+    border-radius: 8px;
+
+    color: var(--gray-100);
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 600;
+  `,
 };
 
 export default function Comment({ item, ModifyButton }) {
   const createdDate = new Date(item.createdAt);
+  const router = useRouter();
+  const patchCommentAsync = useAsync(patchComment);
+  const deleteCommentAsync = useAsync(deleteComment);
+  const { item: modify, setItem: setModify } = useDropdownItem();
+  const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text', value: item.content });
+
+  const handleCommentChange = value => {
+    value
+      ? setCommentObj(old => {
+          return { ...old, value };
+        })
+      : null;
+  };
+  const handleSubmitComment = async () => {
+    const data = { content: commentObj.value };
+    const result = await patchCommentAsync(item.id, data);
+    if (!result) return null;
+
+    router.reload();
+  };
+  const handleDeleteComment = async () => {
+    const result = await deleteCommentAsync(item.id);
+    if (!result) return null;
+
+    router.reload();
+  };
 
   return (
     <div className="comment" css={style.comment}>
-      <div className="content">
-        <p>{item.content}</p>
-        <DropdownMenu DropdownButton={ModifyButton} list={c.MODIFY} dictionary={c.MODIFY_MSG} />
-      </div>
+      {!modify && (
+        <div className="content">
+          <p>{item.content}</p>
+          <DropdownMenu DropdownButton={ModifyButton} list={c.MODIFY} dictionary={c.MODIFY_MSG} onClick={setModify} />
+        </div>
+      )}
+      {modify === c.MODIFY.EDIT && (
+        <form id="commentsForm">
+          <Input inputObj={commentObj} placeholder={'댓글을 입력해주세요.'} onChange={handleCommentChange} textarea comment />
+          <button type="button" className="button" disabled={!commentObj.value} onClick={handleSubmitComment}>
+            등록
+          </button>
+        </form>
+      )}
+      {modify === c.MODIFY.DELETE && (
+        <Modal
+          buttons={[
+            { Msg: '확인', onClick: handleDeleteComment },
+            { Msg: '취소', onClick: () => router.reload() },
+          ]}
+        >
+          asdf
+        </Modal>
+      )}
 
       <div className="info">
         <img src="/Image/ic_profile.png" alt="profile Image" width={32} height={32} />

@@ -32,36 +32,52 @@ const style = {
 
     position: relative;
 
-    p {
-      text-align: center;
-      font-size: 1.6rem;
-      font-weight: 500;
-    }
-
-    .button {
+    #buttonsWrapper {
       position: absolute;
       right: 2.8rem;
       bottom: 2.8rem;
 
-      padding: 1.2rem 2.3rem;
-      border-radius: 8px;
+      .button {
+        padding: 1.2rem 2.3rem;
+        border-radius: 8px;
+        margin-left: 1rem;
+      }
     }
   `,
 };
 
-export default function Modal({ message, noButton = false }) {
+export default function Modal({ children, buttons = [] }) {
   const [modalOff, setModalOff] = useState('');
-  const handleClick = () => setModalOff('off');
 
   return (
     <div id="modal" css={style.modal} className={`${modalOff}`}>
       <div id="modalContent" css={style.modalContent}>
-        <p>{message}</p>
-        {!noButton && (
-          <div className="button" onClick={handleClick}>
-            확인
-          </div>
-        )}
+        {children}
+        <div id="buttonsWrapper">
+          {buttons.map(button => {
+            if (typeof button === 'string') {
+              return (
+                <button type="button" className="button" onClick={() => setModalOff('off')} key={button}>
+                  {button}
+                </button>
+              );
+            } else if (button && typeof button === 'object') {
+              return (
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => {
+                    setModalOff('off');
+                    button.onClick();
+                  }}
+                  key={button}
+                >
+                  {button.Msg}
+                </button>
+              );
+            }
+          })}
+        </div>
       </div>
     </div>
   );
