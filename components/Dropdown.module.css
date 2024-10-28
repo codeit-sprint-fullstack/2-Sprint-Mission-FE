@@ -1,0 +1,51 @@
+.dropdown {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdownButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  width: 130px;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  background-color: #fff;
+  gap: 24px;
+  white-space: nowrap; /* 줄바꿈 방지 */
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 100%; /* 버튼 아래에 위치하도록 설정 */
+  left: 0; /* 버튼의 왼쪽 모서리에 맞춰 설정 */
+  padding: 12px 20px;
+  margin-top: 6px;
+  width: 130px;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius:12px;
+  z-index: 1;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.dropdownItem {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+  
+}

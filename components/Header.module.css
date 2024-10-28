@@ -1,0 +1,69 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+  z-index: 1000000;
+}
+.headerNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerNav img {
+  content: url("../public/판다마켓글씨로고.png");
+}
+.freeArticle,
+.oldMarket {
+  padding: 21px 15px;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #4b5563;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.header p {
+  padding: 12px 23px;
+  border-radius: 8px;
+  height: 42px;
+  background-color: #3692ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.09px;
+}
+.freeArticle.active {
+  color: #3692ff
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 0 24px;
+  }
+  .headerNav button {
+    font-size: 18px;
+  }
+  .headerNav img {
+    content: url("../public/logo.svg");
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    padding: 0 200px;
+  }
+
+  .headerNav img {
+    content: url("../public/logo.svg");
+  }
+}

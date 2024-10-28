@@ -1,0 +1,62 @@
+.container {
+  margin: 94px auto 954px;
+  width: 1200px;
+}
+.registerTable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.registerFont {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #1f2937;
+}
+.registerButton {
+  display: flex;
+  align-items: center;
+  padding: 12px 23px;
+  border-radius: 8px;
+  border: none;
+  background-color: #9ca3af;
+  height: 42px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+.title, .content {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    color: #1f2937;
+    margin-bottom: 12px;
+}
+.titleInput{
+    width: 1200px;
+    height: 56px;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 24px;
+    background-color: #f3f4f6;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+}
+.contentInput{
+    resize: none;
+    width: 1200px;
+    height: 282px;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 24px;
+    background-color: #f3f4f6;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+}
