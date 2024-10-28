@@ -42,7 +42,9 @@ export default function ArticleDetailPage() {
     }
   }, [id]);
 
-  if (loading) return <p>로딩 중...</p>;
+  if (loading) {
+    return <div className='content-spacer'><p>로딩 중...</p></div>;
+  }
   if (error) return <p>{error}</p>;
   if (!article) return <p>게시글이 존재하지 않습니다.</p>;
 

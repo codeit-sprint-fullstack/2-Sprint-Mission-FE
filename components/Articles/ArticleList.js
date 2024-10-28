@@ -9,11 +9,13 @@ import formatDate from '@/lib/formatDate';
 import Link from 'next/link';
 
 const ARTICLE_COUNT = 5;
+const MIN_LOADING_TIME = 500;
 
 export default function ArticleList({ initialArticles }) {
   const [articles, setArticles] = useState(initialArticles || []);
   const [filteredArticles, setFilteredArticles] = useState(initialArticles || []);
   const [loading, setLoading] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sortOrder, setSortOrder] = useState('recent'); // Dropdown의 선택 값 상태 추가
   const [hasFetchedInitialData, setHasFetchedInitialData] = useState(false);
@@ -22,6 +24,9 @@ export default function ArticleList({ initialArticles }) {
     // 이미 초기 데이터를 로드했으면 fetch 생략
     if (hasFetchedInitialData || sortOrder !== 'recent') {
       setLoading(true);
+      setShowLoading(false);
+      const loadingTimeout = setTimeout(() => setShowLoading(true), MIN_LOADING_TIME);
+
       try {
         const data = await getArticleList({ page: 1, pageSize: ARTICLE_COUNT, orderBy: sortOrder });
         const articlesWithExtras = data.map((article) => ({
@@ -37,6 +42,8 @@ export default function ArticleList({ initialArticles }) {
         console.error('게시글을 가져오는데 실패했습니다:', error);
         setError('게시글을 불러오는 데 문제가 발생했습니다.');
       } finally {
+        clearTimeout(loadingTimeout);
+        setLoading(false);
         setLoading(false);
         setHasFetchedInitialData(true); // 초기 데이터를 로드했음을 설정
       }
@@ -62,7 +69,7 @@ export default function ArticleList({ initialArticles }) {
     setSortOrder(value); // Dropdown에서 선택한 값을 상태로 설정
   };
 
-  if (loading) {
+  if (showLoading) {
     return <div className='content-spacer'><p>로딩 중...</p></div>;
   }
 
