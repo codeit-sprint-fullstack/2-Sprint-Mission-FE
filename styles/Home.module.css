@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 10rem;
+
+    gap: 4rem;
+}
+
+.articles {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2.4rem;
+}
+
+.article-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 1.6rem;
+}
