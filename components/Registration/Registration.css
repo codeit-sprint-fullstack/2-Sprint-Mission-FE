@@ -1,0 +1,95 @@
+.registration-container {
+  margin: 100px 250px;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+input {
+  display: block;
+  border: none;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  width: 100%;
+  height: 56px;
+  padding-left: 20px;
+}
+
+.registration-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 57px 0 20px;
+}
+
+.register-button {
+  padding: 12px 23px;
+  font-weight: 700;
+  color: white;
+  background-color: #9ca3af;
+  border-radius: 7px;
+  border: none;
+}
+
+.product-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 30px;
+}
+
+/*  */
+.tags-hardcoding {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #f3f4f6;
+  height: 36px;
+  padding: 5px 40px 5px 15px;
+  margin-right: 10px;
+  border-radius: 20px;
+  background-image: url("../../images/etc/delete_icon.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+textarea {
+  display: block;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  border: none;
+  resize: vertical;
+  text-align: left;
+  font-size: 13px;
+}
+
+input,
+textarea {
+  font-size: 13px; /* 폰트 사이즈 설정 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af; /* placeholder 색상 설정 */
+}
+
+/* tablet 용*/
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .registration-container {
+    margin: 100px 30px;
+  }
+}
+
+/* mobile 용 */
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .registration-container {
+    margin: 100px 20px;
+  }
+}
