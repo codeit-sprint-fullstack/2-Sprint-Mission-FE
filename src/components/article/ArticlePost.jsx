@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Input from '@/src/components/Input';
 import { useRouter } from 'next/router';
 import useAsync from '@/src/hooks/useAsync';
-import { patchArticle, postArticle } from '@/src/utils/api';
+import { getArticleById, patchArticle, postArticle } from '@/src/utils/api';
 
 const style = {
   articlePost: css`
@@ -52,13 +52,13 @@ const style = {
   `,
 };
 
-export default function ArticlePost({ article }) {
-  const { title = '', content = '' } = article ?? {};
+export default function ArticlePost({ articleId }) {
   const router = useRouter();
+  const getArticleByIdAsync = useAsync(getArticleById);
   const postArticleAsync = useAsync(postArticle);
   const patchArticleAsync = useAsync(patchArticle);
-  const [titleObj, setTitleObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'title', type: 'text', value: title });
-  const [contentObj, setContentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'content', type: 'text', value: content });
+  const [titleObj, setTitleObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'title', type: 'text' });
+  const [contentObj, setContentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'content', type: 'text' });
   const [canSubmit, setCanSubmit] = useState(false);
 
   const handleBlur = inputObj => {
@@ -79,13 +79,32 @@ export default function ArticlePost({ article }) {
   };
   const handleSubmit = async () => {
     const data = { title: titleObj.value, content: contentObj.value, ownerId: '186dc25d-3079-47d4-a7ed-3dd6e4e7f146' };
-    const result = article ? await patchArticleAsync(data) : await postArticleAsync(data);
+    if (articleId) {
+      delete data.createdAt;
+      delete data.updatedAt;
+      delete data.ownerId;
+    }
+    const result = articleId ? await patchArticleAsync(articleId, data) : await postArticleAsync(data);
 
     if (!result) return null;
 
     router.push(`/articles/${result.id}`);
   };
 
+  useEffect(() => {
+    async function getArticle() {
+      const article = await getArticleByIdAsync(articleId);
+      if (!article) return null;
+
+      setTitleObj(old => {
+        return { ...old, value: article.title };
+      });
+      setContentObj(old => {
+        return { ...old, value: article.content };
+      });
+    }
+    if (articleId) getArticle();
+  }, [articleId]);
   useEffect(() => {
     if (titleObj.value && contentObj.value) return setCanSubmit(true);
 

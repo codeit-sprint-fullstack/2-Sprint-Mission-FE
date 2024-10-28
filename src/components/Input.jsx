@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const style = {
   input: css`
@@ -28,12 +28,13 @@ const style = {
   `,
 };
 
-export default function Input({ inputObj, label, placeholder, onBlur, onKeyDown, textarea = false, comment = false }) {
+export default function Input({ inputObj, label, placeholder, onChange, onBlur, onKeyDown, textarea = false, comment = false }) {
   const { value: inputValue, name, type, errMsg } = inputObj;
   const [value, setValue] = useState(inputValue);
 
   const handleChange = e => {
     setValue(e.target.value);
+    onChange ? onChange(e.target.value) : null;
   };
   const handleBlur = () => {
     onBlur({ value, name, type, errMsg });
@@ -42,6 +43,10 @@ export default function Input({ inputObj, label, placeholder, onBlur, onKeyDown,
     onKeyDown(e, { value, name, type, errMsg });
     setValue('');
   };
+
+  useEffect(() => {
+    setValue(inputValue);
+  }, [inputValue]);
 
   return textarea ? (
     <div id="input" css={style.input}>

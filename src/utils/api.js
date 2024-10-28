@@ -22,11 +22,15 @@ export async function getCommentsOfArticle(id, params = {}) {
   return await axiosGet(SERVER, `/articles/${id}/comments`, params);
 }
 
+export async function postCommentOfArticle(id, data = {}) {
+  return await axiosPost(SERVER, `/articles/${id}/comments`, data);
+}
+
 export async function postArticle(data = {}) {
   return await axiosPost(SERVER, '/articles', data);
 }
 
-export async function patchArticle(data = {}) {
-  return await axiosPatch(SERVER, '/articles', data);
+export async function patchArticle(id, data = {}) {
+  return await axiosPatch(SERVER, `/articles/${id}`, data);
 }
 //#endregion

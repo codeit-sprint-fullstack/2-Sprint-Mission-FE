@@ -7,7 +7,7 @@ import c from '@/src/utils/constants';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import useAsync from '@/src/hooks/useAsync';
-import { getArticleById, getCommentsOfArticle } from '@/src/utils/api';
+import { getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@/src/utils/api';
 import DropdownProvider, { useDropdown } from '../../src/contexts/DropdownContext';
 import Comment from '../../src/components/Comment';
 import Link from 'next/link';
@@ -162,11 +162,36 @@ export default function ArticleDetail() {
   const { id } = router.query;
   const getArticleByIdAsync = useAsync(getArticleById);
   const getCommentsByIdAsync = useAsync(getCommentsOfArticle);
+  const postCommentOfArticleAsync = useAsync(postCommentOfArticle);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [date, setDate] = useState(new Date());
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text' });
   const [cursor, setCursor] = useState();
+
+  const handleDropdownClick = modify => {
+    switch (modify) {
+      case c.MODIFY.EDIT:
+        router.push('/articles/post');
+        break;
+      case c.MODIFY.DELETE:
+    }
+  };
+  const handleCommentChange = value => {
+    value
+      ? setCommentObj(old => {
+          return { ...old, value };
+        })
+      : null;
+  };
+  const handleSubmitComment = async () => {
+    const data = { content: commentObj.value, ownerId: '186dc25d-3079-47d4-a7ed-3dd6e4e7f146' };
+    const result = await postCommentOfArticleAsync(id, data);
+
+    if (!result) return null;
+
+    router.reload();
+  };
 
   useEffect(() => {
     async function handleLoadArticle() {
@@ -181,7 +206,6 @@ export default function ArticleDetail() {
       const data = await getCommentsByIdAsync(id, { limit: 5 });
       if (!data) return null;
 
-      console.log('🚀 ~ handleLoadComments ~ data:', data);
       setComments(data.list);
       setCursor(data.nextCursor);
     }
@@ -190,7 +214,6 @@ export default function ArticleDetail() {
       handleLoadComments();
     }
   }, [id]);
-  const handleDropdownClick = () => {};
 
   return (
     <div id="articleDetailPage" css={style.articleDetailPage}>
@@ -231,8 +254,15 @@ export default function ArticleDetail() {
 
       <div id="comments" css={style.comments}>
         <form id="commentsForm">
-          <Input inputObj={commentObj} label={'댓글달기'} placeholder={'댓글을 입력해주세요.'} textarea comment />
-          <button type="button" className="button" disabled>
+          <Input
+            inputObj={commentObj}
+            label={'댓글달기'}
+            placeholder={'댓글을 입력해주세요.'}
+            onChange={handleCommentChange}
+            textarea
+            comment
+          />
+          <button type="button" className="button" disabled={!commentObj.value} onClick={handleSubmitComment}>
             등록
           </button>
         </form>
