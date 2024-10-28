@@ -13,7 +13,6 @@ export async function getServerSideProps() {
   const maxArticleCount = 5;
 
   try {
-    /*
     const bestArticlesData = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
     const bestArticles = bestArticlesData.map((article) => ({
       ...article,
@@ -22,7 +21,6 @@ export async function getServerSideProps() {
       likes: getRandomInt(0, 20000),
       formattedDate: formatDate(article.createdAt),
     }));
-    */
 
     const articlesData = await getArticleList({ page: 1, pageSize: maxArticleCount, orderBy: 'recent' });
     const articles = articlesData.map((article) => ({
@@ -35,7 +33,7 @@ export async function getServerSideProps() {
     
     return {
       props: {
-        //initialBestArticles: bestArticles,
+        initialBestArticles: bestArticles,
         initialArticles: articles
       }
     }  
@@ -43,19 +41,17 @@ export async function getServerSideProps() {
     console.error('데이터 로드 오류', error);
     return {
       props: {
-        //initialBestArticles: [],
+        initialBestArticles: [],
         initialArticles: []
       }
     }
   }
 }
 
-//export default function ArticlesPage({ initialBestArticles, initialArticles }) {
-export default function ArticlesPage({ initialArticles }) {
-  //const [bestArticles, setBestArticles] = useState(initialBestArticles);
-  const [bestArticles, setBestArticles] = useState([]);
+export default function ArticlesPage({ initialBestArticles, initialArticles }) {
+  const [bestArticles, setBestArticles] = useState(initialBestArticles);
   const maxBestArticleCount = useMaxItems(); // 클라이언트에서만 접근 가능
-  console.log('maxBestArticleCount', maxBestArticleCount);
+
   // 화면 사이즈에 맞춰 베스트 게시글 수 업데이트
   useEffect(() => {
     if (maxBestArticleCount) {
@@ -76,7 +72,7 @@ export default function ArticlesPage({ initialArticles }) {
       };
       fetchAdjustedBestArticles();
     }
-  }, [maxBestArticleCount]); 
+  }, [maxBestArticleCount, bestArticles.length]); 
 
   return (
     <div>

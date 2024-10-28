@@ -16,27 +16,32 @@ export default function ArticleList({ initialArticles }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sortOrder, setSortOrder] = useState('recent'); // Dropdown의 선택 값 상태 추가
+  const [hasFetchedInitialData, setHasFetchedInitialData] = useState(false);
 
   const fetchArticlesData = useCallback(async () => {
-    setLoading(true);
-    try {
-      const data = await getArticleList({ page: 1, pageSize: ARTICLE_COUNT, orderBy: sortOrder });
-      const articlesWithExtras = data.map((article) => ({
-        ...article,
-        imageUrl: '/images/articles/img_default_article.png',
-        nickname: generateRandomNickname(),
-        likes: getRandomInt(0, 20000),
-        formattedDate: formatDate(article.createdAt),
-      }));
-      setArticles(articlesWithExtras);
-      setFilteredArticles(articlesWithExtras);
-    } catch (error) {
-      console.error('게시글을 가져오는데 실패했습니다:', error);
-      setError('게시글을 불러오는 데 문제가 발생했습니다.');
-    } finally {
-      setLoading(false);
+    // 이미 초기 데이터를 로드했으면 fetch 생략
+    if (hasFetchedInitialData || sortOrder !== 'recent') {
+      setLoading(true);
+      try {
+        const data = await getArticleList({ page: 1, pageSize: ARTICLE_COUNT, orderBy: sortOrder });
+        const articlesWithExtras = data.map((article) => ({
+          ...article,
+          imageUrl: '/images/articles/img_default_article.png',
+          nickname: generateRandomNickname(),
+          likes: getRandomInt(0, 20000),
+          formattedDate: formatDate(article.createdAt),
+        }));
+        setArticles(articlesWithExtras);
+        setFilteredArticles(articlesWithExtras);
+      } catch (error) {
+        console.error('게시글을 가져오는데 실패했습니다:', error);
+        setError('게시글을 불러오는 데 문제가 발생했습니다.');
+      } finally {
+        setLoading(false);
+        setHasFetchedInitialData(true); // 초기 데이터를 로드했음을 설정
+      }
     }
-  }, [sortOrder]);
+  }, [sortOrder, hasFetchedInitialData]);
 
   useEffect(()=> {
     fetchArticlesData();
@@ -58,7 +63,7 @@ export default function ArticleList({ initialArticles }) {
   };
 
   if (loading) {
-    return <p>로딩 중...</p>;
+    return <div className='content-spacer'><p>로딩 중...</p></div>;
   }
 
   if (error) {
