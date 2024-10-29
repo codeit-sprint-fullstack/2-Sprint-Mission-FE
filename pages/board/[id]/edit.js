@@ -11,18 +11,21 @@ const SubmitButton = createButton({
 export async function getServerSideProps(content) {
   const articleId = content.params['id'];
 
-  const res = await axios.get(`/articles/${articleId}`);
-  const article = res.data;
-
-  return {
-    props: {
-      article,
-    },
-  };
+  try {
+    const res = await axios.get(`/articles/${articleId}`);
+    const article = res.data;
+    return {
+      props: {
+        article,
+      },
+    };
+  } catch {
+    return <div>Loading . . .</div>;
+  }
 }
 
 export default function EditArticle({ article }) {
-	const router = useRouter();
+  const router = useRouter();
   const [title, setTitle] = useState(article.title);
   const [content, setContent] = useState(article.content);
 
@@ -63,7 +66,7 @@ export default function EditArticle({ article }) {
               className={styles.titleInput}
               name="title"
               type="text"
-							value={title}
+              value={title}
               placeholder="제목을 입력해주세요"
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -75,7 +78,7 @@ export default function EditArticle({ article }) {
               className={styles.contentInput}
               name="content"
               type="text"
-							value={content}
+              value={content}
               placeholder="내용을 입력해주세요"
               onChange={(e) => setContent(e.target.value)}
             />

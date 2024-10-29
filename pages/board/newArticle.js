@@ -9,24 +9,25 @@ const SubmitButton = createButton({
 });
 
 export default function NewArticle() {
-	const router = useRouter();
-	const [title, setTitle] = useState('');
-	const [content, setContent] = useState('');
+  const router = useRouter();
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
-	async function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const data = {
-			title,
-			content,
+      title,
+      content,
     };
-    const res = await axios.post('/articles/', data);
-    const newArticle = res.data;
-		
-		if (newArticle) {
-			router.push(`/board/${newArticle.id}`)
-		} else {
-			alert('게시글을 생성하지 못했습니다!')
-		}
+
+    try {
+      const res = await axios.post('/articles/', data);
+      const newArticle = res.data;
+
+      router.push(`/board/${newArticle.id}`);
+    } catch {
+      alert('게시글을 생성하지 못했습니다!');
+    }
   }
 
   return (
@@ -34,7 +35,13 @@ export default function NewArticle() {
       <div className={styles.form}>
         <div className={styles.header}>
           <p className={styles.title}>게시글 쓰기</p>
-          <SubmitButton type='submit' onClick={handleSubmit} disabled={!title || !content}>등록</SubmitButton>
+          <SubmitButton
+            type="submit"
+            onClick={handleSubmit}
+            disabled={!title || !content}
+          >
+            등록
+          </SubmitButton>
         </div>
 
         <div className={styles.inputs}>
@@ -42,10 +49,10 @@ export default function NewArticle() {
             <p className={styles.inputName}>*제목</p>
             <input
               className={styles.titleInput}
-							name='title'
+              name="title"
               type="text"
               placeholder="제목을 입력해주세요"
-							onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
@@ -53,10 +60,10 @@ export default function NewArticle() {
             <p className={styles.inputName}>*내용</p>
             <input
               className={styles.contentInput}
-							name='content'
+              name="content"
               type="text"
               placeholder="내용을 입력해주세요"
-							onChange={(e) => setContent(e.target.value)}
+              onChange={(e) => setContent(e.target.value)}
             />
           </div>
         </div>

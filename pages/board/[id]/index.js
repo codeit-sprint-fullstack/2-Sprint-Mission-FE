@@ -57,7 +57,7 @@ export default function Article({ article, comments: initialComments }) {
       const res = await axios.delete(`/articles/${article.id}`);
       const prevArticle = res.data;
       router.push('/board');
-    } catch (e) {
+    } catch {
       alert('삭제에 실패했습니다.');
     }
   }

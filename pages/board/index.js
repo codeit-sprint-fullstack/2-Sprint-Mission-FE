@@ -49,7 +49,6 @@ export default function Board({ articles, bestArticles }) {
       return;
     }
     setKeyword(newKeyword);
-    console.log('new: ', newKeyword, 'set: ', keyword);
     router.push(`/board?order=${sort}&search=${newKeyword}`);
   };
 
