@@ -32,9 +32,12 @@
   color: #f3f4f6;
 }
 
+.active_button {
+  background-color: #3692ff;
+}
+
 .register_body {
   width: 1200px;
-  gap: 24px;
   display: flex;
   flex-direction: column;
 }
@@ -45,6 +48,10 @@
   font-size: 18px;
   line-height: 26px;
   color: #1f2937;
+}
+
+.content {
+  margin-top: 24px;
 }
 
 .input_title {
@@ -58,6 +65,8 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
+  resize: none;
+  margin-top: 12px;
 }
 
 .input_title::placeholder {
@@ -69,7 +78,6 @@
 
 .input_content {
   display: flex;
-  vertical-align: top;
   width: 1200px;
   height: 282px;
   border-radius: 12px;
@@ -80,6 +88,8 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
+  resize: none;
+  margin-top: 12px;
 }
 
 .input_content::placeholder {
