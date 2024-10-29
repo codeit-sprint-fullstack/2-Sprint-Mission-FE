@@ -6,23 +6,24 @@ export const fetchApi = async (url, params = {}, method = "GET") => {
 
     // URL에 쿼리 파라미터 추가
     const queryString = new URLSearchParams(params).toString();
-    const fullUrl = queryString
-      ? `${baseURL}${url}?${queryString}`
-      : `${baseURL}${url}`;
+
+    const fullUrl =
+      method === "GET" ? `${baseURL}${url}?${queryString}` : `${baseURL}${url}`;
+
+    const headers =
+      method === "GET"
+        ? {}
+        : {
+            "Content-Type": "application/json",
+          };
 
     const response = await fetch(fullUrl, {
-      method, //get 디폴트
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body:
-        method === "POST" || method === "PATCH"
-          ? JSON.stringify(params)
-          : undefined,
+      method,
+      headers,
+      body: method !== "GET" ? JSON.stringify(params) : undefined,
     });
 
     if (!response.ok) {
-      // 응답 실패 에러 상태 확인
       throw new Error(`${response.status}`);
     }
 
