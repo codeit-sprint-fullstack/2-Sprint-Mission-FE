@@ -9,17 +9,24 @@ import formatDate from '@/lib/formatDate';
 import ArticleDropdown from '@/components/ArticleDetail/ArticleDropdown';
 
 export async function getServerSideProps(context) {
-  const articleId = context.params['id'];
+  try {
+    const articleId = context.params['id'];
 
-  const article = await getArticle(articleId);
-  const articleComments = await getArticleCommentList(articleId);
+    const article = await getArticle(articleId);
+    const articleComments = await getArticleCommentList(articleId);
 
-  return {
-    props: {
-      article,
-      articleComments
-    }
-  };
+    return {
+      props: {
+        article,
+        articleComments
+      }
+    };
+  } catch (err) {
+    console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err);
+    throw new Error(
+      '서버에서 데이터를 가져오는 중 문제가 발생했습니다.' + err.message
+    );
+  }
 }
 
 export default function Article({ article, articleComments }) {

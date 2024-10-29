@@ -10,25 +10,32 @@ import Pagination from '@/components/ArticleList/Pagination';
 import useResize from '@/hooks/useResize';
 
 export async function getServerSideProps() {
-  const bestArticles = await getArticleList({
-    page: 1,
-    pageSize: 3,
-    order: 'recent'
-  });
+  try {
+    const bestArticles = await getArticleList({
+      page: 1,
+      pageSize: 3,
+      order: 'recent'
+    });
 
-  const articles = await getArticleList({
-    page: 1,
-    pageSize: 5,
-    order: 'recent',
-    keyword: ''
-  });
+    const articles = await getArticleList({
+      page: 1,
+      pageSize: 5,
+      order: 'recent',
+      keyword: ''
+    });
 
-  return {
-    props: {
-      articles,
-      bestArticles
-    }
-  };
+    return {
+      props: {
+        articles,
+        bestArticles
+      }
+    };
+  } catch (err) {
+    console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err);
+    throw new Error(
+      '서버에서 데이터를 가져오는 중 문제가 발생했습니다.' + err.message
+    );
+  }
 }
 
 export default function Home({ articles, bestArticles: initialBestArticles }) {
