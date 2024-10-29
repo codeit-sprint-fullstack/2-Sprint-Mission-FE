@@ -8,9 +8,9 @@ const LoginButton = createButton({
 });
 
 export default function GNB() {
-	const router = useRouter();
-	const isBoard = router.pathname.startsWith('/board');
-	const isItems = router.pathname.startsWith('/items');
+  const router = useRouter();
+  const isBoard = router.pathname.startsWith('/board');
+  const isItems = router.pathname.startsWith('/items');
 
   return (
     <header className={styles.header}>
@@ -23,16 +23,28 @@ export default function GNB() {
             </div>
           </Link>
           <div className={styles.menu}>
-            <Link href="/board" className={`${styles.linkStyle} ${isBoard ? styles.isActive : ''}`}>
+            <Link
+              href="/board"
+              className={`${styles.linkStyle} ${
+                isBoard ? styles.isActive : ''
+              }`}
+            >
               <p>자유게시판</p>
             </Link>
-            <Link href="/items" className={`${styles.linkStyle} ${isItems ? styles.isActive : ''}`}>
+            <Link
+              href="/items"
+              className={`${styles.linkStyle} ${
+                isItems ? styles.isActive : ''
+              }`}
+            >
               <p>중고마켓</p>
             </Link>
           </div>
         </div>
         <div className={styles.GNBRight}>
-          <LoginButton>로그인</LoginButton>
+          <Link href="/login">
+            <LoginButton>로그인</LoginButton>
+          </Link>
         </div>
       </div>
     </header>
