@@ -1,0 +1,143 @@
+.container {
+  position: relative;
+
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 1.6rem;
+}
+
+/* 게시글 정보 (작성자 정보, 날짜, 좋아요 등) */
+.articleInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 35.4rem;
+
+  margin-top: 2.4rem;
+}
+
+/* 프로필 이미지 작성자 날짜 정보 */
+.writerInfo {
+  display: flex;
+  gap: 1.6rem;
+  color: #6B7280;
+  
+  padding-right: 3.2rem;      
+  border-right: 1px solid #E5E7EB; 
+}
+
+.nicknameWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.profileIcon {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.nickname {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #4B5563;
+}
+
+.date {
+  font-size: 1.4rem;
+  color: #9CA3AF;
+}
+
+.likesWrapper {
+  width: 11rem;           
+  height: 4rem;           
+  padding: 0.4rem 1.2rem;    
+  border: 1px solid #E5E7EB; 
+  border-radius: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;            
+}
+
+.likesIcon {
+  position: relative;
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.likesCount {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+.content {
+  margin-top: 2.4rem;
+  padding-top: 2.4rem;
+
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.6;
+  color: #1F2937;
+  margin-bottom: 3.2rem;
+
+  border-top: 1px solid #E5E7EB;
+}
+
+/* 드롭다운 버튼과 메뉴 스타일 */
+.dropdownContainer {
+  position: absolute;
+  top: 0.5rem;    
+  right: 0.5rem; 
+}
+
+.dropdownToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdownIcon {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: 2.8rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.dropdownItem {
+  padding: 1.6rem;
+  font-size: 1.6rem;
+  color: #6B7280;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 13.9rem;
+  text-align: center;
+}
+
+.dropdownItem:hover {
+  background-color: #f9fafb;
+}

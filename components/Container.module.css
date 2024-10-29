@@ -1,0 +1,26 @@
+.withHeader {
+  padding-top: 7rem;      /* margin-top 으로 했더니 ProductMain과 Footer가 겹침(이해 안됨) */
+}
+
+.content {
+  max-width: 120rem;
+  width: 100%;
+  min-width: 37.1rem;
+  margin: 2.4rem auto 5rem;
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .content {
+    width: 100%;
+    margin: 2.4rem auto 2rem;
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .content {
+    width: 100%;
+    margin: 2.4rem auto 2rem;
+  }
+}

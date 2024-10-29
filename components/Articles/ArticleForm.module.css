@@ -1,0 +1,75 @@
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3.2rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--heading-text-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label 스타일 */
+.label {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+/* 제목 및 텍스트 입력 필드 스타일 */
+.input, .textarea {
+  font-size: 1.6rem;
+  padding: 1.6rem 2.4rem;
+  margin-bottom: 2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #F3F4F6;
+}
+
+.input::placeholder, .textarea::placeholder {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #9CA3AF;
+}
+
+.textarea {
+  border-radius: 1.2rem;
+  height: 28.2rem;
+  resize: none;
+  margin-bottom: 4rem;
+}
+
+/* 등록 버튼 스타일 */
+.submitBtn {
+  background-color: #9CA3AF;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  width: 7.4rem;
+  cursor: not-allowed;
+}
+
+.submitBtn.active {
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.submitBtn:disabled {
+  background-color: #9CA3AF;
+}

@@ -1,0 +1,68 @@
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 105.4rem;
+  width: 100%;
+  height: 4.2rem;
+  margin-bottom: 2.4rem;
+}
+
+.inputField {
+  width: 100%;
+  height: 100%;
+  padding: 0.9rem 1.6rem;
+  font-size: 1.4rem;
+  color: #131313;
+  background-color: #F3F4F6;
+  border-radius: 1.2rem;
+  border: 0.1rem solid #d8d8d8;
+}
+
+.inputField::placeholder {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #9CA3AF;
+}
+
+.iconLeft {
+  position: absolute;
+  left: 1.2rem;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.iconsRight {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 1.2rem;
+}
+
+.clearIcon {
+  position: relative;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 1.2rem;
+  cursor: pointer;
+}
+
+.iconRight {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 743px) {
+  .searchContainer {
+    max-width: 28.8rem;
+    width: 100%;
+    height: 4.2rem;
+    padding: 0.2rem 0.5rem;
+  }
+}

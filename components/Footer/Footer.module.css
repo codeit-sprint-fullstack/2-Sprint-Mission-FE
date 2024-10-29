@@ -1,0 +1,81 @@
+/* 푸터 영역 */
+.footerWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-width: 37.1rem;
+  height: 16rem;             
+  color: var(--footer-text-color);
+  background-color: var(--footer-bg);
+}
+.footerContents {   
+  width: 100%;                          /* 부모 요소의 너비를 기준으로 100% 확장 */
+  max-width: 120rem;          
+  height: 2rem;    
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;            
+  font-weight: 400;
+  padding: 2rem 0;                    
+}
+.footerContents a {
+  color: var(--footer-text-color);      /* 링크 글자색 설정 */
+  text-decoration: none;                /* 밑줄 제거 */
+}
+.footerPrivacyFaq {
+  list-style: none;                     /* <ul> 태그의 기호 삭제 */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;                
+}
+
+.sns {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;   
+}
+
+.sns .iconWrapper {
+  position: relative;  
+  width: 2rem;         
+  height: 2rem;   
+}
+
+.sns img {
+  object-fit: cover;
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .footerContents {
+    padding: 1.5rem 2.4rem;            
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .footerContents {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;                    
+    justify-content: space-between; 
+    align-items: center;
+    padding: 2rem 1.6rem;
+  }
+
+  .privacyFaq, 
+  .sns {
+    width: 50%;                         /* 두 요소를 한 줄에 배치되도록 너비 설정 */
+  }
+  .sns {
+    max-width: 11.6rem;
+    text-align: right;
+  }
+  .copyright {
+    order: 3;                           /* 세 번째 요소로 이동 */
+    width: 100%; 
+    margin-top: 1rem; 
+  }
+}

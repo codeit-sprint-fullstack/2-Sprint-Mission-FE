@@ -1,0 +1,92 @@
+.input {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 1.2rem;
+  background: #ffffff;
+  
+  width: 13rem;
+  height: 4.2rem;
+  margin-bottom: 2.4rem;
+  border: 1px solid #e5e7eb;
+  padding: 1.2rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #1f2937;
+}
+
+/* iconMode가 활성화된 경우 */
+.iconMode {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  padding: 0;
+  background: none;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.arrow {
+  display: inline-block;
+  transform: rotate(180deg); /* 기본 닫힘 상태 */
+  transition: transform 0.2s ease;
+  color: #6b7280;
+}
+
+.opened .arrow {
+  transform: rotate(0); /* 열림 상태에서 회전 */
+}
+
+
+.options {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  width: 100%;
+  white-space: nowrap;
+  border: 0.1rem solid #e5e7eb;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  text-align: center;
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.2s ease;
+}
+
+/* iconMode가 활성화된 경우 옵션 스타일 */
+.iconModeOptions {
+  left: -6rem;
+  min-width: 10rem;
+  padding: 0.5rem 1rem;
+}
+
+.opened .options {
+  transform: scaleY(1);
+}
+
+.option {
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.option.selected,
+.option:hover {
+  background-color: #f3f4f6;
+}
+
+@media (max-width: 743px) {
+  .input {
+    margin-right: 1rem;
+  }
+}

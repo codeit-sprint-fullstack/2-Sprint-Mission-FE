@@ -1,0 +1,22 @@
+:root {
+  --primary-color: #3692ff;
+  --background-color: #ffffff;
+  --section-text-color: #374151;
+  --gnb-bg: #ffffff;
+  --text-color: #374151;
+  --nav-text-color: #4B5563;
+  --content-box-gray-bg: #fcfcfc;
+  --button-text-color: #ffffff;
+  --footer-text-color: #9ca3af;
+  --footer-bg: #111827;
+  --banner-bg: #cfe5ff;
+  --input-background-color: #f3f4f6;
+  --focus-border-color: #3694ff;
+  --submit-button-bg: #9ca3af;
+  --input-placeholder-color: #9ca3af;
+  --social-login-bg: #e6f2ff;
+  --link-color: #3182f6;
+  --nav-divider-color: #dfdfdf;
+  --heading-text-color: #111827;
+  --article-text-color: #1F2937;
+}

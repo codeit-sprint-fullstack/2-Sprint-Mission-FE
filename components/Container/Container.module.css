@@ -1,0 +1,26 @@
+.withHeader {
+  padding-top: 7rem;
+}
+
+.content {
+  max-width: 120rem;
+  width: 100%;
+  margin: 2.4rem auto;
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .content {
+    width: 100%;
+    padding: 0 2.4rem; 
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .content {
+    width: 100%;
+    min-width: 37.1rem;
+    padding: 0 1.6rem;
+  }
+}

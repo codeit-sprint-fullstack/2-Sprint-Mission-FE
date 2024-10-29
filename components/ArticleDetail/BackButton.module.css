@@ -1,0 +1,33 @@
+.backButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%; 
+  margin-top: 4.8rem;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24rem;
+  height: 4.8rem;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 2.6rem;
+  color: #F3F4F6;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.iconBack {
+  position: relative;
+  width: 1.9rem;
+  height: 1.6rem;
+  margin-left: 1.1rem;
+  display: flex;
+  align-items: center;
+}

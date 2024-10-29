@@ -1,0 +1,32 @@
+html {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  font-size: 62.5%;  /* 1rem = 10px */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.6rem;
+  color: var(--text-color);           /* 기본 글꼴 색상 */
+  background: var(--background-color); /* 기본 배경 색상 */
+
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  /* 부모 요소의 폰트 스타일을 상속 */
+  font-family: inherit;
+}
+
+.content-spacer {
+  min-height: 70vh; 
+}

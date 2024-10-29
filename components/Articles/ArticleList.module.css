@@ -1,0 +1,157 @@
+.articleList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem; 
+}
+
+.articleItem {
+  background-color: #FCFCFC;
+  padding-bottom: 2.4rem;
+  border-bottom: 1px solid #E5E7EB;
+
+  /* border: 1px solid red;  */
+}
+
+.articleWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.articleTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+
+.articleTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 3.2rem;
+  color: var(--article-text-color);
+  margin: 0;
+}
+
+.articleImageWrapper {
+  position: relative; 
+  width: 7.2rem;
+  height: 7.2rem;
+}
+
+.articleImage {
+  border-radius: 0.8rem;
+  object-fit: cover;
+}
+
+.articleBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.articleInfo {
+  display: flex;
+  gap: 0.8rem;                        /* 닉네임과 날짜 사이 간격 */
+  font-size: 1.2rem;
+  color: var(--secondary-text-color);
+  align-items: center;
+}
+
+.nicknameWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.profileIcon {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  margin-right: 0.8rem;
+}
+
+.nickname {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #4B5563;
+}
+
+.date {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #9CA3AF;
+  align-self: center;     /* 날짜를 닉네임과 동일한 높이로 맞추기 위한 설정 */
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+  gap: 0.4rem;
+}
+
+.likesIcon {
+  position: relative; 
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.articleContainer {
+  min-height: 40vh; /* 페이지 최소 높이 설정 */
+}
+
+.noArticles {
+  padding-bottom: 20rem; /* 검색 결과가 없을 때 여유 공간 추가 */
+  text-align: center;
+  font-size: 1.6rem;
+  color: #9CA3AF;
+}
+
+.noArticles:after {
+  content: "검색 결과가 없습니다."; /* 검색 결과가 없을 때 표시되는 텍스트 */
+  display: block;
+  padding-top: 10rem; /* 검색 결과가 없을 때 여유 공간 */
+  text-align: center;
+  font-size: 1.6rem;
+  color: #9CA3AF;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem; /* SearchBar와 리스트 사이의 간격 */
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .articleItem {
+    padding: 0 2.4rem; 
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .articleItem {
+    padding: 0 1.6rem;
+  }
+
+  .articleContainer {
+    min-height: 30vh; 
+  }
+  
+  .noArticles {
+    padding-bottom: 10rem; 
+  }
+  
+  .noArticles:after {
+    padding-top: 5rem; 
+    font-size: 1.4rem;
+  }  
+}

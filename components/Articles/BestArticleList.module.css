@@ -1,0 +1,153 @@
+.bestArticleList {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap; 
+  list-style: none;
+  padding: 0;
+  margin-bottom: 4rem;
+  gap: 2.4rem;
+}
+
+.bestArticleItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 38.4rem;
+  width: 100%;
+  height: 16.9rem;
+  padding: 0 2.4rem 1.6rem;
+  background-color: #F9FAFB;
+}
+
+.bestArticleWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bestArticleHeader {
+  margin-bottom: 1.2rem;
+}
+
+.bestBadgeWrapper {
+  position: relative;
+  width: 10.2rem; 
+  height: 3rem; 
+}
+
+.bestArticleContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.articleImageWrapper {
+  position: relative;
+  width: 7.2rem; 
+  height: 7.2rem;
+}
+
+.bestArticleTitle {
+  max-width: 25.6rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 3.2rem;
+  color: var(--article-text-color);
+  margin: 0;                              /* margin:0 추가해야 레이아웃이 밀리지 않음 */
+
+  /* 두 줄 제한 및 말줄임표 설정 */
+   display: -webkit-box;
+   -webkit-line-clamp: 2;                  /* 최대 2줄로 제한 */
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: normal; 
+  /* 표준 line-clamp 속성을 추가 : VS Code에서 경고문구 제거를 위해 */
+  line-clamp: 2;                            /* 표준 속성으로 정의하지만 아직 대부분의 브라우저에서 미지원 */
+}
+
+.bestArticleImage {
+  border-radius: 0.4rem;
+}
+
+.bestArticleFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.2rem;
+}
+
+.heartIconWrapper {
+  position: relative;
+  width: 1.6rem; 
+  height: 1.6rem;
+}
+.bestArticleInfo {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  color: var(--secondary-text-color);
+}
+
+.nickname {
+  margin-right: 1.2rem;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+}
+
+.likesIcon {
+  display: flex;
+  align-items: center;
+
+  margin-right: 0.4rem;
+}
+
+.date {
+  font-size: 1.2rem;
+  color: var(--secondary-text-color);
+}
+
+
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .bestArticleList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .bestArticleItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 34.3rem;
+    width: 100%;
+    height: 19.8rem;
+    padding: 0 2.4rem 1.6rem;
+    background-color: #F9FAFB;
+  }  
+
+  .bestArticleTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 3.2rem;
+    color: var(--article-text-color);
+    margin: 0;                /* margin:0 추가해야 레이아웃이 밀지ㅣ 않음 */
+  
+    /* 두 줄 제한 및 말줄임표 설정 */
+     display: -webkit-box;
+     -webkit-line-clamp: 3; /* 최대 3줄로 제한 */
+     -webkit-box-orient: vertical;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: normal; 
+    /* 표준 line-clamp 속성을 추가 : VS Code에서 경고문구 제거를 위해 */
+    line-clamp: 3; /* 표준 속성으로 정의하지만 아직 대부분의 브라우저에서 미지원 */
+  }  
+}
+
