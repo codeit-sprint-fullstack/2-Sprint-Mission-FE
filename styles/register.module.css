@@ -1,0 +1,91 @@
+.register_container {
+  width: 1200px;
+  gap: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.write_post {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.registration_button {
+  height: 42px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 23px;
+  background-color: #9ca3af;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  color: #f3f4f6;
+}
+
+.register_body {
+  width: 1200px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title,
+.content {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.input_title {
+  width: 1200px;
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  background-color: #f3f4f6;
+  border: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.input_title::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #9ca3af;
+}
+
+.input_content {
+  display: flex;
+  vertical-align: top;
+  width: 1200px;
+  height: 282px;
+  border-radius: 12px;
+  padding: 16px 24px;
+  background-color: #f3f4f6;
+  border: none;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.input_content::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #9ca3af;
+  margin-top: 0;
+}
