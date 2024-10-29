@@ -1,8 +1,7 @@
 .best_container {
   margin: 24px 0;
   display: flex;
-  gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .best_wrapper {

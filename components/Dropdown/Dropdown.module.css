@@ -1,0 +1,54 @@
+.dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.selected_wrapper {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.selected {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.options {
+  width: 130px;
+  height: 84px;
+  margin-top: 8px;
+}
+
+.recent,
+.like {
+  width: 130px;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recent {
+  border-radius: 12px 12px 0 0;
+}
+
+.like {
+  border-radius: 0 0 12px 12px;
+}
