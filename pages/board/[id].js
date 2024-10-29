@@ -11,11 +11,7 @@ import like_button from "../../images/board/heart_btn.svg";
 import back from "../../images/board/back_icon.svg";
 import empty_img from "../../images/board/reply_empty.svg";
 import { useRouter } from "next/router";
-
-/** TODO
- * 1. 전체적인 이미지에 alt 넣기 (완)
- * 2. 수정하기는 피그마에 없어서 추후 업데이트 예정 (완)
- */
+import CommentItem from "@/components/CommentItem/CommentItem";
 
 export default function Board() {
   const router = useRouter();
@@ -133,14 +129,11 @@ export default function Board() {
   const handleEditCommentSubmit = async () => {
     if (editComment.trim() === "") return;
     try {
-      console.log(editCommentId, editComment);
-
       const response = await fetchApi(
         `/articles/${id}/comments/${editCommentId}`,
         { content: editComment },
         "PATCH"
       );
-      console.log(response);
       setEditCommentId(null);
       setEditComment("");
       await fetchComments();
@@ -202,46 +195,17 @@ export default function Board() {
           </div>
         ) : (
           comment.map((comment) => (
-            <>
-              <div className={styles.comment_title} key={comment.id}>
-                {editCommentId === comment.id ? (
-                  <>
-                    <textarea
-                      value={editComment}
-                      onChange={handleEditCommentChange}
-                      className={styles.comment_edit_textarea}
-                    />
-                    <button
-                      onClick={handleEditCommentSubmit}
-                      className={styles.edit_button}
-                    >
-                      수정
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <p>{comment.content}</p>
-                    <Image
-                      src={select}
-                      alt="선택"
-                      onClick={(e) => toggleModal(e, true, comment.id)}
-                      className={styles.select_button}
-                    />
-                  </>
-                )}
-              </div>
-              <div className={styles.detail_user_stats}>
-                <Image
-                  src={user}
-                  alt="유저이미지"
-                  className={styles.user_img}
-                />
-                <div className={styles.comment_user_stats_content}>
-                  <h5 className={styles.nickname}>총명한판다</h5>
-                  <h5 className={styles.create_at}>1시간 전</h5>
-                </div>
-              </div>
-            </>
+            <CommentItem
+              key={comment.id}
+              comment={comment}
+              editCommentId={editCommentId}
+              editComment={editComment}
+              handleEditCommentChange={handleEditCommentChange}
+              handleEditCommentSubmit={handleEditCommentSubmit}
+              toggleModal={toggleModal}
+              userImage={user}
+              selectImage={select}
+            />
           ))
         )}
       </div>
