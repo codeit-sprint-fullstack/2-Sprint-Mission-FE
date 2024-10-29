@@ -2,7 +2,7 @@ import Head from "next/head";
 import Header from "@/components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import "@/styles/global.css";
-import Container from "@/components/Container/Containter";
+import Container from "@/components/Container/Container";
 
 export default function App({ Component, pageProps }) {
   return (

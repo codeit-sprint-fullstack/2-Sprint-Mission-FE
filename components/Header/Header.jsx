@@ -14,6 +14,7 @@ export default function Header() {
               className={styles.panda_market_img}
               src={pandaLogo}
               alt="판다 로고"
+              priority
             />
           </Link>
           <div className={styles.select}>
@@ -35,6 +36,7 @@ export default function Header() {
               className={styles.login_button}
               src={loginButton}
               alt="로그인 버튼"
+              priority
             />
           </Link>
         </div>

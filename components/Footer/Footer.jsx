@@ -19,26 +19,26 @@ export default function Footer() {
             FAQ
           </Link>
         </div>
-        <div class={styles.icon}>
+        <div className={styles.icon}>
           <Link
             href="https://www.facebook.com/"
             target="_blank"
             title="facebook"
           >
-            <Image src={facebook} alt="Facebook Icon" />
+            <Image src={facebook} alt="Facebook Icon" priority />
           </Link>
           <Link href="https://twitter.com/" target="_blank" title="twitter">
-            <Image src={twitter} alt="Twitter Icon" />
+            <Image src={twitter} alt="Twitter Icon" priority />
           </Link>
           <Link href="https://www.youtube.com/" target="_blank" title="youtube">
-            <Image src={youtube} alt="Youtube Icon" />
+            <Image src={youtube} alt="Youtube Icon" priority />
           </Link>
           <Link
             href="https://www.instagram.com/"
             target="_blank"
             title="instagram"
           >
-            <Image src={instagram} alt="Instagram Icon" />
+            <Image src={instagram} alt="Instagram Icon" priority />
           </Link>
         </div>
       </div>
