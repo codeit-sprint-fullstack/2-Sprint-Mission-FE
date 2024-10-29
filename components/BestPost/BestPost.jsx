@@ -6,46 +6,33 @@ import heart from "../../images/board/heart_img.svg";
 import { fetchApi } from "@/utils/fetchApi";
 import { useEffect, useState } from "react";
 
+async function fetchBestPosts() {
+  try {
+    const data = await fetchApi("/articles");
+    return data
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      .slice(0, 3);
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+}
+
 export default function BestPost() {
-  const [post, setPost] = useState([]);
   const [recentPost, setRecentPost] = useState([]);
 
-  const fetchBestPosts = async () => {
-    try {
-      const data = await fetchApi("/articles");
-      setPost(data);
-
-      const sortedPosts = data
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 3);
-      setRecentPost(sortedPosts);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   useEffect(() => {
-    fetchBestPosts();
+    const fetchData = async () => {
+      const sortedPosts = await fetchBestPosts();
+      setRecentPost(sortedPosts);
+    };
+    fetchData();
   }, []);
-
-  const getVisiblePosts = () => {
-    if (typeof window !== "undefined") {
-      const width = window.innerWidth;
-      if (width <= 744) {
-        return 1;
-      } else if (width <= 1200) {
-        return 2;
-      }
-    }
-    return 3;
-  };
-
-  const visiblePosts = recentPost.slice(0, getVisiblePosts());
 
   return (
     <>
       <div className={styles.best_container}>
-        {visiblePosts.map((post) => (
+        {recentPost.map((post) => (
           <div key={post.id} className={styles.best_wrapper}>
             <Image src={badge} />
             <div className={styles.title_img}>
