@@ -13,7 +13,7 @@ export default function BestPost() {
   const [pageSize, setPageSize] = useState(10);
   const [keyword, setKeyword] = useState("");
 
-  async function getPosts({ orderBy, page, pageSize, keyword }) {
+  async function getBestPosts({ orderBy, page, pageSize, keyword }) {
     try {
       const res = await axios.get("/articles", {
         params: { orderBy, page, pageSize, keyword },
@@ -29,7 +29,7 @@ export default function BestPost() {
   }
 
   useEffect(() => {
-    getPosts({ orderBy, page, pageSize, keyword });
+    getBestPosts({ orderBy, page, pageSize, keyword });
   }, [orderBy, page, pageSize, keyword]);
 
   return (
@@ -44,7 +44,7 @@ export default function BestPost() {
             </div>
             <div className={styles.user_wrapper}>
               <div className={styles.user_status}>
-                <p className={styles.panda}>총명한 판다</p>
+                <p className={styles.panda}>총명한판다</p>
                 <Image src={heart} alt="하트" />
                 <p>9999+</p>
               </div>
