@@ -58,13 +58,14 @@ export default function Article({ article, articleComments }) {
           <div className={styles.info}>
             <div className={styles[`user-info`]}>
               <Image
+                className={styles.image}
                 src="/images/size=large.png"
                 width={40}
                 height={40}
                 alt="유저 아이콘"
               />
-              <p>판매왕 판다</p>
-              <p>{formatDate(article.createdAt)}</p>
+              <p className={styles.name}>판매왕 판다</p>
+              <p className={styles.date}>{formatDate(article.createdAt)}</p>
             </div>
             <div className={styles[`like-wrap`]}>
               <div className={styles.like}>
