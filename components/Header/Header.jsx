@@ -3,13 +3,16 @@ import Image from "next/image";
 import pandaLogo from "@/public/panda-logo.svg";
 import loginButton from "@/public/login-button.svg";
 import styles from "./Header.module.css";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
+
   return (
     <div className={styles.header}>
       <div className={styles.nav}>
         <div className={styles.title}>
-          <Link href="./">
+          <Link href="/">
             <Image
               className={styles.panda_market_img}
               src={pandaLogo}
@@ -19,12 +22,26 @@ export default function Header() {
           </Link>
           <div className={styles.select}>
             <p className={styles.free_board}>
-              <Link href="/board" className={styles.board}>
+              <Link
+                href="/board"
+                className={
+                  router.pathname.startsWith("/board")
+                    ? styles.active_board
+                    : styles.board
+                }
+              >
                 자유게시판
               </Link>
             </p>
             <p className={styles.second_hand}>
-              <Link href="/used-market" className={styles.used_market}>
+              <Link
+                href="/used-market"
+                className={
+                  router.pathname.startsWith("/used-market")
+                    ? styles.active_market
+                    : styles.used_market
+                }
+              >
                 중고마켓
               </Link>
             </p>

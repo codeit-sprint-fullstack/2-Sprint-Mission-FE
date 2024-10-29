@@ -56,3 +56,9 @@
   gap: 10px;
   align-items: center;
 }
+
+.active_board,
+.active_market {
+  text-decoration: none;
+  color: #3692ff;
+}
