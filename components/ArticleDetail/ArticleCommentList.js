@@ -1,6 +1,6 @@
 import styles from './ArticleCommentList.module.css';
 import Image from 'next/image';
-import { patchArticleComment } from '@/lib/api/ArticleCommentService';
+import { patchArticleComment } from '@/lib/api/ArticleService';
 import CommentDropdown from './CommentDropdown';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';

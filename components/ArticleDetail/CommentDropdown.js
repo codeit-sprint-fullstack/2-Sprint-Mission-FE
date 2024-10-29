@@ -1,5 +1,5 @@
 import styles from './CommentDropdown.module.css';
-import { deleteArticleComment } from '@/lib/api/ArticleCommentService';
+import { deleteArticleComment } from '@/lib/api/ArticleService';
 import { useRouter } from 'next/router';
 
 export default function CommentDropdown({ commentId, onEditClick }) {
