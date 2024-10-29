@@ -49,37 +49,21 @@ export async function getServerSideProps() {
 }
 
 export default function ArticlesPage({ initialBestArticles, initialArticles }) {
-  const [bestArticles, setBestArticles] = useState(initialBestArticles);
   const maxBestArticleCount = useMaxItems(); // 클라이언트에서만 접근 가능
-
-  // 화면 사이즈에 맞춰 베스트 게시글 수 업데이트
-  useEffect(() => {
+  const [displayedBestArticles, setDisplayedBestArticles] = useState(initialBestArticles.slice(0, maxBestArticleCount));
+  
+  useEffect(()=> {
     if (maxBestArticleCount) {
-      const fetchAdjustedBestArticles = async () => {
-        try {
-          const adjustedData = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
-          const adjustedArticles = adjustedData.map((article) => ({
-            ...article,
-            imageUrl: '/images/articles/img_default_article.png',
-            nickname: generateRandomNickname(),
-            likes: getRandomInt(0, 20000),
-            formattedDate: formatDate(article.createdAt),
-          }));
-          setBestArticles(adjustedArticles);
-        } catch (error) {
-          console.error('화면 크기에 맞춘 베스트 게시글 로드 실패:', error);
-        }
-      };
-      fetchAdjustedBestArticles();
+      setDisplayedBestArticles(initialBestArticles.slice(0, maxBestArticleCount));
     }
-  }, [maxBestArticleCount, bestArticles.length]); 
+  }, [maxBestArticleCount, initialBestArticles]);
 
   return (
     <div>
       <h2 className={styles.sectionTitle}>베스트 게시글</h2>
 
-      {bestArticles.length > 0 ? (
-        <BestArticleList articles={bestArticles} />
+      {displayedBestArticles.length > 0 ? (
+        <BestArticleList articles={displayedBestArticles} />
       ) : (
         <p>베스트 게시글이 없습니다.</p>
       )}
