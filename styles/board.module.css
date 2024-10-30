@@ -41,9 +41,40 @@
 
 .search_form {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin-top: 24px;
+  justify-content: flex-end;
 }
+
+.search_form_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selected_wrapper {
+  width: 130px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.selected {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #1f2937;
+  margin-right: 22px;
+}
+
+/* .dropdown_component {
+  display: relative;
+} */
 
 .post_wrapper {
   width: 1200px;

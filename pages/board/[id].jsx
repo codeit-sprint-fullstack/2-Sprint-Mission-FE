@@ -10,12 +10,14 @@ import emptyComment from "@/public/empty_comment_img.svg";
 import backImg from "@/public/ic_back.svg";
 import styles from "@/styles/detail.module.css";
 import Link from "next/link";
+import Dropdown from "@/components/Dropdown/Dropdown";
 
 export default function Board() {
   const router = useRouter();
   const { id } = router.query;
 
   const [post, setPost] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [isCommentModal, setIsCommentModal] = useState(false);
@@ -62,12 +64,8 @@ export default function Board() {
     return <p>로딩중...</p>;
   }
 
-  const toggleModal = (e, isComment = false, commentId = null) => {
-    const rect = e.target.getBoundingClientRect();
-    setModalPosition({ top: rect.top + 25, left: rect.left - 130 });
-    setIsModalOpen((prev) => !prev);
-    setIsCommentModal(isComment);
-    setSelectedCommentId(commentId);
+  const toggleModal = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   // const handleSubmit = async (e) => {
@@ -90,6 +88,45 @@ export default function Board() {
   //   }
   // }, [comment]);
 
+  const options = [
+    {
+      value: "modify",
+      label: "수정하기",
+      style: {
+        width: "130px",
+        height: "42px",
+        border: "1px solid #e5e7eb",
+        borderBottom: "none",
+        fontWeight: "400",
+        fontSize: "16px",
+        lineHeight: "26px",
+        color: "#6B7280",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "12px 12px 0 0",
+      },
+    },
+    {
+      value: "delete",
+      label: "삭제하기",
+      style: {
+        width: "130px",
+        height: "42px",
+        border: "1px solid #e5e7eb",
+        borderTop: "none",
+        fontWeight: "400",
+        fontSize: "16px",
+        lineHeight: "26px",
+        color: "#6B7280",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "0 0 12px 12px",
+      },
+    },
+  ];
+
   return (
     <>
       <div className={styles.board_page}>
@@ -97,6 +134,7 @@ export default function Board() {
           <div className={styles.board_header_top}>
             <p className={styles.post_title}>{post.title}</p>
             <Image src={toggleImg} alt="점 세 개" onClick={toggleModal} />
+            {isDropdownOpen && <Dropdown options={options} />}
           </div>
           <div className={styles.board_header_bottom}>
             <div className={styles.user_info}>

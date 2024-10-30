@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.selected_wrapper {
+/* .selected_wrapper {
   width: 130px;
   height: 42px;
   border-radius: 12px;
@@ -24,7 +24,7 @@
   font-size: 16px;
   line-height: 26px;
   color: #1f2937;
-}
+} */
 
 .options {
   width: 130px;
@@ -32,5 +32,6 @@
   margin-top: 8px;
   top: 100%;
   position: absolute;
+  /* margin-right: 150px; */
   background-color: #ffffff;
 }

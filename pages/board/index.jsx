@@ -8,11 +8,53 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 import defaultImg from "@/public/img_default.svg";
 import profile from "@/public/ic_profile.svg";
 import heart from "@/public/ic_heart.svg";
+import arrowImg from "@/public/ic_arrow_down.svg";
 import styles from "@/styles/board.module.css";
 
 export default function Home() {
+  const options = [
+    {
+      value: "recent",
+      label: "최신순",
+      style: {
+        width: "130px",
+        height: "42px",
+        border: "1px solid #e5e7eb",
+        fontWeight: "400",
+        fontSize: "16px",
+        lineHeight: "26px",
+        color: "#1f2937",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "12px 12px 0 0",
+        boxSizing: "border-box",
+      },
+    },
+    {
+      value: "like",
+      label: "좋아요순",
+      style: {
+        width: "130px",
+        height: "42px",
+        border: "1px solid #e5e7eb",
+        fontWeight: "400",
+        fontSize: "16px",
+        lineHeight: "26px",
+        color: "#1f2937",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "0 0 12px 12px",
+        boxSizing: "border-box",
+      },
+    },
+  ];
+
   const [search, setSearch] = useState("");
   const [posts, setPosts] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [sortOption, setSortOption] = useState(options[0]?.value);
   const [orderBy, setOrderBy] = useState("recent");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(4);
@@ -42,42 +84,14 @@ export default function Home() {
     setKeyword(word);
   };
 
-  const options = [
-    {
-      value: "recent",
-      label: "최신순",
-      style: {
-        width: "130px",
-        height: "42px",
-        border: "1px solid #e5e7eb",
-        fontWeight: "400",
-        fontSize: "16px",
-        lineHeight: "26px",
-        color: "#1f2937",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "12px 12px 0 0",
-      },
-    },
-    {
-      value: "like",
-      label: "좋아요순",
-      style: {
-        width: "130px",
-        height: "42px",
-        border: "1px solid #e5e7eb",
-        fontWeight: "400",
-        fontSize: "16px",
-        lineHeight: "26px",
-        color: "#1f2937",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "0 0 12px 12px",
-      },
-    },
-  ];
+  const toggleModal = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleOptionSelect = (optionValue) => {
+    setSortOption(optionValue);
+    setIsDropdownOpen(false);
+  };
 
   return (
     <>
@@ -92,8 +106,20 @@ export default function Home() {
         </button>
       </div>
       <div className={styles.search_form}>
-        <SearchBar initialValue={handleSearch} />
-        <Dropdown options={options} />
+        <div className={styles.search_form_wrapper}>
+          <SearchBar initialValue={handleSearch} />
+          <div className={styles.selected_wrapper} onClick={toggleModal}>
+            <p className={styles.selected}>
+              {options.find((option) => option.value === sortOption)?.label}
+            </p>
+            <Image src={arrowImg} alt="화살표" />
+          </div>
+        </div>
+        {isDropdownOpen && (
+          <div className={styles.dropdown_wrapper}>
+            <Dropdown options={options} onSelect={handleOptionSelect} />
+          </div>
+        )}
       </div>
       <div className={styles.post_wrapper}>
         {posts.map((article) => (
