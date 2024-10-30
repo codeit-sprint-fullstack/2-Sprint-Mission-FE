@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import BestArticleList from '@/components/Articles/BestArticleList';
 import { generateRandomNickname, getRandomInt } from '@/lib/utils';
 import formatDate from '@/lib/formatDate';
-import styles from './ArticlePage.module.css';
+import styles from '@/styles/ArticlePage.module.css';
 import useMaxItems from '@/hooks/useMaxItems';
 import ArticleList from '@/components/Articles/ArticleList';
 import { getArticleList } from '@/lib/api/ArticleService';

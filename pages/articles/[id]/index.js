@@ -7,7 +7,7 @@ import CommentList from '@/components/ArticleDetail/CommentList';
 import BackButton from '@/components/ArticleDetail/BackButton';
 import { generateRandomNickname, getRandomInt } from '@/lib/utils';
 import formatDate from '@/lib/formatDate';
-import styles from '@/components/ArticleDetail/ArticleDetailPage.module.css';
+import styles from '@/styles/ArticleDetailPage.module.css';
 
 export default function ArticleDetailPage() {
   const router = useRouter();
