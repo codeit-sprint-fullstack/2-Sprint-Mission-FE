@@ -1,6 +1,6 @@
 import axios from 'axios';
-import isEmpty from './isEmpty.js';
 import c from './constants.js';
+import { isEmpty } from './utils.js';
 
 const HTTP_METHODS = Object.freeze({
   GET: 'GET',

@@ -19,7 +19,7 @@ export default function useValidation() {
 
 function nameValidation(value) {
   let errMsg;
-  if (value?.length <= 0) {
+  if (!value?.trim?.()) {
     errMsg = '1자 이상 입력해주세요';
   } else if (value?.length > 10) {
     errMsg = '10자 이내로 입력해주세요';

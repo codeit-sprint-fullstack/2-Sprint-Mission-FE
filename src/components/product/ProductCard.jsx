@@ -59,7 +59,7 @@ const style = {
 
 export default function ProductCard({ item, best = false }) {
   const { likeCount, price, name, images } = item;
-  const imgUrl = images?.length ? images[0] : '/Image/img_default.png';
+  const imgUrl = images?.[0] || '/Image/img_default.png';
   const priceString = priceFunc(price);
 
   return (
