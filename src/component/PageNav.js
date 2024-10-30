@@ -1,7 +1,7 @@
-import "./HomeStyle/global.css";
-import "./HomeStyle/home.css";
+import "../page/HomeStyle/global.css";
+import "../page/HomeStyle/home.css";
 import { Link, useLocation } from "react-router-dom";
-import logo from "./images/logo/logo.svg";
+import logo from "../page/images/logo/logo.svg";
 
 function PageNav() {
   const location = useLocation();
@@ -22,7 +22,7 @@ function PageNav() {
             </button>
           </Link>
         </div>
-        <a href="login.html" id="loginLink" className="button">
+        <a href="login" id="loginLink" className="button">
           로그인
         </a>
       </header>
