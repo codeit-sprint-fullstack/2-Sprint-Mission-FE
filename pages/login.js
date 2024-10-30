@@ -1,34 +1,42 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '@/styles/Login.module.css';
+import styles from '@/styles/Signup.module.css';
+import createButton from '@/components/Button';
+
+const LoginButton = createButton({
+  style: 'btn_large',
+});
 
 export default function Login() {
+  const handleClick = () => {
+    return;
+  };
+
   return (
-    <div className={styles.login}>
-      <div className={styles.wrapper}>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <Link href="/">
+          <div className={styles.pandaLogo}>
+            <Image fill src="/logo.png" alt="panda market" />
+          </div>
+        </Link>
         <form className={styles.form}>
           <div>
-            <Link href="/">
-              <Image
-                width={396}
-                height={132}
-                src="/logo.png"
-                alt="panda market"
-              />
-            </Link>
-          </div>
-          <div>
-            <label for="username">이메일</label>
+            <div className={styles.label} for="username">
+              이메일
+            </div>
             <input
               id="username"
               className={styles.input}
-							name="username"
+              name="username"
               placeholder="이메일을 입력해주세요"
             />
             <span id="email-error" className="error-msg"></span>
           </div>
-          <label for="password">비밀번호</label>
-          <div className="password-input">
+          <div className={styles.label} for="password">
+            비밀번호
+          </div>
+          <div className={styles.passwordInput}>
             <input
               id="password"
               className={styles.input}
@@ -39,19 +47,19 @@ export default function Login() {
             <Image
               width={24}
               height={24}
-              className="toggle-show-password"
+              className={styles.togglePassword}
               src="/visibility_eye.png"
               alt="view password"
             />
             <span id="password-error" className="error-msg"></span>
           </div>
-          <button id="login-button" type="submit" disabled>
-            로그인
-          </button>
         </form>
-        <div className="easy-login">
+        <LoginButton onClick={handleClick} disabled>
+          로그인
+        </LoginButton>
+        <div className={styles.socialLogin}>
           <span>간편 로그인하기</span>
-          <div className="icons">
+          <div className={styles.icons}>
             <Link href="https://www.google.com/">
               <Image width={42} height={42} src="/ic_google.png" />
             </Link>
@@ -60,9 +68,9 @@ export default function Login() {
             </Link>
           </div>
         </div>
-        <div className="ask">
+        <div className={styles.ask}>
           판다마켓이 처음이신가요?{' '}
-          <Link href="/signup" className="signup">
+          <Link href="/signup" className={styles.answerLink}>
             회원가입
           </Link>
         </div>

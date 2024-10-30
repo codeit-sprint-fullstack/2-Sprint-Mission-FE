@@ -1,27 +1,30 @@
-.signup {
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.wrapper {
+.container {
   width: 640px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
+  gap: 24px;
 }
 
 .form {
-  width: 640px;
+  width: 100%;
   margin: 0 auto;
 }
 
-.logo-img {
+.pandaLogo {
   width: 396px;
+  height: 132px;
   margin: 60px auto 24px;
   display: block;
+  position: relative;
 }
 
 .label {
@@ -46,11 +49,7 @@
   }
 }
 
-.focused {
-  border: 1px solid var(--primary-100);
-}
-
-.error-msg {
+.errorMessage {
   display: none;
   color: var(--error-red);
   font-size: 1.5rem;
@@ -58,11 +57,12 @@
   margin: 8px 0 0 16px;
 }
 
-.password-input {
+.passwordInput,
+.passwordInputVerification {
   position: relative;
 }
 
-.toggle-show-password {
+.togglePassword {
   height: 24px;
   position: absolute;
   top: 30px;
@@ -70,24 +70,7 @@
   right: 24px;
 }
 
-.button {
-  background: var(--gray-400);
-  border: none;
-  color: #ffffff;
-  font-size: 2rem;
-  text-align: center;
-  width: 100%;
-  border-radius: 40px;
-  padding: 16px 24px;
-  margin: 24px 0;
-}
-
-.isValid {
-  background: var(--primary-100);
-  cursor: pointer;
-}
-
-.easy-login {
+.socialLogin {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -106,16 +89,17 @@
 
 .ask {
   margin: 24px 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 500;
   text-align: center;
+  margin-bottom: 100px;
 }
 
-.login {
+.answerLink {
   color: #3182f6;
 }
 
-.alert-modal {
+.alertModal {
   display: none;
   position: fixed;
   justify-content: center;
@@ -128,7 +112,7 @@
   justify-content: center;
 }
 
-.modal-content {
+.modalContent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,7 +126,7 @@
   border-radius: 10px;
 }
 
-.modal-button {
+.modalButton {
   width: 120px;
   height: 48px;
   background-color: var(--primary-100);
@@ -158,29 +142,27 @@
 }
 
 @media (max-width: 743px) {
-  .wrapper {
-    font-size: 1.6rem;
-  }
-
-  .logo-img {
-    width: 198px;
-  }
-
-  .form {
+  .container {
     width: 100%;
+    font-size: 1.6rem;
     padding: 0 16px;
+  }
+
+  .pandaLogo {
+    width: 198px;
+    height: 66px;
   }
 
   .label {
     font-size: 1.4rem;
   }
 
-  .modal-content {
+  .modalContent {
     width: 327px;
     height: 220px;
   }
 
-  .modal-button {
+  .modalButton {
     margin-left: 0;
   }
 }
