@@ -1,0 +1,114 @@
+.top {
+    margin: 7.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 120rem;
+}
+
+.titleBtnGroup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+    color: #1F2937;
+}
+
+.postBtn {
+    width: 7.4rem;
+    height: 4.2rem;
+    border-radius: 0.8rem;
+    background-color: #9CA3AF;
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 600;
+    border: none;
+    color: #ffffff;
+}
+
+.postBtn.active {
+    background-color: #3692FF;
+    cursor: pointer;
+}
+
+.postBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2.4rem;
+    gap: 1rem;
+}
+
+.title,
+.content,
+.image {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    font-weight: 700;
+    color: #1F2937;
+
+}
+
+.titleInput,
+.contentInput {
+    width: 100%;
+    border-radius: 1.2rem;
+    padding: 1.6rem 2.4rem;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 400;
+    color: #1F2937;
+    margin: 1rem 0;
+    box-sizing: border-box;
+    background-color: #F3F4F6;
+    border: none;
+}
+
+.titleInput {
+    height: 5.6rem;
+}
+
+.contentInput {
+    height: 28.2rem;
+    resize: none;
+}
+
+.imageInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 28.2rem;
+    height: 28.2rem;
+    border-radius: 1.2rem;
+    background-color: #F3F4F6;
+}
+
+.plus {
+    width: 4.8rem;
+    height: 4.8rem;
+}
+
+.fileUpload {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 400;
+    color: #9CA3AF;
+}
+
+.uploadBtn {
+    border: none;
+    cursor: pointer;
+}

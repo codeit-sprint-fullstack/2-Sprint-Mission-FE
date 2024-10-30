@@ -1,0 +1,128 @@
+@font-face {
+  font-family: "ROKAF";
+  src: url("/fonts/ROKAFSans.ttf") format("truetype");
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 7rem;
+  background-color: white;
+  z-index: 1;
+}
+
+.nav {
+  justify-content: space-between;
+  width: 192rem;
+  height: 7rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin: 0 12.5rem;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+}
+
+.logoTitle {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.title {
+  color: #3692ff;
+  font-size: 2.563rem;
+  line-height: 3.46rem;
+  font-weight: 700;
+  margin-left: 0.8rem;
+  margin-right: 2rem;
+  font-family: ROKAF;  
+}
+
+.page {
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  color: #4b5563;
+  font-weight: 700;
+  text-align: center;
+  padding: 2.1rem 1.5rem;
+  text-decoration: none;
+}
+
+.page.active {
+  color: #3692ff;
+}
+
+.login {
+  width: 12.8rem;
+  height: 4.8rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  font-weight: 600;
+  background-color: #3692ff;
+  border-radius: 0.8rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* a {
+    text-decoration: none;
+    color: #e5e7eb;
+  } */
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .nav {
+    width: 100%;
+    margin: 0 2.4rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+  }
+
+  .login {
+    font-size: 1.6rem;
+    height: 4.2 rem;
+    width: 8.8rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .nav {
+    width: 100%;
+    margin: 0 1.6rem;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .page {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    line-height: 2.7rem;
+  }
+
+  .login {
+    font-size: 1.6rem;
+    height: 4.2rem;
+    width: 8.8rem;
+  }
+}
