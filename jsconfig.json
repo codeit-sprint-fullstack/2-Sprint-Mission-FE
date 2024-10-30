@@ -1,0 +1,12 @@
+{
+  "include": ["**/*.js"],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "module": "ESNext",
+    "target": "ESNext",
+    "allowJs": true,
+    "jsx": "preserve" // React 프로젝트인 경우
+  }
+}
