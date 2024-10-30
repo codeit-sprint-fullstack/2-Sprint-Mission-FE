@@ -1,0 +1,85 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #ffffff;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.headerLeft {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 40px;
+}
+
+.community {
+  font-weight: 700;
+  font-size: 18px;
+  color: #4b5563;
+  text-decoration: none;
+  margin: 0 40px 0 0;
+}
+
+.market {
+  font-weight: 700;
+  font-size: 18px;
+  color: #4b5563;
+  text-decoration: none;
+}
+
+.inCommunity {
+  font-weight: 700;
+  font-size: 18px;
+  color: #3692ff;
+  text-decoration: none;
+}
+
+.inMarket {
+  font-weight: 700;
+  font-size: 18px;
+  color: #3692ff;
+  text-decoration: none;
+}
+
+.loginButton {
+  padding: 12px 23px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f3f4f6;
+  background-color: #3692ff;
+  border-radius: 8px;
+  border-style: none;
+  cursor: pointer;
+}
+
+/* 반응형 CSS */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .header {
+    padding: 10px 24px;
+  }
+}
+
+@media (max-width: 743px) and (min-width: 375px) {
+  .header {
+    padding: 15px 16px;
+  }
+  .community {
+    margin: 0 8px 0 0;
+  }
+  .headerLeft {
+    gap: 8px;
+  }
+  .market,
+  .inMarket,
+  .community {
+    font-size: 16px;
+  }
+}
