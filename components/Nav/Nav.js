@@ -17,6 +17,7 @@ export default function Nav() {
               width={153}
               height={51}
               alt="기본 사이트 로고"
+              priority
             />
             <Image
               className={styles.mobile}

@@ -6,7 +6,7 @@ import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import formatTime from '@/lib/formatTime';
 
-export default function ArticleCommentList({ articleComments }) {
+export default function ArticleCommentList({ articleComments = [] }) {
   const [selectedComment, setSelectedComment] = useState(false);
   const [editingCommentId, setEditingCommentId] = useState('');
   const [editingContent, setEditingContent] = useState('');

@@ -14,13 +14,13 @@ export async function getServerSideProps() {
     const bestArticles = await getArticleList({
       page: 1,
       pageSize: 3,
-      order: 'recent'
+      orderBy: 'recent'
     });
 
     const articles = await getArticleList({
       page: 1,
       pageSize: 5,
-      order: 'recent',
+      orderBy: 'recent',
       keyword: ''
     });
 
@@ -39,9 +39,9 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ articles, bestArticles: initialBestArticles }) {
-  const [bestArticles, setBestArticles] = useState(initialBestArticles);
+  const [bestArticles, setBestArticles] = useState(initialBestArticles.list);
   const bestPageSize = useResize();
-  const [filteredArticles, setFilteredArticles] = useState(articles);
+  const [filteredArticles, setFilteredArticles] = useState(articles.list);
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
@@ -53,7 +53,7 @@ export default function Home({ articles, bestArticles: initialBestArticles }) {
       const res = await getArticleList({
         page: 1,
         pageSize: bestPageSize,
-        order: 'recent'
+        orderBy: 'recent'
       });
       setBestArticles(res);
     }
@@ -62,7 +62,7 @@ export default function Home({ articles, bestArticles: initialBestArticles }) {
 
   const handleSearch = (event) => {
     if (event.key === 'Enter') {
-      const filtered = articles.filter((article) =>
+      const filtered = articles.list.filter((article) =>
         article.title.toLowerCase().includes(keyword.toLowerCase())
       );
       setFilteredArticles(filtered);
@@ -70,7 +70,7 @@ export default function Home({ articles, bestArticles: initialBestArticles }) {
     }
   };
 
-  const totalPages = Math.ceil(filteredArticles.length / pageSize);
+  const totalPages = Math.ceil(articles.totalCount / pageSize);
 
   const currentArticles = filteredArticles.slice(
     (currentPage - 1) * pageSize,
@@ -80,7 +80,7 @@ export default function Home({ articles, bestArticles: initialBestArticles }) {
   return (
     <div className={styles.wrapper}>
       <BestArticleList
-        bestArticles={bestArticles}
+        bestArticles={bestArticles.list || []}
         bestPageSize={bestPageSize}
       />
       <div className={styles.articles}>

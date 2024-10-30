@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import formatDate from '@/lib/formatDate';
 
-export default function BestArticleList({ bestArticles, bestPageSize }) {
+export default function BestArticleList({ bestArticles = [], bestPageSize }) {
   return (
     <div className={styles.wrapper}>
       <h1>베스트 게시글</h1>
@@ -21,7 +21,7 @@ export default function BestArticleList({ bestArticles, bestPageSize }) {
                 <h1>{article.title}</h1>
                 <div className={styles.image}>
                   <Image
-                    src="/images/Property 1=md-1.png"
+                    src={article.image || '/images/Property 1=md-1.png'}
                     width={48}
                     height={48}
                     alt="상품 이미지(디폴트)"

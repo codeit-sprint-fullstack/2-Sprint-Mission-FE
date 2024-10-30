@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
       }
     };
   } catch (err) {
-    console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err);
+    console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err.message);
     throw new Error(
       '서버에서 데이터를 가져오는 중 문제가 발생했습니다.' + err.message
     );
@@ -35,7 +35,7 @@ export default function Article({ article, articleComments }) {
 
   const router = useRouter();
 
-  if (!article) return null;
+  if (!article) return <div>No article found for this ID.</div>;
 
   const handleBackList = () => router.push('/');
   const handleMenuClick = () => setDropdownOpen((prev) => !prev);
@@ -70,7 +70,7 @@ export default function Article({ article, articleComments }) {
                 height={40}
                 alt="유저 아이콘"
               />
-              <p className={styles.name}>판매왕 판다</p>
+              <p className={styles.name}>{article.writer.nickname}</p>
               <p className={styles.date}>{formatDate(article.createdAt)}</p>
             </div>
             <div className={styles[`like-wrap`]}>
@@ -81,7 +81,7 @@ export default function Article({ article, articleComments }) {
                   height={32}
                   alt="좋아요 아이콘"
                 />
-                <p>+9999</p>
+                <p>{article.likeCount}</p>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function Article({ article, articleComments }) {
         <p>{article.content}</p>
       </div>
       <ArticleCommentAdd />
-      <ArticleCommentList articleComments={articleComments} />
+      <ArticleCommentList articleComments={articleComments.list || []} />
       <button className={styles[`back-list`]} onClick={handleBackList}>
         목록으로 돌아가기
         <Image
