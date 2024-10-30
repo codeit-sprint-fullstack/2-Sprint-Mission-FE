@@ -15,7 +15,7 @@ export default function register() {
 
     try {
       const res = await axios.post("/articles", { title, content });
-      // router.push(`/board/${res.id}`);
+      router.push(`/board/${res.id}`);
       console.log("게시글이 성공적으로 등록 되었습니다:", res.data);
     } catch (error) {
       console.error("게시글 등록 중 오류가 발생했습니다:", error);

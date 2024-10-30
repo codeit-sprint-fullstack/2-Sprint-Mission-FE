@@ -23,7 +23,7 @@ export default function Home() {
       const res = await axios.get("/articles", {
         params: { orderBy, page, pageSize, keyword },
       });
-      const articles = res.data;
+      const articles = res.data.list;
       setPosts(articles);
     } catch (error) {
       console.error(
@@ -39,6 +39,7 @@ export default function Home() {
 
   const handleSearch = (word) => {
     setSearch(word);
+    setKeyword(word);
   };
 
   return (
@@ -60,21 +61,23 @@ export default function Home() {
       <div className={styles.post_wrapper}>
         {posts.map((article) => (
           <div key={article.id} className={styles.post_body_wrapper}>
-            <div className={styles.title_header}>
-              <p className={styles.post_title}>{article.title}</p>
-              <Image src={defaultImg} alt="노트북 이미지" />
-            </div>
-            <div className={styles.user_info}>
-              <div className={styles.user_info_left}>
-                <Image src={profile} alt="프로필 사진" />
-                <p className={styles.panda}>총명한 판다</p>
-                <p className={styles.date}>2024.04.16</p>
+            <Link href={`/board/${article.id}`} className={styles.link}>
+              <div className={styles.title_header}>
+                <p className={styles.post_title}>{article.title}</p>
+                <Image src={defaultImg} alt="노트북 이미지" />
               </div>
-              <div className={styles.user_info_right}>
-                <Image src={heart} alt="하트" />
-                <p className={styles.heart}>9999+</p>
+              <div className={styles.user_info}>
+                <div className={styles.user_info_left}>
+                  <Image src={profile} alt="프로필 사진" />
+                  <p className={styles.panda}>총명한 판다</p>
+                  <p className={styles.date}>2024.04.16</p>
+                </div>
+                <div className={styles.user_info_right}>
+                  <Image src={heart} alt="하트" />
+                  <p className={styles.heart}>9999+</p>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>

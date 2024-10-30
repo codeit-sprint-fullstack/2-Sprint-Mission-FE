@@ -62,6 +62,10 @@
   background-color: #fcfcfc;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .title_header {
   display: flex;
   justify-content: space-between;

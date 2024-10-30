@@ -18,7 +18,7 @@ export default function BestPost() {
       const res = await axios.get("/articles", {
         params: { orderBy, page, pageSize, keyword },
       });
-      const articles = res.data;
+      const articles = res.data.list;
       setRecentPost(articles.slice(0, 3));
     } catch (error) {
       console.error(
