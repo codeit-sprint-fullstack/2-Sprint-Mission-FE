@@ -1,0 +1,17 @@
+:root {
+  --primary-blue: #3692ff;
+  --primary-white: #ffffff;
+  --primary-black: #111827;
+
+  --secondary-gray-800: #6b7280;
+  --secondary-gray-700: #f3f4f6;
+  --secondary-gray-600: #fcfcfc;
+  --secondary-gray-500: #4b5563;
+  --secondary-gray-400: #dfdfdf;
+  --secondary-gray-300: #9ca3af;
+  --secondary-gray-200: #f9fafb;
+  --secondary-gray-100: #e5e7eb;
+  --secondary-gray: #f3f4f6;
+
+  --secondary-black-100: #1f2937;
+}
