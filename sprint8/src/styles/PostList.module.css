@@ -1,0 +1,68 @@
+.container {
+  height: 13.8rem;
+  background-color: #fcfcfc;
+  border-bottom: 0.1rem solid var(--color-gray-200);
+  margin-bottom: 2.4rem;
+}
+
+.titleAndImage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+  line-height: 3.2rem;
+}
+
+.postImage {
+  width: 7.2rem;
+  height: 7.2rem;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1.6rem;
+}
+
+.bottomSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.profileImg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.nickname {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-gray-600);
+}
+
+.date {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-gray-400);
+}
+
+.likes {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-gray-500);
+}
+
+@media (max-width: 743px) {
+  .title {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+  }
+}

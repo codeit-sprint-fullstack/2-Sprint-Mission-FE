@@ -1,0 +1,17 @@
+.button {
+  padding: 0 2.3rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white;
+}
+
+.inactive {
+  background-color: var(--color-gray-400);
+}
+
+.active {
+  background-color: var(--color-primary-100);
+  cursor: pointer;
+}

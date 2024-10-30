@@ -1,0 +1,36 @@
+.sortButton {
+  width: 13rem;
+  height: 4.2rem;
+  border-radius: 1.2rem;
+  border: 0.1rem solid var(--color-gray-200);
+  background-color: white;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.sortMenuList {
+  position: absolute;
+  display: flex;
+  width: 13rem;
+  flex-direction: column;
+  border-radius: 1.2rem;
+  border: 0.1rem solid var(--color-gray-200);
+  background-color: white;
+  margin-top: 0.7rem;
+}
+
+.arrowIcon {
+  margin-left: 2rem;
+}
+
+.sortMenu {
+  height: 4.2rem;
+  background-color: transparent;
+  font-size: 1.6rem;
+  font-weight: 400;
+  border-bottom: 0.1rem solid var(--color-gray-200);
+}
+
+.sortMenu:last-child {
+  border-bottom: none;
+}
