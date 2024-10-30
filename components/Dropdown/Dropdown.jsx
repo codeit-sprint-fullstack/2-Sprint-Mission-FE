@@ -3,13 +3,9 @@ import arrowImg from "@/public/ic_arrow_down.svg";
 import styles from "./Dropdown.module.css";
 import Image from "next/image";
 
-export default function Dropdown() {
+export default function Dropdown({ options }) {
   const [sortOption, setSortOption] = useState("recent");
   const [isOpen, setIsOpen] = useState(false);
-  const options = [
-    { value: "recent", label: "최신순", className: styles.recent },
-    { value: "like", label: "좋아요순", className: styles.like },
-  ];
   const dropdownRef = useRef(null);
 
   const handleOptionClick = (optionValue) => {
@@ -50,6 +46,7 @@ export default function Dropdown() {
               className={`${styles.option} ${option.className} ${
                 sortOption === option.value ? styles.selectedOption : ""
               }`}
+              style={option.style}
               onClick={() => handleOptionClick(option.value)}
             >
               {option.label}

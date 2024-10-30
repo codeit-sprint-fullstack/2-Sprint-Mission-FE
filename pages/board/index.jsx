@@ -42,6 +42,43 @@ export default function Home() {
     setKeyword(word);
   };
 
+  const options = [
+    {
+      value: "recent",
+      label: "최신순",
+      style: {
+        width: "130px",
+        height: "42px",
+        border: "1px solid #e5e7eb",
+        fontWeight: "400",
+        fontSize: "16px",
+        lineHeight: "26px",
+        color: "#1f2937",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "12px 12px 0 0",
+      },
+    },
+    {
+      value: "like",
+      label: "좋아요순",
+      style: {
+        width: "130px",
+        height: "42px",
+        border: "1px solid #e5e7eb",
+        fontWeight: "400",
+        fontSize: "16px",
+        lineHeight: "26px",
+        color: "#1f2937",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "0 0 12px 12px",
+      },
+    },
+  ];
+
   return (
     <>
       <p className={styles.best_post}>베스트 게시글</p>
@@ -56,7 +93,7 @@ export default function Home() {
       </div>
       <div className={styles.search_form}>
         <SearchBar initialValue={handleSearch} />
-        <Dropdown />
+        <Dropdown options={options} />
       </div>
       <div className={styles.post_wrapper}>
         {posts.map((article) => (

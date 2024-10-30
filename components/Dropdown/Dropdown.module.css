@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 }
 
 .selected_wrapper {
@@ -29,26 +30,7 @@
   width: 130px;
   height: 84px;
   margin-top: 8px;
-}
-
-.recent,
-.like {
-  width: 130px;
-  height: 42px;
-  border: 1px solid #e5e7eb;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: #1f2937;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.recent {
-  border-radius: 12px 12px 0 0;
-}
-
-.like {
-  border-radius: 0 0 12px 12px;
+  top: 100%;
+  position: absolute;
+  background-color: #ffffff;
 }
