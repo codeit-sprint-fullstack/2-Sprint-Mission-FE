@@ -4,6 +4,7 @@ import Head from "next/head";
 import Nav from "@/components/Nav/Nav";
 import Container from "@/components/Container";
 import Footer from "@/components/Footer/Footer";
+import "@/styles/HomePage.css";
 
 export default function App({ Component, pageProps, router }) {
   const noLayoutPaths = ['/login', '/signup'];
