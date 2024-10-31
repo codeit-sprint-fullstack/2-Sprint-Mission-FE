@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from './HomePage.module.css';
-// import '../style.css';
-// import '../reset.css';
 
 function HomePage() {
 	function HeroSection() {

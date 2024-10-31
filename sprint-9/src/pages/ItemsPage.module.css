@@ -160,7 +160,7 @@ ul.items li img {
 	justify-content: center;
 	width: var(--text-4xl);
 	height: var(--text-4xl);
-	padding: 12.5px;
+	padding: 0;
 	background-color: white;
 	color: var(--secondary-color-gray500);
 	font-size: var(--text-lg);

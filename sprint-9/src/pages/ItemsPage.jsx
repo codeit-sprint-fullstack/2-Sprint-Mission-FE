@@ -1,16 +1,13 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import styles from './ItemsPage.module.css';
 import useAsync from "../hooks/useAsync.js";
-import BestItemsList from "../BestItemsList.jsx";
-import ItemsList from "../ItemsList.jsx";
-import PageNum from "../PageNum.jsx";
+import BestItemsList from "../components/BestItemsList.jsx";
+import ItemsList from "../components/ItemsList.jsx";
+import PageNum from "../components/PageNum.jsx";
 import { getProducts } from "../apis/itemsService.js";
 import { useViewport } from "../context/ViewportProvider.jsx";
-
-const loadItems = async function (params) { // * { page, pageSize, orderBy, keyword }
-	return await getProducts(params);
-}
-
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import PopUp from "../components/PopUp.jsx";
 
 function ItemsPage() {
 	const viewport = useViewport();
@@ -22,30 +19,25 @@ function ItemsPage() {
 	const [page, setPage] = useState(1);
 	const [pageMax, setPageMax] = useState(10);
 	const [items, setItems] = useState([]);
-	const [sort, setSort] = useState("recent");
+	const [orderBy, setOrderBy] = useState("recent");
 	const [keyword, setKeyword] = useState("");
-	const [isLoadingItems, errorLoadingItems, loadItemsAsync] = useAsync(loadItems);
+	const [isLoadingItems, error, loadItemsAsync, setError] = useAsync(getProducts);
+	const { data: result0 } = useQuery({
+		queryKey: ["items", page, pageBestSize, "favorite", ""],
+		queryFn: () => loadItemsAsync({ page, pageSize: pageBestSize, orderBy: "favorite", keyword: "" }),
+		placeholderData: keepPreviousData,
+		staleTime: 5 * 60 * 1000,
+	});
+	console.log(result0);
+	const { data: result1 } = useQuery({
+		queryKey: ["items", page, pageSize, orderBy, keyword],
+		queryFn: () => loadItemsAsync({ page, pageSize, orderBy, keyword }),
+		placeholderData: keepPreviousData,
+		staleTime: 5 * 60 * 1000,
+	});
+	console.log(result1);
 
-	const handleSearch = useCallback(async (keyword) => {
-		try {
-			setPage(1);
-			const result1 = await loadItemsAsync({ page, pageSize, sort, keyword });
-			console.log(result1);
-			if (!result1) {
-				if (errorLoadingItems) {
-					setItems([{name: errorLoadingItems.name, description: errorLoadingItems.message}]);
-				}
-				return;
-			}
-			setPageMax(Math.ceil(result1.totalCount / pageSize));
-			setItems(result1.list);
-		}
-		catch (err) {
-			console.error(err);
-		}
-	}, [page, pageSize, sort, errorLoadingItems, loadItemsAsync]);
-
-	const handleResize = useCallback(function (viewport) {
+	useEffect(() => {
 		if (viewport === "PC") {
 			setPageBestSize(4);
 			setPageSize(10);
@@ -58,36 +50,27 @@ function ItemsPage() {
 			setPageBestSize(1);
 			setPageSize(4);
 		}
-	}, []);
+	}, [viewport]);
 
 	useEffect(() => {
-		handleResize(viewport);
-	}, [viewport, handleResize]);
+    if (result0) {
+      setBestItems(result0.list);
+    }
+  }, [result0]);
 
-	useEffect(() => {
-		(async function () {
-			try {
-				const result0 = await loadItemsAsync({ page, pageSize: pageBestSize, sort: "favorite", keyword });
-				if (!result0) return;
-
-				const result1 = await loadItemsAsync({ page, pageSize, sort, keyword });
-				if (!result1) return;
-
-				setPageMax(Math.ceil(result1.totalCount / pageSize));
-				setBestItems(result0.list);
-				setItems(result1.list);
-			}
-			catch (err) {
-				console.error(err);
-			}
-		})();
-	}, [pageBestSize, pageSize, page, sort, loadItemsAsync]);
+  useEffect(() => {
+    if (result1) {
+      setPageMax(Math.ceil(result1.totalCount / pageSize));
+      setItems(result1.list);
+    }
+  }, [result1, pageSize]);
 
 	return (
 		<main className={styles.main}>
-			<BestItemsList bestItems={bestItems}/>
-			<ItemsList items={items} isLoadingItems={isLoadingItems} orderBy={sort} setOrderBy={setSort} keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch}/>
-			<PageNum pageNum={page} setPageNum={setPage} pageNumMax={pageMax}/>
+			<BestItemsList bestItems={bestItems} />
+			<ItemsList items={items} isLoadingItems={isLoadingItems} orderBy={orderBy} setOrderBy={setOrderBy} keyword={keyword} setKeyword={setKeyword} />
+			<PageNum page={page} setPage={setPage} pageMax={pageMax} />
+			<PopUp error={error} setError={setError} />
 		</main>
 	);
 }

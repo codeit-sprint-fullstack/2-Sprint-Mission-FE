@@ -4,15 +4,7 @@ import styles from '../pages/ItemsPage.module.css';
 
 
 
-function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKeyword, onSearch }) {
-	const handleKeyDownInSearch = (e) => {
-		if (e.key === "Process") return;
-		if (e.code === "Enter") {
-			e.preventDefault();
-			onSearch(keyword);
-		}
-	};
-
+function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKeyword }) {
 	const handleKeywordChange = (e) => {
 		setKeyword(e.target.value);
 	}
@@ -33,7 +25,7 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 	function ItemList() {
 		return (
 			<ul className={[styles.items, styles.normal].join(" ")}>
-				{items.map(item => <Item key={item._id} item={item}/>)}
+				{items.map(item => <Item key={item.id} item={item}/>)}
 			</ul>
 		);
 	}
@@ -46,8 +38,8 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 					<h2>판매 중인 상품</h2>
 					<div className={styles.query_heads}>
 						<div className={styles.input_wrapper}>
-							<input type="text" value={keyword} onKeyDown={handleKeyDownInSearch} onChange={handleKeywordChange}/>
-							<img src="/images/ic_search.svg" alt="Search" disabled={isLoadingItems} onClick={() => onSearch(keyword)}/>
+							<input type="text" value={keyword} onChange={handleKeywordChange}/>
+							<img src="/images/ic_search.svg" alt="Search" disabled={isLoadingItems} />
 						</div>
 						<RegisProduct/>
 						<SelectOrder/>
@@ -60,8 +52,8 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 					</div>
 					<div className={styles.query_heads}>
 						<div className={styles.input_wrapper}>
-							<input type="text" value={keyword} onKeyDown={handleKeyDownInSearch} onChange={handleKeywordChange}/>
-							<img src="/images/ic_search.svg" alt="Search" disabled={isLoadingItems} onClick={() => onSearch(keyword)}/>
+							<input type="text" value={keyword} onChange={handleKeywordChange}/>
+							<img src="/images/ic_search.svg" alt="Search" disabled={isLoadingItems} />
 						</div>
 						<SelectOrder/>
 					</div>
