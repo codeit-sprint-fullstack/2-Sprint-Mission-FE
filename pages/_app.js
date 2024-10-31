@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '@/styles/globals.css';
 import Head from 'next/head';
-import Nav from '@/components/Nav/Nav';
+import GNB from '@/components/GNB/GNB';
 import Footer from '@/components/Footer/Footer';
 import Container from '@/components/Container';
 import localFont from 'next/font/local';
@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={pretendard.className}>
-        {!isLoginPage && !isSingupPage && <Nav />}
+        {!isLoginPage && !isSingupPage && <GNB />}
         <Container>
           <Component {...pageProps} />
         </Container>

@@ -1,13 +1,15 @@
+import { useMutation } from '@tanstack/react-query';
 import styles from '@/styles/Login.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from '@/lib/api/AuthService';
 import useLoginValidate from '@/hooks/useLoginValidate';
 import Modal from '@/components/Common/Modal';
 
 export default function Login() {
+  const router = useRouter();
   const { values, errors, validate, handleChange } = useLoginValidate({
     email: '',
     password: ''
@@ -16,7 +18,12 @@ export default function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  const router = useRouter();
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      router.push('/folder');
+    }
+  }, [router]);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -26,6 +33,30 @@ export default function Login() {
     return values.email.trim() !== '' && values.password.trim() !== '';
   };
 
+  const mutation = useMutation({
+    mutationFn: async (userData) => {
+      const res = await signIn(userData);
+      return res;
+    },
+    onSuccess: (data) => {
+      if (data.accessToken) {
+        localStorage.setItem('accessToken', data.accessToken);
+        router.push('/items');
+      }
+    },
+    onError: (error) => {
+      if (err.response.data.message === '비밀번호가 일치하지 않습니다.') {
+        setModalMessage('비밀번호가 일치하지 않습니다.');
+        setIsModalOpen(true);
+      } else if (err.response.data.message === '존재하지 않는 이메일입니다.') {
+        setModalMessage('존재하지 않는 이메일입니다.');
+        setIsModalOpen(true);
+      } else {
+        console.error('로그인에 실패하였습니다.', err.response.data.message);
+      }
+    }
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,35 +64,12 @@ export default function Login() {
       return;
     }
 
-    try {
-      const res = await signIn({
-        email: values.email,
-        password: values.password
-      });
-
-      if (!res) {
-        console.error('로그인 요청이 실패했습니다.');
-        return;
-      }
-
-      return router.push(`/items`);
-    } catch (err) {
-      if (err.response) {
-        if (err.response.data.message === '비밀번호가 일치하지 않습니다.') {
-          setModalMessage('비밀번호가 일치하지 않습니다.');
-          setIsModalOpen(true);
-        } else if (
-          err.response.data.message === '존재하지 않는 이메일입니다.'
-        ) {
-          setModalMessage('존재하지 않는 이메일입니다.');
-          setIsModalOpen(true);
-        } else {
-          console.error('로그인에 실패하였습니다.', err.response.data.message);
-        }
-      } else {
-        console.error('로그인 요청 중 오류가 발생했습니다.', err);
-      }
-    }
+    mutation.mutate({
+      email: values.email,
+      nickname: values.nickname,
+      password: values.password,
+      passwordConfirmation: values.passwordConfirmation
+    });
   };
 
   const handleButton = (e) => {

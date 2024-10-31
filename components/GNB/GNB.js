@@ -1,9 +1,9 @@
-import styles from './Nav.module.css';
+import styles from './GNB.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Nav() {
+export default function GNB() {
   const router = useRouter();
 
   return (
