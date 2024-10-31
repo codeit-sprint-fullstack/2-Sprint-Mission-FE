@@ -1,0 +1,89 @@
+.signup_container {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  margin: 20px 200px 0 200px;
+  align-items: center;
+}
+.form_wrapper {
+  width: 100%;
+}
+.input {
+  margin: 20px 0;
+  padding: 16px 0;
+  width: 100%;
+  border: none;
+  background-color: #f3f4f6;
+  border-radius: 10px;
+  outline-color: #3692ff;
+  text-indent: 20px;
+}
+
+.easy_login_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f2ff;
+  border-radius: 10px;
+  width: 100%;
+  padding: 15px 0px;
+  margin-bottom: 20px;
+}
+
+.social {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.input_password_container {
+  position: relative;
+}
+
+.password_active_toggle {
+  position: absolute;
+  right: 15px;
+  bottom: 35px;
+}
+
+.signup_btn {
+  background-color: #3692ff;
+  color: #f3f4f6;
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+}
+
+.signup_btn:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.login_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.error_message {
+  color: red;
+  display: none;
+  /* margin: -1rem 0 1rem 0; */
+}
+
+.input_error_box {
+  border: 2px solid red;
+}
+
+.space_left {
+  margin-left: 30px;
+}
+.space_right {
+  margin-right: 30px;
+}
+.link_wrapper a {
+  color: #3692ff;
+}
