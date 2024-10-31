@@ -37,7 +37,7 @@ export default function Nav() {
           </ul>
         </div>
         <button className={styles.auth}>
-          <Link href="/login">로그인</Link>
+          <Link href="/signin">로그인</Link>
         </button>
       </div>
     </header>

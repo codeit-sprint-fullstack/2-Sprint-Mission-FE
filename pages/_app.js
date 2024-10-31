@@ -15,7 +15,7 @@ const pretendard = localFont({
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
-  const isLoginPage = router.pathname === '/login';
+  const isLoginPage = router.pathname === '/signin';
   const isSingupPage = router.pathname === '/signup';
 
   return (
