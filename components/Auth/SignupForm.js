@@ -3,102 +3,18 @@ import styles from './Auth.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import SocialLogin from './SocialLogin';
+import useValidateSignupForm from '@/hooks/useValidateSignupForm';
 
 export default function SignupForm() {
-  const [email, setEmail] = useState('');
-  const [nick, setNick] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-
-  const [emailErrorMsg, setEmailErrorMsg] = useState('');
-  const [nickErrorMsg, setNickErrorMsg] = useState('');
-  const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
-  const [passwordConfirmErrorMsg, setPasswordConfirmErrorMsg] = useState('');
+  const {
+    signupData,
+    errors,
+    handleChange,
+    isFormValid,
+  } = useValidateSignupForm();
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordConfirmVisible, setPasswordConfirmVisible] = useState(false);
-
-  // 유효성 검사 함수
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePassword = (password) => {
-    return password.length >= 8;
-  };
-
-  // 버튼 활성화 상태 체크
-  const isButtonDisabled = () => {
-    return !(
-      validateEmail(email) &&
-      nick.trim() !== '' &&
-      validatePassword(password) &&
-      password === passwordConfirm &&
-      emailErrorMsg === '' &&
-      nickErrorMsg === '' &&
-      passwordErrorMsg === '' &&
-      passwordConfirmErrorMsg === ''
-    );
-  };
-
-  // 이메일 입력 처리
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleEmailBlur = () => {
-    if (email.trim() === '') {
-      setEmailErrorMsg('이메일을 입력해 주세요');
-    } else if (!validateEmail(email.trim())) {
-      setEmailErrorMsg('잘못된 이메일 형식입니다');
-    } else {
-      setEmailErrorMsg('');
-    }
-  };
-
-  // 닉네임 입력 처리
-  const handleNickChange = (e) => {
-    setNick(e.target.value);
-  };
-
-  const handleNickBlur = () => {
-    if (nick.trim() === '') {
-      setNickErrorMsg('닉네임을 입력해 주세요');
-    } else {
-      setNickErrorMsg('');
-    }
-  };
-
-  // 패스워드 입력 처리
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handlePasswordBlur = () => {
-    if (password.trim() === '') {
-      setPasswordErrorMsg('비밀번호를 입력해 주세요');
-    } else if (!validatePassword(password.trim())) {
-      setPasswordErrorMsg('비밀번호를 8자 이상 입력해 주세요');
-    } else {
-      setPasswordErrorMsg('');
-    }
-  };
-
-  // 패스워드 확인 입력 처리
-  const handlePasswordConfirmChange = (e) => {
-    setPasswordConfirm(e.target.value);
-  };
-
-  const handlePasswordConfirmBlur = () => {
-    if (passwordConfirm.trim() === '') {
-      setPasswordConfirmErrorMsg('비밀번호를 다시 한 번 입력해 주세요');
-    } else if (passwordConfirm !== password) {
-      setPasswordConfirmErrorMsg('비밀번호가 일치하지 않습니다');
-    } else {
-      setPasswordConfirmErrorMsg('');
-    }
-  };
 
   // 패스워드 표시/숨기기 토글
   const togglePasswordVisibility = () => {
@@ -114,7 +30,7 @@ export default function SignupForm() {
     e.preventDefault();
 
     // 유효성 검사 통과 여부 확인
-    if (isButtonDisabled()) {
+    if (!isFormValid) {
       return;
     }
 
@@ -151,13 +67,12 @@ export default function SignupForm() {
               id="email"
               name="email"
               placeholder="이메일을 입력해주세요"
-              value={email}
-              onChange={handleEmailChange}
-              onBlur={handleEmailBlur}
+              value={signupData.email}
+              onChange={handleChange}
               required
             />
-            {emailErrorMsg && (
-              <span className={styles.errorMessage}>{emailErrorMsg}</span>
+            {errors.email && (
+              <span className={styles.errorMessage}>{errors.email}</span>
             )}
           </div>
 
@@ -169,13 +84,12 @@ export default function SignupForm() {
               id="nick"
               name="nick"
               placeholder="닉네임을 입력해주세요"
-              value={nick}
-              onChange={handleNickChange}
-              onBlur={handleNickBlur}
+              value={signupData.nick}
+              onChange={handleChange}
               required
             />
-            {nickErrorMsg && (
-              <span className={styles.errorMessage}>{nickErrorMsg}</span>
+            {errors.nick && (
+              <span className={styles.errorMessage}>{errors.nick}</span>
             )}
           </div>
 
@@ -188,9 +102,7 @@ export default function SignupForm() {
                 id="password"
                 name="password"
                 placeholder="비밀번호를 입력해주세요"
-                value={password}
-                onChange={handlePasswordChange}
-                onBlur={handlePasswordBlur}
+                onChange={handleChange}
                 required
               />
               <div className={styles.visibilityIcon} onClick={togglePasswordVisibility}>
@@ -206,8 +118,8 @@ export default function SignupForm() {
                 />
               </div>
             </div>
-            {passwordErrorMsg && (
-              <span className={styles.errorMessage}>{passwordErrorMsg}</span>
+            {errors.password && (
+              <span className={styles.errorMessage}>{errors.password}</span>
             )}
           </div>
 
@@ -220,9 +132,7 @@ export default function SignupForm() {
                 id="passwordConfirm"
                 name="passwordConfirm"
                 placeholder="비밀번호를 다시 한 번 입력해주세요"
-                value={passwordConfirm}
-                onChange={handlePasswordConfirmChange}
-                onBlur={handlePasswordConfirmBlur}
+                onChange={handleChange}
                 required
               />
               <div
@@ -241,8 +151,8 @@ export default function SignupForm() {
                 />
               </div>
             </div>
-            {passwordConfirmErrorMsg && (
-              <span className={styles.errorMessage}>{passwordConfirmErrorMsg}</span>
+            {errors.passwordConfirm && (
+              <span className={styles.errorMessage}>{errors.passwordConfirm}</span>
             )}
           </div>
 
@@ -251,7 +161,7 @@ export default function SignupForm() {
             <button
               type="submit"
               className={styles.btnSubmit}
-              disabled={isButtonDisabled()}
+              disabled={!isFormValid}
             >
               회원가입
             </button>

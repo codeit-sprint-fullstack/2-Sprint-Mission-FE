@@ -3,69 +3,17 @@ import styles from './Auth.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import SocialLogin from './SocialLogin';
+import useValidateLoginForm from '@/hooks/useValidateLoginForm';
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const [emailErrorMsg, setEmailErrorMsg] = useState('');
-  const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
+  const {
+    loginData,
+    errors,
+    handleChange,
+    isFormValid,
+  } = useValidateLoginForm();
 
   const [passwordVisible, setPasswordVisible] = useState(false);
-
-  // 유효성 검사 함수
-  const validateEmail = (email) => {
-    // 이메일 형식 검사 정규식
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePassword = (password) => {
-    // 비밀번호 길이 검사 (8자 이상)
-    return password.length >= 8;
-  };
-
-  // 버튼 활성화 상태 체크
-  const isButtonDisabled = () => {
-    return !(
-      validateEmail(email) &&
-      validatePassword(password) &&
-      emailErrorMsg === '' &&
-      passwordErrorMsg === ''
-    );
-  };
-
-  // 이메일 입력 처리
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  // 이메일 포커스 아웃 처리
-  const handleEmailBlur = () => {
-    if (email.trim() === '') {
-      setEmailErrorMsg('이메일을 입력해 주세요');
-    } else if (!validateEmail(email.trim())) {
-      setEmailErrorMsg('잘못된 이메일 형식입니다');
-    } else {
-      setEmailErrorMsg('');
-    }
-  };
-
-  // 패스워드 입력 처리
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  // 패스워드 포커스 아웃 처리
-  const handlePasswordBlur = () => {
-    if (password.trim() === '') {
-      setPasswordErrorMsg('비밀번호를 입력해 주세요');
-    } else if (!validatePassword(password.trim())) {
-      setPasswordErrorMsg('비밀번호를 8자 이상 입력해 주세요');
-    } else {
-      setPasswordErrorMsg('');
-    }
-  };
 
   // 패스워드 표시/숨기기 토글
   const togglePasswordVisibility = () => {
@@ -77,7 +25,7 @@ export default function LoginForm() {
     e.preventDefault();
 
     // 유효성 검사 통과 여부 확인
-    if (isButtonDisabled()) {
+    if (!isFormValid) {
       return;
     }
 
@@ -114,13 +62,12 @@ export default function LoginForm() {
               id="email"
               name="email"
               placeholder="이메일을 입력해주세요"
-              value={email}
-              onChange={handleEmailChange}
-              onBlur={handleEmailBlur}
+              value={loginData.email}
+              onChange={handleChange}
               required
             />
-            {emailErrorMsg && (
-              <span className={styles.errorMessage}>{emailErrorMsg}</span>
+            {errors.email && (
+              <span className={styles.errorMessage}>{errors.email}</span>
             )}
           </div>
 
@@ -133,9 +80,8 @@ export default function LoginForm() {
                 id="password"
                 name="password"
                 placeholder="비밀번호를 입력해주세요"
-                value={password}
-                onChange={handlePasswordChange}
-                onBlur={handlePasswordBlur}
+                value={loginData.password}
+                onChange={handleChange}
                 required
               />
               <div className={styles.visibilityIcon} onClick={togglePasswordVisibility}>
@@ -151,8 +97,8 @@ export default function LoginForm() {
                 />
               </div>
             </div>
-            {passwordErrorMsg && (
-              <span className={styles.errorMessage}>{passwordErrorMsg}</span>
+            {errors.password && (
+              <span className={styles.errorMessage}>{errors.password}</span>
             )}
           </div>
 
@@ -161,7 +107,7 @@ export default function LoginForm() {
             <button
               type="submit"
               className={styles.btnSubmit}
-              disabled={isButtonDisabled()}
+              disabled={!isFormValid}
             >
               로그인
             </button>
@@ -171,7 +117,7 @@ export default function LoginForm() {
 
       {/* 소셜 로그인 */}
       <SocialLogin />
-      
+
       {/* 회원가입 링크 */}
       <div className={styles.signupLink}>
         <p>
