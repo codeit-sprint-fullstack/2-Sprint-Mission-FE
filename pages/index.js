@@ -60,8 +60,8 @@ export default function Home({ articles, bestArticles: initialBestArticles }) {
     fetchBestArticles();
   }, [bestPageSize]);
 
-  const handleSearch = (event) => {
-    if (event.key === 'Enter') {
+  const handleSearch = (e) => {
+    if (e.key === 'Enter') {
       const filtered = articles.list.filter((article) =>
         article.title.toLowerCase().includes(keyword.toLowerCase())
       );

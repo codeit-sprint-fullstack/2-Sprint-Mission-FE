@@ -1,8 +1,79 @@
 import styles from '@/styles/Login.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { signIn } from '@/lib/api/AuthService';
+import useLoginValidate from '@/hooks/useLoginValidate';
+import Modal from '@/components/Common/Modal';
 
 export default function Login() {
+  const { values, errors, validate, handleChange } = useLoginValidate({
+    email: '',
+    password: ''
+  });
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+  const router = useRouter();
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const isInputEmpty = () => {
+    return values.email.trim() !== '' && values.password.trim() !== '';
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!isInputEmpty() || !validate()) {
+      return;
+    }
+
+    try {
+      const res = await signIn({
+        email: values.email,
+        password: values.password
+      });
+
+      if (!res) {
+        console.error('로그인 요청이 실패했습니다.');
+        return;
+      }
+
+      return router.push(`/items`);
+    } catch (err) {
+      if (err.response) {
+        if (err.response.data.message === '비밀번호가 일치하지 않습니다.') {
+          setModalMessage('비밀번호가 일치하지 않습니다.');
+          setIsModalOpen(true);
+        } else if (
+          err.response.data.message === '존재하지 않는 이메일입니다.'
+        ) {
+          setModalMessage('존재하지 않는 이메일입니다.');
+          setIsModalOpen(true);
+        } else {
+          console.error('로그인에 실패하였습니다.', err.response.data.message);
+        }
+      } else {
+        console.error('로그인 요청 중 오류가 발생했습니다.', err);
+      }
+    }
+  };
+
+  const handleButton = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={styles.wrapper}>
       <Link href="/">
@@ -11,38 +82,58 @@ export default function Login() {
           width={396}
           height={132}
           alt="사이트 로고"
+          priority
         />
       </Link>
       <div className={styles[`login-container`]}>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.group}>
-            <label htmlFor="useremail">이메일</label>
+            <label htmlFor="email">이메일</label>
             <input
-              id="useremail"
-              value=""
               type="email"
+              id="email"
+              value={values.email}
+              onChange={handleChange}
               placeholder="이메일을 입력해주세요"
+              className={errors.email ? styles[`input-error`] : ''}
             />
+            {errors.email && (
+              <span className={styles.error}>{errors.email}</span>
+            )}
           </div>
           <div className={styles.group}>
             <label htmlFor="password">비밀번호</label>
             <div className={styles.password}>
               <input
+                type={isPasswordVisible ? 'text' : 'password'}
                 id="password"
-                value=""
-                type="password"
+                value={values.password}
+                onChange={handleChange}
                 placeholder="비밀번호를 입력해주세요"
+                className={errors.password ? styles[`input-error`] : ''}
               />
               <Image
                 className={styles.visibility}
-                src="/images/btn_visibility_off_24px-1.svg"
+                src={
+                  isPasswordVisible
+                    ? '/images/btn_visibility_on_24px.svg'
+                    : '/images/btn_visibility_off_24px-1.svg'
+                }
+                onClick={togglePasswordVisibility}
                 width={24}
                 height={24}
                 alt="눈 아이콘 off"
               />
             </div>
+            {errors.password && (
+              <span className={styles.error}>{errors.password}</span>
+            )}
           </div>
-          <button type="submit" disabled={true}>
+          <button
+            type="submit"
+            disabled={!isInputEmpty()}
+            onKeyDown={handleButton}
+          >
             로그인
           </button>
         </form>
@@ -74,6 +165,11 @@ export default function Login() {
           <Link href="/signup">회원가입</Link>
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        message={modalMessage}
+      />
     </div>
   );
 }
