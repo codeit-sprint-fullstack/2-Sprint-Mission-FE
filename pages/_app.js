@@ -1,8 +1,8 @@
 import "@/styles/reset.css";
 import "@/styles/globals.css";
-import Nav from "@/conponents/Nav";
+import Nav from "@/components/Nav";
 import Head from "next/head";
-import Footer from "@/conponents/Footer";
+import Footer from "@/components/Footer";
 
 export default function App({ Component, pageProps }) {
   return (

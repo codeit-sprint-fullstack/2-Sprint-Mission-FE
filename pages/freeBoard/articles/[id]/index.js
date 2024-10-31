@@ -6,8 +6,8 @@ import backIcon from "@/public/ic_back.svg";
 import Link from "next/link";
 import axios from "@/lib/axios";
 import formatDate from "@/lib/formatDate";
-import KebabMenu from "@/conponents/KebabMenu";
-import ArticleCommentList from "@/conponents/ArticleCommentList";
+import KebabMenu from "@/components/KebabMenu";
+import ArticleCommentList from "@/components/ArticleCommentList";
 import { useRouter } from "next/router";
 import { useState } from "react";
 

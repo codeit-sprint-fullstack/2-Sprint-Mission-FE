@@ -1,13 +1,13 @@
 import styles from "@/styles/FreeBoard.module.css";
-import ArticleList from "@/conponents/ArticleList";
-import BestArticle from "@/conponents/BestArticle";
-import Header from "@/conponents/Header";
+import ArticleList from "@/components/ArticleList";
+import BestArticle from "@/components/BestArticle";
+import Header from "@/components/Header";
 import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import SearchForm from "@/conponents/SeachForm";
-import SortDropbox from "@/conponents/SortDropbox";
-import Pagination from "@/conponents/Pagination";
+import SearchForm from "@/components/SeachForm";
+import SortDropbox from "@/components/SortDropbox";
+import Pagination from "@/components/Pagination";
 import { useRouter } from "next/router";
 
 const ITEMS_PER_PAGE = 5;
