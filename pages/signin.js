@@ -18,12 +18,12 @@ export default function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      router.push('/folder');
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const accessToken = localStorage.getItem('accessToken');
+  //   if (accessToken) {
+  //     router.push('/folder');
+  //   }
+  // }, [router]);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -44,7 +44,7 @@ export default function Login() {
         router.push('/items');
       }
     },
-    onError: (error) => {
+    onError: (err) => {
       if (err.response.data.message === '비밀번호가 일치하지 않습니다.') {
         setModalMessage('비밀번호가 일치하지 않습니다.');
         setIsModalOpen(true);
