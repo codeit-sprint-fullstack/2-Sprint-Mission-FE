@@ -1,8 +1,88 @@
 import styles from '@/styles/Signup.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { signUp } from '@/lib/api/AuthService';
+import useSignUpValidate from '@/hooks/useSignUpValidate';
+import Modal from '@/components/Common/Modal';
 
 export default function SingUp() {
+  const { values, errors, validate, handleChange } = useSignUpValidate({
+    email: '',
+    nickname: '',
+    password: '',
+    passwordConfirmation: ''
+  });
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordCheckVisible, setIsPasswordCheckVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+  const router = useRouter();
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const toggleCheckPasswordVisibility = () => {
+    setIsPasswordCheckVisible(!isPasswordCheckVisible);
+  };
+
+  const isInputEmpty = () => {
+    return (
+      values.email.trim() !== '' &&
+      values.nickname.trim() !== '' &&
+      values.password.trim() !== '' &&
+      values.passwordConfirmation.trim() !== ''
+    );
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!isInputEmpty() || !validate()) {
+      return;
+    }
+
+    try {
+      const res = await signUp({
+        email: values.email,
+        nickname: values.nickname,
+        password: values.password,
+        passwordConfirmation: values.passwordConfirmation
+      });
+
+      if (!res) {
+        console.error('회원가입 요청이 실패했습니다.');
+        return;
+      }
+
+      return router.push(`/items`);
+    } catch (err) {
+      if (err.response) {
+        if (err.response.data.message === '이미 사용중인 이메일입니다.') {
+          setModalMessage('사용 중인 이메일입니다.');
+          setIsModalOpen(true);
+        } else {
+          console.error('회원가입에 실패하였습니다.', err.response.data);
+        }
+      } else {
+        console.error('회원가입 요청 중 오류가 발생했습니다.', err);
+      }
+    }
+  };
+
+  const handleButton = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={styles.wrapper}>
       <Link href="/">
@@ -11,64 +91,104 @@ export default function SingUp() {
           width={396}
           height={132}
           alt="로그인 로고"
+          priority
         />
       </Link>
-      <form className={styles.form}>
+
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.group}>
-          <label htmlFor="useremail">이메일</label>
+          <label htmlFor="email">이메일</label>
           <input
-            id="useremail"
-            name="useremail"
             type="email"
+            id="email"
+            value={values.email}
+            onChange={handleChange}
             placeholder="이메일을 입력해주세요"
+            className={errors.email ? styles[`input-error`] : ''}
           />
+          {errors.email && <span className={styles.error}>{errors.email}</span>}
         </div>
+
         <div className={styles.group}>
           <label htmlFor="nickname">닉네임</label>
           <input
-            id="nickname"
-            name="nickname"
             type="text"
+            id="nickname"
+            value={values.nickname}
+            onChange={handleChange}
             placeholder="닉네임을 입력해주세요"
+            className={errors.nickname ? styles[`input-error`] : ''}
           />
+          {errors.nickname && (
+            <span className={styles.error}>{errors.nickname}</span>
+          )}
         </div>
+
         <div className={styles.group}>
           <label htmlFor="password">비밀번호</label>
           <div className={styles.password}>
             <input
+              type={isPasswordVisible ? 'text' : 'password'}
               id="password"
-              name="password"
-              type="password"
+              value={values.password}
+              onChange={handleChange}
               placeholder="비밀번호를 입력해주세요"
+              className={errors.password ? styles[`input-error`] : ''}
             />
             <Image
               className={styles.visibility}
-              src="/images/btn_visibility_off_24px-1.svg"
+              src={
+                isPasswordVisible
+                  ? '/images/btn_visibility_on_24px.svg'
+                  : '/images/btn_visibility_off_24px-1.svg'
+              }
+              onClick={togglePasswordVisibility}
               width={24}
               height={24}
               alt="눈 아이콘 off"
             />
           </div>
+          {errors.password && (
+            <span className={styles.error}>{errors.password}</span>
+          )}
         </div>
+
         <div className={styles.group}>
-          <label htmlFor="password-check">비밀번호 확인</label>
+          <label htmlFor="passwordConfirmation">비밀번호 확인</label>
           <div className={styles.password}>
             <input
-              id="password-check"
-              name="password-check"
-              type="password"
+              type={isPasswordCheckVisible ? 'text' : 'password'}
+              id="passwordConfirmation"
+              value={values.passwordConfirmation}
+              onChange={handleChange}
               placeholder="비밀번호를 다시 한 번 입력해주세요"
+              className={
+                errors.passwordConfirmation ? styles[`input-error`] : ''
+              }
             />
             <Image
               className={styles.visibility}
-              src="/images/btn_visibility_off_24px-1.svg"
+              src={
+                isPasswordCheckVisible
+                  ? '/images/btn_visibility_on_24px.svg'
+                  : '/images/btn_visibility_off_24px-1.svg'
+              }
+              onClick={toggleCheckPasswordVisibility}
               width={24}
               height={24}
               alt="눈 아이콘 off"
             />
           </div>
+          {errors.passwordConfirmation && (
+            <span className={styles.error}>{errors.passwordConfirmation}</span>
+          )}
         </div>
-        <button type="submit" disabled={true}>
+
+        <button
+          type="submit"
+          disabled={!isInputEmpty()}
+          onKeyDown={handleButton}
+        >
           회원가입
         </button>
       </form>
@@ -99,6 +219,11 @@ export default function SingUp() {
         <span>이미 회원이신가요?</span>
         <Link href="/signin">로그인</Link>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        message={modalMessage}
+      />
     </div>
   );
 }

@@ -17,10 +17,10 @@ export default function useSignUpValidate(initialValues) {
     if (
       !values.nickname ||
       values.nickname.length < 1 ||
-      values.nickname.length > 10
+      values.nickname.length > 20
     ) {
       isValid = false;
-      newError.nickname = '닉네임은 10자 이하로 입력해주세요.';
+      newError.nickname = '닉네임은 20자 이하로 입력해주세요.';
     }
 
     if (
@@ -33,17 +33,15 @@ export default function useSignUpValidate(initialValues) {
     }
 
     if (
-      !values.passwordChekck ||
-      values.passwordCheck.length < 8 ||
-      values.passwordCheck.length > 100
+      !values.passwordConfirmation ||
+      values.passwordConfirmation.length < 8 ||
+      values.passwordConfirmation.length > 100
     ) {
       isValid = false;
-      newError.passwordCheck = '비밀번호를 8자 이상 입력해주세요.';
-    }
-
-    if (!values.passwordCheck || values.passwordCheck !== values.password) {
+      newError.passwordConfirmation = '비밀번호 확인을 8자 이상 입력해주세요.';
+    } else if (values.passwordConfirmation !== values.password) {
       isValid = false;
-      newError.passwordCheck = '비밀번호가 일치하지 않습니다.';
+      newError.passwordConfirmation = '비밀번호가 일치하지 않습니다.';
     }
 
     setErrors(newError);

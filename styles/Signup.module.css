@@ -148,3 +148,14 @@
     line-height: 1.671rem;
     text-decoration: underline;
 }
+
+.input-error {
+    border: 0.1rem solid #F74747;
+}
+
+.error {
+    color: #F74747;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2.4rem;
+}
