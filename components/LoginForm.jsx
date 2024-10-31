@@ -66,8 +66,12 @@ export default function Login() {
         <div className={styles.easy_login_section}>
           <div className={styles.space_left}>간편 로그인 하기</div>
           <div className={`${styles.social} ${styles.space_right}`}>
-            <Image src={google} alt="구글 로그인" />
-            <Image src={kakao} alt="카카오 로그인" />
+            <Link href="https://www.google.com">
+              <Image src={google} alt="구글 로그인" />
+            </Link>
+            <Link href="https://www.kakaocorp.com/page">
+              <Image src={kakao} alt="카카오 로그인" />
+            </Link>
           </div>
         </div>
 

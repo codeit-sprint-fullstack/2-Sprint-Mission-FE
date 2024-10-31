@@ -9,6 +9,7 @@ import kakao from "@/images/icon/kakao.svg";
 import google from "@/images/icon/google.svg";
 import styles from "@/components/Sign.module.css";
 import Link from "next/link";
+import { fetchApi } from "@/utils/axiosInstance";
 
 export default function SignUp() {
   const router = useRouter();
@@ -16,23 +17,88 @@ export default function SignUp() {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [confirmPWError, setConfirmPWError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
+
+  const signUpMutation = useMutation({
+    mutationFn: async () => {
+      return await fetchApi(
+        "/api/signUp",
+        { email, nickname, password },
+        "POST"
+      );
+    },
+
+    onSuccess: () => {
+      router.push("/market");
+    },
+  });
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    if (!validateEmail(value)) {
+      setEmailError("잘못된 이메일입니다.");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+
+    if (!validatePassword(value)) {
+      setPasswordError("비밀번호는 8자 이상 입력해주세요.");
+    } else {
+      setPasswordError("");
+    }
+
+    if (value !== confirmPassword) {
+      setConfirmPWError("비밀번호가 일치하지 않습니다.");
+    } else {
+      setConfirmPWError("");
+    }
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    const value = e.target.value;
+    setConfirmPassword(value);
+
+    if (password !== value) {
+      setConfirmPWError("비밀번호가 일치하지 않습니다.");
+    } else {
+      setConfirmPWError("");
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setPasswordError("비밀번호가 일치하지 않아요.");
-      return;
+
+    if (!emailError && !passwordError && !confirmPWError) {
+      signUpMutation.mutate();
     }
-    setPasswordError("");
   };
 
   return (
     <>
       <div className={styles.signup_container}>
         <Image src={logo} alt="로고 이미지" />
-        <form className={styles.form_wrapper}>
+        <form className={styles.form_wrapper} onSubmit={handleSubmit}>
           <label htmlFor="email">이메일</label>
           <input
             id="email"
@@ -40,9 +106,11 @@ export default function SignUp() {
             className={styles.input}
             placeholder="이메일을 입력해주세요"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
           />
-          <span className={styles.error_message} id="errorEmail"></span>
+          {emailError && (
+            <div className={styles.error_message}>{emailError}</div>
+          )}
 
           <label htmlFor="nickname">닉네임</label>
           <input
@@ -63,7 +131,7 @@ export default function SignUp() {
               type={isPasswordVisible ? "text" : "password"}
               placeholder="비밀번호를 입력해주세요"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
             />
             <Image
               src={isPasswordVisible ? eye_off : eye_on}
@@ -72,7 +140,9 @@ export default function SignUp() {
               onClick={() => setIsPasswordVisible(!isPasswordVisible)}
             />
           </div>
-          <span className={styles.error_message} id="errorPassword"></span>
+          {passwordError && (
+            <div className={styles.error_message}>{passwordError}</div>
+          )}
 
           <label htmlFor="passwordcheck">비밀번호 확인</label>
           <div className={styles.input_password_container}>
@@ -80,21 +150,25 @@ export default function SignUp() {
               id="passwordcheck"
               name="passwordcheck"
               className={styles.input}
-              type={isPasswordVisible ? "text" : "password"}
+              type={isConfirmPasswordVisible ? "text" : "password"}
               placeholder="비밀번호를 다시 한 번 입력해주세요"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={handleConfirmPasswordChange}
             />
             <Image
               src={isPasswordVisible ? eye_off : eye_on}
               alt="비밀번호보기"
               className={styles.password_active_toggle}
-              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              onClick={() =>
+                setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
+              }
             />
           </div>
-          <span className={styles.error_message} id="errorPasswordCheck"></span>
+          {confirmPWError && (
+            <div className={styles.error_message}>{confirmPWError}</div>
+          )}
 
-          <button type="button" className={styles.signup_btn}>
+          <button type="submit" className={styles.signup_btn}>
             회원가입
           </button>
         </form>
@@ -102,8 +176,12 @@ export default function SignUp() {
         <div className={styles.easy_login_section}>
           <div className={styles.space_left}>간편 로그인 하기</div>
           <div className={`${styles.social} ${styles.space_right}`}>
-            <Image src={google} alt="구글 로그인" />
-            <Image src={kakao} alt="카카오 로그인" />
+            <Link href="https://www.google.com">
+              <Image src={google} alt="구글 로그인" />
+            </Link>
+            <Link href="https://www.kakaocorp.com/page">
+              <Image src={kakao} alt="카카오 로그인" />
+            </Link>
           </div>
         </div>
 
