@@ -48,6 +48,7 @@
 
 .form button:disabled {
     background-color: #9CA3AF;
+    cursor: default;
 }
 
 .group {

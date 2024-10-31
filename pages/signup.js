@@ -1,13 +1,15 @@
+import { useMutation } from '@tanstack/react-query';
 import styles from '@/styles/Signup.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { signUp } from '@/lib/api/AuthService';
 import useSignUpValidate from '@/hooks/useSignUpValidate';
 import Modal from '@/components/Common/Modal';
 
 export default function SingUp() {
+  const router = useRouter();
   const { values, errors, validate, handleChange } = useSignUpValidate({
     email: '',
     nickname: '',
@@ -19,7 +21,12 @@ export default function SingUp() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  const router = useRouter();
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      router.push('/folder');
+    }
+  }, [router]);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -38,6 +45,27 @@ export default function SingUp() {
     );
   };
 
+  const mutation = useMutation({
+    mutationFn: async (userData) => {
+      const res = await signUp(userData);
+      return res;
+    },
+    onSuccess: (data) => {
+      if (data.accessToken) {
+        localStorage.setItem('accessToken', data.accessToken);
+        router.push('/items');
+      }
+    },
+    onError: (error) => {
+      if (error.response?.data?.message === '이미 사용중인 이메일입니다.') {
+        setModalMessage('사용 중인 이메일입니다.');
+        setIsModalOpen(true);
+      } else {
+        console.error('회원가입에 실패하였습니다.', error.response.data);
+      }
+    }
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -45,32 +73,12 @@ export default function SingUp() {
       return;
     }
 
-    try {
-      const res = await signUp({
-        email: values.email,
-        nickname: values.nickname,
-        password: values.password,
-        passwordConfirmation: values.passwordConfirmation
-      });
-
-      if (!res) {
-        console.error('회원가입 요청이 실패했습니다.');
-        return;
-      }
-
-      return router.push(`/items`);
-    } catch (err) {
-      if (err.response) {
-        if (err.response.data.message === '이미 사용중인 이메일입니다.') {
-          setModalMessage('사용 중인 이메일입니다.');
-          setIsModalOpen(true);
-        } else {
-          console.error('회원가입에 실패하였습니다.', err.response.data);
-        }
-      } else {
-        console.error('회원가입 요청 중 오류가 발생했습니다.', err);
-      }
-    }
+    mutation.mutate({
+      email: values.email,
+      nickname: values.nickname,
+      password: values.password,
+      passwordConfirmation: values.passwordConfirmation
+    });
   };
 
   const handleButton = (e) => {
@@ -186,10 +194,10 @@ export default function SingUp() {
 
         <button
           type="submit"
-          disabled={!isInputEmpty()}
+          disabled={!isInputEmpty() || mutation.isLoading}
           onKeyDown={handleButton}
         >
-          회원가입
+          {mutation.isLoading ? '가입 중...' : '회원가입'}
         </button>
       </form>
 
