@@ -53,7 +53,7 @@ export default function Nav() {
 
         <div className={styles.gnbUser}>
           {!isLoggedIn ? (
-            <Link href="/login" className={styles.gnbBtnLogin}>로그인</Link>
+            <Link href="/signin" className={styles.gnbBtnLogin}>로그인</Link>
           ) : (
             <div className={styles.gnbUserInfo}>
               <div className={styles.userProfileImg}>
