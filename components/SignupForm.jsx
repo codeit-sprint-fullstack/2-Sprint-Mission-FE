@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
@@ -21,19 +21,27 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPWError, setConfirmPWError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
-    useState(false);
+  const [isConfirmPWVisible, setIsConfirmPWVisible] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      router.push("/folder");
+    }
+  }, [router]);
 
   const signUpMutation = useMutation({
     mutationFn: async () => {
       return await fetchApi(
-        "/api/signUp",
-        { email, nickname, password },
+        "/auth/signUp",
+        { email, nickname, password, passwordConfirmation: confirmPassword },
         "POST"
       );
     },
 
-    onSuccess: () => {
+    onSuccess: (data) => {
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
       router.push("/market");
     },
   });
@@ -150,7 +158,7 @@ export default function SignUp() {
               id="passwordcheck"
               name="passwordcheck"
               className={styles.input}
-              type={isConfirmPasswordVisible ? "text" : "password"}
+              type={isConfirmPWVisible ? "text" : "password"}
               placeholder="비밀번호를 다시 한 번 입력해주세요"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
@@ -159,9 +167,7 @@ export default function SignUp() {
               src={isPasswordVisible ? eye_off : eye_on}
               alt="비밀번호보기"
               className={styles.password_active_toggle}
-              onClick={() =>
-                setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
-              }
+              onClick={() => setIsConfirmPWVisible(!isConfirmPWVisible)}
             />
           </div>
           {confirmPWError && (

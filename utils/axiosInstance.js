@@ -26,7 +26,7 @@ export const fetchApi = async (url, params = {}, method = "GET") => {
 
     return response.data;
   } catch (error) {
-    console.error("API 요청 에러:", error);
+    console.error("API 에러", error);
     throw error;
   }
 };
