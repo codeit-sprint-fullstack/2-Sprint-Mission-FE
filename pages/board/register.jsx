@@ -14,8 +14,14 @@ export default function register() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("/articles", { title, content });
-      router.push(`/board/${res.id}`);
+      const response = await axios.get("/dev/users");
+      const id = response.data.list[0].id;
+      const res = await axios.post("/articles", {
+        title,
+        content,
+        ownerId: id,
+      });
+      router.push(`/board/${res.data.id}`);
       console.log("게시글이 성공적으로 등록 되었습니다:", res.data);
     } catch (error) {
       console.error("게시글 등록 중 오류가 발생했습니다:", error);

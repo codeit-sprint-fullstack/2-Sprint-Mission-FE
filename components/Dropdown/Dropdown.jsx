@@ -3,7 +3,7 @@ import arrowImg from "@/public/ic_arrow_down.svg";
 import styles from "./Dropdown.module.css";
 import Image from "next/image";
 
-export default function Dropdown({ options }) {
+export default function Dropdown({ options, onSelect }) {
   const [sortOption, setSortOption] = useState(options[0]?.value);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -11,11 +11,8 @@ export default function Dropdown({ options }) {
   const handleOptionClick = (optionValue) => {
     setSortOption(optionValue);
     setIsOpen(false);
+    onSelect(optionValue);
   };
-
-  // const toggleDropdown = () => {
-  //   setIsOpen((prev) => !prev);
-  // };
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -32,12 +29,6 @@ export default function Dropdown({ options }) {
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
-      {/* <div className={styles.selected_wrapper} onClick={toggleDropdown}>
-        <p className={styles.selected}>
-          {options.find((option) => option.value === sortOption)?.label}
-        </p>
-        <Image src={arrowImg} alt="화살표" />
-      </div> */}
       <div className={styles.options}>
         {console.log(options)}
         {options.map((option) => (

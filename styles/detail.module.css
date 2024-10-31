@@ -5,11 +5,24 @@
   flex-direction: column;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  /* position: absolute; */
+  right: 0;
+}
+
 .board_header_top {
   display: flex;
   width: 100%;
   gap: 8px;
   justify-content: space-between;
+}
+
+.dropdown_wrapper {
+  display: flex;
+  justify-items: flex-end;
+  transform: translateX(0%) translateY(75%);
 }
 
 .post_title {
@@ -118,6 +131,10 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+}
+
+.active_button {
+  background-color: #3692ff;
 }
 
 .comment_body {

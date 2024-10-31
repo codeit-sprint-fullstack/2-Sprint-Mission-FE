@@ -1,9 +1,9 @@
 .dropdown {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   flex-direction: column;
-  position: relative;
+  /* position: relative; */
 }
 
 /* .selected_wrapper {
@@ -30,8 +30,11 @@
   width: 130px;
   height: 84px;
   margin-top: 8px;
-  top: 100%;
+  right: 0;
+  /* transform: translateX(-40%); */
   position: absolute;
-  /* margin-right: 150px; */
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
   background-color: #ffffff;
 }

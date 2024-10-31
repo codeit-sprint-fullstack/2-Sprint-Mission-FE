@@ -15,15 +15,17 @@ import Dropdown from "@/components/Dropdown/Dropdown";
 export default function Board() {
   const router = useRouter();
   const { id } = router.query;
+  console.log("id::", id);
 
   const [post, setPost] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isCommentDropdownOpen, setIsCommentDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [isCommentModal, setIsCommentModal] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
 
-  const [comment, setComment] = useState([]);
+  const [comment, setComment] = useState("");
   const [ableButton, setAbleButton] = useState(false);
   const [newComment, setNewComment] = useState("");
 
@@ -53,12 +55,39 @@ export default function Board() {
     }
   };
 
+  const handleCommentSubmit = async () => {
+    try {
+      const response = await axios.get("/dev/users?pageSize=1");
+      console.log(response);
+      const uuid = response.data.list[0].id;
+      console.log(uuid);
+      const res = await axios.post(`/articles/${id}/comments`, {
+        content: newComment,
+        ownerId: uuid,
+        // articleId: id,
+      });
+      console.log("댓글이 성공적으로 등록 되었습니다:", res.data);
+      setNewComment("");
+      getComments();
+    } catch (error) {
+      console.error("댓글 업로드 중 오류 발생:", error);
+    }
+  };
+
   useEffect(() => {
     if (id) {
       getPost();
       getComments({ limit: 3 });
     }
   }, [id]);
+
+  useEffect(() => {
+    if (newComment.trim() !== "") {
+      setAbleButton(true);
+    } else {
+      setAbleButton(false);
+    }
+  }, [newComment]);
 
   if (!post) {
     return <p>로딩중...</p>;
@@ -68,25 +97,9 @@ export default function Board() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const res = await axios.post("/articles", { title, content });
-  //     router.push(`/board/${res.id}`);
-  //     console.log("게시글이 성공적으로 등록 되었습니다:", res.data);
-  //   } catch (error) {
-  //     console.error("게시글 등록 중 오류가 발생했습니다:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (comment.trim() !== "") {
-  //     setAbleButton(true);
-  //   } else {
-  //     setAbleButton(false);
-  //   }
-  // }, [comment]);
+  const toggleCommentModal = () => {
+    setIsCommentDropdownOpen(!isCommentDropdownOpen);
+  };
 
   const options = [
     {
@@ -131,10 +144,16 @@ export default function Board() {
     <>
       <div className={styles.board_page}>
         <div className={styles.board_header}>
-          <div className={styles.board_header_top}>
-            <p className={styles.post_title}>{post.title}</p>
-            <Image src={toggleImg} alt="점 세 개" onClick={toggleModal} />
-            {isDropdownOpen && <Dropdown options={options} />}
+          <div className={styles.wrapper}>
+            <div className={styles.board_header_top}>
+              <p className={styles.post_title}>{post.title}</p>
+              <Image src={toggleImg} alt="점 세 개" onClick={toggleModal} />
+            </div>
+            {isDropdownOpen && (
+              <div className={styles.dropdown_wrapper}>
+                <Dropdown options={options} />
+              </div>
+            )}
           </div>
           <div className={styles.board_header_bottom}>
             <div className={styles.user_info}>
@@ -155,13 +174,15 @@ export default function Board() {
           <textarea
             className={styles.input_comment}
             placeholder="댓글을 입력해주세요."
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
           />
           <div className={styles.button}>
             <button
               className={`${styles.registration_button} ${
                 ableButton ? styles.active_button : ""
               }`}
-              // onClick={handleSubmit}
+              onClick={handleCommentSubmit}
               disabled={!ableButton}
             >
               등록
@@ -181,9 +202,20 @@ export default function Board() {
           ) : (
             comment.map((prop) => (
               <div className={styles.comment_details} key={prop.id}>
-                <div className={styles.comment_header}>
-                  <p className={styles.comment_title}>{prop.content}</p>
-                  <Image src={toggleImg} alt="점 세 개" />
+                <div className={styles.wrapper}>
+                  <div className={styles.comment_header}>
+                    <p className={styles.comment_title}>{prop.content}</p>
+                    <Image
+                      src={toggleImg}
+                      alt="점 세 개"
+                      onClick={toggleCommentModal}
+                    />
+                  </div>
+                  {isCommentDropdownOpen && (
+                    <div className={styles.dropdown_wrapper}>
+                      <Dropdown options={options} />
+                    </div>
+                  )}
                 </div>
                 <div className={styles.user}>
                   <Image src={profile} alt="프로필 사진" />
