@@ -19,7 +19,7 @@ export default function Board() {
 
   const [post, setPost] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isCommentDropdownOpen, setIsCommentDropdownOpen] = useState(false);
+  const [isCommentDropdownOpen, setIsCommentDropdownOpen] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [isCommentModal, setIsCommentModal] = useState(false);
@@ -38,7 +38,7 @@ export default function Board() {
     }
   };
 
-  const getComments = async ({ limit }) => {
+  const getComments = async ({ limit } = {}) => {
     try {
       const res = await axios.get(`/articles/${id}/comments`, {
         params: { limit },
@@ -64,7 +64,6 @@ export default function Board() {
       const res = await axios.post(`/articles/${id}/comments`, {
         content: newComment,
         ownerId: uuid,
-        // articleId: id,
       });
       console.log("댓글이 성공적으로 등록 되었습니다:", res.data);
       setNewComment("");
@@ -97,8 +96,21 @@ export default function Board() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const toggleCommentModal = () => {
-    setIsCommentDropdownOpen(!isCommentDropdownOpen);
+  // const toggleCommentModal = () => {
+  // setIsCommentDropdownOpen(!isCommentDropdownOpen);
+  //   setIsCommentDropdownOpen((prev) => {
+  //     const newState = [...prev];
+  //     newState[index] = !newState[index]; // 해당 댓글의 인덱스만 토글
+  //     return newState;
+  //   });
+  // };
+
+  const toggleCommentModal = (index) => {
+    setIsCommentDropdownOpen((prev) => {
+      const newState = Array.isArray(prev) ? [...prev] : [];
+      newState[index] = !newState[index]; // 해당 댓글의 인덱스만 토글
+      return newState;
+    });
   };
 
   const options = [
@@ -200,7 +212,7 @@ export default function Board() {
               </p>
             </div>
           ) : (
-            comment.map((prop) => (
+            comment.map((prop, index) => (
               <div className={styles.comment_details} key={prop.id}>
                 <div className={styles.wrapper}>
                   <div className={styles.comment_header}>
@@ -208,10 +220,10 @@ export default function Board() {
                     <Image
                       src={toggleImg}
                       alt="점 세 개"
-                      onClick={toggleCommentModal}
+                      onClick={() => toggleCommentModal(index)}
                     />
                   </div>
-                  {isCommentDropdownOpen && (
+                  {isCommentDropdownOpen[index] && (
                     <div className={styles.dropdown_wrapper}>
                       <Dropdown options={options} />
                     </div>
