@@ -1,0 +1,19 @@
+.popup_container {
+  display: flex;
+  flex-direction: column;
+  width: 540px;
+  height: 250px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm_btn {
+  width: 165px;
+  height: 48px;
+  background-color: #3692ff;
+  border-radius: 10px;
+  border: none;
+  color: #f3f4f6;
+  margin-top: 40px;
+}

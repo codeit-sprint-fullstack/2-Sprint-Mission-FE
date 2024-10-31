@@ -110,7 +110,7 @@ export default function SignUp() {
         <div className={styles.login_wrapper}>
           <p>이미 회원이신가요? {"\u00A0"}</p>
           <div className={styles.link_wrapper}>
-            <Link href="/login">로그인</Link>
+            <Link href="/signin">로그인</Link>
           </div>
         </div>
       </div>

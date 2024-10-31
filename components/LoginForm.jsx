@@ -10,7 +10,7 @@ import google from "@/images/icon/google.svg";
 import styles from "@/components/Sign.module.css";
 import Link from "next/link";
 
-export default function SignUp() {
+export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
