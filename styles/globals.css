@@ -28,3 +28,8 @@ button {
 ul {
   list-style-type: none;
 }
+
+input,
+textarea {
+  border: none;
+}
