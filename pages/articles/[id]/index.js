@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
-import styles from '@/styles/Article.module.css';
+import styles from '@/styles/ArticleDetail.module.css';
 import { getArticle, getArticleCommentList } from '@/lib/api/ArticleService';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
@@ -29,7 +29,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Article({ article, articleComments }) {
+export default function ArticleDetail({ article, articleComments }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
