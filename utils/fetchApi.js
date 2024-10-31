@@ -20,14 +20,18 @@ export const fetchApi = async (url, params = {}, method = "GET") => {
     const response = await fetch(fullUrl, {
       method,
       headers,
-      body: method !== "GET" ? JSON.stringify(params) : undefined,
+      body:
+        method !== "GET" && method !== "DELETE"
+          ? JSON.stringify(params)
+          : undefined,
     });
+
+    const data = await response.json();
 
     if (!response.ok) {
       throw new Error(`${response.status}`);
     }
 
-    const data = await response.json();
     return data;
   } catch (e) {
     console.error(e);

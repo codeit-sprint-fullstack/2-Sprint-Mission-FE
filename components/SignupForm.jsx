@@ -54,7 +54,7 @@ export default function SignUp() {
             type="button"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
-            {isPasswordVisible ? "🙈" : "👁️"}
+            {isPasswordVisible ? "😑" : "😃"}
           </button>
         </div>
         <div>

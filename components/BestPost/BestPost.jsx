@@ -34,15 +34,15 @@ export default function BestPost() {
       <div className={styles.best_container}>
         {recentPost.map((post) => (
           <div key={post.id} className={styles.best_wrapper}>
-            <Image src={badge} />
+            <Image src={badge} alt="뱃지" />
             <div className={styles.title_img}>
               <h3>{post.title}</h3>
-              <Image src={laptop} />
+              <Image src={laptop} alt="디폴트이미지" />
             </div>
             <div className={styles.user_wrapper}>
               <div className={styles.user_stats}>
                 <p>총명한판다</p>
-                <Image src={heart} />
+                <Image src={heart} alt="좋아요버튼" />
                 <p>9999+</p>
               </div>
               <div className={styles.create_at}>

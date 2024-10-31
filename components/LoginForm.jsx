@@ -30,7 +30,6 @@ export default function SignIn() {
 
   return (
     <div>
-      <h2>로그인</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <input

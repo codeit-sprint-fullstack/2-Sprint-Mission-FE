@@ -5,13 +5,35 @@ import { useEffect, useState } from "react";
 import EditDeleteModal from "@/components/EditDeleteModal/EditDeleteModal";
 import { fetchApi } from "@/utils/fetchApi";
 
-import select from "../../images/board/select_img.svg";
+import selectImage from "../../images/board/select_img.svg";
 import user from "../../images/board/profile_img.svg";
 import like_button from "../../images/board/heart_btn.svg";
 import back from "../../images/board/back_icon.svg";
 import empty_img from "../../images/board/reply_empty.svg";
 import { useRouter } from "next/router";
 import CommentItem from "@/components/CommentItem/CommentItem";
+
+const fetchArticleData = async (id) => {
+  if (id) {
+    try {
+      const data = await fetchApi(`/articles/${id}`);
+      return data;
+    } catch (error) {
+      return [];
+    }
+  }
+};
+
+const fetchCommentData = async (id) => {
+  if (id) {
+    try {
+      const data = await fetchApi(`/articles/${id}/comments`);
+      return data;
+    } catch (error) {
+      return null;
+    }
+  }
+};
 
 export default function Board() {
   const router = useRouter();
@@ -21,34 +43,23 @@ export default function Board() {
   const [comment, setComment] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [isCommentModal, setIsCommentModal] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [editCommentId, setEditCommentId] = useState(null);
   const [editComment, setEditComment] = useState("");
 
-  const fetchArticle = async () => {
-    if (id) {
-      try {
-        const data = await fetchApi(`/articles/${id}`);
-        setArticle(data);
-      } catch (error) {
-        console.error(error);
+  useEffect(() => {
+    const fetchArticleComment = async () => {
+      if (id) {
+        const fetchArticles = await fetchArticleData(id);
+        const fetchComments = await fetchCommentData(id);
+        setArticle(fetchArticles);
+        setComment(fetchComments);
       }
-    }
-  };
-
-  const fetchComments = async () => {
-    if (id) {
-      try {
-        const data = await fetchApi(`/articles/${id}/comments`);
-        setComment(data);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  };
+    };
+    fetchArticleComment();
+  }, [id]);
 
   const handleDeleteClick = async () => {
     try {
@@ -58,24 +69,18 @@ export default function Board() {
           null,
           "DELETE"
         );
-        fetchComments();
+
+        const updatedComment = await fetchCommentData(id);
+        setComment(updatedComment);
       } else {
         await fetchApi(`/articles/${id}`, null, "DELETE");
         router.push("/board");
       }
     } catch (e) {
       console.error(e);
+      alert("댓글 삭제 중 오류가 발생했습니다. 다시 시도해 주세요.");
     }
   };
-
-  useEffect(() => {
-    fetchArticle();
-    fetchComments();
-  }, [id]);
-
-  useEffect(() => {
-    setIsButtonEnabled(newComment.trim() !== "");
-  }, [newComment]);
 
   const toggleModal = (e, isComment = false, commentId = null) => {
     const rect = e.target.getBoundingClientRect();
@@ -101,9 +106,7 @@ export default function Board() {
     }
   };
 
-  const handleCommentChange = (e) => {
-    setNewComment(e.target.value);
-  };
+  const handleCommentChange = (e) => setNewComment(e.target.value);
 
   const handleCommentSubmit = async () => {
     if (newComment.trim() === "") return;
@@ -116,27 +119,27 @@ export default function Board() {
         "POST"
       );
       setNewComment("");
-      fetchComments();
-    } catch (e) {
-      console.error(e);
+      const updatedComments = await fetchCommentData(id);
+      setComment(updatedComments);
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const handleEditCommentChange = (e) => {
-    setEditComment(e.target.value);
-  };
+  const handleEditCommentChange = (e) => setEditComment(e.target.value);
 
   const handleEditCommentSubmit = async () => {
     if (editComment.trim() === "") return;
     try {
-      const response = await fetchApi(
+      await fetchApi(
         `/articles/${id}/comments/${editCommentId}`,
         { content: editComment },
         "PATCH"
       );
       setEditCommentId(null);
       setEditComment("");
-      await fetchComments();
+      const updatedComment = await fetchCommentData(id);
+      setComment(updatedComment);
     } catch (e) {
       console.error(e);
     }
@@ -148,7 +151,7 @@ export default function Board() {
         <div className={styles.detail_title}>
           <h3>{article?.title}</h3>
           <Image
-            src={select}
+            src={selectImage}
             alt="선택"
             onClick={toggleModal}
             className={styles.select_button}
@@ -176,10 +179,10 @@ export default function Board() {
         <div className={styles.buttion_container}>
           <button
             className={`${styles.register_buttion} ${
-              isButtonEnabled ? styles.active_button : ""
+              newComment.trim().length > 0 ? styles.active_button : ""
             }`}
             onClick={handleCommentSubmit}
-            disabled={!isButtonEnabled}
+            disabled={newComment.trim().length === 0}
           >
             등록
           </button>
@@ -204,7 +207,7 @@ export default function Board() {
               handleEditCommentSubmit={handleEditCommentSubmit}
               toggleModal={toggleModal}
               userImage={user}
-              selectImage={select}
+              selectImage={selectImage}
             />
           ))
         )}
