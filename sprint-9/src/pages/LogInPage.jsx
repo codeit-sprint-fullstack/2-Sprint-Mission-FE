@@ -30,13 +30,17 @@ function LogInPage() {
 	const onSubmit = async (data) => {
 		console.log(data);
 		const { email, password } = data;
-		const res = await postLogin({ email, password });
-		if (res?.message) {
-			setError(res);
-		} else {
-			setUser(res);
-			localStorage.setItem("user", JSON.stringify(res));
-			navigate("/");
+		try {
+			const res = await postLogin({ email, password });
+			if (res?.message) {
+				setError(res);
+			} else {
+				setUser(res);
+				localStorage.setItem("user", JSON.stringify(res));
+				navigate("/");
+			}
+		} catch (err) {
+			setError(err);
 		}
 	};
 

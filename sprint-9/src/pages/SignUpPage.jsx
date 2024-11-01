@@ -35,13 +35,17 @@ function SignUpPage() {
 	const onSubmit = async (data) => {
 		console.log(data);
 		const { email, nickname, password, passwordConfirm } = data;
-		const res = await postSignup({ email, nickname, password, passwordConfirmation: passwordConfirm });
-		if (res?.message) {
-			setError(res);
-		} else {
-			setUser(res);
-			localStorage.setItem("user", JSON.stringify(res));
-			navigate("/");
+		try {
+			const res = await postSignup({ email, nickname, password, passwordConfirmation: passwordConfirm });
+			if (res?.message) {
+				setError(res);
+			} else {
+				setUser(res);
+				localStorage.setItem("user", JSON.stringify(res));
+				navigate("/");
+			}
+		} catch (err) {
+			setError(err);
 		}
 	};
 
