@@ -62,19 +62,22 @@
 
 .signup_btn,
 .login_btn {
-  background-color: #3692ff;
   color: #f3f4f6;
   width: 100%;
   padding: 15px 0;
   border: none;
   border-radius: 9999px;
   margin-bottom: 20px;
-  cursor: pointer;
 }
 
 .btn_disabled {
   background-color: #9ca3af;
   cursor: not-allowed;
+}
+
+.btn_active {
+  background-color: #3692ff;
+  cursor: pointer;
 }
 
 .login_wrapper {
@@ -110,7 +113,7 @@
     max-width: 640px;
   }
   .login_container {
-    padding: 70px 0;
+    padding: 80px 0;
   }
 }
 

@@ -11,6 +11,7 @@ import styles from "@/components/Sign.module.css";
 import Link from "next/link";
 import Popup from "./Popup/Popup";
 import { fetchApi } from "@/utils/axiosInstance";
+import { useAuth } from "@/contexts/AuthProvider";
 
 export default function Login() {
   const router = useRouter();
@@ -23,21 +24,15 @@ export default function Login() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
+    if (localStorage.getItem("accessToken")) {
       router.push("/folder");
     }
   }, [router]);
 
   const signInMutation = useMutation({
-    mutationFn: async () => {
-      return await fetchApi("/auth/signIn", { email, password }, "POST");
-    },
-
-    onSuccess: (data) => {
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
-      router.push("/item");
+    mutationFn: () => login({ email, password }),
+    onSuccess: () => {
+      router.push("/items");
     },
     onError: (error) => {
       const { message } = error.response.data;
@@ -45,6 +40,8 @@ export default function Login() {
       setIsPopupOpen(true);
     },
   });
+
+  const { login } = useAuth();
 
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

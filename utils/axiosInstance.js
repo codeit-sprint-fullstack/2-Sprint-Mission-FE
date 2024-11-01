@@ -7,12 +7,12 @@ const axiosInstance = axios.create({
 
 export const fetchApi = async (url, params = {}, method = "GET") => {
   try {
-    const headers =
-      method === "GET" || method === "DELETE"
-        ? {}
-        : {
-            "Content-Type": "application/json",
-          };
+    const accessToken = localStorage.getItem("accessToken");
+
+    const headers = {
+      "Content-Type": "application/json",
+      ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+    };
 
     const config = {
       url,
