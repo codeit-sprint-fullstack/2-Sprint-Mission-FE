@@ -37,7 +37,7 @@ export default function ArticleDetail({ article, articleComments }) {
 
   if (!article) return <div>No article found for this ID.</div>;
 
-  const handleBackList = () => router.push('/');
+  const handleBackList = () => router.push('/articles');
   const handleMenuClick = () => setDropdownOpen((prev) => !prev);
 
   return (
