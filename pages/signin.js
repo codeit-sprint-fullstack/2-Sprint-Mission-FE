@@ -18,12 +18,12 @@ export default function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  // useEffect(() => {
-  //   const accessToken = localStorage.getItem('accessToken');
-  //   if (accessToken) {
-  //     router.push('/folder');
-  //   }
-  // }, [router]);
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      router.push('/folder');
+    }
+  }, [router]);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -41,6 +41,7 @@ export default function Login() {
     onSuccess: (data) => {
       if (data.accessToken) {
         localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
         router.push('/items');
       }
     },

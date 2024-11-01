@@ -44,7 +44,7 @@ export default function Article({
 }) {
   const [bestArticles, setBestArticles] = useState(initialBestArticles.list);
   const bestPageSize = useResize();
-  const [filteredArticles, setFilteredArticles] = useState(articles.list);
+  const [filteredArticles, setFilteredArticles] = useState(articles);
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
@@ -65,7 +65,7 @@ export default function Article({
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
-      const filtered = articles.list.filter((article) =>
+      const filtered = articles.filter((article) =>
         article.title.toLowerCase().includes(keyword.toLowerCase())
       );
       setFilteredArticles(filtered);
@@ -73,7 +73,7 @@ export default function Article({
     }
   };
 
-  const totalPages = Math.ceil(articles.totalCount / pageSize);
+  const totalPages = Math.ceil(filteredArticles.length / pageSize);
 
   const currentArticles = filteredArticles.slice(
     (currentPage - 1) * pageSize,
@@ -83,7 +83,7 @@ export default function Article({
   return (
     <div className={styles.wrapper}>
       <BestArticleList
-        bestArticles={bestArticles.list || []}
+        bestArticles={bestArticles || []}
         bestPageSize={bestPageSize}
       />
       <div className={styles.articles}>
