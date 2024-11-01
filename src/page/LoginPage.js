@@ -1,66 +1,175 @@
+import { Link, useNavigate } from "react-router-dom"; // Link 컴포넌트 임포트
 import "./HomeStyle/auth.css";
 import "./HomeStyle/global.css";
 import "./HomeStyle/modal.css";
 import logo from "./images/logo/logo.svg";
 import closeEye from "./images/icons/eye-invisible.svg";
+import openEye from "./images/icons/eye-visible.svg";
 import kakaoTalk from "./images/social/kakao-logo.png";
 import google from "./images/social/google-logo.png";
+import { useEffect, useState } from "react";
+import axios from "../lib/axios.js";
+import Modal from "../component/Modal.js";
 
 export default function LoginPage() {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    errorMsg: "",
+    errors: {},
+  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // 버튼 비활성화 상태
+  const [togglePassword, setTogglePassword] = useState(false);
+
+  const navigate = useNavigate();
+
+  // 컴포넌트가 마운트될 때 로컬 스토리지에 accessToken이 있는지 확인
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/folder"); // accessToken이 있으면 /folder 페이지로 이동
+    }
+  }, [navigate]);
+
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+  const validatePassword = (password) => {
+    if (!password) return "비밀번호를 입력해 주세요";
+    if (password.length < 8) return "비밀번호는 8자 이상이어야 합니다";
+    return null;
+  };
+
+  const handleBlur = (field) => {
+    const newErrors = { ...values.errors };
+
+    switch (field) {
+      case "email":
+        if (!values.email) {
+          newErrors.email = "이메일을 입력해 주세요";
+        } else if (!validateEmail(values.email)) {
+          newErrors.email = "잘못된 이메일 형식입니다";
+        } else {
+          delete newErrors.email;
+        }
+        break;
+
+      case "password":
+        const passwordError = validatePassword(values.password);
+        if (passwordError) {
+          newErrors.password = passwordError;
+        } else {
+          delete newErrors.password;
+        }
+        break;
+
+      default:
+        break;
+    }
+    setValues((prevValues) => ({ ...prevValues, errors: newErrors }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newErrors = {};
+    setValues((prevValues) => ({ ...prevValues, errors: newErrors }));
+    try {
+      const { email, password } = values;
+      const response = await axios.post("/auth/signIn", {
+        email,
+        password,
+      });
+
+      const accessToken = response.data.accessToken; // 서버에서 받은 accessToken
+      localStorage.setItem("accessToken", accessToken); // 로컬 스토리지에 저장
+
+      navigate("/items"); // 성공 시 /items 페이지로 이동
+    } catch (error) {
+      setIsModalOpen(true); // 모달 열기
+      setValues((prevValues) => ({
+        ...prevValues,
+        errorMsg: error.response.data.message,
+      }));
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    // 모든 필드의 유효성 검사 결과를 체크하여 버튼 활성화 상태 설정
+    const hasErrors = Object.keys(values.errors).length > 0;
+    setIsSubmitDisabled(hasErrors || !values.email || !values.password);
+  }, [values]);
+
   return (
     <>
       <main className="auth-container">
-        <a href="/" className="logo-home-link" aria-label="홈으로 이동">
+        <Link to="/" className="logo-home-link" aria-label="홈으로 이동">
           <img src={logo} alt="판다마켓 로고" />
-        </a>
+        </Link>
 
-        <form id="loginForm">
+        <form id="loginForm" onSubmit={handleSubmit}>
           <div className="input-item">
-            <label for="email">이메일</label>
+            <label htmlFor="email">이메일</label>
             <input
               id="email"
               name="email"
               type="email"
               placeholder="이메일을 입력해 주세요"
+              value={values.email}
+              onChange={(e) => setValues({ ...values, email: e.target.value })}
+              onBlur={() => handleBlur("email")}
               required
             />
-            <span id="emailEmptyError" className="error-message">
-              이메일을 입력해 주세요
-            </span>
-            <span id="emailInvalidError" className="error-message">
-              잘못된 이메일 형식입니다
-            </span>
+            {values.errors.email && (
+              <span className="error-message">{values.errors.email}</span>
+            )}
           </div>
+
           <div className="input-item">
-            <label for="password">비밀번호</label>
+            <label htmlFor="password">비밀번호</label>
             <div className="input-wrapper">
               <input
                 id="password"
                 name="password"
-                type="password"
+                type={togglePassword ? "text" : "password"}
                 placeholder="비밀번호를 입력해 주세요"
+                value={values.password}
+                onChange={(e) =>
+                  setValues({ ...values, password: e.target.value })
+                }
+                onBlur={() => handleBlur("password")}
                 required
               />
               <button
                 type="button"
                 className="password-toggle-button"
                 aria-label="비밀번호 보기"
+                onClick={() => setTogglePassword(!togglePassword)}
               >
                 <img
                   className="password-toggle-icon"
-                  src={closeEye}
-                  alt="비밀번호 숨김 상태 아이콘"
+                  src={togglePassword ? openEye : closeEye}
+                  alt={togglePassword ? "비밀번호 보임" : "비밀번호 숨김"}
                 />
               </button>
             </div>
-            <span id="passwordEmptyError" className="error-message">
-              비밀번호를 입력해 주세요
-            </span>
-            <span id="passwordInvalidError" className="error-message">
-              비밀번호를 8자 이상 입력해 주세요
-            </span>
+            {values.errors.password && (
+              <span className="error-message">{values.errors.password}</span>
+            )}
           </div>
-          <button type="submit" className="button pill-button full-width">
+
+          <button
+            type="submit"
+            disabled={isSubmitDisabled}
+            className={`button pill-button full-width ${
+              !isSubmitDisabled ? "buttonActive" : ""
+            }`}
+          >
             로그인
           </button>
         </form>
@@ -86,18 +195,12 @@ export default function LoginPage() {
           </div>
         </div>
         <div className="auth-switch">
-          판다마켓이 처음이신가요? <a href="signup">회원가입</a>
+          판다마켓이 처음이신가요? <Link to="/signin">회원가입</Link>
         </div>
       </main>
-      {/*모달 HTML 포함 */}
-      <div id="error-modal" className="modal">
-        <div className="modal-content">
-          <p id="modal-message"></p>
-          <button id="confirm-button" className="confirm-button">
-            확인
-          </button>
-        </div>
-      </div>
+      {isModalOpen && (
+        <Modal message={values.errorMsg} onClose={handleCloseModal} />
+      )}
     </>
   );
 }

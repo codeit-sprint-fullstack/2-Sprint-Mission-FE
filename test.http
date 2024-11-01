@@ -1,0 +1,19 @@
+POST https://panda-market-api.vercel.app/auth/signUp
+Content-Type: application/json
+
+{
+    "email":"adfeg44@naver.com",
+    "nickname":"asdfas2df",
+    "password":"123456789",
+    "passwordConfirmation":"123456789"
+}
+
+###
+
+POST https://panda-market-api.vercel.app/auth/signIn
+Content-Type: application/json
+
+{
+    "email":"adfeg44@naver.com",
+    "password":"123456789"
+}

@@ -22,9 +22,11 @@ function PageNav() {
             </button>
           </Link>
         </div>
-        <a href="login" id="loginLink" className="button">
-          로그인
-        </a>
+        <Link to="/login">
+          <button id="loginLink" className="button">
+            로그인
+          </button>
+        </Link>
       </header>
     </>
   );

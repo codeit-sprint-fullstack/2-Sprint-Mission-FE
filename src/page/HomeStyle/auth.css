@@ -61,7 +61,6 @@
   font-size: 15px;
   line-height: 18px;
   margin-top: 8px;
-  display: none;
   padding-left: 16px;
 }
 
@@ -101,6 +100,12 @@
   color: #3182f6;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+.button .pill-button .full-width{
+  background-color:#9ca3af;
+}
+.button .pill-button .full-width .buttonActive {
+  background-color:#3692ff
 }
 
 /* [심화 요구사항] Tablet styles */
