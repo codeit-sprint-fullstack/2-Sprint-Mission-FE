@@ -35,13 +35,11 @@ export default function Login() {
     },
 
     onSuccess: (data) => {
-      console.log("Success:", data);
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      router.push("/folder");
+      router.push("/item");
     },
     onError: (error) => {
-      console.log("Error:", error);
       const { message } = error.response.data;
       setPopupMessage(message);
       setIsPopupOpen(true);
@@ -101,7 +99,9 @@ export default function Login() {
           <input
             id="email"
             name="email"
-            className={styles.input}
+            className={`${styles.input} ${
+              emailError ? styles.input_error : ""
+            }`}
             placeholder="이메일을 입력해주세요"
             value={email}
             onChange={handleEmailChange}
@@ -115,14 +115,16 @@ export default function Login() {
             <input
               id="password"
               name="password"
-              className={styles.input}
+              className={`${styles.input} ${
+                passwordError ? styles.input_error : ""
+              }`}
               type={isPasswordVisible ? "text" : "password"}
               placeholder="비밀번호를 입력해주세요"
               value={password}
               onChange={handlePasswordChange}
             />
             <Image
-              src={isPasswordVisible ? eye_off : eye_on}
+              src={isPasswordVisible ? eye_on : eye_off}
               alt="비밀번호보기"
               className={styles.password_active_toggle}
               onClick={() => setIsPasswordVisible(!isPasswordVisible)}

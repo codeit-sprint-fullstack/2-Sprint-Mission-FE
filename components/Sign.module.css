@@ -81,8 +81,8 @@
   text-indent: 15px;
 }
 
-.input_error_box {
-  border: 2px solid red;
+.input_error {
+  outline-color: red;
 }
 
 .space_left {

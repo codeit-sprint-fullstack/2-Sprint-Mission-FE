@@ -124,7 +124,9 @@ export default function SignUp() {
           <input
             id="email"
             name="email"
-            className={styles.input}
+            className={`${styles.input} ${
+              emailError ? styles.input_error : ""
+            }`}
             placeholder="이메일을 입력해주세요"
             value={email}
             onChange={handleEmailChange}
@@ -148,14 +150,16 @@ export default function SignUp() {
             <input
               id="password"
               name="password"
-              className={styles.input}
+              className={`${styles.input} ${
+                passwordError ? styles.input_error : ""
+              }`}
               type={isPasswordVisible ? "text" : "password"}
               placeholder="비밀번호를 입력해주세요"
               value={password}
               onChange={handlePasswordChange}
             />
             <Image
-              src={isPasswordVisible ? eye_off : eye_on}
+              src={isPasswordVisible ? eye_on : eye_off}
               alt="비밀번호보기"
               className={styles.password_active_toggle}
               onClick={() => setIsPasswordVisible(!isPasswordVisible)}
@@ -170,14 +174,16 @@ export default function SignUp() {
             <input
               id="passwordcheck"
               name="passwordcheck"
-              className={styles.input}
+              className={`${styles.input} ${
+                confirmPWError ? styles.input_error : ""
+              }`}
               type={isConfirmPWVisible ? "text" : "password"}
               placeholder="비밀번호를 다시 한 번 입력해주세요"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
             />
             <Image
-              src={isPasswordVisible ? eye_off : eye_on}
+              src={isPasswordVisible ? eye_on : eye_off}
               alt="비밀번호보기"
               className={styles.password_active_toggle}
               onClick={() => setIsConfirmPWVisible(!isConfirmPWVisible)}
