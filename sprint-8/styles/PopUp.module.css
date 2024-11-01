@@ -1,0 +1,49 @@
+.popUpWrapper {
+	position: fixed;
+	inset: 0;
+	margin: 0;
+	max-width: unset;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+	z-index: 1000;
+}
+
+.popUpContainer {
+	position: relative;
+	background-color: var(--gray-900);
+	color: var(--gray-100);
+	max-width: 540px;
+	width: 100%;
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--10px);
+	z-index: 1100;
+}
+
+.popUpText {
+	display: inline-block;
+	font-size: var(--16px);
+	font-weight: 500;
+}
+
+.popUpCloseButton {
+	display: inline-block;
+	position: absolute;
+	right: var(--24px);
+	bottom: var(--24px);
+	background-color: var(--prime-blue);
+	color: var(--gray-800);
+	padding: var(--12px) var(--24px);
+	border-radius: var(--8px);
+	z-index: 1100;
+	pointer-events: all;
+}
+
+.none {
+	display: none;
+}
