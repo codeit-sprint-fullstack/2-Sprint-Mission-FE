@@ -4,8 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SocialLogin from './SocialLogin';
 import useValidateLoginForm from '@/hooks/useValidateLoginForm';
+import { authApi } from '@/lib/api/AuthService';
+import { useRouter } from 'next/router';
 
 export default function LoginForm() {
+
   const {
     loginData,
     errors,
@@ -13,26 +16,31 @@ export default function LoginForm() {
     isFormValid,
   } = useValidateLoginForm();
 
+  const router = useRouter();
   const [passwordVisible, setPasswordVisible] = useState(false);
-
   // 패스워드 표시/숨기기 토글
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
   // 폼 제출 처리
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // 유효성 검사 통과 여부 확인
     if (!isFormValid) {
       return;
     }
-
-    // 로그인 처리 로직 추가 (예: API 호출)
-    console.log('로그인 정보:', { email, password });
-    alert('로그인 처리!');
-
+    
+    console.log('loginData', loginData);
+    try {
+      const res = await authApi.signIn(loginData);
+      alert('로그인에 성공하였습니다.');
+      router.push('/items');
+    } catch (error) {
+      console.error('로그인에 실패하였습니다', error.message);
+      alert(`로그인에 실패하였습니다: ${error.message}`)
+    }
   };
 
   return (

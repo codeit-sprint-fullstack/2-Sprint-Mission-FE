@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SocialLogin from './SocialLogin';
 import useValidateSignupForm from '@/hooks/useValidateSignupForm';
+import { authApi } from '@/lib/api/AuthService';
+import { useRouter } from 'next/router';
 
 export default function SignupForm() {
   const {
@@ -13,6 +15,7 @@ export default function SignupForm() {
     isFormValid,
   } = useValidateSignupForm();
 
+  const router = useRouter();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordConfirmVisible, setPasswordConfirmVisible] = useState(false);
 
@@ -26,7 +29,7 @@ export default function SignupForm() {
   };
 
   // 폼 제출 처리
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // 유효성 검사 통과 여부 확인
@@ -34,10 +37,29 @@ export default function SignupForm() {
       return;
     }
 
-    // 회원가입 처리 로직 추가
-    console.log('회원가입 정보:', { email, nick, password });
-    alert('회원가입 처리!');
+    // API 문서에 맞춘 키 변환
+    const formattedSignupData = {
+      email: signupData.email,
+      nickname: signupData.nick,               
+      password: signupData.password,
+      passwordConfirmation: signupData.passwordConfirm, 
+    };
 
+    const formattedSigninData = {
+      email: signupData.email,
+      password: signupData.password,
+    }
+    
+    try {
+      const res = await authApi.signUp(formattedSignupData);
+      //console.log('회원가입 성공:', res);
+      alert('회원 가입이 성공적으로 처리되었습니다.');
+      authApi.signIn(formattedSigninData);
+      router.push('/items');
+    } catch (error) {
+      //console.error('회원가입 실패: ', error.message);
+      alert(`회원가입에 실패하였습니다: ${error.message}`);
+    }
   };
 
   return (
