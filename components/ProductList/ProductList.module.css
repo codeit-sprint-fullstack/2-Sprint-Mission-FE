@@ -1,14 +1,14 @@
-.product-list-wrapper {
+.product_list_wrapper {
   margin: 100px 200px;
 }
-.product-control-panel {
+.product_control_panel {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 50px;
   margin-bottom: 16px;
 }
-.section-title {
+.section_title {
   display: flex;
   align-items: center;
   color: #111827;
@@ -16,13 +16,13 @@
   font-size: 11px;
 }
 
-.search-sort-bar {
+.search_sort_bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.search-bar-wrapper {
+.search_bar_wrapper {
   flex: 1;
   display: flex;
   background-color: #f3f4f6;
@@ -31,7 +31,7 @@
   width: 325px;
 }
 
-.search-bar-input {
+.search_bar_input {
   border: none;
   height: 42px;
   flex: 1;
@@ -43,12 +43,12 @@
   background-position: left center;
 }
 
-.search-bar-input::placeholder {
+.search_bar_input::placeholder {
   color: #9ca3af;
   font-size: 13px;
 }
 
-.create-item-button {
+.create_item_button {
   background-color: #3692ff;
   border: none;
   color: #ffffff;
@@ -58,7 +58,7 @@
   margin-right: 20px;
 }
 
-.sort-dropdown {
+.sort_dropdown {
   border-radius: 10px;
   width: 110px;
   height: 40px;
@@ -67,7 +67,7 @@
   border-color: #dfdfdf;
 }
 
-.product-list {
+.product_list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
@@ -75,7 +75,7 @@
   width: 100%;
 }
 
-.item-card {
+.item_card {
   background-color: #fff;
   border-radius: 10px;
   padding: 16px;
@@ -87,19 +87,19 @@
   gap: 7px;
 }
 
-.item-name {
+.item_name {
   font-size: 16px;
   font-weight: 400;
   white-space: nowrap;
   /* overflow: hidden; */
 }
 
-.item-price {
+.item_price {
   font-size: 16px;
   font-weight: bold;
 }
 
-.favorite-count {
+.favorite_count {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -107,7 +107,7 @@
   font-size: 12px;
 }
 
-.pagination-bar-wrapper {
+.pagination_bar_wrapper {
   display: flex;
   justify-content: center;
   gap: 8px;
@@ -115,7 +115,7 @@
   padding-bottom: 80px;
 }
 
-.pagination-bar-wrapper button {
+.pagination_bar_wrapper button {
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
   width: 40px;
@@ -124,13 +124,13 @@
   cursor: pointer;
 }
 
-.pagination-bar-wrapper button.active {
+.pagination_bar_wrapper button.active {
   background-color: #007bff;
   color: #fff;
   border-color: #007bff;
 }
 
-.pagination-bar-wrapper button:hover {
+.pagination_bar_wrapper button:hover {
   background-color: #b3d6fc;
   border-color: #b3d6fc;
 }
@@ -138,39 +138,39 @@
 /* 모바일용 */
 /* 위치 변경해야함 */
 @media (min-width: 375px) and (max-width: 743px) {
-  .product-list-wrapper {
+  .product_list_wrapper {
     margin: 100px 10px;
   }
-  .search-bar-wrapper {
+  .search_bar_wrapper {
     width: 200px;
   }
-  .section-title,
-  .search-bar-input,
-  .create-item-button,
-  .sort-dropdown {
+  .section_title,
+  .search_bar_input,
+  .create_item_button,
+  .sort_dropdown {
     font-size: 10px;
   }
 }
 
 /* 태블릿 */
 @media (min-width: 744px) and (max-width: 1199px) {
-  .product-list-wrapper {
+  .product_list_wrapper {
     margin: 100px 20px;
   }
-  .product-list {
+  .product_list {
     grid-template-columns: repeat(3, 1fr);
   }
-  .search-bar-wrapper {
+  .search_bar_wrapper {
     width: 250px;
   }
-  .section-title {
+  .section_title {
     font-size: 10px;
   }
 }
 
 /* PC (1200px 이상) */
 @media (min-width: 1200px) {
-  .product-list {
+  .product_list {
     grid-template-columns: repeat(5, 1fr);
   }
 }

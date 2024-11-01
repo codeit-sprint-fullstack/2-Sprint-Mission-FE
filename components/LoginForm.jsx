@@ -32,6 +32,9 @@ export default function Login() {
   const signInMutation = useMutation({
     mutationFn: () => login({ email, password }),
     onSuccess: () => {
+      const message = "로그인 성공하였습니다.";
+      setPopupMessage(message);
+      setIsPopupOpen(true);
       router.push("/items");
     },
     onError: (error) => {
