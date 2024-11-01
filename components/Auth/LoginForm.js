@@ -6,6 +6,7 @@ import SocialLogin from './SocialLogin';
 import useValidateLoginForm from '@/hooks/useValidateLoginForm';
 import { authApi } from '@/lib/api/AuthService';
 import { useRouter } from 'next/router';
+import Modal from '../Common/Modal';
 
 export default function LoginForm() {
 
@@ -18,10 +19,16 @@ export default function LoginForm() {
 
   const router = useRouter();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
   // 패스워드 표시/숨기기 토글
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
+
+  // 모달 닫기
+  const closeModal = () => setIsModalOpen(false);
 
   // 폼 제출 처리
   const handleSubmit = async (e) => {
@@ -35,16 +42,20 @@ export default function LoginForm() {
     console.log('loginData', loginData);
     try {
       const res = await authApi.signIn(loginData);
-      alert('로그인에 성공하였습니다.');
+      //alert('로그인에 성공하였습니다.');
       router.push('/items');
     } catch (error) {
       console.warn('로그인에 실패하였습니다', error.message);
-      alert(`로그인에 실패하였습니다: ${error.message}`)
+      setModalMessage(error.message || '로그인에 실패하였습니다.');
+      setIsModalOpen(true);
     }
   };
 
   return (
     <>
+      {/* 모달 메시지 */}
+      <Modal isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
+
       {/* 상단 로고 영역 */}
       <div className={styles.logoSubpage}>
         <Link href="/">
@@ -52,8 +63,10 @@ export default function LoginForm() {
             <Image
               src="/images/auth/logo_subpage.png"
               alt="판다마켓 로고"
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
+              sizes='39.6rem'
+              priority
             />
           </div>
         </Link>
@@ -100,8 +113,8 @@ export default function LoginForm() {
                       : '/images/auth/btn_visibility_off_24px.svg'
                   }
                   alt="비밀번호 보기"
-                  layout="fill"
-                  objectFit="contain"
+                  fill
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
             </div>

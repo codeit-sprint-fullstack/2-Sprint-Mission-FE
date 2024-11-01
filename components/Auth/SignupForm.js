@@ -6,6 +6,7 @@ import SocialLogin from './SocialLogin';
 import useValidateSignupForm from '@/hooks/useValidateSignupForm';
 import { authApi } from '@/lib/api/AuthService';
 import { useRouter } from 'next/router';
+import Modal from '../Common/Modal';
 
 export default function SignupForm() {
   const {
@@ -18,6 +19,8 @@ export default function SignupForm() {
   const router = useRouter();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordConfirmVisible, setPasswordConfirmVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   // 패스워드 표시/숨기기 토글
   const togglePasswordVisibility = () => {
@@ -52,26 +55,40 @@ export default function SignupForm() {
 
     try {
       const res = await authApi.signUp(formattedSignupData);
-      alert('회원 가입이 성공적으로 처리되었습니다.');
-      authApi.signIn(formattedSigninData);
-      router.push('/items');
+      if(res) {
+        //setModalMessage('회원 가입이 성공적으로 처리되었습니다.');
+        //setIsModalOpen(true);        
+        const loginRes = await authApi.signIn(formattedSigninData);
+        if(loginRes) {
+          router.push('/items');
+        }
+      }
     } catch (error) {
       console.warn('회원가입 실패: ', error.message);
-      alert(`회원가입에 실패하였습니다: ${error.message}`);
+      setModalMessage(error.message);
+      setIsModalOpen(true);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <>
-      {/* 상단 로고 영역 */}
+      {/* 모달 메시지 */}
+      <Modal isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
+
       <div className={styles.logoSubpage}>
         <Link href="/">
           <div className={styles.logoWrapper}>
             <Image
               src="/images/auth/logo_subpage.png"
               alt="판다마켓 로고"
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
+              priority
+              sizes='39.6rem'
             />
           </div>
         </Link>
@@ -134,8 +151,8 @@ export default function SignupForm() {
                       : '/images/auth/btn_visibility_off_24px.svg'
                   }
                   alt="비밀번호 보기"
-                  layout="fill"
-                  objectFit="contain"
+                  fill
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
             </div>
@@ -167,8 +184,8 @@ export default function SignupForm() {
                       : '/images/auth/btn_visibility_off_24px.svg'
                   }
                   alt="비밀번호 보기"
-                  layout="fill"
-                  objectFit="contain"
+                  fill
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
             </div>

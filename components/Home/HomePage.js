@@ -19,6 +19,7 @@ function HomePage() {
               fill
               style={{ objectFit: 'contain' }}
               sizes="99.6rem"
+              priority
             />
           </div>
         </div>
@@ -60,6 +61,7 @@ function HomePage() {
                 alt="search items"
                 fill
                 style={{ objectFit: 'contain' }}
+                sizes='58.8rem'
               />
             </div>
           </div>
@@ -72,6 +74,7 @@ function HomePage() {
                 alt="register item"
                 fill
                 style={{ objectFit: 'contain' }}
+                sizes='58.8rem'
               />
             </div>
             <div className="section-message section-message3">

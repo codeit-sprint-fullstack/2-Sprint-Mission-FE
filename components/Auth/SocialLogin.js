@@ -11,8 +11,9 @@ export default function SocialLogin() {
             <Image
               src="/images/auth/ic_google.png"
               alt="Google 로그인"
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
+              sizes='2.4rem'
             />
           </div>
         </a>
@@ -21,8 +22,9 @@ export default function SocialLogin() {
             <Image
               src="/images/auth/ic_kakaotalk.png"
               alt="Kakaotalk 로그인"
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
+              sizes='2.4rem'
             />
           </div>
         </a>
