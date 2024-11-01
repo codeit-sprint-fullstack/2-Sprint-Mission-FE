@@ -53,5 +53,6 @@ export default function useValidateLoginForm() {
     errors,
     handleChange,
     isFormValid,
+    setErrors,
   };
 }

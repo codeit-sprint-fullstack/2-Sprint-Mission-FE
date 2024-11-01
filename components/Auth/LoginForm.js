@@ -15,6 +15,7 @@ export default function LoginForm() {
     errors,
     handleChange,
     isFormValid,
+    setErrors,
   } = useValidateLoginForm();
 
   const router = useRouter();
@@ -46,6 +47,10 @@ export default function LoginForm() {
       router.push('/items');
     } catch (error) {
       console.warn('로그인에 실패하였습니다', error.message);
+      setErrors({
+        email: '이메일을 확인해 주세요.', 
+        password: '비밀번호를 확인해 주세요.'
+      });
       setModalMessage(error.message || '로그인에 실패하였습니다.');
       setIsModalOpen(true);
     }
