@@ -21,7 +21,6 @@ export default function Board() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCommentDropdownOpen, setIsCommentDropdownOpen] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [currentComment, setCurrentComment] = useState(null);
   const [updatedComment, setUpdatedComment] = useState("");
   const [updatedId, setUpdatedId] = useState("");
@@ -107,20 +106,12 @@ export default function Board() {
     }
   };
 
-  const openDeleteModal = (comment) => {
-    setCurrentComment(comment);
-    setUpdatedComment(comment.content);
-    setUpdatedId(comment.id);
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleCommentDelete = async () => {
+  const handleCommentDelete = async (comment) => {
     try {
-      const res = await axios.delete(`/comments/${updatedId}`, {
-        content: updatedComment,
+      const res = await axios.delete(`/comments/${comment.id}`, {
+        content: comment.content,
       });
       console.log("댓글이 성공적으로 삭제되었습니다.", res.data);
-      setIsDeleteModalOpen(false);
       getComments();
     } catch (error) {
       console.error("댓글 삭제 중 오류 발생", error.message);
@@ -266,7 +257,7 @@ export default function Board() {
                           if (option === "modify") {
                             openModal(prop);
                           } else if (option === "delete") {
-                            openDeleteModal(prop);
+                            handleCommentDelete(prop);
                           }
                         }}
                       />
@@ -290,34 +281,37 @@ export default function Board() {
             </button>
           </Link>
         </div>
-        {console.log(isModalOpen)}
 
         {isModalOpen && (
           <>
             <Modal onClose={() => setIsModalOpen(false)}>
-              <p>댓글 수정</p>
               <textarea
+                className={styles.update_comment_input}
                 value={updatedComment}
                 onChange={(e) => setUpdatedComment(e.target.value)}
               />
-              <div>
-                <button onClick={handleCommentUpdate}>수정하기</button>
-                <button onClick={() => setIsModalOpen(false)}>닫기</button>
-              </div>
-            </Modal>
-          </>
-        )}
-
-        {isDeleteModalOpen && (
-          <>
-            <Modal onClose={() => setIsDeleteModalOpen(false)}>
-              <p>댓글 삭제</p>
-              <p>{updatedComment}</p>
-              <div>
-                <button onClick={handleCommentDelete}>삭제하기</button>
-                <button onClick={() => setIsDeleteModalOpen(false)}>
-                  닫기
-                </button>
+              <div className={styles.update_comment_bottom}>
+                <div className={styles.update_comment_profile}>
+                  <Image src={profile} alt="프로필" />
+                  <div className={styles.profile_wrapper}>
+                    <p className={styles.update_comment_panda}>똑똑한판다</p>
+                    <p className={styles.update_comment_date}>1시간 전</p>
+                  </div>
+                </div>
+                <div className={styles.update_comment_button_wrapper}>
+                  <p
+                    className={styles.update_comment_cancel}
+                    onClick={() => setIsModalOpen(false)}
+                  >
+                    취소
+                  </p>
+                  <button
+                    className={styles.update_comment_done}
+                    onClick={handleCommentUpdate}
+                  >
+                    수정하기
+                  </button>
+                </div>
               </div>
             </Modal>
           </>
