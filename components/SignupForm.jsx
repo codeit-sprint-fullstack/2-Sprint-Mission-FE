@@ -10,6 +10,7 @@ import google from "@/images/icon/google.svg";
 import styles from "@/components/Sign.module.css";
 import Link from "next/link";
 import { fetchApi } from "@/utils/axiosInstance";
+import Popup from "./Popup/Popup";
 
 export default function SignUp() {
   const router = useRouter();
@@ -22,6 +23,8 @@ export default function SignUp() {
   const [confirmPWError, setConfirmPWError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPWVisible, setIsConfirmPWVisible] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -38,11 +41,17 @@ export default function SignUp() {
         "POST"
       );
     },
-
     onSuccess: (data) => {
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
-      router.push("/market");
+      router.push("/signin");
+    },
+    onError: (error) => {
+      if (error.response?.status === 400) {
+        const { message } = error.response.data;
+        setPopupMessage(message);
+        setIsPopupOpen(true);
+      } else {
+        console.error(error);
+      }
     },
   });
 
@@ -100,6 +109,10 @@ export default function SignUp() {
     if (!emailError && !passwordError && !confirmPWError) {
       signUpMutation.mutate();
     }
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
   };
 
   return (
@@ -198,6 +211,7 @@ export default function SignUp() {
           </div>
         </div>
       </div>
+      {isPopupOpen && <Popup message={popupMessage} onClose={closePopup} />}
     </>
   );
 }

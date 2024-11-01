@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
@@ -9,24 +9,94 @@ import kakao from "@/images/icon/kakao.svg";
 import google from "@/images/icon/google.svg";
 import styles from "@/components/Sign.module.css";
 import Link from "next/link";
+import Popup from "./Popup/Popup";
+import { fetchApi } from "@/utils/axiosInstance";
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      router.push("/folder");
+    }
+  }, [router]);
+
+  const signInMutation = useMutation({
+    mutationFn: async () => {
+      return await fetchApi("/auth/signIn", { email, password }, "POST");
+    },
+
+    onSuccess: (data) => {
+      console.log("Success:", data);
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      router.push("/folder");
+    },
+    onError: (error) => {
+      console.log("Error:", error);
+      const { message } = error.response.data;
+      setPopupMessage(message);
+      setIsPopupOpen(true);
+    },
+  });
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    if (!validateEmail(value)) {
+      setEmailError("잘못된 이메일입니다.");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+
+    if (!validatePassword(value)) {
+      setPasswordError("비밀번호는 8자 이상 입력해주세요.");
+    } else {
+      setPasswordError("");
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setPasswordError("");
+
+    if (!emailError && !passwordError) {
+      signInMutation.mutate();
+    }
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
   };
 
   return (
     <>
       <div className={styles.login_container}>
         <Image src={logo} alt="로고 이미지" />
-        <form className={styles.form_wrapper}>
+        <form className={styles.form_wrapper} onSubmit={handleSubmit}>
           <label htmlFor="email">이메일</label>
           <input
             id="email"
@@ -34,9 +104,11 @@ export default function Login() {
             className={styles.input}
             placeholder="이메일을 입력해주세요"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
           />
-          <span className={styles.error_message} id="errorEmail"></span>
+          {emailError && (
+            <div className={styles.error_message}>{emailError}</div>
+          )}
 
           <label htmlFor="password">비밀번호</label>
           <div className={styles.input_password_container}>
@@ -47,7 +119,7 @@ export default function Login() {
               type={isPasswordVisible ? "text" : "password"}
               placeholder="비밀번호를 입력해주세요"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
             />
             <Image
               src={isPasswordVisible ? eye_off : eye_on}
@@ -56,9 +128,11 @@ export default function Login() {
               onClick={() => setIsPasswordVisible(!isPasswordVisible)}
             />
           </div>
-          <span className={styles.error_message} id="errorPassword"></span>
+          {passwordError && (
+            <div className={styles.error_message}>{passwordError}</div>
+          )}
 
-          <button type="button" className={styles.login_btn}>
+          <button type="submit" className={styles.login_btn}>
             로그인
           </button>
         </form>
@@ -82,6 +156,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      {isPopupOpen && <Popup message={popupMessage} onClose={closePopup} />}
     </>
   );
 }

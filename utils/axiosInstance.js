@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://panda-market-api.vercel.app", // 기본 URL
+  baseURL: "https://panda-market-api.vercel.app",
   timeout: 5000,
 });
 
@@ -26,7 +26,7 @@ export const fetchApi = async (url, params = {}, method = "GET") => {
 
     return response.data;
   } catch (error) {
-    console.error("API 에러", error);
+    console.error("API 에러", error.response?.data || error.message);
     throw error;
   }
 };
