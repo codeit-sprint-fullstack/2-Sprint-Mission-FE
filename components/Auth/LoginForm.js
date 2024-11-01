@@ -38,7 +38,7 @@ export default function LoginForm() {
       alert('로그인에 성공하였습니다.');
       router.push('/items');
     } catch (error) {
-      console.error('로그인에 실패하였습니다', error.message);
+      console.warn('로그인에 실패하였습니다', error.message);
       alert(`로그인에 실패하였습니다: ${error.message}`)
     }
   };

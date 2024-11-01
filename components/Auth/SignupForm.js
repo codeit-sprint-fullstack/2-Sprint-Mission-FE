@@ -49,15 +49,14 @@ export default function SignupForm() {
       email: signupData.email,
       password: signupData.password,
     }
-    
+
     try {
       const res = await authApi.signUp(formattedSignupData);
-      //console.log('회원가입 성공:', res);
       alert('회원 가입이 성공적으로 처리되었습니다.');
       authApi.signIn(formattedSigninData);
       router.push('/items');
     } catch (error) {
-      //console.error('회원가입 실패: ', error.message);
+      console.warn('회원가입 실패: ', error.message);
       alert(`회원가입에 실패하였습니다: ${error.message}`);
     }
   };
