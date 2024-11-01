@@ -18,16 +18,23 @@ export default function Board() {
   const { id } = router.query;
 
   const [post, setPost] = useState(null);
+  const [currentPost, setCurrentPost] = useState(null);
+  const [updatedPost, setUpdatedPost] = useState("");
+  const [updatedArticleId, setUpdatedArticleId] = useState("");
+
+  const [isArticleModalOpen, setIsArticleModalOpen] = useState(false);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCommentDropdownOpen, setIsCommentDropdownOpen] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [currentComment, setCurrentComment] = useState(null);
   const [updatedComment, setUpdatedComment] = useState("");
   const [updatedId, setUpdatedId] = useState("");
-
   const [comment, setComment] = useState("");
-  const [ableButton, setAbleButton] = useState(false);
   const [newComment, setNewComment] = useState("");
+
+  const [ableButton, setAbleButton] = useState(false);
 
   const getPost = async () => {
     try {
@@ -85,6 +92,39 @@ export default function Board() {
       setAbleButton(false);
     }
   }, [newComment]);
+
+  const openArticleModal = (article) => {
+    setPost(article);
+    setUpdatedPost(article.content);
+    setUpdatedArticleId(article.id);
+    setIsArticleModalOpen(true);
+  };
+
+  const handleArticleUpdate = async () => {
+    try {
+      const res = await axios.patch(`/articles/${updatedArticleId}`, {
+        content: updatedPost,
+      });
+      console.log("게시글이 성공적으로 수정되었습니다.", res.data);
+      setIsArticleModalOpen(false);
+      getPost();
+    } catch (error) {
+      console.error("게시글 수정 중 오류 발생", error.message);
+    }
+  };
+
+  const handleArticleDelete = async (article) => {
+    console.log(article);
+    try {
+      const res = await axios.delete(`/articles/${article.id}`, {
+        content: article.content,
+      });
+      console.log("게시글이 성공적으로 삭제되었습니다.", res.data);
+      router.push("/board");
+    } catch (error) {
+      console.error("게시글 삭제 중 오류 발생", error.message);
+    }
+  };
 
   const openModal = (comment) => {
     setCurrentComment(comment);
@@ -185,10 +225,16 @@ export default function Board() {
             {isDropdownOpen && (
               <div className={styles.dropdown_wrapper}>
                 <Dropdown
-                  options={options.map((option) => ({
-                    ...option,
-                    action: () => option.action(prop),
-                  }))}
+                  options={options}
+                  onSelect={(option) => {
+                    if (option === "modify") {
+                      openArticleModal(post);
+                      // console.log("수정하기버튼누름");
+                    } else if (option === "delete") {
+                      handleArticleDelete(post);
+                      // console.log("삭제하기버튼누름");
+                    }
+                  }}
                 />
               </div>
             )}
@@ -308,6 +354,41 @@ export default function Board() {
                   <button
                     className={styles.update_comment_done}
                     onClick={handleCommentUpdate}
+                  >
+                    수정하기
+                  </button>
+                </div>
+              </div>
+            </Modal>
+          </>
+        )}
+
+        {isArticleModalOpen && (
+          <>
+            <Modal onClose={() => setIsArticleModalOpen(false)}>
+              <textarea
+                className={styles.update_comment_input}
+                value={updatedPost}
+                onChange={(e) => setUpdatedPost(e.target.value)}
+              />
+              <div className={styles.update_comment_bottom}>
+                <div className={styles.update_comment_profile}>
+                  <Image src={profile} alt="프로필" />
+                  <div className={styles.profile_wrapper}>
+                    <p className={styles.update_comment_panda}>총명한판다</p>
+                    <p className={styles.update_comment_date}>1시간 전</p>
+                  </div>
+                </div>
+                <div className={styles.update_comment_button_wrapper}>
+                  <p
+                    className={styles.update_comment_cancel}
+                    onClick={() => setIsArticleModalOpen(false)}
+                  >
+                    취소
+                  </p>
+                  <button
+                    className={styles.update_comment_done}
+                    onClick={handleArticleUpdate}
                   >
                     수정하기
                   </button>

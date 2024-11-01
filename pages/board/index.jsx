@@ -108,7 +108,7 @@ export default function Home() {
       </div>
       <div className={styles.search_form}>
         <div className={styles.search_form_wrapper}>
-          <SearchBar initialValue={handleSearch} />
+          <SearchBar onSearch={handleSearch} />
           <div className={styles.selected_wrapper} onClick={toggleModal}>
             <p className={styles.selected}>
               {options.find((option) => option.value === sortOption)?.label}

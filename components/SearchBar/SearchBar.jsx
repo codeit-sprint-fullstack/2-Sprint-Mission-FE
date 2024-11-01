@@ -4,12 +4,14 @@ import searchIcon from "@/public/ic_search.svg";
 import styles from "./SearchBar.module.css";
 import Image from "next/image";
 
-export default function SearchBar({ initialValue = "" }) {
+export default function SearchBar({ onSearch }) {
   const router = useRouter();
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState("");
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    setValue(newValue);
+    onSearch(newValue);
   };
 
   const handleSubmit = (e) => {
@@ -18,6 +20,7 @@ export default function SearchBar({ initialValue = "" }) {
       router.push("/board");
       return;
     }
+    onSearch(value);
   };
 
   return (
