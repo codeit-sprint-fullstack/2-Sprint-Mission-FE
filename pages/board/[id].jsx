@@ -8,22 +8,23 @@ import bar from "@/public/bar_img.svg";
 import heart from "@/public/ic_heart.svg";
 import emptyComment from "@/public/empty_comment_img.svg";
 import backImg from "@/public/ic_back.svg";
-import styles from "@/styles/detail.module.css";
 import Link from "next/link";
 import Dropdown from "@/components/Dropdown/Dropdown";
+import Modal from "@/components/Modal/Modal";
+import styles from "@/styles/detail.module.css";
 
 export default function Board() {
   const router = useRouter();
   const { id } = router.query;
-  console.log("id::", id);
 
   const [post, setPost] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCommentDropdownOpen, setIsCommentDropdownOpen] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
-  const [isCommentModal, setIsCommentModal] = useState(false);
-  const [selectedCommentId, setSelectedCommentId] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [currentComment, setCurrentComment] = useState(null);
+  const [updatedComment, setUpdatedComment] = useState("");
+  const [updatedId, setUpdatedId] = useState("");
 
   const [comment, setComment] = useState("");
   const [ableButton, setAbleButton] = useState(false);
@@ -58,9 +59,7 @@ export default function Board() {
   const handleCommentSubmit = async () => {
     try {
       const response = await axios.get("/dev/users?pageSize=1");
-      console.log(response);
       const uuid = response.data.list[0].id;
-      console.log(uuid);
       const res = await axios.post(`/articles/${id}/comments`, {
         content: newComment,
         ownerId: uuid,
@@ -88,6 +87,46 @@ export default function Board() {
     }
   }, [newComment]);
 
+  const openModal = (comment) => {
+    setCurrentComment(comment);
+    setUpdatedComment(comment.content);
+    setUpdatedId(comment.id);
+    setIsModalOpen(true);
+  };
+
+  const handleCommentUpdate = async () => {
+    try {
+      const res = await axios.patch(`/comments/${updatedId}`, {
+        content: updatedComment,
+      });
+      console.log("댓글이 성공적으로 수정되었습니다.", res.data);
+      setIsModalOpen(false);
+      getComments();
+    } catch (error) {
+      console.error("댓글 수정 중 요류 발생", error.message);
+    }
+  };
+
+  const openDeleteModal = (comment) => {
+    setCurrentComment(comment);
+    setUpdatedComment(comment.content);
+    setUpdatedId(comment.id);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCommentDelete = async () => {
+    try {
+      const res = await axios.delete(`/comments/${updatedId}`, {
+        content: updatedComment,
+      });
+      console.log("댓글이 성공적으로 삭제되었습니다.", res.data);
+      setIsDeleteModalOpen(false);
+      getComments();
+    } catch (error) {
+      console.error("댓글 삭제 중 오류 발생", error.message);
+    }
+  };
+
   if (!post) {
     return <p>로딩중...</p>;
   }
@@ -96,19 +135,10 @@ export default function Board() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // const toggleCommentModal = () => {
-  // setIsCommentDropdownOpen(!isCommentDropdownOpen);
-  //   setIsCommentDropdownOpen((prev) => {
-  //     const newState = [...prev];
-  //     newState[index] = !newState[index]; // 해당 댓글의 인덱스만 토글
-  //     return newState;
-  //   });
-  // };
-
   const toggleCommentModal = (index) => {
     setIsCommentDropdownOpen((prev) => {
       const newState = Array.isArray(prev) ? [...prev] : [];
-      newState[index] = !newState[index]; // 해당 댓글의 인덱스만 토글
+      newState[index] = !newState[index];
       return newState;
     });
   };
@@ -163,7 +193,12 @@ export default function Board() {
             </div>
             {isDropdownOpen && (
               <div className={styles.dropdown_wrapper}>
-                <Dropdown options={options} />
+                <Dropdown
+                  options={options.map((option) => ({
+                    ...option,
+                    action: () => option.action(prop),
+                  }))}
+                />
               </div>
             )}
           </div>
@@ -225,7 +260,16 @@ export default function Board() {
                   </div>
                   {isCommentDropdownOpen[index] && (
                     <div className={styles.dropdown_wrapper}>
-                      <Dropdown options={options} />
+                      <Dropdown
+                        options={options}
+                        onSelect={(option) => {
+                          if (option === "modify") {
+                            openModal(prop);
+                          } else if (option === "delete") {
+                            openDeleteModal(prop);
+                          }
+                        }}
+                      />
                     </div>
                   )}
                 </div>
@@ -246,6 +290,38 @@ export default function Board() {
             </button>
           </Link>
         </div>
+        {console.log(isModalOpen)}
+
+        {isModalOpen && (
+          <>
+            <Modal onClose={() => setIsModalOpen(false)}>
+              <p>댓글 수정</p>
+              <textarea
+                value={updatedComment}
+                onChange={(e) => setUpdatedComment(e.target.value)}
+              />
+              <div>
+                <button onClick={handleCommentUpdate}>수정하기</button>
+                <button onClick={() => setIsModalOpen(false)}>닫기</button>
+              </div>
+            </Modal>
+          </>
+        )}
+
+        {isDeleteModalOpen && (
+          <>
+            <Modal onClose={() => setIsDeleteModalOpen(false)}>
+              <p>댓글 삭제</p>
+              <p>{updatedComment}</p>
+              <div>
+                <button onClick={handleCommentDelete}>삭제하기</button>
+                <button onClick={() => setIsDeleteModalOpen(false)}>
+                  닫기
+                </button>
+              </div>
+            </Modal>
+          </>
+        )}
       </div>
     </>
   );

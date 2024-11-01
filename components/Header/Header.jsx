@@ -26,7 +26,7 @@ export default function Header() {
                 href="/board"
                 className={
                   router.pathname.startsWith("/board")
-                    ? styles.active_board
+                    ? styles.active_button
                     : styles.board
                 }
               >
@@ -38,7 +38,7 @@ export default function Header() {
                 href="/used-market"
                 className={
                   router.pathname.startsWith("/used-market")
-                    ? styles.active_market
+                    ? styles.active_button
                     : styles.used_market
                 }
               >

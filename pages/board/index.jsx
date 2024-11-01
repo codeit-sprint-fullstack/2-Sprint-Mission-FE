@@ -65,7 +65,6 @@ export default function Home() {
       const res = await axios.get("/articles", {
         params: { orderBy, page, pageSize, keyword },
       });
-      console.log(res);
       const articles = res.data.list;
       setPosts(articles);
     } catch (error) {
