@@ -93,7 +93,7 @@ export default function Login() {
   const isButtonDisabled = emailError || passwordError || !email || !password;
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.login_container}>
         <Image src={logo} alt="로고 이미지" />
         <form className={styles.form_wrapper} onSubmit={handleSubmit}>
@@ -166,6 +166,6 @@ export default function Login() {
         </div>
       </div>
       {isPopupOpen && <Popup message={popupMessage} onClose={closePopup} />}
-    </>
+    </div>
   );
 }

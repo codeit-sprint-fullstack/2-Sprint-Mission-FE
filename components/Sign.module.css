@@ -1,16 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .login_container,
 .signup_container {
   display: flex;
   flex-direction: column;
   font-size: 18px;
+  max-width: 640px;
   align-items: center;
 }
 
-.signup_container {
-  margin: 20px 400px 0 400px;
+.login_container {
+  padding-top: 200px;
 }
+
 .form_wrapper {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 640px;
 }
 .input {
   margin: 20px 0;
@@ -95,7 +105,21 @@
   color: #3692ff;
 }
 
-/* 로그인 */
-.login_container {
-  margin: 150px 400px 0 400px;
+@media (min-width: 744px) and (max-width: 1199px) {
+  .form_wrapper {
+    max-width: 640px;
+  }
+  .login_container {
+    padding: 70px 0;
+  }
 }
+
+@media (max-width: 743px) {
+  .form_wrapper {
+    max-width: 343px;
+  }
+}
+
+/**TODO
+*모바일일 때 판다마켓 로고 작은 이미지
+*/

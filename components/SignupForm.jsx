@@ -124,7 +124,7 @@ export default function SignUp() {
     !nickname;
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.signup_container}>
         <Image src={logo} alt="로고 이미지" />
         <form className={styles.form_wrapper} onSubmit={handleSubmit}>
@@ -231,6 +231,6 @@ export default function SignUp() {
         </div>
       </div>
       {isPopupOpen && <Popup message={popupMessage} onClose={closePopup} />}
-    </>
+    </div>
   );
 }
