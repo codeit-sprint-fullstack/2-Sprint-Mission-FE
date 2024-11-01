@@ -62,7 +62,7 @@
   cursor: pointer;
 }
 
-.signup_btn:disabled {
+.btn_disabled {
   background-color: #9ca3af;
   cursor: not-allowed;
 }

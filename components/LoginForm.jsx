@@ -90,6 +90,8 @@ export default function Login() {
     setIsPopupOpen(false);
   };
 
+  const isButtonDisabled = emailError || passwordError || !email || !password;
+
   return (
     <>
       <div className={styles.login_container}>
@@ -134,7 +136,12 @@ export default function Login() {
             <div className={styles.error_message}>{passwordError}</div>
           )}
 
-          <button type="submit" className={styles.login_btn}>
+          <button
+            type="submit"
+            className={`${styles.login_btn} ${
+              isButtonDisabled ? styles.btn_disabled : styles.btn_active
+            }`}
+          >
             로그인
           </button>
         </form>

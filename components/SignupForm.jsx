@@ -115,6 +115,14 @@ export default function SignUp() {
     setIsPopupOpen(false);
   };
 
+  const isButtonDisabled =
+    emailError ||
+    passwordError ||
+    confirmPWError ||
+    !email ||
+    !password ||
+    !nickname;
+
   return (
     <>
       <div className={styles.signup_container}>
@@ -193,7 +201,12 @@ export default function SignUp() {
             <div className={styles.error_message}>{confirmPWError}</div>
           )}
 
-          <button type="submit" className={styles.signup_btn}>
+          <button
+            type="submit"
+            className={`${styles.signup_btn} ${
+              isButtonDisabled ? styles.btn_disabled : styles.btn_active
+            }`}
+          >
             회원가입
           </button>
         </form>
