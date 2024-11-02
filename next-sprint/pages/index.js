@@ -4,7 +4,7 @@ import ArticleList from '@/components/ArticleList';
 import { useEffect, useState } from 'react';
 import SearchForm from '@/components/SearchForm';
 import Link from 'next/link';
-import { instance } from '@/api';
+import { instance } from '@/lib/api';
 
 export default function Home() {
   const [recentArticles, setRecentArticles] = useState([]);
@@ -20,14 +20,14 @@ export default function Home() {
   }
 
   async function getArticleList(sort) {
-    const res = await axios.get(`/articles?sort=${sort}`);
+    const res = await instance.get(`/articles?sort=${sort}`);
     const articles = await res.data;
     setArticles(articles);
   }
 
   async function getSearchArticle(value) {
     if (value) {
-      const res = await axios(`/articles?search=${value}`);
+      const res = await instance(`/articles?search=${value}`);
       const articles = await res.data;
       setSearchArticle(articles);
     } else {

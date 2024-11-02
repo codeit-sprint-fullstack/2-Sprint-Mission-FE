@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ArticleDetail from '@/components/ArticleDetail';
-import { instance } from '@/api';
+import { instance } from '@/lib/api';
 
 export default function Article() {
   const [article, setArticle] = useState(null);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './RegisterInput.module.css';
 import { useRouter } from 'next/router';
-import { instance } from '@/api';
+import { instance } from '@/lib/api';
 
 export default function RegisterInput() {
   const [titleValue, setTitleValue] = useState('');

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import styles from './ArticleDropdown.module.css';
 import { useRouter } from 'next/router';
-import { instance } from '@/api';
+import { instance } from '@/lib/api';
 
 export default function ArticelDropdown({ articleId }) {
   const [isOpen, setIsOpen] = useState(false);

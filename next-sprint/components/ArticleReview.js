@@ -2,7 +2,8 @@ import styles from './ArticleReview.module.css';
 import Image from 'next/image';
 import ArticelReviewDropdown from './ArticleReviewDropdown';
 import { useState, useEffect } from 'react';
-import { instance } from '@/api';
+import { instance } from '@/lib/api';
+import formatDate from '@/lib/formatDate';
 
 export default function ArticleReview({ reviews: initialReviews, articleId }) {
   const [reviews, setReviews] = useState(initialReviews);
@@ -71,15 +72,7 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
   return (
     <ul className={styles.ul}>
       {reviews.map((review) => {
-        const formattedDate = new Date(review.createdAt)
-          .toLocaleDateString('ko-KR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-          })
-          .replace(/\s/g, '')
-          .replace(/\./g, '.')
-          .slice(0, -1);
+        const formattedDate = formatDate(review.createdAt);
 
         return (
           <li key={review.id} className={styles.li}>

@@ -1,19 +1,12 @@
 import Image from 'next/image';
 import styles from './RecentArticle.module.css';
+import formatDate from '@/lib/formatDate';
 
 export default function RecentArticle({ articles }) {
   return (
     <ul className={styles.ul}>
       {articles.map((article) => {
-        const formattedDate = new Date(article.createdAt)
-          .toLocaleDateString('ko-KR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-          })
-          .replace(/\s/g, '') // 공백 제거
-          .replace(/\./g, '.') // 모든 점(.)을 유지
-          .slice(0, -1); // 마지막 점(.) 제거
+        const formattedDate = formatDate(article.createdAt);
 
         return (
           <li key={article.id} className={styles.recentArticle}>

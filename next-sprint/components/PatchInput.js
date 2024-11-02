@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './RegisterInput.module.css';
 import { useRouter } from 'next/router';
-import { instance } from '@/api';
+import { instance } from '@/lib/api';
 
 export default function PatchInput() {
   const [titleValue, setTitleValue] = useState('');

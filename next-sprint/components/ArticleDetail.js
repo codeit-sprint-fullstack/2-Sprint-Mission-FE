@@ -4,7 +4,8 @@ import Image from 'next/image';
 import ArticleReview from './ArticleReview';
 import Link from 'next/link';
 import ArticelDropdown from './ArticleDropdown';
-import { instance } from '@/api';
+import { instance } from '@/lib/api';
+import formatDate from '@/lib/formatDate';
 
 export default function ArticleDetail({ article, id }) {
   const [articleReview, setArticleReview] = useState([]);
@@ -29,15 +30,7 @@ export default function ArticleDetail({ article, id }) {
     }
   }
 
-  const formattedDate = new Date(article.createdAt)
-    .toLocaleDateString('ko-KR', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    })
-    .replace(/\s/g, '')
-    .replace(/\./g, '.')
-    .slice(0, -1);
+  const formattedDate = formatDate(article.createdAt);
 
   function handleChange(e) {
     const newValue = e.target.value;
