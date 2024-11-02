@@ -13,24 +13,25 @@ import { useState } from "react";
 
 export async function getServerSideProps(context) {
   const articleId = context.params["id"];
-  let article;
+
   try {
     const res = await axios.get(`articles/${articleId}`);
-    article = res.data ?? [];
+    const article = res.data ?? [];
+
+    const commentsRes = await axios.get(`articles/${articleId}/comments`);
+    const articleComments = commentsRes.data ?? [];
+
+    return {
+      props: {
+        article,
+        articleComments
+      }
+    };
   } catch {
     return {
       notFound: true
     };
   }
-  const res = await axios.get(`articles/${articleId}/comments`);
-  const articleComments = res.data ?? [];
-
-  return {
-    props: {
-      article,
-      articleComments
-    }
-  };
 }
 
 export default function Article({ article, articleComments: initialComments }) {
