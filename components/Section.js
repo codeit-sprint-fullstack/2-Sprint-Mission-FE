@@ -1,7 +1,9 @@
 import { content } from "@/tailwind.config";
 import Image from "next/image";
 import Link from "next/link";
+import { SECTIONS } from "@/constants";
 export default function Section({ name, className }) {
+  const { WATCH, CHECK, SEARCH, REGISTER, SAFETY } = SECTIONS;
   const selectClass = (name) => {
     const edgeSection = `w-full h-[540px] bg-cfe5ff flex justify-center items-end ${className}
         md:h-[771px] sm:h-[540px]`;
@@ -45,7 +47,7 @@ export default function Section({ name, className }) {
         md:h-[52px] md:text-[18px] md:leading-26px
         sm:h-[50px] sm:text-[16px] sm:leading-19.2px`;
     switch (name) {
-      case "watch":
+      case WATCH:
         return {
           section: edgeSection,
           content: `${edgeContent} h-[340px]`,
@@ -54,7 +56,7 @@ export default function Section({ name, className }) {
           subtitleClass: `${watchsubtitleClass} font-bold text-[40px] leading-56px sm:text-[32px]`,
           imagePath: "/images/watch_section.png"
         };
-      case "check":
+      case CHECK:
         return {
           section: centerSection,
           content: `${centerContent} md:items-start sm:items-start`,
@@ -66,7 +68,7 @@ export default function Section({ name, className }) {
           subtitleClass: commonSubtitleClass,
           subcriptionClass: commonSubcriptionClass
         };
-      case "search":
+      case SEARCH:
         return {
           section: centerSection,
           content: `${centerContent} flex-row-reverse`,
@@ -78,7 +80,7 @@ export default function Section({ name, className }) {
           subtitleClass: commonSubtitleClass,
           subcriptionClass: commonSubcriptionClass
         };
-      case "register":
+      case REGISTER:
         return {
           section: centerSection,
           content: `${centerContent} md:items-start sm:items-start`,
@@ -112,7 +114,7 @@ export default function Section({ name, className }) {
     titleClass,
     subcriptionClass
   } = selectClass(name);
-  if (name === "watch") {
+  if (name === WATCH) {
     const watchBtn = `w-full h-[56px] bg-3692ff rounded-[40px] text-ffffff mt-[32px] whitespace-nowrap flex justify-center items-center
     sm:px-[71px] sm:py-[11px]`;
     return (
@@ -160,9 +162,9 @@ export default function Section({ name, className }) {
       </div>
     );
   } else {
-    const isCheck = name === "check";
-    const isSearch = name === "search";
-    const isRegister = name === "register";
+    const isCheck = name === CHECK;
+    const isSearch = name === SEARCH;
+    const isRegister = name === REGISTER;
     const subtitle = isCheck ? (
       <>
         인기 상품을 <br className="md:hidden sd:block" />

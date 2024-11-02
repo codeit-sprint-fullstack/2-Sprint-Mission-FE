@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FIELD_TYPES } from "@/constants";
 export default function ValidatedInputBox({
   type,
   onChange,
@@ -17,31 +18,31 @@ export default function ValidatedInputBox({
   const errorMessageClass = `w-full h-[24px] text-[14px] font-semibold flex items-center ml-[16px] text-f74747`;
   const tagName = `text-[16px] mr-[8px] text-1f2937`;
   const deleteTagBtn = `w-[22px] h-[24px] flex justify-center items-center`;
-
+  const { NAME, DESCRIPTION, PRICE, TAG } = FIELD_TYPES;
   const convertClass = (type) => {
     switch (type) {
-      case "name":
+      case NAME:
         return {
           labelMessage: "상품명",
           boxClass: `${commonBoxClass} h-[108px]`,
           inputClass: commonInputClass,
           placeholderMessage: "상품명을 입력해주세요"
         };
-      case "description":
+      case DESCRIPTION:
         return {
           labelMessage: "상품 소개",
           boxClass: `${commonBoxClass} h-[334px]`,
           inputClass: areaClass,
           placeholderMessage: "상품 소개를 입력해주세요"
         };
-      case "price":
+      case PRICE:
         return {
           labelMessage: "판매가격",
           boxClass: `${commonBoxClass} h-[108px]`,
           inputClass: commonInputClass,
           placeholderMessage: "판매가격을 입력해주세요"
         };
-      case "tag":
+      case TAG:
         return {
           labelMessage: "태그",
           boxClass: `${commonBoxClass} h-[158px]`,
@@ -59,8 +60,8 @@ export default function ValidatedInputBox({
   };
   const { labelMessage, boxClass, inputClass, placeholderMessage } =
     convertClass(type);
-  const istag = type === "tag";
-  const isDescription = type === "description";
+  const istag = type === TAG;
+  const isDescription = type === DESCRIPTION;
   return (
     <div className={boxClass}>
       <label htmlFor={type} className={labelClass}>
@@ -83,7 +84,7 @@ export default function ValidatedInputBox({
             value={value}
             className={inputClass}
             placeholder={placeholderMessage}
-            autocomplete="off"
+            autoComplete="off"
           />
         )}
         <p className={errorMessageClass}>{message}</p>

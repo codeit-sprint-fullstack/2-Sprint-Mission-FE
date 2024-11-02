@@ -2,6 +2,7 @@ import ValidatedInputBox from "@/components/ValidatedInputBox";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "@/lib/axios";
+import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 export default function Register() {
   const registerPage = `w-full h-full flex justify-center`;
   const registerContents = `flex flex-col justify-between
@@ -13,6 +14,8 @@ export default function Register() {
       lg:h-[32px]`;
   const basicRegisterBtn = `w-[74px] h-[42px] rounded-[8px] px-[23px] py-[12px]
       text-ffffff whitespace-nowrap`;
+  const { NAME, DESCRIPTION, PRICE, TAG } = FIELD_TYPES;
+  const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
   const [productInfo, setProductInfo] = useState({
     name: "",
     description: "",
@@ -21,10 +24,10 @@ export default function Register() {
     tagList: []
   });
   const [validation, setValidation] = useState({
-    name: "INITIAL",
-    description: "INITIAL",
-    price: "INITIAL",
-    tag: "INITIAL"
+    name: INITIAL,
+    description: INITIAL,
+    price: INITIAL,
+    tag: INITIAL
   });
   const [errorMessage, setErrorMessage] = useState({
     name: "",
@@ -33,10 +36,11 @@ export default function Register() {
     tag: ""
   });
   const router = useRouter();
+
   const validateBtn = () => {
     const isValidate =
       Object.entries(validation).every(
-        ([key, value]) => value === "SUCCESS" || key === "tag"
+        ([key, value]) => value === SUCCESS || key === TAG
       ) && productInfo.tagList.length >= 1;
     return isValidate;
   };
@@ -67,7 +71,7 @@ export default function Register() {
   };
   const onKeyDown = (e) => {
     if (e.key === "Enter" && e.target.value.trim()) {
-      if (validation.tag === "SUCCESS")
+      if (validation.tag === SUCCESS)
         setProductInfo((prev) => ({
           ...prev,
           tagList: [...prev.tagList, prev.tag],
@@ -106,31 +110,31 @@ export default function Register() {
       return false;
     }
     switch (name) {
-      case "name":
-        if (value.length < 1) changeState("FALSE", "1글자 이상 입력하세요");
+      case NAME:
+        if (value.length < 1) changeState(FALSE, "1글자 이상 입력하세요");
         else if (value.length > 10)
-          changeState("FALSE", "10글자 이내로 입력하세요");
-        else changeState("SUCCESS", "");
+          changeState(FALSE, "10글자 이내로 입력하세요");
+        else changeState(SUCCESS, "");
         break;
-      case "description":
-        if (value.length < 10) changeState("FALSE", "10글자 이상 입력하세요");
+      case DESCRIPTION:
+        if (value.length < 10) changeState(FALSE, "10글자 이상 입력하세요");
         else if (value.length > 100)
-          changeState("FALSE", "100글자 이내로 입력하세요");
-        else changeState("SUCCESS", "");
+          changeState(FALSE, "100글자 이내로 입력하세요");
+        else changeState(SUCCESS, "");
         break;
-      case "price":
-        if (!isInteger(value)) changeState("FALSE", "정수를 입력해주세요");
+      case PRICE:
+        if (!isInteger(value)) changeState(FALSE, "정수를 입력해주세요");
         else if (Number(value) < 1)
-          changeState("FALSE", "1이상의 값을 넣어주세요");
-        else changeState("SUCCESS", "");
+          changeState(FALSE, "1이상의 값을 넣어주세요");
+        else changeState(SUCCESS, "");
         break;
-      case "tag":
-        if (value.length < 1) changeState("FALSE", "1글자 이상 입력하세요");
+      case TAG:
+        if (value.length < 1) changeState(FALSE, "1글자 이상 입력하세요");
         else if (value.length > 5)
-          changeState("FALSE", "5글자 이내로 입력하세요");
+          changeState(FALSE, "5글자 이내로 입력하세요");
         else if (productInfo.tagList.includes(value))
-          changeState("FALSE", "이미 등록된 태그 입니다");
-        else changeState("SUCCESS", "");
+          changeState(FALSE, "이미 등록된 태그 입니다");
+        else changeState(SUCCESS, "");
         break;
     }
   };
@@ -153,27 +157,27 @@ export default function Register() {
           </button>
         </div>
         <ValidatedInputBox
-          onChange={onChangeInfo("name")}
-          type="name"
+          onChange={onChangeInfo(NAME)}
+          type={NAME}
           value={productInfo.name}
           message={errorMessage.name}
         />
         <ValidatedInputBox
-          onChange={onChangeInfo("description")}
-          type="description"
+          onChange={onChangeInfo(DESCRIPTION)}
+          type={DESCRIPTION}
           value={productInfo.description}
           message={errorMessage.description}
         />
         <ValidatedInputBox
-          onChange={onChangeInfo("price")}
-          type="price"
+          onChange={onChangeInfo(PRICE)}
+          type={PRICE}
           value={productInfo.price}
           message={errorMessage.price}
         />
         <ValidatedInputBox
-          onChange={onChangeInfo("tag")}
+          onChange={onChangeInfo(TAG)}
           onKeyDown={onKeyDown}
-          type="tag"
+          type={TAG}
           value={productInfo.tag}
           message={errorMessage.tag}
           tagList={productInfo.tagList}

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-
+import { ORDER_STATE } from "@/constants";
+const { RECENT, FAVORITEST } = ORDER_STATE;
 const options = [
-  { value: "recent", label: "최신순" },
-  { value: "favoritest", label: "좋아요순" }
+  { value: RECENT, label: "최신순" },
+  { value: FAVORITEST, label: "좋아요순" }
 ];
 
 function SortSelector({ onChangeOrder, className }) {

@@ -7,6 +7,9 @@ import useDataFetch from "@/hooks/useDataFetchNew";
 import CommentItem from "@/components/CommentItem";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import convertDate from "@/utils/convertDate";
+import { ORDER_STATE, MODEL_TYPE } from "@/constants";
+const { RECENT } = ORDER_STATE;
+const { ARTICLE_WITH_COMMENTS } = MODEL_TYPE;
 export default function Article() {
   const articlePage = `w-full flex justify-center`;
   const articePageContents = `w-[1200px] flex flex-col items-center
@@ -49,7 +52,7 @@ export default function Article() {
     text-center text-f3f4f6 leading-26px whitespace-nowrap`;
   const router = useRouter();
   const { id } = router.query;
-  const [order, setOrder] = useState("recent");
+  const [order, setOrder] = useState(RECENT);
   const {
     article = {},
     setArticle,
@@ -57,7 +60,7 @@ export default function Article() {
     setArticleComments,
     articleCommentsTotalCount
   } = useDataFetch({
-    type: "articleWithComments",
+    type: ARTICLE_WITH_COMMENTS,
     order,
     id,
     count: 3
