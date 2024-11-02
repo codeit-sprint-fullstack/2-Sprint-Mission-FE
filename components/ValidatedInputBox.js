@@ -89,13 +89,13 @@ export default function ValidatedInputBox({
         <p className={errorMessageClass}>{message}</p>
         {istag ? (
           <div className={tagListClass}>
-            {tagList?.map((tag, index) => (
+            {tagList?.map((tag) => (
               <div className={tagClass} key={tag}>
                 <span className={tagName}>#{tag}</span>
                 <button
                   className={deleteTagBtn}
                   type="button"
-                  onClick={() => onClick(index)}
+                  onClick={() => onClick(tag)}
                 >
                   <Image
                     width={24}

@@ -75,10 +75,8 @@ export default function Register() {
         }));
     }
   };
-  const onClickDeleteTag = (inputIndex) => {
-    const nextTagList = productInfo.tagList.filter(
-      (tag, index) => index !== inputIndex
-    );
+  const onClickDeleteTag = (tagName) => {
+    const nextTagList = productInfo.tagList.filter((tag) => tag !== tagName);
     setProductInfo((prev) => ({
       ...prev,
       tagList: nextTagList

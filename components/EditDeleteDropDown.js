@@ -26,9 +26,9 @@ export default function EditDeleteDropDown({ onDropDownChange, className }) {
       </button>
       {isOpen && (
         <ul className={dropdownMenuList}>
-          {items.map((item, index) => (
+          {items.map((item) => (
             <li
-              key={index}
+              key={item}
               onClick={() => handleItemClick(item)}
               className={dropdownMenu}
             >
