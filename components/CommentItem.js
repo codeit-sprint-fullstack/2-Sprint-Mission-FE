@@ -5,7 +5,6 @@ import axios from "@/lib/axios";
 
 export default function Comment({ data, onDelete }) {
   const commentClassWithoutHeight = `w-full bg-fcfcfc flex flex-col justify-between relative`;
-  const commentHeader = `w-full flex justify-between items-start`;
   const commentContentEditClass = `w-full h-full text-[14px] leading-24px text-1f2937 bg-f3f4f6
   bg-fcfcfc border-none resize-none outline-none`;
   const commentContentClass = `w-full h-full text-[14px] leading-24px text-1f2937
@@ -23,14 +22,12 @@ export default function Comment({ data, onDelete }) {
   const isEdit = editMode;
   const handleChange = (e) => setContent(e.target.value);
   const handleDropDownChange = (chosenOption) => {
-    console.log(chosenOption);
     if (chosenOption === "수정하기") setEditMode(true);
     else if (chosenOption === "삭제하기") onDelete(data.id);
   };
   const commentClass = `${commentClassWithoutHeight} ${
     isEdit ? "h-[180px] sm:h-[176px]" : "h-[100px] sm:h-[96px]"
   }`;
-  const commentHeader1 = `${commentHeader} ${isEdit ? "h-[80px]" : "h-[48px]"}`;
   const commentContentClass1 = `${commentContentClass} ${
     isEdit ? `bg-f3f4f6 px-[24px] py-[16px] rounded-[12px]` : "bg-fcfcfc"
   }`;
@@ -44,9 +41,14 @@ export default function Comment({ data, onDelete }) {
       console.log(`데이터 전송중 오류: ${e.message}`);
     }
   };
+  `w-full flex justify-between items-start`;
   return (
     <div className={commentClass}>
-      <div className={commentHeader1}>
+      <div
+        className={`w-full flex justify-between items-start ${
+          isEdit ? "h-[80px]" : "h-[48px]"
+        }`}
+      >
         <textarea
           className={commentContentClass1}
           onChange={handleChange}

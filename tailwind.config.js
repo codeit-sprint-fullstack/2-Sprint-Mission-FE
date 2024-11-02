@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 const pxToRem = require("tailwindcss-convert-px-to-rem");
-console.log(pxToRem);
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
