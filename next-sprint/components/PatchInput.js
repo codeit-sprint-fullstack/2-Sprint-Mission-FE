@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './RegisterInput.module.css';
 import { useRouter } from 'next/router';
+import { instance } from '@/api';
 
 export default function PatchInput() {
   const [titleValue, setTitleValue] = useState('');
@@ -10,8 +11,8 @@ export default function PatchInput() {
 
   useEffect(() => {
     async function getArticle(articleId) {
-      const res = await fetch(`http://localhost:5000/articles/${articleId}`);
-      const article = await res.json();
+      const res = await instance.get(`/articles/${articleId}`);
+      const article = await res.data;
       setTitleValue(article.title);
       setContentValue(article.content);
     }
@@ -22,19 +23,13 @@ export default function PatchInput() {
   async function patchArticle(articleId) {
     if (!articleId) return;
     try {
-      const res = await fetch(`http://localhost:5000/articles/${articleId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          title: titleValue,
-          content: contentValue
-        })
+      const res = await instance.patch(`/articles/${articleId}`, {
+        title: titleValue,
+        content: contentValue
       });
 
-      if (res.ok) {
-        const article = await res.json();
+      if (res.status === 201 || res.status === 200) {
+        const article = await res.data;
         router.push(`/articles/${article.id}`);
       } else {
         console.log('게시글 수정 실패', res.status);

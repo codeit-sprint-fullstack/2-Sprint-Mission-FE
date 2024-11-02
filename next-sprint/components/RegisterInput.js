@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './RegisterInput.module.css';
 import { useRouter } from 'next/router';
+import { instance } from '@/api';
 
 export default function RegisterInput() {
   const [titleValue, setTitleValue] = useState('');
@@ -9,19 +10,13 @@ export default function RegisterInput() {
 
   async function createArticle() {
     try {
-      const res = await fetch('http://localhost:5000/articles', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          title: titleValue,
-          content: contentValue
-        })
+      const res = await instance.post('/articles', {
+        title: titleValue,
+        content: contentValue
       });
 
-      if (res.ok) {
-        const article = await res.json();
+      if (res.status === 201 || res.status === 200) {
+        const article = await res.data;
         router.push(`/articles/${article.id}`);
       } else {
         console.log('게시글 생성 실패', res.status);

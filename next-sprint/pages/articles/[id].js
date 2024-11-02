@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ArticleDetail from '@/components/ArticleDetail';
+import { instance } from '@/api';
 
 export default function Article() {
   const [article, setArticle] = useState(null);
@@ -9,8 +10,8 @@ export default function Article() {
 
   async function getArticle(articleId) {
     if (!articleId) return;
-    const res = await fetch(`http://localhost:5000/articles/${articleId}`);
-    const article = await res.json();
+    const res = await instance.get(`articles/${articleId}`);
+    const article = await res.data;
     setArticle(article);
   }
 

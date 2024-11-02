@@ -2,6 +2,7 @@ import styles from './ArticleReview.module.css';
 import Image from 'next/image';
 import ArticelReviewDropdown from './ArticleReviewDropdown';
 import { useState, useEffect } from 'react';
+import { instance } from '@/api';
 
 export default function ArticleReview({ reviews: initialReviews, articleId }) {
   const [reviews, setReviews] = useState(initialReviews);
@@ -10,10 +11,8 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
 
   useEffect(() => {
     async function getArticleReview(articleId) {
-      const res = await fetch(
-        `http://localhost:5000/articleComments/${articleId}`
-      );
-      const review = await res.json();
+      const res = await instance.get(`/articleComments/${articleId}`);
+      const review = await res.data;
       setReviews(review);
     }
     getArticleReview(articleId);
@@ -25,21 +24,12 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
   };
 
   const handleSaveClick = async (reviewId) => {
-    const res = await fetch(
-      `http://localhost:5000/articleComments/${reviewId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          content: editValue
-        })
-      }
-    );
+    const res = await instance.patch(`/articleComments/${reviewId}`, {
+      content: editValue
+    });
 
-    if (res.ok) {
-      await res.json();
+    if (res.status === 201 || res.status === 200) {
+      await res.data;
       setReviews((prevReviews) =>
         prevReviews.map((review) =>
           review.id === reviewId ? { ...review, content: editValue } : review
@@ -51,14 +41,9 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
   };
 
   const handleRemoveClick = async (reviewId) => {
-    const res = await fetch(
-      `http://localhost:5000/articleComments/${reviewId}`,
-      {
-        method: 'DELETE'
-      }
-    );
+    const res = await instance.delete(`/articleComments/${reviewId}`);
 
-    if (res.ok) {
+    if (res.status === 201 || res.status === 200) {
       setReviews((prevReviews) =>
         prevReviews.filter((review) => review.id !== reviewId)
       );

@@ -4,27 +4,28 @@ import Image from 'next/image';
 import ArticleReview from './ArticleReview';
 import Link from 'next/link';
 import ArticelDropdown from './ArticleDropdown';
+import { instance } from '@/api';
 
 export default function ArticleDetail({ article, id }) {
   const [articleReview, setArticleReview] = useState([]);
   const [value, setValue] = useState('');
 
   async function postArticleReview() {
-    const res = await fetch(`http://localhost:5000/articleComments`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
+    try {
+      const res = await instance.post('/articleComments', {
         content: value,
         articleId: id
-      })
-    });
+      });
 
-    if (res.ok) {
-      const newReview = await res.json();
+      const newReview = res.data;
       setArticleReview((prevReviews) => [...prevReviews, newReview]);
       setValue('');
-    } else {
-      console.error('Failed to post review:', await res.text());
+    } catch (error) {
+      if (error.response) {
+        console.error('Failed to post review:', error.response.data);
+      } else {
+        console.error('Failed to post review:', error.message);
+      }
     }
   }
 
