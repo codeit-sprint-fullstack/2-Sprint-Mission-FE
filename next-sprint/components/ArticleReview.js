@@ -4,6 +4,7 @@ import ArticelReviewDropdown from './ArticleReviewDropdown';
 import { useState, useEffect } from 'react';
 import { instance } from '@/lib/api';
 import formatDate from '@/lib/formatDate';
+import NotArticleReview from './NotArticleReview';
 
 export default function ArticleReview({ reviews: initialReviews, articleId }) {
   const [reviews, setReviews] = useState(initialReviews);
@@ -52,21 +53,7 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
   };
 
   if (!reviews || reviews.length === 0) {
-    return (
-      <div className={styles.noneSection}>
-        <Image
-          width={140}
-          height={140}
-          src="/images/Img_reply_empty.svg"
-          alt="빈 이미지"
-        />
-        <span>
-          아직 댓글이 없어요.
-          <br />
-          지금 댓글을 달아보세요.
-        </span>
-      </div>
-    );
+    return <NotArticleReview />;
   }
 
   return (
