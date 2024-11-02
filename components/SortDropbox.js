@@ -4,6 +4,13 @@ import arrowDownIcon from "@/public/ic_arrow_down.svg";
 import sortBtnIcon from "@/public/btn_sort.svg";
 import { useEffect, useState } from "react";
 
+// sortOption을 한글로 변환하여 표시
+const getSortOptionLabel = (option) => {
+  if (option === "recent") return "최신순";
+  if (option === "likeCount") return "좋아요순";
+  return "";
+};
+
 export default function SortDropbox({ setOrder }) {
   const [isToggle, setIsToggle] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -30,13 +37,6 @@ export default function SortDropbox({ setOrder }) {
     setOrder(event.target.value);
     setSortOption(event.target.value);
     setIsToggle(false);
-  };
-
-  // sortOption을 한글로 변환하여 표시
-  const getSortOptionLabel = (option) => {
-    if (option === "recent") return "최신순";
-    if (option === "likeCount") return "좋아요순";
-    return "";
   };
 
   return (
