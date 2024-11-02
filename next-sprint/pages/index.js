@@ -14,24 +14,48 @@ export default function Home() {
   const [sort, setSort] = useState('');
 
   async function getRecentArticles() {
-    const res = await instance.get(`/articles?sort=recent`);
-    const articles = await res.data;
-    setRecentArticles(articles);
+    try {
+      const res = await instance.get(`/articles?sort=recent`);
+      const articles = await res.data;
+      setRecentArticles(articles);
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+      } else {
+        console.error(error.message);
+      }
+    }
   }
 
   async function getArticleList(sort) {
-    const res = await instance.get(`/articles?sort=${sort}`);
-    const articles = await res.data;
-    setArticles(articles);
+    try {
+      const res = await instance.get(`/articles?sort=${sort}`);
+      const articles = await res.data;
+      setArticles(articles);
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+      } else {
+        console.error(error.message);
+      }
+    }
   }
 
   async function getSearchArticle(value) {
-    if (value) {
-      const res = await instance(`/articles?search=${value}`);
-      const articles = await res.data;
-      setSearchArticle(articles);
-    } else {
-      setSearchArticle([]);
+    try {
+      if (value) {
+        const res = await instance(`/articles?search=${value}`);
+        const articles = await res.data;
+        setSearchArticle(articles);
+      } else {
+        setSearchArticle([]);
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+      } else {
+        console.error(error.message);
+      }
     }
   }
 

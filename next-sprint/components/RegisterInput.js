@@ -21,8 +21,12 @@ export default function RegisterInput() {
       } else {
         console.log('게시글 생성 실패', res.status);
       }
-    } catch (e) {
-      console.log('게시글 생성 중 오류 발생', e);
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+      } else {
+        console.error(error.message);
+      }
     }
   }
 

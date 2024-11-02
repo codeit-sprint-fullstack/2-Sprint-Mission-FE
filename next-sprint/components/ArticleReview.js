@@ -26,29 +26,45 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
   };
 
   const handleSaveClick = async (reviewId) => {
-    const res = await instance.patch(`/articleComments/${reviewId}`, {
-      content: editValue
-    });
+    try {
+      const res = await instance.patch(`/articleComments/${reviewId}`, {
+        content: editValue
+      });
 
-    if (res.status === 201 || res.status === 200) {
-      await res.data;
-      setReviews((prevReviews) =>
-        prevReviews.map((review) =>
-          review.id === reviewId ? { ...review, content: editValue } : review
-        )
-      );
-      setEditingReviewId(null);
-      setEditValue('');
+      if (res.status === 201 || res.status === 200) {
+        await res.data;
+        setReviews((prevReviews) =>
+          prevReviews.map((review) =>
+            review.id === reviewId ? { ...review, content: editValue } : review
+          )
+        );
+        setEditingReviewId(null);
+        setEditValue('');
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.data);
+      } else {
+        console.error(error.message);
+      }
     }
   };
 
   const handleRemoveClick = async (reviewId) => {
-    const res = await instance.delete(`/articleComments/${reviewId}`);
+    try {
+      const res = await instance.delete(`/articleComments/${reviewId}`);
 
-    if (res.status === 201 || res.status === 200) {
-      setReviews((prevReviews) =>
-        prevReviews.filter((review) => review.id !== reviewId)
-      );
+      if (res.status === 201 || res.status === 200) {
+        setReviews((prevReviews) =>
+          prevReviews.filter((review) => review.id !== reviewId)
+        );
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+      } else {
+        console.error(error.message);
+      }
     }
   };
 

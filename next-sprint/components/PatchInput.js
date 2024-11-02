@@ -11,10 +11,18 @@ export default function PatchInput() {
 
   useEffect(() => {
     async function getArticle(articleId) {
-      const res = await instance.get(`/articles/${articleId}`);
-      const article = await res.data;
-      setTitleValue(article.title);
-      setContentValue(article.content);
+      try {
+        const res = await instance.get(`/articles/${articleId}`);
+        const article = await res.data;
+        setTitleValue(article.title);
+        setContentValue(article.content);
+      } catch (error) {
+        if (error.response) {
+          console.error(error.response.status, error.response.data);
+        } else {
+          console.error(error.message);
+        }
+      }
     }
 
     getArticle(id);
@@ -34,8 +42,12 @@ export default function PatchInput() {
       } else {
         console.log('게시글 수정 실패', res.status);
       }
-    } catch (e) {
-      console.log('게시글 수정 중 오류 발생', e);
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+      } else {
+        console.error(error.message);
+      }
     }
   }
 

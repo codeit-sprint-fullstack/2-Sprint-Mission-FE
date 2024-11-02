@@ -23,9 +23,9 @@ export default function ArticleDetail({ article, id }) {
       setValue('');
     } catch (error) {
       if (error.response) {
-        console.error('Failed to post review:', error.response.data);
+        console.error(error.response.status, error.response.data);
       } else {
-        console.error('Failed to post review:', error.message);
+        console.error(error.message);
       }
     }
   }
