@@ -114,6 +114,47 @@ export default function Section({ name, className }) {
     titleClass,
     subcriptionClass
   } = selectClass(name);
+  const isCheck = name === CHECK;
+  const isSearch = name === SEARCH;
+  const isRegister = name === REGISTER;
+  const subtitle = isCheck ? (
+    <>
+      인기 상품을 <br className="md:hidden sd:block" />
+      확인해 보세요
+    </>
+  ) : isSearch ? (
+    <>
+      구매를 원하는 <br className="md:hidden sd:block" />
+      상품을 검색하세요
+    </>
+  ) : isRegister ? (
+    <>
+      판매를 원하는 <br className="md:hidden sd:block" />
+      상품을 등록하세요
+    </>
+  ) : (
+    ""
+  );
+  const subcription = isCheck ? (
+    <>
+      가장 HOT한 중고거래 물품을
+      <br />
+      판다 마켓에서 확인해보세요
+    </>
+  ) : isSearch ? (
+    <>
+      구매하고 싶은 물품은 검색해서
+      <br />
+      쉽게 찾아보세요
+    </>
+  ) : isRegister ? (
+    <>
+      어떤 물건이든 판매하고 싶은 상품을 <br />
+      쉽게 등록하세요
+    </>
+  ) : (
+    ""
+  );
   if (name === WATCH) {
     const watchBtn = `w-full h-[56px] bg-3692ff rounded-[40px] text-ffffff mt-[32px] whitespace-nowrap flex justify-center items-center
     sm:px-[71px] sm:py-[11px]`;
@@ -141,7 +182,8 @@ export default function Section({ name, className }) {
         </div>
       </div>
     );
-  } else if (name === "safety") {
+  }
+  if (name === "safety") {
     return (
       <div className={section}>
         <div className={content}>
@@ -161,61 +203,19 @@ export default function Section({ name, className }) {
         </div>
       </div>
     );
-  } else {
-    const isCheck = name === CHECK;
-    const isSearch = name === SEARCH;
-    const isRegister = name === REGISTER;
-    const subtitle = isCheck ? (
-      <>
-        인기 상품을 <br className="md:hidden sd:block" />
-        확인해 보세요
-      </>
-    ) : isSearch ? (
-      <>
-        구매를 원하는 <br className="md:hidden sd:block" />
-        상품을 검색하세요
-      </>
-    ) : isRegister ? (
-      <>
-        판매를 원하는 <br className="md:hidden sd:block" />
-        상품을 등록하세요
-      </>
-    ) : (
-      ""
-    );
-    const subcription = isCheck ? (
-      <>
-        가장 HOT한 중고거래 물품을
-        <br />
-        판다 마켓에서 확인해보세요
-      </>
-    ) : isSearch ? (
-      <>
-        구매하고 싶은 물품은 검색해서
-        <br />
-        쉽게 찾아보세요
-      </>
-    ) : isRegister ? (
-      <>
-        어떤 물건이든 판매하고 싶은 상품을 <br />
-        쉽게 등록하세요
-      </>
-    ) : (
-      ""
-    );
-    return (
-      <div className={section}>
-        <div className={content}>
-          <div className={imageFrame}>
-            <Image fill src={imagePath} alt="section image" />
-          </div>
-          <div className={container}>
-            <span className={titleClass}>{title}</span>
-            <p className={subtitleClass}>{subtitle}</p>
-            <p className={subcriptionClass}>{subcription}</p>
-          </div>
+  }
+  return (
+    <div className={section}>
+      <div className={content}>
+        <div className={imageFrame}>
+          <Image fill src={imagePath} alt="section image" />
+        </div>
+        <div className={container}>
+          <span className={titleClass}>{title}</span>
+          <p className={subtitleClass}>{subtitle}</p>
+          <p className={subcriptionClass}>{subcription}</p>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
