@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import useResponsiveItemCount from "@/hooks/useResponsiveItemCount";
 import SortSelector from "@/components/SortSelector";
 import { getProducts } from "@/api/api";
+import useGetData from "@/hooks/useGetData";
+import { MODEL_TYPE } from "@/constants";
+const { PRODUCT_LIST } = MODEL_TYPE;
 export default function Items() {
   const itemsPage = `w-full h-full flex justify-center bg-fcfcfc`;
   const items = `w-[1200px] h-[827px] mt-[26px] mb-[140px] flex flex-col justify-between items-center
@@ -46,8 +49,13 @@ export default function Items() {
   const [page, setPage] = useState(0);
   const pageSize = useResponsiveItemCount({ sm: 4, md: 6, lg: 10 });
   const [keyword, setKeyword] = useState("");
-  const [totalPage, setTotalPage] = useState();
-  const [productsList, setProductsList] = useState([]);
+  const { productList, totalPage } = useGetData({
+    type: PRODUCT_LIST,
+    order,
+    page,
+    count: pageSize,
+    keyword
+  });
   const [buttonList, setButtonList] = useState([]);
   const onClickPageButton = (e) => setPage(Number(e.target.value));
   const onClickLeftArrowButton = (e) => {
@@ -72,25 +80,6 @@ export default function Items() {
   };
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
   const handleOnChangeKeyword = (e) => setKeyword(e.target.value);
-  useEffect(() => {
-    const params = { order, keyword, page, pageSize };
-    const getData = async () => {
-      const response = await getProducts(params);
-      const { products, totalCount } = response.data;
-      setProductsList(products);
-      const nextTotalPage = Math.ceil(totalCount / pageSize);
-      setTotalPage(nextTotalPage);
-      if (page >= nextTotalPage) {
-        if (nextTotalPage === 0) setPage(0); //아랫부분 page가 -1로되는걸 처리
-        else setPage(nextTotalPage - 1); //창변경시 페이지 수정
-      }
-    };
-    try {
-      getData();
-    } catch (e) {
-      console.log(e.message);
-    }
-  }, [order, keyword, page, pageSize]);
   useEffect(() => {
     // totalPage가 변경될 때 buttonList 업데이트
     setButtonList(
@@ -125,7 +114,7 @@ export default function Items() {
           />
         </div>
         <div className={productListClass}>
-          {productsList.map((product) => (
+          {productList?.map((product) => (
             <div className={productClass} key={product.id}>
               <Image
                 width={220}

@@ -7,7 +7,7 @@ import {
   postArticleComment,
   deleteArticleComment
 } from "@/api/api";
-import useDataFetch from "@/hooks/useDataFetchNew";
+import useGetData from "@/hooks/useGetData";
 import CommentItem from "@/components/CommentItem";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import convertDate from "@/utils/convertDate";
@@ -62,23 +62,17 @@ export default function Article() {
   const router = useRouter();
   const { id } = router.query;
   const [order, setOrder] = useState(RECENT);
-  const {
-    article = {},
-    setArticle,
-    articleComments = [],
-    setArticleComments,
-    articleCommentsTotalCount
-  } = useDataFetch({
+  const { article, articleComments } = useGetData({
     type: ARTICLE_WITH_COMMENTS,
-    order,
     id,
     count: 3
   });
+
   const [comment, setComment] = useState("");
   const [isPost, setIsPost] = useState(false);
   const handleDropDownChange = async (chosenItem) => {
     if (chosenItem === EDIT_VALUE) {
-      router.push(`/freeboard/write/${article.id}`);
+      router.push(`/freeboard/write/${article?.id}`);
     } else if (chosenItem === DELETE_VALUE) {
       try {
         const resposne = await deleteArticle(id);
@@ -102,7 +96,6 @@ export default function Article() {
     };
     try {
       const response = await postArticleComment(sumbitData);
-      setArticle((prev) => [sumbitData, prev[0], prev[1]]);
       setComment("");
     } catch (e) {
       console.log(`데이터 전송 실패: ${e.message}`);
@@ -120,7 +113,7 @@ export default function Article() {
       <div className={articePageContents}>
         <div className={articleClass}>
           <div className={haeder}>
-            <h1 className={articleTitleClass}>{article.title}</h1>
+            <h1 className={articleTitleClass}>{article?.title}</h1>
             <EditDeleteDropDown onDropDownChange={handleDropDownChange} />
           </div>
           <div className={profileAndCreateAtAndFavorite}>
@@ -132,7 +125,7 @@ export default function Article() {
             />
             <span className={aritlceNickName}>총명한 판다</span>
             <span className={articleCreateAt}>
-              {convertDate(article.createdAt)}
+              {convertDate(article?.createdAt)}
             </span>
             <div className="h-[34px] mx-[32px] sm:mx-[16px] border-l border-e5e7eb"></div>
             {/*구분선*/}
@@ -143,10 +136,10 @@ export default function Article() {
                 src="/images/ic_bigheart.png"
                 alt="하트이미지"
               />
-              <span className={favoriteCount}>{article.favoriteCount}</span>
+              <span className={favoriteCount}>{article?.favoriteCount}</span>
             </button>
           </div>
-          <div className={articleContent}>{article.content}</div>
+          <div className={articleContent}>{article?.content}</div>
         </div>
         <form className={postCommentFrame}>
           <label htmlFor="postComment" className={commentLabel}>

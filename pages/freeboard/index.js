@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import useResponsiveItemCount from "@/hooks/useResponsiveItemCount";
-import useDataFetch from "@/hooks/useDataFetch";
-import { getArticle, getArticles, getProducts } from "@/api/api";
+import useGetData from "@/hooks/useGetData";
+import { getArticle, getArticles } from "@/api/api";
 import Image from "next/image";
 import convertDate from "@/utils/convertDate";
 import SortSelector from "@/components/SortSelector";
 import article from "./[id]";
-import { ORDER_STATE } from "@/constants";
+import { ORDER_STATE, MODEL_TYPE } from "@/constants";
 const { RECENT, FAVORITEST } = ORDER_STATE;
+const { ARTICLE_LIST } = MODEL_TYPE;
 export default function FreeBoard() {
   const freeBoardPage = `flex justify-center whitespace-nowrap`;
   const freeBoardContents = `w-[1200px] h-[1013px] mt-[24px] mb-[293px] flex flex-col justify-between
@@ -72,51 +73,26 @@ export default function FreeBoard() {
   const [keyword, setKeyword] = useState("");
   const bestSize = useResponsiveItemCount({ sm: 1, md: 2, lg: 3 });
   const standardSize = useResponsiveItemCount({ sm: 3, md: 6, lg: 4 });
-  const [bestList, setBestList] = useState([]);
-  const [standardList, setStandardList] = useState([]);
+  const { articleList: bestList } = useGetData({
+    type: ARTICLE_LIST,
+    order: FAVORITEST,
+    count: bestSize
+  });
+  const { articleList: standardList } = useGetData({
+    type: ARTICLE_LIST,
+    order,
+    keyword,
+    count: standardSize
+  });
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
   const handleChnageKeyword = (e) => setKeyword(e.target.value);
-  useEffect(() => {
-    const dataFetchBestList = async () => {
-      if (!bestSize) return [];
-      const params = {
-        order: FAVORITEST,
-        pageSize: bestSize
-      };
-      const response = await getArticles(params);
-      const nextBestList = response.data.articles;
-      setBestList(nextBestList);
-    };
-    const dataFetchStandard = async () => {
-      const params = {
-        order,
-        pageSize: standardSize,
-        keyword
-      };
-      const response = await getArticles(params);
-      const { articles } = response.data;
-      setStandardList(articles);
-    };
-    const fetchData = async () => {
-      if (standardSize) {
-        try {
-          await Promise.all([dataFetchBestList(), dataFetchStandard()]);
-        } catch (error) {
-          console.error("Error fetching data:", error); // 에러 처리
-        }
-      }
-    };
-    if (standardSize) {
-      fetchData();
-    }
-  }, [keyword, order, standardSize]);
   return (
     <div className={freeBoardPage}>
       <div className={freeBoardContents}>
         <div className={bestSection}>
           <h1 className={bestSectionTitle}>베스트 게시글</h1>
           <div className={bestArticleListClass}>
-            {bestList.map((article) => (
+            {bestList?.map((article) => (
               <Link href={`/freeboard/${article.id}`} key={article.id}>
                 <div className={bestAricleFrameClass}>
                   <Image

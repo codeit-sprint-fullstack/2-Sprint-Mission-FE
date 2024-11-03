@@ -20,10 +20,14 @@ export const getArticle = async (id) => {
   const response = await instance.get(`articles/${id}`);
   return response;
 };
-// export const getArticleWithComments = async (id) => {
-//   const response = await instance.get(`articles/${id}`);
-//   return response;
-// };
+export const getArticleWithComments = async ({ id, params }) => {
+  console.log(`id: ${id}`);
+  console.log(`params: ${params}`);
+  const response = await instance.get(`articles/${id}/withcomments`, {
+    params
+  });
+  return response;
+};
 export const postArticle = async (formData) => {
   const response = await instance.post("/articles", formData);
   return response;
