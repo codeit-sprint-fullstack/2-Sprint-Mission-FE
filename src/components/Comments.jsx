@@ -5,7 +5,7 @@ function Comments({ comments, productId }) {
 	let res;
 	if (!comments || comments.length === 0) {
 		res = (<div className={styles.center}>
-			<div className={styles.imgReplyEmptyContainer}><img fill src="/images/Img_reply_empty.png" alt="댓글 없음" /></div><br />
+			<div className={styles.imgReplyEmptyContainer}><img src="/images/Img_reply_empty.png" alt="댓글 없음" /></div><br />
 			아직 댓글이 없어요.<br />
 			지금 댓글을 달아보세요!
 		</div>);

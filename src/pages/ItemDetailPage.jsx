@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProductWithId, getProductWithIdComments, likeProductWithId, postProductWithIdComment, unlikeProductWithId } from "../apis/itemsService.js";
 import mainStyles from './HomePage.module.css';
 import styles from './ItemDetailPage.module.css';
@@ -11,6 +11,7 @@ import { useUser } from "../context/UserProvider.jsx";
 function ItemDetailPage() {
 	const [comment, setComment] = useState('');
 	const user = useUser();
+	const navigate = useNavigate();
 	const { productId } = useParams();
 	const queryClient = useQueryClient();
 	const { data, isPending, isError } = useQuery({
@@ -131,6 +132,9 @@ function ItemDetailPage() {
 			<div className={styles.comments}>
 				<Comments comments={comments.list} productId={productId} />
 			</div>
+		</div>
+		<div className={styles.backToItems}>
+			<button className={styles.a_button} onClick={() => navigate('/items')}>목록으로 돌아가기</button>
 		</div>
 	</main>);
 }

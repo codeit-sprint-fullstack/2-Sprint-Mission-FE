@@ -37,7 +37,7 @@ function LogInPage() {
 			} else {
 				setUser(res);
 				localStorage.setItem("user", JSON.stringify(res));
-				navigate("/");
+				navigate("/items");
 			}
 		} catch (err) {
 			setError(err);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from './LogInPage.module.css';
 import PopUp from "../components/PopUp.jsx";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -42,7 +42,7 @@ function SignUpPage() {
 			} else {
 				setUser(res);
 				localStorage.setItem("user", JSON.stringify(res));
-				navigate("/");
+				navigate("/items");
 			}
 		} catch (err) {
 			setError(err);
