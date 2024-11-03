@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import EditDeleteDropDown from "./EditDeleteDropDown";
-import axios from "@/lib/axios";
+import { patchArticleComment } from "@/api/api";
 import { EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
 const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
 export default function Comment({ data, onDelete }) {
@@ -36,7 +36,7 @@ export default function Comment({ data, onDelete }) {
   const handleClickPatchComplete = (e) => {
     const submitData = { content };
     try {
-      axios.patch(`/article-comments/${data.id}`, submitData);
+      patchArticleComment({ id: data.id, formData: submitData });
       setEditMode(false);
     } catch (e) {
       console.log(`데이터 전송중 오류: ${e.message}`);

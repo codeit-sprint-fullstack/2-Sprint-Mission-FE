@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import useResponsiveItemCount from "@/hooks/useResponsiveItemCount";
 import useDataFetch from "@/hooks/useDataFetch";
-import axios from "@/lib/axios";
+import { getArticle, getArticles, getProducts } from "@/api/api";
 import Image from "next/image";
 import convertDate from "@/utils/convertDate";
 import SortSelector from "@/components/SortSelector";
 import article from "./[id]";
 import { ORDER_STATE } from "@/constants";
-const { RECENT } = ORDER_STATE;
+const { RECENT, FAVORITEST } = ORDER_STATE;
 export default function FreeBoard() {
   const freeBoardPage = `flex justify-center whitespace-nowrap`;
   const freeBoardContents = `w-[1200px] h-[1013px] mt-[24px] mb-[293px] flex flex-col justify-between
@@ -72,23 +72,28 @@ export default function FreeBoard() {
   const [keyword, setKeyword] = useState("");
   const bestSize = useResponsiveItemCount({ sm: 1, md: 2, lg: 3 });
   const standardSize = useResponsiveItemCount({ sm: 3, md: 6, lg: 4 });
-  //const standardSize = 4;
   const [bestList, setBestList] = useState([]);
   const [standardList, setStandardList] = useState([]);
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
   const handleChnageKeyword = (e) => setKeyword(e.target.value);
   useEffect(() => {
     const dataFetchBestList = async () => {
-      const pageSize = bestSize ? `&pageSize=${bestSize}` : `""`;
-      const url = `/articles?order=favoritest${pageSize}`;
-      const response = await axios.get(url);
+      if (!bestSize) return [];
+      const params = {
+        order: FAVORITEST,
+        pageSize: bestSize
+      };
+      const response = await getArticles(params);
       const nextBestList = response.data.articles;
       setBestList(nextBestList);
     };
     const dataFetchStandard = async () => {
-      const pageSize = standardSize ? `&pageSize=${standardSize}` : `""`;
-      const url = `/articles?keyword=${keyword}&order=${order}${pageSize}}`;
-      const response = await axios.get(url);
+      const params = {
+        order,
+        pageSize: standardSize,
+        keyword
+      };
+      const response = await getArticles(params);
       const { articles } = response.data;
       setStandardList(articles);
     };

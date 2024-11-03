@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from "@/lib/axios";
+import { postArticle } from "@/api/api";
 export default function Write() {
   const writePage = `w-full flex justify-center`;
   const writeFrame = `w-[1200px] h-[512px] flex flex-col justify-between mt-[24px] mb-[794px]
@@ -37,8 +37,8 @@ export default function Write() {
       content
     };
     try {
-      const res = await axios.post("/articles", submitData);
-      router.push(`/freeboard/${res.data.id}`);
+      const response = await postArticle(submitData);
+      router.push(`/freeboard/${response.data.id}`);
     } catch (e) {
       console.log(`데이터 전송 중 오류: ${e.message}`);
     }

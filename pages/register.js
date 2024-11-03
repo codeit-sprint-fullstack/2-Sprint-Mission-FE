@@ -1,7 +1,7 @@
 import ValidatedInputBox from "@/components/ValidatedInputBox";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import axios from "@/lib/axios";
+import { postProduct } from "@/api/api";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 export default function Register() {
   const registerPage = `w-full h-full flex justify-center`;
@@ -56,7 +56,8 @@ export default function Register() {
       userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18"
     };
     try {
-      const response = await axios.post("/products", submitData);
+      const response = await postProduct(submitData);
+      console.log(response.data);
       router.push(`/items/${response.data.id}`);
     } catch (e) {
       console.error(`데이터 전송 실패: ${e.message}`);
@@ -101,11 +102,15 @@ export default function Register() {
       // 숫자 타입일 경우
       if (typeof value === "number") {
         return Number.isInteger(value);
+        //return true;
       }
       if (typeof value === "string") {
         // 문자열이 정수로 변환 가능한지 체크
         const trimmedValue = value.trim(); // 공백 제거
-        return /^-?\d+$/.test(trimmedValue); // 정규 표현식으로 정수인지 확인
+        const parseIntValue = parseInt(trimmedValue);
+        const result =
+          !isNaN(parseIntValue) && parseIntValue.toString() === trimmedValue;
+        return result;
       }
       return false;
     }

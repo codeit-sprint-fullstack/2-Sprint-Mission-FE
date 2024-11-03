@@ -2,7 +2,11 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "@/lib/axios";
+import {
+  deleteArticle,
+  postArticleComment,
+  deleteArticleComment
+} from "@/api/api";
 import useDataFetch from "@/hooks/useDataFetchNew";
 import CommentItem from "@/components/CommentItem";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
@@ -73,12 +77,11 @@ export default function Article() {
   const [comment, setComment] = useState("");
   const [isPost, setIsPost] = useState(false);
   const handleDropDownChange = async (chosenItem) => {
-    console.log(`뽑은 옵션: ${chosenItem}`);
     if (chosenItem === EDIT_VALUE) {
       router.push(`/freeboard/write/${article.id}`);
     } else if (chosenItem === DELETE_VALUE) {
       try {
-        await axios.delete(`/articles/${id}`);
+        const resposne = await deleteArticle(id);
       } catch (e) {
         console.log(`삭제실패: ${(e, message)}`);
       }
@@ -98,7 +101,7 @@ export default function Article() {
       content: comment
     };
     try {
-      const response = await axios.post("/article-comments", sumbitData);
+      const response = await postArticleComment(sumbitData);
       setArticle((prev) => [sumbitData, prev[0], prev[1]]);
       setComment("");
     } catch (e) {
@@ -107,7 +110,7 @@ export default function Article() {
   };
   const handleDeleteComment = async (deleteId) => {
     try {
-      axios.delete(`/article-comments/${deleteId}`);
+      await deleteArticleComment(deleteId);
     } catch (e) {
       console.log("삭제실패");
     }

@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import useResponsiveItemCount from "@/hooks/useResponsiveItemCount";
-import axios from "@/lib/axios";
 import SortSelector from "@/components/SortSelector";
+import { getProducts } from "@/api/api";
 export default function Items() {
   const itemsPage = `w-full h-full flex justify-center bg-fcfcfc`;
   const items = `w-[1200px] h-[827px] mt-[26px] mb-[140px] flex flex-col justify-between items-center
@@ -42,7 +42,7 @@ export default function Items() {
   const currentPageButton = `w-[40px] h-[40px] flex justify-center items-center rounded-full
     text-ffffff font-semibold bg-2f80ed`;
   const pageButtonContainer = `w-[216px] flex gap-x-[4px]`;
-  const [order, setOrder] = useState("newest");
+  const [order, setOrder] = useState("recent");
   const [page, setPage] = useState(0);
   const pageSize = useResponsiveItemCount({ sm: 4, md: 6, lg: 10 });
   const [keyword, setKeyword] = useState("");
@@ -73,29 +73,23 @@ export default function Items() {
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
   const handleOnChangeKeyword = (e) => setKeyword(e.target.value);
   useEffect(() => {
-    const dataFetch = async () => {
-      try {
-        const response = await axios.get("/products", {
-          params: {
-            order,
-            keyword,
-            page,
-            pageSize
-          }
-        });
-        const { products, totalCount } = response.data;
-        setProductsList(products);
-        const nextTotalPage = Math.ceil(totalCount / pageSize);
-        setTotalPage(nextTotalPage);
-        if (page >= nextTotalPage) {
-          if (nextTotalPage === 0) setPage(0); //아랫부분 page가 -1로되는걸 처리
-          else setPage(nextTotalPage - 1); //창변경시 페이지 수정
-        }
-      } catch (e) {
-        setProductsList([]);
+    const params = { order, keyword, page, pageSize };
+    const getData = async () => {
+      const response = await getProducts(params);
+      const { products, totalCount } = response.data;
+      setProductsList(products);
+      const nextTotalPage = Math.ceil(totalCount / pageSize);
+      setTotalPage(nextTotalPage);
+      if (page >= nextTotalPage) {
+        if (nextTotalPage === 0) setPage(0); //아랫부분 page가 -1로되는걸 처리
+        else setPage(nextTotalPage - 1); //창변경시 페이지 수정
       }
     };
-    dataFetch();
+    try {
+      getData();
+    } catch (e) {
+      console.log(e.message);
+    }
   }, [order, keyword, page, pageSize]);
   useEffect(() => {
     // totalPage가 변경될 때 buttonList 업데이트
