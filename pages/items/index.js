@@ -103,9 +103,6 @@ export default function Items() {
       Array.from({ length: Math.min(totalPage, 5) }, (_, index) => index)
     ); // 최대 5개 버튼
   }, [totalPage]);
-  useEffect(() => {
-    console.log(pageSize);
-  }, [pageSize]);
   return (
     <div className={itemsPage}>
       <div className={items}>

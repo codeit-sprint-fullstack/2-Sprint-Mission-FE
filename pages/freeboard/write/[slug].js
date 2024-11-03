@@ -21,7 +21,6 @@ export default function Write() {
   const off = "bg-9ca3af";
   const router = useRouter();
   const { slug } = router.query;
-  const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isPost, setIsPost] = useState(false);
@@ -31,32 +30,13 @@ export default function Write() {
     if (title === "" || content === "") setIsPost(false);
     else setIsPost(true);
   };
-  const handleSumit = async (e) => {
-    e.preventDefault();
-    const active = editMode ? axios.patch : axios.post;
-    const url = editMode ? `/articles/${slug}` : "/articles";
+  const handleSubmit = async (e) => {
     const submitData = {
-      title,
-      content,
-      ...(editMode ? {} : { userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18" })
-    };
-    try {
-      const res = await active(url, submitData);
-      router.push(`/freeboard/${res.data.id}`);
-    } catch (e) {
-      console.log(`데이터 전송 중 오류: ${e.message}`);
-    }
-  };
-  const handleSumitPost = async (e) => {
-    e.preventDefault();
-    const submitData = {
-      userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18",
       title,
       content
     };
     try {
-      const res = await axios.post("/articles", submitData);
-      console.log(res);
+      const res = await axios.patch(`/articles/${slug}`, submitData);
       router.push(`/freeboard/${res.data.id}`);
     } catch (e) {
       console.log(`데이터 전송 중 오류: ${e.message}`);
@@ -68,18 +48,17 @@ export default function Write() {
   useEffect(() => {
     if (slug) {
       // 슬러그를 기반으로 게시글 데이터를 가져오는 API 호출
-      const fetchPostData = async () => {
+      const getArticleData = async () => {
         try {
           const response = await axios.get(`/articles/${slug}`);
           const { title, content } = response.data;
           setTitle(title);
           setContent(content);
-          setEditMode(true);
         } catch (e) {
           console.log(`데이터 가져오기 실패:${e.message}`);
         }
       };
-      fetchPostData();
+      getArticleData();
     }
   }, [slug]);
   return (
@@ -90,10 +69,10 @@ export default function Write() {
           <button
             type="button"
             className={isPost ? `${postBtn} ${on}` : `${postBtn} ${off}`}
-            onClick={handleSumit}
+            onClick={handleSubmit}
             disabled={!isPost}
           >
-            {editMode ? "수정" : "생성"}
+            수정
           </button>
         </div>
         <div className={inputBox}>
