@@ -1,5 +1,3 @@
-// /pages/login/index.js
-
 import React from 'react';
 import LoginForm from '@/components/Auth/LoginForm';
 import styles from '@/components/Auth/Auth.module.css';

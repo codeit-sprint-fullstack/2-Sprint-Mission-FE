@@ -7,13 +7,15 @@ import useMaxItems from '@/hooks/useMaxItems';
 import ArticleList from '@/components/Articles/ArticleList';
 import { getArticleList } from '@/lib/api/ArticleService';
 import Link from 'next/link';
+import { getDeviceTypeInitialCount } from '@/lib/getDeviceTypeInitialCount';
 
-export async function getServerSideProps() {
-  const maxBestArticleCount = 3;
+export async function getServerSideProps(context) {
+  const userAgent = context.req.headers['user-agent'];
+  const { bestArticleCount: initialBestArticleCount } = getDeviceTypeInitialCount(userAgent);
+
   const maxArticleCount = 5;
-
   try {
-    const bestArticlesData = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
+    const bestArticlesData = await getArticleList({ page: 1, pageSize: initialBestArticleCount, orderBy: 'recent' });
     const bestArticles = bestArticlesData.map((article) => ({
       ...article,
       imageUrl: '/images/articles/img_default_article.png',
@@ -34,7 +36,8 @@ export async function getServerSideProps() {
     return {
       props: {
         initialBestArticles: bestArticles,
-        initialArticles: articles
+        initialArticles: articles,
+        initialBestArticleCount,
       }
     }  
   } catch (error) {
@@ -42,21 +45,22 @@ export async function getServerSideProps() {
     return {
       props: {
         initialBestArticles: [],
-        initialArticles: []
+        initialArticles: [],
+        initialBestArticleCount: 0
       }
     }
   }
 }
 
-export default function ArticlesPage({ initialBestArticles, initialArticles }) {
-  const maxBestArticleCount = useMaxItems(); // 클라이언트에서만 접근 가능
-  const [displayedBestArticles, setDisplayedBestArticles] = useState(initialBestArticles.slice(0, maxBestArticleCount));
-  
-  useEffect(()=> {
-    if (maxBestArticleCount) {
-      setDisplayedBestArticles(initialBestArticles.slice(0, maxBestArticleCount));
+export default function ArticlesPage({ initialBestArticles, initialArticles,  initialBestArticleCount}) {
+  const maxBestArticleCount = useMaxItems() || initialBestArticleCount; // 클라이언트에서만 접근 가능
+  const [displayedBestArticles, setDisplayedBestArticles] = useState(initialBestArticles);
+
+  useEffect(() => {
+    if (initialBestArticles && maxBestArticleCount) {
+        setDisplayedBestArticles(initialBestArticles.slice(0, maxBestArticleCount));
     }
-  }, [maxBestArticleCount, initialBestArticles]);
+}, [maxBestArticleCount, initialBestArticles]);
 
   return (
     <div>

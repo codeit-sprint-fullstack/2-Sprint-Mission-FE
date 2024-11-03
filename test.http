@@ -36,3 +36,10 @@ Connection: close
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ5LCJzY29wZSI6InJlZnJlc2giLCJpYXQiOjE3MzAzNjgwMDUsImV4cCI6MTczMDk3MjgwNSwiaXNzIjoic3AtcGFuZGEtbWFya2V0In0.29b6uXh814CUlOcrqAn1UfGsLb7HNkbb9busHMSultA"
 }
 ###
+GET https://panda-market-api.vercel.app/products
+
+
+###
+GET https://panda-market-api.vercel.app/products/355
+###
+GET https://panda-market-api.vercel.app/products/356

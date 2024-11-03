@@ -13,7 +13,6 @@ export default function Modal({ isOpen, onClose, message }) {
       }
     };
 
-    // 모달이 열렸을 때만 이벤트 리스너 추가
     window.addEventListener('keydown', handleKeyDown);
 
     // 모달이 닫힐 때 이벤트 리스너 제거
