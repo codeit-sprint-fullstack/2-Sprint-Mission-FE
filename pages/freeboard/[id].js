@@ -47,10 +47,6 @@ export default function Article() {
   const commentLabel = `w-full h-[26px] text-[16px] font-semibold leading-26px text-111827`;
   const commentTextArea = `w-full h-[104px] mt-[9px] px-[24px] py-[16px] focus:outline-none bg-f3f4f6
     text-9ca3af rounded-[12px]`;
-  const commentBtn = `w-[74px] h-[42px] flex items-center text-f3f4f6 font-semibold text-[16px]
-    rounded-[8px] px-[23px] py-[12px] mt-[16px] whitespace-nowrap`;
-  const on = `bg-3692ff`;
-  const off = `bg-9ca3af`;
   const commentListClass = `w-full mt-[40px] flex flex-col gap-[24px]
    md:mt-[32px]
      sm:mt-[24px] sm:gap-[16px]`;
@@ -156,7 +152,10 @@ export default function Article() {
           <button
             type="button"
             onClick={handleSumbitComment}
-            className={isPost ? `${commentBtn} ${on}` : `${commentBtn} ${off}`}
+            className={`w-[74px] h-[42px] flex items-center text-f3f4f6 font-semibold text-[16px]
+    rounded-[8px] px-[23px] py-[12px] mt-[16px] whitespace-nowrap ${
+      isPost ? "bg-3692ff" : "bg-9ca3af"
+    }`}
             disabled={!isPost}
           >
             등록

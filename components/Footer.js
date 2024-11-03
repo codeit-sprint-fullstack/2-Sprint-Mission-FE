@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 export default function Footer() {
   const footer = `w-full h-[160px] bg-footerbg flex justify-center`;
   const menuBar = `w-full h-[20px] mt-[32px] mx-[200px]  
@@ -12,6 +13,10 @@ export default function Footer() {
   const privacy = "w-[100px] h-[19px] whitespace-nowrap";
   const faq = "w-[29px] h-[19px]";
   const snsLink = "w-[116px] h-[20px] flex justify-between";
+  const router = useRouter();
+  const { pathname } = router;
+  const hiddenFooterPages = ["/login", "signup"];
+  if (hiddenFooterPages.includes(pathname)) return null;
   return (
     <div className={footer}>
       <div className={menuBar}>

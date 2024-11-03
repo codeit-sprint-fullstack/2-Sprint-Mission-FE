@@ -25,6 +25,9 @@ export default function Nav() {
     router.pathname === "/items" || router.pathname === "/register"
       ? activeClass
       : "";
+  const hideNavbarPages = ["/login", "signup"];
+  const handleClickLoginBtn = () => router.push("/login");
+  if (hideNavbarPages.includes(router.pathname)) return null;
   return (
     <div className={navClass}>
       <Link href="/">
@@ -48,7 +51,9 @@ export default function Nav() {
           <span className={`${menu} ${isItems}`}>중고마켓</span>
         </Link>
       </div>
-      <button className={loginButton}>로그인</button>
+      <button className={loginButton} onClick={handleClickLoginBtn}>
+        로그인
+      </button>
     </div>
   );
 }
