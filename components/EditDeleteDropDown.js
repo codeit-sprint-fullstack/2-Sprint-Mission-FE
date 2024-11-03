@@ -1,5 +1,8 @@
 import { useState } from "react";
 import Image from "next/image";
+import { EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
+const { EDIT_VALUE, EDIT_LABEL, DELETE_VALUE, DELETE_LABEL } =
+  EDIT_DELETE_DROPDOWN_LIST;
 export default function EditDeleteDropDown({ onDropDownChange, className }) {
   const dropdown = `w-[24px] h-[24px] relative`;
   const dropdownMenuList = `w-[139px] h-[92px] absolute top-[24px] right-0 border-[1px] border-d1d5d8 rounded-[8px]`;
@@ -11,9 +14,12 @@ export default function EditDeleteDropDown({ onDropDownChange, className }) {
   const handleItemClick = (item) => {
     setSeletedItem(item);
     setIsOpen(false);
-    onDropDownChange(item);
+    onDropDownChange(item.id);
   };
-  const items = ["수정하기", "삭제하기"];
+  const items = [
+    { id: EDIT_VALUE, label: EDIT_LABEL },
+    { id: DELETE_VALUE, label: DELETE_LABEL }
+  ];
   return (
     <div className={`${dropdown} ${className}`}>
       <button onClick={toggleDropDown}>
@@ -28,11 +34,11 @@ export default function EditDeleteDropDown({ onDropDownChange, className }) {
         <ul className={dropdownMenuList}>
           {items.map((item) => (
             <li
-              key={item}
+              key={item.id}
               onClick={() => handleItemClick(item)}
               className={dropdownMenu}
             >
-              {item}
+              {item.label}
             </li>
           ))}
         </ul>

@@ -7,9 +7,14 @@ import useDataFetch from "@/hooks/useDataFetchNew";
 import CommentItem from "@/components/CommentItem";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import convertDate from "@/utils/convertDate";
-import { ORDER_STATE, MODEL_TYPE } from "@/constants";
+import {
+  ORDER_STATE,
+  MODEL_TYPE,
+  EDIT_DELETE_DROPDOWN_LIST
+} from "@/constants";
 const { RECENT } = ORDER_STATE;
 const { ARTICLE_WITH_COMMENTS } = MODEL_TYPE;
+const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
 export default function Article() {
   const articlePage = `w-full flex justify-center`;
   const articePageContents = `w-[1200px] flex flex-col items-center
@@ -68,9 +73,10 @@ export default function Article() {
   const [comment, setComment] = useState("");
   const [isPost, setIsPost] = useState(false);
   const handleDropDownChange = async (chosenItem) => {
-    if (chosenItem === "수정하기") {
+    console.log(`뽑은 옵션: ${chosenItem}`);
+    if (chosenItem === EDIT_VALUE) {
       router.push(`/freeboard/write/${article.id}`);
-    } else if (chosenItem === "삭제하기") {
+    } else if (chosenItem === DELETE_VALUE) {
       try {
         await axios.delete(`/articles/${id}`);
       } catch (e) {

@@ -2,7 +2,8 @@ import { useState } from "react";
 import Image from "next/image";
 import EditDeleteDropDown from "./EditDeleteDropDown";
 import axios from "@/lib/axios";
-
+import { EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
+const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
 export default function Comment({ data, onDelete }) {
   const commentClassWithoutHeight = `w-full bg-fcfcfc flex flex-col justify-between relative`;
   const commentContentEditClass = `w-full h-full text-[14px] leading-24px text-1f2937 bg-f3f4f6
@@ -22,8 +23,8 @@ export default function Comment({ data, onDelete }) {
   const isEdit = editMode;
   const handleChange = (e) => setContent(e.target.value);
   const handleDropDownChange = (chosenOption) => {
-    if (chosenOption === "수정하기") setEditMode(true);
-    else if (chosenOption === "삭제하기") onDelete(data.id);
+    if (chosenOption === EDIT_VALUE) setEditMode(true);
+    else if (chosenOption === DELETE_VALUE) onDelete(data.id);
   };
   const commentClass = `${commentClassWithoutHeight} ${
     isEdit ? "h-[180px] sm:h-[176px]" : "h-[100px] sm:h-[96px]"
