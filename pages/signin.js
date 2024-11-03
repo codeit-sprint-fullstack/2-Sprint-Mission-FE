@@ -85,8 +85,9 @@ export default function Login() {
 
   return (
     <div className={styles.wrapper}>
-      <Link href="/">
+      <Link className={styles.home} href="/">
         <Image
+          className={styles.logo}
           src="/images/Property 1=md@3x.png"
           width={396}
           height={132}
