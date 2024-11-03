@@ -1,0 +1,149 @@
+.authContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.inputItem {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.inputItem label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.inputWrapper {
+    position: relative;
+}
+
+.emailInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.textInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.passwordInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.errorMessage {
+    font-size: 12px;
+    color: #ff4d4f;
+    margin-top: 5px;
+}
+
+.passwordToggleButton {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.passwordToggleIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.button {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #0070f3;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #005bb5;
+}
+
+.socialLoginContainer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.socialLoginContainer h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.socialLoginLinksContainer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.socialLoginLinksContainer img {
+    cursor: pointer;
+}
+
+.auth-switch {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+    color: #555;
+}
+
+.auth-switch a {
+    color: #0070f3;
+    text-decoration: underline;
+}
+
+.auth-switch a:hover {
+    color: #005bb5;
+}
+
+.modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 300px;
+    width: 80%;
+    text-align: center;
+}
+
+.confirmButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirmButton:hover {
+    background-color: #005bb5;
+}
