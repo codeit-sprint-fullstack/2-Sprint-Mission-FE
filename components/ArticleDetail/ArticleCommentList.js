@@ -30,7 +30,7 @@ export default function ArticleCommentList({ articleComments = [] }) {
 
   const handleEdit = async (commentId) => {
     try {
-      await patchArticleComment(articleId, commentId, {
+      await patchArticleComment(commentId, {
         content: editingContent
       });
       setEditingCommentId(null);
