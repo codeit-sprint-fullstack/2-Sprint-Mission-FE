@@ -5,7 +5,7 @@ import Images from "../components/Images.jsx";
 import { getProductWithId, patchProductWithId, postProduct } from "../apis/itemsService.js";
 import PopUp from "../components/PopUp.jsx";
 import useAsync from "../hooks/useAsync.js";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 export async function isImage(url) {
@@ -30,6 +30,7 @@ const INITIAL_VALUES = {
 export default function RegisPage() {
 	const imageUrlError = useRef();
 	const tagsError = useRef();
+	const navigate = useNavigate();
 	const [values, setValues] = useState(INITIAL_VALUES);
 	const [imageUrl, setImageUrl] = useState("");
 	const [tag, setTag] = useState("");
@@ -77,6 +78,7 @@ export default function RegisPage() {
 			else {
 				setError(res);
 				setValues(INITIAL_VALUES);
+				navigate(`/items/${res.id}`);
 			}
 		}
 	};
