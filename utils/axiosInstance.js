@@ -5,9 +5,17 @@ const axiosInstance = axios.create({
   timeout: 5000,
 });
 
-export const fetchApi = async (url, params = {}, method = "GET") => {
+export const fetchApi = async (
+  url,
+  params = {},
+  method = "GET",
+  requiresAuth = false
+) => {
   try {
     const accessToken = localStorage.getItem("accessToken");
+    if (requiresAuth && !accessToken) {
+      throw new Error("로그인이 필요합니다.");
+    }
 
     const headers = {
       "Content-Type": "application/json",

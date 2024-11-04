@@ -161,18 +161,18 @@ export default function ProductDetails({ productId }) {
                   <div className={styles.like_wrapper}>
                     {product.isFavorite ? (
                       <Image
-                        src={heart_img}
-                        width={32}
-                        height={32}
-                        alt="빈 하트"
-                        onClick={handleFavoriteToggle}
-                      />
-                    ) : (
-                      <Image
                         src={heart_full}
                         width={32}
                         height={32}
                         alt="채워진 하트"
+                        onClick={handleFavoriteToggle}
+                      />
+                    ) : (
+                      <Image
+                        src={heart_img}
+                        width={32}
+                        height={32}
+                        alt="빈 하트"
                         onClick={handleFavoriteToggle}
                       />
                     )}

@@ -4,11 +4,12 @@ import CommentItem from "@/components/Comment/CommentItem";
 import EditDeleteModal from "@/components/EditDeleteModal/EditDeleteModal";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import empty_img from "@/images/etc/Img_inquiry_empty.svg";
-import back_img from "../../images/board/back_icon.svg";
-
 import { fetchApi } from "@/utils/axiosInstance";
 import styles from "./market.module.css";
+import empty_img from "@/images/etc/Img_inquiry_empty.svg";
+import back_img from "../../images/board/back_icon.svg";
+import selectImage from "@/images/board/select_img.svg";
+import user_img from "@/images/etc/userIcon.svg";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -16,8 +17,9 @@ const fetchCommentData = async (id) => {
   if (id) {
     try {
       const data = await fetchApi(`/products/${id}/comments?limit=10`);
-      return Array.isArray(data) ? data : [];
+      return data.list || [];
     } catch (error) {
+      console.error("문의댓글 가져오기 실패", error);
       return [];
     }
   }
@@ -32,6 +34,7 @@ export default function Market() {
   const [editCommentId, setEditCommentId] = useState(null);
   const [editComment, setEditComment] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCommentModal, setIsCommentModal] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
@@ -47,17 +50,13 @@ export default function Market() {
 
   const handleDeleteComment = async () => {
     try {
-      await fetchApi(
-        `/products/${id}/comments/${selectedCommentId}`,
-        null,
-        "DELETE"
-      );
+      await fetchApi(`/comments/${selectedCommentId}`, null, "DELETE", true);
+
       const updatedComments = await fetchCommentData(id);
       setComment(updatedComments);
       setIsModalOpen(false);
     } catch (error) {
       console.error("댓글 삭제 중 오류:", error);
-      alert("댓글 삭제 중 오류가 발생했습니다. 다시 시도해 주세요.");
     }
   };
 
@@ -69,13 +68,14 @@ export default function Market() {
       await fetchApi(
         `/products/${id}/comments`,
         { content: newComment },
-        "POST"
+        "POST",
+        true
       );
       setNewComment("");
       const updatedComments = await fetchCommentData(id);
       setComment(updatedComments);
     } catch (error) {
-      console.error(error);
+      console.error(error.response?.data || error.message);
     }
   };
 
@@ -98,9 +98,25 @@ export default function Market() {
     }
   };
 
+  const handleEditClick = () => {
+    setIsModalOpen(false);
+
+    if (isCommentModal && selectedCommentId) {
+      setEditCommentId(selectedCommentId);
+      const commentToEdit = comment.find(
+        (comment) => comment.id === selectedCommentId
+      );
+      if (commentToEdit) {
+        setEditComment(commentToEdit.content);
+      }
+    } else {
+      router.push(`/items`);
+    }
+  };
+
   const toggleModal = (e, commentId) => {
     const rect = e.target.getBoundingClientRect();
-    setModalPosition({ top: rect.top + 25, left: rect.left - 130 });
+    setModalPosition({ top: rect.top + 1, left: rect.left - 130 });
     setIsModalOpen(!isModalOpen);
     setSelectedCommentId(commentId);
   };
@@ -131,7 +147,7 @@ export default function Market() {
               handleEditCommentChange={handleEditCommentChange}
               handleEditCommentSubmit={handleEditCommentSubmit}
               toggleModal={toggleModal}
-              userImage={user}
+              userImage={user_img}
               selectImage={selectImage}
             />
           ))
@@ -148,9 +164,7 @@ export default function Market() {
       {isModalOpen && (
         <EditDeleteModal
           onDelete={handleDeleteComment}
-          onEdit={() => {
-            setIsModalOpen(false);
-          }}
+          onEdit={handleEditClick}
           style={{
             position: "absolute",
             top: `${modalPosition.top}px`,
