@@ -7,6 +7,12 @@ export const getProducts = async (params) => {
   const response = await instance.get(`/products`, { params });
   return response;
 };
+export const getProductWithComments = async ({ id, params }) => {
+  const response = await instance.get(`/products/${id}/withComments`, {
+    params
+  });
+  return response;
+};
 export const postProduct = async (formData) => {
   const response = await instance.post("/products", formData);
   return response;
@@ -21,8 +27,6 @@ export const getArticle = async (id) => {
   return response;
 };
 export const getArticleWithComments = async ({ id, params }) => {
-  console.log(`id: ${id}`);
-  console.log(`params: ${params}`);
   const response = await instance.get(`articles/${id}/withcomments`, {
     params
   });

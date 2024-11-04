@@ -115,27 +115,29 @@ export default function Items() {
         </div>
         <div className={productListClass}>
           {productList?.map((product) => (
-            <div className={productClass} key={product.id}>
-              <Image
-                width={220}
-                height={220}
-                src="/images/default.png"
-                alt="기본 상품 이미지"
-              />
-              <span className={productName}>{product.name}</span>
-              <span className={productPrice}>{product.price}원</span>
-              <div className={favorite}>
+            <Link href={`/items/${product.id}`} key={product.id}>
+              <div className={productClass}>
                 <Image
-                  width={16}
-                  height={16}
-                  src="/images/ic_heart.png"
-                  alt="좋아요 이미지"
+                  width={220}
+                  height={220}
+                  src="/images/default.png"
+                  alt="기본 상품 이미지"
                 />
-                <span className={productFavoriteCount}>
-                  {product.favoriteCount}
-                </span>
+                <span className={productName}>{product.name}</span>
+                <span className={productPrice}>{product.price}원</span>
+                <div className={favorite}>
+                  <Image
+                    width={16}
+                    height={16}
+                    src="/images/ic_heart.png"
+                    alt="좋아요 이미지"
+                  />
+                  <span className={productFavoriteCount}>
+                    {product.favoriteCount}
+                  </span>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className={pageNation}>
