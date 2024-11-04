@@ -401,3 +401,60 @@
 		}
 	}
 }
+
+.delModal {
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10000;
+
+	& .delModalContent {
+		background-color: white;
+		width: 298px;
+		height: 202px;
+		border-radius: 12px;
+		padding: 24px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		position: relative;
+
+		& img {
+			width: 24px;
+			height: 24px;
+		}
+
+		& .delModalText {
+			padding-bottom: 50px;
+		}
+
+		& .delModalButton {
+			display: inline-block;
+			width: 88px;
+			height: 48px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 8px;
+
+			&:first-child {
+				border: 1px solid var(--error-color);
+				position: absolute;
+				left: 50px;
+				bottom: 24px;
+			}
+
+			&:last-child {
+				background-color: var(--error-color);
+				border: none;
+				position: absolute;
+				right: 50px;
+				bottom: 24px;
+			}
+		}
+	}
+}

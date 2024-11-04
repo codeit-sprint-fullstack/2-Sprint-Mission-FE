@@ -19,9 +19,11 @@ instance.interceptors.response.use(res => res, async (error) => {
   const response = error.response; // 가로챈 리스폰스
 	const user = localStorage.getItem("user");
   if (user && (response?.status === 401 || response?.status === 403)) {
+		const userJSON = JSON.parse(user);
 		if (!originalRequest._retry) {
-			const res = await instance.post('/auth/refresh-token', { refreshToken: JSON.parse(user).refreshToken }, { _retry: true });
-			localStorage.setItem("user", JSON.stringify(res.data));
+			const res = await instance.post('/auth/refresh-token', { refreshToken: userJSON.refreshToken }, { _retry: true });
+			userJSON.accessToken = res.data.accessToken;
+			localStorage.setItem("user", JSON.stringify(userJSON));
 			originalRequest._retry = true;
 			return instance(originalRequest);
 		} else {

@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { getProductWithId, getProductWithIdComments, likeProductWithId, postProductWithIdComment, unlikeProductWithId } from "../apis/itemsService.js";
+import { deleteProductWithId, getProductWithId, getProductWithIdComments, likeProductWithId, postProductWithIdComment, unlikeProductWithId } from "../apis/itemsService.js";
 import mainStyles from './HomePage.module.css';
 import styles from './ItemDetailPage.module.css';
 import Comments from "../components/Comments.jsx";
@@ -10,6 +10,7 @@ import { useUser } from "../context/UserProvider.jsx";
 
 function ItemDetailPage() {
 	const [comment, setComment] = useState('');
+	const [delModal, setDelModal] = useState(false);
 	const user = useUser();
 	const navigate = useNavigate();
 	const { productId } = useParams();
@@ -92,7 +93,22 @@ function ItemDetailPage() {
 			<div className={styles.info}>
 				<div className={styles.head}>
 					<h2>{data.name}</h2>
-					{user && user?.user?.id === data.ownerId && <KebabMenu onEdit={() => {navigate(`/registration/${productId}`)}} onDel={() => {}} />}
+					{user && user?.user?.id === data.ownerId && <KebabMenu onEdit={() => {navigate(`/registration/${productId}`)}} onDel={() => {
+						setDelModal(true);
+					}} />}
+					{delModal && <div className={styles.delModal}>
+						<div className={styles.delModalContent}>
+							<img src="/images/ic_check.png" alt="check" />
+							<div className={styles.delModalText}>정말로 삭제하시겠습니까?</div>
+							<div className={styles.delModalButtons}>
+								<button className={styles.delModalButton} onClick={() => setDelModal(false)}>취소</button>
+								<button className={styles.delModalButton} onClick={async () => {
+									await deleteProductWithId(productId);
+									navigate('/items');
+								}}>삭제</button>
+							</div>
+						</div>
+					</div>}
 				</div>
 				<div className={styles.price}>{data.price.toLocaleString()}원</div>
 				<h3>상품 소개</h3>

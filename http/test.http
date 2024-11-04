@@ -1,0 +1,16 @@
+POST https://panda-market-api.vercel.app/auth/signIn
+Content-Type: application/json
+
+{
+	"email": "example@email.com",
+	"password": "password"
+}
+
+###
+
+POST https://panda-market-api.vercel.app/auth/refresh-token
+Content-Type: application/json
+
+{
+	"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksInNjb3BlIjoicmVmcmVzaCIsImlhdCI6MTczMDcwOTcwNCwiZXhwIjoxNzMxMzE0NTA0LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.lh7ZWFXuZ3y1raZ__1XRhxvRsQfEElLbPouGliRjuJQ"
+}
