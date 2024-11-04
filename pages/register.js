@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { postProduct } from "@/api/api";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
-import { validateField } from "@/utils/validateInputHelper";
+import { changeInputValue, validateField } from "@/utils/validateInputHelper";
 export default function Register() {
   const registerPage = `w-full h-full flex justify-center`;
   const registerContents = `flex flex-col justify-between
@@ -64,16 +64,14 @@ export default function Register() {
       console.error(`데이터 전송 실패: ${e.message}`);
     }
   };
-  const onChangeInfo = (type) => (e) => {
-    setProductInfo((prev) => ({
-      ...prev,
-      [type]: e.target.value
-    }));
+  const onChangeInfo = (fieldName) => (e) => {
+    const value = e.target.value;
+    changeInputValue(setProductInfo, fieldName, value);
     validateField(
       setValidation,
       setErrorMessage,
-      type,
-      e.target.value,
+      fieldName,
+      value,
       productInfo.tagList
     );
   };
@@ -94,6 +92,7 @@ export default function Register() {
       tagList: nextTagList
     }));
   };
+  const isSubmit = validateBtn();
   const registerBtn = validateBtn()
     ? `${basicRegisterBtn} bg-3692ff`
     : `${basicRegisterBtn} bg-9ca3af`;
@@ -105,7 +104,7 @@ export default function Register() {
 
           <button
             type="button"
-            disabled={!validateBtn()}
+            disabled={!isSubmit}
             className={registerBtn}
             onClick={handleSumbit}
           >
