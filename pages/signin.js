@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { signIn } from '@/lib/api/AuthService';
 import useLoginValidate from '@/hooks/useLoginValidate';
 import Modal from '@/components/Common/Modal';
 import { useAuth } from '@/lib/contexts/useAuth';
@@ -22,7 +21,7 @@ export default function Login() {
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
+    if (accessToken && router.pathname === '/signin') {
       router.push('/folder');
     }
   }, [router]);

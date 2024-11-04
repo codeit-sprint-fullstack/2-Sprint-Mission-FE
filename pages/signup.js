@@ -23,7 +23,7 @@ export default function SingUp() {
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
+    if (accessToken && router.pathname === '/signup') {
       router.push('/folder');
     }
   }, [router]);
