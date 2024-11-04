@@ -4,10 +4,13 @@ import { useRouter } from 'next/router';
 import Dropdown from '@/components/Common/Dropdown';
 import { deleteProduct } from '@/lib/api/ProductService';
 import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthProvider';
 
 export default function ProductInfo({ product }) {
   const router = useRouter();
   const [likeCount, setLikeCount] = useState(product.favoriteCount || 0);
+
+  useAuth(true);  // 인가된 사용자만 접근 허용
 
   const handleDelete = async () => {
     const confirmed = window.confirm('삭제하시겠습니까?');

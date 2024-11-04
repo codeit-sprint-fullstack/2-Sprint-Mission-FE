@@ -40,6 +40,14 @@ export default function useValidateLoginForm() {
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
 
+  // 로그인 실패시 에러메시지를 클릭 후 포커스아웃만으로 사라지도록 추가
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    setLoginData((prevData) => ({ ...prevData, [name]: value }));
+    const error = validateField(name, value);
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
+  };
+
   useEffect(() => {
     const isValid = Object.values(errors).every((error) => !error) &&
       loginData.email.trim() &&
@@ -52,6 +60,7 @@ export default function useValidateLoginForm() {
     loginData,
     errors,
     handleChange,
+    handleBlur,
     isFormValid,
     setErrors,
   };

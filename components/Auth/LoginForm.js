@@ -1,19 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Auth.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import SocialLogin from './SocialLogin';
 import useValidateLoginForm from '@/hooks/useValidateLoginForm';
-import { authApi } from '@/lib/api/AuthService';
 import { useRouter } from 'next/router';
 import Modal from '../Common/Modal';
+import { useAuth } from '@/contexts/AuthProvider';
 
 export default function LoginForm() {
-
   const {
     loginData,
     errors,
     handleChange,
+    handleBlur,
     isFormValid,
     setErrors,
   } = useValidateLoginForm();
@@ -22,6 +22,8 @@ export default function LoginForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
+  const { user, login } = useAuth();
 
   // 패스워드 표시/숨기기 토글
   const togglePasswordVisibility = () => {
@@ -39,22 +41,24 @@ export default function LoginForm() {
     if (!isFormValid) {
       return;
     }
-    
-    console.log('loginData', loginData);
-    try {
-      const res = await authApi.signIn(loginData);
-      //alert('로그인에 성공하였습니다.');
-      router.push('/items');
-    } catch (error) {
-      console.warn('로그인에 실패하였습니다', error.message);
+ 
+    const errorMessage = await login(loginData);  // AuthProvider의 login 호출
+    if (errorMessage) {
+      console.warn('로그인에 실패하였습니다', errorMessage);
       setErrors({
         email: '이메일을 확인해 주세요.', 
         password: '비밀번호를 확인해 주세요.'
       });
-      setModalMessage(error.message || '로그인에 실패하였습니다.');
+      setModalMessage(errorMessage || '로그인에 실패하였습니다.');
       setIsModalOpen(true);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      router.push('/items');
+    }
+  }, [user, router]);
 
   return (
     <>
@@ -90,6 +94,7 @@ export default function LoginForm() {
               placeholder="이메일을 입력해주세요"
               value={loginData.email}
               onChange={handleChange}
+              onBlur={handleBlur}
               required
             />
             {errors.email && (

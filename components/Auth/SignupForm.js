@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Auth.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,6 +7,7 @@ import useValidateSignupForm from '@/hooks/useValidateSignupForm';
 import { authApi } from '@/lib/api/AuthService';
 import { useRouter } from 'next/router';
 import Modal from '../Common/Modal';
+import { useAuth } from '@/contexts/AuthProvider';
 
 export default function SignupForm() {
   const {
@@ -21,6 +22,8 @@ export default function SignupForm() {
   const [passwordConfirmVisible, setPasswordConfirmVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
+  const { user, login } = useAuth();
 
   // 패스워드 표시/숨기기 토글
   const togglePasswordVisibility = () => {
@@ -48,20 +51,18 @@ export default function SignupForm() {
       passwordConfirmation: signupData.passwordConfirm, 
     };
 
-    const formattedSigninData = {
-      email: signupData.email,
-      password: signupData.password,
-    }
-
     try {
       const res = await authApi.signUp(formattedSignupData);
       if(res) {
         //setModalMessage('회원 가입이 성공적으로 처리되었습니다.');
-        //setIsModalOpen(true);        
-        const loginRes = await authApi.signIn(formattedSigninData);
-        if(loginRes) {
-          router.push('/items');
-        }
+        //setIsModalOpen(true);   
+
+        // 회원가입 성공 시 로그인
+        await login({
+          email: signupData.email,
+          password: signupData.password,
+        });
+        router.push('/items');
       }
     } catch (error) {
       console.warn('회원가입 실패: ', error.message);
@@ -73,6 +74,12 @@ export default function SignupForm() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    if (user) {
+      router.push('/items');
+    }
+  }, [user, router]);
 
   return (
     <>
