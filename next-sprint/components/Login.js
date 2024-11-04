@@ -1,8 +1,64 @@
+import { useMutation } from '@tanstack/react-query';
 import styles from './Login.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { login } from '@/lib/api';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Login() {
+  const router = useRouter();
+
+  const [values, setValues] = useState({
+    email: '',
+    password: ''
+  });
+
+  const [errors, setErrors] = useState({
+    email: '',
+    password: ''
+  });
+
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+
+    setValues((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: ''
+    }));
+
+    if (loginFailed) {
+      setLoginFailed(false);
+    }
+  }
+
+  const loginMutation = useMutation({
+    mutationFn: (userValues) => login(userValues),
+    onSuccess: () => {
+      router.push('/items');
+    },
+    onError: () => {
+      setErrors({
+        email: '이메일을 확인해 주세요.',
+        password: '비밀번호를 확인해 주세요.'
+      });
+      setLoginFailed(true);
+    }
+  });
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const { email, password } = values;
+    loginMutation.mutate({ email, password });
+  };
+
   return (
     <div className={styles.loginPage}>
       <header className={styles.header}>
@@ -14,24 +70,30 @@ export default function Login() {
         />
       </header>
       <main className={styles.main}>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleLogin}>
           <label className={styles.label}>
             <h4>이메일</h4>
             <input
-              id="email"
+              value={values.email}
               type="email"
               name="email"
               placeholder="이메일을 입력해주세요"
+              onChange={handleChange}
             />
+            {errors.email && <p className={styles.error}>{errors.email}</p>}
           </label>
           <label className={styles.label}>
             <h4>비밀번호</h4>
             <input
-              id="password"
+              value={values.password}
               type="password"
               name="password"
               placeholder="비밀번호를 입력해주세요"
+              onChange={handleChange}
             />
+            {errors.password && (
+              <p className={styles.error}>{errors.password}</p>
+            )}
             <Image
               width={24}
               height={24}
@@ -40,7 +102,19 @@ export default function Login() {
               className={styles.btnVisibility}
             />
           </label>
-          <button className={styles.loginBtn} type="button" name="login">
+          <button
+            style={{
+              backgroundColor: loginFailed
+                ? '#9ca3af'
+                : values.email && values.password
+                ? '#3692ff'
+                : '#9ca3af'
+            }}
+            className={styles.loginBtn}
+            type="submit"
+            name="login"
+            disabled={!values.email || !values.password || loginFailed}
+          >
             로그인
           </button>
         </form>
@@ -74,7 +148,9 @@ export default function Login() {
       </main>
       <footer className={styles.footer}>
         <span>판다마켓이 처음이신가요?</span>
-        <Link href="/signup">회원가입</Link>
+        <Link href="/signup" className={styles.link}>
+          회원가입
+        </Link>
       </footer>
     </div>
   );
