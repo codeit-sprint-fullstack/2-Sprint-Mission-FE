@@ -27,6 +27,16 @@
   border: 0.1rem solid var(--color-primary-100);
 }
 
+.error {
+  border: 0.1rem solid var(--color-error-red);
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .input {
   font-size: 1.6rem;
   font-weight: 400;
@@ -41,4 +51,11 @@
   &:focus {
     outline: none;
   }
+}
+
+.errorMessage {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-error-red);
+  padding-left: 1.6rem;
 }
