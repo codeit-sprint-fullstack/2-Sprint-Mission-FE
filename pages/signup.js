@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from '@/lib/axios';
 import { useAuth } from '@/lib/authContext';
 import { useRouter } from 'next/router';
+import Modal from '@/components/Modal';
 
 const SignupButton = createButton({
   style: 'btn_large',
@@ -18,12 +19,12 @@ export default function Signup() {
     password: '',
     passwordConfirmation: '',
   });
-  const [emailError, setEmailError] = useState();
-  const [passwordError, setPasswordError] = useState();
-  const [passwordCheckError, setPasswordCheckError] = useState();
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordCheckError, setPasswordCheckError] = useState('');
+	const [signupError, setSignupError] = useState(false);
   const { user, login } = useAuth();
 	const router = useRouter();
-	console.log('user :', user);
 
   const handleEmailChange = (e) => {
     const emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -78,9 +79,12 @@ export default function Signup() {
     try {
       const { email, password } = values;
       const res = await axios.post('/auth/signUp', values);
-      login({ email, password });
+      await login({ email, password });
+			router.push('/items');
     } catch (error) {
-      console.log(error.message);
+      if (error.response.status === 400) {
+				setSignupError(true);
+			}
     }
   };
 
@@ -191,6 +195,7 @@ export default function Signup() {
           </Link>
         </div>
       </div>
+			{signupError && <Modal onClose={() => setSignupError(false)}>사용 중인 이메일입니다.</Modal>}
     </div>
   );
 }

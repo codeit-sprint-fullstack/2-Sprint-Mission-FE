@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/authContext';
 import { useRouter } from 'next/router';
 import styles from '@/styles/Signup.module.css';
+import Modal from '@/components/Modal';
 
 const LoginButton = createButton({
   style: 'btn_large',
@@ -15,8 +16,9 @@ export default function Login() {
     email: '',
     password: '',
   });
-  const [emailError, setEmailError] = useState();
-  const [passwordError, setPasswordError] = useState();
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+	const [loginError, setLoginError] = useState(false);
   const { user, login } = useAuth();
 	const router = useRouter();
 
@@ -53,8 +55,14 @@ export default function Login() {
 
   const handleClick = async (e) => {
 		e.preventDefault();
-    await login(values);
-		router.push('/items');
+    try {
+			await login(values);
+			router.push('/items');
+		} catch {
+			setLoginError(true);
+			setEmailError('이메일을 확인해 주세요.');
+			setPasswordError('비밀번호를 확인해 주세요.');
+		}
   };
 
 	useEffect(() => {
@@ -135,6 +143,7 @@ export default function Login() {
           </Link>
         </div>
       </div>
+			{loginError && <Modal onClose={() => setLoginError(false)}>비밀번호가 일치하지 않습니다.</Modal>}
     </div>
   );
 }
