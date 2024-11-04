@@ -92,7 +92,7 @@ function ItemDetailPage() {
 			<div className={styles.info}>
 				<div className={styles.head}>
 					<h2>{data.name}</h2>
-					{user && user.user.id === data.ownerId && <KebabMenu onEdit={() => {}} onDel={() => {}} />}
+					{user && user?.user?.id === data.ownerId && <KebabMenu onEdit={() => {navigate(`/registration/${productId}`)}} onDel={() => {}} />}
 				</div>
 				<div className={styles.price}>{data.price.toLocaleString()}원</div>
 				<h3>상품 소개</h3>

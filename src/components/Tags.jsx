@@ -1,5 +1,5 @@
 import Delete from './Delete.jsx';
-import styles from '../pages/SignupPage.module.css';
+import styles from '../pages/RegisPage.module.css';
 
 function Tags({ tags, setValues }) {
 

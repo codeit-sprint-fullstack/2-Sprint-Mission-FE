@@ -25,7 +25,7 @@ function Header() {
 					</ul>
 				</nav>
 			</div>
-			{user ? <Link to="/profile"><div className={styles.userInfo}><img src={user?.user?.image ? user.user.image : "/images/ic_unknown.png"} alt="Profile" /> {user.user.nickname}</div></Link> : <Link to="/login" className={styles.a_button}>로그인</Link>}
+			{user ? <Link to="/profile"><div className={styles.userInfo}><img src={user?.user?.image ? user.user.image : "/images/ic_unknown.png"} alt="Profile" /> {user?.user?.nickname}</div></Link> : <Link to="/login" className={styles.a_button}>로그인</Link>}
 		</div>
 	</header>);
 }

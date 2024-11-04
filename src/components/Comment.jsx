@@ -37,7 +37,7 @@ function Comment({ comment, productId }) {
 				: (
 				<>
 					<div className={styles.commentContent}>{comment.content}</div>
-					{user && user.user.id === comment.writer.id && <KebabMenu onEdit={() => {setIsEditting(true)}} onDel={async () => {
+					{user && user?.user?.id === comment.writer.id && <KebabMenu onEdit={() => {setIsEditting(true)}} onDel={async () => {
 						deleteCommentMutation.mutate(comment.id);
 					}} />}
 				</>)}

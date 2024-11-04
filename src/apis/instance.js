@@ -18,7 +18,7 @@ instance.interceptors.response.use(res => res, async (error) => {
   const originalRequest = error.config;
   const response = error.response; // 가로챈 리스폰스
 	const user = localStorage.getItem("user");
-  if (user && response?.status === 401) {
+  if (user && (response?.status === 401 || response?.status === 403)) {
 		if (!originalRequest._retry) {
 			const res = await instance.post('/auth/refresh-token', { refreshToken: JSON.parse(user).refreshToken }, { _retry: true });
 			localStorage.setItem("user", JSON.stringify(res.data));

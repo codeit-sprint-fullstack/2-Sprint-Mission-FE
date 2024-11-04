@@ -10,6 +10,7 @@ import ViewportProvider from './context/ViewportProvider.jsx';
 import ItemsPage from './pages/ItemsPage.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ItemDetailPage from './pages/ItemDetailPage.jsx';
+import RegisPage from './pages/RegisPage.jsx';
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,10 @@ function Main() {
 								<Route path="items">
 									<Route index element={<ItemsPage />} />
 									<Route path=":productId" element={<ItemDetailPage />} />
+								</Route>
+								<Route path="registration">
+									<Route index element={<RegisPage />} />
+									<Route path=":productId" element={<RegisPage />} />
 								</Route>
 								<Route path="*" element={<NotFoundPage />} />
 							</Route>
