@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { login } from '@/lib/api';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Modal from './Modal';
 
 export default function Login() {
   const router = useRouter();
@@ -20,6 +21,9 @@ export default function Login() {
   });
 
   const [loginFailed, setLoginFailed] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [btnVisibility, setBtnVisibility] = useState(false);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -40,15 +44,24 @@ export default function Login() {
   }
 
   const loginMutation = useMutation({
-    mutationFn: (userValues) => login(userValues),
+    mutationFn: ({ email, password }) => login({ email, password }),
     onSuccess: () => {
       router.push('/items');
     },
-    onError: () => {
-      setErrors({
-        email: '이메일을 확인해 주세요.',
-        password: '비밀번호를 확인해 주세요.'
-      });
+    onError: (err) => {
+      if (err.response) {
+        if (err.response.data.message === '존재하지 않는 이메일입니다.') {
+          setModalMessage('존재하지 않는 이메일입니다.');
+          setIsModalOpen(true);
+          setErrors({ email: '이메일을 확인해 주세요.' });
+        } else if (
+          err.response.data.message === '비밀번호가 일치하지 않습니다.'
+        ) {
+          setModalMessage('비밀번호가 일치하지 않습니다.');
+          setIsModalOpen(true);
+          setErrors({ password: '비밀번호를 확인해 주세요.' });
+        }
+      }
       setLoginFailed(true);
     }
   });
@@ -57,6 +70,14 @@ export default function Login() {
     e.preventDefault();
     const { email, password } = values;
     loginMutation.mutate({ email, password });
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleVisibilityChange = () => {
+    setBtnVisibility(!btnVisibility);
   };
 
   return (
@@ -86,7 +107,7 @@ export default function Login() {
             <h4>비밀번호</h4>
             <input
               value={values.password}
-              type="password"
+              type={btnVisibility ? 'text' : 'password'}
               name="password"
               placeholder="비밀번호를 입력해주세요"
               onChange={handleChange}
@@ -97,9 +118,14 @@ export default function Login() {
             <Image
               width={24}
               height={24}
-              src="/images/btn_visibility.svg"
+              src={
+                btnVisibility
+                  ? '/images/btn_visibility_on.svg'
+                  : '/images/btn_visibility.svg'
+              }
               alt="비밀번호 표시 이미지"
               className={styles.btnVisibility}
+              onClick={handleVisibilityChange}
             />
           </label>
           <button
@@ -152,6 +178,11 @@ export default function Login() {
           회원가입
         </Link>
       </footer>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        message={modalMessage}
+      />
     </div>
   );
 }
