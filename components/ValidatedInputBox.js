@@ -11,7 +11,16 @@ export default function ValidatedInputBox({
   onClick,
   isShowPassword
 }) {
-  const { NAME, DESCRIPTION, PRICE, TAG, EMAIL, PASSWORD } = FIELD_TYPES;
+  const {
+    NAME,
+    DESCRIPTION,
+    PRICE,
+    TAG,
+    EMAIL,
+    NICKNAME,
+    PASSWORD,
+    CONFIRMPASSWORD
+  } = FIELD_TYPES;
   const convertClass = (type) => {
     switch (type) {
       case NAME:
@@ -39,10 +48,20 @@ export default function ValidatedInputBox({
           labelMessage: "이메일",
           placeholderMessage: "이메일을 입력해주세요"
         };
+      case NICKNAME:
+        return {
+          labelMessage: "닉네임",
+          placeholderMessage: "닉네임을 입력해주세요"
+        };
       case PASSWORD:
         return {
           labelMessage: "비밀번호",
           placeholderMessage: "비밀번호를 입력해주세요"
+        };
+      case CONFIRMPASSWORD:
+        return {
+          labelMessage: "비밀번호 확인",
+          placeholderMessage: "비밀번호를 다시 한 번 입력해주세요"
         };
       default:
         return {
@@ -54,7 +73,7 @@ export default function ValidatedInputBox({
   const { labelMessage, placeholderMessage } = convertClass(type);
   const isTag = type === TAG;
   const isDescription = type === DESCRIPTION;
-  const isPassword = type === PASSWORD;
+  const isPassword = type === PASSWORD || type === CONFIRMPASSWORD;
   const pwToggleOtherText = isPassword
     ? isShowPassword
       ? "text"

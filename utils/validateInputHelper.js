@@ -1,6 +1,15 @@
 import validator from "validator";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
-const { NAME, DESCRIPTION, PRICE, TAG, EMAIL, PASSWORD } = FIELD_TYPES;
+const {
+  NAME,
+  DESCRIPTION,
+  PRICE,
+  TAG,
+  EMAIL,
+  NICKNAME,
+  PASSWORD,
+  CONFIRMPASSWORD
+} = FIELD_TYPES;
 const { SUCCESS, FALSE } = VALIDATION_STATE;
 export const changeInputValue = (setFn, inputField, value) => {
   setFn((prev) => ({
@@ -9,12 +18,18 @@ export const changeInputValue = (setFn, inputField, value) => {
   }));
 };
 export const validateField = (
+  //함수시작
   setValiateFn,
   setErrorMessageFn,
   name,
   value,
-  tagList = []
+  inputValueState
 ) => {
+  const {
+    password: passwordValue,
+    confirmPassword: confirmPasswordValue,
+    tagList
+  } = inputValueState || {};
   const changeState = (validation, message) => {
     setErrorMessageFn((prev) => ({
       ...prev,
@@ -23,6 +38,16 @@ export const validateField = (
     setValiateFn((prev) => ({
       ...prev,
       [name]: validation
+    }));
+  };
+  const changeConfirmPasswordState = (validation, message) => {
+    setErrorMessageFn((prev) => ({
+      ...prev,
+      confirmPassword: message
+    }));
+    setValiateFn((prev) => ({
+      ...prev,
+      confirmPassword: validation
     }));
   };
   function isInteger(value) {
@@ -62,9 +87,9 @@ export const validateField = (
     case TAG:
       if (value.length < 1) changeState(FALSE, "1글자 이상 입력하세요");
       else if (value.length > 5) changeState(FALSE, "5글자 이내로 입력하세요");
-      else if (tagList.includes(value))
+      else if (tagList.includes(value)) {
         changeState(FALSE, "이미 등록된 태그 입니다");
-      else changeState(SUCCESS, "");
+      } else changeState(SUCCESS, "");
       break;
     case EMAIL:
       if (value.length < 1) changeState(FALSE, "1글자 이상 입력하세요");
@@ -72,9 +97,20 @@ export const validateField = (
         changeState(FALSE, "이메일이 아닙니다");
       else changeState(SUCCESS, "");
       break;
+    case NICKNAME:
+      if (value.length > 5) changeState(FALSE, "5글자 이내로 입력하세요");
+      else if (value.length < 1) changeState(FALSE, "닉네임을 입력하세요");
+      else changeState(SUCCESS, "");
     case PASSWORD:
       if (value.length < 8)
-        changeState(FALSE, "비밀번호를 8자 이상 입력해주세요");
+        changeState(FALSE, "비밀번호를 8자 이상 입력하세요");
+      else changeState(SUCCESS, "");
+      if (value !== confirmPasswordValue && confirmPasswordValue !== "")
+        changeConfirmPasswordState(FALSE, "비밀번호와 일치하지 않습니다");
+      break;
+    case CONFIRMPASSWORD:
+      if (value !== passwordValue)
+        changeState(FALSE, "비밀번호와 일치하지 않습니다");
       else changeState(SUCCESS, "");
       break;
   }

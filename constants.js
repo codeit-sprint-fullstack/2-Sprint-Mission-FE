@@ -11,7 +11,9 @@ export const FIELD_TYPES = Object.freeze({
   PRICE: "price",
   TAG: "tag",
   EMAIL: "email",
-  PASSWORD: "password"
+  NICKNAME: "nickname",
+  PASSWORD: "password",
+  CONFIRMPASSWORD: "confirmPassword"
 });
 export const VALIDATION_STATE = Object.freeze({
   INITIAL: "INITIAL",

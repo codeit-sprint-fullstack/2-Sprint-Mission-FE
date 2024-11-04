@@ -25,7 +25,7 @@ export default function Nav() {
     router.pathname === "/items" || router.pathname === "/register"
       ? activeClass
       : "";
-  const hideNavbarPages = ["/login", "signup"];
+  const hideNavbarPages = ["/login", "/signup"];
   const handleClickLoginBtn = () => router.push("/login");
   if (hideNavbarPages.includes(router.pathname)) return null;
   return (

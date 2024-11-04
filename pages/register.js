@@ -72,7 +72,7 @@ export default function Register() {
       setErrorMessage,
       fieldName,
       value,
-      productInfo.tagList
+      productInfo
     );
   };
   const onKeyDown = (e) => {

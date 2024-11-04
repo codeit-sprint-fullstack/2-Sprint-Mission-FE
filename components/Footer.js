@@ -15,7 +15,7 @@ export default function Footer() {
   const snsLink = "w-[116px] h-[20px] flex justify-between";
   const router = useRouter();
   const { pathname } = router;
-  const hiddenFooterPages = ["/login", "signup"];
+  const hiddenFooterPages = ["/login", "/signup"];
   if (hiddenFooterPages.includes(pathname)) return null;
   return (
     <div className={footer}>
