@@ -1,4 +1,4 @@
-.loginPage {
+.signupPage {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,7 +69,7 @@
   right: 2.3rem;
 }
 
-.loginBtn {
+.signupBtn {
   width: 64rem;
   height: 5.6rem;
   padding: 1.6rem 12.4rem;

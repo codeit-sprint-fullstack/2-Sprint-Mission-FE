@@ -19,3 +19,23 @@ export async function login({ email, password }) {
     throw error;
   }
 }
+
+export async function signup({
+  email,
+  nickname,
+  password,
+  passwordConfirmation
+}) {
+  try {
+    const res = await axiosInstance.post('/auth/signUp', {
+      email,
+      nickname,
+      password,
+      passwordConfirmation
+    });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

@@ -27,7 +27,7 @@ export default function Login() {
     if (accessToken) {
       router.push('/folder');
     }
-  });
+  }, [router]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -91,12 +91,14 @@ export default function Login() {
   return (
     <div className={styles.loginPage}>
       <header className={styles.header}>
-        <Image
-          width={396}
-          height={132}
-          src="/images/login_logo.svg"
-          alt="로그인 로고 이미지"
-        />
+        <Link href="/">
+          <Image
+            width={396}
+            height={132}
+            src="/images/login_logo.svg"
+            alt="로그인 로고 이미지"
+          />
+        </Link>
       </header>
       <main className={styles.main}>
         <form className={styles.form} onSubmit={handleLogin}>
