@@ -3,27 +3,31 @@ import styles from './Login.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { login } from '@/lib/api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Modal from './Modal';
 
 export default function Login() {
   const router = useRouter();
-
   const [values, setValues] = useState({
     email: '',
     password: ''
   });
-
   const [errors, setErrors] = useState({
     email: '',
     password: ''
   });
-
   const [loginFailed, setLoginFailed] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [btnVisibility, setBtnVisibility] = useState(false);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      router.push('/folder');
+    }
+  });
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -45,7 +49,11 @@ export default function Login() {
 
   const loginMutation = useMutation({
     mutationFn: ({ email, password }) => login({ email, password }),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (data.accessToken) {
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('refreshToekn', data.refreshToken);
+      }
       router.push('/items');
     },
     onError: (err) => {
