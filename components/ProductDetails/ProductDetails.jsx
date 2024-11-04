@@ -6,6 +6,7 @@ import product_default from "@/images/etc/product_default.svg";
 import selectImage from "@/images/board/select_img.svg";
 import user from "@/images/board/profile_img.svg";
 import heart_img from "@/images/board/heart_img.svg";
+import heart_full from "@/images/etc/heart_full.svg";
 import EditDeleteModal from "../EditDeleteModal/EditDeleteModal";
 import Popup from "../Popup/Popup";
 
@@ -98,9 +99,9 @@ export default function ProductDetails({ productId }) {
     const newFavoriteState = !product.isFavorite;
     try {
       if (newFavoriteState) {
-        await fetchApi(`/products/${productId}/favorite`, {}, "POST", true); // 좋아요 추가
+        await fetchApi(`/products/${productId}/favorite`, {}, "POST", true);
       } else {
-        await fetchApi(`/products/${productId}/favorite`, {}, "DELETE", true); // 좋아요 취소
+        await fetchApi(`/products/${productId}/favorite`, {}, "DELETE", true);
       }
       setProduct((prev) => ({
         ...prev,
@@ -158,17 +159,23 @@ export default function ProductDetails({ productId }) {
                 <div className={styles.like_container}>
                   <div className={styles.divider_col}></div>
                   <div className={styles.like_wrapper}>
-                    <Image
-                      src={heart_img}
-                      width={32}
-                      height={32}
-                      alt="하트 이미지"
-                      onClick={handleFavoriteToggle}
-                      style={{
-                        cursor: "pointer",
-                        opacity: product.isFavorite ? 1 : 0.5,
-                      }}
-                    />
+                    {product.isFavorite ? (
+                      <Image
+                        src={heart_img}
+                        width={32}
+                        height={32}
+                        alt="빈 하트"
+                        onClick={handleFavoriteToggle}
+                      />
+                    ) : (
+                      <Image
+                        src={heart_full}
+                        width={32}
+                        height={32}
+                        alt="채워진 하트"
+                        onClick={handleFavoriteToggle}
+                      />
+                    )}
                     <div className={styles.like_count}>
                       {product.favoriteCount}
                     </div>

@@ -4,7 +4,9 @@ import CommentItem from "@/components/Comment/CommentItem";
 import EditDeleteModal from "@/components/EditDeleteModal/EditDeleteModal";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import empty_img from "@/images/etc/img_default.svg";
+import empty_img from "@/images/etc/Img_inquiry_empty.svg";
+import back_img from "../../images/board/back_icon.svg";
+
 import { fetchApi } from "@/utils/axiosInstance";
 import styles from "./market.module.css";
 import Link from "next/link";
@@ -110,14 +112,14 @@ export default function Market() {
         newComment={newComment}
         onCommentChange={handleCommentChange}
         onCommentSubmit={handleCommentSubmit}
+        isInquiry={true}
       />
 
-      <div className="comment_container">
+      <div className={styles.comment_container}>
         {comment.length === 0 ? (
-          <div className="empty_comment">
+          <div className={styles.empty_comment}>
             <Image src={empty_img} alt="빈 이미지" />
-            <p>아직 댓글이 없어요,</p>
-            <p>지금 댓글을 달아보세요!</p>
+            <p>아직 문의가 없어요</p>
           </div>
         ) : (
           comment.map((comment) => (
@@ -137,7 +139,10 @@ export default function Market() {
       </div>
       <div className={styles.return_button_container}>
         <Link href="/items">
-          <button className={styles.return_list}>목록으로 돌아가기</button>
+          <button className={styles.return_list}>
+            목록으로 돌아가기
+            <Image src={back_img} alt="목록으로 돌아가기" />
+          </button>
         </Link>
       </div>
       {isModalOpen && (
