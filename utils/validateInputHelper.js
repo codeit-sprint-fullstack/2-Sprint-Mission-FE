@@ -102,12 +102,19 @@ export const validateField = (
       else if (value.length < 1) changeState(FALSE, "닉네임을 입력하세요");
       else changeState(SUCCESS, "");
     case PASSWORD:
+      console.log(confirmPasswordValue);
       if (value.length < 8)
         changeState(FALSE, "비밀번호를 8자 이상 입력하세요");
       else changeState(SUCCESS, "");
-      if (value !== confirmPasswordValue && confirmPasswordValue !== "")
+      if (
+        value !== confirmPasswordValue &&
+        confirmPasswordValue !== "" &&
+        confirmPasswordValue !== undefined
+      )
         changeConfirmPasswordState(FALSE, "비밀번호와 일치하지 않습니다");
+
       break;
+
     case CONFIRMPASSWORD:
       if (value !== passwordValue)
         changeState(FALSE, "비밀번호와 일치하지 않습니다");

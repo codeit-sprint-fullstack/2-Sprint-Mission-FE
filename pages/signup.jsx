@@ -47,6 +47,7 @@ export default function Signup() {
   };
   const isSubmit = ValidateBtn();
   const isShowPassword = showPassword === true;
+  const isShowConfirmPassword = showConfirmPassword === true;
   return (
     <div className="flex justify-center w-full h-full">
       <div
@@ -101,7 +102,7 @@ export default function Signup() {
           <ValidatedInputBox
             type={CONFIRMPASSWORD}
             value={inputValue.confirmPassword}
-            isShowPassword={isShowPassword}
+            isShowPassword={isShowConfirmPassword}
             onClick={handleChangeShowConfirmPassword}
             onChange={handleChangeInputValue(CONFIRMPASSWORD)}
             message={errorMessage.confirmPassword}
