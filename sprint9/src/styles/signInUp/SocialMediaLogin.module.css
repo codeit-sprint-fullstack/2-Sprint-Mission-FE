@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f2ff;
+  padding: 1.6rem 2.3rem;
+}
+.text {
+  color: var(--color-gray-800);
+  font-size: 1.6rem;
+}
+
+.snsContainer {
+  display: flex;
+  gap: 1.6rem;
+}

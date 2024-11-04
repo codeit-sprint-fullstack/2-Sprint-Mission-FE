@@ -1,6 +1,6 @@
-import style from "@/styles/SignInput.module.css";
+import style from "@/src/styles/signInUp/SignInput.module.css";
 import Image from "next/image";
-import visibleIcon from "../../../public/assets/icon_visible.svg";
+import visibleIcon from "@/public/assets/icon_visible.svg";
 
 const TYPE = [
   { value: "email", title: "이메일", placeholder: "이메일을", icon: false },
@@ -24,7 +24,7 @@ export default function SignInput({ value }: ButtonProps) {
   }
 
   return (
-    <div>
+    <div className={style.container}>
       <label className={style.label}>{inputType.title}</label>
       <div className={style.inputContainer}>
         <input

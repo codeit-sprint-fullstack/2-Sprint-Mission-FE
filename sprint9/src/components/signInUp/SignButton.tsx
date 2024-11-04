@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import style from "@/styles/SignButton.module.css";
+import style from "@/src/styles/signInUp/SignButton.module.css";
 
 interface ButtonProps {
   children: ReactNode;
