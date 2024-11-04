@@ -36,9 +36,13 @@ export default function Login() {
   };
 
   const mutation = useMutation({
-    mutationFn: () => login({ email, password }),
+    mutationFn: () =>
+      login({
+        email: values.email,
+        password: values.password
+      }),
     onSuccess: (data) => {
-      if (data.accessToken) {
+      if (data) {
         router.push('/items');
       }
     },
@@ -64,9 +68,7 @@ export default function Login() {
 
     mutation.mutate({
       email: values.email,
-      nickname: values.nickname,
-      password: values.password,
-      passwordConfirmation: values.passwordConfirmation
+      password: values.password
     });
   };
 

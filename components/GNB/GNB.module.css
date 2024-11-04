@@ -72,14 +72,34 @@
 
     border-radius: 0.8rem;
 
+    color: white;
     background-color: #3292FF;
 }
 
 .auth a {
-    color: white;
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 1.909rem;
+}
+
+.login-success {
+    display: flex;
+    align-items: center;
+
+    gap: 2rem;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.user span {
+    color: #4B5563;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.178rem;
 }
 
 /* -- Tablet -- */
