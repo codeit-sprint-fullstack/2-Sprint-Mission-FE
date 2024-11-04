@@ -1,10 +1,9 @@
-import ProductList from "@/components/Items/ProductList";
+import { useEffect, useState } from "react";
 import useMaxItems from "@/hooks/useMaxItems";
+import ProductList from "@/components/Items/ProductList";
 import { getProductList } from "@/lib/api/ProductService";
 import { getDeviceTypeInitialCount } from "@/lib/getDeviceTypeInitialCount";
-import styles from '@/styles/ProductPage.module.css';
-import Link from "next/link";
-import { useEffect, useState } from "react";
+//import styles from '@/styles/ItemPage.module.css';  // 임시 주석 : 베스트 상품시 추가 예정
 
 export async function getServerSideProps(context) {
   const userAgent = context.req.headers['user-agent'];
@@ -33,7 +32,7 @@ export async function getServerSideProps(context) {
   } 
 }
 
-export default function ProductPage({ initialProducts, initialProductCount }) {
+export default function ItemPage({ initialProducts, initialProductCount }) {
   const maxProductCount = useMaxItems() || initialProductCount; // 클라이언트에서만 접근 가능
   const [displayedProducts, setDisplayedProducts] = useState(initialProducts);
 
@@ -49,12 +48,12 @@ export default function ProductPage({ initialProducts, initialProductCount }) {
   return (
     <div>
       {/* 
-      <h2 className={styles.sectionTitle}>베스트 게시글</h2>
+      <h2 className={styles.sectionTitle}>베스트 상품</h2>
 
       {displayedBestArticles.length > 0 ? (
         <BestArticleList articles={displayedBestArticles} />
       ) : (
-        <p>베스트 게시글이 없습니다.</p>
+        <p>베스트 상품이 없습니다.</p>
       )}
       */}
 

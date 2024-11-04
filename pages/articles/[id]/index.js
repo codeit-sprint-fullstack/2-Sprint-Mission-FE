@@ -2,7 +2,7 @@ import { getArticleById } from '@/lib/api/ArticleService';
 import ArticleInfo from '@/components/ArticleDetail/ArticleInfo';
 import CommentForm from '@/components/ArticleDetail/CommentForm';
 import CommentList from '@/components/ArticleDetail/CommentList';
-import BackButton from '@/components/ArticleDetail/BackButton';
+import BackButton from '@/components/Common/BackButton';
 import { generateRandomNickname, getRandomInt } from '@/lib/utils';
 import formatDate from '@/lib/formatDate';
 import styles from '@/styles/ArticleDetailPage.module.css';

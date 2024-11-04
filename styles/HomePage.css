@@ -192,8 +192,8 @@
 }
 
 /* Tablet 사이즈 */
-/*@media (max-width: 1199px) and (min-width: 744px) {*/
-@media (max-width: 119.9rem) and (min-width: 74.4rem) {  
+@media (max-width: 1199px) and (min-width: 744px) {
+
   /* 공통 영역 */
   .gnb {
     padding: 0 2.4rem;                  
@@ -315,8 +315,7 @@
 }  
 
 /* Mobile 사이즈 */
-/*@media (max-width: 743px) {*/
-@media (max-width: 74.3rem) {
+@media (max-width: 743px) {
   /* 공통영역 */
   .gnb {
     padding: 0 1.6rem;                 

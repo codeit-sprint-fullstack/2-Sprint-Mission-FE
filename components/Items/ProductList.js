@@ -77,7 +77,9 @@ export default function ProductList({ initialProducts }) {
           <div className={styles['loading-message']}>상품을 불러오는 중입니다...</div>
         ) : (
           products.map((product) => (
-            <ProductItem key={product.id} product={product} />
+            <Link key={product.id} href={`/items/${product.id}`} >
+              <ProductItem product={product} />
+            </Link>
           ))
         )}
       </div>

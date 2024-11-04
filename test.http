@@ -42,4 +42,4 @@ GET https://panda-market-api.vercel.app/products?page=1&pageSize=10&orderBy=rece
 ###
 GET https://panda-market-api.vercel.app/products/355
 ###
-GET https://panda-market-api.vercel.app/products/356
+GET https://panda-market-api.vercel.app/products/358
