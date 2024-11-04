@@ -6,6 +6,7 @@ import Footer from '@/components/Footer/Footer';
 import Container from '@/components/Container';
 import localFont from 'next/font/local';
 import { useRouter } from 'next/router';
+import { AuthProvider } from '@/lib/contexts/useAuth';
 
 const pretendard = localFont({
   src: '../public/fonts/PretendardVariable.woff2',
@@ -23,17 +24,19 @@ export default function App({ Component, pageProps }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Head>
-        <title>판다마켓</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className={pretendard.className}>
-        {!isLoginPage && !isSingupPage && <GNB />}
-        <Container>
-          <Component {...pageProps} />
-        </Container>
-        {!isLoginPage && !isSingupPage && <Footer />}
-      </div>
+      <AuthProvider>
+        <Head>
+          <title>판다마켓</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className={pretendard.className}>
+          {!isLoginPage && !isSingupPage && <GNB />}
+          <Container>
+            <Component {...pageProps} />
+          </Container>
+          {!isLoginPage && !isSingupPage && <Footer />}
+        </div>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

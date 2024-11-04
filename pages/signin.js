@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { signIn } from '@/lib/api/AuthService';
 import useLoginValidate from '@/hooks/useLoginValidate';
 import Modal from '@/components/Common/Modal';
+import { useAuth } from '@/lib/contexts/useAuth';
 
 export default function Login() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function Login() {
     email: '',
     password: ''
   });
+  const { login } = useAuth();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
@@ -34,14 +36,9 @@ export default function Login() {
   };
 
   const mutation = useMutation({
-    mutationFn: async (userData) => {
-      const res = await signIn(userData);
-      return res;
-    },
+    mutationFn: () => login({ email, password }),
     onSuccess: (data) => {
       if (data.accessToken) {
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
         router.push('/items');
       }
     },
