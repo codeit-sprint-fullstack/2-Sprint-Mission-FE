@@ -9,7 +9,9 @@ export const FIELD_TYPES = Object.freeze({
   NAME: "name",
   DESCRIPTION: "description",
   PRICE: "price",
-  TAG: "tag"
+  TAG: "tag",
+  EMAIL: "email",
+  PASSWORD: "password"
 });
 export const VALIDATION_STATE = Object.freeze({
   INITIAL: "INITIAL",

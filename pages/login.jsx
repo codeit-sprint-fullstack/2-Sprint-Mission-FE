@@ -1,7 +1,43 @@
+import { useState } from "react";
 import Link from "next/link";
 import ValidatedInputBox from "@/components/ValidatedInputBox";
 import Image from "next/image";
+import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
+import { changeInputValue, validateField } from "@/utils/validateInputHelper";
 export default function Login() {
+  const { EMAIL, PASSWORD } = FIELD_TYPES;
+  const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
+  const [showPassword, setShowPassword] = useState(false);
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: ""
+  });
+  const [validation, setValidation] = useState({
+    email: INITIAL,
+    password: INITIAL
+  });
+  const [errorMessage, setErrorMessage] = useState({
+    email: "",
+    password: ""
+  });
+
+  const ValidateBtn = () => {
+    const result = Object.entries(validation).every(
+      ([key, value]) => value === SUCCESS
+    );
+    return result;
+  };
+  const handleChangeShow = () => setShowPassword((prev) => !prev);
+  const handleChangeInputValue = (fieldName) => (e) => {
+    const value = e.target.value;
+    changeInputValue(setInputValue, fieldName, value);
+    validateField(setValidation, setErrorMessage, fieldName, value);
+  };
+  const handleSubmit = () => {
+    console.log(inputValue);
+  };
+  const isSubmit = ValidateBtn();
+  const isShowPassword = showPassword === true;
   return (
     <div className="flex justify-center w-full h-full">
       <div
@@ -33,19 +69,47 @@ export default function Login() {
           </span>
         </Link>
         <div className="w-full flex flex-col items-center gap-[24px] mt-[40px] sm:mt-[24px]">
-          <ValidatedInputBox type="name" />
-          <ValidatedInputBox type="name" />
-          <button className="w-full h-[56px] rounded-[40px] text-[16px] text-f3f4f6 bg-9ca3af">
+          <ValidatedInputBox
+            type={EMAIL}
+            value={inputValue.email}
+            onChange={handleChangeInputValue(EMAIL)}
+            message={errorMessage.email}
+          />
+          <ValidatedInputBox
+            type={PASSWORD}
+            value={inputValue.password}
+            isShowPassword={isShowPassword}
+            onClick={handleChangeShow}
+            onChange={handleChangeInputValue(PASSWORD)}
+            message={errorMessage.password}
+          />
+          <button
+            className={`w-full h-[56px] rounded-[40px] text-[16px] text-f3f4f6 ${
+              isSubmit ? "bg-3692ff" : "bg-9ca3af"
+            }`}
+            onClick={handleSubmit}
+            disabled={!isSubmit}
+          >
             로그인
           </button>
           <div className="w-full h-[74px] flex justify-between items-center bg-e6f2ff">
             <span className="ml-[23px]">간편 로그인하기</span>
             <div className="w-[100px] h-[42px] mr-[23px] flex justify-between">
               <Link href="https://www.google.com" target="_blank">
-                <Image width={42} height={42} src="/images/ic_google.png" />
+                <Image
+                  width={42}
+                  height={42}
+                  src="/images/ic_google.png"
+                  alt="구글아이콘"
+                />
               </Link>
               <Link href="https://www.kakao.com" target="_blank">
-                <Image width={42} height={42} src="/images/ic_kakao.png" />
+                <Image
+                  width={42}
+                  height={42}
+                  src="/images/ic_kakao.png"
+                  alt="카카오아이콘"
+                />
               </Link>
             </div>
           </div>

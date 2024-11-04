@@ -1,8 +1,9 @@
 import ValidatedInputBox from "@/components/ValidatedInputBox";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { postProduct } from "@/api/api";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
+import { validateField } from "@/utils/validateInputHelper";
 export default function Register() {
   const registerPage = `w-full h-full flex justify-center`;
   const registerContents = `flex flex-col justify-between
@@ -68,7 +69,13 @@ export default function Register() {
       ...prev,
       [type]: e.target.value
     }));
-    validateField(type, e.target.value);
+    validateField(
+      setValidation,
+      setErrorMessage,
+      type,
+      e.target.value,
+      productInfo.tagList
+    );
   };
   const onKeyDown = (e) => {
     if (e.key === "Enter" && e.target.value.trim()) {
@@ -86,62 +93,6 @@ export default function Register() {
       ...prev,
       tagList: nextTagList
     }));
-  };
-  const validateField = (name, value) => {
-    const changeState = (validation, message) => {
-      setErrorMessage((prev) => ({
-        ...prev,
-        [name]: message
-      }));
-      setValidation((prev) => ({
-        ...prev,
-        [name]: validation
-      }));
-    };
-    function isInteger(value) {
-      // 숫자 타입일 경우
-      if (typeof value === "number") {
-        return Number.isInteger(value);
-        //return true;
-      }
-      if (typeof value === "string") {
-        // 문자열이 정수로 변환 가능한지 체크
-        const trimmedValue = value.trim(); // 공백 제거
-        const parseIntValue = parseInt(trimmedValue);
-        const result =
-          !isNaN(parseIntValue) && parseIntValue.toString() === trimmedValue;
-        return result;
-      }
-      return false;
-    }
-    switch (name) {
-      case NAME:
-        if (value.length < 1) changeState(FALSE, "1글자 이상 입력하세요");
-        else if (value.length > 10)
-          changeState(FALSE, "10글자 이내로 입력하세요");
-        else changeState(SUCCESS, "");
-        break;
-      case DESCRIPTION:
-        if (value.length < 10) changeState(FALSE, "10글자 이상 입력하세요");
-        else if (value.length > 100)
-          changeState(FALSE, "100글자 이내로 입력하세요");
-        else changeState(SUCCESS, "");
-        break;
-      case PRICE:
-        if (!isInteger(value)) changeState(FALSE, "정수를 입력해주세요");
-        else if (Number(value) < 1)
-          changeState(FALSE, "1이상의 값을 넣어주세요");
-        else changeState(SUCCESS, "");
-        break;
-      case TAG:
-        if (value.length < 1) changeState(FALSE, "1글자 이상 입력하세요");
-        else if (value.length > 5)
-          changeState(FALSE, "5글자 이내로 입력하세요");
-        else if (productInfo.tagList.includes(value))
-          changeState(FALSE, "이미 등록된 태그 입니다");
-        else changeState(SUCCESS, "");
-        break;
-    }
   };
   const registerBtn = validateBtn()
     ? `${basicRegisterBtn} bg-3692ff`
