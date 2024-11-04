@@ -134,7 +134,7 @@ function ItemDetailPage() {
 			</div>
 		</div>
 		<div className={styles.backToItems}>
-			<button className={styles.a_button} onClick={() => navigate('/items')}>목록으로 돌아가기</button>
+			<button className={styles.a_button} onClick={() => navigate('/items')}>목록으로 돌아가기 <img src="/images/ic_back.png" alt="back" /></button>
 		</div>
 	</main>);
 }

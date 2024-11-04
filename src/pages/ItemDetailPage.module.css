@@ -374,3 +374,30 @@
 		}
 	}
 }
+
+.backToItems {
+	margin: 3em auto;
+	display: inline-block;
+
+	& .a_button {
+		text-decoration: none;
+		font-size: var(--text-lg);
+		background-color: var(--primary-color-100);
+		color: var(--secondary-color-gray100);
+		font-weight: 600;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 0;
+		margin: 8px 0;
+		float: right;
+		padding: 6px 16px;
+		border-radius: 8px;
+
+		& img {
+			width: 24px;
+			height: 24px;
+			vertical-align: middle;
+		}
+	}
+}
