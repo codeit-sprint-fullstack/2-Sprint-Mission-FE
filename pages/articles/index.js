@@ -1,6 +1,6 @@
 import styles from '@/styles/Article.module.css';
 import { useState, useEffect } from 'react';
-import { getArticleList } from '@/lib/api/ArticleService';
+import { getArticleList, getArticleCount } from '@/lib/api/ArticleService';
 import ArticleList from '@/components/ArticleList/ArticleList';
 import BestArticleList from '@/components/BestArticleList/BestArticleList';
 import Search from '@/components/ArticleList/Search';
@@ -11,17 +11,12 @@ import useResize from '@/hooks/useResize';
 
 export async function getServerSideProps() {
   try {
+    const totalCount = await getArticleCount();
+    const articles = await getArticleList({ page: 1, pageSize: totalCount });
+
     const bestArticles = await getArticleList({
       page: 1,
-      pageSize: 3,
-      orderBy: 'recent'
-    });
-
-    const articles = await getArticleList({
-      page: 1,
-      pageSize: 5,
-      orderBy: 'recent',
-      keyword: ''
+      pageSize: 3
     });
 
     return {
@@ -42,7 +37,7 @@ export default function Article({
   articles,
   bestArticles: initialBestArticles
 }) {
-  const [bestArticles, setBestArticles] = useState(initialBestArticles.list);
+  const [bestArticles, setBestArticles] = useState(initialBestArticles);
   const bestPageSize = useResize();
   const [filteredArticles, setFilteredArticles] = useState(articles);
 
@@ -55,8 +50,7 @@ export default function Article({
     async function fetchBestArticles() {
       const res = await getArticleList({
         page: 1,
-        pageSize: bestPageSize,
-        orderBy: 'recent'
+        pageSize: bestPageSize
       });
       setBestArticles(res);
     }
