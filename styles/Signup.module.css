@@ -50,9 +50,9 @@
 }
 
 .errorMessage {
-  display: none;
   color: var(--error-red);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   font-weight: 600;
   margin: 8px 0 0 16px;
 }

@@ -16,12 +16,13 @@ export default function NewArticle() {
   async function handleSubmit(e) {
     e.preventDefault();
     const data = {
-      title,
-      content,
+			image: "",
+      title: "",
+      content: "",
     };
 
     try {
-      const res = await axios.post('/articles/', data);
+      const res = await axios.post('/articles', data);
       const newArticle = res.data;
 
       router.push(`/board/${newArticle.id}`);

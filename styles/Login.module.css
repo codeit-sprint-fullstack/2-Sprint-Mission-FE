@@ -50,8 +50,7 @@
   border: 1px solid var(--primary-100);
 }
 
-.error-msg {
-  display: none;
+.errorMessage {
   color: var(--error-red);
   font-size: 1.5rem;
   font-weight: 600;

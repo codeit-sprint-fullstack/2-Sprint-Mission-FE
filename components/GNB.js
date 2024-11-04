@@ -2,12 +2,14 @@ import Link from 'next/link';
 import styles from './GNB.module.css';
 import createButton from './Button';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/lib/authContext';
 
 const LoginButton = createButton({
   style: 'btn_small_40',
 });
 
 export default function GNB() {
+  const { user, logout } = useAuth(); // FIXME: 테스트 편의를 위해 로그아웃 버튼 임시 추가함
   const router = useRouter();
   const isBoard = router.pathname.startsWith('/board');
   const isItems = router.pathname.startsWith('/items');
@@ -42,9 +44,13 @@ export default function GNB() {
           </div>
         </div>
         <div className={styles.GNBRight}>
-          <Link href="/login">
-            <LoginButton>로그인</LoginButton>
-          </Link>
+          {!user ? (
+            <Link href="/login">
+              <LoginButton>로그인</LoginButton>
+            </Link>
+          ) : (
+            <LoginButton onClick={logout}>로그아웃</LoginButton>
+          )}
         </div>
       </div>
     </header>
