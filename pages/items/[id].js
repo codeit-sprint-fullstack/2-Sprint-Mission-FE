@@ -55,9 +55,25 @@ export default function ProductDetail({ product, productComments }) {
           />
           <div className={styles[`contents-wrap`]}>
             <div className={styles.contents}>
-              <div className={styles.title}>
-                <p>{product.name}</p>
-                <h1>{formatPrice(product.price)}원</h1>
+              <div className={styles[`title-menu`]}>
+                <div className={styles.title}>
+                  <p>{product.name}</p>
+                  <h1>{formatPrice(product.price)}원</h1>
+                </div>
+                <div className={styles.menu}>
+                  <Image
+                    src="/images/ic_kebab.png"
+                    width={24}
+                    height={24}
+                    onClick={handleMenuClick}
+                    alt="메뉴 아이콘"
+                  />
+                  {dropdownOpen && (
+                    <div ref={dropdownRef} className={styles.dropdown}>
+                      <ProductDropdown />
+                    </div>
+                  )}
+                </div>
               </div>
               <div className={styles[`description-tags`]}>
                 <div className={styles[`description-wrap`]}>

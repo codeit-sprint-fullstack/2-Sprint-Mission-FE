@@ -10,7 +10,7 @@ export default function DropdownMenu() {
   const handleDelete = async () => {
     try {
       await deleteArticle(id);
-      return router.push('/');
+      return router.push('/articles');
     } catch (err) {
       console.error('삭제 요청 중 오류 발생:', err);
     }

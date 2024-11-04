@@ -48,6 +48,11 @@
     gap: 2.4rem;
 }
 
+.title-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
 .title {
     display: flex;
     flex-direction: column;
@@ -69,6 +74,17 @@
 .title h1 {
     font-size: 4rem;
     line-height: 4.773rem;
+}
+
+.menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 0;
+    left: 2rem;
 }
 
 .description-tags {
