@@ -9,9 +9,10 @@ import selectImage from "../../images/board/select_img.svg";
 import user from "../../images/board/profile_img.svg";
 import like_button from "../../images/board/heart_btn.svg";
 import back from "../../images/board/back_icon.svg";
-import empty_img from "../../images/board/reply_empty.svg";
+import empty_img from "@/images/etc/img_default.svg";
 import { useRouter } from "next/router";
-import CommentItem from "@/components/CommentItem/CommentItem";
+import CommentItem from "@/components/Comment/CommentItem";
+import CommentForm from "@/components/Comment/CommentForm";
 
 const fetchArticleData = async (id) => {
   if (id) {
@@ -168,26 +169,11 @@ export default function Board() {
           <p>{article?.content}</p>
         </div>
       </div>
-      <div className={styles.comment_register_container}>
-        <h4>댓글달기</h4>
-        <textarea
-          placeholder="댓글을 입력해주세요."
-          className={styles.comment_textarea}
-          value={newComment}
-          onChange={handleCommentChange}
-        ></textarea>
-        <div className={styles.buttion_container}>
-          <button
-            className={`${styles.register_buttion} ${
-              newComment.trim().length > 0 ? styles.active_button : ""
-            }`}
-            onClick={handleCommentSubmit}
-            disabled={newComment.trim().length === 0}
-          >
-            등록
-          </button>
-        </div>
-      </div>
+      <CommentForm
+        newComment={newComment}
+        onCommentChange={handleCommentChange}
+        onCommentSubmit={handleCommentSubmit}
+      />
 
       <div className={styles.comment_container}>
         {comment.length === 0 ? (

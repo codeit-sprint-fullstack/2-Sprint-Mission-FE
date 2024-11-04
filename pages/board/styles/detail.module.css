@@ -64,7 +64,7 @@
   text-indent: 20px;
 }
 
-.buttion_container {
+.button_container {
   display: flex;
   justify-content: flex-end;
 }
@@ -115,7 +115,7 @@
   width: 90%;
 }
 
-.register_buttion,
+.register_button,
 .edit_button {
   width: 74px;
   height: 42px;
@@ -127,7 +127,7 @@
   cursor: pointer;
 }
 
-.register_buttion.active_button {
+.register_button.active_button {
   background-color: #3692ff;
   cursor: pointer;
 }

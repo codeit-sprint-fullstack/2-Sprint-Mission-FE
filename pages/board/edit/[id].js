@@ -57,7 +57,7 @@ export default function Register() {
         <div className={styles.register_title}>
           <h2>게시글 수정</h2>
           <button
-            className={`${styles.register_buttion} ${
+            className={`${styles.register_button} ${
               isButtonEnabled ? styles.active_button : ""
             }`}
             onClick={handleUpdate}
