@@ -8,6 +8,25 @@ Content-Type: application/json
 
 ###
 
+POST https://panda-market-api.vercel.app/auth/signIn
+Content-Type: application/json
+
+{
+	"email": "example@email.cm",
+	"password": "password"
+}
+
+###
+
+POST https://panda-market-api.vercel.app/auth/signIn
+Content-Type: application/json
+
+{
+	"email": "example@email.com",
+	"password": "passwo"
+}
+
+###
 POST https://panda-market-api.vercel.app/auth/refresh-token
 Content-Type: application/json
 

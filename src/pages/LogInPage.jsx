@@ -32,6 +32,7 @@ function LogInPage() {
 		const { email, password } = data;
 		try {
 			const res = await postLogin({ email, password });
+			console.log(res);
 			if (res?.message) {
 				setError(res);
 			} else {
@@ -40,7 +41,8 @@ function LogInPage() {
 				navigate("/items");
 			}
 		} catch (err) {
-			setError(err);
+			console.log(err);
+			setError(err.response.data);
 		}
 	};
 

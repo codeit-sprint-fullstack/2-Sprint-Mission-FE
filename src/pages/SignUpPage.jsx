@@ -45,7 +45,8 @@ function SignUpPage() {
 				navigate("/items");
 			}
 		} catch (err) {
-			setError(err);
+			console.log(err);
+			setError(err?.response?.data);
 		}
 	};
 
