@@ -1,3 +1,4 @@
+import { useState } from "react";
 import style from "@/src/styles/signInUp/SignInput.module.css";
 import Image from "next/image";
 import visibleIcon from "@/public/assets/icon_visible.svg";
@@ -17,6 +18,7 @@ interface ButtonProps {
 }
 
 export default function SignInput({ value }: ButtonProps) {
+  const [isFocused, setIsFocused] = useState(false);
   const inputType = TYPE.find((type) => type.value === value);
 
   if (!inputType) {
@@ -26,10 +28,14 @@ export default function SignInput({ value }: ButtonProps) {
   return (
     <div className={style.container}>
       <label className={style.label}>{inputType.title}</label>
-      <div className={style.inputContainer}>
+      <div
+        className={`${style.inputContainer} ${isFocused ? style.focused : ""}`}
+      >
         <input
           className={style.input}
           placeholder={`${inputType.placeholder} 입력해주세요`}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
         {inputType.icon && <Image src={visibleIcon} alt="Visible Icon" />}
       </div>
