@@ -56,13 +56,13 @@
 - [x] 상품 상세 데이터는 '/products/{productId}' GET 메서드 사용해 불러오세요. 이때, 상품 상세 조회는 인가된 사용자만 이용할 수 있도록 합니다.
 	- [x] 상품에 대한 댓글 조회도 가능합니다.
 - [x] 상품 수정 및 삭제 기능을 API를 활용해 구현합니다. 이때, 인가된 사용자만 이용할 수 있도록 합니다.
-	- [ ] 상품 수정은 '/products/{productId}' PUT을 사용합니다.
+	- [x] 상품 수정은 '/products/{productId}' PUT을 사용합니다.
 	- [x] 상품 삭제는 '/products/{productId}' DELETE를 사용합니다.
-- [ ] 상품 삭제 전, 확인 모달을 띄워주세요.
+- [x] 상품 삭제 전, 확인 모달을 띄워주세요.
 - [x] 상품에 대한 좋아요 및 좋아요 취소 기능을 https://panda-market-api.vercel.app/docs에 명세된 '/products/{productId}/favorite' POST & DELETE 활용해 구현합니다. 이때 인가된 사용자만 좋아요 기능을 이용할 수 있도록 합니다.
 - [x] 댓글 생성 및 삭제 기능을 API를 활용해 구현합니다. 이때, 인가된 사용자만 이용할 수 있도록 합니다.
-	- [x] 댓글 수정은 https://panda-market-api.vercel.app/docs에 명세된 '/products/{productId}/comments' PUT을 사용합니다.
-	- [x] 댓글 삭제는 https://panda-market-api.vercel.app/docs에 명세된 '/products/{productId}/comments' DELETE를 사용합니다.
+	- [x] 댓글 수정은 https://panda-market-api.vercel.app/docs에 명세된 '/comments/{commentId}' PUT을 사용합니다.
+	- [x] 댓글 삭제는 https://panda-market-api.vercel.app/docs에 명세된 '/comments/{commentId}' DELETE를 사용합니다.
 
 ### 심화 요구사항
 
@@ -82,6 +82,7 @@
 #### React-Query로 마이그레이션
 
 - [x] fetch 혹은 axios로 구현된 기존의 API 요청 코드를 React-Qeury로 마이그레이션 합니다.
+	// React-Query 로 쓰게되면 useEffect 를 안써야 할것도 같은데, Too many re-render error 가 나서 어쩔수 없이 useEffect 를 쓰긴 했습니다. 뭔가가 잘못된것도 같은데, 어디를 고쳐야할지 잘 감이 안잡히네요.
 
 #### 로딩 및 에러 핸들링
 
