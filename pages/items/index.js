@@ -105,7 +105,7 @@ export default function Items() {
               placeholder="검색할 상품을 입력해주세요"
             ></input>
           </div>
-          <Link href="/register" className={registerBtn}>
+          <Link href="/items/write" className={registerBtn}>
             상품 등록하기
           </Link>
           <SortSelector

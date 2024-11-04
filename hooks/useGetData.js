@@ -98,8 +98,9 @@ export default function useGetData({
       }
     };
     if (
-      (!count && type !== ARTICLE_WITH_COMMENTS) ||
-      type !== PRODUCT_WITH_COMMENTS
+      !count &&
+      !id &&
+      (type !== ARTICLE_WITH_COMMENTS || type !== PRODUCT_WITH_COMMENTS)
     ) {
       setDataList([]);
       setTotalPage(0);

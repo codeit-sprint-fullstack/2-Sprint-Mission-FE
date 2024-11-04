@@ -21,10 +21,7 @@ export default function Nav() {
   const isFreeBoard = router.pathname.startsWith("/freeboard")
     ? activeClass
     : "";
-  const isItems =
-    router.pathname === "/items" || router.pathname === "/register"
-      ? activeClass
-      : "";
+  const isItems = router.pathname.startsWith("/items") ? activeClass : "";
   const hideNavbarPages = ["/login", "/signup"];
   const handleClickLoginBtn = () => router.push("/login");
   if (hideNavbarPages.includes(router.pathname)) return null;

@@ -1,20 +1,13 @@
 import ValidatedInputBox from "@/components/ValidatedInputBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { postProduct } from "@/api/api";
+import { getProduct, postProduct } from "@/api/api";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 import { changeInputValue, validateField } from "@/utils/validateInputHelper";
 export default function Register() {
-  const registerPage = `w-full h-full flex justify-center`;
-  const registerContents = `flex flex-col justify-between
-      w-[1200px] h-[830px] mt-[26px] mb-[162px]
-      md:w-[696px] md:h-[806px] md:mt-[18px] md:mb-[194px]
-      sm:w-[344px] sm:h-[806px] sm:mt-[24px] sm:mb-[186px] `;
-  const header = `w-full h-[42px] flex justify-between items-center`;
-  const title = `w-[108px] h-[24px] flex items-center font-bold text-1f2937
-      lg:h-[32px]`;
-  const basicRegisterBtn = `w-[74px] h-[42px] rounded-[8px] px-[23px] py-[12px]
-      text-ffffff whitespace-nowrap`;
+  const router = useRouter();
+  const { id } = router.query;
+  if (!id) return;
   const { NAME, DESCRIPTION, PRICE, TAG } = FIELD_TYPES;
   const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
   const [productInfo, setProductInfo] = useState({
@@ -36,8 +29,26 @@ export default function Register() {
     price: "",
     tag: ""
   });
-  const router = useRouter();
-
+  useEffect(() => {
+    const applyGetProduct = async () => {
+      const response = await getProduct(id);
+      const { name, description, price, tags } = response.data;
+      const initialProductInfo = {
+        name,
+        description,
+        price,
+        tagList: tags
+      };
+      setProductInfo(initialProductInfo);
+      setValidation({
+        name: SUCCESS,
+        description: SUCCESS,
+        price: SUCCESS,
+        tagList: SUCCESS
+      });
+    };
+    if (id) applyGetProduct();
+  }, [id]);
   const validateBtn = () => {
     const isValidate =
       Object.entries(validation).every(
@@ -93,19 +104,31 @@ export default function Register() {
     }));
   };
   const isSubmit = validateBtn();
-  const registerBtn = validateBtn()
-    ? `${basicRegisterBtn} bg-3692ff`
-    : `${basicRegisterBtn} bg-9ca3af`;
+  const isBtnValidate = validateBtn();
   return (
-    <div className={registerPage}>
-      <form className={registerContents} noValidate>
-        <div className={header}>
-          <h1 className={title}>상품 등록하기</h1>
+    <div className="w-full h-full flex justify-center">
+      <form
+        className="flex flex-col justify-between
+      w-[1200px] h-[830px] mt-[26px] mb-[162px]
+      md:w-[696px] md:h-[806px] md:mt-[18px] md:mb-[194px]
+      sm:w-[344px] sm:h-[806px] sm:mt-[24px] sm:mb-[186px]"
+        noValidate
+      >
+        <div className="w-full h-[42px] flex justify-between items-center">
+          <h1
+            className="w-[108px] h-[24px] flex items-center font-bold text-1f2937
+      lg:h-[32px]"
+          >
+            상품 등록하기
+          </h1>
 
           <button
             type="button"
             disabled={!isSubmit}
-            className={registerBtn}
+            className={`w-[74px] h-[42px] rounded-[8px] px-[23px] py-[12px]
+      text-ffffff whitespace-nowrap ${
+        isBtnValidate ? "bg-3692ff" : "bg-9ca3af"
+      }`}
             onClick={handleSumbit}
           >
             등록

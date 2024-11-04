@@ -5,11 +5,13 @@ import Image from "next/image";
 import {
   deleteArticle,
   postArticleComment,
-  deleteArticleComment
+  deleteArticleComment,
+  patchArticleComment
 } from "@/api/api";
 import useGetData from "@/hooks/useGetData";
 import CommentItem from "@/components/CommentItem";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
+import { tenaryWithEmpty } from "@/utils/ternaryUtils";
 import convertDate from "@/utils/convertDate";
 import {
   ORDER_STATE,
@@ -46,7 +48,7 @@ export default function Article() {
     md:mt-[40px]`;
   const commentLabel = `w-full h-[26px] text-[16px] font-semibold leading-26px text-111827`;
   const commentTextArea = `w-full h-[104px] mt-[9px] px-[24px] py-[16px] focus:outline-none bg-f3f4f6
-    text-9ca3af rounded-[12px]`;
+    text-9ca3af rounded-[12px] resize-none`;
   const commentListClass = `w-full mt-[40px] flex flex-col gap-[24px]
    md:mt-[32px]
      sm:mt-[24px] sm:gap-[16px]`;
@@ -97,6 +99,9 @@ export default function Article() {
       console.log(`데이터 전송 실패: ${e.message}`);
     }
   };
+  const handlePatchComment = async ({ id, formData }) => {
+    const response = await patchArticleComment({ id, formData });
+  };
   const handleDeleteComment = async (deleteId) => {
     try {
       await deleteArticleComment(deleteId);
@@ -104,6 +109,7 @@ export default function Article() {
       console.log("삭제실패");
     }
   };
+  const isComments = articleComments?.length === 0;
   return (
     <div className={articlePage}>
       <div className={articePageContents}>
@@ -112,6 +118,7 @@ export default function Article() {
             <h1 className={articleTitleClass}>{article?.title}</h1>
             <EditDeleteDropDown onDropDownChange={handleDropDownChange} />
           </div>
+
           <div className={profileAndCreateAtAndFavorite}>
             <Image
               width={40}
@@ -135,6 +142,7 @@ export default function Article() {
               <span className={favoriteCount}>{article?.favoriteCount}</span>
             </button>
           </div>
+
           <div className={articleContent}>{article?.content}</div>
         </div>
         <form className={postCommentFrame}>
@@ -166,11 +174,31 @@ export default function Article() {
             <CommentItem
               data={comment}
               key={comment.id}
+              onPatch={handlePatchComment}
               onDelete={handleDeleteComment}
             />
           ))}
         </div>
-        <Link className={returnPageBtn} href="/freeboard">
+        {tenaryWithEmpty(
+          isComments,
+          <>
+            <div
+              className="w-[196px] h-[196px] relative mt-[40px] lg:mt-[24px]
+            md:w-[140px] md:h-[140px]
+            sm:w-[140px] sm:h=[140px]"
+            >
+              <Image src="/images/Img_inquiry_empty.png" layout="fill" />
+            </div>
+            <span className="mt-[8px] text-9ca3af mb-[48px]">
+              아직 문의가 없어요
+            </span>
+          </>
+        )}
+        <Link
+          className={`w-[240px] h-[48px] flex px-[39.5px] items-center rounded-40px bg-3692ff
+            ${isComments ? "" : "mt-[64px] md:mt-[56px] sm:mt-[40px]"}`}
+          href="/freeboard"
+        >
           <span className={returnBtnText}>목록으로 돌아가기</span>
           <Image
             width={24}

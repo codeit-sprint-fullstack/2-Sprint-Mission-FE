@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import EditDeleteDropDown from "./EditDeleteDropDown";
-import { patchArticleComment } from "@/api/api";
+// import { patchArticleComment } from "@/api/api";
 import { EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
 const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
-export default function Comment({ data, onDelete }) {
+export default function Comment({ data, onPatch, onDelete }) {
   const commentClassWithoutHeight = `w-full bg-fcfcfc flex flex-col justify-between relative`;
   const commentContentEditClass = `w-full h-full text-[14px] leading-24px text-1f2937 bg-f3f4f6
   bg-fcfcfc border-none resize-none outline-none`;
@@ -36,13 +36,12 @@ export default function Comment({ data, onDelete }) {
   const handleClickPatchComplete = (e) => {
     const submitData = { content };
     try {
-      patchArticleComment({ id: data.id, formData: submitData });
+      onPatch({ id: data.id, formData: submitData });
       setEditMode(false);
     } catch (e) {
       console.log(`데이터 전송중 오류: ${e.message}`);
     }
   };
-  `w-full flex justify-between items-start`;
   return (
     <div className={commentClass}>
       <div
