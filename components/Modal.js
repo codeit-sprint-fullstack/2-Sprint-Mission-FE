@@ -9,10 +9,8 @@ function Modal({ children, onClose }) {
   return (
     <div className={styles.modalContainer}>
       <div className={styles.modalWrapper}>
-        <div className={styles.modalContents}>{children}</div>
-        <div className={styles.closeButton}>
-          <CloseButton onClick={onClose}>확인</CloseButton>
-        </div>
+        <div className={styles.modalContents}>{children}
+        <CloseButton onClick={onClose}>확인</CloseButton></div>
       </div>
     </div>
   );
