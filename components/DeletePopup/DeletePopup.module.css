@@ -1,0 +1,52 @@
+.popup_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup_content {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.popup_content h4 {
+  font-weight: 400;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button_container button {
+  border-radius: 7px;
+  cursor: pointer;
+  width: 88px;
+  height: 48px;
+  font-weight: 600;
+}
+
+.cancel_button {
+  background: #f9fafb;
+  color: #f74747;
+  border: 1px solid #f74747;
+}
+
+.delete_button {
+  background: #f74747;
+  color: white;
+  border: none;
+}

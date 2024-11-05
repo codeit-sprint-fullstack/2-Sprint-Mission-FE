@@ -8,6 +8,7 @@ import user from "@/images/board/profile_img.svg";
 import heart_img from "@/images/board/heart_img.svg";
 import heart_full from "@/images/etc/heart_full.svg";
 import EditDeleteModal from "../EditDeleteModal/EditDeleteModal";
+import DeletePopup from "@/components/DeletePopup/DeletePopup";
 import Popup from "../Popup/Popup";
 import { useRouter } from "next/router";
 
@@ -43,6 +44,7 @@ export default function ProductDetails({ productId }) {
   const [editProduct, setEditProduct] = useState("");
   const [popupMessage, setPopupMessage] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
 
   const router = useRouter();
 
@@ -63,7 +65,9 @@ export default function ProductDetails({ productId }) {
     setIsProductModal(isProduct);
     setSelectedProductId(productId);
   };
-
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
   const handleEditClick = () => {
     setIsModalOpen(false);
 
@@ -86,7 +90,11 @@ export default function ProductDetails({ productId }) {
     }
   };
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = () => {
+    setIsDeletePopupOpen(true);
+  };
+
+  const confirmDelete = async () => {
     try {
       if (isProductModal && selectedProductId) {
         await fetchApi(`/products/${selectedProductId}`, null, "DELETE");
@@ -102,8 +110,8 @@ export default function ProductDetails({ productId }) {
     }
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
+  const cancelDelete = () => {
+    setIsDeletePopupOpen(false);
   };
 
   const handleFavoriteToggle = async () => {
@@ -212,6 +220,13 @@ export default function ProductDetails({ productId }) {
         />
       )}
       {isPopupOpen && <Popup message={popupMessage} onClose={closePopup} />}
+      {isDeletePopupOpen && (
+        <DeletePopup
+          message="정말로 상품을 삭제하시겠어요?"
+          onDelete={confirmDelete}
+          onCancel={cancelDelete}
+        />
+      )}
     </>
   );
 }
