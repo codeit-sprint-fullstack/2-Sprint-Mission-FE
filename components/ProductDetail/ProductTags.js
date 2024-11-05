@@ -47,6 +47,7 @@ export default function ProductTags({ tags, setTags }) {
     <div className={styles.tags}>
       <input
         type="text"
+        id="tags"
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
