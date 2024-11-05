@@ -53,62 +53,56 @@ export default function Register() {
   };
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.bar}>
-          <h1 className={styles.title}>상품 등록하기</h1>
-          <button
-            type="submit"
-            disabled={!isInputEmpty()}
-            className={styles.add}
-          >
-            등록
-          </button>
-        </div>
-        <div className={styles.form}>
-          <label htmlFor="name">상품명</label>
-          <input
-            type="text"
-            id="name"
-            value={values.name}
-            onChange={handleChange}
-            placeholder="상품명을 입력해주세요"
-            style={{ border: errors.name ? '0.1rem solid red' : 'none' }}
-          />
-          {errors.name && <div className={styles.error}>{errors.name}</div>}
-        </div>
-        <div className={styles.form}>
-          <label htmlFor="description">상품 소개</label>
-          <textarea
-            id="description"
-            value={values.description}
-            onChange={handleChange}
-            placeholder="상품 소개를 입력해주세요"
-            style={{ border: errors.description ? '0.1rem solid red' : 'none' }}
-          />
-          {errors.description && (
-            <div className={styles.error}>{errors.description}</div>
-          )}
-        </div>
-        <div className={styles.form}>
-          <label htmlFor="price">판매가격</label>
-          <input
-            type="text"
-            id="price"
-            value={values.price}
-            onChange={handleChange}
-            placeholder="판매 가격을 입력해주세요"
-            style={{ border: errors.price ? '0.1rem solid red' : 'none' }}
-          />
-          {errors.price && <div className={styles.error}>{errors.price}</div>}
-        </div>
-        <div className={styles.form}>
-          <label htmlFor="tags">태그</label>
-          <ProductTags tags={tags} setTags={setTags} />
-          {errors.tags && <div className={styles.error}>{errors.tags}</div>}
-        </div>
-        {error && <div className={styles.error}>{error}</div>}
-      </form>
-    </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.bar}>
+        <h1 className={styles.title}>상품 등록하기</h1>
+        <button type="submit" disabled={!isInputEmpty()} className={styles.add}>
+          등록
+        </button>
+      </div>
+      <div className={styles.group}>
+        <label htmlFor="name">상품명</label>
+        <input
+          type="text"
+          id="name"
+          value={values.name}
+          onChange={handleChange}
+          placeholder="상품명을 입력해주세요"
+          style={{ border: errors.name ? '0.1rem solid red' : 'none' }}
+        />
+        {errors.name && <div className={styles.error}>{errors.name}</div>}
+      </div>
+      <div className={styles.group}>
+        <label htmlFor="description">상품 소개</label>
+        <textarea
+          id="description"
+          value={values.description}
+          onChange={handleChange}
+          placeholder="상품 소개를 입력해주세요"
+          style={{ border: errors.description ? '0.1rem solid red' : 'none' }}
+        />
+        {errors.description && (
+          <div className={styles.error}>{errors.description}</div>
+        )}
+      </div>
+      <div className={styles.group}>
+        <label htmlFor="price">판매가격</label>
+        <input
+          type="text"
+          id="price"
+          value={values.group}
+          onChange={handleChange}
+          placeholder="판매 가격을 입력해주세요"
+          style={{ border: errors.price ? '0.1rem solid red' : 'none' }}
+        />
+        {errors.price && <div className={styles.error}>{errors.price}</div>}
+      </div>
+      <div className={styles.group}>
+        <label htmlFor="tags">태그</label>
+        <ProductTags tags={tags} setTags={setTags} />
+        {errors.tags && <div className={styles.error}>{errors.tags}</div>}
+      </div>
+      {error && <div className={styles.error}>{error}</div>}
+    </form>
   );
 }

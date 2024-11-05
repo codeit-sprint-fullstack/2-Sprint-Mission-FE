@@ -44,7 +44,7 @@ export default function ProductTags({ tags, setTags }) {
   };
 
   return (
-    <div>
+    <div className={styles.tags}>
       <input
         type="text"
         value={inputValue}
