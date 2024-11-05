@@ -53,7 +53,7 @@ export default function SingUp() {
     onSuccess: (data) => {
       if (data.accessToken) {
         localStorage.setItem('accessToken', data.accessToken);
-        router.push('/products');
+        router.push('/items');
       }
     },
     onError: (error) => {

@@ -45,7 +45,7 @@ export default function Register() {
       };
       const res = await createProduct(product);
       const productId = res.id;
-      return router.push(`/products/${productId}`);
+      return router.push(`/items/${productId}`);
     } catch (err) {
       console.error('상품 등록에 실패하였습니다.', err.message);
       setError('상품 등록에 실패하였습니다.');

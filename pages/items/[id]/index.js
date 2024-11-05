@@ -49,8 +49,8 @@ export default function ProductDetail({ product, productComments }) {
   const handleMenuClick = () => setDropdownOpen((prev) => !prev);
 
   const handleDeleteClick = () => {
-    setDropdownOpen(false); // 드롭다운 닫기
-    setIsModalOpen(true); // 모달 열기
+    setDropdownOpen(false);
+    setIsModalOpen(true);
   };
 
   const handleCancel = () => setIsModalOpen(false); // 모달 취소
@@ -58,8 +58,8 @@ export default function ProductDetail({ product, productComments }) {
     setLoading(true);
     try {
       await deleteProduct(id);
-      setIsModalOpen(false); // 삭제 후 모달 닫기
-      router.push('/products');
+      setIsModalOpen(false);
+      router.push('/items');
     } catch (err) {
       console.error('삭제 요청 중 오류 발생:', err);
       setLoading(false);

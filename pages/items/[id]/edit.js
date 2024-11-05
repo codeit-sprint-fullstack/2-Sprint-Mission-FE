@@ -7,7 +7,7 @@ import ProductTags from '@/components/ProductDetail/ProductTags';
 
 export default function Edit() {
   const router = useRouter();
-  const id = router.query['id'];
+  const productId = router.query['id'];
 
   const [data, setData] = useState(null);
   const [images, setImages] = useState([
@@ -70,8 +70,8 @@ export default function Edit() {
         images,
         tags
       };
-      await patchProduct(id, product);
-      return router.push(`/products/${id}`);
+      await patchProduct(productId, product);
+      return router.push(`/items/${productId}`);
     } catch (err) {
       console.error('상품 수정에 실패하였습니다.');
     }
