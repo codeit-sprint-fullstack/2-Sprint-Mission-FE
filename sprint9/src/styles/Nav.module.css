@@ -19,8 +19,11 @@
 }
 
 .logo {
-  width: 15.3rem;
-  height: 5.1rem;
+  display: block;
+}
+
+.mobile {
+  display: none;
 }
 
 .menus {
@@ -78,5 +81,12 @@
 
   .login {
     margin-right: 1.6rem;
+  }
+
+  .mobile {
+    display: block;
+  }
+  .pc {
+    display: none;
   }
 }

@@ -1,4 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+}
+
+.image {
+  border-radius: 1.6rem;
+}
+
 .detailContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
@@ -74,7 +85,6 @@
 .nicknameDataContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.8rem;
 }
 

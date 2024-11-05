@@ -1,4 +1,4 @@
-"use Client";
+"use client"; 
 
 import Image from "next/image";
 import kebab from "@/public/assets/ic_kebab.png";
@@ -10,7 +10,6 @@ interface DropBoxProps {
   deleteOnClick: () => void;
 }
 
-//TODO: 수정하기, 삭제하기 컴포넌트화
 export default function DropBox({ editOnClick, deleteOnClick }: DropBoxProps) {
   const [isToggle, setIsToggle] = useState(false);
   const toggleMenuList = () => setIsToggle(!isToggle);

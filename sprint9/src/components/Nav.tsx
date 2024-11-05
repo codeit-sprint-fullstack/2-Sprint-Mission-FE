@@ -1,43 +1,33 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import style from "../styles/Nav.module.css";
 import pcLogo from "../../public/assets/pndamarket_logo.png";
 import mobileLogo from "../../public/assets/m_pandamarket_logo.png";
 
-export default function Nav() {
-  const pathname = usePathname();
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+interface NavProps {
+  currentPathname: string;
+}
 
-  function menuActiveStyle(location: string): string {
-    return pathname && pathname.startsWith(location) ? style.active : "";
-  }
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 744);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const displayImg = isMobile ? mobileLogo : pcLogo;
+export default function Nav({ currentPathname }: NavProps) {
+  const menuActiveStyle = (location: string): string => {
+    return currentPathname && currentPathname.startsWith(location)
+      ? style.active
+      : "";
+  };
 
   return (
     <div className={style.container}>
       <div className={style.logoMenu}>
         <Image
           priority={true}
-          src={displayImg}
-          className={style.logo}
+          src={mobileLogo}
+          className={`${style.logo} ${style.mobile}`}
+          alt="pandamarket logo"
+        />
+        <Image
+          priority={true}
+          src={pcLogo}
+          className={`${style.logo} ${style.pc}`}
           alt="pandamarket logo"
         />
         <div className={style.menus}>

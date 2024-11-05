@@ -3,7 +3,7 @@ import style from "@/src/styles/items/ProductDetail.module.css";
 import profileImg from "@/public/assets/img_profile.png";
 import heartIcon from "@/public/assets/icon_heart.png";
 import formatDate from "@/src/utils/formatDate";
-import DropBox from "../DropBox";
+import DropBoxWrapper from "./DropBoxWrapper";
 
 interface ProductDetailProps {
   data: {
@@ -22,9 +22,18 @@ interface ProductDetailProps {
   } | null;
 }
 
-//TODO: Dropbox props 전달
 export default function ProductDetail({ data }: ProductDetailProps) {
   if (!data) return null;
+
+  const handleEdit = () => {
+    //TODO: 수정 로직
+    console.log("Edit clicked");
+  };
+
+  const handleDelete = () => {
+    //TODO: 삭제 로직
+    console.log("Delete clicked");
+  };
 
   return (
     <div className={style.container}>
@@ -41,7 +50,8 @@ export default function ProductDetail({ data }: ProductDetailProps) {
         <div className={style.titleContainer}>
           <div className={style.dropBoxContainer}>
             <h2 className={style.title}>{data.name}</h2>
-            <DropBox />
+            <DropBoxWrapper
+            />
           </div>
           <h1 className={style.price}>{`${data.price}원`}</h1>
         </div>
