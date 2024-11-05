@@ -7,6 +7,7 @@ import { MODEL_TYPE, EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import CommentItem from "@/components/CommentItem";
 import convertDate from "@/utils/convertDate";
+import { tenaryWithEmpty } from "@/utils/ternaryUtils";
 import {
   deleteProduct,
   getProductWithComments,
@@ -14,7 +15,6 @@ import {
   patchProductComment,
   deleteProductComment
 } from "@/api/api";
-import { tenaryWithEmpty } from "@/utils/ternaryUtils";
 const { PRODUCT_WITH_COMMENTS } = MODEL_TYPE;
 const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
 export default function Product() {

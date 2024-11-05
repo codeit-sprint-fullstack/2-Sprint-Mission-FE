@@ -48,15 +48,6 @@ export default function Items() {
   };
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
   const handleOnChangeKeyword = (e) => setKeyword(e.target.value);
-  // useEffect(() => {
-  //   // totalPage가 변경될 때 buttonList 업데이트
-  //   if (totalPage < page) setPage(0);
-  //   const nextButtonList = Array.from(
-  //     { length: Math.min(totalPage, 5) },
-  //     (_, index) => index
-  //   );
-  //   setButtonList(nextButtonList);
-  // }, [totalPage, pageSize, page]);
   useEffect(() => {
     // totalPage가 변경될 때 buttonList 업데이트
     if (totalPage < page) setPage(0);
