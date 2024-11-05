@@ -17,7 +17,7 @@ export default function ProductInfo({ product }) {
     if (confirmed) {
       try {
         await deleteProduct(product.id);
-        router.push('/products');
+        router.push('/items');
       } catch (error) {
         alert('제품 삭제에 실패했습니다.');
       }
@@ -25,7 +25,7 @@ export default function ProductInfo({ product }) {
   };
 
   const handleEdit = () => {
-    router.push(`/products/edit?id=${product.id}`);
+    router.push(`/items/edit?id=${product.id}`);
   };
 
   const handleDropdownChange = (name, value) => {

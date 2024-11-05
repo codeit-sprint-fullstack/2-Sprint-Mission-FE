@@ -58,7 +58,7 @@ function useValidateProductForm(initialData) {
   useEffect(() => {
     const isValid =
       !Object.values(errors).some(error => error) &&
-      productData.price.trim() && 
+      productData.price && 
       productData.description.trim() &&
       productData.name.trim();
 

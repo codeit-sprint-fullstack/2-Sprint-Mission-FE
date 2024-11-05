@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './ProductForm.module.css';
 import useValidateProductForm from '@/hooks/useValidateProductForm';
 
-export default function ProductForm({ initialData = {}, onSubmit }) {
+export default function ProductForm({ initialData = {}, onSubmit, isEdit = false }) {
   const { productData, setProductData, errors, handleChange, isFormValid } = useValidateProductForm({
     name: initialData.name || '',
     description: initialData.description || '',
@@ -25,10 +25,18 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+  
+    // 필요한 필드만 선택하여 payload 생성
+    const payload = {
+      images: productData.images || ["https://example.com/sample-image.jpg"],  // 기본 이미지 추가
+      tags: productData.tags || [],
+      price: parseFloat(productData.price) || 0, // 숫자형 변환
+      description: productData.description || "",
+      name: productData.name || "상품 이름"
+    };
+  
     try {
-      const payload = { ...productData, images: [] }; 
-      await onSubmit(payload);
+      await onSubmit(payload); // onSubmit으로 전달
     } catch (error) {
       console.error(error);
       alert('상품 등록에 실패했습니다.');
@@ -36,7 +44,23 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
       setIsSubmitting(false);
     }
   };
+  
+  /*
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
+    try {
+      const payload = { ...productData, images: productData.images || [] };
+      await onSubmit(payload);
+    } catch (error) {
+      console.error(error);
+      alert(`${isEdit ? '상품 수정' : '상품 등록'}에 실패했습니다.`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  */
   const handleTagInputChange = (e) => setTagInput(e.target.value);
 
   const handleTagInputKeyDown = (e) => {
@@ -63,14 +87,14 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.sectionTitle}>상품 등록하기</h2>
+        <h2 className={styles.sectionTitle}>{isEdit ? '상품 수정하기' : '상품 등록하기'}</h2>
         <button
           type="submit"
           className={`${styles.submitBtn} ${isFormValid ? styles.active : ''}`}
           onClick={handleSubmit}
           disabled={!isFormValid || isSubmitting}
         >
-          {isSubmitting ? '등록 중' : '등록'}
+          {isSubmitting ? (isEdit ? '수정 중' : '등록 중') : (isEdit ? '수정' : '등록')}
         </button>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
