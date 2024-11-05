@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import style from "@/src/styles/items/ProductDetail.module.css";
 import profileImg from "@/public/assets/img_profile.png";
 import heartIcon from "@/public/assets/icon_heart.png";
+import DropBox from "../DropBox";
 
+//TODO: API 연결 후 수정하기, Dropbox props 전달
 export default function ProductDetail() {
   return (
     <div>
@@ -11,7 +15,10 @@ export default function ProductDetail() {
       </div>
       <div className={style.detailContainer}>
         <div className={style.titleContainer}>
-          <h2 className={style.title}>아이패드 미니 팔아요</h2>
+          <div className={style.dropBoxContainer}>
+            <h2 className={style.title}>아이패드 미니 팔아요</h2>
+            <DropBox />
+          </div>
           <h1 className={style.price}>500,000원</h1>
         </div>
         <hr className={style.lineHorizontal} />
