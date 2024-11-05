@@ -2,7 +2,7 @@ import styles from './ProductInfo.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Dropdown from '@/components/Common/Dropdown';
-import { deleteProduct } from '@/lib/api/ProductService';
+import { addProductFavorite, deleteProduct, removeProductFavorite } from '@/lib/api/ProductService';
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthProvider';
 import ModalConfirm from '../Common/ModalConfirm';
@@ -10,6 +10,7 @@ import ModalConfirm from '../Common/ModalConfirm';
 export default function ProductInfo({ product }) {
   const router = useRouter();
   const [likeCount, setLikeCount] = useState(product.favoriteCount || 0);
+  const [isFavorite, setIsFavorite] = useState(product.isFavorite);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useAuth(true);  // 인가된 사용자만 접근 허용
@@ -38,8 +39,22 @@ export default function ProductInfo({ product }) {
     if (value === 'delete') handleDelete();
   };
 
+  const handleFavoriteToggle = async () => {
+    try {
+      let updatedProduct;
+      if (isFavorite) {
+        updatedProduct = await removeProductFavorite(product.id);
+      } else {
+        updatedProduct = await addProductFavorite(product.id);
+      }
+      setLikeCount(updatedProduct.favoriteCount || 0);
+      setIsFavorite(updatedProduct.isFavorite);
+    } catch (error) {
+      console.error('좋아요 상태 변경에 실패하였습니다.', error);
+    }
+  }
   const productImage =
-  product.images[0]?.includes('sprint-fe-project.s3.ap-northeast-2.amazonaws.com')
+    product.images[0]?.includes('sprint-fe-project.s3.ap-northeast-2.amazonaws.com')
     ? product.images[0]
     : '/images/items/img_default_product.png';
 
@@ -93,7 +108,6 @@ export default function ProductInfo({ product }) {
                 alt="프로필 이미지"
                 fill
                 sizes="4rem"
-                className={styles.profileImage}
               />
             </div>
             <div className={styles.writerDetails}>
@@ -103,13 +117,16 @@ export default function ProductInfo({ product }) {
           </div>
 
           <div className={styles.likesWrapper}>
-            <div className={styles.likesIconWrapper}>
+            <div className={styles.likesIconWrapper} onClick={handleFavoriteToggle}>
               <Image
-                src={product.isFavorite ? '/images/ic_heart_filled.svg' : '/images/ic_heart.svg'}
+                src={
+                  isFavorite 
+                  ? '/images/ic_heart_active.svg' 
+                  : '/images/ic_heart.svg'
+                }
                 alt="좋아요 아이콘"
                 fill
                 sizes="3.2rem"
-                className={styles.heartImage}
               />
             </div>
             <span className={styles.likesCount}>{likeCount > 9999 ? '9999+' : likeCount}</span>
@@ -138,8 +155,6 @@ export default function ProductInfo({ product }) {
         onCancel={() => setIsModalOpen(false)}
         message="정말로 삭제하시겠습니까?"
       />
-
-
     </div>
   );
 }
