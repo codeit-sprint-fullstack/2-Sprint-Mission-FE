@@ -34,7 +34,6 @@ export default function Market() {
   const [editCommentId, setEditCommentId] = useState(null);
   const [editComment, setEditComment] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isCommentModal, setIsCommentModal] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
@@ -85,9 +84,9 @@ export default function Market() {
     if (editComment.trim() === "") return;
     try {
       await fetchApi(
-        `/products/${id}/comments/${editCommentId}`,
+        `/comments/${editCommentId}`,
         { content: editComment },
-        "POST"
+        "PATCH"
       );
       setEditCommentId(null);
       setEditComment("");
@@ -98,26 +97,24 @@ export default function Market() {
     }
   };
 
-  const handleEditClick = () => {
-    setIsModalOpen(false);
-
-    if (isCommentModal && selectedCommentId) {
-      setEditCommentId(selectedCommentId);
-      const commentToEdit = comment.find(
-        (comment) => comment.id === selectedCommentId
-      );
-      if (commentToEdit) {
-        setEditComment(commentToEdit.content);
-      }
-    } else {
-      router.push(`/items`);
+  const handleEditClick = (commentId) => {
+    const commentToEdit = comment.find((comment) => comment.id === commentId);
+    if (commentToEdit) {
+      setEditCommentId(commentId);
+      setEditComment(commentToEdit.content);
+      setIsModalOpen(false);
     }
+  };
+
+  const handleCancelClick = () => {
+    setEditCommentId(null);
+    setEditComment("");
   };
 
   const toggleModal = (e, commentId) => {
     const rect = e.target.getBoundingClientRect();
-    setModalPosition({ top: rect.top + 1, left: rect.left - 130 });
-    setIsModalOpen(!isModalOpen);
+    setModalPosition({ top: rect.top + 5, left: rect.left - 20 });
+    setIsModalOpen(true);
     setSelectedCommentId(commentId);
   };
 
@@ -149,6 +146,8 @@ export default function Market() {
               toggleModal={toggleModal}
               userImage={user_img}
               selectImage={selectImage}
+              handleEditClick={handleEditClick}
+              handleCancelClick={handleCancelClick}
             />
           ))
         )}
@@ -164,7 +163,7 @@ export default function Market() {
       {isModalOpen && (
         <EditDeleteModal
           onDelete={handleDeleteComment}
-          onEdit={handleEditClick}
+          onEdit={() => handleEditClick(selectedCommentId)}
           style={{
             position: "absolute",
             top: `${modalPosition.top}px`,
