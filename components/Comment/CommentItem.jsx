@@ -30,50 +30,54 @@ export default function CommentItem({
 }) {
   return (
     <>
-      <div className={styles.comment_title}>
-        {editCommentId === comment.id ? (
-          <>
+      <div className={styles.comment_item_container}>
+        <div className={styles.comment_title}>
+          {editCommentId === comment.id ? (
             <div className={styles.edit_container}>
               <textarea
                 value={editComment}
                 onChange={handleEditCommentChange}
                 className={styles.comment_edit_textarea}
               />
-              <div className={styles.btn_container}>
-                <button
-                  className={styles.cancel_button}
-                  onClick={handleCancelClick}
-                >
-                  취소
-                </button>
-                <button
-                  onClick={handleEditCommentSubmit}
-                  className={styles.edit_button}
-                >
-                  수정 완료
-                </button>
-              </div>
             </div>
-          </>
-        ) : (
-          <>
-            <p>{comment.content}</p>
-            <Image
-              src={selectImage}
-              alt="선택"
-              onClick={(e) => {
-                toggleModal(e, comment.id);
-              }}
-              className={styles.select_button}
-            />
-          </>
-        )}
-      </div>
-      <div className={styles.detail_user_stats}>
-        <Image src={userImage} alt="유저이미지" className={styles.user_img} />
-        <div className={styles.comment_user_stats_content}>
-          <h5 className={styles.nickname}>{comment.writer.nickname}</h5>
-          <h5 className={styles.create_at}>{formatDate(comment.createdAt)}</h5>
+          ) : (
+            <>
+              <p>{comment.content}</p>
+              <Image
+                src={selectImage}
+                alt="선택"
+                onClick={(e) => toggleModal(e, comment.id)}
+                className={styles.select_button}
+              />
+            </>
+          )}
+        </div>
+
+        <div className={styles.detail_user_stats}>
+          <Image src={userImage} alt="유저이미지" className={styles.user_img} />
+          <div className={styles.comment_user_stats_content}>
+            <h5 className={styles.nickname}>{comment.writer.nickname}</h5>
+            <h5 className={styles.create_at}>
+              {formatDate(comment.createdAt)}
+            </h5>
+          </div>
+
+          {editCommentId === comment.id && (
+            <div className={styles.btn_container}>
+              <button
+                className={styles.cancel_button}
+                onClick={handleCancelClick}
+              >
+                취소
+              </button>
+              <button
+                onClick={handleEditCommentSubmit}
+                className={styles.edit_button}
+              >
+                수정 완료
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>

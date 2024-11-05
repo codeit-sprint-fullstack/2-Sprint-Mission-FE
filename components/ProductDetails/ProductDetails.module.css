@@ -108,12 +108,22 @@
   cursor: pointer;
 }
 
-@media (min-width: 744px) and (max-width: 1199px) {
-  .product_wrapper {
-    display: flex;
+@media (max-width: 743px) {
+  .product_detail_container {
     flex-direction: column;
   }
-}
+  .product_wrapper h2 {
+    font-size: 16px;
+  }
 
-@media (max-width: 743px) {
+  .product_wrapper h1 {
+    font-size: 24px;
+  }
+
+  .default_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  }
 }

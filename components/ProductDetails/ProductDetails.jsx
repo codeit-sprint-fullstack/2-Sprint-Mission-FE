@@ -140,7 +140,9 @@ export default function ProductDetails({ productId }) {
       <div className={styles.product_detail_container}>
         {product ? (
           <>
-            <Image src={product_default} alt="상품 기본 이미지" />
+            <div className={styles.default_img}>
+              <Image src={product_default} alt="상품 기본 이미지" />
+            </div>
             <div className={styles.product_wrapper}>
               <div className={styles.product_title}>
                 <h2>{product.name}</h2>
