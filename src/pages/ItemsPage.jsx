@@ -28,14 +28,12 @@ function ItemsPage() {
 		placeholderData: keepPreviousData,
 		staleTime: 5 * 60 * 1000,
 	});
-	console.log(result0);
 	const { data: result1 } = useQuery({
 		queryKey: ["items", page, pageSize, orderBy, keyword],
 		queryFn: () => loadItemsAsync({ page, pageSize, orderBy, keyword }),
 		placeholderData: keepPreviousData,
 		staleTime: 5 * 60 * 1000,
 	});
-	console.log(result1);
 
 	useEffect(() => {
 		if (viewport === "PC") {

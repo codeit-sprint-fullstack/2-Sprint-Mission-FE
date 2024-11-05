@@ -1,7 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteProductWithId, getProductWithId, getProductWithIdComments, likeProductWithId, postProductWithIdComment, unlikeProductWithId } from "../apis/itemsService.js";
-import mainStyles from './HomePage.module.css';
 import styles from './ItemDetailPage.module.css';
 import Comments from "../components/Comments.jsx";
 import { useState } from 'react';
@@ -82,10 +81,7 @@ function ItemDetailPage() {
 
 	if (isError || isErrorComments) return "Error...";
 
-	console.log(data);
-	console.log(comments);
-
-	return (<main className={mainStyles.main}>
+	return (<main className={styles.main}>
 		<div className={styles.subTop}>
 			<div className={styles.imageContainer}>
 				<img src={data.images.length ? data.images[0] : '/images/no_image.png'} alt={data.name} />
