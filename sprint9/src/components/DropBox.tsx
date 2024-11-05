@@ -1,3 +1,5 @@
+"use Client";
+
 import Image from "next/image";
 import kebab from "@/public/assets/ic_kebab.png";
 import style from "@/src/styles/DropBox.module.css";
