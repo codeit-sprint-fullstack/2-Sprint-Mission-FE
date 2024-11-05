@@ -1,12 +1,12 @@
 import { getArticleById } from '@/lib/api/ArticleService';
 import ArticleInfo from '@/components/ArticleDetail/ArticleInfo';
-import CommentForm from '@/components/ArticleDetail/CommentForm';
-import CommentList from '@/components/ArticleDetail/CommentList';
 import BackButton from '@/components/Common/BackButton';
 import { generateRandomNickname, getRandomInt } from '@/lib/utils';
 import formatDate from '@/lib/formatDate';
 import styles from '@/styles/ArticleDetailPage.module.css';
 import { useRouter } from 'next/router';
+import ArticleCommentForm from '@/components/ArticleDetail/ArticleCommentForm';
+import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 
 export async function getServerSideProps(context) {
   const id = context.query['id'];
@@ -35,8 +35,8 @@ export default function ArticleDetailPage({id, articleWithExtras : article }) {
   return (
     <div className={styles.container}>
       <ArticleInfo article={article} />                 {/* 게시글 주요 정보 */}
-      <CommentForm articleId={id} />                    {/* 댓글 작성 및 등록 */}
-      <CommentList comments={article.articleComments} />{/* 댓글 리스트 */}
+      <ArticleCommentForm articleId={id} />                    {/* 댓글 작성 및 등록 */}
+      <ArticleCommentList comments={article.articleComments} />{/* 댓글 리스트 */}
       <BackButton onClick={() => router.push('/articles')} />
     </div>
   );

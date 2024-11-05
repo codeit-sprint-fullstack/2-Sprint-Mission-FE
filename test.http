@@ -40,6 +40,12 @@ GET https://panda-market-api.vercel.app/products?page=1&pageSize=10&orderBy=rece
 
 
 ###
-GET https://panda-market-api.vercel.app/products/355
+GET https://panda-market-api.vercel.app/products/355/comments?limit=10
 ###
 GET https://panda-market-api.vercel.app/products/358
+
+###
+GET https://panda-market-api.vercel.app/products/358
+
+
+

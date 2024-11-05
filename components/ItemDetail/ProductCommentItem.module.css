@@ -1,0 +1,53 @@
+.commentItem {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2.4rem;
+  background-color: #FCFCFC;
+}
+.commentContent {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  color: #1F2937;
+
+  margin: 0 0 1rem;
+}
+
+.commentInfo {
+  display: flex;
+  align-items: center; /* 프로필 이미지와 닉네임, 시간 수평 정렬 */
+  gap: 0.8rem;
+  padding-bottom: 1.2rem;
+
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.profileIcon {
+  position: relative;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.nickname {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.date {
+  font-size: 1.2rem;
+  color: #9ca3af;
+  margin-top: 0.4rem;
+}
+
+.nicknameAndDate {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownContainer {
+  position: absolute;
+  top: 0.5rem;    
+  right: 0.5rem; 
+}

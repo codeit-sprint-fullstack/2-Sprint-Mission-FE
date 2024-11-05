@@ -22,6 +22,12 @@
   background-color: #F3F4F6;
 }
 
+.commentInput::placeholder {
+  color: #9CA3AF; 
+  font-size: 1.6rem; 
+  line-height: 2.6rem;
+}
+
 .commentButton {
   align-self: flex-end; /* 등록 버튼을 오른쪽에 위치 */
   width: 8.8rem;        /* 버튼에 줄바꿈없이 '처리중' 표시를 위해 사이즈를 로그인 버튼 사이즈로 변경함 figma : 7.4rem */
