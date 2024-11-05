@@ -9,6 +9,7 @@ import heart_img from "@/images/board/heart_img.svg";
 import heart_full from "@/images/etc/heart_full.svg";
 import EditDeleteModal from "../EditDeleteModal/EditDeleteModal";
 import Popup from "../Popup/Popup";
+import { useRouter } from "next/router";
 
 const fetchProductDetail = async (id) => {
   if (id) {
@@ -42,6 +43,8 @@ export default function ProductDetails({ productId }) {
   const [editProduct, setEditProduct] = useState("");
   const [popupMessage, setPopupMessage] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     const getProductDetail = async () => {

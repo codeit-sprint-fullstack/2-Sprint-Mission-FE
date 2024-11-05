@@ -30,7 +30,7 @@ export default function Header() {
               <Link href="/board">자유게시판</Link>
             </span>
             <span id="used-market">
-              <Link href="/used-market">중고마켓 </Link>
+              <Link href="/items">중고마켓 </Link>
             </span>
           </div>
           <div className={styles.user}>
