@@ -16,39 +16,49 @@ import formatDate from '@/lib/formatDate';
 import formatPrice from '@/lib/formatPrice';
 import ConfirmModal from '@/components/Common/ConfirmModal';
 
-export async function getServerSideProps(context) {
-  try {
-    const productId = context.params['id'];
+export default function ProductDetail() {
+  const [product, setProduct] = useState(null);
+  const [productComments, setProductComments] = useState([]);
 
-    const product = await getProduct(productId);
-    const productComments = await getProductCommentList(productId);
-
-    return {
-      props: {
-        product,
-        productComments
-      }
-    };
-  } catch (err) {
-    console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err.message);
-    throw new Error(
-      '서버에서 데이터를 가져오는 중 문제가 발생했습니다.' + err.message
-    );
-  }
-}
-
-export default function ProductDetail({ product, productComments }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [isFavorited, setIsFavorited] = useState(product.isFavorite);
-  const [favoriteCount, setFavoriteCount] = useState(product.favoriteCount);
+  const [isFavorited, setIsFavorited] = useState(false);
+  const [favoriteCount, setFavoriteCount] = useState(0);
 
   const router = useRouter();
   const productId = router.query['id'];
 
-  if (!product) return <div>No product found for this ID.</div>;
+  useEffect(() => {
+    if (!productId) return;
+
+    const fetchData = async () => {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        setLoading(false);
+        router.push('/signin');
+        return;
+      }
+
+      try {
+        const productData = await getProduct(productId, token);
+        const commentsData = await getProductCommentList(productId, token);
+
+        setProduct(productData);
+        setProductComments(commentsData || []);
+        setLoading(false);
+      } catch (err) {
+        console.error('데이터를 가져오는 중 오류 발생:', err);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [productId]);
+
+  if (loading) return <div>로딩 중...</div>;
+  if (!product) return <div>상품을 찾을 수 없습니다.</div>;
 
   const handleBackList = () => router.push('/items');
   const handleMenuClick = () => setDropdownOpen((prev) => !prev);
