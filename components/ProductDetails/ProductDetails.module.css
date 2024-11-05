@@ -107,3 +107,13 @@
 .select_button {
   cursor: pointer;
 }
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .product_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 743px) {
+}

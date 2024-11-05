@@ -1,5 +1,4 @@
-// CommentForm.js
-import styles from "@/pages/board/styles/detail.module.css";
+import styles from "@/components/Comment/Comment.module.css";
 
 export default function CommentForm({
   newComment,

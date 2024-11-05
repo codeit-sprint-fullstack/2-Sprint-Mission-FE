@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "@/pages/board/styles/detail.module.css";
+import styles from "@/components/Comment/Comment.module.css";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
