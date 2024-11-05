@@ -4,6 +4,7 @@ import profileImg from "@/public/assets/img_profile.png";
 import heartIcon from "@/public/assets/icon_heart.png";
 import formatDate from "@/src/utils/formatDate";
 import DropBoxWrapper from "./DropBoxWrapper";
+import ProductTag from "./ProductTag";
 
 interface ProductDetailProps {
   data: {
@@ -16,24 +17,12 @@ interface ProductDetailProps {
     ownerId: number;
     favoriteCount: number;
     createdAt: string;
-    updatedAt: string;
     ownerNickname: string;
-    isFavorite: boolean;
   } | null;
 }
 
 export default function ProductDetail({ data }: ProductDetailProps) {
   if (!data) return null;
-
-  const handleEdit = () => {
-    //TODO: 수정 로직
-    console.log("Edit clicked");
-  };
-
-  const handleDelete = () => {
-    //TODO: 삭제 로직
-    console.log("Delete clicked");
-  };
 
   return (
     <div className={style.container}>
@@ -50,8 +39,7 @@ export default function ProductDetail({ data }: ProductDetailProps) {
         <div className={style.titleContainer}>
           <div className={style.dropBoxContainer}>
             <h2 className={style.title}>{data.name}</h2>
-            <DropBoxWrapper
-            />
+            <DropBoxWrapper />
           </div>
           <h1 className={style.price}>{`${data.price}원`}</h1>
         </div>
@@ -63,9 +51,8 @@ export default function ProductDetail({ data }: ProductDetailProps) {
           </div>
           <div className={style.descriptionContainer}>
             <p className={style.subtitle}>상품 태그</p>
-            <div>
-              {/* TODO: 컴포넌트화 시키기 */}
-              <p>아이패드 미니</p>
+            <div className={style.tagContainer}>
+              <ProductTag data={data.tags} />
             </div>
           </div>
         </div>

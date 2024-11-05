@@ -1,4 +1,3 @@
-// src/components/items/DropBoxWrapper.tsx
 "use client";
 
 import DropBox from "../DropBox";
