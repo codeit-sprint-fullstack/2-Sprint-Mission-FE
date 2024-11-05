@@ -19,13 +19,13 @@ export default function Items() {
     queryKey: ["productList", order, pageSize, page],
     queryFn: () =>
       getProducts({
-        page,
-        pageSize,
-        order,
-        keyword
-      })
+        orderBy: order,
+        page: page + 1,
+        pageSize
+      }),
+    enabled: !!pageSize
   });
-  const { products: productList, totalCount } = data?.data || {};
+  const { list: productList, totalCount } = data?.data || {};
   const totalPage = Math.ceil(totalCount / pageSize);
   const onClickPageButton = (e) => setPage(Number(e.target.value));
   const onClickLeftArrowButton = (e) => {

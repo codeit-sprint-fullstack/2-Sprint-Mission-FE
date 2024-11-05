@@ -1,3 +1,4 @@
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import useGetData from "@/hooks/useGetData";
 import Link from "next/link";
@@ -13,7 +14,9 @@ import {
   getProductWithComments,
   postProductComment,
   patchProductComment,
-  deleteProductComment
+  deleteProductComment,
+  getProduct,
+  getProductComments
 } from "@/api/api";
 const { PRODUCT_WITH_COMMENTS } = MODEL_TYPE;
 const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
@@ -21,11 +24,23 @@ export default function Product() {
   const router = useRouter();
   const { id } = router.query;
   if (!id) return;
-  const { product, productComments } = useGetData({
-    type: PRODUCT_WITH_COMMENTS,
-    id,
-    count: 3
+  const queryClient = useQueryClient();
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["productInfo", id],
+    queryFn: () => getProduct(id),
+    enabled: !!id
   });
+  const {
+    data: commentsData,
+    isPending: commentsIsPending,
+    isError: commentsIsError
+  } = useQuery({
+    queryKey: ["productComments", id],
+    queryFn: () => getProductComments({ id, params: { limit: 3 } }),
+    enabled: !!id
+  });
+  const product = data?.data;
+  const { list: productComments } = commentsData?.data || {};
   const [inputComment, setInputComment] = useState();
   const [isPost, setIsPost] = useState(false);
   useEffect(() => {
@@ -145,7 +160,7 @@ export default function Product() {
                   총명한 판다
                 </span>
                 <span className="w-[80px] h-[24px] text-[14px] leading-24px text-9ca3af whtiespace-nowrap">
-                  {convertDate(product.createdAt)}
+                  {convertDate(product?.createdAt)}
                 </span>
               </div>
               <div

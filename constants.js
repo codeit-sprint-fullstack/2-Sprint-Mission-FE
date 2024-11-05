@@ -22,7 +22,7 @@ export const VALIDATION_STATE = Object.freeze({
 });
 export const ORDER_STATE = Object.freeze({
   RECENT: "recent",
-  FAVORITEST: "favoritest",
+  FAVORITEST: "favorite",
   NEWEST: "newest"
 });
 export const MODEL_TYPE = Object.freeze({

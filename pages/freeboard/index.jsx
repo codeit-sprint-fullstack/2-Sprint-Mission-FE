@@ -25,8 +25,9 @@ export default function FreeBoard() {
     queryKey: ["standardArticleList", order, standardSize], //값이 안받아와짐 체크하기
     queryFn: () =>
       getArticles({
+        page: 1,
         pageSize: standardSize,
-        order,
+        orderBy: order,
         keyword
       }),
     enabled: !!standardSize
@@ -35,13 +36,14 @@ export default function FreeBoard() {
     queryKey: ["bestList", bestSize], //값이 안받아와짐 체크하기
     queryFn: () =>
       getArticles({
+        page: 1,
         pageSize: bestSize,
         order: FAVORITEST
       }),
     enabled: !!bestSize
   });
-  const { articles: standardList, totalCount } = standardData?.data || {};
-  const { articles: bestList } = bestData?.data || {};
+  const { list: standardList, totalCount } = standardData?.data || {};
+  const { list: bestList } = bestData?.data || {};
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
   const handleChnageKeyword = (e) => setKeyword(e.target.value);
   return (

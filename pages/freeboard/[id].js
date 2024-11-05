@@ -1,12 +1,15 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import Image from "next/image";
 import {
   deleteArticle,
   postArticleComment,
   deleteArticleComment,
-  patchArticleComment
+  patchArticleComment,
+  getArticle,
+  getArticleComments
 } from "@/api/api";
 import useGetData from "@/hooks/useGetData";
 import CommentItem from "@/components/CommentItem";
@@ -58,14 +61,31 @@ export default function Article() {
   const returnBtnText = `w-[129px] h-[26px] text-[18px] mr-[8px] font-semibold
     text-center text-f3f4f6 leading-26px whitespace-nowrap`;
   const router = useRouter();
+  const queryClient = useQueryClient();
   const { id } = router.query;
   const [order, setOrder] = useState(RECENT);
-  const { article, articleComments } = useGetData({
-    type: ARTICLE_WITH_COMMENTS,
-    id,
-    count: 3
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["articleInfo", id],
+    queryFn: () => getArticle(id),
+    enabled: !!id
   });
-
+  const {
+    data: commentsData,
+    isPending: commentsIsPending,
+    isError: commentsIsError
+  } = useQuery({
+    queryKey: ["articleComments", id],
+    queryFn: () =>
+      getArticleComments({
+        id,
+        params: {
+          limit: 3
+        }
+      }),
+    enabled: !!id
+  });
+  const article = data?.data || {};
+  const { list: articleComments } = commentsData?.data?.list || {};
   const [comment, setComment] = useState("");
   const [isPost, setIsPost] = useState(false);
   const handleDropDownChange = async (chosenItem) => {
@@ -170,7 +190,7 @@ export default function Article() {
           </button>
         </form>
         <div className={commentListClass}>
-          {articleComments.map((comment) => (
+          {articleComments?.map((comment) => (
             <CommentItem
               data={comment}
               key={comment.id}

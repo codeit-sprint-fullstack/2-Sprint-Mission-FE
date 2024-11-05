@@ -1,10 +1,12 @@
 import axios from "axios";
 export const instance = axios.create({
   // baseURL: "https://comazon-4iuc.onrender.com"
-  baseURL: "http://localhost:3001"
+  // baseURL: "http://localhost:3001"
+  baseURL: "https://panda-market-api.vercel.app"
 });
 export const getProducts = async (params) => {
   const response = await instance.get(`/products`, { params });
+  console.log(response.data);
   return response;
 };
 export const getProduct = async (id) => {
@@ -33,6 +35,7 @@ export const deleteProduct = async (id) => {
 /*******************Aritlce*********************************************/
 export const getArticles = async (params) => {
   const response = await instance.get("/articles", { params });
+  console.log(response.data);
   return response;
 };
 export const getArticle = async (id) => {
@@ -58,8 +61,12 @@ export const deleteArticle = async (id) => {
   return response;
 };
 /*************************productComments***************************************** */
-export const postProductComment = async (fomrData) => {
-  const response = await instance.post("/product-comments", fomrData);
+export const getProductComments = async ({ id, params }) => {
+  const response = await instance.get(`products/${id}/comments`, { params });
+  return response;
+};
+export const postProductComment = async (formData) => {
+  const response = await instance.post(`/products/${id}/comments`, formData);
   return response;
 };
 export const patchProductComment = async ({ id, formData }) => {
@@ -71,6 +78,12 @@ export const deleteProductComment = async (id) => {
   return response;
 };
 /************************articleComments**********************************/
+export const getArticleComments = async ({ id, params }) => {
+  const response = await instance.get(`articles/${id}/comments`, { params });
+  console.log(11);
+  console.log(response);
+  return response;
+};
 export const postArticleComment = async (formData) => {
   const response = await instance.post("/article-comments", formData);
   return response;
