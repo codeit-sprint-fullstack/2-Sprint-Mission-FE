@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import useLoginValidate from '@/hooks/useLoginValidate';
-import Modal from '@/components/Common/Modal';
+import ErrorModal from '@/components/Common/ErrorModal';
 import { useAuth } from '@/lib/contexts/useAuth';
 
 export default function Login() {
@@ -173,7 +173,7 @@ export default function Login() {
           <Link href="/signup">회원가입</Link>
         </div>
       </div>
-      <Modal
+      <ErrorModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         message={modalMessage}

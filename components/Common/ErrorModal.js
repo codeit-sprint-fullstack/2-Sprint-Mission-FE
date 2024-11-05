@@ -1,6 +1,6 @@
-import styles from './Modal.module.css';
+import styles from './ErrorModal.module.css';
 
-export default function Modal({ isOpen, onClose, message }) {
+export default function ErrorModal({ isOpen, onClose, message }) {
   if (!isOpen) return null;
 
   return (

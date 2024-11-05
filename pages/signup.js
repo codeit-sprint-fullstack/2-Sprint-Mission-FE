@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { signUp } from '@/lib/api/AuthService';
 import useSignUpValidate from '@/hooks/useSignUpValidate';
-import Modal from '@/components/Common/Modal';
+import ErrorModal from '@/components/Common/ErrorModal';
 
 export default function SingUp() {
   const router = useRouter();
@@ -228,7 +228,7 @@ export default function SingUp() {
         <span>이미 회원이신가요?</span>
         <Link href="/signin">로그인</Link>
       </div>
-      <Modal
+      <ErrorModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         message={modalMessage}
