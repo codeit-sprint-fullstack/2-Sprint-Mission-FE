@@ -26,7 +26,7 @@ export default function SignupPage() {
         <SocialMediaLogin />
         <div className={style.signupContainer}>
           <p className={style.signupText}> 이미 회원이신가요?</p>
-          <Link className={style.signupLink} href="/sign-up">
+          <Link className={style.signupLink} href="/login">
             로그인
           </Link>
         </div>
