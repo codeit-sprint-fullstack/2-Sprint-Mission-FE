@@ -3,40 +3,41 @@ import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import formatTime from '@/lib/formatTime';
+import { patchProductComment } from '@/lib/api/ProductService';
+import ProductCommentDropdown from './\bProductCommentDropdown';
 
 export default function ProductCommentList({ productComments = [] }) {
   const [selectedComment, setSelectedComment] = useState(false);
   const [editingCommentId, setEditingCommentId] = useState('');
   const [editingContent, setEditingContent] = useState('');
 
-  //   const [dropdownOpen, setDropdownOpen] = useState(false);
-  //   const dropdownRef = useRef(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const router = useRouter();
-  const productId = router.query['id'];
 
-  //   const handleMenuClick = (comment) => {
-  //     setSelectedComment(comment);
-  //     setDropdownOpen((prev) => !prev);
-  //   };
+  const handleMenuClick = (comment) => {
+    setSelectedComment(comment);
+    setDropdownOpen((prev) => !prev);
+  };
 
-  //   const handleEditClick = (comment) => {
-  //     setEditingCommentId(comment.id);
-  //     setEditingContent(comment.content);
-  //     setDropdownOpen(false);
-  //   };
+  const handleEditClick = (comment) => {
+    setEditingCommentId(comment.id);
+    setEditingContent(comment.content);
+    setDropdownOpen(false);
+  };
 
-  //   const handleEdit = async (commentId) => {
-  //     try {
-  //       await patchArticleComment(articleId, commentId, {
-  //         content: editingContent
-  //       });
-  //       setEditingCommentId(null);
-  //       window.location.reload();
-  //     } catch (err) {
-  //       console.error('댓글 수정 중 오류 발생:', err);
-  //     }
-  //   };
+  const handleEdit = async (commentId) => {
+    try {
+      await patchProductComment(commentId, {
+        content: editingContent
+      });
+      setEditingCommentId(null);
+      window.location.reload();
+    } catch (err) {
+      console.error('댓글 수정 중 오류 발생:', err);
+    }
+  };
 
   return (
     <div>
@@ -72,14 +73,14 @@ export default function ProductCommentList({ productComments = [] }) {
                         onClick={() => handleMenuClick(comment)}
                         alt="메뉴 아이콘"
                       />
-                      {/* {selectedComment?.id === comment.id && dropdownOpen && (
+                      {selectedComment?.id === comment.id && dropdownOpen && (
                         <div ref={dropdownRef} className={styles.dropdown}>
-                          <CommentDropdown
+                          <ProductCommentDropdown
                             commentId={comment.id}
                             onEditClick={() => handleEditClick(comment)}
                           />
                         </div>
-                      )} */}
+                      )}
                     </div>
                   </>
                 )}

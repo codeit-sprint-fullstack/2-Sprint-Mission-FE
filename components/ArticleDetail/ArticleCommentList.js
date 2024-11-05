@@ -1,7 +1,7 @@
 import styles from './ArticleCommentList.module.css';
 import Image from 'next/image';
 import { patchArticleComment } from '@/lib/api/ArticleService';
-import CommentDropdown from './CommentDropdown';
+import ArticleCommentDropdown from './ArticleCommentDropdown';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import formatTime from '@/lib/formatTime';
@@ -15,7 +15,6 @@ export default function ArticleCommentList({ articleComments = [] }) {
   const dropdownRef = useRef(null);
 
   const router = useRouter();
-  const articleId = router.query['id'];
 
   const handleMenuClick = (comment) => {
     setSelectedComment(comment);
@@ -76,7 +75,7 @@ export default function ArticleCommentList({ articleComments = [] }) {
                       />
                       {selectedComment?.id === comment.id && dropdownOpen && (
                         <div ref={dropdownRef} className={styles.dropdown}>
-                          <CommentDropdown
+                          <ArticleCommentDropdown
                             commentId={comment.id}
                             onEditClick={() => handleEditClick(comment)}
                           />
