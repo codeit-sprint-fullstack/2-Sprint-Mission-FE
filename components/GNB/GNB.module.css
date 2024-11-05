@@ -73,13 +73,11 @@
     border-radius: 0.8rem;
 
     color: white;
-    background-color: #3292FF;
-}
-
-.auth a {
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 1.909rem;
+
+    background-color: #3292FF;
 }
 
 .login-success {
@@ -111,6 +109,14 @@
     .menu {
         font-size: 1.6rem;
     }
+
+    .nickname {
+        display: none;
+    }
+
+    .login-success {
+        gap: 0.5rem;
+    }
 }
 
 /* -- Mobile -- */
@@ -134,5 +140,18 @@
 
     .mobile {
         display: block;
+    }
+
+    .auth {
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .nickname {
+        display: none;
+    }
+
+    .login-success {
+        gap: 0.5rem;
     }
 }

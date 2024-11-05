@@ -57,7 +57,7 @@ export default function GNB() {
                 height={40}
                 alt="유저 아이콘"
               />
-              <span>{user.nickname}님</span>
+              <span className={styles.nickname}>{user.nickname}님</span>
             </div>
             <button className={styles.auth} onClick={handleLogout}>
               로그아웃
