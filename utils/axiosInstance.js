@@ -5,6 +5,17 @@ const axiosInstance = axios.create({
   timeout: 5000,
 });
 
+axiosInstance.interceptors.request.use(
+  function (config) {
+    // 요청이 전달되기 전에 작업 수행
+    return config;
+  },
+  function (error) {
+    // 요청 오류가 있는 작업 수행
+    return Promise.reject(error);
+  }
+);
+
 export const fetchApi = async (
   url,
   params = {},
