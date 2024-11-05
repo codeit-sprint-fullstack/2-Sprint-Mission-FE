@@ -43,9 +43,7 @@ export default function Register() {
         images,
         tags
       };
-      console.log(product);
       const res = await createProduct(product);
-      console.log(res);
       const productId = res.id;
       return router.push(`/products/${productId}`);
     } catch (err) {

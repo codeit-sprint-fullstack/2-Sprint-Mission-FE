@@ -2,12 +2,17 @@ import styles from '@/styles/ProductDetail.module.css';
 import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
-import { getProduct, getProductCommentList } from '@/lib/api/ProductService';
+import {
+  getProduct,
+  deleteProduct,
+  getProductCommentList
+} from '@/lib/api/ProductService';
 import ProductCommentAdd from '@/components/ProductDetail/ProductCommentAdd';
 import ProductCommentList from '@/components/ProductDetail/ProductCommentList';
 import ProductDropdown from '@/components/ProductDetail/ProductDropdown';
 import formatDate from '@/lib/formatDate';
 import formatPrice from '@/lib/formatPrice';
+import ConfirmModal from '@/components/Common/ConfirmModal';
 
 export async function getServerSideProps(context) {
   try {
@@ -33,6 +38,8 @@ export async function getServerSideProps(context) {
 export default function ProductDetail({ product, productComments }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -40,6 +47,24 @@ export default function ProductDetail({ product, productComments }) {
 
   const handleBackList = () => router.push('/items');
   const handleMenuClick = () => setDropdownOpen((prev) => !prev);
+
+  const handleDeleteClick = () => {
+    setDropdownOpen(false); // 드롭다운 닫기
+    setIsModalOpen(true); // 모달 열기
+  };
+
+  const handleCancel = () => setIsModalOpen(false); // 모달 취소
+  const handleDelete = async (id) => {
+    setLoading(true);
+    try {
+      await deleteProduct(id);
+      setIsModalOpen(false); // 삭제 후 모달 닫기
+      router.push('/products');
+    } catch (err) {
+      console.error('삭제 요청 중 오류 발생:', err);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -69,8 +94,8 @@ export default function ProductDetail({ product, productComments }) {
                     alt="메뉴 아이콘"
                   />
                   {dropdownOpen && (
-                    <div ref={dropdownRef} className={styles.dropdown}>
-                      <ProductDropdown />
+                    <div className={styles.dropdown}>
+                      <ProductDropdown onDeleteClick={handleDeleteClick} />
                     </div>
                   )}
                 </div>
@@ -134,6 +159,13 @@ export default function ProductDetail({ product, productComments }) {
           alt="목록 아이콘"
         />
       </button>
+      {isModalOpen && (
+        <ConfirmModal
+          onCancel={handleCancel}
+          onDelete={() => handleDelete(product.id)}
+          loading={loading}
+        />
+      )}
     </div>
   );
 }
