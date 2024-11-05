@@ -16,7 +16,7 @@ export default function Items() {
   const [buttonList, setButtonList] = useState([]);
   const queryClient = useQueryClient();
   const { data, isPending, isError } = useQuery({
-    queryKey: ["productList", pageSize, order, page],
+    queryKey: ["productList", order, pageSize, page],
     queryFn: () =>
       getProducts({
         page,
@@ -33,9 +33,7 @@ export default function Items() {
       setButtonList(
         Array.from({ length: Math.min(totalPage, 5) }, (_, index) => index)
       );
-    } else {
-      setButtonList((prev) => prev.map((page) => Number(page) - 5));
-    }
+    } else setButtonList((prev) => prev.map((page) => Number(page) - 5));
   };
   const onClickRightArrowButton = (e) => {
     if (buttonList[4] >= Number(totalPage) - 5)
@@ -50,13 +48,26 @@ export default function Items() {
   };
   const handleChangeOrder = (chosenOrder) => setOrder(chosenOrder);
   const handleOnChangeKeyword = (e) => setKeyword(e.target.value);
+  // useEffect(() => {
+  //   // totalPage가 변경될 때 buttonList 업데이트
+  //   if (totalPage < page) setPage(0);
+  //   const nextButtonList = Array.from(
+  //     { length: Math.min(totalPage, 5) },
+  //     (_, index) => index
+  //   );
+  //   setButtonList(nextButtonList);
+  // }, [totalPage, pageSize, page]);
   useEffect(() => {
     // totalPage가 변경될 때 buttonList 업데이트
     if (totalPage < page) setPage(0);
-    setButtonList(
-      Array.from({ length: Math.min(totalPage, 5) }, (_, index) => index)
-    ); // 최대 5개 버튼
-  }, [totalCount, pageSize]);
+    const startPage = Math.floor(page / 5) * 5; // 현재 페이지를 기준으로 시작 페이지 계산
+    const endPage = Math.min(startPage + 5, totalPage); // 끝 페이지 계산
+    const nextButtonList = Array.from(
+      { length: endPage - startPage },
+      (_, index) => startPage + index
+    );
+    setButtonList(nextButtonList);
+  }, [totalPage, pageSize, page]);
   if (isPending) return <div>로딩중입니다</div>;
   return (
     <div className="w-full h-full flex justify-center bg-fcfcfc">
