@@ -1,11 +1,13 @@
 import styles from '@/styles/ProductDetail.module.css';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   getProduct,
   deleteProduct,
-  getProductCommentList
+  getProductCommentList,
+  createProductFavorite,
+  deleteProductFavorite
 } from '@/lib/api/ProductService';
 import ProductCommentAdd from '@/components/ProductDetail/ProductCommentAdd';
 import ProductCommentList from '@/components/ProductDetail/ProductCommentList';
@@ -37,11 +39,14 @@ export async function getServerSideProps(context) {
 
 export default function ProductDetail({ product, productComments }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [isFavorited, setIsFavorited] = useState(product.isFavorite);
+  const [favoriteCount, setFavoriteCount] = useState(product.favoriteCount);
+
   const router = useRouter();
+  const productId = router.query['id'];
 
   if (!product) return <div>No product found for this ID.</div>;
 
@@ -53,7 +58,7 @@ export default function ProductDetail({ product, productComments }) {
     setIsModalOpen(true);
   };
 
-  const handleCancel = () => setIsModalOpen(false); // 모달 취소
+  const handleCancel = () => setIsModalOpen(false);
   const handleDelete = async (id) => {
     setLoading(true);
     try {
@@ -63,6 +68,21 @@ export default function ProductDetail({ product, productComments }) {
     } catch (err) {
       console.error('삭제 요청 중 오류 발생:', err);
       setLoading(false);
+    }
+  };
+
+  const handleFavoriteClick = async () => {
+    try {
+      if (isFavorited) {
+        await deleteProductFavorite(productId);
+        setFavoriteCount(favoriteCount - 1);
+      } else {
+        await createProductFavorite(productId);
+        setFavoriteCount(favoriteCount + 1);
+      }
+      setIsFavorited(!isFavorited);
+    } catch (err) {
+      console.error('좋아요 처리 중 오류 발생:', err);
     }
   };
 
@@ -132,14 +152,18 @@ export default function ProductDetail({ product, productComments }) {
                 </div>
               </div>
               <div className={styles[`favorite-wrap`]}>
-                <div className={styles.favorite}>
+                <div className={styles.favorite} onClick={handleFavoriteClick}>
                   <Image
-                    src="/images/ic_heart.png"
+                    src={
+                      isFavorited
+                        ? '/images/ic_heart_active.png'
+                        : '/images/ic_heart.png'
+                    }
                     width={32}
                     height={32}
                     alt="좋아요 아이콘"
                   />
-                  <p>{product.favoriteCount}</p>
+                  <p>{favoriteCount}</p>
                 </div>
               </div>
             </div>
