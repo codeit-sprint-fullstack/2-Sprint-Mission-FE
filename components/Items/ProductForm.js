@@ -45,22 +45,6 @@ export default function ProductForm({ initialData = {}, onSubmit, isEdit = false
     }
   };
   
-  /*
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const payload = { ...productData, images: productData.images || [] };
-      await onSubmit(payload);
-    } catch (error) {
-      console.error(error);
-      alert(`${isEdit ? '상품 수정' : '상품 등록'}에 실패했습니다.`);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-  */
   const handleTagInputChange = (e) => setTagInput(e.target.value);
 
   const handleTagInputKeyDown = (e) => {

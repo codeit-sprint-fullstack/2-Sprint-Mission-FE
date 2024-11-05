@@ -5,22 +5,27 @@ import Dropdown from '@/components/Common/Dropdown';
 import { deleteProduct } from '@/lib/api/ProductService';
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthProvider';
+import ModalConfirm from '../Common/ModalConfirm';
 
 export default function ProductInfo({ product }) {
   const router = useRouter();
   const [likeCount, setLikeCount] = useState(product.favoriteCount || 0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useAuth(true);  // 인가된 사용자만 접근 허용
 
   const handleDelete = async () => {
-    const confirmed = window.confirm('삭제하시겠습니까?');
-    if (confirmed) {
-      try {
-        await deleteProduct(product.id);
-        router.push('/items');
-      } catch (error) {
-        alert('제품 삭제에 실패했습니다.');
-      }
+    setIsModalOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    try {
+      await deleteProduct(product.id);
+      router.push('/items');
+    } catch (error) {
+      alert('제품 삭제에 실패했습니다.');
+    } finally {
+      setIsModalOpen(false); // 모달 닫기
     }
   };
 
@@ -126,6 +131,15 @@ export default function ProductInfo({ product }) {
           </div>
         </div>
       </div>
+      {/* 삭제 확인 모달 */}
+      <ModalConfirm
+        isOpen={isModalOpen}
+        onConfirm={confirmDelete}
+        onCancel={() => setIsModalOpen(false)}
+        message="정말로 삭제하시겠습니까?"
+      />
+
+
     </div>
   );
 }

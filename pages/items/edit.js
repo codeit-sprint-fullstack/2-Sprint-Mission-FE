@@ -9,7 +9,6 @@ export default function ProductEditPage() {
   const [initialData, setInitialData] = useState(null); // 초기 상품 데이터를 저장
   const [loading, setLoading] = useState(true);
 
-  console.log('id', id);
   // 기존 상품 데이터를 불러오는 함수
   useEffect(() => {
     if (id) {
