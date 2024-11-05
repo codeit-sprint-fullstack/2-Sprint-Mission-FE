@@ -153,7 +153,7 @@ export default function Market() {
         )}
       </div>
       <div className={styles.return_button_container}>
-        <Link href="/items">
+        <Link href="/items" legacyBehavior>
           <button className={styles.return_list}>
             목록으로 돌아가기
             <Image src={back_img} alt="목록으로 돌아가기" />

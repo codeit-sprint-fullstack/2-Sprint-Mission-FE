@@ -15,6 +15,7 @@
 .return_button_container {
   display: flex;
   justify-content: center;
+  text-decoration: none;
 }
 .return_list {
   background-color: #3692ff;
