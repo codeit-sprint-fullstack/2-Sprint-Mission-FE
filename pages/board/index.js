@@ -20,14 +20,14 @@ export async function getServerSideProps(context) {
 	
 	try {
 		const resAll = await axios.get(`/articles?orderBy=${sort}&keyword=${search}`);
-		const articles = resAll.data.list || [];
+		articles = resAll.data.list || [];
 	} catch (error) {
 		console.error(error);
 	}
 
 	try {
 		const resBest = await axios.get(`/articles?pageSize=3`);
-		const bestArticles = resBest.data.list || [];
+		bestArticles = resBest.data.list || [];
 	} catch (error) {
 		console.error(error);
 	}

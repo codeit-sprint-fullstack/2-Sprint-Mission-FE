@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-query';
 import React from 'react';
 import { AuthProvider } from '@/lib/authContext';
+import { ViewportProvider } from '@/lib/viewportContext';
 
 export default function App({ Component, pageProps }) {
   const [queryClient] = React.useState(
@@ -25,15 +26,17 @@ export default function App({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={pageProps.dehydratedState}>
-        <AuthProvider>
-          <Head>
-            <title>판다마켓</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <GNB />
-          <Component {...pageProps} />
-          <Footer />
-        </AuthProvider>
+        <ViewportProvider>
+          <AuthProvider>
+            <Head>
+              <title>판다마켓</title>
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <GNB />
+            <Component {...pageProps} />
+            <Footer />
+          </AuthProvider>
+        </ViewportProvider>
       </HydrationBoundary>
     </QueryClientProvider>
   );
