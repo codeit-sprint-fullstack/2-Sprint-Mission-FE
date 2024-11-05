@@ -5,7 +5,7 @@ export const instance = axios.create({
   headers: { 'Content-Type': 'application/json' }
 });
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: 'https://panda-market-api.vercel.app',
   headers: { 'Content-Type': 'application/json' }
 });
@@ -33,6 +33,16 @@ export async function signup({
       password,
       passwordConfirmation
     });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getUser() {
+  try {
+    const res = await axiosInstance.get('/users/me');
     return res.data;
   } catch (error) {
     console.log(error);

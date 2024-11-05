@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { signup } from '@/lib/api';
 import useSignupValidate from '@/hooks/useSignupValidate';
+import { useUser } from '@/contexts/UserContext';
 
 export default function Signup() {
   const router = useRouter();
@@ -22,13 +23,14 @@ export default function Signup() {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [passwordConfirmationVisibility, setPasswordConfirmationVisibility] =
     useState(false);
+  const { setUser, user } = useUser();
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
+    if (accessToken && accessToken !== 'undefined' && user !== null) {
       router.push('/folder');
     }
-  }, [router]);
+  }, [router, user]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -49,6 +51,7 @@ export default function Signup() {
       if (data.accessToken) {
         localStorage.setItem('accessToken', data.accessToken);
         localStorage.setItem('refreshToekn', data.refreshToken);
+        setUser(data);
         setModalMessage('가입 완료되었습니다.');
         setIsModalOpen(true);
       }

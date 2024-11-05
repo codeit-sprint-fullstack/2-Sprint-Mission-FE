@@ -16,3 +16,6 @@ Content-Type: application/json
   "password": "123456789",
   "passwordConfirmation": "123456789"
 }
+
+###
+GET https://panda-market-api.vercel.app/users/me

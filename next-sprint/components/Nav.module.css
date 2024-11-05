@@ -33,18 +33,15 @@
   line-height: 2.1rem;
   text-align: center;
   white-space: nowrap;
+  color: var(--secondary-gray-500);
+}
+
+.active {
+  color: var(--primary-blue) !important;
 }
 
 .link {
   text-decoration: none;
-}
-
-.menu h3:nth-child(1) {
-  color: var(--primary-blue);
-}
-
-.menu h3:nth-child(2) {
-  color: var(--secondary-gray-500);
 }
 
 .login {
@@ -63,6 +60,21 @@
   text-align: left;
   color: var(--primary-white);
   white-space: nowrap;
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user span {
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.178rem;
+  text-align: left;
+  color: var(--secondary-gray-500);
 }
 
 @media (max-width: 1199px) and (min-width: 744px) {

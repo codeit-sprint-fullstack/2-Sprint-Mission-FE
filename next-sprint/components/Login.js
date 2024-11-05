@@ -6,6 +6,7 @@ import { login } from '@/lib/api';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Modal from './Modal';
+import { useUser } from '@/contexts/UserContext';
 
 export default function Login() {
   const router = useRouter();
@@ -21,13 +22,14 @@ export default function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [btnVisibility, setBtnVisibility] = useState(false);
+  const { setUser, user } = useUser();
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
+    if (accessToken && accessToken !== 'undefined' && user !== null) {
       router.push('/folder');
     }
-  }, [router]);
+  }, [router, user]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -53,6 +55,7 @@ export default function Login() {
       if (data.accessToken) {
         localStorage.setItem('accessToken', data.accessToken);
         localStorage.setItem('refreshToekn', data.refreshToken);
+        setUser(data.user);
       }
       router.push('/items');
     },
