@@ -26,7 +26,7 @@ export default function Edit() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await getProduct(id);
+        const res = await getProduct(productId);
         setData(res);
       } catch (err) {
         console.error('상품 정보를 불러오는데 실패했습니다.');
@@ -34,7 +34,7 @@ export default function Edit() {
       }
     };
     fetchProduct();
-  }, [id]);
+  }, [productId]);
 
   useEffect(() => {
     if (data) {
@@ -117,7 +117,7 @@ export default function Edit() {
         <input
           type="text"
           id="price"
-          value={values.group}
+          value={values.price}
           onChange={handleChange}
           placeholder="판매 가격을 입력해주세요"
           style={{ border: errors.price ? '1px solid red' : 'none' }}

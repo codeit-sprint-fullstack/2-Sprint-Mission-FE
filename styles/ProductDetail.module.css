@@ -28,8 +28,22 @@
     gap: 2.4rem;
 }
 
-.product-image {
+.product-image-wrapper {
+    width: 48.6rem;
+    height: 48.6rem;
     border-radius: 1.6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .contents-wrap {
@@ -39,6 +53,8 @@
 
     max-width: 69rem;
     width: 100%;
+
+    gap: 4rem;
 }
 
 .contents {
@@ -76,6 +92,10 @@
     line-height: 4.773rem;
 }
 
+.menu-wrap {
+    width: 100%;
+}
+
 .menu {
     position: relative;
     cursor: pointer;
@@ -83,8 +103,8 @@
 
 .dropdown {
     position: absolute;
-    top: 0;
-    left: 2rem;
+    top: 10;
+    right: 2rem;
 }
 
 .description-tags {
@@ -98,17 +118,19 @@
     display: flex;
     flex-direction: column;
 
-    gap: 1.6rem;
+    gap: 0.8rem;
 }
 
 .subtitle {
     color: #4B5563;
     font-size: 1.6rem;
-    font-weight: 600;
     line-height: 2.6rem;
+    font-weight: 600;
 }
 
 .description {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
     font-weight: 400;
 }
 
@@ -150,12 +172,14 @@
 .tags {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 
-    gap: 1.6rem;
+    gap: 0.8rem;
 }
 
 .tag-wrap {
     display: flex;
+    flex-wrap: wrap;
 
     gap: 0.8rem;
 }
@@ -222,4 +246,49 @@
     background-color: #3692FF;
 
     gap: 0.8rem;
+}
+
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+    .contents-wrap {
+        max-width: 34rem;
+        width: 100%;
+    }
+
+    .product-image-wrapper {
+        width: 34em;
+        height: 34rem;
+    }
+}
+
+@media screen and (max-width: 743px) {
+    .product-info {
+        flex-direction: column;
+
+        max-width: 34.4rem;
+        width: 100%;
+    }
+
+    .title p {
+        font-size: 1.6rem;
+        line-height: 2.6rem;
+    }
+
+    .title h1 {
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+    }
+
+    .description {
+        font-weight: 400;
+    }
+
+    .product-image-wrapper {
+        width: auto;
+        height: 34rem;
+    }
 }

@@ -1,139 +1,42 @@
-.comment-list {
-    display: flex;
-    flex-direction: column;
+.menu {
+    width: 13.9rem;
 
-    gap: 4rem;
-}
+    background-color: white;
+    z-index: 10;
 
-.container {
-    display: flex;
-    flex-direction: column;
+    cursor: pointer;
 
-    padding-bottom: 1.2rem;
-    border-bottom: 0.1rem solid #E5E7EB;
-
-    background-color: #FCFCFC;
-
-    gap: 2.4rem;
-}
-
-.container p {
-    font-size: 1.4rem;
-    font-weight: 400;
-    line-height: 2.4rem;
-}
-
-.content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.edit {
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-    height: 10rem;
-
-    gap: 1rem;
-}
-
-.edit textarea {
-    width: 100%;
-    height: 100%;
-
-    padding: 1.6rem 2.4rem;
-    border: none;
-    border-radius: 1.2rem;
-
-    font-size: 1.4rem;
+    color: #6B7280;
+    font-size: 1.6rem;
     font-weight: 400;
     line-height: 2.6rem;
-
-    background-color: #F3F4F6;
 }
 
-.edit textarea:focus {
-    outline: none;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: column;
-
-    height: 100%;
-
-    gap: 1rem;
-}
-
-.buttons button {
+.menu>:first-child {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    width: 6rem;
-    height: 100%;
+    width: 100%;
 
-    border-radius: 3em;
+    padding: 1.2rem 1.7rem 1.6rem;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
 
-    color: #F3F4F6;
-    font-size: 1.2rem;
-    font-weight: 600;
-    line-height: 2.6rem;
-
-    background-color: #3692FF;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #D1D5DB;
 }
 
-.menu {
-    position: relative;
-    cursor: pointer;
-}
-
-.dropdown {
-    position: absolute;
-    top: 100%;
-    right: 50%;
-}
-
-.info {
+.menu>:last-child {
     display: flex;
+    justify-content: center;
     align-items: center;
 
-    gap: 0.8rem;
-}
+    width: 100%;
 
-.user {
-    display: flex;
-    flex-direction: column;
-
-    gap: 0.4rem;
-}
-
-.user p {
-    font-size: 1.2rem;
-    font-weight: 400;
-    line-height: 1.8rem;
-}
-
-.user>:first-child {
-    color: #4B5563;
-}
-
-.user>:last-child {
-    color: #9CA3AF;
-}
-
-.null {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    color: #9CA3AF;
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 2.6rem;
-    text-align: center;
-
-    gap: 1.6rem;
+    padding: 1.2rem 1.7rem 1.6rem;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
+    border: 0.1rem solid #D1D5DB;
 }

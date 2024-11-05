@@ -9,7 +9,7 @@ export default function DropdownMenu({ onDeleteClick }) {
   return (
     <div className={styles.menu}>
       <div>
-        <Link href={`/products/${id}/edit`}>수정하기</Link>
+        <Link href={`/items/${id}/edit`}>수정하기</Link>
       </div>
       <div onClick={() => onDeleteClick(id)}>삭제하기</div>
     </div>

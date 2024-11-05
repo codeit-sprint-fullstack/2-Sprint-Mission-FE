@@ -1,6 +1,6 @@
 import styles from '@/styles/ProductDetail.module.css';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
   getProduct,
@@ -90,35 +90,37 @@ export default function ProductDetail({ product, productComments }) {
     <div className={styles.wrapper}>
       <div className={styles[`product-comments`]}>
         <div className={styles[`product-info`]}>
-          <Image
-            className={styles[`product-image`]}
-            src={product.images[0]}
-            width={486}
-            height={486}
-            alt="상품 이미지"
-            priority
-          />
+          <div className={styles['product-image-wrapper']}>
+            <Image
+              className={styles[`product-image`]}
+              src={product.images[0]}
+              alt="상품 이미지"
+              fill
+              priority
+              sizes="100%"
+            />
+          </div>
           <div className={styles[`contents-wrap`]}>
             <div className={styles.contents}>
-              <div className={styles[`title-menu`]}>
-                <div className={styles.title}>
+              <div className={styles.title}>
+                <div className={styles[`title-menu`]}>
                   <p>{product.name}</p>
-                  <h1>{formatPrice(product.price)}원</h1>
+                  <div className={styles.menu}>
+                    <Image
+                      src="/images/ic_kebab.png"
+                      width={24}
+                      height={24}
+                      onClick={handleMenuClick}
+                      alt="메뉴 아이콘"
+                    />
+                    {dropdownOpen && (
+                      <div className={styles.dropdown}>
+                        <ProductDropdown onDeleteClick={handleDeleteClick} />
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className={styles.menu}>
-                  <Image
-                    src="/images/ic_kebab.png"
-                    width={24}
-                    height={24}
-                    onClick={handleMenuClick}
-                    alt="메뉴 아이콘"
-                  />
-                  {dropdownOpen && (
-                    <div className={styles.dropdown}>
-                      <ProductDropdown onDeleteClick={handleDeleteClick} />
-                    </div>
-                  )}
-                </div>
+                <h1>{formatPrice(product.price)}원</h1>
               </div>
               <div className={styles[`description-tags`]}>
                 <div className={styles[`description-wrap`]}>
