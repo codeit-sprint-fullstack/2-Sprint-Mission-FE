@@ -1,15 +1,15 @@
 import { Link, useNavigate } from "react-router-dom"; // Link 컴포넌트 임포트
 import "./HomeStyle/auth.css";
 import "./HomeStyle/global.css";
-import "./HomeStyle/modal.css";
+
 import logo from "./images/logo/logo.svg";
 import closeEye from "./images/icons/eye-invisible.svg";
 import openEye from "./images/icons/eye-visible.svg";
 import kakaoTalk from "./images/social/kakao-logo.png";
 import google from "./images/social/google-logo.png";
 import { useEffect, useState } from "react";
-import axios from "../lib/axios.js";
 import Modal from "../component/Modal.js";
+import axios from "../lib/axios.js";
 
 export default function LoginPage() {
   const [values, setValues] = useState({
@@ -81,17 +81,40 @@ export default function LoginPage() {
         email,
         password,
       });
+      console.log("리스폰스 데이터", response.data);
 
       const accessToken = response.data.accessToken; // 서버에서 받은 accessToken
+      const refreshToken = response.data.refreshToken; // 서버에서 받은 refreshToken
       localStorage.setItem("accessToken", accessToken); // 로컬 스토리지에 저장
+      localStorage.setItem("refreshToken", refreshToken); // 리프레시 토큰도 로컬 스토리지에 저장
 
       navigate("/items"); // 성공 시 /items 페이지로 이동
     } catch (error) {
-      setIsModalOpen(true); // 모달 열기
-      setValues((prevValues) => ({
-        ...prevValues,
-        errorMsg: error.response.data.message,
-      }));
+      console.log("에러", error);
+      if (error.response && error.response.status === 401) {
+        // 액세스 토큰이 만료된 경우
+        await refreshAccessToken();
+      } else {
+        setIsModalOpen(true); // 모달 열기
+        setValues((prevValues) => ({
+          ...prevValues,
+          errorMsg: error.response.data.message,
+        }));
+      }
+    }
+  };
+
+  const refreshAccessToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem("refreshToken");
+      const response = await axios.post("/auth/refresh-token", {
+        refreshToken,
+      });
+      const newAccessToken = response.data.accessToken; //서버에서 받은 새로운 액세스토큰
+      localStorage.setItem("accessToken", newAccessToken); //로컬스토리지에 저장
+    } catch (error) {
+      console.log("리프레시 토큰 요청 실패", error);
+      navigate("/login");
     }
   };
 

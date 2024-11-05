@@ -3,6 +3,7 @@ body.modal-open {
 }
 
 .modal {
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -50,10 +51,6 @@ p {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-
-  @media (max-width: 743px) {
-    margin-top: 8.1rem;
-  }
 }
 
 .confirm-button {
@@ -72,16 +69,20 @@ p {
 
   cursor: pointer;
   font-size: 1.6rem;
+}
+.confirm-button:hover,
+.confirm-button:focus {
+  background-color: var(--blue);
+}
 
-  @media (max-width: 743px) {
+@media (max-width: 743px) {
+  p {
+    margin-top: 8.1rem;
+  }
+  .confirm-button {
     position: absolute;
     left: 50%;
     bottom: 2.3rem;
     transform: translateX(-50%);
   }
-}
-
-.confirm-button:hover,
-.confirm-button:focus {
-  background-color: var(--blue);
 }

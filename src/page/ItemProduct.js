@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import BestProductList from "./BestProductList.js";
-import { getList, getListItem } from "./api.js";
-import ProductList from "./ProductList.js";
-import PageButton from "./PageButton.js";
+import BestProductList from "../component/BestProductList.js";
+import { getList, getListItem } from "../component/api.js";
+import ProductList from "../component/ProductList.js";
+import PageButton from "../component/PageButton.js";
 
-function Product() {
+function ItemProduct() {
   const [bestItems, setBestItems] = useState([]);
   const [productItems, setProductItems] = useState([]);
   const [order, setOrder] = useState("recent");
@@ -75,4 +75,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default ItemProduct;

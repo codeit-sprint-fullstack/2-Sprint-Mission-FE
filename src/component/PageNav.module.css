@@ -1,0 +1,23 @@
+.userContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.userImg{
+    width: 40px;
+    height: 40px;
+}
+.userNickname{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    color: #4b5563;
+}
+
+@media (max-width: 1199px) {
+    .userNickname{
+        display: none;
+    }
+}

@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Product from "./component/Product.js";
+import ItemProduct from "./page/ItemProduct.js";
 import App from "./App.js";
 import HomePage from "./page/HomePage.js";
-import Items from "./page/Items.js";
 import Registration from "./page/Registration.js";
-import DetailPage from "./page/DetailPage.js";
+import ItemDetailPage from "./page/ItemDetailPage.js";
 import LoginPage from "./page/LoginPage.js";
 import { UserLayout } from "./component/Layout.js";
 import SignupPage from "./page/SignupPage.js";
@@ -18,11 +17,11 @@ function Main() {
           <Routes>
             <Route element={<UserLayout />}>
               <Route index element={<HomePage />} />
-              <Route path="product" element={<Product />} />
-              <Route path="items" element={<Items />} />
+              <Route path="items" element={<ItemProduct />} />
               <Route path="registration" element={<Registration />} />
-              <Route path="detailpage" element={<DetailPage />} />
+              <Route path="detailpage" element={<ItemDetailPage />} />
               <Route path="folder" element={<Folder />} />
+              <Route path="item/:itemId" element={<ItemDetailPage />} />
             </Route>
             <Route path="login" element={<LoginPage />} />
             <Route path="signin" element={<SignupPage />} />

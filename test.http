@@ -17,3 +17,48 @@ Content-Type: application/json
     "email":"adfeg44@naver.com",
     "password":"123456789"
 }
+
+###
+
+POST https://panda-market-api.vercel.app/products/226/favorite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzY2LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDc3MTAyMSwiZXhwIjoxNzMwNzcyODIxLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.KZC-SCcEY6MPVGTqxKUy-JnMzqold3d1S9vZd4lWqhU
+
+{
+    "favoriteCount":1
+}
+
+###
+
+DELETE https://panda-market-api.vercel.app/products/226/favorite
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzY2LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDc3MTAyMSwiZXhwIjoxNzMwNzcyODIxLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.KZC-SCcEY6MPVGTqxKUy-JnMzqold3d1S9vZd4lWqhU
+
+###
+
+GET https://panda-market-api.vercel.app/users/me/favorites
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzY2LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDc3OTY3MCwiZXhwIjoxNzMwNzgxNDcwLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.JeOX1DJmrtR5sgChAB-yRUDEvz1H6yQBcHpaSE_tnHs
+
+###
+
+GET https://panda-market-api.vercel.app/products/226/comments?limit=10
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzY2LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDc3OTY3MCwiZXhwIjoxNzMwNzgxNDcwLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.JeOX1DJmrtR5sgChAB-yRUDEvz1H6yQBcHpaSE_tnHs
+
+###
+
+POST https://panda-market-api.vercel.app/products/226/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzY2LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDc4OTA0NiwiZXhwIjoxNzMwNzkwODQ2LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.cC2cRU3Spz0tOk1hw_-NU-mxoo8hNaaLdt6mwJBQ-Ek
+
+{
+    "content":"이거 올라가는건가요?"
+}
+
+###
+
+PATCH https://panda-market-api.vercel.app/comments/834
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzY2LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDc5MDk5OCwiZXhwIjoxNzMwNzkyNzk4LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.lbXsM4S8PWNZL24c9gTLr_NFndlvapQK0vqtWOd7LRU
+
+{
+    "content":"수정되나요?"
+}

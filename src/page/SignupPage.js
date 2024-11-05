@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"; // Link 컴포넌트 임포트
 import "./HomeStyle/auth.css";
 import "./HomeStyle/global.css";
-import "./HomeStyle/modal.css";
 import logo from "./images/logo/logo.svg";
 import closeEye from "./images/icons/eye-invisible.svg";
 import openEye from "./images/icons/eye-visible.svg";
@@ -115,22 +114,34 @@ export default function SignupPage() {
     setValues((prevValues) => ({ ...prevValues, errors: newErrors }));
     try {
       const { email, nickname, password, passwordConfirmation } = values;
-      const response = await axios.post("/auth/signUp", {
+      await axios.post("/auth/signUp", {
         email,
         nickname,
         password,
         passwordConfirmation,
       });
+      const response = await axios.post("/auth/signIn", {
+        email,
+        password,
+      });
+
       const accessToken = response.data.accessToken; // 서버에서 받은 accessToken
+      const refreshToken = response.data.refreshToken; // 서버에서 받은 refreshToken
       localStorage.setItem("accessToken", accessToken); // 로컬 스토리지에 저장
+      localStorage.setItem("refreshToken", refreshToken); // 리프레시 토큰도 로컬 스토리지에 저장
 
       navigate("/items"); // 성공 시 /items 페이지로 이동
     } catch (error) {
-      setIsModalOpen(true); // 모달 열기
-      setValues((prevValues) => ({
-        ...prevValues,
-        errorMsg: error.response.data.message,
-      }));
+      if (error.response && error.response.status === 401) {
+        // 액세스 토큰이 만료된 경우
+        await refreshAccessToken();
+      } else {
+        setIsModalOpen(true); // 모달 열기
+        setValues((prevValues) => ({
+          ...prevValues,
+          errorMsg: error.response.data.message,
+        }));
+      }
     }
   };
 

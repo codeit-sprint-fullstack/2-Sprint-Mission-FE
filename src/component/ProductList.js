@@ -1,17 +1,33 @@
 import { useEffect, useState } from "react";
 import "../style/ProductList.css";
 import ProductMenuContainer from "./ProductMenuContainer.js";
+import { Link } from "react-router-dom";
+import defaultImg from "../imgFile/defaultProduct.png";
 
 function ProductListItem({ item }) {
+  const isValidImageUrl = (url) => {
+    return /\.(jpg|jpeg|png|gif|bmp|webp|svg)$/.test(url);
+  };
   return (
-    <div className="ProductListItem">
-      <img src={item.images} alt={item.name} />
-      <div>
-        <p className="ListFont1">{item.name}</p>
-        <p className="ListFont2">{item.price}</p>
-        <p className="ListFont3">♡ {item.favoriteCount}</p>
-      </div>
-    </div>
+    <>
+      <Link to={`/item/${item.id}`}>
+        <div className="ProductListItem">
+          <img
+            src={
+              item.images && isValidImageUrl(item.images)
+                ? item.images
+                : defaultImg
+            }
+            alt={item.name}
+          />
+          <div>
+            <p className="ListFont1">{item.name}</p>
+            <p className="ListFont2">{item.price}</p>
+            <p className="ListFont3">♡ {item.favoriteCount}</p>
+          </div>
+        </div>
+      </Link>
+    </>
   );
 }
 

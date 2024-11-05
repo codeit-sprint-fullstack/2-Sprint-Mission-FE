@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import PageNav from "./PageNav.js";
+import PublicNav from "./PageNav.js";
 import Footer from "./Footer.js";
 
 export function UserLayout() {
   return (
     <>
-      <PageNav />
+      <PublicNav />
       <Outlet />
       <Footer />
     </>

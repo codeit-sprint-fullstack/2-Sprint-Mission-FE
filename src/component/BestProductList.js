@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react";
 import "../style/BestProductList.css";
+import { Link } from "react-router-dom";
+import defaultImg from "../imgFile/defaultProduct.png";
 
 function BestProductItem({ item }) {
+  const isValidImageUrl = (url) => {
+    return /\.(jpg|jpeg|png|gif|bmp|webp|svg)$/.test(url);
+  };
   return (
-    <div className="BestItemList">
-      <img src={item.images} alt={item.name} />
-      <div>
-        <p className="ListFont1">{item.name}</p>
-        <p className="ListFont2">{item.price}</p>
-        <p className="ListFont3">♡ {item.favoriteCount}</p>
-      </div>
-    </div>
+    <>
+      <Link to={`/item/${item.id}`}>
+        <div className="BestItemList">
+          <img
+            src={
+              item.images && isValidImageUrl(item.images)
+                ? item.images
+                : defaultImg
+            }
+            alt={item.name}
+          />
+          <div>
+            <p className="ListFont1">{item.name}</p>
+            <p className="ListFont2">{item.price}</p>
+            <p className="ListFont3">♡ {item.favoriteCount}</p>
+          </div>
+        </div>
+      </Link>
+    </>
   );
 }
 
@@ -19,7 +35,7 @@ function BestProductList({ items }) {
 
   useEffect(() => {
     const updateDisplayCount = () => {
-      const width = window.innerWidth;// window는 브라우저 크기 에 변화에따라.
+      const width = window.innerWidth; // window는 브라우저 크기 에 변화에따라.
       if (width <= 743) {
         setDisplayCount(1); // 모바일: 1개
       } else if (width <= 1199) {

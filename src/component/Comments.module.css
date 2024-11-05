@@ -1,0 +1,200 @@
+.commentBox,
+.nickName,
+.nickNameTable,
+.noComment,
+.noCommentFont,
+.date {
+  margin-top: 0;
+  text-align: inherit;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+.commentBox{
+    display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #111827;
+  margin-bottom: 9px;
+}
+.textBox {
+    resize: none;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    background-color: #f3f4f6;
+    width: 1200px;
+    height: 104px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #9ca3af;
+    margin-bottom: 16px;
+  }
+  .buttonTable {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .postButton {
+    display: flex;
+    align-items: center;
+    background-color: #9ca3af;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 23px;
+    height: 42px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    color: #f3f4f6;
+    margin-bottom: 32px;
+    cursor: pointer;
+  }
+  .commentContain {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+  .commentList {
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #e5e7eb;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 12px;
+  }
+  .contentBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .content {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #1f2937;
+  }
+  .kebabDropdown {
+    cursor: pointer;
+  }
+  .dropdownMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+  }
+  .dropdownMenu button {
+    background-color: transparent;
+    border: none;
+    padding: 12px 37px 8px;
+    font-size: 16px;
+    font-weight: 400;
+    border-bottom: 1px solid #d1d5db;
+    line-height: 26px;
+    color: #6b7280;
+    cursor: pointer;
+    height: 46px;
+  }
+  .dropdownMenu button:last-child {
+    border-bottom: none;
+    padding: 8px 37px 12px;
+  }
+  .profileTable {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .nickNameTable {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .nickName {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #4b5563;
+  }
+  .date {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #9ca3af;
+  }
+  .noCommentTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .noComment {
+    width: 196px;
+    height: 230px;
+  }
+  .noCommentFont {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #9ca3af;
+  }
+  .textBoxEdit {
+    resize: none;
+    overflow: hidden;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    background-color: #f3f4f6;
+    width: 1200px;
+    height: 80px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #9ca3af;
+    margin-bottom: 16px;
+  }
+  .editButtonTable {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .patchButton {
+    display: flex;
+    align-items: center;
+    background-color: #3692ff;
+    padding: 12px 23px;
+    height: 42px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    color: #f3f4f6;
+    cursor: pointer;
+  }
+  .deleteButton {
+    background-color: #fff;
+    color: #737373;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    border: none;
+    width: 68px;
+    height: 47px;
+    cursor: pointer;
+  }
+  
