@@ -3,12 +3,14 @@
   flex-direction: column;
   gap: 2.4rem;
 }
+
 .dropBoxContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
+
 .titleContainer {
   display: flex;
   flex-direction: column;

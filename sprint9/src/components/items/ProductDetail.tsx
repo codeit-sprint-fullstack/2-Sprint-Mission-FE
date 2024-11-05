@@ -6,8 +6,12 @@ import profileImg from "@/public/assets/img_profile.png";
 import heartIcon from "@/public/assets/icon_heart.png";
 import DropBox from "../DropBox";
 
+interface ProductDetailProps {
+  data: object | null;
+}
+
 //TODO: API 연결 후 수정하기, Dropbox props 전달
-export default function ProductDetail() {
+export default function ProductDetail(data: object) {
   return (
     <div>
       <div>
