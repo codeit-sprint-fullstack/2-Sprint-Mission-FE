@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./RegistrationProduct.module.css";
 import { fetchApi } from "@/utils/axiosInstance";
 import { useRouter } from "next/router";
 
-export default function RegistrationProduct() {
+export default function RegistrationProduct({ product, onUpdate }) {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -11,6 +11,15 @@ export default function RegistrationProduct() {
   const [inputTag, setInputTag] = useState("");
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (product) {
+      setProductName(product.name);
+      setProductDescription(product.description);
+      setPrice(product.price);
+      setTags(product.tags || []);
+    }
+  }, [product]);
 
   const handleAddTag = (e) => {
     e.preventDefault();
@@ -40,33 +49,41 @@ export default function RegistrationProduct() {
     };
 
     try {
-      await fetchApi("/products", productData, "POST", true);
-      alert("상품이 성공적으로 등록되었습니다!");
+      if (product) {
+        await fetchApi(`/products/${product.id}`, productData, "PATCH");
+        alert("상품이 성공적으로 수정되었습니다!");
+        if (onUpdate) onUpdate(product.id);
+      } else {
+        await fetchApi("/products", productData, "POST", true);
+        alert("상품이 성공적으로 등록되었습니다!");
+        router.push("/items");
+      }
 
       setProductName("");
       setProductDescription("");
       setPrice("");
       setTags([]);
-
-      router.push("/items");
     } catch (error) {
-      alert("상품 등록에 실패했습니다.");
+      alert("상품 등록/수정에 실패했습니다.");
       console.error(error);
     }
   };
 
   return (
     <div className={styles.registration_container}>
-      <div className={styles.registration_wrapper}>
-        <h1 className={styles.registration}>상품 등록하기</h1>
-        <button className={styles.register_button} onClick={handleSubmit}>
-          등록
-        </button>
-      </div>
       <form
         onSubmit={handleSubmit}
         className={styles.product_contents_container}
       >
+        <div className={styles.registration_wrapper}>
+          <h1 className={styles.registration}>
+            {product ? "상품 수정하기" : "상품 등록하기"}
+          </h1>
+          <button type="submit" className={styles.register_button}>
+            {product ? "수정" : "등록"}
+          </button>
+        </div>
+
         <div className={styles.product_wrapper}>
           <label className={styles.label}>상품명</label>
           <input

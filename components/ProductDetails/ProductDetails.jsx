@@ -71,9 +71,18 @@ export default function ProductDetails({ productId }) {
       setEditProductId(selectedProductId);
       if (product && product.id === selectedProductId) {
         setEditProduct(product.content);
+        router.push({
+          pathname: `/items/edit/${selectedProductId}`,
+          query: {
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            tags: JSON.stringify(product.tags),
+          },
+        });
       }
     } else {
-      // router.push(`/products/edit/${id}`);
+      router.push(`/items/edit/${selectedProductId}`);
     }
   };
 
