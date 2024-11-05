@@ -3,7 +3,7 @@ import { getArticle, patchArticle } from '@/lib/api/ArticleService';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-export default function Register() {
+export default function Edit() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 

@@ -18,7 +18,9 @@ export default function DropdownMenu() {
 
   return (
     <div className={styles.menu}>
-      <div>수정하기</div>
+      <div>
+        <Link href={`/products/${id}/edit`}>수정하기</Link>
+      </div>
       <div onClick={handleDelete}>삭제하기</div>
     </div>
   );

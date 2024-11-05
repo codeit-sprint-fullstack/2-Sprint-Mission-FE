@@ -83,8 +83,10 @@ export default function ProductDetail({ product, productComments }) {
                 <div className={styles.tags}>
                   <p className={styles.subtitle}>상품 태그</p>
                   <div className={styles[`tag-wrap`]}>
-                    {product.tags.map((tag) => (
-                      <p className={styles.tag}>#{tag}</p>
+                    {product.tags.map((tag, i) => (
+                      <p key={i} className={styles.tag}>
+                        #{tag}
+                      </p>
                     ))}
                   </div>
                 </div>

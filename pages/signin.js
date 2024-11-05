@@ -42,7 +42,7 @@ export default function Login() {
       }),
     onSuccess: (data) => {
       if (data) {
-        router.push('/items');
+        router.push('/products');
       }
     },
     onError: (err) => {

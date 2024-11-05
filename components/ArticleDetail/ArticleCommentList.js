@@ -108,6 +108,7 @@ export default function ArticleCommentList({ articleComments = [] }) {
             width={140}
             height={140}
             alt="댓글 없을 때 아이콘"
+            priority
           />
           <p>
             아직 댓글이 없어요,

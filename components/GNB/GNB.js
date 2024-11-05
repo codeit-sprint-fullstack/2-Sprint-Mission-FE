@@ -43,8 +43,10 @@ export default function GNB() {
             >
               <Link href="/articles">자유게시판</Link>
             </li>
-            <li className={router.pathname === '/items' ? styles.active : ''}>
-              <Link href="/items">중고마켓</Link>
+            <li
+              className={router.pathname === '/products' ? styles.active : ''}
+            >
+              <Link href="/products">중고마켓</Link>
             </li>
           </ul>
         </div>
