@@ -25,7 +25,7 @@ export default function Login() {
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
-      router.push("/folder");
+      router.push("/items");
     }
   }, [router]);
 

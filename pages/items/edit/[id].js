@@ -30,7 +30,6 @@ const EditProduct = () => {
   return (
     <div>
       <h1>상품 수정하기</h1>
-
       <RegistrationProduct product={productData} onUpdate={handleUpdate} />
     </div>
   );

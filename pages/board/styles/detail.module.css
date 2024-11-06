@@ -91,23 +91,3 @@
   justify-content: center;
   margin-top: 50px;
 }
-
-.btn_container {
-  display: flex;
-  justify-content: end;
-  gap: 20px;
-}
-.edit_button {
-  background-color: #3692ff;
-  width: 106px;
-}
-
-.cancel_button {
-  color: #737373;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
-.select_button {
-  cursor: pointer;
-}
