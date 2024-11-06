@@ -28,7 +28,7 @@ export default function LoginPage() {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      navigate("/folder"); // accessToken이 있으면 /folder 페이지로 이동
+      navigate("/items"); 
     }
   }, [navigate]);
 
@@ -81,7 +81,6 @@ export default function LoginPage() {
         email,
         password,
       });
-      console.log("리스폰스 데이터", response.data);
 
       const accessToken = response.data.accessToken; // 서버에서 받은 accessToken
       const refreshToken = response.data.refreshToken; // 서버에서 받은 refreshToken

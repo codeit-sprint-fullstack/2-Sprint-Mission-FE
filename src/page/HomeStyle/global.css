@@ -96,7 +96,9 @@ header:nth-child(3) {
   margin-right: 0; /* 세 번째 요소 다음에는 간격을 없앱니다 */
   margin-left: auto; /* 네 번째 요소를 오른쪽 끝으로 밀어냅니다 */
 }
-
+.headerNav button .InPage{
+  color: #369bff;
+}
 .with-header {
   margin-top: var(--header-height);
 }

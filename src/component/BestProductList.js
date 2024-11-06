@@ -9,7 +9,7 @@ function BestProductItem({ item }) {
   };
   return (
     <>
-      <Link to={`/item/${item.id}`}>
+      <Link to={`/items/${item.id}`}>
         <div className="BestItemList">
           <img
             src={

@@ -10,7 +10,7 @@ function ProductListItem({ item }) {
   };
   return (
     <>
-      <Link to={`/item/${item.id}`}>
+      <Link to={`/items/${item.id}`}>
         <div className="ProductListItem">
           <img
             src={

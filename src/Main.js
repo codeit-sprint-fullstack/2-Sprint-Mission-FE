@@ -28,9 +28,9 @@ function Main() {
               <Route index element={<HomePage />} />
               <Route path="items" element={<ItemProduct />} />
               <Route path="registration" element={<Registration />} />
-              <Route path="folder" element={<Folder />} />
+              {/* <Route path="folder" element={<Folder />} /> */}
               <Route
-                path="item/:itemId"
+                path="items/:itemId"
                 element={<ProtectedRoute element={<ItemDetailPage />} />}
               />
             </Route>
