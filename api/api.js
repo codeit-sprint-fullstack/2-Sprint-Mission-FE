@@ -3,10 +3,24 @@ export const instance = axios.create({
   // baseURL: "https://comazon-4iuc.onrender.com"
   // baseURL: "http://localhost:3001"
   baseURL: "https://panda-market-api.vercel.app"
+  // withCredentials: true
 });
+export const postUser = async (formData) => {
+  const response = await instance.post("auth/signUp", formData);
+  return response;
+};
+export const postUserLogin = async (formData) => {
+  const response = await instance.post("auth/signIn", formData);
+  return response;
+};
+/****************************PRODUCT*********************************************** */
 export const getProducts = async (params) => {
-  const response = await instance.get(`/products`, { params });
-  console.log(response.data);
+  let response;
+  try {
+    response = await instance.get(`/products`, { params });
+  } catch (e) {
+    response = e;
+  }
   return response;
 };
 export const getProduct = async (id) => {
@@ -35,7 +49,6 @@ export const deleteProduct = async (id) => {
 /*******************Aritlce*********************************************/
 export const getArticles = async (params) => {
   const response = await instance.get("/articles", { params });
-  console.log(response.data);
   return response;
 };
 export const getArticle = async (id) => {
@@ -80,8 +93,6 @@ export const deleteProductComment = async (id) => {
 /************************articleComments**********************************/
 export const getArticleComments = async ({ id, params }) => {
   const response = await instance.get(`articles/${id}/comments`, { params });
-  console.log(11);
-  console.log(response);
   return response;
 };
 export const postArticleComment = async (formData) => {

@@ -4,6 +4,8 @@ import ValidatedInputBox from "@/components/ValidatedInputBox";
 import Image from "next/image";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 import { changeInputValue, validateField } from "@/utils/validateInputHelper";
+import { postUserLogin } from "@/api/api";
+import { useRouter } from "next/router";
 export default function Login() {
   const { EMAIL, PASSWORD } = FIELD_TYPES;
   const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
@@ -20,7 +22,7 @@ export default function Login() {
     email: "",
     password: ""
   });
-
+  const router = useRouter();
   const ValidateBtn = () => {
     const result = Object.entries(validation).every(
       ([key, value]) => value === SUCCESS
@@ -33,8 +35,11 @@ export default function Login() {
     changeInputValue(setInputValue, fieldName, value);
     validateField(setValidation, setErrorMessage, fieldName, value);
   };
-  const handleSubmit = () => {
-    console.log(inputValue);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await postUserLogin(inputValue);
+    const { user, accessToken, refreshToken } = response.data;
+    // router.push("/me");
   };
   const isSubmit = ValidateBtn();
   const isShowPassword = showPassword === true;

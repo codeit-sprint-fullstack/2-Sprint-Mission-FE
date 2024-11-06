@@ -21,6 +21,7 @@ import {
   MODEL_TYPE,
   EDIT_DELETE_DROPDOWN_LIST
 } from "@/constants";
+import Product from "../items/[id]";
 const { RECENT } = ORDER_STATE;
 const { ARTICLE_WITH_COMMENTS } = MODEL_TYPE;
 const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;

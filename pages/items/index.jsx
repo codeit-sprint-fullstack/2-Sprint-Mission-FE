@@ -114,12 +114,12 @@ export default function Items() {
                 className="w-[220px] h-[319px] text-1f2937 flex flex-col
                 sm:w-[167px] sm:h-[267px]"
               >
-                <Image
-                  width={220}
-                  height={220}
-                  src="/images/default.png"
-                  alt="기본 상품 이미지"
+                <img
+                  src={product.images[0]}
+                  className="w-[220px] h-[220px]"
+                  alt="상품 이미지"
                 />
+                {console.log(product.images)}
                 <span className="h-[24px] text-[14px] leading-24px mt-[16px]">
                   {product.name}
                 </span>

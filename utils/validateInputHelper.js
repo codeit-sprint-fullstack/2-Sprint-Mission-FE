@@ -101,6 +101,7 @@ export const validateField = (
       if (value.length > 5) changeState(FALSE, "5글자 이내로 입력하세요");
       else if (value.length < 1) changeState(FALSE, "닉네임을 입력하세요");
       else changeState(SUCCESS, "");
+      break;
     case PASSWORD:
       console.log(confirmPasswordValue);
       if (value.length < 8)

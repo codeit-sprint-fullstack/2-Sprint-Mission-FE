@@ -82,11 +82,9 @@ export default function FreeBoard() {
                     >
                       {article.title}
                     </p>
-                    <Image
-                      width={72}
-                      height={72}
-                      src="/images/default.png"
-                      className="border-[1px] border-f3f4f6 rounded-[8px]"
+                    <img
+                      className="w-[72px] h-[72px]"
+                      src={article.image}
                       alt="베스트 게시글 이미지"
                     />
                   </div>
@@ -166,11 +164,9 @@ export default function FreeBoard() {
                     >
                       {article.title}
                     </h1>
-                    <Image
-                      src="/images/default.png"
-                      width={72}
-                      height={72}
-                      className="border-[1px] border-f3f4f6 rounded-[8px]"
+                    <img
+                      className="w-[72px] h-[72px] border-[1px] border-f3f4f6 rounded-[8px]"
+                      src={article.image}
                       alt="게시글 미리보기 이미지"
                     />
                   </div>
