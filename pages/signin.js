@@ -22,7 +22,7 @@ export default function Login() {
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken && router.pathname === '/signin') {
-      router.push('/folder');
+      router.push('/items');
     }
   }, [router]);
 
