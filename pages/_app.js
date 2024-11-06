@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import Head from 'next/head';
 import GNB from '@/components/GNB/GNB';
 import Footer from '@/components/Footer/Footer';
-import Container from '@/components/Container';
+import Container from '@/components/Common/Container';
 import localFont from 'next/font/local';
 import { useRouter } from 'next/router';
 import { AuthProvider } from '@/lib/contexts/useAuth';
@@ -19,6 +19,7 @@ const queryClient = new QueryClient();
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
+  const isLandingPage = router.pathname === '/';
   const isLoginPage = router.pathname === '/signin';
   const isSingupPage = router.pathname === '/signup';
 
@@ -31,7 +32,7 @@ export default function App({ Component, pageProps }) {
         </Head>
         <div className={pretendard.className}>
           {!isLoginPage && !isSingupPage && <GNB />}
-          <Container>
+          <Container noneStyle={isLandingPage}>
             <Component {...pageProps} />
           </Container>
           {!isLoginPage && !isSingupPage && <Footer />}
