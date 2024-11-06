@@ -29,7 +29,7 @@ export default function SignUp() {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      router.push("/folder");
+      router.push("/items");
     }
   }, [router]);
 
