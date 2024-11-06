@@ -4,7 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SignButton from "@/src/components/signInUp/SignButton";
-import SignInput from "@/src/components/signInUp/SignInput";
+import LoginForm from "@/src/components/signInUp/LoginForm";
 import SocialMediaLogin from "@/src/components/signInUp/SocialMediaLogin";
 import logo from "@/public/assets/img_pandamarket_logo_login.png";
 import style from "@/src/styles/login.module.css";
@@ -16,11 +16,7 @@ export default function LoginPage() {
     <div className={style.container}>
       <Image src={logo} width={396} height={132} alt="panda market logo" />
       <div className={style.contentContainer}>
-        <SignInput value="email" />
-        <SignInput value="password" />
-        <SignButton status={false} onClick={handleClick}>
-          로그인
-        </SignButton>
+        <LoginForm />
         <SocialMediaLogin />
         <div className={style.signupContainer}>
           <p className={style.signupText}> 판다마켓이 처음이신가요?</p>
