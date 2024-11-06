@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { postArticle } from "@/api/api";
+import { useError } from "@/contexts/ErrorProvider";
 export default function Write() {
   const writePage = `w-full flex justify-center`;
   const writeFrame = `w-[1200px] h-[512px] flex flex-col justify-between mt-[24px] mb-[794px]
@@ -23,6 +24,7 @@ export default function Write() {
   const [content, setContent] = useState("");
   const [isPost, setIsPost] = useState(false);
   const router = useRouter();
+  const { handleError } = useError();
   const handleChangeTitle = (e) => setTitle((prev) => e.target.value);
   const handleChangeContent = (e) => setContent(e.target.value);
   const validate = () => {
@@ -40,7 +42,7 @@ export default function Write() {
       const response = await postArticle(submitData);
       router.push(`/freeboard/${response.data.id}`);
     } catch (e) {
-      console.log(`데이터 전송 중 오류: ${e.message}`);
+      handleError(new Error("데이터 전송중 오류"));
     }
   };
   useEffect(() => {

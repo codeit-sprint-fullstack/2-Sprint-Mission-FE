@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { postProduct } from "@/api/api";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 import { changeInputValue, validateField } from "@/utils/validateInputHelper";
+import { useError } from "@/contexts/ErrorProvider";
 export default function Register() {
   const { NAME, DESCRIPTION, PRICE, TAG } = FIELD_TYPES;
   const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
@@ -27,7 +28,7 @@ export default function Register() {
     tag: ""
   });
   const router = useRouter();
-
+  const { handleError } = useError();
   const validateBtn = () => {
     const isValidate =
       Object.entries(validation).every(
@@ -48,10 +49,9 @@ export default function Register() {
     };
     try {
       const response = await postProduct(submitData);
-      console.log(response.data);
       router.push(`/items/${response.data.id}`);
     } catch (e) {
-      console.error(`데이터 전송 실패: ${e.message}`);
+      handleError(new Error("데이터 전송중 실패"));
     }
   };
   const onChangeInfo = (fieldName) => (e) => {

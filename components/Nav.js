@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAuth } from "@/contexts/AuthProvider";
 export default function Nav() {
   const navClass =
     "w-full h-[70px] bg-ffffff border-b border-dfdfdf flex items-center justify-between sticky top-0 z-10";
@@ -18,12 +19,14 @@ export default function Nav() {
   text-[18px] font-[700] sm:text-[16px]`;
   const activeClass = "text-3692ff";
   const router = useRouter();
+  const { user } = useAuth();
   const isFreeBoard = router.pathname.startsWith("/freeboard")
     ? activeClass
     : "";
   const isItems = router.pathname.startsWith("/items") ? activeClass : "";
   const hideNavbarPages = ["/login", "/signup"];
   const handleClickLoginBtn = () => router.push("/login");
+  const handleErrorImg = (e) => (e.target.src = "/images/ic_profile.png");
   if (hideNavbarPages.includes(router.pathname)) return null;
   return (
     <div className={navClass}>
@@ -48,9 +51,25 @@ export default function Nav() {
           <span className={`${menu} ${isItems}`}>중고마켓</span>
         </Link>
       </div>
-      <button className={loginButton} onClick={handleClickLoginBtn}>
-        로그인
-      </button>
+      {user ? (
+        <div
+          className="w-[96px] h-[40px] flex items-center justify-between mr-[200px]
+          md:w-[40px] md:mr-[24px] sm:w-[40px] sm:mr-[16px]"
+        >
+          <img
+            src={user.image ? user.image : "/images/ic_profile.png"}
+            onError={handleErrorImg}
+            className="w-[40px] h-[40px]"
+          />
+          <span className="w-[50px] h-[22px] md:hidden sm:hidden">
+            {user.nickname}
+          </span>
+        </div>
+      ) : (
+        <button className={loginButton} onClick={handleClickLoginBtn}>
+          로그인
+        </button>
+      )}
     </div>
   );
 }

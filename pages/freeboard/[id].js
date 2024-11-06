@@ -14,6 +14,7 @@ import {
 import useGetData from "@/hooks/useGetData";
 import CommentItem from "@/components/CommentItem";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
+import { useError } from "@/contexts/ErrorProvider";
 import { tenaryWithEmpty } from "@/utils/ternaryUtils";
 import convertDate from "@/utils/convertDate";
 import {
@@ -96,7 +97,8 @@ export default function Article() {
       try {
         const resposne = await deleteArticle(id);
       } catch (e) {
-        console.log(`삭제실패: ${(e, message)}`);
+        const error = new Error("삭제 실패");
+        handleError(error);
       }
       router.push("/freeboard");
     }
@@ -117,7 +119,7 @@ export default function Article() {
       const response = await postArticleComment(sumbitData);
       setComment("");
     } catch (e) {
-      console.log(`데이터 전송 실패: ${e.message}`);
+      handleError(new Error("데이터 전송 실패"));
     }
   };
   const handlePatchComment = async ({ id, formData }) => {
@@ -127,9 +129,10 @@ export default function Article() {
     try {
       await deleteArticleComment(deleteId);
     } catch (e) {
-      console.log("삭제실패");
+      handleError(new Error("삭제 실패"));
     }
   };
+  const { handleError } = useError();
   const isComments = articleComments?.length === 0;
   return (
     <div className={articlePage}>

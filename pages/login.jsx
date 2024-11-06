@@ -6,6 +6,8 @@ import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 import { changeInputValue, validateField } from "@/utils/validateInputHelper";
 import { postUserLogin } from "@/api/api";
 import { useRouter } from "next/router";
+import { useAuth } from "@/contexts/AuthProvider";
+import { useError } from "@/contexts/ErrorProvider";
 export default function Login() {
   const { EMAIL, PASSWORD } = FIELD_TYPES;
   const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
@@ -23,12 +25,14 @@ export default function Login() {
     password: ""
   });
   const router = useRouter();
+  const { handleError } = useError();
   const ValidateBtn = () => {
     const result = Object.entries(validation).every(
       ([key, value]) => value === SUCCESS
     );
     return result;
   };
+  const { login } = useAuth();
   const handleChangeShow = () => setShowPassword((prev) => !prev);
   const handleChangeInputValue = (fieldName) => (e) => {
     const value = e.target.value;
@@ -37,9 +41,12 @@ export default function Login() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await postUserLogin(inputValue);
-    const { user, accessToken, refreshToken } = response.data;
-    // router.push("/me");
+    try {
+      await login(inputValue);
+      router.push("/items");
+    } catch (e) {
+      handleError(e);
+    }
   };
   const isSubmit = ValidateBtn();
   const isShowPassword = showPassword === true;

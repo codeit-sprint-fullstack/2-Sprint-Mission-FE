@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getArticle, patchArticle } from "@/api/api";
+import { useError } from "@/contexts/ErrorProvider";
 export default function Write() {
   const writePage = `w-full flex justify-center`;
   const writeFrame = `w-[1200px] h-[512px] flex flex-col justify-between mt-[24px] mb-[794px]
@@ -39,7 +40,7 @@ export default function Write() {
       const response = await patchArticle({ id: slug, formData: submitData });
       router.push(`/freeboard/${response.data.id}`);
     } catch (e) {
-      console.log(`데이터 전송 중 오류: ${e.message}`);
+      handleError(new Error("데이터 전송중 오류"));
     }
   };
   useEffect(() => {
@@ -55,12 +56,13 @@ export default function Write() {
           setTitle(title);
           setContent(content);
         } catch (e) {
-          console.log(`데이터 가져오기 실패:${e.message}`);
+          handleError("데이터 전송중 오류");
         }
       };
       getArticleData();
     }
   }, [slug]);
+  const { handleError } = useError();
   return (
     <div className={writePage}>
       <form className={writeFrame}>

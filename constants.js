@@ -39,3 +39,7 @@ export const EDIT_DELETE_DROPDOWN_LIST = Object.freeze({
   DELETE_VALUE: "DELETE",
   DELETE_LABEL: "삭제하기"
 });
+export const TOKEN = Object.freeze({
+  ACCESS_TOKEN: "accessToken",
+  REFRESH_TOKEN: "refreshToken"
+});

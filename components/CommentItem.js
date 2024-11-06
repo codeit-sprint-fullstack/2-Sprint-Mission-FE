@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import EditDeleteDropDown from "./EditDeleteDropDown";
-// import { patchArticleComment } from "@/api/api";
+import { useError } from "@/contexts/ErrorProvider";
 import { EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
 const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
 export default function Comment({ data, onPatch, onDelete }) {
@@ -26,6 +26,7 @@ export default function Comment({ data, onPatch, onDelete }) {
     if (chosenOption === EDIT_VALUE) setEditMode(true);
     else if (chosenOption === DELETE_VALUE) onDelete(data.id);
   };
+  const { handleError } = useError();
   const commentClass = `${commentClassWithoutHeight} ${
     isEdit ? "h-[180px] sm:h-[176px]" : "h-[100px] sm:h-[96px]"
   }`;
@@ -39,7 +40,7 @@ export default function Comment({ data, onPatch, onDelete }) {
       onPatch({ id: data.id, formData: submitData });
       setEditMode(false);
     } catch (e) {
-      console.log(`데이터 전송중 오류: ${e.message}`);
+      handleError(e);
     }
   };
   return (

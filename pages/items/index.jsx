@@ -119,7 +119,6 @@ export default function Items() {
                   className="w-[220px] h-[220px]"
                   alt="상품 이미지"
                 />
-                {console.log(product.images)}
                 <span className="h-[24px] text-[14px] leading-24px mt-[16px]">
                   {product.name}
                 </span>

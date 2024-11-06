@@ -6,6 +6,7 @@ import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 import { changeInputValue, validateField } from "@/utils/validateInputHelper";
 import { postUser } from "@/api/api";
 import { useRouter } from "next/router";
+import { useError } from "@/contexts/ErrorProvider";
 export default function Signup() {
   const { EMAIL, NICKNAME, PASSWORD, CONFIRMPASSWORD } = FIELD_TYPES;
   const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
@@ -36,6 +37,7 @@ export default function Signup() {
     );
     return result;
   };
+  const { handleError } = useError();
   const handleChangeShowPassword = () => setShowPassword((prev) => !prev);
   const handleChangeShowConfirmPassword = () =>
     setShowConfirmPassword((prev) => !prev);
@@ -57,15 +59,13 @@ export default function Signup() {
       password,
       passwordConfirmation
     };
-    console.log(submitData);
     let response;
     try {
       response = await postUser(submitData);
-      router.push("/login");
+      router.push("/items");
     } catch (e) {
-      console.log(e.message);
+      handleError("회원가입 실패");
     }
-    console.log(response);
   };
   const isSubmit = ValidateBtn();
   const isShowPassword = showPassword === true;

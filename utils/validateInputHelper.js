@@ -103,7 +103,6 @@ export const validateField = (
       else changeState(SUCCESS, "");
       break;
     case PASSWORD:
-      console.log(confirmPasswordValue);
       if (value.length < 8)
         changeState(FALSE, "비밀번호를 8자 이상 입력하세요");
       else changeState(SUCCESS, "");

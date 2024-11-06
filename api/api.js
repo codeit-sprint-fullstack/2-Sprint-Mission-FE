@@ -1,10 +1,21 @@
 import axios from "axios";
+import { TOKEN } from "@/constants";
+const { ACCESS_TOKEN, REFRESH_TOKEN } = TOKEN;
 export const instance = axios.create({
-  // baseURL: "https://comazon-4iuc.onrender.com"
   // baseURL: "http://localhost:3001"
   baseURL: "https://panda-market-api.vercel.app"
-  // withCredentials: true
 });
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => Promise.reject(error)
+);
+export const getUser = async () => {
+  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const response = await instance.get("/users/me", {
+    headers: { Authorization: `Bearer ${accessToken}` }
+  });
+  return response;
+};
 export const postUser = async (formData) => {
   const response = await instance.post("auth/signUp", formData);
   return response;
@@ -15,12 +26,7 @@ export const postUserLogin = async (formData) => {
 };
 /****************************PRODUCT*********************************************** */
 export const getProducts = async (params) => {
-  let response;
-  try {
-    response = await instance.get(`/products`, { params });
-  } catch (e) {
-    response = e;
-  }
+  const response = await instance.get(`/products`, { params });
   return response;
 };
 export const getProduct = async (id) => {

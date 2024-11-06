@@ -8,6 +8,7 @@ import { MODEL_TYPE, EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import CommentItem from "@/components/CommentItem";
 import convertDate from "@/utils/convertDate";
+import { useError } from "@/contexts/ErrorProvider";
 import { tenaryWithEmpty } from "@/utils/ternaryUtils";
 import {
   deleteProduct,
@@ -47,6 +48,7 @@ export default function Product() {
     if (inputComment === "") setIsPost(false);
     else setIsPost(true);
   }, [inputComment]);
+  const { handleError } = useError();
   const handleDropdownChange = (chosenOption) => {
     if (chosenOption === EDIT_VALUE) router.push(`/items/write/${id}`);
     else if (chosenOption === DELETE_VALUE) {
@@ -64,12 +66,18 @@ export default function Product() {
     const response = await postProductComment(submitData);
   };
   const handlePatchComment = async ({ id, formData }) => {
-    const response = await patchProductComment({ id, formData });
-    console.log(response);
+    try {
+      const response = await patchProductComment({ id, formData });
+    } catch (e) {
+      handleError(new Error("수정 실패"));
+    }
   };
   const handleDeleteComment = async (deletedId) => {
-    const response = await deleteProductComment(deletedId);
-    console.log(response);
+    try {
+      const response = await deleteProductComment(deletedId);
+    } catch (e) {
+      handleError(new Error("삭제 실패"));
+    }
   };
   const isComments = productComments?.length === 0;
   return (
