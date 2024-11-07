@@ -4,7 +4,7 @@ import ValidatedInputBox from "@/components/ValidatedInputBox";
 import Image from "next/image";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 import { changeInputValue, validateField } from "@/utils/validateInputHelper";
-import { postUser } from "@/api/api";
+import { useAuth } from "@/contexts/AuthProvider";
 import { useRouter } from "next/router";
 import { useError } from "@/contexts/ErrorProvider";
 export default function Signup() {
@@ -31,6 +31,7 @@ export default function Signup() {
     confirmPassword: ""
   });
   const router = useRouter();
+  const { signup } = useAuth();
   const ValidateBtn = () => {
     const result = Object.entries(validation).every(
       ([key, value]) => value === SUCCESS
@@ -59,12 +60,11 @@ export default function Signup() {
       password,
       passwordConfirmation
     };
-    let response;
     try {
-      response = await postUser(submitData);
+      const response = await signup(submitData);
       router.push("/items");
     } catch (e) {
-      handleError("회원가입 실패");
+      handleError(new Error("회원 가입 실패"));
     }
   };
   const isSubmit = ValidateBtn();
