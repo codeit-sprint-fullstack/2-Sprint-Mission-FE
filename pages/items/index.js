@@ -7,6 +7,7 @@ import ProductHeader from '@/components/ProductList/ProductHeader';
 import Pagination from '@/components/Common/Pagination';
 import { useResize } from '@/lib/contexts/useResize';
 import Spinner from '@/components/Common/Spinner';
+import ErrorMessage from '@/components/Common/ErrorMessage';
 
 export async function getServerSideProps() {
   try {
@@ -111,7 +112,7 @@ export default function Product({
   );
 
   if (loading) return <Spinner />;
-  if (error) return <div>{error}</div>;
+  if (!error) return <ErrorMessage message={error} />;
 
   return (
     <div className={styles.wrapper}>
