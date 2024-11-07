@@ -113,7 +113,7 @@ export default function Article({
   );
 
   if (loading) return <Spinner />;
-  if (!error) return <ErrorMessage message={error} />;
+  if (error) return <ErrorMessage message={error} />;
 
   return (
     <div className={styles.wrapper}>
