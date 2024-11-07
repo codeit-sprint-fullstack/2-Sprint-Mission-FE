@@ -1,13 +1,13 @@
 import styles from '@/styles/Article.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getArticleList, getArticleCount } from '@/lib/api/ArticleService';
 import ArticleList from '@/components/ArticleList/ArticleList';
-import BestArticleList from '@/components/BestArticleList/BestArticleList';
-import Search from '@/components/ArticleList/Search';
-import Dropdown from '@/components/ArticleList/Dropdown';
+import BestArticleList from '@/components/ArticleList/BestArticleList';
+import Search from '@/components/Common/Search';
+import Dropdown from '@/components/Common/Dropdown';
 import ArticleHeader from '@/components/ArticleList/ArticleHeader';
-import Pagination from '@/components/ArticleList/Pagination';
-import useResize from '@/hooks/useResize';
+import Pagination from '@/components/Common/Pagination';
+import { useResize } from '@/lib/contexts/useResize';
 
 export async function getServerSideProps() {
   try {
@@ -37,25 +37,15 @@ export default function Article({
   articles,
   bestArticles: initialBestArticles
 }) {
-  const [bestArticles, setBestArticles] = useState(initialBestArticles);
-  const bestPageSize = useResize();
+  const [bestArticles] = useState(initialBestArticles);
+  const { bestPost } = useResize();
+  const bestPageSize = bestPost;
   const [filteredArticles, setFilteredArticles] = useState(articles);
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
-
-  useEffect(() => {
-    async function fetchBestArticles() {
-      const res = await getArticleList({
-        page: 1,
-        pageSize: bestPageSize
-      });
-      setBestArticles(res);
-    }
-    fetchBestArticles();
-  }, [bestPageSize]);
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
@@ -87,6 +77,7 @@ export default function Article({
             keyword={keyword}
             onSearch={setKeyword}
             onKeyDown={handleSearch}
+            width={'105.4rem'}
           />
           <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
         </div>

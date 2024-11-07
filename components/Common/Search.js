@@ -1,9 +1,9 @@
 import styles from './Search.module.css';
 import Image from 'next/image';
 
-export default function Search({ keyword, onSearch, onKeyDown }) {
+export default function Search({ keyword, onSearch, onKeyDown, width }) {
   return (
-    <div className={styles.search}>
+    <div className={styles.search} style={{ width: width }}>
       <Image
         className={styles.icon}
         src="/images/ic_search.png"
