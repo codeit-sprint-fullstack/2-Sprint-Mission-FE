@@ -1,11 +1,12 @@
 import styles from '@/styles/Product.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getProductList, getProductCount } from '@/lib/api/ProductService';
 import ProductList from '@/components/ProductList/ProductList';
 import BestProductList from '@/components/ProductList/BestProductList';
 import ProductHeader from '@/components/ProductList/ProductHeader';
 import Pagination from '@/components/Common/Pagination';
 import { useResize } from '@/lib/contexts/useResize';
+import Spinner from '@/components/Common/Spinner';
 
 export async function getServerSideProps() {
   try {
@@ -46,6 +47,25 @@ export default function Product({
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const fetchedProducts = await getProductList({ page: 1, pageSize: 20 });
+        setFilteredProducts(fetchedProducts);
+      } catch (err) {
+        setError('상품 목록을 불러오는 데 실패했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
       const filtered = products.filter((product) =>
@@ -62,6 +82,9 @@ export default function Product({
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
+
+  if (loading) return <Spinner />;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className={styles.wrapper}>

@@ -15,6 +15,7 @@ import ProductDropdown from '@/components/ProductDetail/ProductDropdown';
 import formatDate from '@/lib/formatDate';
 import formatPrice from '@/lib/formatPrice';
 import ConfirmModal from '@/components/Common/ConfirmModal';
+import Spinner from '@/components/Common/Spinner';
 
 export default function ProductDetail() {
   const [product, setProduct] = useState(null);
@@ -57,7 +58,7 @@ export default function ProductDetail() {
     fetchData();
   }, [productId]);
 
-  if (loading) return <div>로딩 중...</div>;
+  if (loading) return <Spinner />;
   if (!product) return <div>상품을 찾을 수 없습니다.</div>;
 
   const handleBackList = () => router.push('/items');
