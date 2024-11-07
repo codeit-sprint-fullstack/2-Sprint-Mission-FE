@@ -25,7 +25,6 @@ export default function SignupForm() {
     const password = watch("password");
     const passwordConfirmation = watch("passwordConfirmation");
 
-    console.log({ email, nickname, password, passwordConfirmation });
     await postSignup({ email, nickname, password, passwordConfirmation });
     router.push("/login");
   };
@@ -59,7 +58,9 @@ export default function SignupForm() {
           placeholder="비밀번호를 다시 한 번 입력해주세요"
           validations={AUTH.CONFIRM_PW}
         />
-        <SignButton status={isValid} type="submit">회원가입</SignButton>
+        <SignButton status={isValid} type="submit">
+          회원가입
+        </SignButton>
       </form>
     </FormProvider>
   );
