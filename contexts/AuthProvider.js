@@ -3,6 +3,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { TOKEN } from "@/constants";
 import Signup from "@/pages/signup";
+import { useError } from "./ErrorProvider";
 const AuthContext = createContext({
   user: null,
   signup: () => {},
@@ -14,11 +15,24 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const router = useRouter();
   const { ACCESS_TOKEN, REFRESH_TOKEN } = TOKEN;
+  const { handleError } = useError();
   const getMe = async () => {
-    const response = await getUser();
-    console.log(response);
-    const nextUser = response.data;
-    setUser(nextUser);
+    try {
+      const response = await getUser();
+      const nextUser = response.data;
+      setUser(nextUser);
+    } catch (error) {
+      const { status } = error.response;
+      const isTokenError = status === 400 || status === 401;
+      if (error.response && isTokenError) {
+        handleError(
+          new Error(
+            "토큰이 만료되었거나 유효하지 않은 토큰입니다. 다시 로그인해주세요."
+          )
+        );
+        logout();
+      }
+    }
   };
   const signup = async (formData) => {
     const response = await postUser(formData);
@@ -36,7 +50,11 @@ export default function AuthProvider({ children }) {
     await getMe();
     return response;
   };
-  const logout = () => {};
+  const logout = () => {
+    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
+    setUser(null);
+  };
   const updateMe = async (formData) => {
     //나의 정보 가져오기?
   };

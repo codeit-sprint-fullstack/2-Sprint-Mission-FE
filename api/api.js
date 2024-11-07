@@ -2,13 +2,30 @@ import axios from "axios";
 import { TOKEN } from "@/constants";
 const { ACCESS_TOKEN, REFRESH_TOKEN } = TOKEN;
 export const instance = axios.create({
-  // baseURL: "http://localhost:3001"
-  //baseURL: "https://panda-market-api.vercel.app"
   baseURL: process.env.NEXT_PUBLIC_API_HOST
 });
+
 instance.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error)
+  async (error) => {
+    const originalRequest = error.config;
+    try {
+      if (error.response && error.response.status === 401) {
+        const refreshToken = localStorage.getItem(REFRESH_TOKEN);
+        const { data } = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_HOST}/auth/refresh-token`,
+          { refreshToken }
+        );
+        const { accessToken } = data;
+        localStorage.setItem(ACCESS_TOKEN, accessToken);
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+        return instance(originalRequest);
+      }
+    } catch (error) {
+      throw error;
+    }
+    throw error;
+  }
 );
 export const getUser = async () => {
   const accessToken = localStorage.getItem(ACCESS_TOKEN);

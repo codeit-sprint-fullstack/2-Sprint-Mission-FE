@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import useResponsiveItemCount from "@/hooks/useResponsiveItemCount";
+import useResponsiveItemCount from "@/lib/hooks/useResponsiveItemCount";
 import Link from "next/link";
 import Image from "next/image";
 import SortSelector from "@/components/SortSelector";

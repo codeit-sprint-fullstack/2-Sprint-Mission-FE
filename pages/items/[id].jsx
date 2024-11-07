@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import useGetData from "@/hooks/useGetData";
+import useGetData from "@/lib/hooks/useGetData";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

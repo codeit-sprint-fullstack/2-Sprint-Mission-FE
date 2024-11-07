@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import useResponsiveItemCount from "@/hooks/useResponsiveItemCount";
-import useGetData from "@/hooks/useGetData";
+import useResponsiveItemCount from "@/lib/hooks/useResponsiveItemCount";
+import useGetData from "@/lib/hooks/useGetData";
 import { getArticle, getArticles } from "@/api/api";
 import Image from "next/image";
 import convertDate from "@/utils/convertDate";

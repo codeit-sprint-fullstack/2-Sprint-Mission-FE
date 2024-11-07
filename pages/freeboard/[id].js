@@ -11,7 +11,7 @@ import {
   getArticle,
   getArticleComments
 } from "@/api/api";
-import useGetData from "@/hooks/useGetData";
+import useGetData from "@/lib/hooks/useGetData";
 import CommentItem from "@/components/CommentItem";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import { useError } from "@/contexts/ErrorProvider";
