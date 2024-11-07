@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import ValidatedInputBox from "@/components/ValidatedInputBox";
 import Image from "next/image";
@@ -31,7 +31,10 @@ export default function Signup() {
     confirmPassword: ""
   });
   const router = useRouter();
-  const { signup } = useAuth();
+  const { user, signup } = useAuth();
+  useEffect(() => {
+    if (user) router.push("/items");
+  }, [user, router]);
   const ValidateBtn = () => {
     const result = Object.entries(validation).every(
       ([key, value]) => value === SUCCESS

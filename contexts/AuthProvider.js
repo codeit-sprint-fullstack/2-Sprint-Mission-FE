@@ -61,7 +61,7 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     getMe();
-  }, []);
+  }, [user]);
   return (
     <AuthContext.Provider
       value={{

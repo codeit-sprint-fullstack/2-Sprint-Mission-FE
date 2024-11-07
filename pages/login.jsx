@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import ValidatedInputBox from "@/components/ValidatedInputBox";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import { postUserLogin } from "@/api/api";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthProvider";
 import { useError } from "@/contexts/ErrorProvider";
+import Items from "./items";
 export default function Login() {
   const { EMAIL, PASSWORD } = FIELD_TYPES;
   const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
@@ -32,7 +33,10 @@ export default function Login() {
     );
     return result;
   };
-  const { login } = useAuth();
+  const { user, login } = useAuth();
+  useEffect(() => {
+    if (user) router.push("/items");
+  }, [user, router]);
   const handleChangeShow = () => setShowPassword((prev) => !prev);
   const handleChangeInputValue = (fieldName) => (e) => {
     const value = e.target.value;
