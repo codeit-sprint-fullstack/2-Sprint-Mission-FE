@@ -6,8 +6,10 @@ import PasswordInput from "./PasswordInput";
 import IdInput from "./IdInput";
 import SignButton from "./SignButton";
 import { postSignup } from "@/src/api/authServices";
+import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
+  const router = useRouter();
   const formMethods = useForm();
 
   const {
@@ -25,11 +27,12 @@ export default function SignupForm() {
 
     console.log({ email, nickname, password, passwordConfirmation });
     await postSignup({ email, nickname, password, passwordConfirmation });
+    router.push("/login");
   };
 
   return (
     <FormProvider {...formMethods}>
-      <form className={style.container} onSubmit={handleClick}>
+      <form className={style.container} onSubmit={handleSubmit(handleClick)}>
         <IdInput
           name="email"
           label="이메일"
@@ -56,9 +59,7 @@ export default function SignupForm() {
           placeholder="비밀번호를 다시 한 번 입력해주세요"
           validations={AUTH.CONFIRM_PW}
         />
-        <SignButton status={isValid} onClick={handleClick}>
-          회원가입
-        </SignButton>
+        <SignButton status={isValid} type="submit">회원가입</SignButton>
       </form>
     </FormProvider>
   );
