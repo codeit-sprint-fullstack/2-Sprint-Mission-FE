@@ -93,7 +93,7 @@ export default function ProductCommentList({ productComments = [] }) {
                   alt="유저 아이콘"
                 />
                 <div className={styles.user}>
-                  <p>귀여운판다</p>
+                  <p>{comment.writer.nickname}</p>
                   <p>{formatTime(comment.createdAt)}</p>
                 </div>
               </div>
