@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import style from "../styles/Nav.module.css";
@@ -9,6 +10,7 @@ interface NavProps {
 }
 
 export default function Nav({ currentPathname }: NavProps) {
+
   const menuActiveStyle = (location: string): string => {
     return currentPathname && currentPathname.startsWith(location)
       ? style.active
