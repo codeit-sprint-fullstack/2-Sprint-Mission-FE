@@ -90,17 +90,18 @@ export default function Article() {
   const { list: articleComments } = commentsData?.data?.list || {};
   const [comment, setComment] = useState("");
   const [isPost, setIsPost] = useState(false);
+  const { handleError } = useError();
   const handleDropDownChange = async (chosenItem) => {
     if (chosenItem === EDIT_VALUE) {
       router.push(`/freeboard/write/${article?.id}`);
     } else if (chosenItem === DELETE_VALUE) {
       try {
         const resposne = await deleteArticle(id);
+        router.push("/freeboard");
       } catch (e) {
         const error = new Error("삭제 실패");
         handleError(error);
       }
-      router.push("/freeboard");
     }
   };
   useEffect(() => {
@@ -132,7 +133,6 @@ export default function Article() {
       handleError(new Error("삭제 실패"));
     }
   };
-  const { handleError } = useError();
   const isComments = articleComments?.length === 0;
   return (
     <div className={articlePage}>

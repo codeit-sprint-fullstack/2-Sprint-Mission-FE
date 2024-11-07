@@ -3,7 +3,8 @@ import { TOKEN } from "@/constants";
 const { ACCESS_TOKEN, REFRESH_TOKEN } = TOKEN;
 export const instance = axios.create({
   // baseURL: "http://localhost:3001"
-  baseURL: "https://panda-market-api.vercel.app"
+  //baseURL: "https://panda-market-api.vercel.app"
+  baseURL: process.env.NEXT_PUBLIC_API_HOST
 });
 instance.interceptors.response.use(
   (response) => response,
@@ -11,10 +12,12 @@ instance.interceptors.response.use(
 );
 export const getUser = async () => {
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
-  const response = await instance.get("/users/me", {
-    headers: { Authorization: `Bearer ${accessToken}` }
-  });
-  return response;
+  if (accessToken !== undefined) {
+    const response = await instance.get("/users/me", {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+    return response;
+  }
 };
 export const postUser = async (formData) => {
   const response = await instance.post("auth/signUp", formData);
