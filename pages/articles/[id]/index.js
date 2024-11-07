@@ -1,7 +1,7 @@
+import styles from '@/styles/ArticleDetail.module.css';
 import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
-import styles from '@/styles/ArticleDetail.module.css';
 import { getArticle, getArticleCommentList } from '@/lib/api/ArticleService';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';

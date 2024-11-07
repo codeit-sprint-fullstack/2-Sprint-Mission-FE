@@ -1,10 +1,9 @@
 import styles from '@/styles/Product.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getProductList, getProductCount } from '@/lib/api/ProductService';
 import ProductList from '@/components/ProductList/ProductList';
 import BestProductList from '@/components/ProductList/BestProductList';
 import ProductHeader from '@/components/ProductList/ProductHeader';
-import Search from '@/components/Common/Search';
 import Pagination from '@/components/Common/Pagination';
 import { useResize } from '@/lib/contexts/useResize';
 
