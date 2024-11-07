@@ -1,5 +1,5 @@
 import styles from '@/styles/Article.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getArticleList, getArticleCount } from '@/lib/api/ArticleService';
 import ArticleList from '@/components/ArticleList/ArticleList';
 import BestArticleList from '@/components/ArticleList/BestArticleList';
@@ -8,6 +8,7 @@ import Dropdown from '@/components/Common/Dropdown';
 import ArticleHeader from '@/components/ArticleList/ArticleHeader';
 import Pagination from '@/components/Common/Pagination';
 import { useResize } from '@/lib/contexts/useResize';
+import Spinner from '@/components/Common/Spinner';
 
 export async function getServerSideProps() {
   try {
@@ -16,13 +17,15 @@ export async function getServerSideProps() {
 
     const bestArticles = await getArticleList({
       page: 1,
-      pageSize: 3
+      pageSize: 3,
+      orderBy: 'like'
     });
 
     return {
       props: {
         articles,
-        bestArticles
+        bestArticles,
+        totalCount
       }
     };
   } catch (err) {
@@ -35,7 +38,8 @@ export async function getServerSideProps() {
 
 export default function Article({
   articles,
-  bestArticles: initialBestArticles
+  bestArticles: initialBestArticles,
+  totalCount
 }) {
   const [bestArticles] = useState(initialBestArticles);
   const { bestPost } = useResize();
@@ -47,15 +51,58 @@ export default function Article({
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const fetchedArticles = await getArticleList({
+          page: 1,
+          pageSize: totalCount
+        });
+        setFilteredArticles(fetchedArticles);
+      } catch (err) {
+        setError('상품 목록을 불러오는 데 실패했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const sortArticles = (articles, sortOrder) => {
+    let sortedArticles = [...articles];
+
+    if (sortOrder === 'recent') {
+      sortedArticles.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    } else if (sortOrder === 'like') {
+      sortedArticles.sort((a, b) => b.likeCount - a.likeCount);
+    }
+
+    return sortedArticles;
+  };
+
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
       const filtered = articles.filter((article) =>
         article.title.toLowerCase().includes(keyword.toLowerCase())
       );
-      setFilteredArticles(filtered);
+
+      const sortedFiltered = sortArticles(filtered, sortOrder);
+      setFilteredArticles(sortedFiltered);
       setCurrentPage(1);
     }
   };
+
+  useEffect(() => {
+    const sortedArticles = sortArticles(filteredArticles, sortOrder);
+    setFilteredArticles(sortedArticles);
+  }, [sortOrder]);
 
   const totalPages = Math.ceil(filteredArticles.length / pageSize);
 
@@ -63,6 +110,9 @@ export default function Article({
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
+
+  if (loading) return <Spinner />;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className={styles.wrapper}>
@@ -79,7 +129,11 @@ export default function Article({
             onKeyDown={handleSearch}
             width={'105.4rem'}
           />
-          <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
+          <Dropdown
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
+            type={'article'}
+          />
         </div>
         <ArticleList articles={currentArticles || []} />
       </div>

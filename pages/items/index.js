@@ -15,13 +15,15 @@ export async function getServerSideProps() {
 
     const bestProducts = await getProductList({
       page: 1,
-      pageSize: 4
+      pageSize: 4,
+      orderBy: 'favorite'
     });
 
     return {
       props: {
         products,
-        bestProducts
+        bestProducts,
+        totalCount
       }
     };
   } catch (err) {
@@ -34,7 +36,8 @@ export async function getServerSideProps() {
 
 export default function Product({
   products,
-  bestProducts: initialBestProducts
+  bestProducts: initialBestProducts,
+  totalCount
 }) {
   const [bestProducts] = useState(initialBestProducts);
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -54,7 +57,10 @@ export default function Product({
     const fetchData = async () => {
       setLoading(true);
       try {
-        const fetchedProducts = await getProductList({ page: 1, pageSize: 20 });
+        const fetchedProducts = await getProductList({
+          page: 1,
+          pageSize: totalCount
+        });
         setFilteredProducts(fetchedProducts);
       } catch (err) {
         setError('상품 목록을 불러오는 데 실패했습니다.');
@@ -66,15 +72,36 @@ export default function Product({
     fetchData();
   }, []);
 
+  const sortProducts = (products, sortOrder) => {
+    let sortedProducts = [...products];
+
+    if (sortOrder === 'recent') {
+      sortedProducts.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    } else if (sortOrder === 'favorite') {
+      sortedProducts.sort((a, b) => b.favoriteCount - a.favoriteCount);
+    }
+
+    return sortedProducts;
+  };
+
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
       const filtered = products.filter((product) =>
         product.name.toLowerCase().includes(keyword.toLowerCase())
       );
-      setFilteredProducts(filtered);
+
+      const sortedFiltered = sortProducts(filtered, sortOrder);
+      setFilteredProducts(sortedFiltered);
       setCurrentPage(1);
     }
   };
+
+  useEffect(() => {
+    const sortedProducts = sortProducts(filteredProducts, sortOrder);
+    setFilteredProducts(sortedProducts);
+  }, [sortOrder]);
 
   const totalPages = Math.ceil(filteredProducts.length / pageSize);
 

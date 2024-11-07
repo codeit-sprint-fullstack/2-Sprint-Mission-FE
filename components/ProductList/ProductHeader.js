@@ -23,7 +23,11 @@ export default function ProductHeader({
         <button>
           <Link href="/items/register">상품 등록하기</Link>
         </button>
-        <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
+        <Dropdown
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          type={'product'}
+        />
       </div>
     </div>
   );

@@ -38,7 +38,7 @@ export default function BestArticleList({ bestArticles = [], bestPageSize }) {
                       height={16}
                       alt="좋아요"
                     />
-                    <p>+9999</p>
+                    <p>{article.likeCount}</p>
                   </div>
                 </div>
                 <p>{formatDate(article.createdAt)}</p>

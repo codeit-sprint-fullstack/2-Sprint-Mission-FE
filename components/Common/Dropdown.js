@@ -2,12 +2,12 @@ import styles from './Dropdown.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function Dropdown({ sortOrder, setSortOrder }) {
+export default function Dropdown({ sortOrder, setSortOrder, type }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const options = [
     { value: 'recent', label: '최신 순' },
-    { value: 'favorite', label: '좋아요 순' }
+    { value: type === 'product' ? 'favorite' : 'like', label: '좋아요 순' }
   ];
 
   const handleOptionClick = (val) => {

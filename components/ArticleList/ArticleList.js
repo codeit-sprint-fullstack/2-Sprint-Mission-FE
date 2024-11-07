@@ -39,7 +39,7 @@ export default function ArticleList({ articles = [] }) {
                     height={24}
                     alt="좋아요"
                   />
-                  <p>+9999</p>
+                  <p>{article.likeCount}</p>
                 </div>
               </div>
             </Link>
