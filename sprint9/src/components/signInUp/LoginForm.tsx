@@ -6,7 +6,7 @@ import PasswordInput from "./PasswordInput";
 import IdInput from "./IdInput";
 import SignButton from "./SignButton";
 
-export default function SignupForm() {
+export default function LoginForm() {
   const methods = useForm();
 
   const handleClick = () => {

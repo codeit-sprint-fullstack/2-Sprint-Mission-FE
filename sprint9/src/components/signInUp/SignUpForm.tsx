@@ -5,19 +5,31 @@ import style from "@/src/styles/signInUp/SignInput.module.css";
 import PasswordInput from "./PasswordInput";
 import IdInput from "./IdInput";
 import SignButton from "./SignButton";
+import { postSignup } from "@/src/api/authServices";
 
 export default function SignupForm() {
-  const methods = useForm();
+  const formMethods = useForm();
 
-  const handleClick = () => {
-    // TODO: 회원가입 로직 추가
+  const {
+    handleSubmit,
+    formState: { isValid },
+    reset,
+    watch
+  } = formMethods;
+
+  const handleClick = async () => {
+    const email = watch("email");
+    const nickname = watch("nickname");
+    const password = watch("password");
+    const passwordConfirmation = watch("passwordConfirmation");
+
+    console.log({ email, nickname, password, passwordConfirmation });
+    await postSignup({ email, nickname, password, passwordConfirmation });
   };
 
-  const handleSubmit = (data) => console.log(data);
-
   return (
-    <FormProvider {...methods}>
-      <form className={style.container} onSubmit={methods.handleSubmit}>
+    <FormProvider {...formMethods}>
+      <form className={style.container} onSubmit={handleClick}>
         <IdInput
           name="email"
           label="이메일"
@@ -44,7 +56,7 @@ export default function SignupForm() {
           placeholder="비밀번호를 다시 한 번 입력해주세요"
           validations={AUTH.CONFIRM_PW}
         />
-        <SignButton status={false} onClick={handleClick}>
+        <SignButton status={isValid} onClick={handleClick}>
           회원가입
         </SignButton>
       </form>

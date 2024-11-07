@@ -13,11 +13,11 @@ instance.interceptors.response.use(
   }
 );
 
-export function getRequest(url: string, params: object) {
-  return instance.get(url, params);
+export function getRequest(url: string, params: object = {}) {
+  return instance.get(url, { params });
 }
 
-export function postRequest(url: string, body: object) {
+export function postRequest(url: string, body: object = {}) {
   return instance.post(url, body);
 }
 
