@@ -5,7 +5,7 @@
     justify-content: space-evenly;
     align-items: center;
 
-    width: 13rem;
+    width: auto;
     height: 4.2rem;
 
     padding: 1.2rem 2rem;
@@ -36,26 +36,39 @@
 
     width: 100%;
 
-    padding: 1.2rem 2rem;
-
-    border-radius: 1.2rem;
-    border: 0.1rem solid #E5E7EB;
-
     cursor: pointer;
     z-index: 1;
-
-    background-color: white;
-
 }
 
 .option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1.2rem 2rem;
+    border: 0.1rem solid #E5E7EB;
+
+    background-color: white;
+
+    cursor: pointer;
+}
+
+.option span {
     color: #1F2937;
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 2.6rem;
     text-align: center;
+}
 
-    cursor: pointer;
+.option:first-child {
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+}
+
+.option:last-child {
+    border-bottom-left-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
 }
 
 .mobile {

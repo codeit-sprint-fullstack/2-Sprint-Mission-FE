@@ -5,7 +5,10 @@ import { useState } from 'react';
 export default function Dropdown({ sortOrder, setSortOrder }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const options = [{ value: 'recent', label: '최신 순' }];
+  const options = [
+    { value: 'recent', label: '최신 순' },
+    { value: 'favorite', label: '좋아요 순' }
+  ];
 
   const handleOptionClick = (val) => {
     setSortOrder(val);
@@ -42,7 +45,7 @@ export default function Dropdown({ sortOrder, setSortOrder }) {
               className={styles.option}
               onClick={() => handleOptionClick(option.value)}
             >
-              {option.label}
+              <span>{option.label}</span>
             </div>
           ))}
         </div>
