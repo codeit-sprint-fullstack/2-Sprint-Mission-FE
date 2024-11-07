@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Comment from '@components/Comment';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
 import TagButton from '@components/product/TagButton';
 import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
+import { css } from '@emotion/react';
 import c from '@utils/constants';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const style = {
   itemDetailPost: css`

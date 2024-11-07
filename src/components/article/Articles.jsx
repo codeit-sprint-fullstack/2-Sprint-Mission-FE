@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
 import PaginationBar from '@components/PaginationBar';
 import Article from '@components/article/Article';
 import ArticlesTitle from '@components/article/ArticlesTitle';
 import { useDropdownItem } from '@contexts/DropdownProvider';
 import { useViewport } from '@contexts/ViewportProvider';
+import { css } from '@emotion/react';
 import useAsync from '@hooks/useAsync';
 import { getArticles } from '@utils/api';
 import c from '@utils/constants';
+import Link from 'next/link';
+import { useCallback, useEffect, useState } from 'react';
 
 const style = {
   articles: css`

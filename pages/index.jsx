@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import { useViewport } from '@contexts/ViewportProvider';
 import { css } from '@emotion/react';
+import c from '@utils/constants';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useViewport } from '@contexts/ViewportProvider';
-import c from '@utils/constants';
 
 const style = {
   h1: css`

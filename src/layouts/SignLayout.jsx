@@ -1,6 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+<<<<<<< HEAD
 import c from '@utils/constants';
+=======
+import c from '../utils/constants.js';
+>>>>>>> next-김태영-upstream
 
 const style = {
   signLayout: css`

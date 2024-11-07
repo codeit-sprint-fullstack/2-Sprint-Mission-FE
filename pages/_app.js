@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import createCache from '@emotion/cache';
-import { CacheProvider, css } from '@emotion/react';
-import dynamic from 'next/dynamic';
+import '@/styles/import.css';
 import Footer from '@components/Footer';
 import GNB from '@components/GNB';
 import Modal from '@components/Modal';
 import AuthProvider from '@contexts/AuthProvider';
 import ErrorProvider, { useError } from '@contexts/ErrorProvider';
 import PendingProvider, { useIsLoading } from '@contexts/PendingProvider';
-import '@/styles/import.css';
+import createCache from '@emotion/cache';
+import { CacheProvider, css } from '@emotion/react';
+import dynamic from 'next/dynamic';
 
 const clientSideEmotionCache = createCache({ key: 'css' });
 const ViewportProviderWithNoSSR = dynamic(() => import('@contexts/ViewportProvider.jsx'), { ssr: false });

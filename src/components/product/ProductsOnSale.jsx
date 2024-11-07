@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
 import PaginationBar from '@components/PaginationBar';
 import ProductCard from '@components/product/ProductCard';
 import ProductOnSaleTitle from '@components/product/ProductOnSaleTitle';
 import { useDropdownItem } from '@contexts/DropdownProvider';
 import { useViewport } from '@contexts/ViewportProvider';
+import { css } from '@emotion/react';
 import useAsync from '@hooks/useAsync';
 import { getProducts } from '@utils/api';
 import c from '@utils/constants';
+import Link from 'next/link';
+import { useCallback, useEffect, useState } from 'react';
 
 const style = {
   productOnSale: css`

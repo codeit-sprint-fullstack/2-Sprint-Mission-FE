@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import Image from 'next/image';
 import c from '@utils/constants';
 import { priceFunc } from '@utils/utils';
+import Image from 'next/image';
 
 const style = {
   card: css`

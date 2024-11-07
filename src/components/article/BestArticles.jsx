@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import Article from '@components/article/Article';
 import { useViewport } from '@contexts/ViewportProvider';
+import { css } from '@emotion/react';
 import useAsync from '@hooks/useAsync';
 import { getArticles } from '@utils/api';
 import c from '@utils/constants';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const style = {
   BestArticles: css`

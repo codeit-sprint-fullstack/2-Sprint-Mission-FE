@@ -1,16 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import Comment from '@components/Comment';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
 import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
+import { css } from '@emotion/react';
 import useAsync from '@hooks/useAsync';
 import { getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@utils/api';
 import c from '@utils/constants';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const style = {
   articleDetailPage: css`

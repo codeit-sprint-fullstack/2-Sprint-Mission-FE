@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import c from '@utils/constants';
 import Image from 'next/image';
 import { useState } from 'react';
-import c from '@utils/constants';
 
 const style = {
   searchBar: css`

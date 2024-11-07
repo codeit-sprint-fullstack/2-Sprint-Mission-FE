@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import Image from 'next/image';
 import DropdownMenu from '@components/DropdownMenu';
 import { useDropdown, useDropdownItem } from '@contexts/DropdownProvider';
 import { useViewport } from '@contexts/ViewportProvider';
+import { css } from '@emotion/react';
 import c from '@utils/constants';
+import Image from 'next/image';
 
 const style = {
   sortOrder: css`

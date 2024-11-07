@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import { useViewport } from '@contexts/ViewportProvider';
+import { css } from '@emotion/react';
 import usePagination from '@hooks/usePagination';
 import c from '@utils/constants';
 
