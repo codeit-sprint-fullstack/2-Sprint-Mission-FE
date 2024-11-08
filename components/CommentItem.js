@@ -2,8 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import EditDeleteDropDown from "./EditDeleteDropDown";
 import { useError } from "@/contexts/ErrorProvider";
-import { EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
-const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
+import { BUTTON_TYPE } from "@/constants";
 export default function Comment({ data, onPatch, onDelete }) {
   const commentClassWithoutHeight = `w-full bg-fcfcfc flex flex-col justify-between relative`;
   const commentContentEditClass = `w-full h-full text-[14px] leading-24px text-1f2937 bg-f3f4f6
@@ -24,9 +23,8 @@ export default function Comment({ data, onPatch, onDelete }) {
   const isEdit = editMode;
   const handleChange = (e) => setContent(e.target.value);
   const handleDropDownChange = (chosenOption) => {
-    console.log(chosenOption);
-    if (chosenOption === EDIT_VALUE) setEditMode(true);
-    else if (chosenOption === DELETE_VALUE) onDelete(data.id);
+    if (chosenOption === BUTTON_TYPE.edit.value) setEditMode(true);
+    else if (chosenOption === BUTTON_TYPE.delete.value) onDelete(data.id);
   };
 
   const commentClass = `${commentClassWithoutHeight} ${

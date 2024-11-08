@@ -35,7 +35,6 @@ export default function Register() {
     const applyGetProduct = async () => {
       const response = await getProduct(id);
       const { name, description, price, tags } = response.data;
-      console.log(response.data);
       const initialProductInfo = {
         name,
         description,

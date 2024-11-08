@@ -17,16 +17,11 @@ import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import { useError } from "@/contexts/ErrorProvider";
 import { tenaryWithEmpty } from "@/utils/ternaryUtils";
 import convertDate from "@/utils/convertDate";
-import {
-  ORDER_STATE,
-  MODEL_TYPE,
-  EDIT_DELETE_DROPDOWN_LIST
-} from "@/constants";
+import { ORDER_STATE, MODEL_TYPE, BUTTON_TYPE } from "@/constants";
 import Product from "../items/[id]";
 import { useAuth } from "@/contexts/AuthProvider";
 const { RECENT } = ORDER_STATE;
 const { ARTICLE_WITH_COMMENTS } = MODEL_TYPE;
-const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
 export default function Article() {
   const articlePage = `w-full flex justify-center`;
   const articePageContents = `w-[1200px] flex flex-col items-center
@@ -94,9 +89,9 @@ export default function Article() {
   const { user } = useAuth(true);
   const { handleError } = useError();
   const handleDropDownChange = async (chosenItem) => {
-    if (chosenItem === EDIT_VALUE) {
+    if (chosenItem === BUTTON_TYPE.edit.value) {
       router.push(`/freeboard/write/${article?.id}`);
-    } else if (chosenItem === DELETE_VALUE) {
+    } else if (chosenItem === BUTTON_TYPE.delete.value) {
       try {
         const resposne = await deleteArticle(id);
         router.push("/freeboard");

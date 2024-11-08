@@ -4,7 +4,7 @@ import useGetData from "@/lib/hooks/useGetData";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { MODEL_TYPE, EDIT_DELETE_DROPDOWN_LIST, CRUDAction } from "@/constants";
+import { MODEL_TYPE, BUTTON_TYPE, CRUDAction } from "@/constants";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import CommentItem from "@/components/CommentItem";
 import convertDate from "@/utils/convertDate";
@@ -21,7 +21,6 @@ import {
 } from "@/api/api";
 import Modal from "@/components/Modal";
 const { PRODUCT_WITH_COMMENTS } = MODEL_TYPE;
-const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
 export default function Product() {
   const router = useRouter();
   const { handleError } = useError();
@@ -87,8 +86,9 @@ export default function Product() {
   const handleDropdownChange = (chosenOption) => {
     try {
       if (product.ownerId !== user.id) throw new Error("권한이없습니다");
-      if (chosenOption === EDIT_VALUE) router.push(`/items/write/${id}`);
-      else if (chosenOption === DELETE_VALUE) setModalOpen(true);
+      if (chosenOption === BUTTON_TYPE.edit.value)
+        router.push(`/items/write/${id}`);
+      else if (chosenOption === BUTTON_TYPE.delete.value) setModalOpen(true);
     } catch (e) {
       handleError(e);
     }

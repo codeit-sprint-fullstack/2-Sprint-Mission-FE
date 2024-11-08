@@ -33,11 +33,9 @@ export const MODEL_TYPE = Object.freeze({
   ARTICLE_STANDARD_LIST: "ARTICLE_STANDARD_LIST",
   ARTICLE_WITH_COMMENTS: "ARTICLE_WITH_COMMENTS"
 });
-export const EDIT_DELETE_DROPDOWN_LIST = Object.freeze({
-  EDIT_VALUE: "EDIT",
-  EDIT_LABEL: "수정하기",
-  DELETE_VALUE: "DELETE",
-  DELETE_LABEL: "삭제하기"
+export const BUTTON_TYPE = Object.freeze({
+  edit: { value: "EDIT", label: "수정하기" },
+  delete: { value: "delete", label: " 삭제하기" }
 });
 export const TOKEN = Object.freeze({
   ACCESS_TOKEN: "accessToken",
