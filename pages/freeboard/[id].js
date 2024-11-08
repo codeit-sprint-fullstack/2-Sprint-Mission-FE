@@ -23,6 +23,7 @@ import {
   EDIT_DELETE_DROPDOWN_LIST
 } from "@/constants";
 import Product from "../items/[id]";
+import { useAuth } from "@/contexts/AuthProvider";
 const { RECENT } = ORDER_STATE;
 const { ARTICLE_WITH_COMMENTS } = MODEL_TYPE;
 const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
@@ -87,9 +88,10 @@ export default function Article() {
     enabled: !!id
   });
   const article = data?.data || {};
-  const { list: articleComments } = commentsData?.data?.list || {};
+  const articleComments = commentsData?.data?.list || {};
   const [comment, setComment] = useState("");
   const [isPost, setIsPost] = useState(false);
+  const { user } = useAuth(true);
   const { handleError } = useError();
   const handleDropDownChange = async (chosenItem) => {
     if (chosenItem === EDIT_VALUE) {
@@ -150,7 +152,7 @@ export default function Article() {
               src="/images/ic_profile.png"
               alt="프로필 이미지"
             />
-            <span className={aritlceNickName}>총명한 판다</span>
+            <span className={aritlceNickName}>{article?.writer?.nickname}</span>
             <span className={articleCreateAt}>
               {convertDate(article?.createdAt)}
             </span>
@@ -163,7 +165,7 @@ export default function Article() {
                 src="/images/ic_bigheart.png"
                 alt="하트이미지"
               />
-              <span className={favoriteCount}>{article?.favoriteCount}</span>
+              <span className={favoriteCount}>{article?.likeCount}</span>
             </button>
           </div>
 

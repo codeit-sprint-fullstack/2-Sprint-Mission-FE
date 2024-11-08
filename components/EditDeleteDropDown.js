@@ -22,7 +22,7 @@ export default function EditDeleteDropDown({ onDropDownChange, className }) {
   ];
   return (
     <div className={`${dropdown} ${className}`}>
-      <button onClick={toggleDropDown}>
+      <button type="button" onClick={toggleDropDown}>
         <Image
           width={24}
           height={24}

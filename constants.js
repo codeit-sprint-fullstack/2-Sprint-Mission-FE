@@ -43,3 +43,8 @@ export const TOKEN = Object.freeze({
   ACCESS_TOKEN: "accessToken",
   REFRESH_TOKEN: "refreshToken"
 });
+export const CRUDAction = Object.freeze({
+  POST: "POST",
+  PATCH: "PATCH",
+  DELETE: "DELETE"
+});

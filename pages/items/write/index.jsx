@@ -5,9 +5,11 @@ import { postProduct } from "@/api/api";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 import { changeInputValue, validateField } from "@/utils/validateInputHelper";
 import { useError } from "@/contexts/ErrorProvider";
+import { useAuth } from "@/contexts/AuthProvider";
 export default function Register() {
   const { NAME, DESCRIPTION, PRICE, TAG } = FIELD_TYPES;
   const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
+  const { user } = useAuth(true);
   const [productInfo, setProductInfo] = useState({
     name: "",
     description: "",
@@ -44,8 +46,7 @@ export default function Register() {
       tags: productInfo.tagList,
       images: [
         "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/92/1725209779217/CRP-DHP0610FD.png"
-      ],
-      userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18"
+      ]
     };
     try {
       const response = await postProduct(submitData);

@@ -20,13 +20,15 @@ export default function Comment({ data, onPatch, onDelete }) {
   const patchCompleteBtn = `w-[106px] h-[42px] px-[23px] py-[12px] flex items-center text-f3f4f6 rounded-[8px] border-none bg-3692ff`;
   const [editMode, setEditMode] = useState(false);
   const [content, setContent] = useState(data.content);
+  const { handleError } = useError();
   const isEdit = editMode;
   const handleChange = (e) => setContent(e.target.value);
   const handleDropDownChange = (chosenOption) => {
+    console.log(chosenOption);
     if (chosenOption === EDIT_VALUE) setEditMode(true);
     else if (chosenOption === DELETE_VALUE) onDelete(data.id);
   };
-  const { handleError } = useError();
+
   const commentClass = `${commentClassWithoutHeight} ${
     isEdit ? "h-[180px] sm:h-[176px]" : "h-[100px] sm:h-[96px]"
   }`;
@@ -44,13 +46,17 @@ export default function Comment({ data, onPatch, onDelete }) {
     }
   };
   return (
-    <div className={commentClass}>
+    <form className={commentClass}>
       <div
         className={`w-full flex justify-between items-start ${
           isEdit ? "h-[80px]" : "h-[48px]"
         }`}
       >
+        <label htmlFor={`comment ${data.id}`} className="sr-only">
+          댓글 입력
+        </label>
         <textarea
+          id={`comment ${data.id}`}
           className={commentContentClass1}
           onChange={handleChange}
           value={content}
@@ -70,18 +76,22 @@ export default function Comment({ data, onPatch, onDelete }) {
           alt="프로필이미지"
         />
         <div className={commentNicknameAndCreatedAt}>
-          <span className={commentNickname}>똑똑한판다</span>
+          <span className={commentNickname}>{data?.writer?.nickname}</span>
           <span className={commentCreatedAt}>1시간 전</span>
         </div>
       </div>
       <div className={`${buttonList} ${isEdit ? "" : "hidden"}`}>
-        <button className={cancelBtn} onClick={handleClickCancel}>
+        <button type="button" className={cancelBtn} onClick={handleClickCancel}>
           취소
         </button>
-        <button className={patchCompleteBtn} onClick={handleClickPatchComplete}>
+        <button
+          type="button"
+          className={patchCompleteBtn}
+          onClick={handleClickPatchComplete}
+        >
           수정 완료
         </button>
       </div>
-    </div>
+    </form>
   );
 }

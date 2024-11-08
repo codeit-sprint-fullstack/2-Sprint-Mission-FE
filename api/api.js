@@ -4,6 +4,28 @@ const { ACCESS_TOKEN, REFRESH_TOKEN } = TOKEN;
 export const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_HOST
 });
+instance.interceptors.request.use(
+  (config) => {
+    // 토큰이 필요 없는 요청의 URL을 확인
+    const noAuthRequiredEndpoints = [
+      "/auth/signIn",
+      "/auth/signUp",
+      "/products",
+      "/articles"
+    ];
+    // 요청 URL이 noAuthRequiredEndpoints에 포함되어 있지 않을 경우
+    if (!noAuthRequiredEndpoints.includes(config.url)) {
+      const accessToken = localStorage.getItem(ACCESS_TOKEN);
+      if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
+      }
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 instance.interceptors.response.use(
   (response) => response,
@@ -61,8 +83,13 @@ export const getProductWithComments = async ({ id, params }) => {
   return response;
 };
 export const postProduct = async (formData) => {
-  const response = await instance.post("/products", formData);
-  return response;
+  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  if (accessToken !== undefined) {
+    const response = await instance.post("/products", formData, {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+    return response;
+  }
 };
 export const patchProduct = async ({ id, formData }) => {
   const response = await instance.patch(`/products/${id}`, formData);
@@ -104,16 +131,19 @@ export const getProductComments = async ({ id, params }) => {
   const response = await instance.get(`products/${id}/comments`, { params });
   return response;
 };
-export const postProductComment = async (formData) => {
-  const response = await instance.post(`/products/${id}/comments`, formData);
+export const postProductComment = async ({ id, formData }) => {
+  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const response = await instance.post(`/products/${id}/comments`, formData, {
+    headers: { Authorization: `Bearer ${accessToken}` }
+  });
   return response;
 };
 export const patchProductComment = async ({ id, formData }) => {
-  const response = await instance.patch(`/product-comments/${id}`, formData);
+  const response = await instance.patch(`/comments/${id}`, formData);
   return response;
 };
 export const deleteProductComment = async (id) => {
-  const response = await instance.delete(`/product-comments/${id}`);
+  const response = await instance.delete(`/comments/${id}`);
   return response;
 };
 /************************articleComments**********************************/

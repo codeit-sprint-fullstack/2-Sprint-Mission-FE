@@ -31,7 +31,7 @@ export default function Signup() {
     confirmPassword: ""
   });
   const router = useRouter();
-  const { user, signup } = useAuth();
+  const { user, signup } = useAuth(true);
   useEffect(() => {
     if (user) router.push("/items");
   }, [user, router]);

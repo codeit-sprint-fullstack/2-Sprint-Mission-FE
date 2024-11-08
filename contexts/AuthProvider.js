@@ -13,7 +13,6 @@ const AuthContext = createContext({
 });
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const router = useRouter();
   const { ACCESS_TOKEN, REFRESH_TOKEN } = TOKEN;
   const { handleError } = useError();
   const getMe = async () => {
@@ -60,8 +59,9 @@ export default function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    getMe();
-  }, [user]);
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+    if (accessToken) getMe();
+  }, []);
   return (
     <AuthContext.Provider
       value={{
@@ -78,9 +78,12 @@ export default function AuthProvider({ children }) {
 }
 export function useAuth(required) {
   const context = useContext(AuthContext);
+  const router = useRouter();
   if (!context) return new Error("반드시 AuthProvider 안에서 사용해야 됩니다");
-  // useEffect(() => {
-  //   if (required && !context.user) router.push("/login");
-  // }, [context.user, required]);
+  useEffect(() => {
+    if (required && !context.user) {
+      router.push("/login");
+    }
+  }, [context.user, required, router]);
   return context;
 }

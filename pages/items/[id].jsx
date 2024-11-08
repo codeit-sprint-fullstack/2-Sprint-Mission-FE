@@ -1,30 +1,31 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import useGetData from "@/lib/hooks/useGetData";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { MODEL_TYPE, EDIT_DELETE_DROPDOWN_LIST } from "@/constants";
+import { MODEL_TYPE, EDIT_DELETE_DROPDOWN_LIST, CRUDAction } from "@/constants";
 import EditDeleteDropDown from "@/components/EditDeleteDropDown";
 import CommentItem from "@/components/CommentItem";
 import convertDate from "@/utils/convertDate";
+import { useAuth } from "@/contexts/AuthProvider";
 import { useError } from "@/contexts/ErrorProvider";
 import { tenaryWithEmpty } from "@/utils/ternaryUtils";
 import {
   deleteProduct,
-  getProductWithComments,
   postProductComment,
   patchProductComment,
   deleteProductComment,
   getProduct,
   getProductComments
 } from "@/api/api";
+import Modal from "@/components/Modal";
 const { PRODUCT_WITH_COMMENTS } = MODEL_TYPE;
 const { EDIT_VALUE, DELETE_VALUE } = EDIT_DELETE_DROPDOWN_LIST;
 export default function Product() {
   const router = useRouter();
+  const { handleError } = useError();
   const { id } = router.query;
-  if (!id) return;
   const queryClient = useQueryClient();
   const { data, isPending, isError } = useQuery({
     queryKey: ["productInfo", id],
@@ -40,15 +41,49 @@ export default function Product() {
     queryFn: () => getProductComments({ id, params: { limit: 3 } }),
     enabled: !!id
   });
+  const { user } = useAuth(true);
+  const commentsPostMutation = useMutation({
+    mutationFn: async () => {
+      const submitData = {
+        content: inputComment
+      };
+      if (user) {
+        const response = await postProductComment({ id, formData: submitData });
+      } else {
+        router.push("/login");
+        handleError(new Error("댓글 작성은 로그인이 필요합니다"));
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["productComments", id] });
+      setInputComment("");
+    },
+    onError: (e) => handleError(e)
+  });
+  const commentsDeleteMutation = useMutation({
+    mutationFn: async (deletedId) => {
+      try {
+        const response = await deleteProductComment(deletedId);
+      } catch (e) {
+        handleError(new Error("삭제 실패"));
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["productComments", id] });
+      setInputComment("");
+    },
+    onError: (e) => handleError(e)
+  });
   const product = data?.data;
   const { list: productComments } = commentsData?.data || {};
   const [inputComment, setInputComment] = useState();
   const [isPost, setIsPost] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     if (inputComment === "") setIsPost(false);
     else setIsPost(true);
   }, [inputComment]);
-  const { handleError } = useError();
+
   const handleDropdownChange = (chosenOption) => {
     if (chosenOption === EDIT_VALUE) router.push(`/items/write/${id}`);
     else if (chosenOption === DELETE_VALUE) {
@@ -57,15 +92,18 @@ export default function Product() {
     }
   };
   const handleChangeComment = (e) => setInputComment(e.target.value);
-  const handleClickRegisterBtn = async () => {
+  const postComment = async () => {
     const submitData = {
-      userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18",
-      productId: id,
       content: inputComment
     };
-    const response = await postProductComment(submitData);
+    if (user) {
+      const response = await postProductComment({ id, formData: submitData });
+    } else {
+      router.push("/login");
+      handleError(new Error("댓글 작성은 로그인이 필요합니다"));
+    }
   };
-  const handlePatchComment = async ({ id, formData }) => {
+  const patchComment = async ({ id, formData }) => {
     try {
       const response = await patchProductComment({ id, formData });
     } catch (e) {
@@ -79,7 +117,9 @@ export default function Product() {
       handleError(new Error("삭제 실패"));
     }
   };
+  const handleCloseModle = () => setModalOpen(false);
   const isComments = productComments?.length === 0;
+  if (!id) return null;
   return (
     <div className="w-full flex justify-center">
       <div
@@ -97,11 +137,9 @@ export default function Product() {
           md:w-[340px] md:h-[340px]
           sm:w-full sm:h-[343px]"
           >
-            <Image
-              src="/images/default.png"
-              layout="fill"
-              objectFit="cover" // 부모 요소를 완전히 채우도록 조정
-              sizes="100vw"
+            <img
+              src={product?.images}
+              className="w-full h-full"
               alt="상품이미지"
             />
           </div>
@@ -145,7 +183,7 @@ export default function Product() {
             >
               상품 태그
             </div>
-            <div className="w-full h-[36px] mt-[8px] lg:mt-[16px] flex gap-[8px]">
+            <div className="w-full h-[36px] mt-[8px] lg:mt-[16px] flex gap-[8px] whitespace-nowrap">
               {product?.tags?.map((tag) => (
                 <div
                   className="h-full leading-26px px-[16px] py-[6px] rounded-[26px] bg-f3f4f6"
@@ -165,7 +203,7 @@ export default function Product() {
               />
               <div className="h-full flex flex-col ml-[24px]">
                 <span className="w-[69px] h-[24px] text-[14px] leading-24px text-4b5563">
-                  총명한 판다
+                  {product?.ownerNickname}
                 </span>
                 <span className="w-[80px] h-[24px] text-[14px] leading-24px text-9ca3af whtiespace-nowrap">
                   {convertDate(product?.createdAt)}
@@ -209,7 +247,7 @@ export default function Product() {
           />
           <button
             type="button"
-            onClick={handleClickRegisterBtn}
+            onClick={commentsPostMutation.mutate}
             disabled={!isPost}
             className={`w-[74px] h-[42px] mt-[16px] rounded-[8px] border-none text-f3f4f6 
           ml-[1126px] md:ml-[622px] sm:ml-[270px]
@@ -222,8 +260,8 @@ export default function Product() {
           {productComments?.map((comment) => (
             <CommentItem
               data={comment}
-              onPatch={handlePatchComment}
-              onDelete={handleDeleteComment}
+              onPatch={patchComment}
+              onDelete={commentsDeleteMutation.mutate}
               key={comment.id}
             />
           ))}
@@ -262,6 +300,7 @@ export default function Product() {
           />
         </Link>
       </div>
+      <Modal isOpen={modalOpen} onClose={handleCloseModle} />
     </div>
   );
 }
