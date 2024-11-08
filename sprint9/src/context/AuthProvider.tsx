@@ -18,7 +18,8 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const queryClient = useQueryClient();
-  //NOTE: 타입스크립트 제네릭<타입||타입>: 제네릭을 통해 상태 값이 string이나 null일 수 있다는 것을 TypeScript에 알려줘서 타입 오류를 방지
+  //NOTE: 타입스크립트 제네릭<타입||타입>: 
+  //제네릭을 통해 상태 값이 string이나 null일 수 있다는 것을 TypeScript에 알려줘서 타입 오류를 방지
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);

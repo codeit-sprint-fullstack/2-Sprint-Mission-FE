@@ -7,7 +7,7 @@ import IdInput from "./IdInput";
 import SignButton from "./SignButton";
 import { postSignup } from "@/src/api/authServices";
 import { useRouter } from "next/navigation";
-
+import { useAuth } from "@/src/hooks/useAuth";
 
 export default function SignupForm() {
   const router = useRouter();
