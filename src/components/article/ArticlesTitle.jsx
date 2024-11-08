@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import SearchBar from '@components/SearchBar';
-import SortOrderSelect from '@components/SortOrderSelect';
 import { css } from '@emotion/react';
 import Link from 'next/link';
+import SearchBar from '@components/SearchBar';
+import SortOrderSelect from '@components/SortOrderSelect';
 
 const style = {
   titleAndButton: css`

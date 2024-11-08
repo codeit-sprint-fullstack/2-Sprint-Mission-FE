@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { useEffect, useState } from 'react';
 import ProductCard from '@components/product/ProductCard';
 import { useViewport } from '@contexts/ViewportProvider';
-import { css } from '@emotion/react';
 import useAsync from '@hooks/useAsync';
 import { getProducts } from '@utils/api';
 import c from '@utils/constants';
-import { useEffect, useState } from 'react';
 
 const style = {
   bestProductsTitle: css`

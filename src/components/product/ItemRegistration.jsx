@@ -1,10 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useEffect, useState } from 'react';
-import TagButton from '@/src/components/product/TagButton.jsx';
-import useValidation from '@/src/hooks/useValidation.js';
-import c from '@/src/utils/constants.js';
-import Input from '@/src/components/Input';
+import Input from '@components/Input';
+import TagButton from '@components/product/TagButton';
+import { useAuth } from '@contexts/AuthProvider';
+import useAsync from '@hooks/useAsync';
+import useValidation from '@hooks/useValidation';
+import { getProductDetail } from '@utils/api';
+import c from '@utils/constants';
 
 const style = {
   registrationPage: css`
@@ -59,7 +62,8 @@ const style = {
   `,
 };
 
-export default function RegistrationPage() {
+export default function ItemRegistration({ productId }) {
+  useAuth(true);
   const validation = useValidation();
   const [nameObj, setNameObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'name', type: 'text' });
   const [descriptionObj, setDescriptionObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'description', type: 'text' });
@@ -68,6 +72,7 @@ export default function RegistrationPage() {
   const [tags, setTags] = useState([]);
   const [validationCheck, setValidationCheck] = useState({});
   const [canSubmit, setCanSubmit] = useState(false);
+  const getProductDetailAsync = useAsync(getProductDetail);
 
   const handleValidation = inputObj => {
     const { name, value } = inputObj;
@@ -76,9 +81,7 @@ export default function RegistrationPage() {
     const errMsg = validation(name, value);
 
     // NOTE count validation
-    setValidationCheck(prev => {
-      return { ...prev, [name]: true };
-    });
+    setValidationCheck(old => ({ ...old, [name]: true }));
 
     // NOTE Set input Ojbect
     let setInputObj = null;
@@ -96,9 +99,7 @@ export default function RegistrationPage() {
         setInputObj = setTagObj;
         break;
     }
-    setInputObj(prev => {
-      return { ...prev, errMsg, value };
-    });
+    setInputObj(old => ({ ...old, errMsg, value }));
 
     // NOTE errMsg가 없음 = validation을 통과함.
     return !errMsg;
@@ -106,17 +107,11 @@ export default function RegistrationPage() {
   const handleAddTag = (e, inputObj) => {
     if (e.key === 'Enter') {
       const { value } = inputObj;
-      if (tags.length >= 5)
-        return setTagObj(prev => {
-          return { ...prev, errMsg: '태그는 5개까지 입력 가능합니다.' };
-        });
-      if (tags.includes(value))
-        return setTagObj(prev => {
-          return { ...prev, errMsg: '같은 태그가 존재합니다' };
-        });
+      if (tags.length >= 5) return setTagObj(old => ({ ...old, errMsg: '태그는 5개까지 입력 가능합니다.' }));
+      if (tags.includes(value)) return setTagObj(old => ({ ...old, errMsg: '같은 태그가 존재합니다' }));
       if (!handleValidation(e)) return;
 
-      setTags(prev => [...prev, value]);
+      setTags(old => [...old, value]);
     }
   };
   const handleRemoveTag = name => {
@@ -124,6 +119,19 @@ export default function RegistrationPage() {
     const newTags = [...tags.slice(0, idx), ...tags.slice(idx + 1)];
     setTags(newTags);
   };
+
+  useEffect(() => {
+    async function getDetail() {
+      const detail = await getProductDetailAsync(productId);
+      if (!detail) return null;
+
+      setNameObj(old => ({ ...old, value: detail.name }));
+      setDescriptionObj(old => ({ ...old, value: detail.description }));
+      setPriceObj(old => ({ ...old, value: detail.price }));
+      setTags(old => detail.tags);
+    }
+    if (productId) getDetail();
+  }, [productId]);
 
   useEffect(() => {
     // NOTE 4개 항목의 최초 Validation이 진행되지 않았을 경우, false를 리턴.

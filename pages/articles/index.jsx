@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import Articles from '@components/article/Articles';
 import BestArticles from '@components/article/BestArticles';
 import DropdownProvider from '@contexts/DropdownProvider';
-import { css } from '@emotion/react';
 
 const style = {
   freeBoard: css`

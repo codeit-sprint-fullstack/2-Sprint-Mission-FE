@@ -57,7 +57,7 @@ export default function GNB() {
   const firstPath = router.asPath.split('/')[1] ?? '';
 
   const handleLoginClick = () => {
-    if (!localStorage.getItem('accessToken')) return router.push('auth/signIn');
+    if (!localStorage.getItem('accessToken')) return router.push('/auth/signIn');
 
     auth.logout();
     router.reload();

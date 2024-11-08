@@ -1,16 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import Comment from '@components/Comment';
-import DropdownMenu from '@components/DropdownMenu';
-import Input from '@components/Input';
-import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
 import { css } from '@emotion/react';
-import useAsync from '@hooks/useAsync';
-import { getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@utils/api';
-import c from '@utils/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Comment from '@components/Comment';
+import DropdownMenu from '@components/DropdownMenu';
+import Input from '@components/Input';
+import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
+import useAsync from '@hooks/useAsync';
+import { getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@utils/api';
+import c from '@utils/constants';
+import { toDateString } from '@utils/utils';
 
 const style = {
   articleDetailPage: css`
@@ -165,7 +166,6 @@ export default function ArticleDetail() {
   const postCommentOfArticleAsync = useAsync(postCommentOfArticle);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
-  const [date, setDate] = useState(new Date());
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text' });
   const [cursor, setCursor] = useState();
 
@@ -194,7 +194,6 @@ export default function ArticleDetail() {
       if (!data) return null;
 
       setArticle(data);
-      setDate(new Date(data.createdAt));
     }
     async function handleLoadComments() {
       // const nextCursor = cursor ? { cursor } : {};
@@ -230,7 +229,7 @@ export default function ArticleDetail() {
             <div>
               <Image src="/Image/ic_profile.png" alt="profile image" width={40} height={40} />
               <span className="nickname">{article.owner?.nickname}</span>
-              <span className="date">{`${date.getFullYear()}. ${date.getMonth()}. ${date.getDate()}`}</span>
+              <span className="date">{toDateString(article?.createdAt)}</span>
             </div>
 
             <hr />

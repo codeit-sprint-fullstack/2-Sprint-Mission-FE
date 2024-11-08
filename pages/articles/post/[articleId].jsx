@@ -1,5 +1,5 @@
-import ArticlePost from '@components/article/ArticlePost';
 import { useRouter } from 'next/router';
+import ArticlePost from '@components/article/ArticlePost';
 
 export default function ArticlePatchPage() {
   const router = useRouter();

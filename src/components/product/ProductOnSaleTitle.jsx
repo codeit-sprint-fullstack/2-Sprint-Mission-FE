@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import Link from 'next/link';
 import SearchBar from '@components/SearchBar';
 import SortOrderSelect from '@components/SortOrderSelect';
 import { useViewport } from '@contexts/ViewportProvider';
-import { css } from '@emotion/react';
 import c from '@utils/constants';
-import Link from 'next/link';
 
 const style = {
   productOnSaleTitle: css`

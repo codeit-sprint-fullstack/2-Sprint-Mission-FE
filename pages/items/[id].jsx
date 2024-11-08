@@ -1,14 +1,19 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Comment from '@components/Comment';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
 import TagButton from '@components/product/TagButton';
+import { useAuth } from '@contexts/AuthProvider';
 import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
-import { css } from '@emotion/react';
+import useAsync from '@hooks/useAsync';
+import { getCommentsOfProduct, getProductDetail } from '@utils/api';
 import c from '@utils/constants';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { toDateString, toPriceString } from '@utils/utils';
 
 const style = {
   itemDetailPost: css`
@@ -20,17 +25,16 @@ const style = {
 
     #itemDetail {
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
 
       #itemDetailContent {
-        margin-top: 2.4rem;
-      }
-
-      #itemDetailTag {
-        margin-top: 2.4rem;
+        flex-grow: 1;
       }
 
       #itemDetailInfo {
-        margin-top: 6.2rem;
+        margin-top: ${6.2 - 2.4}rem;
       }
     }
   `,
@@ -192,22 +196,16 @@ function ModifyButton() {
   );
 }
 
-const content = `액정에 잔기스랑 주변부 스크래치있습니다만 예민하신분아니면 전혀 신경쓰이지않을정도입니다. 
-박스 보관중입니다.
-메모용과 넷플릭스용으로만쓰던거라 뭘 해보질 않아 기능이나 문제점을 못느꼈네요 잘 안써서 싸게넘깁니다!
-택배거래안합니다.`;
-const comment = {
-  id: 'test',
-  content: '혹시 사용기간이 어떻게 되실까요?',
-  owner: {
-    nickname: '똑똑한판다',
-  },
-  createdAt: '2024-10-27T09:25:28.145Z',
-};
+const productId = 352;
 
 export default function ItemDetailPage() {
   const router = useRouter();
   const { id } = router.query;
+  const { user } = useAuth(true);
+  const [item, setItem] = useState({});
+  const [comments, setComments] = useState([]);
+  const getProductDetailAsync = useAsync(getProductDetail);
+  const getCommentsOfProductAsync = useAsync(getCommentsOfProduct);
 
   const handleDropdownClick = modify => {
     switch (modify) {
@@ -218,16 +216,38 @@ export default function ItemDetailPage() {
     }
   };
 
+  useEffect(() => {
+    async function getDetail() {
+      const detail = await getProductDetailAsync(productId);
+      if (!detail) return null;
+
+      setItem(detail);
+    }
+    async function getComments() {
+      const comments = await getCommentsOfProductAsync(productId, { limit: 5 });
+      if (!comments) return null;
+
+      setComments(comments.list);
+    }
+    getDetail();
+    getComments();
+  }, [id]);
+
   return (
     <div id="itemDetailPage">
       <div id="itemDetailPost" css={style.itemDetailPost}>
         <div id="itemImage">
-          <Image src="/Image/img_product_default.png" alt="default image" width={486} height={486} />
+          <Image
+            src={item?.images?.length > 0 ? item.images[0] : '/Image/img_product_default.png'}
+            alt="default image"
+            width={486}
+            height={486}
+          />
         </div>
         <div id="itemDetail">
           <div id="itemDetailTitle" css={style.itemDetailTitle}>
             <div className="title-and-button">
-              <h1>아이패드 미니 팔아요</h1>
+              <h1>{item?.name}</h1>
               <DropdownProvider>
                 <DropdownMenu
                   DropdownButton={<ModifyButton />}
@@ -237,29 +257,29 @@ export default function ItemDetailPage() {
                 />
               </DropdownProvider>
             </div>
-            <div className="price">500,000원</div>
+            <div className="price">{toPriceString(item?.price)}원</div>
           </div>
           <div id="itemDetailContent" css={style.itemDetailContent}>
             <h2>상품 소개</h2>
-            <pre>{content}</pre>
+            <pre>{item?.description}</pre>
           </div>
           <div id="itemDetailTag" css={style.itemDetailTag}>
             <p>상품 태그</p>
             <div className="tags">
-              <TagButton name={'아이패드미니'} />
-              <TagButton name={'애플'} />
-              <TagButton name={'가성비'} />
+              {item?.tags?.map(tag => (
+                <TagButton name={tag} key={tag} />
+              ))}
             </div>
           </div>
           <div id="itemDetailInfo" css={style.itemDetailInfo}>
             <Image src="/Image/ic_profile.png" alt="profile img" width={40} height={40} />
             <div className="owner-info">
-              <span className="nickname">{'총명한판다'}</span>
-              <span className="time">{`2024. 01. 02`}</span>
+              <span className="nickname">{item?.ownerNickname}</span>
+              <span className="time">{toDateString(item?.createdAt)}</span>
             </div>
             <button type="button">
               <img src="/Image/ic_heart.png" alt="heart" width={32} height={32} />
-              <span>{123}</span>
+              <span>{item?.favoriteCount}</span>
             </button>
           </div>
         </div>
@@ -274,29 +294,20 @@ export default function ItemDetailPage() {
             textarea
             comment
           />
-          <button type="button" className="button" disabled={true} onClick={''}>
+          <button type="button" className="button" disabled={true} onClick={() => {}}>
             등록
           </button>
         </form>
 
         <div id="commentsList">
-          {/* {comments.length === 0 && (
+          {comments.length === 0 && (
             <Image id="noComment" src="/Image/Img_inquiry_empty.png" alt="no inquiry Image" width={196} height={230} />
-          )} */}
-          {/* {comments.map(comment => (
+          )}
+          {comments.map(comment => (
             <DropdownProvider key={comment.id}>
               <Comment item={comment} ModifyButton={<ModifyButton />} key={comment.id} />
             </DropdownProvider>
-          ))} */}
-          <DropdownProvider>
-            <Comment item={comment} ModifyButton={<ModifyButton />} />
-          </DropdownProvider>
-          <DropdownProvider>
-            <Comment item={comment} ModifyButton={<ModifyButton />} />
-          </DropdownProvider>
-          <DropdownProvider>
-            <Comment item={comment} ModifyButton={<ModifyButton />} />
-          </DropdownProvider>
+          ))}
         </div>
       </div>
       <div id="returnButton" css={style.returnButton}>

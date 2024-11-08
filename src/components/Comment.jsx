@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
 import Modal from '@components/Modal';
 import { useDropdownItem } from '@contexts/DropdownProvider';
-import { css } from '@emotion/react';
 import useAsync from '@hooks/useAsync';
 import { deleteComment, patchComment } from '@utils/api';
 import c from '@utils/constants';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { toDateString } from '@utils/utils';
 
 const style = {
   comment: css`
@@ -70,7 +71,6 @@ const style = {
 };
 
 export default function Comment({ item, ModifyButton }) {
-  const createdDate = new Date(item.createdAt);
   const router = useRouter();
   const patchCommentAsync = useAsync(patchComment);
   const deleteCommentAsync = useAsync(deleteComment);
@@ -124,7 +124,7 @@ export default function Comment({ item, ModifyButton }) {
         <img src="/Image/ic_profile.png" alt="profile Image" width={32} height={32} />
         <div>
           <span className="nickname">{item.owner?.nickname}</span>
-          <span className="time">{`${createdDate.getFullYear()}. ${createdDate.getMonth()}. ${createdDate.getDate()}`}</span>
+          <span className="time">{toDateString(item?.createdAt)}</span>
         </div>
       </div>
     </div>

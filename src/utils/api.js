@@ -1,4 +1,4 @@
-import { axiosDelete, axiosGet, axiosPatch, axiosPost } from '@utils/axiosUtils';
+import { axiosDelete, axiosGet, axiosPatch, axiosPost, axiosPut } from '@utils/axiosUtils';
 
 // const SERVER = 'https://pandamarket-be.onrender.com/products'; // mongodb
 // const SERVER = 'https://pandamarket-be-postgres.onrender.com/products'; // postgres
@@ -16,8 +16,30 @@ export async function getMe(params = {}) {
 //#endregion
 
 //#region product
+/**
+ * @async
+ * @param {object} [params={}]
+ */
 export async function getProducts(params = {}) {
   return axiosGet({ base: SERVER, url: '/products', params });
+}
+
+/**
+ * @async
+ * @param {uuid} id
+ * @param {object} [params={}]
+ */
+export async function getProductDetail(id, params = {}) {
+  return axiosGet({ base: CODEIT_SERVER, url: `/products/${id}`, params });
+}
+
+/**
+ * @async
+ * @param {uuid} id
+ * @param {object} [params={}]
+ */
+export async function getCommentsOfProduct(id, params = {}) {
+  return axiosGet({ base: CODEIT_SERVER, url: `/products/${id}/comments`, params });
 }
 //#endregion
 
@@ -92,6 +114,23 @@ export async function patchArticle(id, data = {}) {
  */
 export async function patchComment(id, data = {}) {
   return axiosPatch({ base: SERVER, url: `/comments/${id}`, data });
+}
+
+/**
+ * @async
+ * @param {uuid} id
+ * @param {{
+ *  id: uuid
+ *  content: string
+ *  ownerId: uuid
+ *  articleId: uuid
+ *  productId: uuid
+ *  createdAt: DateTime
+ *  updatedAt: DateTime
+ * }} [data={}]
+ */
+export async function putComment(id, data = {}) {
+  return axiosPut({ base: SERVER, url: `/comments/${id}`, data });
 }
 
 /**

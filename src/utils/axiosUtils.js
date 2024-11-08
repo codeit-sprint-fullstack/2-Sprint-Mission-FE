@@ -1,5 +1,5 @@
-import { isEmpty } from '@utils/utils';
 import axios from 'axios';
+import { isEmpty } from '@utils/utils';
 
 const HTTP_METHODS = Object.freeze({
   GET: 'GET',

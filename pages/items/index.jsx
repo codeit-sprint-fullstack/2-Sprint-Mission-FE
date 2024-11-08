@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import BestProducts from '@components/product/BestProducts';
 import ProductsOnSale from '@components/product/ProductsOnSale';
 import DropdownProvider from '@contexts/DropdownProvider';
-import { css } from '@emotion/react';
 import c from '@utils/constants';
 
 const style = {

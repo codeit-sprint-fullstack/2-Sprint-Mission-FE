@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import c from '@utils/constants';
-import { priceFunc } from '@utils/utils';
 import Image from 'next/image';
+import c from '@utils/constants';
+import { toPriceString } from '@utils/utils';
 
 const style = {
   card: css`
@@ -60,7 +60,7 @@ const style = {
 export default function ProductCard({ item, best = false }) {
   const { likeCount, price, name, images } = item;
   const imgUrl = images?.[0] || '/Image/img_default.png';
-  const priceString = priceFunc(price);
+  const priceString = toPriceString(price);
 
   return (
     <div id="productCard" css={style.card}>

@@ -14,7 +14,6 @@ const AuthContext = createContext({
 export default function AuthProvider({ children }) {
   const [userObj, setUserObj] = useState({ user: null, isPending: true });
   const signInAsync = useAsync(signIn);
-  const getMeAsync = useAsync(getMeApi);
 
   const login = async ({ email, password }) => {
     const res = await signInAsync({ email, password });
@@ -32,7 +31,7 @@ export default function AuthProvider({ children }) {
 
     let nextUser = null;
     try {
-      nextUser = await getMeAsync();
+      nextUser = await getMeApi();
       return nextUser;
     } catch (err) {
       console.log(err);
@@ -52,8 +51,7 @@ export default function AuthProvider({ children }) {
   // }
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-    if (token) getMeAsync();
+    getMe();
   }, []);
 
   return (

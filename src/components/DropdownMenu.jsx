@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { useDropdown } from '@contexts/DropdownProvider';
 import { css } from '@emotion/react';
-import c from '@utils/constants';
 import { useEffect, useRef } from 'react';
+import { useDropdown } from '@contexts/DropdownProvider';
+import c from '@utils/constants';
 
 const style = {
   dropdownMenu: css`
