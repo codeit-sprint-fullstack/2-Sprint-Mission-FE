@@ -1,7 +1,7 @@
 import styles from "./styles/detail.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import EditDeleteModal from "@/components/EditDeleteModal/EditDeleteModal";
 import { fetchApi } from "@/utils/fetchApi";
 
