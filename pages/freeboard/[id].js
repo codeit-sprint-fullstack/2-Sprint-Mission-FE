@@ -131,6 +131,7 @@ export default function Article() {
     }
   };
   const isComments = articleComments?.length === 0;
+  if (!id) return null;
   return (
     <div className={articlePage}>
       <div className={articePageContents}>
