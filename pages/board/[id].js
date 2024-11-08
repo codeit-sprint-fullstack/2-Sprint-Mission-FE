@@ -50,17 +50,18 @@ export default function Board() {
   const [editCommentId, setEditCommentId] = useState(null);
   const [editComment, setEditComment] = useState("");
 
-  useEffect(() => {
-    const fetchArticleComment = async () => {
-      if (id) {
-        const fetchArticles = await fetchArticleData(id);
-        const fetchComments = await fetchCommentData(id);
-        setArticle(fetchArticles);
-        setComment(fetchComments);
-      }
-    };
-    fetchArticleComment();
+  const fetchArticleComment = useCallback(async () => {
+    if (id) {
+      const fetchArticles = await fetchArticleData(id);
+      const fetchComments = await fetchCommentData(id);
+      setArticle(fetchArticles);
+      setComment(fetchComments);
+    }
   }, [id]);
+
+  useEffect(() => {
+    fetchArticleComment();
+  }, [fetchArticleComment]);
 
   const handleDeleteClick = async () => {
     try {
