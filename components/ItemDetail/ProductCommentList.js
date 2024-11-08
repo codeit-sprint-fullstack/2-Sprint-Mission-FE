@@ -14,6 +14,11 @@ export default function ProductCommentList({ productId }) {
   // 댓글 목록 불러오기
   useEffect(() => {
     const fetchComments = async () => {
+      if (!productId) {
+        setError('유효하지 않은 제품 ID입니다.');
+        setIsLoading(false);
+        return;
+      }
       try {
         setIsLoading(true);
         setError(null);

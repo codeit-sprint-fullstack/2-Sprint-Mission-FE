@@ -19,15 +19,16 @@ export function AuthProvider({ children }) {
 
   // 사용자 정보를 가져오는 함수
   async function getMe() {
-    setValues((prevValues) => ({ 
-      ...prevValues, 
-      isPending: true ,
+    setValues((prevValues) => ({
+      ...prevValues,
+      isPending: true,
     }));
-
+  
     let nextUser;
     try {
       nextUser = await authApi.getUser();
     } catch (e) {
+      console.error('사용자 정보 가져오기 실패:', e);
     } finally {
       setValues((prevValues) => ({
         ...prevValues,

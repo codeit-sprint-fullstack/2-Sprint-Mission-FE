@@ -121,6 +121,7 @@
   border-radius: 3.5rem;
   padding: 0.2rem 1rem;
   border: 0.1rem solid #E5E7EB;
+  cursor: pointer;    
 }
 
 .likesIconWrapper {

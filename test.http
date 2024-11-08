@@ -2,11 +2,29 @@ POST https://panda-market-api.vercel.app/auth/signUp
 Content-Type: application/json
 
 {
-  "email": "noname01@email.com",
-  "nickname": "noname01",
+  "email": "noname21@email.com",
+  "nickname": "noname21",
   "password": "12345678",
   "passwordConfirmation": "12345678"
 }
+
+
+
+
+###
+{
+  "user": {
+    "id": 388,
+    "nickname": "noname21",
+    "image": null,
+    "createdAt": "2024-11-05T13:28:51.840Z",
+    "updatedAt": "2024-11-05T13:28:51.840Z",
+    "email": "noname21@email.com"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzg4LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDgxMzMzMSwiZXhwIjoxNzMwODE1MTMxLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.6SI4wHTOCELryuCrNzavNoNShqZM02NfUkF3TVkSx3E",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzg4LCJzY29wZSI6InJlZnJlc2giLCJpYXQiOjE3MzA4MTMzMzEsImV4cCI6MTczMTQxODEzMSwiaXNzIjoic3AtcGFuZGEtbWFya2V0In0.ggVUJlp8SCkWksMrMdg7I6y8Z0SLA_aTDN8vZZUmZSI"
+}
+
 
 ###
 HTTP/1.1 201 Created
