@@ -83,7 +83,7 @@ export default function Article() {
     enabled: !!id
   });
   const article = data?.data || {};
-  const articleComments = commentsData?.data?.list || {};
+  const articleComments = commentsData?.data?.list || [];
   const [comment, setComment] = useState("");
   const [isPost, setIsPost] = useState(false);
   const { user } = useAuth(true);
