@@ -1,5 +1,5 @@
 import Toast from "@/components/Toast";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 const ErrorContext = createContext();
 export default function ErrorProvider({ children }) {
   const [error, setError] = useState(null);
@@ -14,6 +14,6 @@ export default function ErrorProvider({ children }) {
 }
 export const useError = () => {
   const context = useContext(ErrorContext);
-  if (!context) throw newError("반드시 ErrorProvider 안에서 사용해야 됩니다");
+  if (!context) throw new Error("반드시 ErrorProvider 안에서 사용해야 됩니다");
   return context;
 };

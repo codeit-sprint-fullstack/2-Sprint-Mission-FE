@@ -1,16 +1,17 @@
 import ValidatedInputBox from "@/components/ValidatedInputBox";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getProduct, postProduct } from "@/api/api";
+import { getProduct, patchProduct } from "@/api/api";
 import { FIELD_TYPES, VALIDATION_STATE } from "@/constants";
 import { changeInputValue, validateField } from "@/utils/validateInputHelper";
 import { useError } from "@/contexts/ErrorProvider";
+import { useAuth } from "@/contexts/AuthProvider";
 export default function Register() {
   const router = useRouter();
   const { id } = router.query;
-  if (!id) return;
   const { NAME, DESCRIPTION, PRICE, TAG } = FIELD_TYPES;
   const { INITIAL, SUCCESS, FALSE } = VALIDATION_STATE;
+  const { user } = useAuth(true);
   const [productInfo, setProductInfo] = useState({
     name: "",
     description: "",
@@ -34,6 +35,7 @@ export default function Register() {
     const applyGetProduct = async () => {
       const response = await getProduct(id);
       const { name, description, price, tags } = response.data;
+      console.log(response.data);
       const initialProductInfo = {
         name,
         description,
@@ -66,11 +68,10 @@ export default function Register() {
       tags: productInfo.tagList,
       images: [
         "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/92/1725209779217/CRP-DHP0610FD.png"
-      ],
-      userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18"
+      ]
     };
     try {
-      const response = await postProduct(submitData);
+      const response = await patchProduct({ id, formData: submitData });
       router.push(`/items/${response.data.id}`);
     } catch (e) {
       handleError(new Error("데이터 전송 실패"));
@@ -106,6 +107,7 @@ export default function Register() {
   };
   const isSubmit = validateBtn();
   const isBtnValidate = validateBtn();
+  if (!id) return;
   return (
     <div className="w-full h-full flex justify-center">
       <form

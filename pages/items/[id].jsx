@@ -63,7 +63,7 @@ export default function Product() {
   const commentsDeleteMutation = useMutation({
     mutationFn: async (deletedId) => {
       try {
-        const response = await deleteProductComment(deletedId);
+        await deleteProductComment(deletedId);
       } catch (e) {
         handleError(new Error("삭제 실패"));
       }
@@ -85,10 +85,12 @@ export default function Product() {
   }, [inputComment]);
 
   const handleDropdownChange = (chosenOption) => {
-    if (chosenOption === EDIT_VALUE) router.push(`/items/write/${id}`);
-    else if (chosenOption === DELETE_VALUE) {
-      deleteProduct(product.id);
-      router.push("/items");
+    try {
+      if (product.ownerId !== user.id) throw new Error("권한이없습니다");
+      if (chosenOption === EDIT_VALUE) router.push(`/items/write/${id}`);
+      else if (chosenOption === DELETE_VALUE) setModalOpen(true);
+    } catch (e) {
+      handleError(e);
     }
   };
   const handleChangeComment = (e) => setInputComment(e.target.value);
@@ -118,6 +120,10 @@ export default function Product() {
     }
   };
   const handleCloseModle = () => setModalOpen(false);
+  const handleModalComplete = () => {
+    deleteProduct(product.id);
+    router.push("/items");
+  };
   const isComments = productComments?.length === 0;
   if (!id) return null;
   return (
@@ -274,7 +280,11 @@ export default function Product() {
             md:w-[140px] md:h-[140px]
             sm:w-[140px] sm:h=[140px]"
             >
-              <Image src="/images/Img_inquiry_empty.png" layout="fill" />
+              <Image
+                src="/images/Img_inquiry_empty.png"
+                layout="fill"
+                alt="댓글없을 때 디폴트 이미지"
+              />
             </div>
             <span className="mt-[8px] text-9ca3af mb-[48px]">
               아직 문의가 없어요
@@ -300,7 +310,11 @@ export default function Product() {
           />
         </Link>
       </div>
-      <Modal isOpen={modalOpen} onClose={handleCloseModle} />
+      <Modal
+        isOpen={modalOpen}
+        onClose={handleCloseModle}
+        onComplete={handleModalComplete}
+      />
     </div>
   );
 }

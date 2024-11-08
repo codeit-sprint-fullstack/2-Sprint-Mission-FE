@@ -24,6 +24,7 @@ export default function Modal({ isOpen, onClose, onComplete }) {
             취소
           </button>
           <button
+            onClick={onComplete}
             className="w-[88px] h-full rounded-[8px] bg-f74747
             font-semibold text-f9fafb"
           >
