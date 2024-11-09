@@ -14,18 +14,16 @@ export function useAuth() {
     throw new Error("Error: not used within AuthProvider");
   }
 
-  const { user, isLoading, signUp } = context;
-
-  console.log("signUp:", signUp);
+  const { user, signUp, login } = context;
 
   useEffect(() => {
-    if (user && pathName === "/login") {
+    if (login.isSuccess && pathName === "/login") {
       router.push("/items");
     }
     if (signUp.isSuccess && pathName === "/sign-up") {
       router.push("/login");
     }
-  }, [user, pathName, router, signUp.isSuccess]);
+  }, [user, pathName, router, signUp.isSuccess, login.isSuccess]);
 
   return context;
 }

@@ -22,7 +22,7 @@ export async function postSignup(data: SignupData) {
   }
 }
 
-export async function postSignin(data: LoginData) {
+export async function postLogin(data: LoginData) {
   try {
     const response = await postRequest(`/auth/signIn`, data);
     return response.data;

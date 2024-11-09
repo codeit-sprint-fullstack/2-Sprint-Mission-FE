@@ -1,30 +1,71 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig, InternalAxiosRequestConfig } from "axios";
+
+interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
+  useToken?: boolean;
+}
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_SERVER
-  // timeout: 5000
 });
+
+instance.interceptors.request.use(
+  (config: CustomAxiosRequestConfig) => {
+    if (config.useToken) {
+      const token = localStorage.getItem("accessToken");
+      if (token) {
+        config.headers = {
+          ...config.headers,
+          Authorization: `Bearer ${token}`
+        } as InternalAxiosRequestConfig["headers"];
+      }
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 instance.interceptors.response.use(
   (res) => res,
-  (error) => {
-    console.error("API request error:", error);
-    throw error;
+  async (err) => {
+    const originalRequest = err.config;
+    if (err.response?.status === 401 && !originalRequest._retry) {
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (refreshToken) {
+        await instance.post("/auth/refresh-token", { refreshToken });
+        originalRequest._retry = true;
+        return instance(originalRequest);
+      } else {
+        window.location.href = "/signin";
+      }
+    }
+    return Promise.reject(err);
   }
 );
 
-export function getRequest(url: string, params: object = {}) {
-  return instance.get(url, { params });
+export function getRequest(
+  url: string,
+  params: object = {},
+  useToken: boolean = false
+) {
+  return instance.get(url, { params, useToken } as CustomAxiosRequestConfig);
 }
 
-export function postRequest(url: string, body: object = {}) {
-  return instance.post(url, body);
+export function postRequest(
+  url: string,
+  body: object = {},
+  useToken: boolean = false
+) {
+  return instance.post(url, body, { useToken } as CustomAxiosRequestConfig);
 }
 
-export function patchRequest(url: string, body: object) {
-  return instance.patch(url, body);
+export function patchRequest(
+  url: string,
+  body: object,
+  useToken: boolean = false
+) {
+  return instance.patch(url, body, { useToken } as CustomAxiosRequestConfig);
 }
 
-export function deleteRequest(url: string) {
-  return instance.delete(url);
+export function deleteRequest(url: string, useToken: boolean = false) {
+  return instance.delete(url, { useToken } as CustomAxiosRequestConfig);
 }

@@ -2,7 +2,7 @@
 
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { getUserMe } from "@/src/api/userServices";
-import { postSignup, postSignin } from "@/src/api/authServices";
+import { postSignup, postLogin } from "@/src/api/authServices";
 import {
   UseMutationResult,
   useMutation,
@@ -25,28 +25,26 @@ interface LoginData {
 
 interface SignupResponse {
   accessToken: string;
-  // 다른 반환 데이터가 있다면 추가
 }
 
 // postSignin 함수가 반환하는 데이터의 타입을 정의
-interface SigninResponse {
+interface LoginResponse {
   accessToken: string;
-  // 다른 반환 데이터가 있다면 추가
 }
 
 //NOTE: UseMutationResult: <성공시 반환할 데이터 타입, 에러 객체 타입, 파라미터 타입>
 export const AuthContext = createContext<{
   user: any;
   isLoading: boolean;
-  login: UseMutationResult<any, Error, any>;
-  signUp: UseMutationResult<any, Error, any>;
+  login: UseMutationResult<LoginResponse, Error, LoginData>;
+  signUp: UseMutationResult<SignupResponse, Error, SignupData>;
   isModalOpen: boolean;
   isRedirecting: boolean;
 }>({
   user: null,
   isLoading: false,
-  login: {} as UseMutationResult<any, Error, any>,
-  signUp: {} as UseMutationResult<any, Error, any>,
+  login: {} as UseMutationResult<LoginResponse, Error, LoginData>,
+  signUp: {} as UseMutationResult<SignupResponse, Error, SignupData>,
   isModalOpen: false,
   isRedirecting: false
 });
@@ -62,15 +60,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
-  const currentPath = usePathname();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("accessToken");
-
-      if (token) {
-        setAccessToken(token);
-      }
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      setAccessToken(token);
     }
   }, []);
 
@@ -96,20 +90,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
   //NOTE: mutationFn는 useMutation가 알아서 비동기 함수도 실행해줌
 
   //NOTE: 로그인 mutation 설정하기
-  const loginMutation = useMutation({
+  const loginMutation = useMutation<LoginResponse, Error, LoginData>({
     onMutate: () => setIsLoading(true),
-    mutationFn: (data: LoginData) => postSignin(data),
+    mutationFn: (data: LoginData) => postLogin(data),
     onSuccess: (data) => {
-      if (data && data.accessToken) {
-        console.log("Login Success Data:", data);
+      if (data?.accessToken) {
         const { accessToken } = data;
-        localStorage.setItem("accessToken", accessToken);
+        console.log("Login Success Data:", accessToken);
+        localStorage.setItem("accessToken", data.accessToken);
+        setAccessToken(data.accessToken);
         queryClient.invalidateQueries({ queryKey: ["user"] });
         getMe();
         setIsRedirecting(true);
       }
     },
-    onSettled: () => setIsLoading(false)
+    onError: (error) => {
+      console.error("로그인 에러:", error); // 로그인 오류 로그
+    },
+    onSettled: () => {
+      setIsLoading(false);
+      console.log("로그인 뮤테이션:", loginMutation); // 여기서 로그 찍기
+    }
   });
 
   //NOTE: 회원가입 mutation
@@ -118,7 +119,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     mutationFn: (data: SignupData) => postSignup(data),
     onSuccess: (data) => {
       console.log("Sign Up Success Data:", data);
-      if (data && data.accessToken) {
+      if (data?.accessToken) {
         const { accessToken } = data;
         localStorage.setItem("accessToken", accessToken);
         queryClient.invalidateQueries({ queryKey: ["user"] });

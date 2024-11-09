@@ -55,6 +55,19 @@
   margin-right: 20rem;
 }
 
+.userInfo {
+  display: flex;
+  gap: 1rem;
+}
+
+.nickname {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-right: 20rem;
+}
+
 @media (max-width: 1199px) and (min-width: 744px) {
   .logoMenu {
     margin-left: 2.4rem;

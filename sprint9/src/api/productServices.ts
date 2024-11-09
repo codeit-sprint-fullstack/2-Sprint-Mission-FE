@@ -23,9 +23,9 @@ export async function getProduct(id: string) {
   }
 }
 
-export async function postArticle(data: object) {
+export async function postProduct(data: object) {
   try {
-    const response = await postRequest(`/articles`, data);
+    const response = await postRequest(`/products`, data);
     return response.data;
   } catch (error) {
     console.error("Error on posting an article:", error);
