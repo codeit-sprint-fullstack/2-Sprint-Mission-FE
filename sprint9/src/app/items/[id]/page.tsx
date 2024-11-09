@@ -11,8 +11,8 @@ interface ProductDetailPageProps {
 export default async function ProductDetailPage({
   params: { id }
 }: ProductDetailPageProps) {
-  const productData = await getProduct(id); // 서버 사이드에서 데이터 바로 가져오기
-  const commentData = await getComment(id, 10); // 서버 사이드에서 데이터 바로 가져오기
+  const productData = await getProduct(id); 
+  const commentData = await getComment(id, 10); 
 
   return (
     <>

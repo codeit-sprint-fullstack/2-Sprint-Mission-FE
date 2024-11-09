@@ -1,11 +1,8 @@
 import { getRequest, postRequest, patchRequest, deleteRequest } from "./api";
 
-export async function getProducts({ order = "", searchKeyword = "" } = {}) {
+export async function getProducts() {
   try {
-    const response = await getRequest(`/articles`, {
-      order,
-      search: searchKeyword
-    });
+    const response = await getRequest(`/products`);
     return response.data;
   } catch (error) {
     console.error("Error on getting articles", error);
