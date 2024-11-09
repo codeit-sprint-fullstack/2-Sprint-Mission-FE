@@ -3,27 +3,37 @@ import heartIcon from '@/public/images/ic_heart.svg';
 import defaultProductImg from '@/public/images/items/img_default_product.png';
 import styles from './ProductItem.module.css';
 
-export default function ProductItem({ product, type }) {
-  // 코드잇 서버에 해당되지 않는 이미지는 디폴트 이미지로 처리
-  const imageUrl = product.images && product.images[0]?.includes('sprint-fe-project.s3.ap-northeast-2.amazonaws.com')
-    ? product.images[0]
-    : defaultProductImg;
+export default function ProductItem({ product, type, priority = false }) {
+  // 기본 이미지가 아니라면 product.images[0]을 사용
+  const isDefaultImage = !(product.images && product.images[0]?.includes('sprint-fe-project.s3.ap-northeast-2.amazonaws.com'));
+  const imageUrl = isDefaultImage ? defaultProductImg : product.images[0];
 
   return (
     <div className={`${styles['product-item']} ${styles[type]}`}>
-      <Image
-        src={imageUrl}
-        alt={product.name}
-        width={221}
-        height={221}
-        className={styles['product-image']}
-      />
+      <div className={styles['image-wrapper']}>
+        <Image
+          src={imageUrl}
+          alt={product.name}
+          className={styles['product-image']}
+          priority={priority && !isDefaultImage}
+          fill
+          sizes={"22.1rem"}
+        />
+      </div>
       <p className={styles['product-title']}>{product.name}</p>
       <p className={styles['product-price']}>{product.price.toLocaleString()}원</p>
-      <p className={styles['product-favorite']}>
-        <Image src={heartIcon} className={styles['heart-icon']} alt="좋아요" width={16} height={16} /> 
+      <div className={styles['product-favorite']}>
+        <div className={styles['heart-icon-wrapper']}>
+          <Image 
+            src={heartIcon} 
+            alt="좋아요" 
+            className={styles['heart-icon']} 
+            fill
+            sizes={"1.6rem"}
+          />
+        </div>
         {product.favoriteCount}
-      </p>
+      </div>
     </div>
   );
 }

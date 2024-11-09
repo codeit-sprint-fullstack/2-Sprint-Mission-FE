@@ -24,8 +24,7 @@ export default function Nav() {
     const accessToken = localStorage.getItem('accessToken');
     //console.log('accessToken', accessToken);  
   }, [user]); 
-  console.log(user);
-  //console.log(user.error);
+  //console.log(user);
 
   // 로그아웃 핸들러
   const handleLogout = () => {
