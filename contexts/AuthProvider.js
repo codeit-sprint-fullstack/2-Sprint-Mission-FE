@@ -1,4 +1,3 @@
-// /context/AuthProvider.js
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { authApi } from '@/lib/api/AuthService';
@@ -29,6 +28,7 @@ export function AuthProvider({ children }) {
       nextUser = await authApi.getUser();
     } catch (e) {
       console.error('사용자 정보 가져오기 실패:', e);
+      nextUser = null;
     } finally {
       setValues((prevValues) => ({
         ...prevValues,
@@ -53,7 +53,6 @@ export function AuthProvider({ children }) {
   // 로그아웃 함수
   function logout() {
     authApi.logout();
-    localStorage.removeItem('accessToken');
     setValues((prevValues)=> ({
       ...prevValues,
       user: null
@@ -86,7 +85,8 @@ export function useAuth(required = false) {
   }
 
   useEffect(() => {
-    if (required && !context.user && !context.isPending) {
+    //if (required && !context.user && !context.isPending) {
+    if (required && !context.user && !context.isPending && router.pathname !== '/signin') {
       router.push('/signin'); 
     }
   }, [required, context.user, context.isPending, router]);

@@ -24,7 +24,9 @@ export default function Nav() {
     const accessToken = localStorage.getItem('accessToken');
     //console.log('accessToken', accessToken);  
   }, [user]); 
-  
+  console.log(user);
+  //console.log(user.error);
+
   // 로그아웃 핸들러
   const handleLogout = () => {
     const confirmed = window.confirm('정말 로그아웃 하시겠습니까?');
@@ -81,7 +83,7 @@ export default function Nav() {
                   className={styles.profileImg} 
                 />
               </div>
-              <span onClick={handleLogout} className={styles.userName} style={{ cursor: 'pointer' }}>{user.nickname}</span>
+              <span onClick={handleLogout} className={styles.userName} style={{ cursor: 'pointer' }}>{user ? user.nickname : '익명'}</span>
             </div>
           )}
         </div>
