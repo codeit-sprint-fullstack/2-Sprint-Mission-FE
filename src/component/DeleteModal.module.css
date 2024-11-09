@@ -1,0 +1,64 @@
+.deleteTable {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* 화면에 고정 */
+  padding: 24px;
+  top: 50%; /* 화면 중앙 */
+  left: 50%; /* 화면 중앙 */
+  transform: translate(-50%, -50%); /* 중앙 정렬 */
+  background-color: white; /* 배경색 */
+  border-radius: 8px; /* 모서리 둥글게 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+  z-index: 1000; /* 다른 요소 위에 표시 */
+  width: 298px;
+}
+
+.deleteFont {
+  margin: 24px 0 32px; /* 위 아래 여백 */
+  font-size: 16px; /* 글자 크기 */
+  text-align: center; /* 중앙 정렬 */
+}
+
+.buttonTable {
+  display: flex; /* 버튼을 가로로 나열 */
+  align-items: center; /* 버튼 간격 조정 */
+
+  gap: 8px;
+}
+
+.yesButton,
+.noButton {
+  width: 88px;
+  height: 48px;
+  background-color: #ff4d4d; /* 예 버튼 빨간색 */
+  color: white; /* 글자 색상 */
+  border: none; /* 테두리 없음 */
+  border-radius: 8px; /* 모서리 둥글게 */
+  padding: 12px 23px; /* 내부 여백 */
+  cursor: pointer; /* 커서 포인터로 변경 */
+}
+
+.yesButton:hover {
+  background-color: #e60000; /* 호버 시 어두운 빨간색 */
+}
+
+.noButton {
+  background-color: #ccc; /* 아니오 버튼 회색 */
+}
+
+.noButton:hover {
+  background-color: #bbb; /* 호버 시 어두운 회색 */
+}
+
+/* 모달 배경 스타일 */
+.modalOverlay {
+  position: fixed; /* 화면에 고정 */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정 배경 */
+  z-index: 999; /* 모달보다 아래에 위치 */
+}

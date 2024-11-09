@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../lib/axios.js";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import style from "./ItemDetailPage.module.css";
 import defaultImg from "../imgFile/defaultProduct.png";
 import emptyHeart from "../imgFile/ic_heart .png";
@@ -18,6 +18,7 @@ function ItemDetailPage() {
   const [isLiked, setIsLiked] = useState(false); // 좋아요 상태
   const [favoriteCount, setFavoriteCount] = useState(0);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("accessToken");
 
@@ -27,6 +28,24 @@ function ItemDetailPage() {
     } else {
       setActiveDropdown(id);
     }
+  };
+
+  const handleDeleteItem = async () => {
+    try {
+      await axios.delete(`/products/${item.id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }); // DELETE 요청
+      toggleDropdown(null);
+    } catch (error) {
+      console.error("삭제실패", error);
+      toggleDropdown(null); // 드롭다운 닫기 (삭제 실패 시)
+    }
+    toggleDropdown(null);
+    setItem([]); // 상품 삭제 시 item을 null로 설정
+    setActiveDropdown(null); // 드롭다운 닫기
+    navigate("/items");
   };
 
   const handleClickFavoriteToggle = async () => {
@@ -108,7 +127,8 @@ function ItemDetailPage() {
                 />
                 {activeDropdown === item.id && (
                   <Dropdown
-                    itemId={itemId}
+                    item={item}
+                    handleDeleteItem={handleDeleteItem}
                     isOpen={activeDropdown}
                     toggleDropdown={toggleDropdown}
                   />

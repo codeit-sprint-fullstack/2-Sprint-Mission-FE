@@ -15,23 +15,24 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
   const accessToken = localStorage.getItem("accessToken");
 
   async function getComment() {
-    const res = await axios.get(`/products/${itemId}/comments?limit=3`);
-    const comments = res.data.list;
-    setComment(comments);
+    try {
+      const res = await axios.get(`/products/${itemId}/comments?limit=3`);
+      const comments = res.data.list;
+      setComment(comments);
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.error("댓글을 찾을 수 없거나, 상품이 삭제되었습니다.");
+        setComment([]); // 댓글을 비웁니다.
+      }
+    }
   }
 
   const handlePostComment = async () => {
     try {
       const response = await axios.post(
         `/products/${itemId}/comments`,
-        {
-          content: newComment,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
+        { content: newComment },
+        { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       setComment((prevComments) => [...prevComments, response.data]);
       setNewComment(""); // 입력 필드 초기화
@@ -40,15 +41,12 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
     }
   };
 
-  const commentId = comment.id;
   const handleDelete = async (commentId) => {
     try {
       await axios.delete(`/comments/${commentId}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }); // DELETE 요청
-      setComment(comment.filter((prevComment) => prevComment.id !== commentId)); // 댓글 목록에서 삭제
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      setComment((prevComments) => prevComments.filter((prevComment) => prevComment.id !== commentId)); // 댓글 목록에서 삭제
     } catch (error) {
       console.error("댓글 삭제 실패:", error);
       toggleDropdown(null); // 드롭다운 닫기
@@ -59,17 +57,11 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
     try {
       const response = await axios.patch(
         `/comments/${commentId}`,
-        {
-          content: editedContent,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
+        { content: editedContent },
+        { headers: { Authorization: `Bearer ${accessToken}` } }
       );
-      setComment(
-        comment.map((prevComment) =>
+      setComment((prevComments) =>
+        prevComments.map((prevComment) =>
           prevComment.id === commentId ? response.data : prevComment
         )
       );
@@ -84,7 +76,7 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
 
   useEffect(() => {
     getComment();
-  }, [itemId, comment]);
+  }, [itemId]); // 댓글이 아닌 itemId만 의존성으로 추가
 
   return (
     <>
@@ -92,8 +84,8 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
         <p className={styles.commentBox}>문의하기</p>
         <textarea
           className={styles.textBox}
-          placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
-          value={newComment} // textarea 값 저장
+          placeholder="개인정보를 공유 및 요청하거나..."
+          value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
         ></textarea>
         <div className={styles.buttonTable}>
@@ -151,12 +143,8 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
                 <div>
                   <img src={avatarImg} alt="profile" />
                   <div className={styles.nickNameTable}>
-                    <p className={styles.nickName}>
-                      {prevComment.writer.nickname}
-                    </p>
-                    <p className={styles.date}>
-                      {formatDate(new Date(prevComment.createdAt))}
-                    </p>
+                    <p className={styles.nickName}>{prevComment.writer.nickname}</p>
+                    <p className={styles.date}>{formatDate(new Date(prevComment.createdAt))}</p>
                   </div>
                 </div>
                 {editingCommentId === prevComment.id && (

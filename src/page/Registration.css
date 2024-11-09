@@ -18,6 +18,7 @@
 
   /* Layout dimensions */
   --header-height: 70px;
+  
 }
 
 .Main {
@@ -37,6 +38,8 @@
   font-weight: 700;
   color: var(--black-700);
   line-height: 32px;
+  margin-top: 0;
+  text-align: inherit;
 }
 
 .PostProductMenu button {
@@ -57,6 +60,8 @@
   line-height: 26px;
   color: var(--black-700);
   margin-bottom: 16px;
+  margin-top: 0;
+  text-align: inherit;
 }
 .form input {
   border: none;

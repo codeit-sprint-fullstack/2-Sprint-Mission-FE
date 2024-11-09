@@ -1,28 +1,31 @@
-const BASE_URL = `https://productdb-pipv.onrender.com`;
+import axios from "axios";
 
+const BASE_URL = `https://panda-market-api.vercel.app`;
+const accessToken = localStorage.getItem("accessToken");
 export async function getItemList({
   sort = "recent",
   limit = 10,
   page = 1,
 } = {}) {
   const query = `sort=${sort}&page=${page}&limit=${limit}`;
-  const res = await fetch(`${BASE_URL}/items?${query}`);
-  if (!res.ok) {
-    throw new Error(`HTTP error! Status: ${res.status}`);
-  }
-  return await res.json();
+  const res = await axios.get(`${BASE_URL}/products?${query}`);
+  return res.data;
 }
 
 export async function createItemList(formData) {
-  const res = await fetch(`${BASE_URL}/items`, {
-    method: "POST",
-    body: JSON.stringify(formData),
+  const res = await axios.post(`${BASE_URL}/products`, formData, {
     headers: {
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken} `,
     },
   });
-  if (!res.ok) {
-    throw new Error(`HTTP error! Status: ${res.status}`);
-  }
-  return await res.json();
+  return res.data;
+}
+
+export async function updateProductItem(id, formData) {
+  const res = await axios.patch(`${BASE_URL}/products/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${accessToken} `,
+    },
+  });
+  return res.data;
 }

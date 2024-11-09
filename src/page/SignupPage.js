@@ -132,16 +132,11 @@ export default function SignupPage() {
 
       navigate("/items"); // 성공 시 /items 페이지로 이동
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        // 액세스 토큰이 만료된 경우
-        await refreshAccessToken();
-      } else {
-        setIsModalOpen(true); // 모달 열기
-        setValues((prevValues) => ({
-          ...prevValues,
-          errorMsg: error.response.data.message,
-        }));
-      }
+      setIsModalOpen(true); // 모달 열기
+      setValues((prevValues) => ({
+        ...prevValues,
+        errorMsg: error.response.data.message,
+      }));
     }
   };
 

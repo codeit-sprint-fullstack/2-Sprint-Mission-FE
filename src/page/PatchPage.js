@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Registration.css";
-// import { createItemList } from "../component/PandaApi.js";
-import { useNavigate } from "react-router-dom";
+import { updateProductItem } from "../component/PandaApi.js";
+import { useNavigate, useParams } from "react-router-dom";
 import closeButton from "../imgFile/닫기X버튼.png";
 import axios from "../lib/axios.js";
 
@@ -13,11 +13,36 @@ const INITIAL_VALUES = {
   images: [], // 빈 배열 추가
 };
 
-function Registration() {
+function PatchPage() {
   const navigate = useNavigate();
   const [values, setValues] = useState(INITIAL_VALUES);
   const [inputValue, setInputValue] = useState(""); // 입력 값을 저장할 상태변수
   const [isTagAdd, setIsTagAdd] = useState(false); //태그 추가 여부 상태
+  const { itemId } = useParams();
+
+  const accessToken = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    const fetchProductItem = async () => {
+      try {
+        const response = await axios.get(`/products/${itemId}`); // 상품 정보 가져오기
+        const product = response.data;
+        setValues({
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          tags: product.tags || [], // 태그가 없을 경우 빈 배열로 설정
+          images: product.images || [], // 이미지가 없을 경우 빈 배열로 설정
+        });
+        setIsTagAdd(product.tags && product.tags.length > 0); // 기존 태그가 있을 경우 true로 설정
+      } catch (error) {
+        console.log("id값", itemId);
+        console.error("상품 정보를 불러오는 데 실패했습니다:", error);
+      }
+    };
+
+    fetchProductItem();
+  }, [itemId]); // id가 변경될 때마다 이펙트 실행
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,14 +54,19 @@ function Registration() {
 
   const handleTagKeyDown = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); //폼제출방지
-      if (inputValue.trim() !== "") {
+      e.preventDefault(); // 폼 제출 방지
+      const trimmedInput = inputValue.trim();
+
+      // 입력한 태그가 비어있지 않고, 이미 존재하지 않을 때만 추가
+      if (trimmedInput !== "" && !values.tags.includes(trimmedInput)) {
         setValues((prevValues) => ({
           ...prevValues,
-          tags: [...prevValues.tags, inputValue.trim()],
+          tags: [...prevValues.tags, trimmedInput],
         }));
         setInputValue("");
         setIsTagAdd(true);
+      } else if (values.tags.includes(trimmedInput)) {
+        alert("이미 존재하는 태그입니다."); // 사용자에게 알림
       }
     }
   };
@@ -54,7 +84,6 @@ function Registration() {
     });
   };
 
-  const accessToken = localStorage.getItem("accessToken");
   const handleSubmit = async (e) => {
     e.preventDefault();
     //JSON 데이터로 변환
@@ -63,22 +92,16 @@ function Registration() {
       description: values.description,
       price: values.price,
       tags: values.tags,
-      images: [], // 빈 배열 추가
+      images: values.images,
     };
     try {
-      const newItem = await axios.post(`/products`, formData, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      // 데이터베이스에 전송
+      await updateProductItem(itemId, formData); // 데이터베이스에 전송
       setValues(INITIAL_VALUES); // 초기값으로 리셋
-      navigate(`/items/${newItem.data.id}`); // 페이지 이동
+      navigate(`/items/${itemId}`); // 페이지 이동
     } catch (error) {
       console.error("Submission error:", error);
     }
   };
-
   return (
     <form className="Main" onSubmit={handleSubmit}>
       <div className="PostProductMenu">
@@ -139,4 +162,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default PatchPage;

@@ -8,6 +8,7 @@ import LoginPage from "./page/LoginPage.js";
 import { UserLayout } from "./component/Layout.js";
 import SignupPage from "./page/SignupPage.js";
 import Folder from "./page/Folder.js";
+import PatchPage from "./page/PatchPage.js";
 
 const isAuthenticated = () => {
   return localStorage.getItem("accessToken") !== null;
@@ -28,10 +29,13 @@ function Main() {
               <Route index element={<HomePage />} />
               <Route path="items" element={<ItemProduct />} />
               <Route path="registration" element={<Registration />} />
-              {/* <Route path="folder" element={<Folder />} /> */}
               <Route
                 path="items/:itemId"
                 element={<ProtectedRoute element={<ItemDetailPage />} />}
+              />
+              <Route
+                path="items/:itemId/patchitem"
+                element={<ProtectedRoute element={<PatchPage />} />}
               />
             </Route>
             <Route path="login" element={<LoginPage />} />

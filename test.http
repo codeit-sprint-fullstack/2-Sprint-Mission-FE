@@ -62,3 +62,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzY2LCJzY29wZ
 {
     "content":"수정되나요?"
 }
+
+###
+
+POST "https://panda-market-api.vercel.app/products"
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ2LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMTA1NzYzNCwiZXhwIjoxNzMxMDU5NDM0LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.H6r81NoUpx1E79iY1Pys2sEZmanW3_amiHuQVcLk6d0
+
+{
+    "name":"상품연습이요.다다다",
+    "description":"string아두디리",
+    "price":123456789,
+    "tags":["아오","연습","되라좀"],
+    "images":[]
+}
+
+###
+
+GET https://panda-market-api.vercel.app/products/390
