@@ -30,3 +30,7 @@ button {
 .content-spacer {
   min-height: 70vh; 
 }
+
+.loading {
+  text-align: center;
+}

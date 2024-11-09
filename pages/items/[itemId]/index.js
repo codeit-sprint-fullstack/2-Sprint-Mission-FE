@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import BackButton from "@/components/Common/BackButton";
 import ProductInfo from "@/components/ItemDetail/ProductInfo";
-import { getProduct } from "@/lib/api/ProductService";
-import { useRouter } from "next/router";
 import styles from "@/styles/ItemDetailPage.module.css";
 import ProductCommentList from "@/components/ItemDetail/ProductCommentList";
 import ProductCommentForm from "@/components/ItemDetail/ProductCommentForm";
@@ -10,19 +8,14 @@ import ProductCommentForm from "@/components/ItemDetail/ProductCommentForm";
 export default function ItemDetailPage() {
   const router = useRouter();
   const { itemId: id } = router.query;
-  const [product, setProduct] = useState(null);
 
-  useEffect(() => {
-    if (id) {
-      getProduct(id).then((productData) => {
-        setProduct(productData || {}); // 제품 데이터가 없을 경우 빈 객체 전달
-      });
-    }
-  }, [id]);
+  if (!router.isReady) return <p>상품 정보를 불러오는 중입니다....</p>;
+
+  if (!id) return <p>유효한 상품 ID가 없습니다.</p>;
 
   return (
     <div className={styles.container}>
-      {product && <ProductInfo product={product} />}
+      <ProductInfo productId={id} />
       <ProductCommentForm productId={id} />
       <ProductCommentList productId={id} />
       <BackButton onClick={() => router.push("/items")} />

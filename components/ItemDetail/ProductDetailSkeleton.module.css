@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  gap: 2.4rem;
+  max-width: 120rem;
+  margin: 0 auto;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.imageWrapper,
+.imageContainer {
+  width: 48.6rem;
+  height: 48.6rem;
+  flex-shrink: 0;
+  background-color: #e0e0e0;
+  border-radius: 0.8rem;
+}
+
+.imageSkeleton {
+  width: 100%;
+  height: 100%;
+  background-color: #e0e0e0;
+  border-radius: 0.8rem;
+}
+
+.productDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.titleSkeleton,
+.priceSkeleton,
+.sectionTitleSkeleton,
+.descriptionSkeleton,
+.nicknameSkeleton,
+.dateSkeleton,
+.likesCountSkeleton {
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.titleSkeleton {
+  width: 60%;
+  height: 2.4rem;
+}
+
+.priceSkeleton {
+  width: 30%;
+  height: 4rem;
+}
+
+.sectionTitleSkeleton {
+  width: 50%;
+  height: 1.6rem;
+}
+
+.descriptionSkeleton {
+  width: 100%;
+  height: 6rem;
+}
+
+.tagsSkeleton {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.tagSkeleton {
+  width: 5rem;
+  height: 2.6rem;
+  background-color: #f9f9f9;
+  border-radius: 0.5rem;
+}
+
+.infoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.writerInfoSkeleton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profileImageSkeleton {
+  width: 4rem;
+  height: 4rem;
+  background-color: #f9f9f9;
+  border-radius: 50%;
+}
+
+.writerDetailsSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.likesSkeleton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 1rem;
+  background-color: #f9f9f9;
+  border-radius: 3.5rem;
+}
+
+.likesIconSkeleton {
+  width: 3.2rem;
+  height: 3.2rem;
+  background-color: #f9f9f9;
+  border-radius: 50%;
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .container {
+    flex-direction: row;
+  }
+  .imageWrapper,
+  .imageContainer {
+    width: 40rem;
+    height: 40rem;
+  }
+  .productDetails {
+    width: 100%;
+  }
+}
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .imageWrapper,
+  .imageContainer {
+    width: 34rem;
+    height: 34rem;
+  }
+  .productDetails {
+    max-width: 34rem;
+    padding: 0 1rem; 
+  }
+}

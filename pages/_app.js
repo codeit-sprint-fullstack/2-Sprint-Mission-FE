@@ -49,7 +49,7 @@ export default function App({ Component, pageProps }) {
             <Footer />
           </>
         )}
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       </AuthProvider>
     </QueryClientProvider>
   );
