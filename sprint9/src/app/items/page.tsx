@@ -1,6 +1,6 @@
 import { getProducts } from "@/src/api/productServices";
 import Header from "@/src/components/Header";
-import ProductList from "@/src/components/product/ProductList";
+import ProductList from "@/src/components/items/ProductList";
 
 export default async function ProductPage() {
   const data = await getProducts();

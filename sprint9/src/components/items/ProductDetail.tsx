@@ -5,6 +5,7 @@ import heartIcon from "@/public/assets/icon_heart.png";
 import formatDate from "@/src/utils/formatDate";
 import DropBoxWrapper from "./DropBoxWrapper";
 import ProductTag from "./ProductTag";
+import defaultImg from "@/public/assets/img_default.png";
 
 interface ProductDetailProps {
   data: {
@@ -24,12 +25,14 @@ interface ProductDetailProps {
 export default function ProductDetail({ data }: ProductDetailProps) {
   if (!data) return null;
 
+  const productImg = data.images[0] ? data.images[0] : defaultImg;
+
   return (
     <div className={style.container}>
       <div>
         <Image
           className={style.image}
-          src={data.images[0]}
+          src={productImg}
           alt={`${data.name} image`}
           width={486}
           height={486}
