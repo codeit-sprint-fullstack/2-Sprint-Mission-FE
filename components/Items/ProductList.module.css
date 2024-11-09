@@ -29,7 +29,7 @@
   justify-content: space-between;
   width: 100%;
   margin-bottom: 2.4rem; 
-  padding: 0 1rem;
+  padding: 0;
 }
 
 .product-controls {
@@ -186,14 +186,15 @@
 
 @media (max-width: 743px) {
   .product-list-container {
-    max-width: 34.4rem;
+    max-width: 37.1rem;
     width: 100%;
     margin: 0 auto;
     padding: 0;
   }
 
   .product-grid {
-    max-width: 34.4rem;
+    max-width: 37.1rem;
+    width: 100%;
     grid-template-columns: repeat(2, 1fr); /* Mobile: 2열 */
   }
 
@@ -204,7 +205,7 @@
     grid-template-rows: auto auto;      /* 두 개의 행 */
     column-gap: 1.4rem;
     row-gap: 0.8rem;
-    max-width: 34.4rem;
+    max-width: 37.1rem;
     margin: 0 auto 1.6rem; 
     align-items: center; 
     padding: 0;

@@ -175,3 +175,13 @@
   text-align: left;
   margin-top: 0.4rem;
 }
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .logoWrapper {
+    position: relative;
+    width: 19.6rem;
+    height: 6.6rem;
+    margin: 0 auto; /* 로고를 중앙에 배치 */
+  }
+}
