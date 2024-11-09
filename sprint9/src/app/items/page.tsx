@@ -6,7 +6,7 @@ export default function ProductPage() {
   return (
     <div className={style.headerAndButton}>
       <Header> 게시글 </Header>
-      <PostList data={articles} />
+      <PostList data={data} />
     </div>
   );
 }

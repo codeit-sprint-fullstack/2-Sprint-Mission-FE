@@ -66,6 +66,14 @@ export function patchRequest(
   return instance.patch(url, body, { useToken } as CustomAxiosRequestConfig);
 }
 
+export function putRequest(
+  url: string,
+  body: object,
+  useToken: boolean = false
+) {
+  return instance.put(url, body, { useToken } as CustomAxiosRequestConfig);
+}
+
 export function deleteRequest(url: string, useToken: boolean = false) {
   return instance.delete(url, { useToken } as CustomAxiosRequestConfig);
 }

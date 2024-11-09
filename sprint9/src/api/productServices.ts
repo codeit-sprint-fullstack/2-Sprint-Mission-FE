@@ -1,4 +1,10 @@
-import { getRequest, postRequest, patchRequest, deleteRequest } from "./api";
+import {
+  getRequest,
+  postRequest,
+  patchRequest,
+  putRequest,
+  deleteRequest
+} from "./api";
 
 export async function getProducts() {
   try {
@@ -33,6 +39,16 @@ export async function postProduct(data: object) {
 export async function patchProduct(id: string, data: object) {
   try {
     const response = await patchRequest(`/products/${id}`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error on patching an article:", error);
+    throw error;
+  }
+}
+
+export async function putProduct(id: string, data: object) {
+  try {
+    const response = await putRequest(`/products/${id}`, data);
     return response.data;
   } catch (error) {
     console.error("Error on patching an article:", error);
