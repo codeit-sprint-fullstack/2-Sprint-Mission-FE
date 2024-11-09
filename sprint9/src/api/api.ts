@@ -10,6 +10,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config: CustomAxiosRequestConfig) => {
+    console.log("유즈토킁", config.useToken);
     if (config.useToken) {
       const token = localStorage.getItem("accessToken");
       if (token) {

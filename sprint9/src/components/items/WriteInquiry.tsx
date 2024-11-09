@@ -3,24 +3,28 @@
 import style from "@/src/styles/items/WriteInquiry.module.css";
 import Button from "@/src/components/Button";
 import { useState, useEffect } from "react";
-// import { postComment } from '../api/commentServices';
+import { postComment } from "@/src/api/commentServices";
 
-export default function WriteInquiry({}) {
+interface WriteInquiryProps {
+  id: string;
+  onNewInquiry: () => void;
+}
+
+export default function WriteInquiry({ id }: WriteInquiryProps) {
   const [isButtonActive, setIsButtonActive] = useState(false);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState<string>("");
 
-  async function createComment() {
+  async function createInqury(id: string) {
     const data = { content: comment };
 
     if (!comment?.trim().length) return;
-    //TODO: API 연결 후 로직 수정 필요
-    // const res = await postComment(id, data);
-    // onNewComment(res);
-    // setComment('');
+    const res = await postComment(id, data);
+    setComment("");
   }
 
+  //NOTE: comment?.trim()를 유지 시 에러 뜸
   useEffect(() => {
-    // setIsButtonActive(comment?.trim().length);
+    setIsButtonActive(comment?.trim().length > 0);
   }, [comment]);
 
   return (
@@ -39,7 +43,7 @@ export default function WriteInquiry({}) {
         <Button
           status={isButtonActive}
           onClick={() => {
-            createComment();
+            createInqury(id);
           }}
         >
           등록

@@ -3,12 +3,11 @@
 import Image from "next/image";
 import style from "@/src/styles/items/InquiryList.module.css";
 import profileImg from "@/public/assets/img_profile.png";
-import DropBox from "../DropBox";
 import DropBoxWrapper from "./DropBoxWrapper";
 import EditInquiry from "./EditInquiry";
-import { useState } from "react";
 import formatDate from "@/src/utils/formatDate";
 import { patchComment, deleteComment } from "@/src/api/commentServices";
+import { useState } from "react";
 
 interface Comment {
   id: string;
@@ -40,6 +39,10 @@ export default function InquiryList({
     patchComment(commentId, { content: newComment });
   };
 
+  const handleEditClick = (commentId: string) => {
+    setEditingCommentId(commentId);
+  };
+
   const handleCancelEdit = () => {
     setEditingCommentId(null);
   };
@@ -62,7 +65,7 @@ export default function InquiryList({
                 <h1 className={style.title}>{item.content}</h1>
                 {item.writer.id === currentUserId && (
                   <DropBoxWrapper
-                    editOnClick={() => setEditingCommentId(item.id)}
+                    editOnClick={() => handleEditClick(item.id)}
                     deleteOnClick={() => handleDeleteComment(item.id)}
                   />
                 )}

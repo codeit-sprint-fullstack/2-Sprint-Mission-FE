@@ -11,13 +11,13 @@ interface ProductDetailPageProps {
 export default async function ProductDetailPage({
   params: { id }
 }: ProductDetailPageProps) {
-  const productData = await getProduct(id); 
-  const commentData = await getComment(id, 10); 
+  const productData = await getProduct(id);
+  const commentData = await getComment(id, 10);
 
   return (
     <>
       <ProductDetail data={productData} />
-      <WriteInquiry />
+      <WriteInquiry id={id} />
       <InquiryList comments={commentData} />
     </>
   );
