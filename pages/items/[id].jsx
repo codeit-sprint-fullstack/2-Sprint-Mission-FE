@@ -5,13 +5,21 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Comment from '@components/Comment';
+import DeleteModal from '@components/DeleteModal';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
 import TagButton from '@components/product/TagButton';
 import { useAuth } from '@contexts/AuthProvider';
 import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
 import useAsync from '@hooks/useAsync';
-import { getCommentsOfProduct, getProductDetail } from '@utils/api';
+import {
+  deleteProduct,
+  deleteProductFavorite,
+  getCommentsOfProduct,
+  getProductDetail,
+  postCommentsOfProduct,
+  postProductFavorite,
+} from '@utils/api';
 import c from '@utils/constants';
 import { toDateString, toPriceString } from '@utils/utils';
 
@@ -130,6 +138,10 @@ const style = {
       border-radius: 35px;
       display: flex;
       align-items: center;
+
+      span {
+        margin-left: 0.5rem;
+      }
     }
   `,
   comments: css`
@@ -196,45 +208,70 @@ function ModifyButton() {
   );
 }
 
-const productId = 352;
-
 export default function ItemDetailPage() {
   const router = useRouter();
   const { id } = router.query;
-  const { user } = useAuth(true);
+  const { user, tokenExpireCheck } = useAuth(true);
   const [item, setItem] = useState({});
   const [comments, setComments] = useState([]);
+  const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text' });
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const getProductDetailAsync = useAsync(getProductDetail);
   const getCommentsOfProductAsync = useAsync(getCommentsOfProduct);
+  const deleteProductAsync = useAsync(deleteProduct);
+  const postProductFavoriteAsync = useAsync(postProductFavorite);
+  const deleteProductFavoriteAsync = useAsync(deleteProductFavorite);
+  const postCommentsOfProductAsync = useAsync(postCommentsOfProduct);
 
   const handleDropdownClick = modify => {
     switch (modify) {
       case c.MODIFY.EDIT:
-        // router.push('/articles/post');
+        router.push(`/items/registration/${id}`);
         break;
       case c.MODIFY.DELETE:
+        setDeleteModalOpen(true);
     }
+  };
+  const handleDeleteItem = async () => {
+    const result = await deleteProductAsync(id);
+    if (!result) return null;
+
+    router.push('/items');
+  };
+  const handleFavorite = async () => {
+    if (item.isFavorite) await deleteProductFavorite(id);
+    else await postProductFavorite(id);
+
+    router.reload();
+  };
+  const handlePostComments = async () => {
+    if (!tokenExpireCheck()) router.push('/items');
+    const result = await postCommentsOfProductAsync(id, { content: commentObj.value.trim() });
+    if (!result) return null;
+
+    router.reload();
   };
 
   useEffect(() => {
     async function getDetail() {
-      const detail = await getProductDetailAsync(productId);
+      const detail = await getProductDetailAsync(id);
       if (!detail) return null;
 
       setItem(detail);
     }
     async function getComments() {
-      const comments = await getCommentsOfProductAsync(productId, { limit: 5 });
+      const comments = await getCommentsOfProductAsync(id, { limit: 5 });
       if (!comments) return null;
 
       setComments(comments.list);
     }
-    getDetail();
-    getComments();
+    if (id) getDetail();
+    if (id) getComments();
   }, [id]);
 
   return (
     <div id="itemDetailPage">
+      <DeleteModal isOpen={deleteModalOpen} onConfirmClick={handleDeleteItem} onCancelClick={() => setDeleteModalOpen(false)} />
       <div id="itemDetailPost" css={style.itemDetailPost}>
         <div id="itemImage">
           <Image
@@ -242,6 +279,7 @@ export default function ItemDetailPage() {
             alt="default image"
             width={486}
             height={486}
+            priority
           />
         </div>
         <div id="itemDetail">
@@ -277,7 +315,7 @@ export default function ItemDetailPage() {
               <span className="nickname">{item?.ownerNickname}</span>
               <span className="time">{toDateString(item?.createdAt)}</span>
             </div>
-            <button type="button">
+            <button type="button" onClick={handleFavorite}>
               <img src="/Image/ic_heart.png" alt="heart" width={32} height={32} />
               <span>{item?.favoriteCount}</span>
             </button>
@@ -287,14 +325,14 @@ export default function ItemDetailPage() {
       <div id="comments" css={style.comments}>
         <form id="commentsForm">
           <Input
-            inputObj={''}
+            inputObj={commentObj}
             label={'문의하기'}
             placeholder={`개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.`}
-            onChange={''}
+            onChange={value => setCommentObj(old => ({ ...old, value }))}
             textarea
             comment
           />
-          <button type="button" className="button" disabled={true} onClick={() => {}}>
+          <button type="button" className="button" disabled={!commentObj.value.trim()} onClick={handlePostComments}>
             등록
           </button>
         </form>

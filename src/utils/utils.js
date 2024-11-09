@@ -63,3 +63,58 @@ export function toDateString(value) {
 
   return `${year}. ${month}. ${day}`;
 }
+
+/**
+ * Base64Url 형식을 Base64 형식으로
+ *
+ * @param {string} b64u
+ * @returns {string}
+ */
+function b64uTob64(b64u) {
+  let b64 = b64u.split('-').join('+').split('_').join('/');
+
+  // NOTE Base64 형식은 4의 배수 길이를 가져야함.
+  while (b64 % 4 > 0) b64 += '=';
+
+  return b64;
+}
+
+/**
+ * JWT 토큰을 파싱하는 함수
+ *
+ * @param {jwt} token
+ * @returns {{ header: object; payload: object; signature: object; }}
+ */
+export function parsingJWT(token) {
+  try {
+    // NOTE token을 구분자(.)을 이용해서 쪼갬
+    const splittedToken = token.split('.');
+    if (splittedToken.length !== 3) throw new Error('input is not jwt');
+
+    // NOTE b64u 형식인 각 파트를 b64로 변경한 후, decode
+    const header = JSON.parse(atob(b64uTob64(splittedToken[0])));
+    const payload = JSON.parse(atob(b64uTob64(splittedToken[1])));
+    const signature = splittedToken[2];
+
+    return { header, payload, signature };
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+
+/**
+ * jwt를 파싱해서 토큰이 만료됐는지 확인하는 함수
+ *
+ * @param {jwt} token
+ * @returns {boolean}
+ */
+export function isTokenExpired(token) {
+  // NOTE token이 없거나 jwt 토큰 형식이지만 payload나 exp가 없으면 만료된 것으로 간주한다.
+  if (!token) return true;
+  const { payload } = parsingJWT(token);
+  if (!payload || !payload.exp) return true;
+
+  const currentTime = Math.floor(Date.now() / 1000); // Unix time 형식의 현재 시간
+  return payload.exp < currentTime;
+}

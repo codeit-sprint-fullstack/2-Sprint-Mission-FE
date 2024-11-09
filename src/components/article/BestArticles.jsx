@@ -42,7 +42,6 @@ export default function BestArticles() {
       setArticles(data.list);
     }
     handleLoadArticles();
-    console.log(articles);
   }, [viewport, getArticlesAsync]);
 
   return (

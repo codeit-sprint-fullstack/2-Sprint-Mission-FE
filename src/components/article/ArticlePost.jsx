@@ -73,7 +73,7 @@ export default function ArticlePost({ articleId }) {
         setInputObj = setContentObj;
         break;
     }
-    setInputObj(old => ({ ...old, value }));
+    setInputObj(old => ({ ...old, value: value.trim() }));
   };
   const handleSubmit = async () => {
     const data = { title: titleObj.value, content: contentObj.value, ownerId: '186dc25d-3079-47d4-a7ed-3dd6e4e7f146' };

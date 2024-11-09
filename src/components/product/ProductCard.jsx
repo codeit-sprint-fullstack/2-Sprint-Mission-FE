@@ -65,7 +65,7 @@ export default function ProductCard({ item, best = false }) {
   return (
     <div id="productCard" css={style.card}>
       <div className="imageWrapper">
-        <Image fill src={imgUrl} alt={name} className={best ? 'best' : ''} />
+        <Image fill src={imgUrl} alt={name} className={best ? 'best' : ''} sizes="300px, 300px" />
       </div>
       <div css={style.info}>
         <h5 css={style.title}>{name}</h5>

@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
 import Input from '@components/Input';
 import TagButton from '@components/product/TagButton';
 import { useAuth } from '@contexts/AuthProvider';
 import useAsync from '@hooks/useAsync';
 import useValidation from '@hooks/useValidation';
-import { getProductDetail } from '@utils/api';
+import { getProductDetail, patchProduct, postProduct } from '@utils/api';
 import c from '@utils/constants';
 
 const style = {
@@ -63,22 +64,28 @@ const style = {
 };
 
 export default function ItemRegistration({ productId }) {
-  useAuth(true);
+  const { user, tokenExpireCheck } = useAuth(true);
   const validation = useValidation();
+  const router = useRouter();
   const [nameObj, setNameObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'name', type: 'text' });
   const [descriptionObj, setDescriptionObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'description', type: 'text' });
   const [priceObj, setPriceObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'price', type: 'number' });
   const [tagObj, setTagObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'tag', type: 'text' });
   const [tags, setTags] = useState([]);
-  const [validationCheck, setValidationCheck] = useState({});
+  const [validationCheck, setValidationCheck] = useState(
+    productId ? { name: true, description: true, price: true, tag: true } : {},
+  );
   const [canSubmit, setCanSubmit] = useState(false);
+  const isFirstVisit = useRef(true);
   const getProductDetailAsync = useAsync(getProductDetail);
+  const postProductAsync = useAsync(postProduct);
+  const patchProductAsync = useAsync(patchProduct);
 
   const handleValidation = inputObj => {
     const { name, value } = inputObj;
 
     // NOTE Validation
-    const errMsg = validation(name, value);
+    const errMsg = validation(name, value.trim());
 
     // NOTE count validation
     setValidationCheck(old => ({ ...old, [name]: true }));
@@ -99,25 +106,42 @@ export default function ItemRegistration({ productId }) {
         setInputObj = setTagObj;
         break;
     }
-    setInputObj(old => ({ ...old, errMsg, value }));
+    setInputObj(old => ({ ...old, errMsg, value: value.trim() }));
 
     // NOTE errMsg가 없음 = validation을 통과함.
     return !errMsg;
   };
-  const handleAddTag = (e, inputObj) => {
+  const handleAddTag = (e, inputObj, setInputValue) => {
     if (e.key === 'Enter') {
       const { value } = inputObj;
+      if (!value.trim()) return setTagObj(old => ({ ...old, errMsg: '빈 문자만 입력할 수 없습니다.' }));
       if (tags.length >= 5) return setTagObj(old => ({ ...old, errMsg: '태그는 5개까지 입력 가능합니다.' }));
       if (tags.includes(value)) return setTagObj(old => ({ ...old, errMsg: '같은 태그가 존재합니다' }));
-      if (!handleValidation(e)) return;
+      if (!handleValidation(inputObj)) return null;
 
       setTags(old => [...old, value]);
+      setTagObj(old => ({ ...old, value: '' }));
+      setInputValue('');
     }
   };
   const handleRemoveTag = name => {
     const idx = tags.findIndex(t => t === name);
     const newTags = [...tags.slice(0, idx), ...tags.slice(idx + 1)];
     setTags(newTags);
+  };
+  const handleSubmit = async () => {
+    if (!tokenExpireCheck()) router.push('/items');
+    const data = { name: nameObj.value, description: descriptionObj.value, price: priceObj.value, tags, images: [] };
+    // if (productId) {
+    //   delete data.createdAt;
+    //   delete data.updatedAt;
+    //   delete data.ownerId;
+    // }
+    const result = productId ? await patchProductAsync(productId, data) : await postProductAsync(data);
+
+    if (!result) return null;
+
+    router.push(`/items/${result.id}`);
   };
 
   useEffect(() => {
@@ -131,25 +155,30 @@ export default function ItemRegistration({ productId }) {
       setTags(old => detail.tags);
     }
     if (productId) getDetail();
-  }, [productId]);
-
+  }, []);
   useEffect(() => {
+    if (isFirstVisit.current) {
+      isFirstVisit.current = false;
+      if (!productId) return setCanSubmit(false);
+      return setCanSubmit(true);
+    }
+
     // NOTE 4개 항목의 최초 Validation이 진행되지 않았을 경우, false를 리턴.
     if (Object.keys(validationCheck).length !== 4) return setCanSubmit(false);
 
-    // NOTE validation 통과 여부
-    const isOk = !(nameObj.errMsg || descriptionObj.errMsg || priceObj.errMsg || tagObj.errMsg);
-
     // NOTE validation을 통과했는가? + 태그가 1개 이상인가?
-    return setCanSubmit(isOk && tags.length > 0);
-  }, [nameObj.errMsg, descriptionObj.errMsg, priceObj.errMsg, tagObj.errMsg, validationCheck]);
+    const isOk = !(nameObj.errMsg || descriptionObj.errMsg || priceObj.errMsg || tagObj.errMsg) && tags.length > 0;
 
+    return setCanSubmit(isOk);
+  }, [nameObj.errMsg, descriptionObj.errMsg, priceObj.errMsg, tagObj.errMsg, tags, validationCheck]);
+
+  if (!user) return null;
   return (
     <div id="registration" css={style.registrationPage}>
       <form>
         <div css={style.title}>
           <p>상품 등록하기</p>
-          <button css={style.registButton} className="button" type="button" disabled={!canSubmit}>
+          <button css={style.registButton} className="button" type="button" onClick={handleSubmit} disabled={!canSubmit}>
             등록
           </button>
         </div>

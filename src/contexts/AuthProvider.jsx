@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useAsync from '@hooks/useAsync';
 import { getMe as getMeApi, signIn } from '@utils/api';
+import { isTokenExpired } from '@utils/utils';
+import { useSetError } from './ErrorProvider';
 
 const AuthContext = createContext({
   user: null,
@@ -13,7 +15,9 @@ const AuthContext = createContext({
 
 export default function AuthProvider({ children }) {
   const [userObj, setUserObj] = useState({ user: null, isPending: true });
+  const router = useRouter();
   const signInAsync = useAsync(signIn);
+  const setError = useSetError();
 
   const login = async ({ email, password }) => {
     const res = await signInAsync({ email, password });
@@ -24,9 +28,16 @@ export default function AuthProvider({ children }) {
   };
   const logout = () => {
     localStorage.removeItem('accessToken');
-    setUserObj(old => ({ ...old, user: null }));
+    setUserObj(old => ({ ...old, user: null, isPending: false }));
   };
   const getMe = async () => {
+    // NOTE accessToken의 유효기간 검사 후 만료시 logout
+    const token = localStorage.getItem('accessToken');
+    if (token && isTokenExpired(token)) {
+      setError(new Error('로그인이 만료되었습니다.'));
+      return logout();
+    }
+
     setUserObj(old => ({ ...old, isPending: true }));
 
     let nextUser = null;
@@ -49,13 +60,28 @@ export default function AuthProvider({ children }) {
   //     user: nextUser,
   //   }));
   // }
+  const tokenExpireCheck = () => {
+    // NOTE accessToken의 유효기간 검사 후 만료시 logout
+    const token = localStorage.getItem('accessToken');
+    if (token && isTokenExpired(token)) {
+      setError(new Error('로그인이 만료되었습니다.'));
+      logout();
+      return false;
+    }
+    return true;
+  };
 
   useEffect(() => {
     getMe();
+
+    // NOTE 페이지 변경 시 token 체크
+    router.events.on('routeChangeStart', tokenExpireCheck);
+
+    return () => router.events.off('routeChangeStart', tokenExpireCheck);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: userObj.user, isPending: userObj.isPending, login, logout, updateMe }}>
+    <AuthContext.Provider value={{ user: userObj.user, isPending: userObj.isPending, login, logout, updateMe, tokenExpireCheck }}>
       {children}
     </AuthContext.Provider>
   );

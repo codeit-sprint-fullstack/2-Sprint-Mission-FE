@@ -39,8 +39,7 @@ export default function Input({ inputObj, label, placeholder, onChange, onBlur, 
   const handleBlur = () => onBlur({ value, name, type, errMsg });
 
   const handleKeyDown = e => {
-    onKeyDown(e, { value, name, type, errMsg });
-    setValue('');
+    onKeyDown(e, { value, name, type, errMsg }, setValue);
   };
 
   useEffect(() => {

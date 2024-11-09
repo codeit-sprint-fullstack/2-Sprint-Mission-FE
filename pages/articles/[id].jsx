@@ -5,11 +5,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Comment from '@components/Comment';
+import DeleteModal from '@components/DeleteModal';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
 import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
 import useAsync from '@hooks/useAsync';
-import { getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@utils/api';
+import { deleteArticle, getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@utils/api';
 import c from '@utils/constants';
 import { toDateString } from '@utils/utils';
 
@@ -164,21 +165,23 @@ export default function ArticleDetail() {
   const getArticleByIdAsync = useAsync(getArticleById);
   const getCommentsByIdAsync = useAsync(getCommentsOfArticle);
   const postCommentOfArticleAsync = useAsync(postCommentOfArticle);
+  const deleteArticleAsync = useAsync(deleteArticle);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text' });
   const [cursor, setCursor] = useState();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const handleDropdownClick = modify => {
     switch (modify) {
       case c.MODIFY.EDIT:
-        router.push('/articles/post');
+        router.push(`/articles/post/${id}`);
         break;
       case c.MODIFY.DELETE:
+        setDeleteModalOpen(true);
     }
   };
   const handleCommentChange = value => setCommentObj(old => ({ ...old, value }));
-
   const handleSubmitComment = async () => {
     const data = { content: commentObj.value, ownerId: '186dc25d-3079-47d4-a7ed-3dd6e4e7f146' };
     const result = await postCommentOfArticleAsync(id, data);
@@ -186,6 +189,12 @@ export default function ArticleDetail() {
     if (!result) return null;
 
     router.reload();
+  };
+  const handleDeleteArticle = async () => {
+    const result = await deleteArticleAsync(id);
+    if (!result) return null;
+
+    router.push('/articles');
   };
 
   useEffect(() => {
@@ -211,6 +220,11 @@ export default function ArticleDetail() {
 
   return (
     <div id="articleDetailPage" css={style.articleDetailPage}>
+      <DeleteModal
+        isOpen={deleteModalOpen}
+        onConfirmClick={handleDeleteArticle}
+        onCancelClick={() => setDeleteModalOpen(false)}
+      />
       <div id="article" css={style.article}>
         <div id="articleHeader">
           <div id="title">

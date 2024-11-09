@@ -70,7 +70,7 @@ export default function Modal({ children, buttons = [] }) {
                     setModalOff('off');
                     button.onClick();
                   }}
-                  key={button}
+                  key={button.Msg}
                 >
                   {button.Msg}
                 </button>

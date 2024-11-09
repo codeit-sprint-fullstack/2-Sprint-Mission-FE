@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
-import Modal from '@components/Modal';
 import { useDropdownItem } from '@contexts/DropdownProvider';
 import useAsync from '@hooks/useAsync';
 import { deleteComment, patchComment } from '@utils/api';
 import c from '@utils/constants';
 import { toDateString } from '@utils/utils';
+import DeleteModal from './DeleteModal';
 
 const style = {
   comment: css`
@@ -95,7 +95,7 @@ export default function Comment({ item, ModifyButton }) {
 
   return (
     <div className="comment" css={style.comment}>
-      {!modify && (
+      {modify !== c.MODIFY.EDIT && (
         <div className="content">
           <p>{item.content}</p>
           <DropdownMenu DropdownButton={ModifyButton} list={c.MODIFY} dictionary={c.MODIFY_MSG} onClick={setModify} />
@@ -109,16 +109,11 @@ export default function Comment({ item, ModifyButton }) {
           </button>
         </form>
       )}
-      {modify === c.MODIFY.DELETE && (
-        <Modal
-          buttons={[
-            { Msg: '확인', onClick: handleDeleteComment },
-            { Msg: '취소', onClick: () => router.reload() },
-          ]}
-        >
-          asdf
-        </Modal>
-      )}
+      <DeleteModal
+        isOpen={modify === c.MODIFY.DELETE}
+        onConfirmClick={handleDeleteComment}
+        onCancelClick={() => setModify(null)}
+      />
 
       <div className="info">
         <img src="/Image/ic_profile.png" alt="profile Image" width={32} height={32} />

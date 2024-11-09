@@ -164,7 +164,7 @@ export default function LandingPage() {
       <section css={style.mBody}>
         <div css={style.card}>
           <div className="imageWrapper">
-            <Image fill src="/Image/Img_home_01.png" alt="Hot Item" />
+            <Image fill src="/Image/Img_home_01.png" alt="Hot Item" sizes="588px, 444px" />
           </div>
           <div className="card-text" css={style.cardText}>
             <h2>Hot item</h2>
@@ -183,7 +183,7 @@ export default function LandingPage() {
 
         <div css={style.card} className="reverse">
           <div className="imageWrapper">
-            <Image fill src="/Image/Img_home_02.png" alt="Search" />
+            <Image fill src="/Image/Img_home_02.png" alt="Search" sizes="588px, 444px" />
           </div>
           <div className="card-text" css={style.cardText}>
             <h2>Search</h2>
@@ -202,7 +202,7 @@ export default function LandingPage() {
 
         <div css={style.card}>
           <div className="imageWrapper">
-            <Image fill src="/Image/Img_home_03.png" alt="Register" />
+            <Image fill src="/Image/Img_home_03.png" alt="Register" sizes="588px, 444px" />
           </div>
           <div className="card-text" css={style.cardText}>
             <h2>Register</h2>

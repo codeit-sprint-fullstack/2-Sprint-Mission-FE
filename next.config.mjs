@@ -8,7 +8,7 @@ const nextConfig = {
     esmExternals: true,
   },
   images: {
-    domains: ['sprint-fe-project.s3.ap-northeast-2.amazonaws.com'],
+    domains: ['sprint-fe-project.s3.ap-northeast-2.amazonaws.com', 'example.com', 'www.shutterstock.com', 'i.imgur.com'],
   },
 };
 

@@ -92,7 +92,7 @@ export default function ProductsOnSale() {
       <ProductOnSaleTitle onSearch={handleSearch} />
       <div css={style.productOnSaleItems}>
         {products.map(product => (
-          <Link href={`/items/${product.id}`}>
+          <Link href={`/items/${product.id}`} key={product.id}>
             <ProductCard type="onSale" item={product} key={product.id} />
           </Link>
         ))}

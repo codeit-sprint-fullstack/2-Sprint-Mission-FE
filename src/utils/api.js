@@ -6,6 +6,7 @@ const SERVER = `http://localhost:3000`;
 const CODEIT_SERVER = 'https://panda-market-api.vercel.app';
 
 //#region user
+
 /**
  * @async
  * @param {object} [params={}]
@@ -16,12 +17,13 @@ export async function getMe(params = {}) {
 //#endregion
 
 //#region product
+
 /**
  * @async
  * @param {object} [params={}]
  */
 export async function getProducts(params = {}) {
-  return axiosGet({ base: SERVER, url: '/products', params });
+  return axiosGet({ base: CODEIT_SERVER, url: '/products', params });
 }
 
 /**
@@ -35,15 +37,93 @@ export async function getProductDetail(id, params = {}) {
 
 /**
  * @async
+ * @param {{
+ *  images: string[]
+ *  tags: string[]
+ *  price: int
+ *  description: string
+ *  name: string
+ * }} [data={}]
+ */
+export async function postProduct(data = {}) {
+  return axiosPost({ base: CODEIT_SERVER, url: '/products', data });
+}
+
+/**
+ * @async
+ * @param {uuid} id
+ * @param {{
+ *  images?: string[]
+ *  tags?: string[]
+ *  price?: int
+ *  description?: string
+ *  name?: string
+ * }} [data={}]
+ */
+export async function patchProduct(id, data = {}) {
+  return axiosPatch({ base: CODEIT_SERVER, url: `/products/${id}`, data });
+}
+
+/**
+ * @async
+ * @param {uuid} id
+ * @param {{
+ *  images: string[]
+ *  tags: string[]
+ *  price: int
+ *  description: string
+ *  name: string
+ * }} [data={}]
+ */
+export async function putProduct(id, data = {}) {
+  return axiosPut({ base: CODEIT_SERVER, url: `/products/${id}`, data });
+}
+
+/**
+ * @async
+ * @param {uuid} id
+ */
+export async function deleteProduct(id) {
+  return axiosDelete({ base: CODEIT_SERVER, url: `/products/${id}` });
+}
+
+/**
+ * @async
+ * @param {uuid} id
+ */
+export async function postProductFavorite(id) {
+  return axiosPost({ base: CODEIT_SERVER, url: `/products/${id}/favorite` });
+}
+
+/**
+ * @async
+ * @param {uuid} id
+ */
+export async function deleteProductFavorite(id) {
+  return axiosDelete({ base: CODEIT_SERVER, url: `/products/${id}/favorite` });
+}
+
+/**
+ * @async
  * @param {uuid} id
  * @param {object} [params={}]
  */
 export async function getCommentsOfProduct(id, params = {}) {
   return axiosGet({ base: CODEIT_SERVER, url: `/products/${id}/comments`, params });
 }
+
+/**
+ * @async
+ * @param {uuid} id
+ * @param {{content: string}} [data={}]
+ */
+export async function postCommentsOfProduct(id, data = {}) {
+  return axiosPost({ base: CODEIT_SERVER, url: `/products/${id}/comments`, data });
+}
 //#endregion
 
 //#region article
+
 /**
  * @async
  * @param {object} [params={}]
@@ -104,16 +184,25 @@ export async function postArticle(data = {}) {
 export async function patchArticle(id, data = {}) {
   return axiosPatch({ base: SERVER, url: `/articles/${id}`, data });
 }
+
+/**
+ * @async
+ * @param {uuid} id
+ */
+export async function deleteArticle(id) {
+  return axiosDelete({ base: SERVER, url: `/articles/${id}` });
+}
 //#endregion
 
 //#region comment
+
 /**
  * @async
  * @param {uuid} id
  * @param {{content: string}} [data={}]
  */
 export async function patchComment(id, data = {}) {
-  return axiosPatch({ base: SERVER, url: `/comments/${id}`, data });
+  return axiosPatch({ base: CODEIT_SERVER, url: `/comments/${id}`, data });
 }
 
 /**
@@ -138,11 +227,12 @@ export async function putComment(id, data = {}) {
  * @param {uuid} id
  */
 export async function deleteComment(id) {
-  return axiosDelete({ base: SERVER, url: `/comments/${id}` });
+  return axiosDelete({ base: CODEIT_SERVER, url: `/comments/${id}` });
 }
 //#endregion
 
 //#region auth
+
 /**
  * @async
  * @param {{ email: string; nickname: string; password: string; passwordConfirmation: string; }} [data={}]
