@@ -24,7 +24,7 @@ export default function Header() {
           <Link className={`${style.page} ${isArticlePage ? style.active : ''}`} href='/articles'>자유게시판</Link>
           <Link className={`${style.page} ${isItemsPage ? style.active : ''}`} href='/items'>중고마켓</Link>
         </div>
-        <Link className={style.link} href='/'>
+        <Link className={style.link} href='/login'>
           <button className={style.login}>로그인</button>
         </Link>
       </div>
