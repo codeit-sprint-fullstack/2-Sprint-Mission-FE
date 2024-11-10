@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useModalAction } from "@/src/hooks/useModalAction";
 import TwoButtonModal from "../components/items/TwoButtonModal";
 
-//TODO: API 연결 후 다시 확인 필요
 export function useDeleteModal() {
   const { modalRef, onModalOpen, onModalCancel, onModalConfirm, isModalOpen } =
     useModalAction();

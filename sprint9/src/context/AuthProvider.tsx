@@ -10,6 +10,7 @@ import {
   useQuery
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useModalAction } from "@/src/hooks/useModalAction";
 
 interface SignupData {
   email: string;
@@ -61,6 +62,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const router = useRouter();
 
+  const { onModalOpen } = useModalAction();
+
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
@@ -108,6 +111,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     },
     onError: (error) => {
       console.error("로그인 에러:", error);
+      onModalOpen({ msg: "로그인 실패. 다시 시도해주세요." });
     },
     onSettled: () => {
       setIsLoading(false);
@@ -129,6 +133,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     },
     onError: (error) => {
       console.error("Sign Up Error:", error);
+      onModalOpen({ msg: "회원가입 실패. 다시 시도해주세요." });
     },
     onSettled: () => {
       setIsLoading(false);
