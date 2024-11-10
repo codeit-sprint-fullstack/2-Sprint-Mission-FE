@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useAsync from '@hooks/useAsync';
-import { getMe as getMeApi, signIn } from '@utils/api';
+import { getMe as getMeApi, refreshToken as refreshTokenApi, signIn } from '@utils/api';
 import { isTokenExpired } from '@utils/utils';
 import { useSetError } from './ErrorProvider';
 
@@ -24,6 +24,7 @@ export default function AuthProvider({ children }) {
     if (!res) return null;
 
     localStorage.setItem('accessToken', res.accessToken);
+    localStorage.setItem('refreshToken', res.refreshToken);
     return getMe();
   };
   const logout = () => {
@@ -31,12 +32,7 @@ export default function AuthProvider({ children }) {
     setUserObj(old => ({ ...old, user: null, isPending: false }));
   };
   const getMe = async () => {
-    // NOTE accessToken의 유효기간 검사 후 만료시 logout
-    const token = localStorage.getItem('accessToken');
-    if (token && isTokenExpired(token)) {
-      setError(new Error('로그인이 만료되었습니다.'));
-      return logout();
-    }
+    await tokenExpireCheck();
 
     setUserObj(old => ({ ...old, isPending: true }));
 
@@ -45,31 +41,51 @@ export default function AuthProvider({ children }) {
       nextUser = await getMeApi();
       return nextUser;
     } catch (err) {
-      console.log(err);
-      return null;
+      console.error(err);
     } finally {
       setUserObj(old => ({ ...old, user: nextUser, isPending: false }));
     }
   };
   const updateMe = () => {};
-  const tokenExpireCheck = () => {
-    // NOTE accessToken의 유효기간 검사 후 만료시 logout
-    const token = localStorage.getItem('accessToken');
-    if (token && isTokenExpired(token)) {
+  const tokenExpireCheck = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+    // NOTE accessToken의 유효기간 검사 후 만료시
+    if (accessToken && isTokenExpired(accessToken)) {
+      const newAccessToken = await refreshNewAccessToken();
+      if (newAccessToken) {
+        localStorage.setItem('accessToken', newAccessToken);
+        return true;
+      }
+
       setError(new Error('로그인이 만료되었습니다.'));
       logout();
       return false;
     }
+    // NOTE accessToken이 없음 = 로그인 이전이거나 직접 삭제함
+    if (!accessToken) {
+      const newAccessToken = await refreshNewAccessToken();
+      if (newAccessToken) return localStorage.setItem('accessToken', newAccessToken);
+    }
+
     return true;
+  };
+  const refreshNewAccessToken = async () => {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (!refreshToken || isTokenExpired(refreshToken)) return null;
+
+    const refreshResult = await refreshTokenApi({ refreshToken });
+    localStorage.setItem('accessToken', refreshResult.accessToken);
+    return refreshResult.accessToken;
   };
 
   useEffect(() => {
     getMe();
 
     // NOTE 페이지 변경 시 token 체크
-    router.events.on('routeChangeStart', tokenExpireCheck);
+    router.events.on('routeChangeStart', async () => await tokenExpireCheck());
 
-    return () => router.events.off('routeChangeStart', tokenExpireCheck);
+    return () => router.events.off('routeChangeStart', async () => await tokenExpireCheck());
   }, []);
 
   return (
