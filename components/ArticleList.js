@@ -14,12 +14,12 @@ export default function ArticleList({ articles }) {
             <p className={style.title}>{article.title}</p>
             <Image 
               className={style.img}
-              src={article.images[0] || img_default} 
+              src={(article.images && article.images.length > 0) ? article.images[0] : img_default}
               alt={article.title} />
           </div>
           <div className={style.favDateGroup}>
             <p className={style.date}>{formatDate(article.createdAt)}</p>
-            <p className={style.favoriteCnt}>♡ {article.favoriteCnt}</p>
+            <p className={style.favoriteCnt}>♡ {article.likeCount}</p>
           </div>
           </Link>
         </div>

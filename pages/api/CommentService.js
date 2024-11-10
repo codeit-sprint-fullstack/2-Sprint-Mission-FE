@@ -14,26 +14,31 @@ import {
     }
   }
   
-  export async function getProductComment(productId) {
+  export async function getProductComment(productId, params = {}) {
     try {
-    const response = await requestGet(`/products/${productId}/comments`);
+    const response = await requestGet(`/products/${productId}/comments`, params);
     return response.data;
     } catch (e) {
       console.error(e.message);
     }
   }
 
-  export async function getArticleComment(articleId) {
+  export async function getArticleComment(articleId, params = {}) {
     try {
-    const response = await requestGet(`/articles/${articleId}/comments`);
+    const response = await requestGet(`/articles/${articleId}/comments`, params);
     return response.data;
     } catch (e) {
       console.error(e.message);
     }
   }
   
-  export async function createComment(CommentData) {
-    const response = await requestPost(`/comments`, CommentData);
+  export async function createArticleComment(id, CommentData) {
+    const response = await requestPost(`/articles/${id}/comments`, CommentData);
+    return response.data;
+  }
+
+  export async function createProductComment(id, CommentData) {
+    const response = await requestPost(`/products/${id}/comments`, CommentData);
     return response.data;
   }
   

@@ -1,39 +1,47 @@
 import style from "./styles/Comment.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getArticleComment, createComment, patchComment } from "../pages/api/CommentService";
+import { getArticleComment, getProductComment, createArticleComment, createProductComment, patchComment } from "../pages/api/CommentService";
 import CommentList from "./CommentList";
 
 export default function Comment() {
   const router = useRouter();
   const { id } = router.query;
   const [comments, setComments] = useState([]);
+  const [nextCursor, setNextCursor] = useState(null);
   const [newComment, setNewComment] = useState("");
   const [editComment, setEditComment] = useState(null);
+  const isProductPage = router.pathname === "/products/[id]";
 
   useEffect(() => {
     if (id) {
       const fetchComments = async () => {
         try {
-          const commentData = await getArticleComment(id);
+          let commentData;
+          if (isProductPage) {
+            commentData = await getProductComment(id, { limit: 10, cursor: nextCursor});
+          } else {
+            commentData = await getArticleComment(id, { limit: 10, cursor: nextCursor});
+          }
           console.log('fetched Comment:', commentData);
-          setComments(commentData);
+          setComments(commentData.list);
+          setNextCursor(commentData.nextCursor);
         } catch (error) {
           console.error(error.message);
         }
       };
       fetchComments();
     }
-  }, [id]);
+  }, [id, isProductPage]);
 
   const handleCommentSubmit = async () => {
     if (!newComment.trim()) {
-      alert("댓글을 입력해주세요.");
+      alert("내용을 입력해주세요.");
       return;
     }
 
     if (newComment.length > 100) {
-      alert("댓글은 100자를 초과할 수 없습니다.");
+      alert("100자를 초과할 수 없습니다.");
       return;
     }
 
@@ -43,8 +51,15 @@ export default function Comment() {
         setComments((prev) => prev.map((comment) => (comment.id === editComment.id ? updatedComment : comment)));
         setEditComment(null);
       } else {
-        const commentData = { content: newComment, articleId: id };
-        const createdComment = await createComment(commentData);
+        let commentData;
+        let createdComment;
+        if (isProductPage) {
+          commentData = { content: newComment, productId: id };
+          createdComment = await createProductComment(id, commentData);
+        } else {
+          commentData = { content: newComment, articleId: id };
+          createdComment = await createArticleComment(id, commentData);
+        }
         setComments((prev) => [...prev, createdComment]);
       }
       setNewComment("");
@@ -62,12 +77,12 @@ export default function Comment() {
     <div className={style.commentContainer}>
       <div className={style.commentSection}>
         <label className={style.comment} htmlFor="commentInput">
-          {editComment ? "댓글 수정" : "댓글 달기"}
+          {isProductPage ? "문의하기" : editComment ? "댓글 수정" : "댓글 달기"}
         </label>
         <textarea
           id="commentInput"
           className={style.commentInput}
-          placeholder="댓글을 입력해주세요"
+          placeholder={isProductPage ? "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다." : "댓글을 입력해주세요"}
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
         />

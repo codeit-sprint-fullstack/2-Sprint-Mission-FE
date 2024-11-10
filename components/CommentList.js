@@ -5,9 +5,12 @@ import Image from "next/image";
 import profile from "@/public/ic_profile.png";
 import KebabMenu from "./KebabMenu";
 import defaultImg from "@/public/no_comment.png";
+import inquiry from "@/public/inquiry.png";
 
 export default function CommentList({ comments, onEdit, setComments }) {
 const router = useRouter();
+const isProductPage = router.pathname === "/products/[id]";
+
   const handleDeleteComment = async (id) => {
     try {
       await deleteComment(id);
@@ -21,7 +24,7 @@ const router = useRouter();
     <div className={style.commentContainer}>
       {comments.length === 0 && (
         <div className={style.noComment}>
-          <Image className={style.img} src={defaultImg} alt="no comment" />
+          <Image className={style.img} src={isProductPage ? inquiry : defaultImg} alt="no comment" />
         </div>
       )}
       {comments.map((comment) => (

@@ -5,6 +5,9 @@
     flex-direction: column;
     justify-content: center;
 } */
+.bestSection {
+    text-decoration: none;
+}
 
 .bestName {
     font-size: 1.4rem;

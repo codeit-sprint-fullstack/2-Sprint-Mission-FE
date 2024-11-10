@@ -69,7 +69,7 @@ export default function ArticleDetail() {
           </div>
           <div className={style.favSection}>
             <Image className={style.heartIcon} src={heart} alt="heart" />
-            <p className={style.favoriteCnt}>{article.favoriteCnt}</p>
+            <p className={style.favoriteCnt}>{article.likeCount}</p>
           </div>
         </div>
         <hr className={style.hr} />

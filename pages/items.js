@@ -50,7 +50,7 @@ function MarketPage() {
   // BestItem 데이터만 한 번 로드
   useEffect(() => {
     const fetchBestItems = async () => {
-      const { data: productList } = await getProductList({
+      const { list: productList } = await getProductList({
         order: "favorite",
         pageSize: bestItemSize,
       });
@@ -73,7 +73,7 @@ function MarketPage() {
         queryParams.search = search;
       }
 
-      const { data: productList, totalCount: fetchedTotalCount } =
+      const { list: productList, totalCount: fetchedTotalCount } =
         await getProductList(queryParams);
       setProducts(productList);
       setTotalCount(fetchedTotalCount);
