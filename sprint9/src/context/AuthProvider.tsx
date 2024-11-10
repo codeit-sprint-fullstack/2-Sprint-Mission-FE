@@ -9,6 +9,7 @@ import {
   useQueryClient,
   useQuery
 } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 interface SignupData {
   email: string;
@@ -26,7 +27,6 @@ interface SignupResponse {
   accessToken: string;
 }
 
-// postSignin 함수가 반환하는 데이터의 타입을 정의
 interface LoginResponse {
   accessToken: string;
 }
@@ -59,13 +59,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
       setAccessToken(token);
+      router.push("/items");
     }
-  }, []);
+  }, [accessToken, router]);
 
   //NOTE: useQuery를 사용하여 accessToken이 있을 때만 getUserMe 함수를 호출해 사용자 정보 가져오기
   const {
@@ -105,11 +107,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       }
     },
     onError: (error) => {
-      console.error("로그인 에러:", error); // 로그인 오류 로그
+      console.error("로그인 에러:", error);
     },
     onSettled: () => {
       setIsLoading(false);
-      console.log("로그인 뮤테이션:", loginMutation); // 여기서 로그 찍기
     }
   });
 
@@ -127,11 +128,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       }
     },
     onError: (error) => {
-      console.error("Sign Up Error:", error); // 회원가입 오류 로그
+      console.error("Sign Up Error:", error);
     },
     onSettled: () => {
       setIsLoading(false);
-      console.log("Sign Up Mutation:", signUpMutation); // 여기서 로그 찍기
     }
   });
 
