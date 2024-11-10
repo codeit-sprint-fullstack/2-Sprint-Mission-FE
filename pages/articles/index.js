@@ -53,7 +53,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function ArticlesPage({ initialBestArticles, initialArticles,  initialBestArticleCount}) {
-  const maxBestArticleCount = useMaxItems() || initialBestArticleCount; // 클라이언트에서만 접근 가능
+  const maxBestArticleCount = useMaxItems("bestArticleCount") || initialBestArticleCount; // 클라이언트에서만 접근 가능
   const [displayedBestArticles, setDisplayedBestArticles] = useState(initialBestArticles);
 
   useEffect(() => {

@@ -1,5 +1,3 @@
-/* styles/HomePage.css */
-
 /* 상단 배너 영역 */
 .banner-wrapper {
   display: flex;
@@ -15,7 +13,8 @@
   justify-content: flex-end;
   align-items: flex-end;
   position: relative;
-  width: 152rem;
+  max-width: 152rem;
+  width: 100%;
   height: 54rem;
 }
 .banner-top-message {
@@ -40,7 +39,8 @@
   display: flex;
   justify-content: flex-end;
   align-items:flex-end;
-  width: 99.6rem;              
+  max-width: 99.6rem;              
+  width: 100%;
   height: 44.7rem;  
 }
 .banner-top-img img {
@@ -352,7 +352,6 @@
     height: auto;
     padding: 0 1.6rem;                 
     width: 100%; 
-    min-width: 700rem;
   }
 
   .banner-top-message {

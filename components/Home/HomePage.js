@@ -17,7 +17,7 @@ function HomePage() {
               src="/images/home/Img_home_top.png"
               alt="top banner"
               fill
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: 'cover' }}
               sizes="99.6rem"
               priority
             />
@@ -38,7 +38,7 @@ function HomePage() {
                 (min-width: 74.4rem) and (max-width: 119.9rem) 69.6rem,
                 58.8rem
                 "
-                style={{ objectFit: 'contain' }}
+                style={{ objectFit: 'cover' }}
               />
             </div>
             <div className="section-message section-message1">
@@ -60,7 +60,7 @@ function HomePage() {
                 src="/images/home/img_search.png"
                 alt="search items"
                 fill
-                style={{ objectFit: 'contain' }}
+                style={{ objectFit: 'cover' }}
                 sizes='58.8rem'
               />
             </div>
@@ -73,7 +73,7 @@ function HomePage() {
                 src="/images/home/img_register.png"
                 alt="register item"
                 fill
-                style={{ objectFit: 'contain' }}
+                style={{ objectFit: 'cover' }}
                 sizes='58.8rem'
               />
             </div>
@@ -96,7 +96,7 @@ function HomePage() {
               src="/images/home/Img_home_bottom.png"
               alt="bottom banner"
               fill
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: 'cover' }}
               sizes="99.6rem"
             />
           </div>
