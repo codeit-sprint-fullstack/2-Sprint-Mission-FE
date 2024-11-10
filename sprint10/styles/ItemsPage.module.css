@@ -251,3 +251,9 @@ ul.items li img {
 		width: 100%;
 	}
 }
+
+.imageWrapper {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+}

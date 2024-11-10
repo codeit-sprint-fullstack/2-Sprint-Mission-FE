@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom";
+import Link from "next/link.js";
 import Item from "./Item.jsx";
 import styles from '@/styles/ItemsPage.module.css';
 
 
 
-function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKeyword }) {
+function ItemsList({ items, isLoadingItems, sort, setSort, keyword, setKeyword }) {
 	const handleKeywordChange = (e) => {
 		setKeyword(e.target.value);
 	}
 
 	function SelectOrder() {
 		return (
-			<select className={styles.select_order_by} value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
+			<select className={styles.select_order_by} value={sort} onChange={(e) => setSort(e.target.value)}>
 				<option value="recent">최신순</option>
 				<option value="favorite">좋아요순</option>
 			</select>
@@ -19,7 +19,7 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 	}
 
 	function RegisProduct() {
-		return (<Link to="/registration"><div className={styles.post_product}>상품 등록하기</div></Link>);
+		return (<Link href="/registration"><div className={styles.post_product}>상품 등록하기</div></Link>);
 	}
 
 	function ItemList() {
@@ -33,7 +33,7 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 	return (
 		<section className={[styles.section, styles.sec_items].join(" ")}>
 			<div className={styles.items_head}>
-				{window.innerWidth > 744 ?
+				{/* {window.innerWidth > 744 ?
 				<>
 					<h2>판매 중인 상품</h2>
 					<div className={styles.query_heads}>
@@ -44,8 +44,8 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 						<RegisProduct/>
 						<SelectOrder/>
 					</div>
-				</>
-				:<>
+				</> */}
+				<>
 					<div className={styles.query_heads}>
 						<h2>판매 중인 상품</h2>
 						<RegisProduct/>
@@ -58,7 +58,6 @@ function ItemsList({ items, isLoadingItems, orderBy, setOrderBy, keyword, setKey
 						<SelectOrder/>
 					</div>
 				</>
-				}
 			</div>
 			<ItemList/>
 		</section>

@@ -10,14 +10,15 @@
   gap: 20px;
 }
 
-.main img.logo {
+.main .logo {
+  position: relative;
   padding: 40px 0;
   width: 396px;
   max-width: 100%;
   height: auto;
 }
 
-form {
+.form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -25,12 +26,12 @@ form {
   gap: 20px;
 }
 
-form label {
+.form label {
   font-size: var(--text-2xl);
   color: var(--secondary-color-gray800);
 }
 
-form input {
+.form input {
   font-size: var(--text-lg);
   font-weight: 400;
   line-height: 24px;
@@ -38,7 +39,7 @@ form input {
   width: 100%;
 }
 
-form input.alert {
+.form input.alert {
   border: 2px solid rgb(218, 59, 59);
 }
 
@@ -48,11 +49,11 @@ form input.alert {
   margin-top: -12px;
 }
 
-form input::placeholder {
+.form input::placeholder {
   color: var(--secondary-color-gray400);
 }
 
-form input:focus {
+.form input:focus {
   border: 1px solid var(--primary-color-100);
 }
 
@@ -60,14 +61,15 @@ form input:focus {
   position: relative;
 }
 
-.pwd_container img {
+.pwd_container .visible {
   position: absolute;
+  width: 16px;
   top: 16px;
   right: 16px;
   bottom: 16px;
 }
 
-form button {
+.form button {
   width: 100%;
   height: 56px;
   border-radius: 9999px;
@@ -82,7 +84,7 @@ form button {
   border: 0;
 }
 
-button:disabled {
+.form button:disabled {
   background-color: var(--secondary-color-gray400);
   color: white;
 }
@@ -105,6 +107,12 @@ button:disabled {
   justify-content: space-between;
   gap: 20px;
   align-items: center;
+
+  & .oauth_img_wrapper {
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .check_description {

@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-const defaultValue
-	= window.innerWidth > 1200 ? "PC" :
-	window.innerWidth > 744 ? "tablet" : "phone";
+const defaultValue = "PC";
 
 const ViewportContext = React.createContext(defaultValue);
 
