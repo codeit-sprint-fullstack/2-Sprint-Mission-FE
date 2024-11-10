@@ -33,7 +33,7 @@
   margin-bottom: 24px;
 }
 
-.PostProductMenu p {
+.PostProductMenu p, .RegImg p {
   font-size: 20px;
   font-weight: 700;
   color: var(--black-700);
@@ -49,6 +49,17 @@
   color: var(--coolGray-100);
 }
 
+.RegImg{
+  width: 100%;
+}
+.RegImg p {
+  margin-bottom: 16px;
+}
+.ImagePreview{
+  display: flex;
+  align-items: center;
+  
+}
 .form {
   display: flex;
   flex-direction: column;

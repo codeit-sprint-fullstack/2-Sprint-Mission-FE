@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const instance = axios.create({
   baseURL: "https://panda-market-api.vercel.app",
@@ -46,6 +45,9 @@ instance.interceptors.response.use(
         // 리프레시 토큰이 만료되었거나 오류가 발생하면 로그인 페이지로 리디렉션
         window.location.href = "/login"; // 로그인 페이지로 리디렉션
       }
+    } else if (error.response.status === 404) {
+      console.error(`404오류발생`, error);
+      window.location.href = "/login";
     }
 
     return Promise.reject(error);

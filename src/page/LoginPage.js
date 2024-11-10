@@ -90,32 +90,32 @@ export default function LoginPage() {
       navigate("/items"); // 성공 시 /items 페이지로 이동
     } catch (error) {
       console.log("에러", error);
-      if (error.response && error.response.status === 401) {
-        // 액세스 토큰이 만료된 경우
-        await refreshAccessToken();
-      } else {
+      // if (error.response && error.response.status === 401) {
+      //   // 액세스 토큰이 만료된 경우
+      //   await refreshAccessToken();
+      // } else {
         setIsModalOpen(true); // 모달 열기
         setValues((prevValues) => ({
           ...prevValues,
           errorMsg: error.response.data.message,
         }));
-      }
+      // }
     }
   };
 
-  const refreshAccessToken = async () => {
-    try {
-      const refreshToken = localStorage.getItem("refreshToken");
-      const response = await axios.post("/auth/refresh-token", {
-        refreshToken,
-      });
-      const newAccessToken = response.data.accessToken; //서버에서 받은 새로운 액세스토큰
-      localStorage.setItem("accessToken", newAccessToken); //로컬스토리지에 저장
-    } catch (error) {
-      console.log("리프레시 토큰 요청 실패", error);
-      navigate("/login");
-    }
-  };
+  // const refreshAccessToken = async () => {
+  //   try {
+  //     const refreshToken = localStorage.getItem("refreshToken");
+  //     const response = await axios.post("/auth/refresh-token", {
+  //       refreshToken,
+  //     });
+  //     const newAccessToken = response.data.accessToken; //서버에서 받은 새로운 액세스토큰
+  //     localStorage.setItem("accessToken", newAccessToken); //로컬스토리지에 저장
+  //   } catch (error) {
+  //     console.log("리프레시 토큰 요청 실패", error);
+  //     navigate("/login");
+  //   }
+  // };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
