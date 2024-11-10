@@ -72,7 +72,7 @@ export default function Nav() {
           {!user ? (
             <Link href="/signin" className={styles.gnbBtnLogin}>로그인</Link>
           ) : (
-            <div className={styles.gnbUserInfo}>
+            <div className={styles.gnbUserInfo} onClick={handleLogout} style={{ cursor: 'pointer' }}>
               <div className={styles.userProfileImg}>
                 <Image 
                   src={UserProfileImg} 
@@ -82,7 +82,7 @@ export default function Nav() {
                   className={styles.profileImg} 
                 />
               </div>
-              <span onClick={handleLogout} className={styles.userName} style={{ cursor: 'pointer' }}>{user ? user.nickname : '익명'}</span>
+              <span className={styles.userName} style={{ cursor: 'pointer' }}>{user ? user.nickname : '익명'}</span>
             </div>
           )}
         </div>
