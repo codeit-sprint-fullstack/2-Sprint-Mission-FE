@@ -6,6 +6,7 @@ import profileImg from "@/public/assets/img_profile.png";
 import DropBoxWrapper from "./DropBoxWrapper";
 import EditInquiry from "./EditInquiry";
 import formatDate from "@/src/utils/formatDate";
+import noInquiry from "@/public/assets/img_inquiry_empty.png";
 import { patchComment, deleteComment } from "@/src/api/commentServices";
 import { useState } from "react";
 
@@ -84,7 +85,7 @@ export default function InquiryList({
           </div>
         ))
       ) : (
-        <p className={style.noComment}>아직 문의가 없습니다.</p>
+        <Image src={noInquiry} alt="no inqury image" />
       )}
     </>
   );

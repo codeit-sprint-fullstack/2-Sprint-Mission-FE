@@ -35,9 +35,29 @@ export const AUTH = {
   }
 };
 
-// export const FEEDBACK = {
-//   CONTENT: {
-//     required: "내용을 입력해 주세요",
-//     ...minMaxLength(1, 500)
-//   }
-// };
+export const PRODUCT = {
+  TITLE: {
+    required: "제목을 입력해 주세요",
+    pattern: {
+      value: /^(?!\s*$).+/,
+      message: "빈 문자열이나 공백은 입력할 수 없습니다"
+    },
+    ...minMaxLength(1, 50)
+  },
+  CONTENT: {
+    required: "내용을 입력해 주세요",
+    pattern: {
+      value: /^(?!\s*$).+/,
+      message: "빈 문자열이나 공백은 입력할 수 없습니다"
+    },
+    ...minMaxLength(1, 500)
+  },
+  PRICE: {
+    required: "가격을 입력해 주세요",
+    pattern: {
+      value: /^(?!\s*$)\d+$/,
+      message: "숫자만 입력해 주세요"
+    },
+    ...minMaxLength(1, 10)
+  }
+};

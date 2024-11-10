@@ -9,18 +9,19 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  (config: CustomAxiosRequestConfig) => {
-    console.log("유즈토킁", config.useToken);
-    if (config.useToken) {
+  (config) => {
+    const customConfig = config as CustomAxiosRequestConfig;
+    console.log("유즈토큰", customConfig.useToken);
+    if (customConfig.useToken) {
       const token = localStorage.getItem("accessToken");
       if (token) {
-        config.headers = {
-          ...config.headers,
+        customConfig.headers = {
+          ...customConfig.headers,
           Authorization: `Bearer ${token}`
-        } as InternalAxiosRequestConfig["headers"];
+        };
       }
     }
-    return config;
+    return customConfig;
   },
   (error) => Promise.reject(error)
 );
