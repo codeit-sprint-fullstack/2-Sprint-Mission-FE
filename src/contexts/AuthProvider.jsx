@@ -52,14 +52,6 @@ export default function AuthProvider({ children }) {
     }
   };
   const updateMe = () => {};
-  // async function updateMe(formData) {
-  //   const res = await axios.patch('/users/me', formData);
-  //   const nextUser = res.data;
-  //   setValues((prevValues) => ({
-  //     ...prevValues,
-  //     user: nextUser,
-  //   }));
-  // }
   const tokenExpireCheck = () => {
     // NOTE accessToken의 유효기간 검사 후 만료시 logout
     const token = localStorage.getItem('accessToken');

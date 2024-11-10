@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import PaginationBar from '@components/PaginationBar';
 import Article from '@components/article/Article';
 import ArticlesTitle from '@components/article/ArticlesTitle';
 import { useDropdownItem } from '@contexts/DropdownProvider';
 import { useViewport } from '@contexts/ViewportProvider';
-import useAsync from '@hooks/useAsync';
+import useOwnQuery from '@hooks/useOwnQuery';
 import { getArticles } from '@utils/api';
 import c from '@utils/constants';
 
@@ -28,31 +28,28 @@ const style = {
 export default function Articles() {
   const viewport = useViewport();
   const { item: sortOrder = c.SORT_ORDER.RECENT } = useDropdownItem();
-  const getArticlesAsync = useAsync(getArticles);
   const [now, setNow] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [articles, setArticles] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
-  const handleSearch = query => setSearchQuery(query);
-  const handlePageChange = useCallback(p => setNow(p), []);
-
-  useEffect(() => {
-    async function handleLoadArticles() {
-      const data = await getArticlesAsync({
+  const data = useOwnQuery({
+    queryFn: () =>
+      getArticles({
         page: now,
         pageSize: c.ARTICLE_PAGE_SIZE[viewport],
         orderBy: sortOrder,
         keyword: searchQuery,
-      });
-      if (!data) return null;
+      }),
+    queryKey: ['articles', now, sortOrder, searchQuery, viewport],
+    onSuccess: result => {
+      setArticles(result.list);
+      setTotalCount(result.totalCount);
+    },
+  });
 
-      setArticles(data.list);
-      setTotalCount(data.totalCount);
-      setNow(now);
-    }
-    handleLoadArticles();
-  }, [viewport, now, sortOrder, searchQuery, getArticlesAsync]);
+  const handleSearch = query => setSearchQuery(query);
+  const handlePageChange = useCallback(p => setNow(p), []);
 
   return (
     <div id="articles" css={style.articles}>

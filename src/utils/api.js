@@ -117,7 +117,7 @@ export async function getCommentsOfProduct(id, params = {}) {
  * @param {uuid} id
  * @param {{content: string}} [data={}]
  */
-export async function postCommentsOfProduct(id, data = {}) {
+export async function postCommentOfProduct(id, data = {}) {
   return axiosPost({ base: CODEIT_SERVER, url: `/products/${id}/comments`, data });
 }
 //#endregion

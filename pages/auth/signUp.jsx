@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import SignInput from '@components/SignInput';
+import { useAuth } from '@contexts/AuthProvider';
+import useOwnMutation from '@hooks/useOwnMutation';
 import SignLayout from '@layouts/SignLayout';
-import useAsync from '@/src/hooks/useAsync';
 import { signUp } from '@/src/utils/api';
 
 const style = {
@@ -15,32 +16,37 @@ const style = {
   `,
 };
 
+const mockData = {
+  email: 'TESTKTY13@email.com',
+  nickname: 'TESTKTY13',
+  password: 'password',
+  passwordConfirmation: 'password',
+};
+
 export default function SignupPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [errorMsg, setErrorMsg] = useState({});
-  const signUpAsync = useAsync(signUp);
+  const signUpMutation = useOwnMutation({
+    mutationFn: data => signUp(data),
+    onSuccess: (_, variables) => {
+      login({ email: variables.email, password: variables.password });
+      router.push('/items');
+    },
+  });
 
   const handleSubmit = async () => {
     if (password !== passwordConfirmation) {
       setErrorMsg({ passwordConfirmation: '비밀번호가 일치하지 않아요.' });
       return null;
     }
+    setErrorMsg({});
 
-    const res = await signUpAsync({
-      email: 'TESTKTY3@email.com',
-      nickname: 'TESTKTY3',
-      password: 'password',
-      passwordConfirmation: 'password',
-    });
-
-    if (res) {
-      setErrorMsg({});
-      router.push('/items');
-    }
+    signUpMutation.mutate(mockData);
   };
   const handleKeyDown = e => {
     // NOTE Enter Key

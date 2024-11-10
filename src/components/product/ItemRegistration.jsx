@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import Input from '@components/Input';
 import TagButton from '@components/product/TagButton';
 import { useAuth } from '@contexts/AuthProvider';
-import useAsync from '@hooks/useAsync';
+import useOwnMutation from '@hooks/useOwnMutation';
+import useOwnQuery from '@hooks/useOwnQuery';
 import useValidation from '@hooks/useValidation';
 import { getProductDetail, patchProduct, postProduct } from '@utils/api';
 import c from '@utils/constants';
@@ -77,9 +78,26 @@ export default function ItemRegistration({ productId }) {
   );
   const [canSubmit, setCanSubmit] = useState(false);
   const isFirstVisit = useRef(true);
-  const getProductDetailAsync = useAsync(getProductDetail);
-  const postProductAsync = useAsync(postProduct);
-  const patchProductAsync = useAsync(patchProduct);
+
+  const getProductDetailQuery = useOwnQuery({
+    queryFn: _ => getProductDetail(productId),
+    queryKey: ['product', productId],
+    onSuccess: result => {
+      setNameObj(old => ({ ...old, value: result.name }));
+      setDescriptionObj(old => ({ ...old, value: result.description }));
+      setPriceObj(old => ({ ...old, value: result.price }));
+      setTags(result.tags);
+    },
+  });
+  const postProductMutation = useOwnMutation({
+    mutationFn: data => postProduct(data),
+    onSuccess: result => router.push(`/items/${result.id}`),
+  });
+  const patchProductMutation = useOwnMutation({
+    mutationFn: data => patchProduct(productId, data),
+    invalidQueryKey: ['product', productId],
+    onSuccess: result => router.push(`/items/${result.id}`),
+  });
 
   const handleValidation = inputObj => {
     const { name, value } = inputObj;
@@ -132,30 +150,14 @@ export default function ItemRegistration({ productId }) {
   const handleSubmit = async () => {
     if (!tokenExpireCheck()) router.push('/items');
     const data = { name: nameObj.value, description: descriptionObj.value, price: priceObj.value, tags, images: [] };
-    // if (productId) {
-    //   delete data.createdAt;
-    //   delete data.updatedAt;
-    //   delete data.ownerId;
-    // }
-    const result = productId ? await patchProductAsync(productId, data) : await postProductAsync(data);
-
-    if (!result) return null;
-
-    router.push(`/items/${result.id}`);
+    if (productId) {
+      delete data.createdAt;
+      delete data.updatedAt;
+      delete data.ownerId;
+    }
+    productId ? patchProductMutation.mutate(data) : postProductMutation.mutate(data);
   };
 
-  useEffect(() => {
-    async function getDetail() {
-      const detail = await getProductDetailAsync(productId);
-      if (!detail) return null;
-
-      setNameObj(old => ({ ...old, value: detail.name }));
-      setDescriptionObj(old => ({ ...old, value: detail.description }));
-      setPriceObj(old => ({ ...old, value: detail.price }));
-      setTags(old => detail.tags);
-    }
-    if (productId) getDetail();
-  }, []);
   useEffect(() => {
     if (isFirstVisit.current) {
       isFirstVisit.current = false;
@@ -184,20 +186,20 @@ export default function ItemRegistration({ productId }) {
         </div>
 
         <div css={style.info}>
-          <Input inputObj={nameObj} label={'상품명'} placeholder={'상품명을 입력해주세요'} onBlur={handleValidation} />
+          <Input inputObj={nameObj} label={'상품명'} placeholder={'상품명을 입력해주세요'} onChange={handleValidation} />
           <Input
             inputObj={descriptionObj}
             label={'상품 소개'}
             placeholder={'상품 소개를 입력해주세요'}
-            onBlur={handleValidation}
+            onChange={handleValidation}
             textarea
           />
-          <Input inputObj={priceObj} label={'판매가격'} placeholder={'판매 가격을 입력해주세요'} onBlur={handleValidation} />
+          <Input inputObj={priceObj} label={'판매가격'} placeholder={'판매 가격을 입력해주세요'} onChange={handleValidation} />
           <Input
             inputObj={tagObj}
             label={'태그'}
             placeholder={'태그를 입력해주세요'}
-            onBlur={handleValidation}
+            onChange={handleValidation}
             onKeyDown={handleAddTag}
           />
           <div className="tag-button-wrap" css={style.tagButtonWrap}>

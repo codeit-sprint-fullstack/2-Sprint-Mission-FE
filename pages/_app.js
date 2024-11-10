@@ -1,7 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import createCache from '@emotion/cache';
 import { CacheProvider, css } from '@emotion/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import dynamic from 'next/dynamic';
+import React from 'react';
 import Footer from '@components/Footer';
 import GNB from '@components/GNB';
 import Modal from '@components/Modal';
@@ -46,12 +49,16 @@ function GlobalLayout({ children }) {
 }
 
 function GlobalContextProvider({ children, emotionCache = clientSideEmotionCache }) {
+  // NOTE SSR 환경에서 클라이언트가 바로 refetch하지 않도록, staletime을 세팅한다.
+  const [queryClient] = React.useState(() => new QueryClient({ defaultOptions: { queries: { staleTime: 60 * 1000 } } }));
   return (
     <CacheProvider value={emotionCache}>
       <ViewportProviderWithNoSSR>
         <ErrorProvider>
           <PendingProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <QueryClientProvider client={queryClient}>
+              <AuthProvider>{children}</AuthProvider>
+            </QueryClientProvider>
           </PendingProvider>
         </ErrorProvider>
       </ViewportProviderWithNoSSR>
@@ -64,6 +71,7 @@ export default function App({ Component, pageProps }) {
     <GlobalContextProvider>
       <GlobalLayout>
         <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </GlobalLayout>
     </GlobalContextProvider>
   );

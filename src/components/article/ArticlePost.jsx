@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Input from '@components/Input';
 import useAsync from '@hooks/useAsync';
+import useOwnMutation from '@hooks/useOwnMutation';
+import useOwnQuery from '@hooks/useOwnQuery';
 import { getArticleById, patchArticle, postArticle } from '@utils/api';
 import c from '@utils/constants';
 
@@ -54,53 +56,46 @@ const style = {
 
 export default function ArticlePost({ articleId }) {
   const router = useRouter();
-  const getArticleByIdAsync = useAsync(getArticleById);
   const postArticleAsync = useAsync(postArticle);
   const patchArticleAsync = useAsync(patchArticle);
   const [titleObj, setTitleObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'title', type: 'text' });
   const [contentObj, setContentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'content', type: 'text' });
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const handleBlur = inputObj => {
-    const { value, name } = inputObj;
+  const getArticleByIdQuery = useOwnQuery({
+    queryFn: _ => getArticleById(articleId),
+    queryKey: ['article', articleId],
+    onSuccess: result => {
+      setTitleObj(old => ({ ...old, value: result.title }));
+      setContentObj(old => ({ ...old, value: result.content }));
+    },
+  });
+  const postArticleMutation = useOwnMutation({
+    mutationFn: data => postArticle(data),
+    onSuccess: result => router.push(`/articles/${result.id}`),
+  });
+  const patchArticleMutation = useOwnMutation({
+    mutationFn: data => patchArticle(articleId, data),
+    invalidQueryKey: ['article', articleId],
+    onSuccess: result => router.push(`/articles/${result.id}`),
+  });
 
-    let setInputObj = null;
-    switch (name) {
-      case 'title':
-        setInputObj = setTitleObj;
-        break;
-      case 'content':
-        setInputObj = setContentObj;
-        break;
-    }
-    setInputObj(old => ({ ...old, value: value.trim() }));
-  };
   const handleSubmit = async () => {
-    const data = { title: titleObj.value, content: contentObj.value, ownerId: '186dc25d-3079-47d4-a7ed-3dd6e4e7f146' };
+    const data = {
+      title: titleObj.value?.trim?.(),
+      content: contentObj.value?.trim?.(),
+      ownerId: '186dc25d-3079-47d4-a7ed-3dd6e4e7f146',
+    };
     if (articleId) {
       delete data.createdAt;
       delete data.updatedAt;
       delete data.ownerId;
     }
-    const result = articleId ? await patchArticleAsync(articleId, data) : await postArticleAsync(data);
-
-    if (!result) return null;
-
-    router.push(`/articles/${result.id}`);
+    articleId ? patchArticleMutation.mutate(data) : postArticleMutation.mutate(data);
   };
 
   useEffect(() => {
-    async function getArticle() {
-      const article = await getArticleByIdAsync(articleId);
-      if (!article) return null;
-
-      setTitleObj(old => ({ ...old, value: article.title }));
-      setContentObj(old => ({ ...old, value: article.content }));
-    }
-    if (articleId) getArticle();
-  }, [articleId]);
-  useEffect(() => {
-    if (titleObj.value && contentObj.value) return setCanSubmit(true);
+    if (titleObj.value?.trim?.() && contentObj.value?.trim?.()) return setCanSubmit(true);
 
     return setCanSubmit(false);
   }, [titleObj, contentObj]);
@@ -114,8 +109,8 @@ export default function ArticlePost({ articleId }) {
         </button>
       </div>
       <form>
-        <Input inputObj={titleObj} label={'*제목'} placeholder={'제목을 입력해주세요'} onBlur={handleBlur} />
-        <Input inputObj={contentObj} label={'*내용'} placeholder={'내용을 입력해주세요'} onBlur={handleBlur} textarea />
+        <Input inputObj={titleObj} label={'*제목'} placeholder={'제목을 입력해주세요'} onChange={setTitleObj} />
+        <Input inputObj={contentObj} label={'*내용'} placeholder={'내용을 입력해주세요'} onChange={setContentObj} textarea />
       </form>
     </div>
   );

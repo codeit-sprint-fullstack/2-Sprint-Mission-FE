@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Article from '@components/article/Article';
 import { useViewport } from '@contexts/ViewportProvider';
-import useAsync from '@hooks/useAsync';
+import useOwnQuery from '@hooks/useOwnQuery';
 import { getArticles } from '@utils/api';
 import c from '@utils/constants';
 
@@ -28,21 +28,17 @@ const style = {
 
 export default function BestArticles() {
   const viewport = useViewport();
-  const getArticlesAsync = useAsync(getArticles);
   const [articles, setArticles] = useState([]);
 
-  useEffect(() => {
-    async function handleLoadArticles() {
-      const data = await getArticlesAsync({
+  const getBestArticlesQuery = useOwnQuery({
+    queryFn: _ =>
+      getArticles({
         page: 1,
         pageSize: c.BEST_ARTICLE_PAGE_SIZE[viewport],
-      });
-      if (!data) return null;
-
-      setArticles(data.list);
-    }
-    handleLoadArticles();
-  }, [viewport, getArticlesAsync]);
+      }),
+    queryKey: ['bestArticles', viewport],
+    onSuccess: result => setArticles(result.list),
+  });
 
   return (
     <div id="BestArticles" css={style.BestArticles}>

@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import PaginationBar from '@components/PaginationBar';
 import ProductCard from '@components/product/ProductCard';
 import ProductOnSaleTitle from '@components/product/ProductOnSaleTitle';
 import { useDropdownItem } from '@contexts/DropdownProvider';
 import { useViewport } from '@contexts/ViewportProvider';
-import useAsync from '@hooks/useAsync';
+import useOwnQuery from '@hooks/useOwnQuery';
 import { getProducts } from '@utils/api';
 import c from '@utils/constants';
 
@@ -64,28 +64,24 @@ export default function ProductsOnSale() {
   const [totalCount, setTotalCount] = useState(0);
   const [now, setNow] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-  const getProductsAsync = useAsync(getProducts);
 
-  const handleSearch = query => setSearchQuery(query);
-  const handlePageChange = useCallback(p => setNow(p), []);
-
-  useEffect(() => {
-    async function handleLoadProducts() {
-      const data = await getProductsAsync({
+  const getProductsQuery = useOwnQuery({
+    queryFn: _ =>
+      getProducts({
         page: now,
         pageSize: c.PRODUCT_PAGE_SIZE[viewport],
         orderBy: sortOrder,
         keyword: searchQuery,
-      });
-      if (!data) return null;
+      }),
+    queryKey: ['products', now, sortOrder, searchQuery, viewport],
+    onSuccess: result => {
+      setProducts(result.list);
+      setTotalCount(result.totalCount);
+    },
+  });
 
-      setProducts(data.list);
-      setTotalCount(data.totalCount);
-      setNow(now);
-    }
-
-    handleLoadProducts();
-  }, [viewport, now, sortOrder, searchQuery, getProductsAsync]);
+  const handleSearch = query => setSearchQuery(query);
+  const handlePageChange = useCallback(p => setNow(p), []);
 
   return (
     <section id="productOnSale" css={style.productOnSale}>

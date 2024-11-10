@@ -52,14 +52,14 @@ const style = {
 export default function GNB() {
   const viewport = useViewport();
   const router = useRouter();
-  const auth = useAuth();
+  const { logout } = useAuth();
   // NOTE url path의 첫 부분을 받아와서 Nav 바 색상 변경하기 위함.
   const firstPath = router.asPath.split('/')[1] ?? '';
 
   const handleLoginClick = () => {
     if (!localStorage.getItem('accessToken')) return router.push('/auth/signIn');
 
-    auth.logout();
+    logout();
     router.reload();
   };
 

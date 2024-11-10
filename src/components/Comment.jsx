@@ -5,7 +5,7 @@ import { useState } from 'react';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
 import { useDropdownItem } from '@contexts/DropdownProvider';
-import useAsync from '@hooks/useAsync';
+import useOwnMutation from '@hooks/useOwnMutation';
 import { deleteComment, patchComment } from '@utils/api';
 import c from '@utils/constants';
 import { toDateString } from '@utils/utils';
@@ -70,27 +70,29 @@ const style = {
   `,
 };
 
-export default function Comment({ item, ModifyButton }) {
+export default function Comment({ item, parentId, ModifyButton }) {
+  const nickname = item.owner ? item.owner.nickname : item.writer.nickname;
   const router = useRouter();
-  const patchCommentAsync = useAsync(patchComment);
-  const deleteCommentAsync = useAsync(deleteComment);
   const { item: modify, setItem: setModify } = useDropdownItem();
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text', value: item.content });
 
-  const handleCommentChange = value => (value ? setCommentObj(old => ({ ...old, value })) : null);
+  const patchCommentMutation = useOwnMutation({
+    mutationFn: data => patchComment(item.id, data),
+    invalidQueryKey: ['comments', parentId],
+    onSuccess: _ => setModify(null),
+  });
+  const deleteCommentMutation = useOwnMutation({
+    mutationFn: _ => deleteComment(item.id),
+    invalidQueryKey: ['comments', parentId],
+    onSuccess: _ => setModify(null),
+  });
 
   const handleSubmitComment = async () => {
-    const data = { content: commentObj.value };
-    const result = await patchCommentAsync(item.id, data);
-    if (!result) return null;
-
-    router.reload();
+    const data = { content: commentObj.value?.trim?.() };
+    patchCommentMutation.mutate(data);
   };
   const handleDeleteComment = async () => {
-    const result = await deleteCommentAsync(item.id);
-    if (!result) return null;
-
-    router.reload();
+    deleteCommentMutation.mutate();
   };
 
   return (
@@ -103,8 +105,8 @@ export default function Comment({ item, ModifyButton }) {
       )}
       {modify === c.MODIFY.EDIT && (
         <form id="commentsForm">
-          <Input inputObj={commentObj} placeholder={'댓글을 입력해주세요.'} onChange={handleCommentChange} textarea comment />
-          <button type="button" className="button" disabled={!commentObj.value} onClick={handleSubmitComment}>
+          <Input inputObj={commentObj} placeholder={'댓글을 입력해주세요.'} onChange={setCommentObj} textarea comment />
+          <button type="button" className="button" disabled={!commentObj.value?.trim?.()} onClick={handleSubmitComment}>
             등록
           </button>
         </form>
@@ -118,7 +120,7 @@ export default function Comment({ item, ModifyButton }) {
       <div className="info">
         <img src="/Image/ic_profile.png" alt="profile Image" width={32} height={32} />
         <div>
-          <span className="nickname">{item.owner?.nickname}</span>
+          <span className="nickname">{nickname}</span>
           <span className="time">{toDateString(item?.createdAt)}</span>
         </div>
       </div>

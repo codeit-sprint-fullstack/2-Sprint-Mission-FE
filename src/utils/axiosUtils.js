@@ -34,7 +34,7 @@ async function axiosData({ base, url, method, data = {}, params = {}, headers = 
 
   const instance = axios.create({
     baseURL: base,
-    headers: 'asdf',
+    headers,
     validateStatus: status => 200 <= status && status < 300, // res.ok와 동일한 조건
   });
 

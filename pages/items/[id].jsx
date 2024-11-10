@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Comment from '@components/Comment';
 import DeleteModal from '@components/DeleteModal';
 import DropdownMenu from '@components/DropdownMenu';
@@ -11,13 +11,14 @@ import Input from '@components/Input';
 import TagButton from '@components/product/TagButton';
 import { useAuth } from '@contexts/AuthProvider';
 import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
-import useAsync from '@hooks/useAsync';
+import useOwnMutation from '@hooks/useOwnMutation';
+import useOwnQuery from '@hooks/useOwnQuery';
 import {
   deleteProduct,
   deleteProductFavorite,
   getCommentsOfProduct,
   getProductDetail,
-  postCommentsOfProduct,
+  postCommentOfProduct,
   postProductFavorite,
 } from '@utils/api';
 import c from '@utils/constants';
@@ -216,12 +217,30 @@ export default function ItemDetailPage() {
   const [comments, setComments] = useState([]);
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text' });
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const getProductDetailAsync = useAsync(getProductDetail);
-  const getCommentsOfProductAsync = useAsync(getCommentsOfProduct);
-  const deleteProductAsync = useAsync(deleteProduct);
-  const postProductFavoriteAsync = useAsync(postProductFavorite);
-  const deleteProductFavoriteAsync = useAsync(deleteProductFavorite);
-  const postCommentsOfProductAsync = useAsync(postCommentsOfProduct);
+
+  const getProductDetailQuery = useOwnQuery({
+    queryFn: _ => getProductDetail(id),
+    queryKey: ['product', id],
+    onSuccess: result => setItem(result),
+  });
+  const getCommentsOfProductQuery = useOwnQuery({
+    queryFn: _ => getCommentsOfProduct(id, { limit: 5 }),
+    queryKey: ['comments', id],
+    onSuccess: result => setComments(result.list),
+  });
+  const postCommentOfProductMutation = useOwnMutation({
+    mutationFn: data => postCommentOfProduct(id, data),
+    invalidQueryKey: ['comments', id],
+  });
+  const deleteProductMutation = useOwnMutation({ mutationFn: _ => deleteProduct(id), onSuccess: () => router.push('/items') });
+  const postProductFavoritetMutation = useOwnMutation({
+    mutationFn: _ => postProductFavorite(id),
+    invalidQueryKey: ['product', id],
+  });
+  const deleteProductFavoriteMutation = useOwnMutation({
+    mutationFn: _ => deleteProductFavorite(id),
+    invalidQueryKey: ['product', id],
+  });
 
   const handleDropdownClick = modify => {
     switch (modify) {
@@ -233,41 +252,16 @@ export default function ItemDetailPage() {
     }
   };
   const handleDeleteItem = async () => {
-    const result = await deleteProductAsync(id);
-    if (!result) return null;
-
-    router.push('/items');
+    deleteProductMutation.mutate();
   };
   const handleFavorite = async () => {
-    if (item.isFavorite) await deleteProductFavorite(id);
-    else await postProductFavorite(id);
-
-    router.reload();
+    if (item.isFavorite) deleteProductFavoriteMutation.mutate();
+    else postProductFavoritetMutation.mutate();
   };
   const handlePostComments = async () => {
     if (!tokenExpireCheck()) router.push('/items');
-    const result = await postCommentsOfProductAsync(id, { content: commentObj.value.trim() });
-    if (!result) return null;
-
-    router.reload();
+    postCommentOfProductMutation.mutate({ content: commentObj.value.trim() });
   };
-
-  useEffect(() => {
-    async function getDetail() {
-      const detail = await getProductDetailAsync(id);
-      if (!detail) return null;
-
-      setItem(detail);
-    }
-    async function getComments() {
-      const comments = await getCommentsOfProductAsync(id, { limit: 5 });
-      if (!comments) return null;
-
-      setComments(comments.list);
-    }
-    if (id) getDetail();
-    if (id) getComments();
-  }, [id]);
 
   return (
     <div id="itemDetailPage">
@@ -328,7 +322,7 @@ export default function ItemDetailPage() {
             inputObj={commentObj}
             label={'문의하기'}
             placeholder={`개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.`}
-            onChange={value => setCommentObj(old => ({ ...old, value }))}
+            onChange={setCommentObj}
             textarea
             comment
           />
@@ -343,7 +337,7 @@ export default function ItemDetailPage() {
           )}
           {comments.map(comment => (
             <DropdownProvider key={comment.id}>
-              <Comment item={comment} ModifyButton={<ModifyButton />} key={comment.id} />
+              <Comment item={comment} parentId={id} ModifyButton={<ModifyButton />} key={comment.id} />
             </DropdownProvider>
           ))}
         </div>

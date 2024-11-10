@@ -3,13 +3,14 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Comment from '@components/Comment';
 import DeleteModal from '@components/DeleteModal';
 import DropdownMenu from '@components/DropdownMenu';
 import Input from '@components/Input';
 import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
-import useAsync from '@hooks/useAsync';
+import useOwnMutation from '@hooks/useOwnMutation';
+import useOwnQuery from '@hooks/useOwnQuery';
 import { deleteArticle, getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@utils/api';
 import c from '@utils/constants';
 import { toDateString } from '@utils/utils';
@@ -162,15 +163,35 @@ function ModifyButton() {
 export default function ArticleDetail() {
   const router = useRouter();
   const { id } = router.query;
-  const getArticleByIdAsync = useAsync(getArticleById);
-  const getCommentsByIdAsync = useAsync(getCommentsOfArticle);
-  const postCommentOfArticleAsync = useAsync(postCommentOfArticle);
-  const deleteArticleAsync = useAsync(deleteArticle);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text' });
   const [cursor, setCursor] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const articleData = useOwnQuery({
+    queryFn: () => getArticleById(id),
+    queryKey: ['article', id],
+    onSuccess: result => setArticle(result),
+    enabled: !!id,
+  });
+  const commentsData = useOwnQuery({
+    queryFn: () => getCommentsOfArticle(id, { limit: 5 }),
+    queryKey: ['comments', id],
+    onSuccess: result => {
+      setComments(result.list);
+      setCursor(result.nextCursor);
+    },
+    enabled: !!id,
+  });
+  const postCommentMutation = useOwnMutation({
+    mutationFn: data => postCommentOfArticle(id, data),
+    invalidQueryKey: ['comments', id],
+  });
+  const deleteArticleMutation = useOwnMutation({
+    mutationFn: _ => deleteArticle(id),
+    onSuccess: () => router.push('/articles'),
+  });
 
   const handleDropdownClick = modify => {
     switch (modify) {
@@ -181,42 +202,13 @@ export default function ArticleDetail() {
         setDeleteModalOpen(true);
     }
   };
-  const handleCommentChange = value => setCommentObj(old => ({ ...old, value }));
   const handleSubmitComment = async () => {
     const data = { content: commentObj.value, ownerId: '186dc25d-3079-47d4-a7ed-3dd6e4e7f146' };
-    const result = await postCommentOfArticleAsync(id, data);
-
-    if (!result) return null;
-
-    router.reload();
+    postCommentMutation.mutate(data);
   };
   const handleDeleteArticle = async () => {
-    const result = await deleteArticleAsync(id);
-    if (!result) return null;
-
-    router.push('/articles');
+    deleteArticleMutation.mutate();
   };
-
-  useEffect(() => {
-    async function handleLoadArticle() {
-      const data = await getArticleByIdAsync(id);
-      if (!data) return null;
-
-      setArticle(data);
-    }
-    async function handleLoadComments() {
-      // const nextCursor = cursor ? { cursor } : {};
-      const data = await getCommentsByIdAsync(id, { limit: 5 });
-      if (!data) return null;
-
-      setComments(data.list);
-      setCursor(data.nextCursor);
-    }
-    if (id) {
-      handleLoadArticle();
-      handleLoadComments();
-    }
-  }, [id]);
 
   return (
     <div id="articleDetailPage" css={style.articleDetailPage}>
@@ -266,7 +258,7 @@ export default function ArticleDetail() {
             inputObj={commentObj}
             label={'댓글달기'}
             placeholder={'댓글을 입력해주세요.'}
-            onChange={handleCommentChange}
+            onChange={setCommentObj}
             textarea
             comment
           />
@@ -281,7 +273,7 @@ export default function ArticleDetail() {
           )}
           {comments.map(comment => (
             <DropdownProvider key={comment.id}>
-              <Comment item={comment} ModifyButton={<ModifyButton />} key={comment.id} />
+              <Comment item={comment} parentId={id} ModifyButton={<ModifyButton />} key={comment.id} />
             </DropdownProvider>
           ))}
         </div>

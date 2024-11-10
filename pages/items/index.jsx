@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import BestProducts from '@components/product/BestProducts';
 import ProductsOnSale from '@components/product/ProductsOnSale';
 import DropdownProvider from '@contexts/DropdownProvider';
 import c from '@utils/constants';
@@ -33,8 +32,8 @@ export default function ItemsPage() {
   return (
     <div id="items" css={style.itemsPage}>
       {/* <div css={style.bestProductWrapper}>
-          <BestProducts />
-        </div> */}
+        <BestProducts />
+      </div> */}
       <DropdownProvider>
         <ProductsOnSale />
       </DropdownProvider>
