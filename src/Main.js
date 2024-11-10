@@ -37,8 +37,8 @@ function Main() {
                 element={<ProtectedRoute element={<PatchPage />} />}
               />
             </Route>
-            <Route path="login" element={<LoginPage />} />
-            <Route path="signin" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signin" element={<SignupPage />} />
           </Routes>
         </App>
       </BrowserRouter>
