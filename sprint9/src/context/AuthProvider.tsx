@@ -9,7 +9,6 @@ import {
   useQueryClient,
   useQuery
 } from "@tanstack/react-query";
-import { usePathname } from "next/navigation";
 
 interface SignupData {
   email: string;
@@ -77,9 +76,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     queryKey: ["user"],
     queryFn: getUserMe,
     staleTime: Infinity,
+    gcTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    enabled: false
+    enabled: !!accessToken
   });
 
   useEffect(() => {

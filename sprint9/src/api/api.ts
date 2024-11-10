@@ -11,7 +11,6 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const customConfig = config as CustomAxiosRequestConfig;
-    console.log("유즈토큰", customConfig.useToken);
     if (customConfig.useToken) {
       const token = localStorage.getItem("accessToken");
       if (token) {
@@ -31,13 +30,24 @@ instance.interceptors.response.use(
   async (err) => {
     const originalRequest = err.config;
     if (err.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
       const refreshToken = localStorage.getItem("refreshToken");
       if (refreshToken) {
-        await instance.post("/auth/refresh-token", { refreshToken });
-        originalRequest._retry = true;
-        return instance(originalRequest);
+        try {
+          const response = await instance.post("/auth/refresh-token", {
+            refreshToken
+          });
+          const newAccessToken = response.data.accessToken;
+          localStorage.setItem("accessToken", newAccessToken);
+          originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+          return instance(originalRequest);
+        } catch (refreshError) {
+          console.error("Error refreshing token:", refreshError);
+          window.location.href = "/login";
+        }
       } else {
-        window.location.href = "/signin";
+        window.location.href = "/login";
       }
     }
     return Promise.reject(err);
