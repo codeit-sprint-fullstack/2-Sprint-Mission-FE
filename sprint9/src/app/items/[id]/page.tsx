@@ -3,6 +3,7 @@ import WriteInquiry from "@/src/components/items/WriteInquiry";
 import InquiryList from "@/src/components/items/InquiryList";
 import { getProduct } from "@/src/api/productServices";
 import { getComment } from "@/src/api/commentServices";
+import GoBackList from "@/src/components/GoBackList";
 import Modal from "@/src/components/Modal";
 import TwoButtonModal from "@/src/components/items/TwoButtonModal";
 
@@ -18,10 +19,10 @@ export default async function ProductDetailPage({
 
   return (
     <>
-      <TwoButtonModal />
       <ProductDetail data={productData} />
       <WriteInquiry id={id} />
       <InquiryList comments={commentData} />
+      <GoBackList />
     </>
   );
 }
