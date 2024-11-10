@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./Registration.css";
-// import { createItemList } from "../component/PandaApi.js";
 import { useNavigate } from "react-router-dom";
 import closeButton from "../imgFile/닫기X버튼.png";
 import axios from "../lib/axios.js";

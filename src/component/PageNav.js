@@ -12,22 +12,22 @@ export function PublicNav() {
   const [user, setUser] = useState(null); // 유저 상태 관리
 
   const accessToken = localStorage.getItem("accessToken");
-  const refreshToken = localStorage.getItem("refreshToken");
+  // const refreshToken = localStorage.getItem("refreshToken");
 
-  async function refreshAccessToken() {
-    try {
-      const res = await axios.post("/auth/refresh-token", {
-        refreshToken,
-      });
+  // async function refreshAccessToken() {
+  //   try {
+  //     const res = await axios.post("/auth/refresh-token", {
+  //       refreshToken,
+  //     });
 
-      console.log("리프레시토큰", res);
-      localStorage.setItem("accessToken", res.data.accessToken);
-      return res.data.accessToken;
-    } catch (error) {
-      console.error(error);
-      return alert("새로고침 혹은,다시로그인해주세요");
-    }
-  }
+  //     console.log("리프레시토큰", res);
+  //     localStorage.setItem("accessToken", res.data.accessToken);
+  //     return res.data.accessToken;
+  //   } catch (error) {
+  //     console.error(error);
+  //     return alert("새로고침 혹은,다시로그인해주세요");
+  //   }
+  // }
 
   async function getMe(token) {
     try {
@@ -38,20 +38,20 @@ export function PublicNav() {
       });
       setUser(res.data);
     } catch (e) {
-      if (e.response && e.response.status === 401) {
-        // JWT expired
-        const newAccessToken = await refreshAccessToken();
-        if (newAccessToken) {
-          await getMe(newAccessToken); // 새로운 토큰으로 다시 시도
-        } else {
-          alert("리프레시토큰이 없습니다. 다시로그인해주세요");
-          setUser(null); // refreshToken이 없거나 실패한 경우
-        }
-      } else {
-        console.error(e);
-        alert("새로고침 혹은,다시 로그인해주세요");
-        setUser(null);
-      }
+      // if (e.response && e.response.status === 401) {
+      //   // JWT expired
+      //   const newAccessToken = await refreshAccessToken();
+      //   if (newAccessToken) {
+      //     await getMe(newAccessToken); // 새로운 토큰으로 다시 시도
+      //   } else {
+      //     alert("리프레시토큰이 없습니다. 다시로그인해주세요");
+      //     setUser(null); // refreshToken이 없거나 실패한 경우
+      //   }
+      // } else {
+      console.error(e);
+      // alert("새로고침 혹은,다시 로그인해주세요");
+      setUser(null);
+      // }
     }
   }
 
