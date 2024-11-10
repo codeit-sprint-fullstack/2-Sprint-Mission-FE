@@ -1,0 +1,43 @@
+.product-list-container {
+  width: 100%;
+  margin: 2.4rem auto 4rem;
+}
+
+.product-section-title {
+  font-size: 2rem;
+  line-height: 3.2rem;
+  font-weight: 500;
+  color: #111827;  
+}
+
+.product-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr); /* Desktop: 4열 */
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .product-list-container { 
+    max-width: 69.6rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tablet: 2열 */
+  }
+}
+
+@media (max-width: 743px) {
+  .product-list-container { 
+    max-width: 34.4rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr); /* Mobile: 1열 */
+  }
+}
+
+

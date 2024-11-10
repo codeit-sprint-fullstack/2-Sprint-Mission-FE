@@ -8,16 +8,18 @@ export default function ProductItem({ product, type, priority = false }) {
   const isDefaultImage = !(product.images && product.images[0]?.includes('sprint-fe-project.s3.ap-northeast-2.amazonaws.com'));
   const imageUrl = isDefaultImage ? defaultProductImg : product.images[0];
 
+  const imageSize = type === 'best' ? '(min-width: 1200px) 28.2rem, 34.4rem' : '22.1rem';
+
   return (
-    <div className={`${styles['product-item']} ${styles[type]}`}>
-      <div className={styles['image-wrapper']}>
+    <div className={`${styles['product-item']}`}>
+      <div className={`${styles['image-wrapper']} ${type === 'best' ? styles['best'] : ''}`}>
         <Image
           src={imageUrl}
           alt={product.name}
           className={styles['product-image']}
           priority={priority && !isDefaultImage}
           fill
-          sizes={"22.1rem"}
+          sizes={imageSize}
         />
       </div>
       <p className={styles['product-title']}>{product.name}</p>

@@ -8,7 +8,7 @@ import Link from 'next/link';
 import ProductItem from './ProductItem';
 
 export default function ProductList() {
-  const maxItems = useMaxItems("productCount"); // 디바이스에 따라 동적으로 결정되는 항목 수
+  const maxItems = useMaxItems("productCount"); 
   const [sortOrder, setSortOrder] = useState('recent');
   const [searchKeyword, setSearchKeyword] = useState('');
 
