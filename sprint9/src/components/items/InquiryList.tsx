@@ -9,6 +9,7 @@ import formatDate from "@/src/utils/formatDate";
 import noInquiry from "@/public/assets/img_inquiry_empty.png";
 import { patchComment, deleteComment } from "@/src/api/commentServices";
 import { useState } from "react";
+import { useAuth } from "@/src/hooks/useAuth";
 
 interface Comment {
   id: string;
@@ -20,16 +21,12 @@ interface Comment {
 
 interface InquiryListProps {
   comments: { list: Comment[] };
-  currentUserId: string;
-  onDeleteComment: () => void;
-  onUpdateComment: () => void;
 }
 
-export default function InquiryList({
-  comments,
-  currentUserId
-}: InquiryListProps) {
+export default function InquiryList({ comments }: InquiryListProps) {
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
+  const { user } = useAuth();
+  const currentUserId = user?.id;
 
   const handleDeleteComment = async (commentId: string) => {
     await deleteComment(commentId);

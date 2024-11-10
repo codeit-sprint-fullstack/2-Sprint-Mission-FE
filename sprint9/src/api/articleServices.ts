@@ -13,7 +13,7 @@ export async function getArticles({ order = "", searchKeyword = "" } = {}) {
   }
 }
 
-export async function getArticle(id: string) {
+export async function getArticle(id: number) {
   try {
     const response = await getRequest(`/articles/${id}`, {});
     return response.data;
@@ -33,7 +33,7 @@ export async function postArticle(data: object) {
   }
 }
 
-export async function patchArticle(id: string, data: object) {
+export async function patchArticle(id: number, data: object) {
   try {
     const response = await patchRequest(`/articles/${id}`, data);
     return response.data;
@@ -43,7 +43,7 @@ export async function patchArticle(id: string, data: object) {
   }
 }
 
-export async function deleteArticle(id: string) {
+export async function deleteArticle(id: number) {
   try {
     const response = await deleteRequest(`/articles/${id}`);
     return response.data;

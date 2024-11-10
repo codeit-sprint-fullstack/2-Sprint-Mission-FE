@@ -16,7 +16,7 @@ export async function getProducts() {
   }
 }
 
-export async function getProduct(id: string) {
+export async function getProduct(id: number) {
   try {
     const response = await getRequest(`/products/${id}`, {});
     return response.data;
@@ -46,6 +46,7 @@ export async function patchProduct(id: string, data: object) {
   }
 }
 
+//NOTE: 이자식 작동 안됨
 export async function putProduct(id: string, data: object) {
   try {
     const response = await putRequest(`/products/${id}`, data);

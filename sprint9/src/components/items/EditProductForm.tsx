@@ -6,10 +6,12 @@ import style from "@/src/styles/items/WriteProductForm.module.css";
 import { FormProvider, useForm } from "react-hook-form";
 import SignButton from "../signInUp/SignButton";
 import { PRODUCT } from "@/src/variables/formValidation";
-import { postProduct } from "@/src/api/productServices";
+import { patchProduct } from "@/src/api/productServices";
+import { usePathname } from "next/navigation";
 
 export default function WriteProductForm() {
   const formMethods = useForm();
+  const id = usePathname();
 
   const {
     handleSubmit,
@@ -24,7 +26,7 @@ export default function WriteProductForm() {
       name: watch("name")
     };
     console.log("Submitting login with data:", filterData);
-    await postProduct(filterData);
+    await patchProduct(id, filterData);
   };
 
   return (
@@ -34,9 +36,9 @@ export default function WriteProductForm() {
         onSubmit={handleSubmit(handleLogInSubmit)}
       >
         <div className={style.headerButton}>
-          <Header>중고 상품 작성하기</Header>
+          <Header>중고 상품 수정하기</Header>
           <SignButton status={isValid} type="submit">
-            작성 완료
+            수정 완료
           </SignButton>
         </div>
         <ProductInput

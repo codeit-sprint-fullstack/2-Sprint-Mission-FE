@@ -6,6 +6,6 @@ interface ProductTagProps {
 
 export default function ProductTag({ data }: ProductTagProps) {
   return data.map((item: string) => (
-    <div className={style.tag}>{`#${item}`}</div>
+    <div className={style.tag} key={item}>{`#${item}`}</div>
   ));
 }

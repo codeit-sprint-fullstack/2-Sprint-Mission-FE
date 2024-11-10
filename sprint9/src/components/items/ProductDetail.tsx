@@ -1,3 +1,5 @@
+"use client"; //TODO: 서버 컴포넌트로 변경하는 방법 고안해보기,,(useRouter 사용으로 클라이언트 전환됨)
+
 import Image from "next/image";
 import style from "@/src/styles/items/ProductDetail.module.css";
 import profileImg from "@/public/assets/img_profile.png";
@@ -6,8 +8,11 @@ import formatDate from "@/src/utils/formatDate";
 import DropBoxWrapper from "./DropBoxWrapper";
 import ProductTag from "./ProductTag";
 import defaultImg from "@/public/assets/img_default.png";
+import { deleteProduct } from "@/src/api/productServices";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/src/hooks/useAuth";
 
-interface ProductDetailProps {
+interface ProductDetail {
   data: {
     id: number;
     name: string;
@@ -22,10 +27,23 @@ interface ProductDetailProps {
   } | null;
 }
 
-export default function ProductDetail({ data }: ProductDetailProps) {
+export default function ProductDetail({ data }: ProductDetail) {
+  const router = useRouter();
+  const { user } = useAuth();
+  const currentUserId = user?.id;
+
   if (!data) return null;
 
   const productImg = data.images[0] ? data.images[0] : defaultImg;
+
+  const handleDeleteProduct = async () => {
+    await deleteProduct(data.id.toString());
+    router.push("/products");
+  };
+
+  const handleEditClick = () => {
+    router.push(`/products/${data.id}/edit-product`);
+  };
 
   return (
     <div className={style.container}>
@@ -42,7 +60,12 @@ export default function ProductDetail({ data }: ProductDetailProps) {
         <div className={style.titleContainer}>
           <div className={style.dropBoxContainer}>
             <h2 className={style.title}>{data.name}</h2>
-            <DropBoxWrapper />
+            {data.ownerId === currentUserId && (
+              <DropBoxWrapper
+                editOnClick={() => handleEditClick()}
+                deleteOnClick={() => handleDeleteProduct()}
+              />
+            )}
           </div>
           <h1 className={style.price}>{`${data.price}원`}</h1>
         </div>

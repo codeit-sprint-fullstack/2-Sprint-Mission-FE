@@ -6,15 +6,14 @@ import { useState, useEffect } from "react";
 import { postComment } from "@/src/api/commentServices";
 
 interface WriteInquiryProps {
-  id: string;
-  onNewInquiry: () => void;
+  id: number;
 }
 
 export default function WriteInquiry({ id }: WriteInquiryProps) {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [comment, setComment] = useState<string>("");
 
-  async function createInqury(id: string) {
+  async function createInqury(id: number) {
     const data = { content: comment };
 
     if (!comment?.trim().length) return;

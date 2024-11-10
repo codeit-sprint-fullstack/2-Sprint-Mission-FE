@@ -1,0 +1,31 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 7rem;
+  align-items: center;
+  justify-content: center;
+  width: 41.5rem;
+  height: 25rem;
+  background-color: white;
+  border-radius: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.message {
+  font-size: 1.8rem;
+  font-weight: 500;
+}

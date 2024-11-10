@@ -3,9 +3,11 @@ import WriteInquiry from "@/src/components/items/WriteInquiry";
 import InquiryList from "@/src/components/items/InquiryList";
 import { getProduct } from "@/src/api/productServices";
 import { getComment } from "@/src/api/commentServices";
+import Modal from "@/src/components/Modal";
+import TwoButtonModal from "@/src/components/items/TwoButtonModal";
 
 interface ProductDetailPageProps {
-  params: { id: string };
+  params: { id: number };
 }
 
 export default async function ProductDetailPage({
@@ -16,6 +18,7 @@ export default async function ProductDetailPage({
 
   return (
     <>
+      <TwoButtonModal />
       <ProductDetail data={productData} />
       <WriteInquiry id={id} />
       <InquiryList comments={commentData} />
