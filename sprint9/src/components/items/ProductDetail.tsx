@@ -1,4 +1,4 @@
-"use client"; //TODO: 서버 컴포넌트로 변경하는 방법 고안해보기,,(useRouter 사용으로 클라이언트 전환됨)
+"use client";
 
 import Image from "next/image";
 import style from "@/src/styles/items/ProductDetail.module.css";
@@ -11,6 +11,7 @@ import defaultImg from "@/public/assets/img_default.png";
 import { deleteProduct } from "@/src/api/productServices";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/src/hooks/useAuth";
+import { useDeleteModal } from "@/src/hooks/useDeleteModal";
 
 interface ProductDetail {
   data: {
@@ -36,10 +37,19 @@ export default function ProductDetail({ data }: ProductDetail) {
 
   const productImg = data.images[0] ? data.images[0] : defaultImg;
 
-  const handleDeleteProduct = async () => {
-    await deleteProduct(data.id.toString());
-    router.push("/products");
+  const { Modal, onDeleteConfirm } = useDeleteModal();
+
+  //TODO: 로그인 수정하고 확인해보기
+  const handleDeleteProduct = () => {
+    onDeleteConfirm(async () => {
+      await deleteProduct(data.id.toString());
+    });
   };
+
+  // const handleDeleteProduct = async () => {
+  //   await deleteProduct(data.id.toString());
+  //   router.push("/products");
+  // };
 
   const handleEditClick = () => {
     router.push(`/products/${data.id}/edit-product`);
@@ -97,6 +107,7 @@ export default function ProductDetail({ data }: ProductDetail) {
           </div>
         </div>
       </div>
+      <Modal />
     </div>
   );
 }

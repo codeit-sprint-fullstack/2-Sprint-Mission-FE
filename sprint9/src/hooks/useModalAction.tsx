@@ -1,18 +1,17 @@
 "use client";
 
-import Modal from "@/src/components/Modal";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
 
 export function useModalAction() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
-  const [redirectTo, setRedirectTo] = useState(null);
-  const [nextAction, setNextAction] = useState();
+  const [redirectTo, setRedirectTo] = useState<string | null>(null);
+  const [nextAction, setNextAction] = useState<(() => void) | undefined>();
 
   const router = useRouter();
-  const modalRef = useRef(null);
-  const actionRef = useRef(null);
+  const modalRef = useRef<any>(null); // Modal 컴포넌트를 참조
+  const actionRef = useRef<(() => void) | null>(null); // 액션을 참조
 
   useEffect(() => {
     if (isModalOpen && modalRef.current) {
@@ -20,14 +19,23 @@ export function useModalAction() {
     }
   }, [isModalOpen]);
 
-  const onModalOpen = ({ msg = "", path = null, action = null }) => {
-    return new Promise((resolve) => {
+  const onModalOpen = ({
+    msg = "",
+    path = null,
+    action = null
+  }: {
+    msg: string;
+    path?: string | null;
+    action?: () => void | null;
+  }) => {
+    return new Promise<void>((resolve) => {
       setIsModalOpen(true);
       setModalMsg(msg);
 
       if (path) {
         setRedirectTo(path);
       }
+
       if (action) {
         actionRef.current = () => {
           action();
@@ -72,44 +80,3 @@ export function useModalAction() {
     onModalCancel
   };
 }
-
-export const useModal = () => {
-  const { modalRef, onModalOpen, onModalConfirm, isModalOpen, modalMsg } =
-    useModalAction();
-
-  const Modal = () => {
-    return (
-      isModalOpen && (
-        <Modal msg={modalMsg} ref={modalRef} onClose={onModalConfirm} />
-      )
-    );
-  };
-
-  return { Modal, onModalOpen };
-};
-
-export const useDeleteModal = () => {
-  const {
-    modalRef,
-    onModalOpen,
-    onModalConfirm,
-    onModalCancel,
-    isModalOpen,
-    modalMsg
-  } = useModalAction();
-
-  const Modal = () => {
-    return (
-      isModalOpen && (
-        <Modal
-          msg={modalMsg}
-          ref={modalRef}
-          onConfirm={onModalConfirm}
-          onCancel={onModalCancel}
-        />
-      )
-    );
-  };
-
-  return { Modal, onModalOpen };
-};

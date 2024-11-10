@@ -10,6 +10,7 @@ import noInquiry from "@/public/assets/img_inquiry_empty.png";
 import { patchComment, deleteComment } from "@/src/api/commentServices";
 import { useState } from "react";
 import { useAuth } from "@/src/hooks/useAuth";
+import { useDeleteModal } from "@/src/hooks/useDeleteModal";
 
 interface Comment {
   id: string;
@@ -24,20 +25,25 @@ interface InquiryListProps {
 }
 
 export default function InquiryList({ comments }: InquiryListProps) {
-  const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
   const { user } = useAuth();
   const currentUserId = user?.id;
 
-  const handleDeleteComment = async (commentId: string) => {
-    await deleteComment(commentId);
+  const { Modal, onDeleteConfirm } = useDeleteModal();
+
+  //TODO: 로그인 수정하고 확인해보기
+  const handleDeleteComment = (commentId: number) => {
+    onDeleteConfirm(async () => {
+      await deleteComment(commentId);
+    });
   };
 
-  const handleEditComment = (commentId: string, newComment: string) => {
+  const handleEditComment = (commentId: number, newComment: string) => {
     setEditingCommentId(commentId);
     patchComment(commentId, { content: newComment });
   };
 
-  const handleEditClick = (commentId: string) => {
+  const handleEditClick = (commentId: number) => {
     setEditingCommentId(commentId);
   };
 
@@ -84,6 +90,7 @@ export default function InquiryList({ comments }: InquiryListProps) {
       ) : (
         <Image src={noInquiry} alt="no inqury image" />
       )}
+      <Modal />
     </>
   );
 }
