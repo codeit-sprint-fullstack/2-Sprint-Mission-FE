@@ -21,11 +21,12 @@ export default function WriteProductForm() {
 
   const handleLogInSubmit = async () => {
     const filterData = {
+      images: ["https://example.com/image1.jpg"],
+      tags: [watch("tag")],
       price: watch("price"),
       description: watch("description"),
       name: watch("name")
     };
-    console.log("Submitting login with data:", filterData);
     await patchProduct(id, filterData);
   };
 

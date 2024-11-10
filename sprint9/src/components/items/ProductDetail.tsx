@@ -47,7 +47,7 @@ export default function ProductDetail({ data }: ProductDetail) {
     setIsLiked(!isLiked);
 
     try {
-      if (isLiked) {
+      if (!isLiked) {
         await postLike(data.id);
       } else {
         await deleteLike(data.id);
@@ -61,7 +61,6 @@ export default function ProductDetail({ data }: ProductDetail) {
 
   const { Modal, onDeleteConfirm } = useDeleteModal();
 
-  //TODO: 로그인 수정하고 확인해보기
   const handleDeleteProduct = () => {
     onDeleteConfirm(async () => {
       await deleteProduct(data.id.toString());
@@ -69,13 +68,8 @@ export default function ProductDetail({ data }: ProductDetail) {
     });
   };
 
-  // const handleDeleteProduct = async () => {
-  //   await deleteProduct(data.id.toString());
-  //   router.push("/products");
-  // };
-
   const handleEditClick = () => {
-    router.push(`/products/${data.id}/edit-product`);
+    router.push(`/items/${data.id}/edit-product`);
   };
 
   return (

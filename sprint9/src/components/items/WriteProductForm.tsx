@@ -7,9 +7,11 @@ import { FormProvider, useForm } from "react-hook-form";
 import SignButton from "../signInUp/SignButton";
 import { PRODUCT } from "@/src/variables/formValidation";
 import { postProduct } from "@/src/api/productServices";
+import { useRouter } from "next/navigation";
 
 export default function WriteProductForm() {
   const formMethods = useForm();
+  const router = useRouter();
 
   const {
     handleSubmit,
@@ -18,13 +20,20 @@ export default function WriteProductForm() {
   } = formMethods;
 
   const handleLogInSubmit = async () => {
+    const tags =
+      watch("tag")
+        ?.split(",")
+        .map((tag: string) => tag.trim()) || [];
+
     const filterData = {
+      images: ["https://example.com/image1.jpg"],
+      tags: tags,
       price: watch("price"),
       description: watch("description"),
       name: watch("name")
     };
-    console.log("Submitting login with data:", filterData);
-    await postProduct(filterData);
+    const res = await postProduct(filterData);
+    router.push(`/items/${res.id}`);
   };
 
   return (
@@ -59,6 +68,13 @@ export default function WriteProductForm() {
           type="text"
           validations={PRODUCT.CONTENT}
           placeholder="글 내용을 작성해주세요"
+        />
+        <ProductInput
+          name="tag"
+          label="태그"
+          type="text"
+          validations={PRODUCT.TAG}
+          placeholder="태그를 쉼표로 나누어 작성해주세요"
         />
       </form>
     </FormProvider>

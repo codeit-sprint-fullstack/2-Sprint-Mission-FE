@@ -59,5 +59,13 @@ export const PRODUCT = {
       message: "숫자만 입력해 주세요"
     },
     ...minMaxLength(1, 10)
+  },
+  TAG: {
+    required: "태그를 입력해 주세요",
+    pattern: {
+      value: /^(?!\s*$)[^,\s]+(,[^,\s]+)*$/,
+      message: "쉼표로 구분해서 입력해주세요"
+    },
+    ...minMaxLength(1, 50)
   }
 };

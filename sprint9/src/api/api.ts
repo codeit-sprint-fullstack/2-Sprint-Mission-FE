@@ -8,6 +8,7 @@ const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_SERVER
 });
 
+//TODO: customConfig.headers 빨간줄 없애기
 instance.interceptors.request.use(
   (config) => {
     const customConfig = config as CustomAxiosRequestConfig;
