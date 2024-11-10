@@ -28,7 +28,7 @@ export default function LoginPage() {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      navigate("/items"); 
+      navigate("/items");
     }
   }, [navigate]);
 
@@ -103,6 +103,19 @@ export default function LoginPage() {
     }
   };
 
+  // const refreshAccessToken = async () => {
+  //   try {
+  //     const refreshToken = localStorage.getItem("refreshToken");
+  //     const response = await axios.post("/auth/refresh-token", {
+  //       refreshToken,
+  //     });
+  //     const newAccessToken = response.data.accessToken; //서버에서 받은 새로운 액세스토큰
+  //     localStorage.setItem("accessToken", newAccessToken); //로컬스토리지에 저장
+  //   } catch (error) {
+  //     console.log("리프레시 토큰 요청 실패", error);
+  //     navigate("/login");
+  //   }
+  // };
   // const refreshAccessToken = async () => {
   //   try {
   //     const refreshToken = localStorage.getItem("refreshToken");

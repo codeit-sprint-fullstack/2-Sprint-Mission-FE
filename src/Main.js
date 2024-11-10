@@ -7,7 +7,6 @@ import ItemDetailPage from "./page/ItemDetailPage.js";
 import LoginPage from "./page/LoginPage.js";
 import { UserLayout } from "./component/Layout.js";
 import SignupPage from "./page/SignupPage.js";
-import Folder from "./page/Folder.js";
 import PatchPage from "./page/PatchPage.js";
 
 
@@ -39,8 +38,8 @@ function Main() {
                 element={<ProtectedRoute element={<PatchPage />} />}
               />
             </Route>
-            <Route path="login" element={<LoginPage />} />
-            <Route path="signin" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signin" element={<SignupPage />} />
           </Routes>
         </App>
       </BrowserRouter>

@@ -12,8 +12,13 @@ export function PublicNav() {
   const [user, setUser] = useState(null); // 유저 상태 관리
 
   const accessToken = localStorage.getItem("accessToken");
-  const refreshToken = localStorage.getItem("refreshToken");
+  // const refreshToken = localStorage.getItem("refreshToken");
 
+  // async function refreshAccessToken() {
+  //   try {
+  //     const res = await axios.post("/auth/refresh-token", {
+  //       refreshToken,
+  //     });
   // async function refreshAccessToken() {
   //   try {
   //     const res = await axios.post("/auth/refresh-token", {
@@ -48,9 +53,9 @@ export function PublicNav() {
       //     setUser(null); // refreshToken이 없거나 실패한 경우
       //   }
       // } else {
-      //   console.error(e);
-      //   alert("새로고침 혹은,다시 로그인해주세요");
-      //   setUser(null);
+      console.error(e);
+      // alert("새로고침 혹은,다시 로그인해주세요");
+      setUser(null);
       // }
     }
   }
