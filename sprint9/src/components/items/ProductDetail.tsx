@@ -12,6 +12,8 @@ import { deleteProduct } from "@/src/api/productServices";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useDeleteModal } from "@/src/hooks/useDeleteModal";
+import { postLike, deleteLike } from "@/src/api/likeService";
+import { useState } from "react";
 
 interface ProductDetail {
   data: {
@@ -32,10 +34,30 @@ export default function ProductDetail({ data }: ProductDetail) {
   const router = useRouter();
   const { user } = useAuth();
   const currentUserId = user?.id;
+  const [likeCount, setLikeCount] = useState(data?.favoriteCount || 0);
+  const [isLiked, setIsLiked] = useState(false);
 
   if (!data) return null;
 
   const productImg = data.images[0] ? data.images[0] : defaultImg;
+
+  const handleLikeClick = async () => {
+    const updatedLikeCount = isLiked ? likeCount - 1 : likeCount + 1;
+    setLikeCount(updatedLikeCount);
+    setIsLiked(!isLiked);
+
+    try {
+      if (isLiked) {
+        await postLike(data.id);
+      } else {
+        await deleteLike(data.id);
+      }
+    } catch (error) {
+      console.error("Error on updating like:", error);
+      setLikeCount(isLiked ? likeCount + 1 : likeCount);
+      setIsLiked(isLiked);
+    }
+  };
 
   const { Modal, onDeleteConfirm } = useDeleteModal();
 
@@ -102,9 +124,9 @@ export default function ProductDetail({ data }: ProductDetail) {
             </div>
           </div>
           <hr className={style.line} />
-          <div className={style.likeContainer}>
+          <div className={style.likeContainer} onClick={handleLikeClick}>
             <Image src={heartIcon} alt="heart icon" />
-            <p className={style.likes}>{data.favoriteCount}</p>
+            <p className={style.likes}>{likeCount}</p>
           </div>
         </div>
       </div>

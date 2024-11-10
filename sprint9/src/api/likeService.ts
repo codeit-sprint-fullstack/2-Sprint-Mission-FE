@@ -6,7 +6,7 @@ import {
   deleteRequest
 } from "./api";
 
-export async function postProduct(id: number) {
+export async function postLike(id: number) {
   try {
     const response = await postRequest(`/products/${id}/favorite`);
     return response.data;
@@ -16,7 +16,7 @@ export async function postProduct(id: number) {
   }
 }
 
-export async function deleteComment(id: number) {
+export async function deleteLike(id: number) {
   try {
     const response = await deleteRequest(`/products/${id}/favorite`);
     return response.data;
