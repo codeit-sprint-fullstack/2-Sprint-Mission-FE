@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export function useModalAction() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,8 +10,8 @@ export function useModalAction() {
   const [nextAction, setNextAction] = useState<(() => void) | undefined>();
 
   const router = useRouter();
-  const modalRef = useRef<any>(null); // Modal 컴포넌트를 참조
-  const actionRef = useRef<(() => void) | null>(null); // 액션을 참조
+  const modalRef = useRef<any>(null);
+  const actionRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     if (isModalOpen && modalRef.current) {

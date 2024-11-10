@@ -13,12 +13,12 @@ export default function DropBoxWrapper({
 }: DropBoxWrapperProps) {
   const handleEdit = () => {
     console.log("Edit clicked");
-    editOnClick(); // 부모에서 전달된 editOnClick 호출
+    editOnClick();
   };
 
   const handleDelete = () => {
     console.log("Delete clicked");
-    deleteOnClick(); // 부모에서 전달된 deleteOnClick 호출
+    deleteOnClick();
   };
 
   return <DropBox editOnClick={handleEdit} deleteOnClick={handleDelete} />;

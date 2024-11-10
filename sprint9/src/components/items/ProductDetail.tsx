@@ -43,6 +43,7 @@ export default function ProductDetail({ data }: ProductDetail) {
   const handleDeleteProduct = () => {
     onDeleteConfirm(async () => {
       await deleteProduct(data.id.toString());
+      router.push("/items");
     });
   };
 
@@ -72,8 +73,8 @@ export default function ProductDetail({ data }: ProductDetail) {
             <h2 className={style.title}>{data.name}</h2>
             {data.ownerId === currentUserId && (
               <DropBoxWrapper
-                editOnClick={() => handleEditClick()}
-                deleteOnClick={() => handleDeleteProduct()}
+                editOnClick={handleEditClick}
+                deleteOnClick={handleDeleteProduct}
               />
             )}
           </div>

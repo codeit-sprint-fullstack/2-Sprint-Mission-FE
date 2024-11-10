@@ -13,7 +13,7 @@ import { useAuth } from "@/src/hooks/useAuth";
 import { useDeleteModal } from "@/src/hooks/useDeleteModal";
 
 interface Comment {
-  id: string;
+  id: number;
   content: string;
   writer: object;
   createdAt: string;

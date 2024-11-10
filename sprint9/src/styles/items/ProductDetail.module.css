@@ -133,3 +133,15 @@
   font-weight: 400;
   margin-bottom: 2rem;
 }
+
+@media (max-width: 1199px) and (min-width: 744px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    flex-direction: column;
+  }
+}
