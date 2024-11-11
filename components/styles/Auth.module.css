@@ -46,17 +46,18 @@
 .email,
 .nickname,
 .password,
-.passwordCheck {
+.passwordConfirmation {
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 2.6rem;
     color: #1F2937;
+    margin: 1.6rem 0;
 }
 
 .emailInput,
 .nicknameInput,
 .passwordInput,
-.passwordCheckInput {
+.passwordConfirmationInput {
     box-sizing: border-box;
     width: 64rem;
     height: 5.6rem;
@@ -68,6 +69,7 @@
     font-weight: 400;
     line-height: 2.6rem;
     color: #9CA3AF;
+    margin-bottom: 1.6rem;
 }
 
 .loginButton {
@@ -114,6 +116,11 @@
     height: 4.2rem;
 }
 
+.link {
+    margin-left: 1.6rem;
+    text-decoration: none;
+}
+
 .signInGroup {
     display: flex;
     justify-content: center;
@@ -133,6 +140,19 @@
     line-height: 1.7rem;
     font-weight: 500;
     color: #3692FF;
+}
+
+.eye {
+    position: relative;
+    display: flex;
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 1.6rem;
+    top: 1.6rem;
+    width: 2.4rem;
+    height: 2.4rem;
 }
 
 .error {

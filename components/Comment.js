@@ -11,7 +11,7 @@ export default function Comment() {
   const [nextCursor, setNextCursor] = useState(null);
   const [newComment, setNewComment] = useState("");
   const [editComment, setEditComment] = useState(null);
-  const isProductPage = router.pathname === "/products/[id]";
+  const isProductPage = router.pathname === "/items/[id]";
 
   useEffect(() => {
     if (id) {

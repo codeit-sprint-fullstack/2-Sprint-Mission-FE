@@ -15,8 +15,24 @@ import {
   }
   
   export async function getProduct(id) {
-    const response = await requestGet(`/products/${id}`);
-    return response.data;
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (!accessToken) {
+      console.error('Access Token is missing');
+      return;
+    }
+
+    try {
+      console.log('Access Token:', accessToken);
+      const response = await requestGet(`/products/${id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      return response.data;
+    } catch(e) {
+      console.error(e.message);
+    }
   }
   
   export async function createProduct(productData) {

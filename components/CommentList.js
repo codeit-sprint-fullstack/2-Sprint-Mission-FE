@@ -9,7 +9,7 @@ import inquiry from "@/public/inquiry.png";
 
 export default function CommentList({ comments, onEdit, setComments }) {
 const router = useRouter();
-const isProductPage = router.pathname === "/products/[id]";
+const isProductPage = router.pathname === "/items/[id]";
 
   const handleDeleteComment = async (id) => {
     try {
@@ -39,14 +39,14 @@ const isProductPage = router.pathname === "/products/[id]";
           <div className={style.commentProfile}>
             <Image
               className={style.commentProfileImg}
-              src={profile}
+              src={comment.writer.image ? comment.writer.image : profile}
               alt="profile"
             />
-            <p className={style.commentUserName}>총명한 판다</p>
+            <p className={style.commentUserName}>{comment.writer.nickname}</p>
           </div>
         </div>
       ))}
-      <button className={style.backBtn} onClick={() => router.push('/articles')}>목록으로 돌아가기</button>
+      <button className={style.backBtn} onClick={() => router.push(isProductPage ? '/items' : '/articles')}>목록으로 돌아가기</button>
     </div>
   );
 }

@@ -1,49 +1,20 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
-import { useMutation } from "@tanstack/react-query";
-import { getLogin, getSignin } from "@/pages/api/AuthService";
-import { validation } from "../utils/validation";
 import Image from "next/image";
 import Link from "next/link";
 import style from "./styles/Auth.module.css";
 import pandaLogo from "../public/login/panda.png";
 import google from "../public/login/google.png";
 import kakao from "../public/login/kakao.png";
+import open from '../public/login/btn_visibility_on.png';
+import close from '../public/login/btn_visibility_off.png';
 
-export default function Auth() {
-  const router = useRouter();
-  const currentPath = router.pathname;
-  const [email, setEmail] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const isLoginPage = currentPath === "/login";
-  const { error, isFormValid } = validation(email, password, passwordCheck, isLoginPage, nickname);
- 
-  const mutation = useMutation({
-    mutationFn: isLoginPage ? getLogin : getSignin,
-    onSuccess: (data) => {
-      if (data) {
-        router.push("/items");
-      }
-    },
-    onError: (error) => {
-      console.error(error.message);
-      alert("요청에 실패했습니다. 다시 시도해 주세요");
-    }
-  });
-
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    const data = isLoginPage ? { email, password } : { email, password, nickname };
-    mutation.mutate(data);
-  };
-
+export default function Auth({ isLoginPage, email, setEmail, nickname, setNickname, password, setPassword, passwordConfirmation, setPasswordConfirmation, error, isFormValid, onSubmit }) {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordConfirmationVisible, setIsPasswordConfirmationVisible] = useState(false);
+  
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && isFormValid) {
-      handleSubmit();
+      onSubmit();
     }
   };
 
@@ -56,8 +27,9 @@ export default function Auth() {
         </div>
       </Link>
       <div className={style.inputForm}>
-        <p className={style.email}>이메일</p>
+        <label htmlFor="email" className={style.email}>이메일</label>
         <input
+          id="email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -67,8 +39,9 @@ export default function Auth() {
         {error.email && <p className={style.error}>{error.email}</p>}
         {isLoginPage ? null : (
           <>
-            <p className={style.nickname}>닉네임</p>
+            <label htmlFor="nickname" className={style.nickname}>닉네임</label>
             <input
+              id="nickname"
               type="text"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
@@ -77,41 +50,49 @@ export default function Auth() {
             />
           </>
         )}
-        <p className={style.password}>비밀번호</p>
+        <label htmlFor="password" className={style.password}>비밀번호</label>
+        <div className={style.eye}>
         <input
-          type="password"
+          id="password"
+          type={isPasswordVisible ? "text" : "password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className={`${style.passwordInput} ${error.password ? style.errorInput : style.successInput}`}
           placeholder="비밀번호를 입력해주세요."
         />
+        <Image onClick={() => setIsPasswordVisible(!isPasswordVisible)} className={style.eyeIcon} src={isPasswordVisible ? open : close} alt="eye" />
+        </div>
         {error.password && <p className={style.error}>{error.password}</p>}
         {isLoginPage ? null : (
           <>
-            <p className={style.passwordCheck}>비밀번호 확인</p>
+            <label htmlFor="passwordConfirmation" className={style.passwordConfirmation}>비밀번호 확인</label>
+            <div className={style.eye}>
             <input
-              type="password"
-              value={passwordCheck}
-              onChange={(e) => setPasswordCheck(e.target.value)}
-              className={`${style.passwordCheckInput} ${error.passwordCheck ? style.errorInput : style.successInput}`}
+              id="passwordConfirmation"
+              type={isPasswordConfirmationVisible ? "text" : "password"}
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              className={`${style.passwordConfirmationInput} ${error.passwordConfirmation ? style.errorInput : style.successInput}`}
               placeholder="비밀번호를 다시 입력해주세요."
             />
-            {error.passwordCheck && <p className={style.error}>{error.passwordCheck}</p>}
+            <Image onClick={() => setIsPasswordConfirmationVisible(!isPasswordConfirmationVisible)} className={style.eyeIcon} src={isPasswordConfirmationVisible ? open : close} alt="eye" />
+            </div>
+            {error.passwordConfirmation && <p className={style.error}>{error.passwordConfirmation}</p>}
           </>
         )}
       </div>
-      <button className={style.loginButton} onClick={handleSubmit} disabled={!isFormValid || isSubmitting}>{isLoginPage ? '로그인' : '회원가입'}</button>
+      <button className={style.loginButton} onClick={onSubmit} disabled={!isFormValid}>{isLoginPage ? '로그인' : '회원가입'}</button>
       <div className={style.loginGroup}>
         <p className={style.loginGroupTitle}>간편 로그인하기</p>
         <div className={style.loginLogoGroup}>
-          <Image className={style.google} src={google} alt="Google" />
-          <Image className={style.kakao} src={kakao} alt="Kakao" />
+          <Link className={style.link} href="https://www.google.com"><Image className={style.google} src={google} alt="Google" /></Link>
+          <Link className={style.link} href="https://www.kakaocorp.com/page"><Image className={style.kakao} src={kakao} alt="Kakao" /></Link>
         </div>
       </div>
       {isLoginPage ? (
         <div className={style.signInGroup}>
           <p className={style.signInTitle}>판다마켓이 처음이신가요?</p>
-          <Link href="/signin" className={style.signIn}>
+          <Link href="/signup" className={style.signIn}>
             회원가입
           </Link>
         </div>

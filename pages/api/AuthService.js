@@ -1,46 +1,39 @@
-import { requestGet, requestPost, requestDelete } from "./api.js";
+import { requestPost } from "./api.js";
 
-export async function getLogin(params = {}) {
+export async function postSignIn(data) {
   try {
-    const response = await requestGet(`/auth/login`, params);
+    const response = await requestPost(`/auth/signIn`, data);
+    console.log('Response Data: ', response.data);
     return response.data;
   } catch (e) {
     console.error(e.message);
   }
 }
 
-export async function getSignin(params = {}) {
+export async function postSignUp(data) {
   try {
-    const response = await requestGet(`/auth/signin`, params);
+    const response = await requestPost(`/auth/signUp`, data);
     return response.data;
   } catch (e) {
-    console.error(e.message);
+    console.error('error response:', e.response?.data);
+    throw e;
   }
 }
 
-export async function postLogin(data) {
-  try {
-    const response = await requestPost(`/auth/login`, data);
-    return response.data;
-  } catch (e) {
-    console.error(e.message);
-  }
-}
-
-export async function postSignin(data) {
-  try {
-    const response = await requestPost(`/auth/signin`, data);
-    return response.data;
-  } catch (e) {
-    console.error(e.message);
-  }
-}
-
-export async function deleteLogout() {
-  try {
-    const response = await requestDelete(`/auth/logout`);
-    return response.data;
-  } catch (e) {
-    console.error(e.message);
+export async function refreshToken() {
+  const refreshToken = localStorage.getItem('refreshToken');
+  if (refreshToken) {
+    try {
+      const response = await requestPost(`/auth/refresh-token`, {}, {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        }
+      });
+      return response.data;
+    } catch (e) {
+      console.error(e.message);
+    }
+  } else {
+    console.error('No refresh token stored');
   }
 }

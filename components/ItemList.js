@@ -9,7 +9,7 @@ export default function BestItem({ products }) {
       <div className={style.itemList}>
         {products.length > 0 ? (
           products.map((product) => (
-            <Link href={`/products/${product.id}`} key={product.id} className={style.itemSection}>
+            <Link href={`/items/${product.id}`} key={product.id} className={style.itemSection}>
               <div>
                 <Image className={style.itemImg} 
                 // src={product.images.length > 0 ? product.images[0] : img_default} 

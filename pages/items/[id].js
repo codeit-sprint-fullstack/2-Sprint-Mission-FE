@@ -8,15 +8,21 @@ import { useRouter } from "next/router";
 import { formatDate } from "@/utils/formatDate";
 import { getProduct } from "@/pages/api/ProductService";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/contexts/AuthProvider";
 import profile from "@/public/ic_profile.png";
 import defaultImg from "@/public/img_default.png";
 
 export default function ProductDetail() {
   const router = useRouter();
+  const { user, isPending } = useAuth(true);
   const { id } = router.query;
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
+    if (!user) {
+      return;
+    }
+
     const fetchProduct = async () => {
       if (id) {
         try {
@@ -28,9 +34,9 @@ export default function ProductDetail() {
       }
     };
     fetchProduct();
-  }, [id]);
+  }, [id, user]);
 
-  if (!product)
+  if (!product || isPending)
     return (
       <div className={style.loading}>
         <Spinner />
