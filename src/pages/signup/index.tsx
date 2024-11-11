@@ -6,14 +6,23 @@ import eye from "../../../public/btn_visibility_on.png";
 import styles from "../../styles/Signup.module.css";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { postSignUp, SignUpData } from "@/api/axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface FormProps {
   email: string;
+  nickname: string;
   pw: string;
   pwcheck: string;
 }
 
 export default function Signup() {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -22,10 +31,36 @@ export default function Signup() {
     getValues,
   } = useForm<FormProps>({
     mode: "onChange",
+    defaultValues: {
+      email: "",
+      nickname: "",
+      pw: "",
+      pwcheck: "",
+    },
   });
+
+  const mutation = useMutation({
+    mutationFn: postSignUp,
+    onSuccess: () => {
+      router.push("/used-market");
+    },
+    onError: (error: any) => {
+      const message = error.response?.data?.message || "회원가입 실패";
+      setErrorMessage(message);
+      setIsModalOpen(true);
+    },
+  });
+
+  console.log(errorMessage);
 
   const onSubmit: SubmitHandler<FormProps> = (data) => {
     console.log(data);
+    mutation.mutate({
+      email: data.email,
+      nickname: data.nickname,
+      password: data.pw,
+      passwordConfirmation: data.pwcheck,
+    });
   };
 
   return (
@@ -41,6 +76,7 @@ export default function Signup() {
                 style={{ border: errors.email ? "1px solid #f74747" : "" }}
                 placeholder="이메일을 입력해주세요"
                 {...register("email", {
+                  required: "이메일 입력은 필수입니다.",
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: "잘못된 이메일입니다.",
@@ -59,6 +95,12 @@ export default function Signup() {
               <input
                 className={styles.nick_input}
                 placeholder="닉네임을 입력해주세요"
+                {...register("nickname", {
+                  required: "닉네임 입력은 필수입니다.",
+                  onChange: () => {
+                    trigger("nickname");
+                  },
+                })}
               />
             </div>
             <div className={styles.wrapper}>
@@ -72,6 +114,7 @@ export default function Signup() {
                   placeholder="비밀번호를 입력해주세요"
                   type="password"
                   {...register("pw", {
+                    required: "비밀번호 입력은 필수입니다.",
                     minLength: {
                       value: 8,
                       message: "비밀번호는 최소 8자 이상이어야 합니다.",
@@ -97,6 +140,7 @@ export default function Signup() {
                   placeholder="비밀번호를 다시 한 번 입력해주세요"
                   type="password"
                   {...register("pwcheck", {
+                    required: "비밀번호 확인란 입력은 필수입니다.",
                     validate: (value) => {
                       const { pw } = getValues();
                       return pw === value || "비밀번호가 일치하지 않습니다.";
@@ -125,13 +169,17 @@ export default function Signup() {
         <div className={styles.simple_login}>
           <p className={styles.simple_login_text}>간편 로그인하기</p>
           <div className={styles.icons}>
-            <Image src={google} alt="구글" />
-            <Image src={kakao} alt="카카오" />
+            <Link href="https://www.google.com/">
+              <Image src={google} alt="구글" />
+            </Link>
+            <Link href="https://www.kakaocorp.com/page">
+              <Image src={kakao} alt="카카오" />
+            </Link>
           </div>
         </div>
         <div className={styles.first}>
           <p className={styles.first_text}>이미 회원이신가요?</p>
-          <Link href="/signup" className={styles.login}>
+          <Link href="/login" className={styles.login}>
             로그인
           </Link>
         </div>

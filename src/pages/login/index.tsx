@@ -90,8 +90,12 @@ export default function Login() {
         <div className={styles.simple_login}>
           <p className={styles.simple_login_text}>간편 로그인하기</p>
           <div className={styles.icons}>
-            <Image src={google} alt="구글" />
-            <Image src={kakao} alt="카카오" />
+            <Link href="https://www.google.com/">
+              <Image src={google} alt="구글" />
+            </Link>
+            <Link href="https://www.kakaocorp.com/page">
+              <Image src={kakao} alt="카카오" />
+            </Link>
           </div>
         </div>
         <div className={styles.first}>

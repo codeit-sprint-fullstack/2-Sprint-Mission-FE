@@ -113,7 +113,8 @@
   color: #9ca3af;
 }
 
-.signup_button {
+.signup_button,
+.button_inactive {
   width: 100%;
   background-color: #9ca3af;
   height: 56px;
