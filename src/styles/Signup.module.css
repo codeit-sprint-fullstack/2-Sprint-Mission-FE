@@ -1,4 +1,4 @@
-.login {
+.signup {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,7 @@
   height: 132px;
 }
 
-.login_bottom {
+.signup_bottom {
   width: 640px;
   display: flex;
   flex-direction: column;
@@ -56,6 +56,22 @@
   color: #9ca3af;
 }
 
+.nick_input {
+  width: 100%;
+  border-radius: 12px;
+  padding: 16px 24px;
+  gap: 10px;
+  background-color: #f3f4f6;
+  border: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.nick_input::placeholder {
+  color: #9ca3af;
+}
+
 .eye_wrapper {
   width: 100%;
   border-radius: 12px;
@@ -80,7 +96,7 @@
   color: #9ca3af;
 }
 
-.login_button {
+.signup_button {
   width: 100%;
   background-color: #9ca3af;
   height: 56px;
@@ -126,10 +142,16 @@
   color: #1f2937;
 }
 
-.signup {
+.login {
   font-weight: 500;
   font-size: 14px;
   line-height: 16.71px;
   text-decoration: underline;
   color: #3692ff;
+}
+
+.email_input:focus,
+.nick_input:focus,
+.pw_input:focus {
+  outline: none;
 }
