@@ -134,3 +134,18 @@
     font-weight: 500;
     color: #3692FF;
 }
+
+.error {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2.4rem;
+    color: #F74747;
+}
+
+.errorInput {
+    border: 1px solid #F74747;
+}
+
+.successInput {
+    border: 1px solid #3692FF;
+}
