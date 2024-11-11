@@ -2,14 +2,15 @@ import Image from "next/image";
 import pandaLogo from "../../../public/panda-logo.svg";
 import google from "../../../public/ic_google.svg";
 import kakao from "../../../public/ic_kakao.svg";
-import eye from "../../../public/btn_visibility_on.png";
+import eyeOn from "../../../public/btn_visibility_on.png";
+import eyeOff from "../../../public/btn_visibility_off.png";
 import styles from "../../styles/Signup.module.css";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { postSignUp, SignUpData } from "@/api/axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface FormProps {
   email: string;
@@ -19,9 +20,18 @@ interface FormProps {
 }
 
 export default function Signup() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordCheck, setShowPasswordCheck] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      router.push("/items");
+    }
+  }, [router]);
 
   const {
     register,
@@ -41,8 +51,10 @@ export default function Signup() {
 
   const mutation = useMutation({
     mutationFn: postSignUp,
-    onSuccess: () => {
-      router.push("/used-market");
+    onSuccess: (data) => {
+      const { accessToken } = data;
+      localStorage.setItem("accessToken", accessToken);
+      router.push("/items");
     },
     onError: (error: any) => {
       const message = error.response?.data?.message || "회원가입 실패";
@@ -63,6 +75,14 @@ export default function Signup() {
     });
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const togglePasswordCheckVisibility = () => {
+    setShowPasswordCheck(!showPasswordCheck);
+  };
+
   return (
     <div className={styles.signup}>
       <Image className={styles.panda_image} src={pandaLogo} alt="판다마켓" />
@@ -78,7 +98,7 @@ export default function Signup() {
                 {...register("email", {
                   required: "이메일 입력은 필수입니다.",
                   pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message: "잘못된 이메일입니다.",
                   },
                   onChange: () => {
@@ -112,7 +132,7 @@ export default function Signup() {
                 <input
                   className={styles.pw_input}
                   placeholder="비밀번호를 입력해주세요"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   {...register("pw", {
                     required: "비밀번호 입력은 필수입니다.",
                     minLength: {
@@ -125,7 +145,12 @@ export default function Signup() {
                     },
                   })}
                 />
-                <Image src={eye} alt="눈" />
+                <Image
+                  src={showPassword ? eyeOff : eyeOn}
+                  alt="눈"
+                  onClick={togglePasswordVisibility}
+                  style={{ cursor: "pointer" }}
+                />
               </div>
               {errors.pw && <p className={styles.error}>{errors.pw.message}</p>}
             </div>
@@ -138,9 +163,9 @@ export default function Signup() {
                 <input
                   className={styles.pw_input}
                   placeholder="비밀번호를 다시 한 번 입력해주세요"
-                  type="password"
+                  type={showPasswordCheck ? "text" : "password"}
                   {...register("pwcheck", {
-                    required: "비밀번호 확인란 입력은 필수입니다.",
+                    required: "비밀번호가 일치하지 않습니다.",
                     validate: (value) => {
                       const { pw } = getValues();
                       return pw === value || "비밀번호가 일치하지 않습니다.";
@@ -150,7 +175,12 @@ export default function Signup() {
                     },
                   })}
                 />
-                <Image src={eye} alt="눈" />
+                <Image
+                  src={showPasswordCheck ? eyeOff : eyeOn}
+                  alt="눈"
+                  onClick={togglePasswordCheckVisibility}
+                  style={{ cursor: "pointer" }}
+                />
               </div>
               {errors.pwcheck && (
                 <p className={styles.error}>{errors.pwcheck.message}</p>

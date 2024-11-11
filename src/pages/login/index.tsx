@@ -3,9 +3,14 @@ import Link from "next/link";
 import pandaLogo from "../../../public/panda-logo.svg";
 import google from "../../../public/ic_google.svg";
 import kakao from "../../../public/ic_kakao.svg";
-import eye from "../../../public/btn_visibility_on.png";
+import eyeOn from "../../../public/btn_visibility_on.png";
+import eyeOff from "../../../public/btn_visibility_off.png";
 import styles from "../../styles/Login.module.css";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { postLogIn } from "@/api/axios";
 
 interface FormProps {
   email: string;
@@ -13,6 +18,18 @@ interface FormProps {
 }
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      router.push("/items");
+    }
+  }, [router]);
+
   const {
     register,
     handleSubmit,
@@ -20,10 +37,38 @@ export default function Login() {
     trigger,
   } = useForm<FormProps>({
     mode: "onChange",
+    defaultValues: {
+      email: "",
+      pw: "",
+    },
   });
+
+  const mutation = useMutation({
+    mutationFn: postLogIn,
+    onSuccess: (data) => {
+      const { accessToken } = data;
+      localStorage.setItem("accessToken", accessToken);
+      router.push("/items");
+    },
+    onError: (error: any) => {
+      const message = error.response?.data?.message || "로그인 실패";
+      setErrorMessage(message);
+      setIsModalOpen(true);
+    },
+  });
+
+  console.log(errorMessage);
 
   const onSubmit: SubmitHandler<FormProps> = (data) => {
     console.log(data);
+    mutation.mutate({
+      email: data.email,
+      password: data.pw,
+    });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -39,8 +84,9 @@ export default function Login() {
                 style={{ border: errors.email ? "1px solid #f74747" : "" }}
                 placeholder="이메일을 입력해주세요"
                 {...register("email", {
+                  required: "이메일 입력은 필수입니다.",
                   pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message: "잘못된 이메일입니다.",
                   },
                   onChange: () => {
@@ -61,8 +107,9 @@ export default function Login() {
                 <input
                   className={styles.pw_input}
                   placeholder="비밀번호를 입력해주세요"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   {...register("pw", {
+                    required: "비밀번호 입력은 필수입니다.",
                     minLength: {
                       value: 8,
                       message: "비밀번호는 최소 8자 이상이어야 합니다.",
@@ -72,7 +119,12 @@ export default function Login() {
                     },
                   })}
                 />
-                <Image src={eye} alt="눈" />
+                <Image
+                  src={showPassword ? eyeOff : eyeOn}
+                  alt="눈"
+                  onClick={togglePasswordVisibility}
+                  style={{ cursor: "pointer" }}
+                />
               </div>
               {errors.pw && <p className={styles.error}>{errors.pw.message}</p>}
             </div>

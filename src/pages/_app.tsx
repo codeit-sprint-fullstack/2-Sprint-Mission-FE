@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Container from "components/Container/Container";
 import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
 import type { AppProps } from "next/app";
