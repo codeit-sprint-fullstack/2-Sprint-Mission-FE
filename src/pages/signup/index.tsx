@@ -5,8 +5,11 @@ import kakao from "../../../public/ic_kakao.svg";
 import eye from "../../../public/btn_visibility_on.png";
 import styles from "../../styles/Signup.module.css";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Signup() {
+  const [email, setEmail] = useState("");
+
   return (
     <div className={styles.signup}>
       <Image className={styles.panda_image} src={pandaLogo} alt="판다마켓" />

@@ -15,9 +15,16 @@
   width: 640px;
   display: flex;
   flex-direction: column;
+  gap: 24px;
   align-items: center;
   justify-content: center;
+}
+
+.form {
+  width: 100%;
   gap: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .input_wrapper {
@@ -48,12 +55,22 @@
   background-color: #f3f4f6;
   border: none;
   font-weight: 400;
-  font-size: 16px;
   line-height: 26px;
+  outline: none;
 }
 
 .email_input::placeholder {
   color: #9ca3af;
+}
+
+.error {
+  padding-left: 16px;
+  gap: 10px;
+  display: flex;
+  color: #f74747;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .eye_wrapper {
@@ -74,6 +91,7 @@
   font-size: 16px;
   line-height: 26px;
   border: none;
+  outline: none;
 }
 
 .pw_input::placeholder {
