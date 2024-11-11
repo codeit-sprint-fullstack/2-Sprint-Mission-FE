@@ -114,6 +114,11 @@
   color: #f3f4f6;
 }
 
+.button_active {
+  background-color: #3692ff;
+  cursor: pointer;
+}
+
 .simple_login {
   width: 100%;
   display: flex;

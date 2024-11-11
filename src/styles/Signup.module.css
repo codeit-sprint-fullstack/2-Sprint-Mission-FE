@@ -20,6 +20,13 @@
   gap: 24px;
 }
 
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .input_wrapper {
   width: 100%;
   display: flex;
@@ -54,6 +61,16 @@
 
 .email_input::placeholder {
   color: #9ca3af;
+}
+
+.error {
+  padding-left: 16px;
+  gap: 10px;
+  display: flex;
+  color: #f74747;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .nick_input {
@@ -110,6 +127,11 @@
   font-size: 20px;
   line-height: 32px;
   color: #f3f4f6;
+}
+
+.button_active {
+  background-color: #3692ff;
+  cursor: pointer;
 }
 
 .simple_login {

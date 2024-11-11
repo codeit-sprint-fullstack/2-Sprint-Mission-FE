@@ -16,9 +16,11 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     trigger,
-  } = useForm<FormProps>();
+  } = useForm<FormProps>({
+    mode: "onChange",
+  });
 
   const onSubmit: SubmitHandler<FormProps> = (data) => {
     console.log(data);
@@ -75,7 +77,13 @@ export default function Login() {
               {errors.pw && <p className={styles.error}>{errors.pw.message}</p>}
             </div>
           </div>
-          <button className={styles.login_button} type="submit">
+          <button
+            className={`${styles.login_button} ${
+              isValid ? styles.button_active : ""
+            }`}
+            type="submit"
+            disabled={!isValid}
+          >
             로그인
           </button>
         </form>
