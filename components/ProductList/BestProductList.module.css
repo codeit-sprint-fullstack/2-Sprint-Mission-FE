@@ -1,0 +1,34 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.6rem;
+}
+
+.wrapper h1 {
+    color: #111827;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+.best-products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 2.4rem;
+}
+
+/* -- Tablet -- */
+@media (min-width: 744px) and (max-width: 1199px) {
+    .best-products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* -- Mobile -- */
+@media screen and (max-width:743px) {
+    .best-products {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

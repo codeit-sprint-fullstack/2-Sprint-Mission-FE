@@ -1,0 +1,13 @@
+.container {
+    max-width: 120rem;
+    width: 100%;
+    margin: 2.4rem auto;
+    padding: 0 2.4rem;
+}
+
+.none-style {
+    max-width: 192rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}

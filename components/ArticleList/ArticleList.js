@@ -14,7 +14,7 @@ export default function ArticleList({ articles = [] }) {
                 <h1>{article.title}</h1>
                 <div className={styles.image}>
                   <Image
-                    src="/images/Property 1=md-1.png"
+                    src={article.image || '/images/Property 1=md-1.png'}
                     width={48}
                     height={48}
                     alt="상품 이미지(디폴트)"
@@ -29,7 +29,7 @@ export default function ArticleList({ articles = [] }) {
                     height={24}
                     alt="유저 프로필"
                   />
-                  <p>판매왕 판다</p>
+                  <p>{article.writer.nickname}</p>
                   <p>{formatDate(article.createdAt)}</p>
                 </div>
                 <div className={styles.like}>
@@ -39,7 +39,7 @@ export default function ArticleList({ articles = [] }) {
                     height={24}
                     alt="좋아요"
                   />
-                  <p>+9999</p>
+                  <p>{article.likeCount}</p>
                 </div>
               </div>
             </Link>

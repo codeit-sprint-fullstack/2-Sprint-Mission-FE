@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4.3rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4rem;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2.4rem;
+}

@@ -1,98 +1,119 @@
 import styles from '@/styles/Home.module.css';
-import { useState, useEffect } from 'react';
-import { getArticleList } from '@/lib/api/ArticleService';
-import ArticleList from '@/components/ArticleList/ArticleList';
-import BestArticleList from '@/components/BestArticleList/BestArticleList';
-import Search from '@/components/ArticleList/Search';
-import Dropdown from '@/components/ArticleList/Dropdown';
-import ArticleHeader from '@/components/ArticleList/ArticleHeader';
-import Pagination from '@/components/ArticleList/Pagination';
-import useResize from '@/hooks/useResize';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export async function getServerSideProps() {
-  const bestArticles = await getArticleList({
-    page: 1,
-    pageSize: 3,
-    order: 'recent'
-  });
-
-  const articles = await getArticleList({
-    page: 1,
-    pageSize: 5,
-    order: 'recent',
-    keyword: ''
-  });
-
-  return {
-    props: {
-      articles,
-      bestArticles
-    }
-  };
-}
-
-export default function Home({ articles, bestArticles: initialBestArticles }) {
-  const [bestArticles, setBestArticles] = useState(initialBestArticles);
-  const bestPageSize = useResize();
-  const [filteredArticles, setFilteredArticles] = useState(articles);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
-  const [keyword, setKeyword] = useState('');
-  const [sortOrder, setSortOrder] = useState('recent');
-
-  useEffect(() => {
-    async function fetchBestArticles() {
-      const res = await getArticleList({
-        page: 1,
-        pageSize: bestPageSize,
-        order: 'recent'
-      });
-      setBestArticles(res);
-    }
-    fetchBestArticles();
-  }, [bestPageSize]);
-
-  const handleSearch = (event) => {
-    if (event.key === 'Enter') {
-      const filtered = articles.filter((article) =>
-        article.title.toLowerCase().includes(keyword.toLowerCase())
-      );
-      setFilteredArticles(filtered);
-      setCurrentPage(1);
-    }
-  };
-
-  const totalPages = Math.ceil(filteredArticles.length / pageSize);
-
-  const currentArticles = filteredArticles.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
-
+export default function Home() {
   return (
-    <div className={styles.wrapper}>
-      <BestArticleList
-        bestArticles={bestArticles}
-        bestPageSize={bestPageSize}
-      />
-      <div className={styles.articles}>
-        <ArticleHeader />
-        <div className={styles[`article-search`]}>
-          <Search
-            keyword={keyword}
-            onSearch={setKeyword}
-            onKeyDown={handleSearch}
+    <div className={styles.layout}>
+      <section className={styles.banner}>
+        <div className={styles[`banner-top-container`]}>
+          <div className={styles[`banner-content`]}>
+            <h1 className={styles.heading}>
+              일상의 모든 물건을 <br className={styles.br} />
+              거래해보세요
+            </h1>
+            <button className={styles.button}>
+              <Link href="/items">구경하러 가기</Link>
+            </button>
+          </div>
+          <Image
+            src="/images/Img_home_top@2x.png"
+            width={746}
+            height={340}
+            alt="상위 배너 이미지"
+            priority
           />
-          <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
         </div>
-        <ArticleList articles={currentArticles || []} />
-      </div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
+      </section>
+
+      <main className={styles.main}>
+        <section className={styles[`main-section`]}>
+          <div className={styles[`main-container`]}>
+            <Image
+              src="/images/Img_home_01@2x.png"
+              width={588}
+              height={444}
+              alt="메인 이미지1"
+            />
+            <div className={styles.content}>
+              <div className={styles.bg}>Hot item</div>
+              <div className={styles.description}>
+                <h1 className={styles.heading}>
+                  인기 상품을 <br className={styles.br} />
+                  확인해 보세요
+                </h1>
+                <p>
+                  가장 HOT한 중고거래 물품을 <br />
+                  판다 마켓에서 확인해 보세요
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles[`main-section`]}>
+          <div className={styles[`main-container`]}>
+            <div className={styles.content}>
+              <div className={styles.bg}>Search</div>
+              <div className={styles.description}>
+                <h1 className={styles.heading}>
+                  구매를 원하는 <br className={styles.br} />
+                  상품을 검색하세요
+                </h1>
+                <p>
+                  구매하고 싶은 물품은 검색해서 <br />
+                  쉽게 찾아보세요
+                </p>
+              </div>
+            </div>
+            <Image
+              src="/images/Img_home_02@2x.png"
+              width={588}
+              height={444}
+              alt="메인 이미지2"
+            />
+          </div>
+        </section>
+
+        <section className={styles[`main-section`]}>
+          <div className={styles[`main-container`]}>
+            <Image
+              src="/images/Img_home_03@2x.png"
+              width={588}
+              height={444}
+              alt="메인 이미지3"
+            />
+            <div className={styles.content}>
+              <div className={styles.bg}>Register</div>
+              <div className={styles.description}>
+                <h1 className={styles.heading}>
+                  판매를 원하는 <br className={styles.br} />
+                  상품을 등록하세요
+                </h1>
+                <p>
+                  어떤 물건이든 판매하고 싶은 상품을 <br />
+                  쉽게 등록하세요
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <section className={styles.banner}>
+        <div className={styles[`banner-bottom-container`]}>
+          <h1 className={styles.heading}>
+            믿을 수 있는 <br className={styles.br} />
+            판다마켓 중고 거래
+          </h1>
+          <Image
+            src="/images/Img_home_bottom@2x.png"
+            width={746}
+            height={379}
+            alt="하위 배너 이미지"
+          />
+        </div>
+      </section>
     </div>
   );
 }

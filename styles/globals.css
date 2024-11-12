@@ -11,7 +11,7 @@ body {
 
   font-size: 10px;
   color: #374151;
-  font-family: "Pretendard Variable", Pretendard, sans-serif;
+  font-family: 'Pretendard', sans-serif;
 }
 
 a {
@@ -27,4 +27,9 @@ button {
 
 ul {
   list-style-type: none;
+}
+
+input,
+textarea {
+  border: none;
 }

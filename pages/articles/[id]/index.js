@@ -1,37 +1,43 @@
+import styles from '@/styles/ArticleDetail.module.css';
 import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
-import styles from '@/styles/Article.module.css';
-import { getArticle } from '@/lib/api/ArticleService';
-import { getArticleCommentList } from '@/lib/api/ArticleCommentService';
+import { getArticle, getArticleCommentList } from '@/lib/api/ArticleService';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/formatDate';
 import ArticleDropdown from '@/components/ArticleDetail/ArticleDropdown';
 
 export async function getServerSideProps(context) {
-  const articleId = context.params['id'];
+  try {
+    const articleId = context.params['id'];
 
-  const article = await getArticle(articleId);
-  const articleComments = await getArticleCommentList(articleId);
+    const article = await getArticle(articleId);
+    const articleComments = await getArticleCommentList(articleId);
 
-  return {
-    props: {
-      article,
-      articleComments
-    }
-  };
+    return {
+      props: {
+        article,
+        articleComments
+      }
+    };
+  } catch (err) {
+    console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err.message);
+    throw new Error(
+      '서버에서 데이터를 가져오는 중 문제가 발생했습니다.' + err.message
+    );
+  }
 }
 
-export default function Article({ article, articleComments }) {
+export default function ArticleDetail({ article, articleComments }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const router = useRouter();
 
-  if (!article) return null;
+  if (!article) return <div>No article found for this ID.</div>;
 
-  const handleBackList = () => router.push('/');
+  const handleBackList = () => router.push('/articles');
   const handleMenuClick = () => setDropdownOpen((prev) => !prev);
 
   return (
@@ -58,13 +64,14 @@ export default function Article({ article, articleComments }) {
           <div className={styles.info}>
             <div className={styles[`user-info`]}>
               <Image
+                className={styles.image}
                 src="/images/size=large.png"
                 width={40}
                 height={40}
                 alt="유저 아이콘"
               />
-              <p>판매왕 판다</p>
-              <p>{formatDate(article.createdAt)}</p>
+              <p className={styles.name}>{article.writer.nickname}</p>
+              <p className={styles.date}>{formatDate(article.createdAt)}</p>
             </div>
             <div className={styles[`like-wrap`]}>
               <div className={styles.like}>
@@ -74,7 +81,7 @@ export default function Article({ article, articleComments }) {
                   height={32}
                   alt="좋아요 아이콘"
                 />
-                <p>+9999</p>
+                <p>{article.likeCount}</p>
               </div>
             </div>
           </div>
@@ -82,7 +89,7 @@ export default function Article({ article, articleComments }) {
         <p>{article.content}</p>
       </div>
       <ArticleCommentAdd />
-      <ArticleCommentList articleComments={articleComments} />
+      <ArticleCommentList articleComments={articleComments.list || []} />
       <button className={styles[`back-list`]} onClick={handleBackList}>
         목록으로 돌아가기
         <Image

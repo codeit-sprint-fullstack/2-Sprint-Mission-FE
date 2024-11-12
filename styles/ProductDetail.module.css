@@ -1,0 +1,294 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6.4rem;
+}
+
+.product-comments {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4rem;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2.4rem;
+}
+
+.product-info {
+    display: flex;
+
+    padding-bottom: 4.5rem;
+    border-bottom: 0.1rem solid #E5E7EB;
+
+    gap: 2.4rem;
+}
+
+.product-image-wrapper {
+    width: 48.6rem;
+    height: 48.6rem;
+    border-radius: 1.6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.contents-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    max-width: 69rem;
+    width: 100%;
+
+    gap: 4rem;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2.4rem;
+}
+
+.title-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 1.6rem;
+    border-bottom: 0.1rem solid #E5E7EB;
+
+    color: #1F2937;
+    font-weight: 600;
+
+    gap: 1.6rem;
+}
+
+.title p {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+}
+
+.title h1 {
+    font-size: 4rem;
+    line-height: 4.773rem;
+}
+
+.menu-wrap {
+    width: 100%;
+}
+
+.menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 10;
+    right: 2rem;
+}
+
+.description-tags {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2.4rem;
+}
+
+.description-wrap {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.8rem;
+}
+
+.subtitle {
+    color: #4B5563;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 400;
+}
+
+.user-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+
+    gap: 1.6rem;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.2rem;
+}
+
+.user-info p {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+}
+
+.user-info .nickname {
+    color: #4B5563;
+    font-weight: 500;
+}
+
+.user-info .date {
+    color: #9CA3AF;
+    font-weight: 400;
+}
+
+.tags {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    gap: 0.8rem;
+}
+
+.tag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 0.8rem;
+}
+
+.tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 3.6rem;
+
+    padding: 0.6rem 1.6rem;
+    border-radius: 2.6rem;
+
+    color: #1F2937;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+
+    background-color: #F3F4F6;
+}
+
+.favorite-wrap {
+    border-left: 0.1rem solid #E5E7EB;
+}
+
+.favorite {
+    display: flex;
+    align-items: center;
+
+    height: 4rem;
+
+    margin-left: 3.2rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: 3.5rem;
+    border: 0.1rem solid #E5E7EB;
+
+    gap: 1rem;
+}
+
+.favorite p {
+    color: #6B7280;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2.6rem;
+}
+
+.back-list {
+    display: flex;
+    align-items: center;
+
+    width: auto;
+    height: 4.8rem;
+
+    margin: 0 auto 15rem;
+    padding: 1.2rem 3.95rem;
+    border-radius: 4rem;
+
+    color: #F3F4F6;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2.6rem;
+
+    background-color: #3692FF;
+
+    gap: 0.8rem;
+}
+
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+    .contents-wrap {
+        max-width: 34rem;
+        width: 100%;
+    }
+
+    .product-image-wrapper {
+        width: 34em;
+        height: 34rem;
+    }
+}
+
+@media screen and (max-width: 743px) {
+    .product-info {
+        flex-direction: column;
+
+        max-width: 34.4rem;
+        width: 100%;
+    }
+
+    .title p {
+        font-size: 1.6rem;
+        line-height: 2.6rem;
+    }
+
+    .title h1 {
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+    }
+
+    .description {
+        font-weight: 400;
+    }
+
+    .product-image-wrapper {
+        width: auto;
+        height: 34rem;
+    }
+}

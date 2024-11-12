@@ -1,0 +1,41 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper h1 {
+    color: #111827;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+.service {
+    display: flex;
+    align-items: center;
+
+    gap: 1.2rem;
+}
+
+.service button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: auto;
+    height: 4.2rem;
+
+    padding: 0.8rem 2.3rem;
+    border-radius: 0.8rem;
+
+    background-color: #3692FF;
+}
+
+.service button a {
+    color: #F3F4F6;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2.6rem;
+    text-wrap: nowrap;
+}

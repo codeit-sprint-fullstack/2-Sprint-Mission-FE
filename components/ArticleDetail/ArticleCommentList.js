@@ -1,12 +1,12 @@
 import styles from './ArticleCommentList.module.css';
 import Image from 'next/image';
-import { patchArticleComment } from '@/lib/api/ArticleCommentService';
-import CommentDropdown from './CommentDropdown';
+import { patchArticleComment } from '@/lib/api/ArticleService';
+import ArticleCommentDropdown from './ArticleCommentDropdown';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import formatTime from '@/lib/formatTime';
 
-export default function ArticleCommentList({ articleComments }) {
+export default function ArticleCommentList({ articleComments = [] }) {
   const [selectedComment, setSelectedComment] = useState(false);
   const [editingCommentId, setEditingCommentId] = useState('');
   const [editingContent, setEditingContent] = useState('');
@@ -15,7 +15,6 @@ export default function ArticleCommentList({ articleComments }) {
   const dropdownRef = useRef(null);
 
   const router = useRouter();
-  const articleId = router.query['id'];
 
   const handleMenuClick = (comment) => {
     setSelectedComment(comment);
@@ -30,7 +29,7 @@ export default function ArticleCommentList({ articleComments }) {
 
   const handleEdit = async (commentId) => {
     try {
-      await patchArticleComment(articleId, commentId, {
+      await patchArticleComment(commentId, {
         content: editingContent
       });
       setEditingCommentId(null);
@@ -76,7 +75,7 @@ export default function ArticleCommentList({ articleComments }) {
                       />
                       {selectedComment?.id === comment.id && dropdownOpen && (
                         <div ref={dropdownRef} className={styles.dropdown}>
-                          <CommentDropdown
+                          <ArticleCommentDropdown
                             commentId={comment.id}
                             onEditClick={() => handleEditClick(comment)}
                           />
@@ -108,6 +107,7 @@ export default function ArticleCommentList({ articleComments }) {
             width={140}
             height={140}
             alt="댓글 없을 때 아이콘"
+            priority
           />
           <p>
             아직 댓글이 없어요,

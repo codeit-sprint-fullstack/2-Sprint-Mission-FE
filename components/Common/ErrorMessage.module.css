@@ -1,0 +1,71 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 75vh;
+    text-align: center;
+}
+
+.wrapper span {
+    font-size: 2rem;
+    font-weight: 700;
+    animation: textColorChange 2s infinite;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2rem;
+}
+
+.back-list {
+    display: flex;
+    align-items: center;
+
+    width: auto;
+    height: 4.8rem;
+
+    margin: 0 auto;
+    padding: 1.2rem 3.95rem;
+    border-radius: 4rem;
+
+    color: #F3F4F6;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2.6rem;
+
+    background-color: #3692FF;
+
+    gap: 0.8rem;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes textColorChange {
+    0% {
+        color: #000;
+    }
+
+    50% {
+        color: red;
+    }
+
+    100% {
+        color: #000;
+    }
+}

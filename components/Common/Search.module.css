@@ -1,0 +1,40 @@
+.search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+
+    height: 4.2rem;
+
+    border-radius: 1.2rem;
+    padding: 0.9rem 2rem 0.9rem 1.6rem;
+
+    background-color: #F3F4F6;
+}
+
+.icon {
+    position: absolute;
+}
+
+.input {
+    width: 100%;
+    height: 4.2rem;
+
+    border: none;
+    margin-left: 1.875rem;
+
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+
+    background-color: #F3F4F6;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.input::placeholder {
+    color: #9CA3AF;
+}

@@ -1,5 +1,5 @@
 import styles from './ArticleCommentAdd.module.css';
-import { createArticleComment } from '@/lib/api/ArticleCommentService';
+import { createArticleComment } from '@/lib/api/ArticleService';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
