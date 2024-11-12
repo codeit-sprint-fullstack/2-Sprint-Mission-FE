@@ -47,8 +47,6 @@ export default function Header() {
     }
   };
 
-  console.log(userInfo);
-
   return (
     <div className={styles.header}>
       <div className={styles.nav}>

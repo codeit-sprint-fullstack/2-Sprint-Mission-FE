@@ -79,13 +79,6 @@ export interface UserInfo {
   updatedAt: string;
 }
 
-export interface ProductData {
-  page: number;
-  pageSize: number;
-  orderBy: string;
-  keyword?: string;
-}
-
 export async function postSignUp(data: SignUpData) {
   try {
     const res = await instance.post("/auth/signUp", data);
@@ -155,4 +148,14 @@ export async function getProduct(
 
   const res = await instance.get(`/products?${params.toString()}`);
   return res.data;
+}
+
+export async function getProductDetail(id: string) {
+  try {
+    const res = await instance.get(`/products/${id}`);
+    return res.data;
+  } catch (error) {
+    console.error("제품 상세 정보를 가져오는 중 오류 발생:", error);
+    throw error;
+  }
 }
