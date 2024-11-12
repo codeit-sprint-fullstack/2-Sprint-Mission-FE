@@ -3,12 +3,11 @@
  * 래퍼함수는 기본 요구사항 모두 충족한 뒤 작성하겠습니다.
  */
 
-import { ifError } from "assert";
 import axios from "axios";
 
 export const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  timeout: 5000,
+  // timeout: 5000,
 });
 
 export interface SignUpData {
@@ -29,6 +28,29 @@ export interface UserInfo {
   image?: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ProductData {
+  page: number;
+  pageSize: number;
+  orderBy: string;
+  keyword?: string;
+}
+
+export async function getProduct(
+  page: number = 1,
+  pageSize: number = 10,
+  orderBy: string = "recent",
+  keyword?: string
+) {
+  const params = new URLSearchParams({
+    page: page.toString(),
+    pageSize: pageSize.toString(),
+    orderBy,
+  });
+
+  const res = await instance.get(`/products?${params.toString()}`);
+  return res.data;
 }
 
 export async function postSignUp(data: SignUpData) {
