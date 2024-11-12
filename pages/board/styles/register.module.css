@@ -8,7 +8,7 @@
   margin: 30px 0;
 }
 
-.register_buttion,
+.register_button,
 .edit_button {
   width: 74px;
   height: 42px;
@@ -18,7 +18,7 @@
   color: white;
   font-weight: 600;
 }
-.register_buttion.active_button {
+.register_button.active_button {
   background-color: #3692ff;
   cursor: pointer;
 }

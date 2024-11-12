@@ -1,0 +1,113 @@
+.registration_container {
+  margin: 100px 250px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.input {
+  display: block;
+  border: none;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  width: 100%;
+  height: 56px;
+  padding-left: 20px;
+}
+
+.registration_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 57px 0 20px;
+}
+
+.register_button {
+  padding: 12px 23px;
+  font-weight: 700;
+  color: white;
+  background-color: #9ca3af;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+}
+
+.product_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 30px;
+}
+
+.tags_hardcoding {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #f3f4f6;
+  height: 36px;
+  padding: 5px 40px 5px 15px;
+  margin-right: 10px;
+  border-radius: 20px;
+  background-image: url("../../images/etc/delete_icon.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.textarea {
+  display: block;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  border: none;
+  resize: vertical;
+  text-align: left;
+  font-size: 13px;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #9ca3af;
+}
+
+.tag_list {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.delete_tag_button {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* tablet 용*/
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .registration_container {
+    margin: 100px 30px;
+  }
+}
+
+/* mobile 용 */
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .registration_container {
+    margin: 100px 20px;
+  }
+}

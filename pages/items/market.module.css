@@ -1,0 +1,33 @@
+.comment_container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-direction: column;
+}
+.empty_comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.empty_comment p {
+  color: #9ca3af;
+}
+.return_button_container {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+.return_list {
+  background-color: #3692ff;
+  width: 240px;
+  height: 48px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
