@@ -41,7 +41,7 @@ export default function ArticleCommentList({
       const data = { content: editedComment };
       const res = await axios.patch(`/articles/comments/${commentId}`, data);
       const updatedComment = res.data;
-      console.log("updatedComment", updatedComment);
+
       if (updatedComment) {
         setArticleComments((prevComments) =>
           prevComments.map((comment) =>

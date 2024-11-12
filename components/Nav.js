@@ -16,14 +16,14 @@ export default function Nav() {
   }
 
   useEffect(() => {
-    const handleLogoChang = () => {
+    const handleLogoChange = () => {
       setIsMobile(window.innerWidth < 744);
     };
 
-    window.addEventListener("resize", handleLogoChang);
+    window.addEventListener("resize", handleLogoChange);
 
     return () => {
-      window.removeEventListener("resize", handleLogoChang);
+      window.removeEventListener("resize", handleLogoChange);
     };
   }, []);
 
