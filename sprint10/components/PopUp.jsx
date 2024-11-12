@@ -1,4 +1,5 @@
 import styles from '@/styles/LogInPage.module.css';
+import Image from 'next/image';
 
 function PopUp({ error, setError }) {
 	return (
@@ -7,7 +8,7 @@ function PopUp({ error, setError }) {
 				<div id="popup-text" className={styles.popup_text}>
 					{error && error?.message ?
 					error.message
-					: <>{error?.name}{" : "}{error?.description}<br/>{error?.price}{" :: "}{error?.tags.join("/")}<br/><img className={styles.popup_img} src={error?.images[0]} alt={error?.name}/></>}
+					: <>{error?.name}{" : "}{error?.description}<br/>{error?.price}{" :: "}{error?.tags?.join("/")}<br/><Image width={50} height={50} className={styles.popup_img} src={error?.images?.[0]} alt={error?.name}/></>}
 				</div><button id="popup-button-ok" className={styles.popup_button_ok} onClick={() => {
 					setError(null);
 				}}>확인</button>

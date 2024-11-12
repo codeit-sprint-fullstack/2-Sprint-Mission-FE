@@ -18,7 +18,7 @@ function Articles({ articles }) {
 							<div className={styles.profile}>
 								<Image fill src="/images/ic_profile.png" alt="프로필" />
 							</div>
-							{article.author.nickname} &nbsp;{new Date(article.createdAt).toLocaleDateString("ko-KR")}
+							{article?.author?.nickname} &nbsp;{new Date(article.createdAt).toLocaleDateString("ko-KR")}
 						</div>
 						<div className={styles.likes}>♡ {article.favoriteCount}</div>
 					</div>

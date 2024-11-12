@@ -61,9 +61,9 @@ async function deleteProductWithId(id) {
 	}
 }
 
-async function putProductToFavorite(id) {
+async function patchComment(commentId, productId, { content }) {
 	try {
-		const resp = await instance.post(`/products/${id}/favorite`);
+		const resp = await instance.patch(`/products/${productId}/comments/${commentId}`, { content });
 		return resp.data;
 	}
 	catch (err) {
@@ -71,29 +71,9 @@ async function putProductToFavorite(id) {
 	}
 }
 
-async function deleteProductFromFavorite(id) {
+async function deleteComment(commentId, productId) {
 	try {
-		const resp = await instance.delete(`/products/${id}/favorite`);
-		return resp.data;
-	}
-	catch (err) {
-		return err?.response?.data || err;
-	}
-}
-
-async function patchComment(commentId, { content }) {
-	try {
-		const resp = await instance.patch(`/comments/${commentId}`, { content });
-		return resp.data;
-	}
-	catch (err) {
-		return err?.response?.data || err;
-	}
-}
-
-async function deleteComment(commentId) {
-	try {
-		const resp = await instance.delete(`/comments/${commentId}`);
+		const resp = await instance.delete(`/products/${productId}/comments/${commentId}`);
 		return resp.data;
 	}
 	catch (err) {
@@ -138,8 +118,6 @@ export {
 	patchProductWithId,
 	getProductWithIdComments,
 	deleteProductWithId,
-	putProductToFavorite,
-	deleteProductFromFavorite,
 	patchComment,
 	deleteComment,
 	postProductWithIdComment,

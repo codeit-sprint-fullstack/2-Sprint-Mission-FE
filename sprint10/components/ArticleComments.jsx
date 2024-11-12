@@ -1,8 +1,8 @@
 import styles from '@/styles/ItemDetailPage.module.css';
-import Comment from './Comment.jsx';
+import ArticleComment from './ArticleComment.jsx';
 import Image from 'next/image.js';
 
-function Comments({ comments, productId }) {
+function ArticleComments({ comments, articleId }) {
 	let res;
 	if (!comments || comments.length === 0) {
 		res = (<div className={styles.center}>
@@ -12,9 +12,9 @@ function Comments({ comments, productId }) {
 		</div>);
 	} else {
 		res = (<ul>
-			{comments.map((comment) => (
+			{comments?.map((comment) => (
 				<li key={comment.id}>
-					<Comment comment={comment} productId={productId} />
+					<ArticleComment comment={comment} articleId={articleId} />
 				</li>
 			))}
 		</ul>)
@@ -23,4 +23,4 @@ function Comments({ comments, productId }) {
 	return res;
 }
 
-export default Comments;
+export default ArticleComments;

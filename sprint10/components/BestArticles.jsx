@@ -36,7 +36,7 @@ function BestArticles({ articles: initialArticles }) {
 					</div>
 					<div className={styles.infos}>
 						<div className={styles.authorAndLikes}>
-							{article.author.nickname} &nbsp; ♡ {article.favoriteCount}
+							{article?.author?.nickname} &nbsp; ♡ {article.favoriteCount}
 						</div>
 						<div className={styles.date}>{new Date(article.createdAt).toLocaleDateString("ko-KR")}</div>
 					</div>

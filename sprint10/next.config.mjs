@@ -37,6 +37,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'pbs.twimg.com',
         pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.samsung.com',
+        pathname: '/**'
       }
     ],
   }

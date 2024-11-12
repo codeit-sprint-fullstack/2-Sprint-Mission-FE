@@ -12,10 +12,11 @@
 
 .main .logo {
   position: relative;
-  padding: 40px 0;
+  padding: 0;
+  margin: 40px auto;
   width: 396px;
   max-width: 100%;
-  height: auto;
+  height: 132px;
 }
 
 .form {
@@ -110,8 +111,8 @@
 
   & .oauth_img_wrapper {
     position: relative;
-    width: 24px;
-    height: 24px;
+    width: 42px;
+    height: 42px;
   }
 }
 

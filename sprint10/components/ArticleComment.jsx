@@ -1,31 +1,31 @@
 import styles from '@/styles/ItemDetailPage.module.css';
 import KebabMenu from "./KebabMenu.jsx";
 import { useState } from "react";
-import { deleteComment, patchComment } from "../apis/itemsService.js";
 import PopUp from "./PopUp.jsx";
 import { useUser } from '../context/UserProvider.jsx';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteArticleComment, patchArticleComment } from '@/apis/articlesService.js';
 import Image from 'next/image.js';
 
-function Comment({ comment, productId }) {
+function ArticleComment({ comment, articleId }) {
 	const [isEditting, setIsEditting] = useState(false);
 	const [error, setError] = useState(null);
 	const [content, setContent] = useState(comment.content);
 	const user = useUser();
 	const queryClient = useQueryClient();
 	const patchCommentMutation = useMutation({
-    mutationFn: ({ commentId, newComment }) => patchComment(commentId, productId, { content: newComment }),
+    mutationFn: ({ commentId, newComment }) => patchArticleComment(commentId, articleId, { content: newComment }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["comments", productId],
+        queryKey: ["articleComments", articleId],
       });
     },
   });
 	const deleteCommentMutation = useMutation({
-    mutationFn: (commentId) => deleteComment(commentId, productId),
+    mutationFn: (commentId) => deleteArticleComment(commentId, articleId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["comments", productId],
+        queryKey: ["articleComments", articleId],
       });
     },
   });
@@ -65,4 +65,4 @@ function Comment({ comment, productId }) {
 	);
 }
 
-export default Comment;
+export default ArticleComment;

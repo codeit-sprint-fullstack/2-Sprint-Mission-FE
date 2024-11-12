@@ -20,7 +20,37 @@ async function getArticleWithId(id) {
 	}
 }
 
-async function postArticle(data = { title: "", content: "", favoriteCount: 0, authorId: "86f32cda-cc20-49e5-a1c8-a69ff98e5ebf" }) {
+async function getArticleWithIdComments(id) {
+	try {
+		const article = await instance.get(`/articles/${id}/comments`);
+		return article.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
+async function patchArticleComment(commentId, articleId, { content }) {
+	try {
+		const resp = await instance.patch(`/articles/${articleId}/comments/${commentId}`, { content });
+		return resp.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
+async function deleteArticleComment(commentId, articleId) {
+	try {
+		const resp = await instance.delete(`/articles/${articleId}/comments/${commentId}`);
+		return resp.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
+async function postArticle(data = { title: "", content: "", favoriteCount: 0 }) {
 	try {
 		const resp = await instance.post(`/articles`, data);
 		return resp.data;
@@ -53,27 +83,7 @@ async function deleteArticleWithId(id) {
 
 async function postArticleComment(articleId, data = { commenterId: "", content: "" }) {
 	try {
-		const resp = await instance.post(`/articles/${articleId}/comment`, data);
-		return resp.data;
-	}
-	catch (err) {
-		return err?.response?.data || err;
-	}
-}
-
-async function patchArticleComment(articleId, commentId, data = { content: "" }) {
-	try {
-		const resp = await instance.patch(`/articles/${articleId}/comment/${commentId}`, data);
-		return resp.data;
-	}
-	catch (err) {
-		return err?.response?.data || err;
-	}
-}
-
-async function deleteArticleComment(articleId, commentId) {
-	try {
-		const resp = await instance.delete(`/articles/${articleId}/comment/${commentId}`);
+		const resp = await instance.post(`/articles/${articleId}/comments`, data);
 		return resp.data;
 	}
 	catch (err) {
@@ -87,7 +97,8 @@ export {
 	postArticle,
 	patchArticleWithId,
 	deleteArticleWithId,
-	postArticleComment,
+	getArticleWithIdComments,
 	patchArticleComment,
-	deleteArticleComment
+	deleteArticleComment,
+	postArticleComment,
 };

@@ -26,9 +26,11 @@
 }
 
 .imageContainer {
+	position: relative;
 	display: inline-block;
 	width: 100%;
 	flex-grow: 1;
+	aspect-ratio: 1 / 1;
 
 	@media (max-width: 744px) {
 		width: 100%;
@@ -185,13 +187,6 @@
 	gap: 8px;
 	border-right: 1px solid var(--secondary-color-gray200);
 
-	& .profileContainer {
-		position: relative;
-		display: inline-block;
-		width: 40px;
-		height: 40px;
-	}
-
 	& .author {
 		font-size: var(--text-md)
 	}
@@ -200,6 +195,13 @@
 		font-size: var(--text-md);
 		color: var(--secondary-color-gray400);
 	}
+}
+
+.profileContainer {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
 }
 
 .likes {
@@ -234,15 +236,15 @@
 			text-align: center;
 			font-size: var(--text-lg);
 			color: var(--secondary-color-gray400);
-
-			& .imgReplyEmptyContainer {
-				position: relative;
-				width: 140px;
-				height: 140px;
-				margin: 24px auto;
-			}
 		}
 	}
+}
+
+.imgReplyEmptyContainer {
+	position: relative;
+	width: 140px;
+	height: 140px;
+	margin: 24px auto;
 }
 
 .sub {

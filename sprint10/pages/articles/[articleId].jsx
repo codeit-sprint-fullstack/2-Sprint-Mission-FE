@@ -1,38 +1,50 @@
 import styles from '@/styles/ArticleDetail.module.css';
-import { deleteArticleWithId, getArticleWithId, postArticleComment } from '@/apis/articlesService.js';
+import { deleteArticleWithId, getArticleWithId, getArticleWithIdComments, postArticleComment } from '@/apis/articlesService.js';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Comments from '@/components/Comments.jsx';
+import ArticleComments from '@/components/ArticleComments.jsx';
 import Link from 'next/link';
 import PopUp from '@/components/PopUp.jsx';
 import KebabMenu from '@/components/KebabMenu';
 import { useRouter } from 'next/router';
+import { useQuery } from '@tanstack/react-query';
 
-export async function getServerSideProps(context) {
-	const { id } = context.params;
-	const article = await getArticleWithId(id);
-	return {
-		props: {
-			article
-		}
-	};
-}
+// export async function getServerSideProps(context) {
+// 	const { id } = context.params;
+// 	const article = await getArticleWithId(id);
+// 	return {
+// 		props: {
+// 			article
+// 		}
+// 	};
+// }
 
-function ArticleDetail({ article }) {
+function ArticleDetail() {
 	const [comment, setComment] = useState("");
-	const [articleComments, setArticleComments] = useState(article.articleComments ?? []);
 	const [error, setError] = useState(null);
 	const router = useRouter();
+	const { articleId } = router.query;
+	const { data: article, isPending, isError } = useQuery({
+		queryKey: ["articles", articleId],
+		queryFn: () => getArticleWithId(articleId),
+	});
+	const { data: articleComments, isPendingComments, isErrorComments } = useQuery({
+		queryKey: ["articleComments", articleId],
+		queryFn: () => getArticleWithIdComments(articleId),
+	});
 
 	const handleWriteComment = async () => {
-		const res = await postArticleComment(article.id, { content: comment, commenterId: "86f32cda-cc20-49e5-a1c8-a69ff98e5ebf" });
+		const res = await postArticleComment(article.id, { content: comment });
 		if (res?.id) {
-			setArticleComments([res, ...articleComments]);
 			setComment("");
 		} else {
 			setError(res);
 		}
 	};
+
+	if (isPending || isPendingComments) return "Loading...";
+
+	if (isError || isErrorComments) return "Error...";
 
 	return (
 		<main className={styles.main}>
@@ -57,7 +69,7 @@ function ArticleDetail({ article }) {
 						<div className={styles.profileContainer}>
 							<Image fill src="/images/ic_profile.png" alt="profile" />
 						</div>
-						<div className={styles.author}>{article.author.nickname}</div>
+						<div className={styles.author}>{article?.author?.nickname}</div>
 						<div className={styles.date}>{new Date(article.createdAt).toLocaleDateString("ko-KR")}</div>
 					</div>
 					<div className={styles.likes}>
@@ -67,7 +79,7 @@ function ArticleDetail({ article }) {
 						{article.favoriteCount}
 					</div>
 				</div>
-				<div className={styles.content}>{article.content.split('\n').map((line, index) => (<React.Fragment key={index}>{line}<br /></React.Fragment>))}</div>
+				<div className={styles.content}>{article?.content?.split('\n').map((line, index) => (<React.Fragment key={index}>{line}<br /></React.Fragment>))}</div>
 			</article>
 			<div className={styles.sub}>
 				<h3>댓글달기</h3>
@@ -77,7 +89,7 @@ function ArticleDetail({ article }) {
 			</div>
 			<div className={styles.sub}>
 				<div className={styles.comments}>
-					<Comments comments={articleComments} articleId={article.id} />
+					<ArticleComments comments={articleComments} articleId={article.id} />
 				</div>
 			</div>
 			<div className={styles.sub}>

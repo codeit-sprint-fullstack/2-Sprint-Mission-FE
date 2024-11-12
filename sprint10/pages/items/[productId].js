@@ -8,22 +8,23 @@ import { useUser } from "@/context/UserProvider.jsx";
 import { useRouter } from "next/router.js";
 import Image from "next/image.js";
 
-export async function getServerSideProps(context) {
-	const { productId } = context.params;
-	const product = await getProductWithId(productId);
-	return {
-		props: {
-			productId,
-			product
-		}
-	};
-}
+// export async function getServerSideProps(context) {
+// 	const { productId } = context.params;
+// 	const product = await getProductWithId(productId);
+// 	return {
+// 		props: {
+// 			productId,
+// 			product
+// 		}
+// 	};
+// }
 
-function ItemDetailPage({ productId, product }) {
+function ItemDetailPage() {
 	const [comment, setComment] = useState('');
 	const [delModal, setDelModal] = useState(false);
 	const user = useUser();
 	const router = useRouter();
+	const { productId } = router.query;
 	const queryClient = useQueryClient();
 	const { data, isPending, isError } = useQuery({
 		queryKey: ["products", productId],
@@ -51,31 +52,6 @@ function ItemDetailPage({ productId, product }) {
 				await unlikeProductWithId(productId);
 			}
 		},
-		// onMutate: async ({ userAction }) => {
-		// 	await queryClient.cancelQueries({
-		// 		queryKey: ["products", productId],
-		// 	});
-
-		// 	const { data: { isFavorite, favoriteCount } } = queryClient.getQueryData(["products", productId]);
-
-		// 	queryClient.setQueryData(
-		// 		["products", productId],
-		// 		(data) => {
-		// 			return { ...data, isFavorite: (userAction === "like"), favoriteCount: (userAction === "like") ? data.favoriteCount + 1 : data.favoriteCount - 1 };
-		// 		}
-		// 	);
-
-		// 	return { isFavorite, favoriteCount };
-		// },
-		// onError: (err, { productId }, context) => {
-		// 	queryClient.setQueryData(
-		// 		["products", productId],
-		// 		(data) => {
-		// 			data.isFavorite = context.isFavorite;
-		// 			data.favoriteCount = context.favoriteCount;
-		// 		}
-		// 	);
-		// },
 		onSuccess: (data, err) => {
 			queryClient.invalidateQueries({
 				queryKey: ["products", productId],
@@ -95,7 +71,7 @@ function ItemDetailPage({ productId, product }) {
 	return (<main className={styles.main}>
 		<div className={styles.subTop}>
 			<div className={styles.imageContainer}>
-				<Image fill src={data.images.length ? data.images[0] : '/images/no_image.png'} alt={data.name} />
+				<Image fill src={data?.images?.length ? data.images[0] : '/images/no_image.png'} alt={data.name} />
 			</div>
 			<div className={styles.info}>
 				<div className={styles.head}>
@@ -130,7 +106,7 @@ function ItemDetailPage({ productId, product }) {
 					<div className={styles.owner}>
 						<Image width={40} height={40} src="/images/ic_unknown.png" alt={data.ownerNickname} />
 						<div className={styles.nicknameAndDate}>
-							<div className={styles.nickname}>{data.ownerNickname}</div>
+							<div className={styles.nickname}>{data.owner.nickname}</div>
 							<div className={styles.date}>{new Date(data.createdAt).toLocaleDateString("ko-KR")}</div>
 						</div>
 					</div>
@@ -153,7 +129,7 @@ function ItemDetailPage({ productId, product }) {
 		</div>
 		<div className={styles.sub}>
 			<div className={styles.comments}>
-				<Comments comments={comments.list} productId={productId} />
+				<Comments comments={comments} productId={productId} />
 			</div>
 		</div>
 		<div className={styles.backToItems}>
