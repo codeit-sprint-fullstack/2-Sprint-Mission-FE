@@ -1,0 +1,85 @@
+/* -----------PC------------ */
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2px;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bestProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bestProductList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 24px 0;
+}
+
+.productImage {
+  width: 282px;
+  height: 282px;
+  border-radius: 19.46px;
+  position: relative;
+  overflow: hidden;
+}
+
+.productInfo {
+  width: 282px;
+  margin: 12px 0 0 0;
+}
+
+.description {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  margin: 0;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+  margin: 0;
+}
+
+.favoriteCount {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  margin: 0;
+}
+
+/* ---------Tablet---------- */
+@media (max-width: 1200px) {
+  .wrapper {
+    margin: 0 10px;
+  }
+
+  .bestProductList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .productImage {
+    width: 343px;
+    height: 343px;
+  }
+
+  .productInfo {
+    width: 343px;
+  }
+}
+
+/* -----------Mobile------------ */
+@media (max-width: 744px) {
+  .bestProductList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

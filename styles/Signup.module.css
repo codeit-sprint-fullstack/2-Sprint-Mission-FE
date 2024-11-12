@@ -1,0 +1,168 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  gap: 24px;
+}
+
+.form {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.pandaLogo {
+  width: 396px;
+  height: 132px;
+  margin: 60px auto 24px;
+  display: block;
+  position: relative;
+}
+
+.label {
+  display: block;
+  margin: 16px 0;
+  font-weight: 700;
+}
+
+.input {
+  display: block;
+  border: none;
+  color: var(--gray-800);
+  background-color: var(--gray-100);
+  font-size: 1.6rem;
+  width: 100%;
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px 24px;
+
+  &::placeholder {
+    color: var(--gray-400);
+  }
+}
+
+.errorMessage {
+  color: var(--error-red);
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  font-weight: 600;
+  margin: 8px 0 0 16px;
+}
+
+.passwordInput,
+.passwordInputVerification {
+  position: relative;
+}
+
+.togglePassword {
+  height: 24px;
+  position: absolute;
+  top: 30px;
+  transform: translateY(-50%);
+  right: 24px;
+}
+
+.socialLogin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e6f2ff;
+  border-radius: 8px;
+  width: 100%;
+  height: 74px;
+  padding: 0 23px;
+  font-weight: 500;
+}
+
+.icons {
+  display: flex;
+  gap: 16px;
+}
+
+.ask {
+  margin: 24px 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.answerLink {
+  color: #3182f6;
+}
+
+.alertModal {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 540px;
+  height: 250px;
+  font-size: 1.6rem;
+  color: var(--gray-800);
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.modalButton {
+  width: 120px;
+  height: 48px;
+  background-color: var(--primary-100);
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 50px;
+  margin-left: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 0 16px;
+  }
+
+  .pandaLogo {
+    width: 198px;
+    height: 66px;
+  }
+
+  .label {
+    font-size: 1.4rem;
+  }
+
+  .modalContent {
+    width: 327px;
+    height: 220px;
+  }
+
+  .modalButton {
+    margin-left: 0;
+  }
+}

@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
   const resArticle = await axios.get(`/articles/${articleId}`);
   const article = resArticle.data;
 
-  const resComments = await axios.get(`/article/${articleId}/comments`);
+  const resComments = await axios.get(`/articles/${articleId}/comments`);
   const comments = resComments.data;
 
   return {
@@ -43,7 +43,7 @@ export default function Article({ article, comments: initialComments }) {
 
     const data = { content: content };
     try {
-      const res = await axios.post(`/article/comments/${article.id}`, data);
+      const res = await axios.post(`/articles/${article.id}/comments`, data);
       const newContent = res.data;
       setComments((prev) => [...prev, newContent]);
 			setContent('');
@@ -57,7 +57,7 @@ export default function Article({ article, comments: initialComments }) {
       const res = await axios.delete(`/articles/${article.id}`);
       const prevArticle = res.data;
       router.push('/board');
-    } catch (e) {
+    } catch {
       alert('삭제에 실패했습니다.');
     }
   }

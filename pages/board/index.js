@@ -12,14 +12,25 @@ const WriteButton = createButton({
 });
 
 export async function getServerSideProps(context) {
-  const sort = context.query['order'] || '';
-  const keyword = context.query['search'] || '';
+  const sort = context.query['orderBy'] || '';
+  const search = context.query['keyword'] || '';
 
-  const resAll = await axios.get(`/articles?order=${sort}&search=${keyword}`);
-  const articles = resAll.data || [];
+	let articles = [];
+	let bestArticles = [];
+	
+	try {
+		const resAll = await axios.get(`/articles?orderBy=${sort}&keyword=${search}`);
+		articles = resAll.data.list || [];
+	} catch (error) {
+		console.error(error);
+	}
 
-  const resBest = await axios.get(`/articles?limit=3`);
-  const bestArticles = resBest.data || [];
+	try {
+		const resBest = await axios.get(`/articles?pageSize=3`);
+		bestArticles = resBest.data.list || [];
+	} catch (error) {
+		console.error(error);
+	}
 
   return {
     props: {
@@ -32,25 +43,24 @@ export async function getServerSideProps(context) {
 export default function Board({ articles, bestArticles }) {
   const router = useRouter();
   const [sort, setSort] = useState('');
-  const [keyword, setKeyword] = useState('');
+  const [search, setSearch] = useState('');
 
   const handleSelect = (e) => {
     const newSort = e.target.value;
     setSort(newSort);
-    router.push(`/board?order=${sort}&search=${keyword}`);
+    router.push(`/board?orderBy=${sort}&keyword=${search}`);
   };
 
   const handleChange = (e) => {
-    const newKeyword = e.target.value.trim();
+    const newSearch = e.target.value.trim();
 
-    if (!newKeyword) {
-      setKeyword('');
-      router.push(`/board?order=${sort}`);
+    if (!newSearch) {
+      setSearch('');
+      router.push(`/board?orderBy=${sort}`);
       return;
     }
-    setKeyword(newKeyword);
-    console.log('new: ', newKeyword, 'set: ', keyword);
-    router.push(`/board?order=${sort}&search=${newKeyword}`);
+    setSearch(newSearch);
+    router.push(`/board?orderBy=${sort}&keyword=${newSearch}`);
   };
 
   return (
@@ -59,7 +69,7 @@ export default function Board({ articles, bestArticles }) {
         <div className={styles.bestWrapper}>
           <p className={styles.title}>베스트 게시글</p>
           <div className={styles.bestArticles}>
-            {bestArticles?.map((article) => (
+            {bestArticles && bestArticles?.map((article) => (
               <BestArticle key={article.id} article={article} />
             ))}
           </div>
@@ -83,7 +93,7 @@ export default function Board({ articles, bestArticles }) {
             </select>
           </div>
           <div className={styles.allArticles}>
-            {articles?.map((article) => (
+            {articles && articles?.map((article) => (
               <ArticleList key={article.id} article={article} />
             ))}
           </div>
