@@ -11,18 +11,18 @@ export default function BestItem({ products }) {
           products.map((product) => (
             <Link href={`/items/${product.id}`} key={product.id} className={style.itemSection}>
               <div>
-                <Image className={style.itemImg} 
-                // src={product.images.length > 0 ? product.images[0] : img_default} 
-                src={img_default} 
+                {product.images && !product.images.includes('https://example.com') &&<Image className={style.itemImg} 
+                src={product.images.length > 0 ? product.images[0] : img_default} 
+                // src={product.images ? product.images[0] : img_default} 
                 alt={product.name}
                 onError={(e) => e.target.src = img_default} 
                 width={300}
                 height={300}
                 priority
-                />
+                />}
                 <p className={style.itemName}>{product.name}</p>
                 <p className={style.itemPrice}>{product.price.toLocaleString()}원</p>
-                <p className={style.itemFavoriteCount}>♡ {product.favoriteCnt}</p>
+                <p className={style.itemFavoriteCount}>♡ {product.favoriteCount}</p>
               </div>
             </Link>
           ))

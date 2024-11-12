@@ -6,7 +6,7 @@ import heart from "@/public/ic_heart.png";
 import Spinner from "@/components/Spinner";
 import { useRouter } from "next/router";
 import { formatDate } from "@/utils/formatDate";
-import { getProduct } from "@/pages/api/ProductService";
+import { patchProduct, deleteProduct, getProduct } from "@/pages/api/ProductService";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthProvider";
 import profile from "@/public/ic_profile.png";
@@ -17,6 +17,32 @@ export default function ProductDetail() {
   const { user, isPending } = useAuth(true);
   const { id } = router.query;
   const [product, setProduct] = useState(null);
+
+  const handleEdit = () => {
+    if (product.ownerId === user.id) {
+      router.push({
+        pathname: '/registration',
+        query: { id, name: product.name, description: product.description, price: product.price, images: JSON.stringify(product.images), tags: JSON.stringify(product.tags)  },
+      });
+    } else {
+      alert("본인이 작성한 글만 수정할 수 있습니다.");
+    }
+  };
+
+  const handleDelete = async () => {
+    if (product.ownerId === user.id) {
+      if (confirm("정말 삭제하시겠습니까?")) {
+        try {
+          await deleteProduct(id);
+          router.push('/items');
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+    } else {
+      alert("본인이 작성한 글만 삭제할 수 있습니다.");
+    }
+  };
 
   useEffect(() => {
     if (!user) {
@@ -49,7 +75,7 @@ export default function ProductDetail() {
       <div className={style.productGroup}>
         <Image
           className={style.productImg}
-          src={product.images[0] || defaultImg}
+          src={!product.images.includes('example.com') ? defaultImg : product.images[0] }
           alt="product"
           width={300}
           height={300}
@@ -57,7 +83,7 @@ export default function ProductDetail() {
         <div className={style.productInfo}>
           <div className={style.productTop}>
             <p className={style.productName}>{product.name}</p>
-            <KebabMenu className={style.kebab} />
+            <KebabMenu className={style.kebab} onDelete={handleDelete} onEdit={handleEdit} />
           </div>
           <p className={style.productPrice}>{product.price}원</p>
           <span className={style.divider} />

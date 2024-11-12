@@ -3,7 +3,7 @@ import { requestGet, requestPatch } from "./api.js";
 export async function getUser() {
   try {
     const accessToken = localStorage.getItem("accessToken");
-    console.log("Access Token:", accessToken);
+    // console.log("Access Token:", accessToken);
     if (!accessToken) {
       console.error("Access Token is missing");
       return;

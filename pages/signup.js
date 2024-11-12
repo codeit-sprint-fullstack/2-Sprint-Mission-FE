@@ -16,7 +16,7 @@ export default function SignUpPage() {
   const mutation = useMutation({
     mutationFn: postSignUp,
     onSuccess: (data) => {
-      console.log('success Data: ', data);
+      // console.log('success Data: ', data);
       localStorage.setItem("accessToken", data.accessToken);
       router.push("/items");
     },
@@ -32,7 +32,7 @@ export default function SignUpPage() {
       return;
     }
     const data = { email, nickname, password, passwordConfirmation };
-    console.log('Request Data: ', data);
+    // console.log('Request Data: ', data);
     mutation.mutate(data);
   };
 

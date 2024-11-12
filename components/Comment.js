@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getArticleComment, getProductComment, createArticleComment, createProductComment, patchComment } from "../pages/api/CommentService";
 import CommentList from "./CommentList";
+import { useAuth } from "@/contexts/AuthProvider";
 
 export default function Comment() {
   const router = useRouter();
   const { id } = router.query;
+  const { user } = useAuth();
   const [comments, setComments] = useState([]);
   const [nextCursor, setNextCursor] = useState(null);
   const [newComment, setNewComment] = useState("");
@@ -54,13 +56,13 @@ export default function Comment() {
         let commentData;
         let createdComment;
         if (isProductPage) {
-          commentData = { content: newComment, productId: id };
+          commentData = { content: newComment };
           createdComment = await createProductComment(id, commentData);
         } else {
-          commentData = { content: newComment, articleId: id };
+          commentData = { content: newComment };
           createdComment = await createArticleComment(id, commentData);
         }
-        setComments((prev) => [...prev, createdComment]);
+        setComments((prev) => [...prev, { ...createdComment, writer: { image: user.image, nickname: user.nickname, id: user.id }}]);
       }
       setNewComment("");
     } catch (error) {
@@ -94,7 +96,7 @@ export default function Comment() {
         </button>
       </div>
       <div className={style.commentListSection}>
-        <CommentList comments={comments} onEdit={handleEdit} setComments={setComments} />
+        <CommentList comments={comments} onEdit={handleEdit} setComments={setComments} userId={user.id} />
       </div>
     </div>
   );

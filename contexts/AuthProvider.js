@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
       if (error.response?.status === 401) {
         await refreshToken();
         const res = await getUser();
-        nextUser = res.data;
+        nextUser = res;
       }
       console.error("Error fetching user:", error);
     } finally {
@@ -58,7 +58,6 @@ export function AuthProvider({ children }) {
       if (userData && userData.accessToken) {
         localStorage.setItem('accessToken', userData.accessToken);
         localStorage.setItem('refreshToken', userData.refreshToken);
-        console.log('Tokens saved:', userData.accessToken, userData.refreshToken); // 토큰 저장 확인
         await getMe();
         return true;
       } else {

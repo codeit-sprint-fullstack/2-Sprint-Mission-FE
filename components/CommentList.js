@@ -7,7 +7,7 @@ import KebabMenu from "./KebabMenu";
 import defaultImg from "@/public/no_comment.png";
 import inquiry from "@/public/inquiry.png";
 
-export default function CommentList({ comments, onEdit, setComments }) {
+export default function CommentList({ comments, onEdit, setComments, userId }) {
 const router = useRouter();
 const isProductPage = router.pathname === "/items/[id]";
 
@@ -31,10 +31,12 @@ const isProductPage = router.pathname === "/items/[id]";
         <div key={comment.id} className={style.comment}>
           <div className={style.commentHeader}>
             <div className={style.commentContent}>{comment.content}</div>
-            <KebabMenu
-              onEdit={() => onEdit(comment)}
-              onDelete={() => handleDeleteComment(comment.id)}
-            />
+            {comment.writer.id === userId && (
+              <KebabMenu
+                onEdit={() => onEdit(comment)}
+                onDelete={() => handleDeleteComment(comment.id)}
+              />
+            )}
           </div>
           <div className={style.commentProfile}>
             <Image

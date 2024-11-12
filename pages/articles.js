@@ -57,7 +57,7 @@ export default function Article() {
       const { list: articleList, totalCount } = await getArticleList({
         orderBy: order,
         pageSize: 10,
-        page: currentPage + 1,
+        page: currentPage,
         keyword: search,
       });
       setArticles(articleList);

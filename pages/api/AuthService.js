@@ -3,7 +3,7 @@ import { requestPost } from "./api.js";
 export async function postSignIn(data) {
   try {
     const response = await requestPost(`/auth/signIn`, data);
-    console.log('Response Data: ', response.data);
+    // console.log('Response Data: ', response.data);
     return response.data;
   } catch (e) {
     console.error(e.message);

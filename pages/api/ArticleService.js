@@ -24,15 +24,21 @@ import {
   }
   
   export async function createArticle(ArticleData) {
-    // const formData = new FormData();
-    // formData.append("title", ArticleData.title);
-    // formData.append("content", ArticleData.content);
-    // ArticleData.images.forEach((image) => {
-    //   formData.append("images", image);
-    // });
-  
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (!accessToken) {
+      console.error("Access Token is missing");
+      return;
+    }
+
     try {
-      const response = await requestPost(`/articles`, ArticleData);
+      const response = await requestPost(`/articles`, ArticleData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      console.log('response:', response);
+
       return response.data;
     } catch (e) {
       console.error(e.message);
