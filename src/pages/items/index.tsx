@@ -18,7 +18,22 @@ export default function Items() {
   const [orderBy] = useState("recent");
   const [products, setProducts] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
   const router = useRouter();
+
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const token = localStorage.getItem("accessToken");
+      if (token) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkLoginStatus();
+  });
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -49,7 +64,12 @@ export default function Items() {
   }, [page, pageSize, orderBy]);
 
   const movingPage = (addressId: number) => {
-    router.push(`/items/${addressId}`);
+    if (isLoggedIn) {
+      router.push(`/items/${addressId}`);
+    } else {
+      alert("로그인 후 이용해주세요.");
+      router.push("/login");
+    }
   };
 
   return (
