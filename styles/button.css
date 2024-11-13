@@ -1,0 +1,24 @@
+.button {
+  cursor: pointer;
+  background-color: var(--Primary-100);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.6rem;
+
+  &:hover {
+    background-color: var(--Primary-200);
+  }
+
+  &:focus {
+    background-color: var(--Primary-300);
+  }
+
+  &:disabled {
+    background-color: var(--gray-400);
+    cursor: default;
+    pointer-events: none;
+  }
+}

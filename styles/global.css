@@ -1,0 +1,55 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--gray-700);
+  word-break: keep-all;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.6rem;
+}
+
+main {
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  width: 120rem;
+  margin: 0 auto;
+}
+
+/* NOTE main 직후에 #landingPage가 오는 경우 */
+main:has(#landingPage) {
+  width: 100vw;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}

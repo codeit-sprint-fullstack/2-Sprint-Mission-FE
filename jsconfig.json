@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    // NOTE 루트폴더를 @로 지정
+    "paths": {
+      "@pages/*": ["./pages/*"],
+      "@components/*": ["./src/components/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@/*": ["./*"]
+    },
+    // NOTE ESNext: ECMAScript의 최신 버전을 지정
+    "target": "ESNext",
+    "module": "ESNext",
+    // NOTE bundler에 최적화된 모듈 해석 방식을 지정. esbuild, webpack 등등
+    "moduleResolution": "bundler",
+    // NOTE CommonJs 모듈을 ES6+ 모듈처럼 import해서 사용할 수 있게 해줌.
+    "esModuleInterop": true,
+    // NOTE jsx 파일의 처리 방식. preserve로 설정하면 번들러가 처리하게 내버려둠.
+    "jsx": "react-jsx",
+    "checkJs": false
+  },
+  // NOTE 프로젝트에 포함할 패턴 지정
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "node_modules/@types/react/index.d.ts"],
+  // NOTE 프로젝트에 제외할 패턴 지정
+  "exclude": ["node_modules", "dist"]
+}
