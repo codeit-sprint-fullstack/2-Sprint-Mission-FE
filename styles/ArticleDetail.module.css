@@ -66,30 +66,6 @@
     color: #9CA3AF;
 }
 
-.favSection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    width: 8.7rem;
-    height: 4rem;
-    border: 1px solid #E5E7EB;
-    border-radius: 3.5rem;
-    background-color: #FFFFFF;
-}
-
-.heardIcon {
-    width: 3.2rem;
-    height: 3.2rem;
-}
-
-.favoriteCnt {
-    font-size: 1.4rem;
-    line-height: 2.4rem;
-    font-weight: 400;
-    color: #9CA3AF;
-}
-
 .hr {
     width: 100%;
     border: 1px solid #E5E7EB;

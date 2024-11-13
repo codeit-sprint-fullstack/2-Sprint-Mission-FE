@@ -4,6 +4,7 @@ import { validation } from "../utils/validation";
 import { useAuth } from "@/contexts/AuthProvider";
 import style from "../styles/LoginPage.module.css";
 import Auth from "@/components/auth";
+import Modal from "@/components/Modal";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,10 +12,13 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { error, isFormValid } = validation(email, password, "", true, "");
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async () => {
     if (!isFormValid) {
-      alert("입력한 정보가 유효하지 않습니다.");
+      // alert("입력한 정보가 유효하지 않습니다.");
       return;  
     }
 
@@ -22,8 +26,10 @@ export default function LoginPage() {
       const success = await login(email, password);
       if (success) router.push("/items");
     } catch (e) {
-      console.error(e.message);
-      alert("요청에 실패했습니다. 다시 시도해 주세요");
+      setErrorMessage(e.response.data.message);
+      setModalMessage(errorMessage);
+      setShowModal(true);
+      // alert("요청에 실패했습니다. 다시 시도해 주세요");
     }
   };
 
@@ -38,6 +44,7 @@ export default function LoginPage() {
         error={error}
         isFormValid={isFormValid}
         onSubmit={handleSubmit} />
+      {showModal && <Modal message={modalMessage} onClose={() => setShowModal(false)} />}
     </div>
   );
 }

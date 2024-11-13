@@ -64,9 +64,9 @@ export function AuthProvider({ children }) {
         throw new Error("No token returned");
       }
     } catch (e) {
-      console.error(e.message);
-      alert("요청에 실패했습니다. 다시 시도해 주세요");
-      return false;
+      console.error(e);
+      throw e;
+      // alert("요청에 실패했습니다. 다시 시도해 주세요");
     }
   }
 

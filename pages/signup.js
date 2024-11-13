@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import { postSignUp } from "@/pages/api/AuthService";
 import { validation } from "../utils/validation";
+import Modal from "@/components/Modal";
 import Auth from "@/components/auth";
 
 export default function SignUpPage() {
@@ -12,6 +13,9 @@ export default function SignUpPage() {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const { error, isFormValid } = validation(email, password, passwordConfirmation, false, nickname);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const mutation = useMutation({
     mutationFn: postSignUp,
@@ -21,8 +25,10 @@ export default function SignUpPage() {
       router.push("/items");
     },
     onError: (error) => {
-      console.error(error.message);
-      alert("요청에 실패했습니다. 다시 시도해 주세요");
+      setErrorMessage(error.response.data.message);
+      setModalMessage(errorMessage);
+      setShowModal(true);
+      // alert("요청에 실패했습니다. 다시 시도해 주세요");
     }
   });
 
@@ -51,6 +57,7 @@ export default function SignUpPage() {
         error={error}
         isFormValid={isFormValid}
         onSubmit={handleSubmit} />
+      {showModal && <Modal message={modalMessage} onClose={() => setShowModal(false)} />}
     </div>
   );
 }

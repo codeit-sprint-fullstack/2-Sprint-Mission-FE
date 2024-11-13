@@ -17,8 +17,20 @@
 }
 
 .likeCnt {
-    font-size: 1.4rem;
-    line-height: 2.4rem;
-    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-weight: 500;
     color: #9CA3AF;
+}
+
+@media (max-width: 1199px) and (min-width: 744px) {
+    .likeBtn {
+        width: 7.9rem;
+        height: 3.2rem;
+    }
+
+    .heart {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
 }
