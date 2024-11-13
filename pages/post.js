@@ -9,17 +9,17 @@ export default function Post() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [images, setImages] = useState([]);
+  const [image, setImage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { id, title: initialTitle, content: initialContent, images: initialImages } = router.query; // 쿼리 파라미터에서 제목과 내용 받기
+  const { id, title: initialTitle, content: initialContent, image: initialImage } = router.query; // 쿼리 파라미터에서 제목과 내용 받기
 
   const isEditing = !!id;
 
   useEffect(() => {
     if (initialTitle) setTitle(initialTitle);
     if (initialContent) setContent(initialContent);
-    if (initialImages) setImages(initialImages);
-  }, [initialTitle, initialContent, initialImages]);
+    if (initialImage) setImage(initialImage);
+  }, [initialTitle, initialContent, initialImage]);
 
   const isValid = title.trim() !== "" && content.trim() !== "" && content.length >= 10;
 
@@ -29,7 +29,7 @@ export default function Post() {
     setIsSubmitting(true);
 
     try {
-      const postData = { title, content, images };
+      const postData = { title, content, ...(image && {image}) };
       let result;
       if (isEditing) {
         result = await patchArticle(id, postData);
@@ -40,7 +40,7 @@ export default function Post() {
 
       setTitle("");
       setContent("");
-      setImages([]);
+      setImage("");
       router.push(`/articles/${result.id}`);
     } catch (error) {
       console.error("게시글 작성 실패:", error);

@@ -5,6 +5,9 @@
     flex-direction: column;
     justify-content: center;
 } */
+.itemSection {
+    text-decoration: none;
+}
 
 .itemName {
     font-size: 1.4rem;

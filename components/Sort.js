@@ -25,7 +25,11 @@ export default function Sort({ pageSize, order, setOrder, setCurrentPage }) {
   };
 
   const handleBestClick = () => {
-    setOrder("favorite"); // 좋아요순으로 정렬
+    if (isItem) {
+      setOrder("favorite"); 
+    } else {
+      setOrder("like"); 
+    }
     setIsToggle(false);   // 토글 닫기
     setCurrentPage(1);    // 페이지 초기화
   };
@@ -37,7 +41,7 @@ export default function Sort({ pageSize, order, setOrder, setCurrentPage }) {
           <Image src={ic_sort} alt="ic_sort" />
         ) : (
           <div className={style.sortContext}>
-            {order === "favorite" ? <p>좋아요순</p> : <p>최신순</p>}
+            {order === "like" || order === "favorite" ? <p>좋아요순</p> : <p>최신순</p>}
             <Image
               className={style.arrow}
               src={ic_arrow_down}

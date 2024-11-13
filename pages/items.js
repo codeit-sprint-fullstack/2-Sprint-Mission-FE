@@ -20,7 +20,7 @@ const DESKTOP_BEST_ITEM_SIZE = 4;
 function MarketPage() {
   const [order, setOrder] = useState("recent");
   const [products, setProducts] = useState([]);
-  const [search, setSearch ] = useState("");
+  const [keyword, setKeyword ] = useState("");
   const [bestItems, setBestItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(1);
@@ -50,11 +50,17 @@ function MarketPage() {
   // BestItem 데이터만 한 번 로드
   useEffect(() => {
     const fetchBestItems = async () => {
-      const { data: productList } = await getProductList({
-        order: "favorite",
+      const { list: productList } = await getProductList({
+        orderBy: "favorite",
         pageSize: bestItemSize,
       });
-      setBestItems(productList.sort((a, b) => b.favorite - a.favorite));
+
+      const filteredBestItems = productList.map(item => ({
+        ...item,
+        images: item.images?.filter(image => !image.includes("example.com"))
+      }));
+
+      setBestItems(filteredBestItems.sort((a, b) => b.favorite - a.favorite));
     };
 
     fetchBestItems();
@@ -64,27 +70,32 @@ function MarketPage() {
     async (orderQuery) => {
       // console.log('Current Order:', orderQuery); // 로그 추가
       let queryParams = {
-        order: orderQuery,
+        orderBy: orderQuery,
         page: currentPage,
         pageSize: pageSize,
       };
 
-      if (search) {
-        queryParams.search = search;
+      if (keyword) {
+        queryParams.keyword = keyword;
       }
 
-      const { data: productList, totalCount: fetchedTotalCount } =
+      const { list: productList, totalCount: fetchedTotalCount } =
         await getProductList(queryParams);
-      setProducts(productList);
+
+        const filteredProducts = productList.map(product => ({
+          ...product,
+          images: product.images?.filter(image => !image.includes("example.com"))
+        }));
+      setProducts(filteredProducts);
       setTotalCount(fetchedTotalCount);
       // console.log(productList);
     },
-    [search, currentPage, pageSize]
+    [keyword, currentPage, pageSize]
   );
 
   useEffect(() => {
     handleGetProductList(order);
-  }, [order, search, currentPage, pageSize, handleGetProductList]);
+  }, [order, keyword, currentPage, pageSize, handleGetProductList]);
 
   return (
     <Fragment>
@@ -98,7 +109,7 @@ function MarketPage() {
             <p className={style.itemTitle}>판매 중인 상품</p>
             <div className={style.sort}>
               <Search 
-                setSearch={setSearch} />
+                setSearch={setKeyword} />
               <Link href='/registration'><button className={style.itemRegister}>상품 등록하기</button></Link>
               <Sort
                 pageSize={pageSize}

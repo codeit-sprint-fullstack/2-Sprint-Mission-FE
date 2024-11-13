@@ -1,0 +1,170 @@
+.loading {
+    margin: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7.5rem;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 120rem;
+}
+
+
+.productGroup {
+    display: flex;
+    margin-top: 2.4rem;
+    gap: 2.4rem;
+}
+
+.productImg {
+    width: 48.6rem;
+    height: 48.6rem;
+    border-radius: 1.6rem;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    width: 69rem;
+}
+
+.productTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.productName {
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 3.2rem;
+    color: #1F2937;
+    margin: 0;
+}
+
+.kebab {
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.productPrice {
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 4.8rem;
+    color: #1F2937;
+    margin: 1.6rem 0;
+}
+
+.divider {
+    width: 100%;
+    border: 1px solid #E5E7EB;
+}
+
+.productDetail {
+    display: flex;
+    flex-direction: column;
+}
+
+.productDetailTitle,
+.productDetailContent {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    color: #4B5563;
+    font-weight: 400;
+    margin: 0.8rem 0;
+}
+
+.tagTitle {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    color: #4B5563;
+    font-weight: 400;
+    margin: 0.8rem 0;
+    margin-top: 2.4rem;
+}
+
+.tagGroup {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 2.4rem;
+}
+
+.tag {
+    border-radius: 2.6rem;
+    border: none;
+    padding: 0.6rem 1.6rem;
+    background-color: #F3F4F6;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+    color: #1F2937;
+}
+
+.user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profileDate {
+    display: flex;
+    align-items: center;
+}
+
+.profileImg {
+    width: 4rem;
+    height: 4rem;
+}
+
+.nameDate {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.2rem;
+}
+
+.userName {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+    color: #4B5563;
+    margin: 0;
+}
+
+.date {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    color: #9CA3AF;
+    margin: 0;
+}
+
+.heart {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+}
+
+.btmdivider {
+    width: 100%;
+    border: 1px solid #E5E7EB;
+    margin-top: 2.4rem;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.4rem;
+}

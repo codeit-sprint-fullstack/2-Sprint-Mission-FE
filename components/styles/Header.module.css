@@ -77,6 +77,24 @@
   cursor: pointer;
 }
 
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userImage {
+  width: 4rem;
+  height: 4rem;
+}
+
+.username {
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.2rem;
+  color: #4B5563;
+}
+
 /* a {
     text-decoration: none;
     color: #e5e7eb;

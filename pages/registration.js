@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "../styles/Register.module.css";
 import { initialProductData, submitProductData } from "../utils/Register";
 import X from "@/public/ic_X.png";
 import { useValidation } from "../hooks/useValidation";
+import { patchProduct } from "./api/ProductService";
 import Image from "next/image";
 
 export default function RegisterPage() {
@@ -12,12 +13,50 @@ export default function RegisterPage() {
   const [tagInput, setTagInput] = useState("");
   const navigate = useRouter();
   const { errors, validateField, validationCheck } = useValidation();
+  const {
+    id,
+    name: initialName,
+    description: initialDescription,
+    price: initialPrice,
+    tags: initialTags,
+    images: initialImages
+  } = navigate.query;
+
+  const isEditing = !!id;
+
+  useEffect(() => {
+    if (initialName)
+      setProductData((prevData) => ({ ...prevData, name: initialName }));
+    if (initialDescription)
+      setProductData((prevData) => ({
+        ...prevData,
+        description: initialDescription
+      }));
+    if (initialPrice)
+      setProductData((prevData) => ({ ...prevData, price: initialPrice }));
+    if (initialTags)
+      setProductData((prevData) => ({
+        ...prevData,
+        tags: JSON.parse(initialTags)
+      }));
+    if (initialImages)
+      setProductData((prevData) => ({
+        ...prevData,
+        images: JSON.parse(initialImages)
+      }));
+  }, [
+    initialName,
+    initialDescription,
+    initialPrice,
+    initialTags,
+    initialImages
+  ]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductData({
       ...productData,
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -29,18 +68,18 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validationCheck(productData);
-    console.log("Validation Errors:", validationErrors); 
+    console.log("Validation Errors:", validationErrors);
     if (Object.keys(validationErrors).length > 0) return;
 
     try {
-        const response = await submitProductData(productData);
-        alert("상품이 등록되었습니다.");
-        setProductData(initialProductData);
-        navigate.push(`/items/${response._id}`);
-       console.log(response);
+      const response = await submitProductData(id, isEditing, productData);
+      alert("상품이 등록되었습니다.");
+      setProductData(initialProductData);
+      navigate.push(`/items/${response.id}`);
+      console.log(response);
     } catch (e) {
-        alert("상품 등록에 실패했습니다.");
-        console.log(e);
+      alert("상품 등록에 실패했습니다.");
+      console.log(e);
     }
   };
 
@@ -49,17 +88,17 @@ export default function RegisterPage() {
   };
 
   const handleTagKeyDown = (e) => {
-    if (e.key === 'Enter' && tagInput.trim()) {
+    if (e.key === "Enter" && tagInput.trim()) {
       e.preventDefault();
       setProductData((prevData) => ({
         ...prevData,
         tags: [...(prevData.tags || []), tagInput.trim()]
       }));
-      validateField('tags', tagInput.trim(), {
-        ...productData, 
-        tags: [...(productData.tags || []), tagInput.trim()] 
+      validateField("tags", tagInput.trim(), {
+        ...productData,
+        tags: [...(productData.tags || []), tagInput.trim()]
       });
-      setTagInput('');
+      setTagInput("");
     }
   };
 
@@ -67,7 +106,7 @@ export default function RegisterPage() {
     const updatedTags = productData.tags.filter((_, i) => i !== index);
     setProductData((prevData) => ({
       ...prevData,
-      tags: updatedTags,
+      tags: updatedTags
     }));
     validateField("tags", "", { ...productData, tags: updatedTags });
   };
@@ -79,11 +118,14 @@ export default function RegisterPage() {
         <button
           className={style.registrationTopButton}
           onClick={handleSubmit}
-          disabled={Object.keys(errors).length > 0 || 
-            !productData.name || 
-            !productData.description || 
-            !productData.price}>
-        등록
+          disabled={
+            Object.keys(errors).length > 0 ||
+            !productData.name ||
+            !productData.description ||
+            !productData.price
+          }
+        >
+          등록
         </button>
       </div>
       <div className={style.registerForm}>
@@ -93,7 +135,9 @@ export default function RegisterPage() {
           </label>
           <input
             name="name"
-            className={`${style.registerInputForm} ${errors.name ? 'error' : ''}`}
+            className={`${style.registerInputForm} ${
+              errors.name ? "error" : ""
+            }`}
             placeholder="상품명을 입력해주세요"
             id="product-name"
             value={productData.name}
@@ -103,27 +147,36 @@ export default function RegisterPage() {
           {errors.name && <p className={style.formError}>{errors.name}</p>}
         </div>
         <div className={style.formSection}>
-          <label htmlFor="product-description" className={style.registrationTitle}>
+          <label
+            htmlFor="product-description"
+            className={style.registrationTitle}
+          >
             상품 소개
           </label>
           <textarea
             name="description"
-            className={`${style.registerDescriptionInput} ${errors.description ? 'error' : ''}`}
+            className={`${style.registerDescriptionInput} ${
+              errors.description ? "error" : ""
+            }`}
             placeholder="상품 소개를 입력해주세요"
             id="product-description"
             value={productData.description}
             onChange={handleInputChange}
             onBlur={handleBlur}
           />
-          {errors.description && <p className={style.formError}>{errors.description}</p>}
-          </div>
+          {errors.description && (
+            <p className={style.formError}>{errors.description}</p>
+          )}
+        </div>
         <div className={style.formSection}>
           <label htmlFor="product-price" className={style.registrationTitle}>
             판매 가격
           </label>
           <input
             name="price"
-            className={`${style.registerInputForm} ${errors.price ? style.error : ''}`}
+            className={`${style.registerInputForm} ${
+              errors.price ? style.error : ""
+            }`}
             placeholder="판매 가격을 입력해주세요"
             id="product-price"
             value={productData.price}
@@ -131,15 +184,17 @@ export default function RegisterPage() {
             onBlur={handleBlur}
           />
           {errors.price && <p className={style.formError}>{errors.price}</p>}
-          </div>
+        </div>
         <div className={style.formSection}>
           <label htmlFor="product-tags" className={style.registrationTitle}>
             태그
           </label>
           <div className={style.tagsInput}>
             <input
-              name='tags'
-              className={`${style.registerInputForm} ${errors.tags ? style.error : ''}`}
+              name="tags"
+              className={`${style.registerInputForm} ${
+                errors.tags ? style.error : ""
+              }`}
               placeholder="태그를 입력해주세요"
               id="product-tags"
               value={tagInput}
@@ -150,13 +205,18 @@ export default function RegisterPage() {
               {(productData.tags || []).map((tag, index) => (
                 <div key={index} className={style.tagChip}>
                   # {tag}
-                  <Image className={style.tagRemove} onClick={() => handleTagRemove(index)} src={X} alt='delete' />
+                  <Image
+                    className={style.tagRemove}
+                    onClick={() => handleTagRemove(index)}
+                    src={X}
+                    alt="delete"
+                  />
                 </div>
-                ))}
+              ))}
             </div>
           </div>
           {errors.tags && <p className={style.formError}>{errors.tags}</p>}
-          </div>
+        </div>
       </div>
     </div>
   );

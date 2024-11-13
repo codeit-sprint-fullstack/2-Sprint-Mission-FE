@@ -35,12 +35,17 @@ export default function Article() {
 
   useEffect(() => {
     const fetchBestArticles = async () => {
-      const { data: bestArticleList } = await getArticleList({
-        order: "favorite",
-        pageSize: pageSize,
-        page: 0,
-      });
-      setBestArticles(bestArticleList);
+      try {
+        const { list: bestArticleList } = await getArticleList({
+          orderBy: "like",
+          pageSize: pageSize,
+          page: 1,
+        });
+        setBestArticles(bestArticleList);
+      } catch (error) {
+        console.error("Failed to fetch best articles:", error);
+        alert("게시글 정보를 불러오는 데 실패했습니다.");
+      }
     };
 
     fetchBestArticles();
@@ -48,16 +53,20 @@ export default function Article() {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const { data: articleList, totalCount } = await getArticleList({
-        order: order,
+    try {
+      const { list: articleList, totalCount } = await getArticleList({
+        orderBy: order,
         pageSize: 10,
-        page: currentPage - 1,
-        search: search,
+        page: currentPage,
+        keyword: search,
       });
       setArticles(articleList);
       setTotalCount(totalCount);
-      // console.log("Fetched Articles:", articleList); 
-    };
+    } catch (error) {
+      console.error("Failed to fetch articles:", error);
+      alert("게시글을 불러오는 데 실패했습니다.");
+    }
+  };
 
     fetchArticles();
   }, [order, currentPage, search]);
