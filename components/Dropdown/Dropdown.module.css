@@ -1,0 +1,16 @@
+.dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.options {
+  width: 130px;
+  height: 84px;
+  margin-top: 8px;
+  right: 0;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  background-color: #ffffff;
+}
