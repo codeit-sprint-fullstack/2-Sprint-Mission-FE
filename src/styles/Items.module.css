@@ -1,0 +1,143 @@
+.items {
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: column;
+}
+
+.header {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product_text {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+.header_right {
+  gap: 12px;
+  display: flex;
+}
+
+.search_bar {
+  width: 325px;
+  height: 42px;
+  border-radius: 12px;
+  padding: 9px 20px 9px 16px;
+  gap: 4x;
+  display: flex;
+  background-color: #f3f4f6;
+  align-items: center;
+  justify-content: center;
+}
+
+.enter {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  width: 100%;
+  border: none;
+  background-color: #f3f4f6;
+}
+
+.enter::placeholder {
+  color: #9ca3af;
+}
+
+.enter:focus {
+  outline: none;
+}
+
+.product_register {
+  height: 42px;
+  border-radius: 8px;
+  padding: 12px 23px;
+  gap: 10px;
+  background-color: #3692ff;
+  color: #f3f4f6;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown_wrapper {
+  width: 130px;
+  height: 42px;
+  border: 1px solid #e5e7eb;
+  padding: 12px 20px;
+  gap: 20px;
+  display: flex;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.body {
+  margin-top: 24px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.products_body {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 24px;
+  row-gap: 40px;
+}
+
+.product_list {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.product_info {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.product_name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1f2937;
+}
+
+.product_price {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+.heart {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-items: center;
+}
+
+.product_favorite {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #4b5563;
+}
