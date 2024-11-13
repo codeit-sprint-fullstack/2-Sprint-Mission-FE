@@ -14,7 +14,7 @@
 .gnb {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: 120rem;
   height: 7rem;
@@ -23,7 +23,7 @@
 
 .gnbLogoDesktop,
 .gnbLogoMobile {
-  position: relative; /* Image fill 사용을 위해 부모 요소에 position: relative를 설정 */
+  position: relative; 
 }
 
 .gnbLogoDesktop {
@@ -37,7 +37,7 @@
 }
 
 .logoImage {
-  object-fit: contain; /* 이미지 비율 유지 */
+  object-fit: contain;
 }
 
 .gnbNav {
@@ -64,6 +64,8 @@
 .gnbUser {
   display: flex;
   align-items: center;
+  max-width: 9.2rem;
+  width: 100%;
 }
 
 .gnbBtnLogin {
@@ -85,17 +87,18 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  width: 9.2rem; /* gap 때문에 사이즈 약간 늘림 */
+  font-size: 1.8rem;
+  width: 100%;
 }
 
 .userProfileImg {
-  position: relative; /* Image fill 사용을 위해 부모 요소에 position: relative를 설정 */
+  position: relative; 
 }
 
 .userProfileImg {
   width: 4rem;
   height: 4rem;
-  border-radius: 50%; /* 원형 프로필 이미지 */
+  border-radius: 50%; 
   overflow: hidden;
 }
 
@@ -111,7 +114,7 @@
 /* Tablet 사이즈 */
 @media (max-width: 1199px) and (min-width: 744px) {
   .gnb {
-    padding: 0 2.4rem; /* 좌우 여백 조정 */
+    padding: 0 2.4rem; 
   }
 
   .gnbLogoDesktop {
@@ -135,6 +138,16 @@
     width: 100%;
     padding: 0 1.6rem;
   }
+  .gnbWrapper {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 37.6rem;
+    margin-left: 1rem;    /* 억지로 맞춤 */
+  }
 
   .gnbNav {
     width: 100%;
@@ -155,11 +168,17 @@
     width: 8.1rem;
     height: 4rem;
   }
+  .gnbUser {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 9.2rem;
+    width: 100%;
+  }  
 
   .gnbUserInfo {
     width: 4rem;
   }
-
   .userName {
     display: none;
   }

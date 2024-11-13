@@ -1,0 +1,69 @@
+POST https://panda-market-api.vercel.app/auth/signUp
+Content-Type: application/json
+
+{
+  "email": "noname21@email.com",
+  "nickname": "noname21",
+  "password": "12345678",
+  "passwordConfirmation": "12345678"
+}
+
+
+
+
+###
+{
+  "user": {
+    "id": 388,
+    "nickname": "noname21",
+    "image": null,
+    "createdAt": "2024-11-05T13:28:51.840Z",
+    "updatedAt": "2024-11-05T13:28:51.840Z",
+    "email": "noname21@email.com"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzg4LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDgxMzMzMSwiZXhwIjoxNzMwODE1MTMxLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.6SI4wHTOCELryuCrNzavNoNShqZM02NfUkF3TVkSx3E",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzg4LCJzY29wZSI6InJlZnJlc2giLCJpYXQiOjE3MzA4MTMzMzEsImV4cCI6MTczMTQxODEzMSwiaXNzIjoic3AtcGFuZGEtbWFya2V0In0.ggVUJlp8SCkWksMrMdg7I6y8Z0SLA_aTDN8vZZUmZSI"
+}
+
+
+###
+HTTP/1.1 201 Created
+Access-Control-Allow-Origin: *
+Cache-Control: public, max-age=0, must-revalidate
+Content-Length: 587
+Content-Type: application/json; charset=utf-8
+Date: Thu, 31 Oct 2024 09:46:45 GMT
+Etag: W/"24b-/kgIXkXH5Ukvf2PKSGZ54tRmLD4"
+Server: Vercel
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Powered-By: Express
+X-Vercel-Cache: MISS
+X-Vercel-Id: icn1::icn1::j55gl-1730368005446-5da4ebe6d979
+Connection: close
+
+{
+  "user": {
+    "id": 349,
+    "nickname": "noname01",
+    "image": null,
+    "createdAt": "2024-10-31T09:46:45.476Z",
+    "updatedAt": "2024-10-31T09:46:45.476Z",
+    "email": "noname01@email.com"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ5LCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMDM2ODAwNSwiZXhwIjoxNzMwMzY5ODA1LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.y5UrdkW0l0pAELIDyVCRReTx4Y7V3uOEqpyUXnHw3Ok",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQ5LCJzY29wZSI6InJlZnJlc2giLCJpYXQiOjE3MzAzNjgwMDUsImV4cCI6MTczMDk3MjgwNSwiaXNzIjoic3AtcGFuZGEtbWFya2V0In0.29b6uXh814CUlOcrqAn1UfGsLb7HNkbb9busHMSultA"
+}
+###
+GET https://panda-market-api.vercel.app/products?page=1&pageSize=10&orderBy=recent
+
+
+###
+GET https://panda-market-api.vercel.app/products/355/comments?limit=10
+###
+GET https://panda-market-api.vercel.app/products/358
+
+###
+GET https://panda-market-api.vercel.app/products/358
+
+
+

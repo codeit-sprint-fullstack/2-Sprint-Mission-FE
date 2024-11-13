@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import styles from './CommentItem.module.css';
+import styles from './ArticleCommentItem.module.css';
 import formatTimeAgo from '@/lib/formatTimeAgo';
 import Dropdown from '@/components/Common/Dropdown';
 import { deleteArticleComment } from '@/lib/api/ArticleService';
 
-export default function CommentItem({ comment, onDelete, onEdit }) {
+export default function ArticleCommentItem({ comment, onDelete, onEdit }) {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = async () => {

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ArticleForm from '@/components/Articles/ArticleForm';
 import { getArticleById, updateArticle } from '@/lib/api/ArticleService';
 
-export default function EditPage() {
+export default function ArticleEditPage() {
   const router = useRouter();
   const { id } = router.query; // URL의 id 파라미터로부터 게시글 ID를 가져옴
   const [initialTitle, setInitialTitle] = useState('');

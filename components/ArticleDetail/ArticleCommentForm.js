@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { createArticleComment, updateArticleComment } from '@/lib/api/ArticleService';
-import styles from './CommentForm.module.css';
+import styles from './ArticleCommentForm.module.css';
 
-export default function CommentForm({ articleId, initialComment = null, onUpdateComment }) {
+export default function ArticleCommentForm({ articleId, initialComment = null, onUpdateComment }) {
   const [comment, setComment] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showLoadingText, setShowLoadingText] = useState(false);

@@ -1,0 +1,209 @@
+.container {
+  position: relative;
+
+  display: flex;
+  gap: 2.4rem;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.imageWrapper {
+  width: 48.6rem;
+  height: 48.6rem;
+  flex-shrink: 0;
+}
+
+.imageContainer {
+  position: relative;
+  width: 48.6rem;
+  height: 48.6rem;
+}
+
+.productImage {
+  object-fit: cover;
+  border-radius: 0.8rem;
+}
+
+
+.productDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #1F2937;
+  padding: 0;
+  margin: 0;
+}
+
+.price {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0;
+}
+
+.sectionTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.6rem;
+  color: #4B5563;
+}
+
+.description {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6;
+  color: #4B5563;
+}
+
+.tags {
+  margin-top: 1rem;
+}
+
+.tag {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem;
+  color: #1F2937;
+  margin-right: 0.8rem;
+  padding: 0.4rem 1rem; /* 태그에 여백 추가 */
+  background-color: #F3F4F6; /* 태그 배경색 추가 */
+  border-radius: 0.5rem; /* 둥근 모서리 */
+
+}
+
+.infoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.writerInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.writerDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  color: #4B5563;
+}
+
+.date {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  color: #9CA3AF;
+}
+
+.profileImageWrapper {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+}
+
+.likesWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 3.5rem;
+  padding: 0.2rem 1rem;
+  border: 0.1rem solid #E5E7EB;
+  cursor: pointer;    
+}
+
+.likesIconWrapper {
+  position: relative;
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.likesCount {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #6B7280;
+}
+/* 드롭다운 버튼과 메뉴 스타일 */
+.dropdownContainer {
+  position: absolute;
+  top: 0.5rem;    
+  right: 0.5rem; 
+}
+
+.dropdownToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdownIcon {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: 2.8rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.dropdownItem {
+  padding: 1.6rem;
+  font-size: 1.6rem;
+  color: #6B7280;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 13.9rem;
+  text-align: center;
+}
+
+.dropdownItem:hover {
+  background-color: #f9fafb;
+}
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {  
+  .productDetails {
+    position: relative;
+    width: 100%;
+    
+    min-width: 23rem;
+  }
+}
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  .container {
+    flex-direction: column; 
+    align-items: center;
+  }
+  .imageWrapper,
+  .imageContainer {
+    width: 34rem;
+    height: 34rem;
+  }
+
+  .productDetails {
+    position: relative;
+    width: 100%;
+    max-width: 34rem;
+    padding: 0 1rem; 
+  }
+}

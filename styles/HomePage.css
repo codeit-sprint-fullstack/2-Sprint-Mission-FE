@@ -1,0 +1,483 @@
+/* 상단 배너 영역 */
+.banner-wrapper {
+  display: flex;
+  justify-content: center;              /* 가로 정렬: 가운데 */
+  align-items: flex-end;                /* 세로 정렬: 하단 */
+  width: 100%;              
+  min-width: 37.1rem;
+  height: auto;           
+  background-color: var(--banner-bg);
+}
+.banner-top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  max-width: 152rem;
+  width: 100%;
+  height: 54rem;
+}
+.banner-top-message {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 20rem;
+  left: 18rem;
+  width: 35.7rem;           
+  height: 20rem;    
+  color: var(--text-color);       
+  font-size: 4rem;          
+  font-weight: 700;
+  line-height: 5.6rem; 
+}
+.banner-top-message span {
+  display: block;
+  width: 29.5rem;
+}
+.banner-top-img {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+  max-width: 99.6rem;              
+  width: 100%;
+  height: 44.7rem;  
+}
+.banner-top-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                    
+} 
+
+.btn-items {                            /* 구경하러 가기 버튼 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: var(--button-text-color);
+  width: 35.7rem;           
+  height: 5.6rem;              
+  font-size: 2rem;           
+  font-weight: 600;
+  line-height: 2.4rem;       
+  border-radius: 4rem;       
+  border: none; 
+  cursor: pointer; 
+}
+
+/* 섹션 영역 */
+.section-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  margin: 0 auto;
+  min-width: 37.1rem;
+}
+.section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 192rem;    
+  height: 72rem;  
+}
+.main-section-img {
+  position: relative;
+  width: 58.8rem;                      
+  height: 44.4rem;                         
+}
+.section-left {
+  justify-content: center;
+  text-align: left;
+}
+.section-right {
+  justify-content: center;
+  text-align: right;  
+}
+
+.contents-box-left {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  gap: 3rem;                
+  width: 117.6rem;
+  padding-right: 22.1rem;
+  height: 44.4rem;      
+}
+.contents-box-right {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  gap: 3rem;                
+  width: 117.6rem;
+  padding-left: 22.1rem;
+  height: 44.4rem;      
+
+}
+.section-message {
+  min-height: 23.8rem;      
+  height: auto;                         /* 높이를 auto로 설정해 세로로 확장되도록 설정 */
+}
+.section-message1 {
+  max-width: 27.4rem;      
+}
+.section-message2 {
+  max-width: 31.7rem;      
+}
+.section-message3 {
+  max-width: 33.5rem;      
+}
+.section-wrapper span {
+  display: block;
+  margin-bottom: 1.6rem;   
+}
+.section-title {
+  font-size: 1.8rem;       
+  font-weight: 700;
+  line-height: 2.6rem;     
+  color: var(--primary-color);
+}
+.section-subtitle {
+  font-size: 4rem;         
+  font-weight: 700;
+  line-height: 5.6rem;     
+  color: var(--section-text-color); 
+}
+.section-description {
+  font-size: 2.4rem;       
+  font-weight: 500;
+  line-height: 3.2rem;     
+  color: var(--section-text-color); 
+}
+
+/* 하단 배너 영역 */
+.banner-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  width: 152rem;
+  height: 54rem;
+}
+.banner-bottom-message {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 20rem;
+  left: 18rem;
+  width: 29.5rem;           
+  height: 11.2rem;    
+  color: var(--text-color);       
+  font-size: 4rem;          
+  font-weight: 700;
+  line-height: 5.6rem;     
+}
+.banner-bottom-message span {
+  display: block;
+  width: 29.5rem;
+}
+.banner-bottom-img {
+  display: flex;
+  align-items:flex-end;
+  z-index: 0;
+  width: 99.6rem;              
+  height: 54rem;        
+}
+.banner-bottom-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           
+}
+
+/* Tablet 사이즈 */
+@media (max-width: 1199px) and (min-width: 744px) {
+
+  /* 공통 영역 */
+  .gnb {
+    padding: 0 2.4rem;                  
+  }
+  .footer-contents {
+    padding: 1.5rem 2.4rem;           
+  }
+
+  /* 메인 페이지 배너 영역 */
+  .banner-wrapper {
+    height: auto;                       /* 높이를 자동으로 조정 */
+  }
+  .banner-top {
+    flex-direction: column;             
+    justify-items: center;
+    height: auto;
+    padding: 0 2.4rem;                  
+  }
+  .banner-top-message {
+    display: block;
+    position: static;                   /* absolute 해제 */
+    width: 74.4rem;
+    margin: 5rem auto;
+    text-align: center;       
+  }
+  .banner-top-message span {
+    display: block;
+    width: 100%;
+  }
+  .banner-top-message span br{
+    display: none;
+  }
+  .btn-items {                          /* 구경하러 가기 버튼 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+    color: var(--button-text-color);
+    width: 35.7rem;           
+    height: 5.6rem;              
+    font-size: 2rem;           
+    font-weight: 600;
+    line-height: 3.2rem;       
+    border-radius: 4rem;       
+    border: none; 
+    cursor: pointer; 
+    margin: 2rem auto;
+  }
+
+  .banner-bottom {
+    flex-direction: column;            
+    justify-items: center;
+    align-items: center;
+    height: auto;
+    padding: 0 2.4rem;                
+  }
+  .banner-bottom-message {
+    display: block;
+    position: static;                   /* absolute 해제 */
+    width: 100%;
+    margin: 5rem auto;
+    text-align: center;     
+    line-height: 5.6rem;  
+  }
+  .banner-bottom-message span {
+    display: block;
+    width: 100%;
+  }
+  .banner-bottom-img {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items:flex-end;
+    width: 99.6rem;              
+    height: 44.7rem;  
+  }
+
+  /* 메인 페이지 메인 섹션 영역 */
+  .section-wrapper span {
+    display: block;
+    margin-bottom: 0.8rem;              /* Tablet 에서는 8px 으로 */
+  }
+  .contents-box-left, .contents-box-right {
+    display: flex;
+    flex-direction: column;            
+    justify-content: center;
+    align-items: center; 
+    padding: 0 2rem;
+    width: 58.8rem;  
+    height: auto; 
+    margin-top: 7rem;
+  }
+  .main-section-img {
+    position: relative;
+    width: 69.6rem;
+    height: 52.4rem;
+  }
+  .section-message {
+    padding: 0;
+    margin: 0;
+    width: 100%; 
+    max-width: 100%; 
+    line-height: 2.16rem; 
+  }
+  .section-subtitle {
+    font-size: 3.2rem;
+  }
+  .section-description {
+    font-size: 1.8rem;
+    line-height: 2.16rem;
+  }
+  /* section-right의 순서를 변경 */
+  .section-right .contents-box-right {
+    flex-direction: column-reverse;     /* 이미지가 먼저 나오고 메시지가 뒤따라 나오도록 순서 변경 */
+  }
+  .section-message .section-subtitle br {
+    display: none;
+  }
+}  
+
+/* Mobile 사이즈 */
+@media (max-width: 743px) {
+  /* 공통영역 */
+  .gnb {
+    padding: 0 1.6rem;                 
+  }
+
+  .footer-contents {
+    display: flex;
+    flex-wrap: wrap;                    
+    justify-content: space-between; 
+    align-items: center;
+    padding: 2rem 1.6rem; 
+  }
+
+  #privacy-faq, #sns {
+    width: 50%;                         /* 두 요소를 한 줄에 배치되도록 너비 설정 */
+  }
+  #sns {
+    text-align: right;
+  }
+  #copyright {
+    order: 3;                           /* 세 번째 요소로 이동 */
+    width: 100%; 
+    margin-top: 1rem; 
+  }
+  
+  /* 메인 페이지 배너 영역 */
+  .banner-wrapper {
+    height: 54rem; 
+    padding: 0;                      
+  }
+  .banner-top {
+    flex-direction: column;             /* 요소들을 위아래로 배치 */
+    justify-items: center;
+    align-items: flex-end;
+    height: auto;
+    padding: 0 1.6rem;                 
+    width: 100%; 
+  }
+
+  .banner-top-message {
+    display: block;
+    position: relative;  
+    top: -25rem;              
+    left: 0;
+    width: 100%;
+    margin: 5rem auto;
+    text-align: center;                 
+    font-size: 3.2rem;  
+    line-height: 4.48rem;
+  }
+  
+  .banner-top-message span {
+    display: block;
+    width: 30rem;
+    margin: 0 auto;
+  }
+  .banner-top-img {
+    position: static;                   /* absolute 해제 */
+    width: 100%;
+    height: auto;                       /* 높이를 자동으로 설정 */
+  }
+  .banner-top-img img {
+    width: 100%;
+    height: auto;                       /* 이미지의 비율을 유지하면서 높이를 자동으로 조정 */
+  }
+  .btn-items {                          /* 구경하러 가기 버튼 */
+    width: 24rem;           
+    height: 4.8rem;              
+    font-size: 1.8rem;           
+    font-weight: 600;
+    line-height: 2.6rem;       
+    border-radius: 4rem;       
+    border: none; 
+    cursor: pointer; 
+    margin: 2rem auto;
+  }
+  .banner-bottom {
+    flex-direction: column;             /* 요소들을 위아래로 배치 */
+    justify-items: center;
+    height: auto;
+    padding: 0 1.6rem;                  /* 좌우 여백 조정 */
+    width: 100%;
+  }
+  .banner-bottom-message {
+    display: block;
+    position: relative;                   /* absolute 해제 */
+    top: -25rem;              
+    left: 0;
+    width: 100%;                        
+    margin: 5rem auto;
+    text-align: center; 
+    line-height: 4.48rem;                
+  }
+  .banner-bottom-message span {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .banner-bottom-img {
+    position: static;                   /* absolute 해제 */
+    width: 100%;
+    height: auto;                       /* 높이를 자동으로 설정 */
+  }
+  .banner-bottom-img img {
+    width: 100%;
+    height: auto;                       /* 이미지의 비율을 유지하면서 높이를 자동으로 조정 */
+  }
+  /* 메인 페이지 메인 섹션 영역 */
+  .section-wrapper span {
+    display: block;
+    margin-bottom: 0;                   /* mobile 에서는 0 으로 */
+  }
+  .contents-box-left, .contents-box-right {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 0 3.2rem; 
+    width: 100%;                       
+    height: auto;
+    gap: 1rem;      
+    margin-top: 5rem;
+  }
+  .main-section-img {
+    position: relative;
+    width: 34.4rem;                      
+    height: 25.9rem; 
+  }
+  .section  {
+    width: 100%;
+    height: auto;       
+    margin-bottom: 3rem;     
+  }
+  .section-message {
+    padding: 0; 
+    margin: 0;
+    width: 100%; 
+    line-height: 2.16rem;
+    height: auto; 
+    min-height: 10.6rem; 
+  }
+  .section-message1,  section-message2, section-message3 {
+    width: 100%;     
+  }
+
+  .section-title {
+    font-size: 1.6rem;       
+    font-weight: 700;
+    line-height: 2.24rem;     
+    color: var(--primary-color);
+  }
+  .section-subtitle {
+    font-size: 2.3rem;
+    padding: 0;
+  }
+  .section-description {
+    font-size: 1.6rem;
+    line-height: 1.92rem;     
+  }
+  .section-right .contents-box-right {
+    flex-direction: column-reverse;     /* 이미지가 먼저 나오고 메시지가 뒤따라 나오도록 순서 변경 */
+  }
+  .section-message .section-subtitle br {
+    display: none;
+  }
+}

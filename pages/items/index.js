@@ -1,7 +1,12 @@
-export default function ItemsPage() {
+import BestProductList from '@/components/Items/BestProductList';
+import ProductList from '@/components/Items/ProductList';
+
+export default function ItemPage() {
+
   return (
-    <div className="content-spacer">
-      중고마켓
+    <div>
+      <BestProductList />
+      <ProductList  />
     </div>
   );
 }

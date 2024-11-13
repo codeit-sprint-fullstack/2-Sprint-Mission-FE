@@ -43,7 +43,7 @@ export default function ArticleForm({ initialTitle = '', initialContent = '', on
           disabled={!isFormValid || isSubmitting}
           tabIndex={3} // 탭 순서 변경
         >
-          {isSubmitting ? (isEdit ? '수정중' : '등록중') : (isEdit ? '수정' : '등록')}
+          {isSubmitting ? (isEdit ? '수정' : '등록') : (isEdit ? '수정' : '등록')}
         </button>
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>

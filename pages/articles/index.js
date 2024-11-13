@@ -2,18 +2,20 @@ import { useEffect, useState } from 'react';
 import BestArticleList from '@/components/Articles/BestArticleList';
 import { generateRandomNickname, getRandomInt } from '@/lib/utils';
 import formatDate from '@/lib/formatDate';
-import styles from './ArticlePage.module.css';
+import styles from '@/styles/ArticlePage.module.css';
 import useMaxItems from '@/hooks/useMaxItems';
 import ArticleList from '@/components/Articles/ArticleList';
 import { getArticleList } from '@/lib/api/ArticleService';
 import Link from 'next/link';
+import { getDeviceTypeInitialCount } from '@/lib/getDeviceTypeInitialCount';
 
-export async function getServerSideProps() {
-  const maxBestArticleCount = 3;
+export async function getServerSideProps(context) {
+  const userAgent = context.req.headers['user-agent'];
+  const { bestArticleCount: initialBestArticleCount } = getDeviceTypeInitialCount(userAgent);
+
   const maxArticleCount = 5;
-
   try {
-    const bestArticlesData = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
+    const bestArticlesData = await getArticleList({ page: 1, pageSize: initialBestArticleCount, orderBy: 'recent' });
     const bestArticles = bestArticlesData.map((article) => ({
       ...article,
       imageUrl: '/images/articles/img_default_article.png',
@@ -34,7 +36,8 @@ export async function getServerSideProps() {
     return {
       props: {
         initialBestArticles: bestArticles,
-        initialArticles: articles
+        initialArticles: articles,
+        initialBestArticleCount,
       }
     }  
   } catch (error) {
@@ -42,44 +45,29 @@ export async function getServerSideProps() {
     return {
       props: {
         initialBestArticles: [],
-        initialArticles: []
+        initialArticles: [],
+        initialBestArticleCount: 0
       }
     }
   }
 }
 
-export default function ArticlesPage({ initialBestArticles, initialArticles }) {
-  const [bestArticles, setBestArticles] = useState(initialBestArticles);
-  const maxBestArticleCount = useMaxItems(); // 클라이언트에서만 접근 가능
+export default function ArticlesPage({ initialBestArticles, initialArticles,  initialBestArticleCount}) {
+  const maxBestArticleCount = useMaxItems("bestArticleCount") || initialBestArticleCount; // 클라이언트에서만 접근 가능
+  const [displayedBestArticles, setDisplayedBestArticles] = useState(initialBestArticles);
 
-  // 화면 사이즈에 맞춰 베스트 게시글 수 업데이트
   useEffect(() => {
-    if (maxBestArticleCount) {
-      const fetchAdjustedBestArticles = async () => {
-        try {
-          const adjustedData = await getArticleList({ page: 1, pageSize: maxBestArticleCount, orderBy: 'recent' });
-          const adjustedArticles = adjustedData.map((article) => ({
-            ...article,
-            imageUrl: '/images/articles/img_default_article.png',
-            nickname: generateRandomNickname(),
-            likes: getRandomInt(0, 20000),
-            formattedDate: formatDate(article.createdAt),
-          }));
-          setBestArticles(adjustedArticles);
-        } catch (error) {
-          console.error('화면 크기에 맞춘 베스트 게시글 로드 실패:', error);
-        }
-      };
-      fetchAdjustedBestArticles();
+    if (initialBestArticles && maxBestArticleCount) {
+        setDisplayedBestArticles(initialBestArticles.slice(0, maxBestArticleCount));
     }
-  }, [maxBestArticleCount, bestArticles.length]); 
+}, [maxBestArticleCount, initialBestArticles]);
 
   return (
     <div>
       <h2 className={styles.sectionTitle}>베스트 게시글</h2>
 
-      {bestArticles.length > 0 ? (
-        <BestArticleList articles={bestArticles} />
+      {displayedBestArticles.length > 0 ? (
+        <BestArticleList articles={displayedBestArticles} />
       ) : (
         <p>베스트 게시글이 없습니다.</p>
       )}

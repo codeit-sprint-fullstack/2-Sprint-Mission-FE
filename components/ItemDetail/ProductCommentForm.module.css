@@ -10,6 +10,7 @@
   font-weight: 600;
   line-height: 2.6rem;
   color: #111827;
+  margin-top: 4rem;
 }
 .commentInput {
   max-width: 120rem;
@@ -20,6 +21,13 @@
   border: 1px solid var(--secondary-gray-300);
   font-size: 1.6rem;
   background-color: #F3F4F6;
+}
+
+.commentInput::placeholder {
+  color: #9CA3AF; 
+  font-size: 1.6rem; 
+  line-height: 1.8rem;
+  letter-spacing: -0.1rem;
 }
 
 .commentButton {

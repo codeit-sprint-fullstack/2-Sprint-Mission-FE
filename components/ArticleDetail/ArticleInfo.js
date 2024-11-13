@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './ArticleInfo.module.css';
 import Image from 'next/image';
 import { deleteArticle } from '@/lib/api/ArticleService';

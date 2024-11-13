@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import CommentItem from './CommentItem';
+import CommentItem from './ArticleCommentItem';
 import Image from 'next/image';
-import styles from './CommentList.module.css';
-import CommentForm from './CommentForm';
+import styles from './ArticleCommentList.module.css';
+import CommentForm from './ArticleCommentForm';
 
-export default function CommentList({ comments }) {
+export default function ArticleCommentList({ comments }) {
   const [commentList, setCommentList] = useState(comments); // 초기값으로 전달된 comments 사용
   const [ editingComment, setEditingComment] = useState(null);
 
