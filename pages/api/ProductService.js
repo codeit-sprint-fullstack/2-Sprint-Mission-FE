@@ -91,3 +91,43 @@ export async function deleteProduct(id) {
     console.error(e.message);
   }
 }
+
+export async function createFavorite(productId) {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) {
+    console.error("Access Token is missing");
+    return;
+  }
+
+  try {
+    const response = await requestPost(`/products/${productId}/favorite`, {}, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+}
+
+export async function deleteFavorite(productId) {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) {
+    console.error("Access Token is missing");
+    return;
+  }
+
+  try {
+    const response = await requestDelete(`/products/${productId}/favorite`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+}

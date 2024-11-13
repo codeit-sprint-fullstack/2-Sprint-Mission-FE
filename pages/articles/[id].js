@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthProvider";
 import Image from "next/image";
 import profile from "@/public/ic_profile.png";
-import heart from "@/public/ic_heart.png";
 import Spinner from "@/components/Spinner";
 import { formatDate } from "@/utils/formatDate";
 import Comment from "@/components/Comment";
 import KebabMenu from "@/components/KebabMenu";
+import LikeButton from "@/components/LikeButton";
 
 export default function ArticleDetail() {
   const router = useRouter();
@@ -49,10 +49,11 @@ export default function ArticleDetail() {
     }
 
     const fetchArticle = async () => {
-      if (id) {
+      if (id && user) {
         try {
           const articleData = await getArticle(id);
           setArticle(articleData);
+          console.log('is like:', articleData.isLiked);
         } catch (error) {
           console.error(error.message);
         }
@@ -81,10 +82,11 @@ export default function ArticleDetail() {
             <p className={style.userName}>{article.writer.nickname}</p>
             <p className={style.date}>{formatDate(article.createdAt)}</p>
           </div>
-          <div className={style.favSection}>
+          {/* <div className={style.favSection}>
             <Image className={style.heartIcon} src={heart} alt="heart" />
             <p className={style.favoriteCnt}>{article.likeCount}</p>
-          </div>
+          </div> */}
+          <LikeButton isItem={false} cnt={article.likeCount} id={id} liked={article.isLiked} />
         </div>
         <hr className={style.hr} />
         <div className={style.contentSection}>

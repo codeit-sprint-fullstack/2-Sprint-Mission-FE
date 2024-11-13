@@ -2,15 +2,15 @@ import style from "@/styles/ProductDetail.module.css";
 import KebabMenu from "@/components/KebabMenu";
 import Comment from "@/components/Comment";
 import Image from "next/image";
-import heart from "@/public/ic_heart.png";
 import Spinner from "@/components/Spinner";
 import { useRouter } from "next/router";
 import { formatDate } from "@/utils/formatDate";
-import { patchProduct, deleteProduct, getProduct } from "@/pages/api/ProductService";
+import { deleteProduct, getProduct } from "@/pages/api/ProductService";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthProvider";
 import profile from "@/public/ic_profile.png";
 import defaultImg from "@/public/img_default.png";
+import LikeButton from "@/components/LikeButton";
 
 export default function ProductDetail() {
   const router = useRouter();
@@ -110,10 +110,7 @@ export default function ProductDetail() {
                   <p className={style.date}>{formatDate(product.createdAt)}</p>
                 </div>
               </div>
-              <div className={style.heart}>
-                <Image src={heart} alt="heart" />
-                <p>{product.favoriteCount}</p>
-              </div>
+              <LikeButton isItem={true} id={id} liked={product.isFavorite} cnt={product.favoriteCount} />
             </div>
           </div>
         </div>
