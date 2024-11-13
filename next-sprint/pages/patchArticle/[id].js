@@ -1,4 +1,4 @@
-import PatchInput from '@/components/PatchInput';
+import PatchInput from '@/components/ArticleRegister/PatchInput';
 
 export default function register() {
   return (

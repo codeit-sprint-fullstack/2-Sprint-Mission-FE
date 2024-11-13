@@ -1,7 +1,7 @@
 import styles from './SearchForm.module.css';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import Dropdown from './Dropdown';
+import Dropdown from '../Common/Dropdown';
 
 export default function SearchForm({ initialValue, onChange, sort }) {
   const [value, setValue] = useState(initialValue);

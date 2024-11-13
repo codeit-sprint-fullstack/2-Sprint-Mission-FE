@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { login } from '@/lib/api';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Modal from './Modal';
+import Modal from '@/components/Common/Modal';
 import { useUser } from '@/contexts/UserContext';
 
 export default function Login() {

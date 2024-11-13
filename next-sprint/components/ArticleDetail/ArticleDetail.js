@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './ArticleDetail.module.css';
 import Image from 'next/image';
-import ArticleReview from './ArticleReview';
+import ArticleReview from '../ArticleReview';
 import Link from 'next/link';
 import ArticelDropdown from './ArticleDropdown';
 import { instance } from '@/lib/api';

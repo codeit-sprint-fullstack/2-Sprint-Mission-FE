@@ -19,3 +19,9 @@ Content-Type: application/json
 
 ###
 GET https://panda-market-api.vercel.app/users/me
+
+###
+GET https://panda-market-api.vercel.app/products/1
+
+###
+GET https://panda-market-api.vercel.app/products/1/comments?limit=10

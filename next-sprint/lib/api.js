@@ -49,3 +49,45 @@ export async function getUser() {
     throw error;
   }
 }
+
+export async function getProduct(productId) {
+  try {
+    const res = await axiosInstance.get(`/products/${productId}`);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getComments(productId) {
+  try {
+    const res = await axiosInstance.get(`/products/${productId}/comments`, {
+      params: {
+        limit: 10
+      }
+    });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function createProductFavorite(productId) {
+  try {
+    const res = await axiosInstance.post(`/products/${productId}/favorite`, {});
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteProductFavorite(productId) {
+  try {
+    const res = await axiosInstance.delete(`/products/${productId}/favorite`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}

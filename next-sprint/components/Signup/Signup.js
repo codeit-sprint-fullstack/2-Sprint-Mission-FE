@@ -1,7 +1,7 @@
 import styles from './Signup.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import Modal from './Modal';
+import Modal from '@/components/Common/Modal';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';

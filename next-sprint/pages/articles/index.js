@@ -1,8 +1,8 @@
 import styles from '@/styles/Home.module.css';
-import RecentArticle from '@/components/RecentArticle';
-import ArticleList from '@/components/ArticleList';
+import RecentArticle from '@/components/RecentArticle/RecentArticle';
+import ArticleList from '@/components/ArticleList/ArticleList';
 import { useEffect, useState } from 'react';
-import SearchForm from '@/components/SearchForm';
+import SearchForm from '@/components/ArticleDetail/SearchForm';
 import Link from 'next/link';
 import { instance } from '@/lib/api';
 
