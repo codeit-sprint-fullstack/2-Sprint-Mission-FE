@@ -23,22 +23,23 @@ export async function getServerSideProps() {
     return {
       props: {
         products,
-        bestProducts,
-        totalCount
+        bestProducts
       }
     };
   } catch (err) {
     console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err);
-    throw new Error(
-      '서버에서 데이터를 가져오는 중 문제가 발생했습니다.' + err.message
-    );
+    return {
+      props: {
+        error: '서버에서 데이터를 가져오는 중 문제가 발생했습니다.'
+      }
+    };
   }
 }
 
 export default function Product({
   products,
   bestProducts: initialBestProducts,
-  totalCount
+  error: serverError
 }) {
   const [bestProducts] = useState(initialBestProducts);
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -52,26 +53,21 @@ export default function Product({
   const [sortOrder, setSortOrder] = useState('recent');
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const timer = setTimeout(() => {
       setLoading(true);
-      try {
-        const fetchedProducts = await getProductList({
-          page: 1,
-          pageSize: totalCount
-        });
-        setFilteredProducts(fetchedProducts);
-      } catch (err) {
-        setError('상품 목록을 불러오는 데 실패했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
+    }, 2000);
 
-    fetchData();
+    return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const sortedProducts = sortProducts(filteredProducts, sortOrder);
+    setFilteredProducts(sortedProducts);
+
+    setLoading(false);
+  }, [sortOrder, filteredProducts]);
 
   const sortProducts = (products, sortOrder) => {
     let sortedProducts = [...products];
@@ -99,11 +95,6 @@ export default function Product({
     }
   };
 
-  useEffect(() => {
-    const sortedProducts = sortProducts(filteredProducts, sortOrder);
-    setFilteredProducts(sortedProducts);
-  }, [sortOrder]);
-
   const totalPages = Math.ceil(filteredProducts.length / pageSize);
 
   const currnetProducts = filteredProducts.slice(
@@ -112,7 +103,7 @@ export default function Product({
   );
 
   if (loading) return <Spinner />;
-  if (error) return <ErrorMessage message={error} />;
+  if (serverError) return <ErrorMessage message={serverError} />;
 
   return (
     <div className={styles.wrapper}>
