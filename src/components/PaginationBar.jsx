@@ -1,14 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useViewport } from '../contexts/ViewportContext.jsx';
-import usePagination from '../hooks/usePagination.js';
-import c from '../utils/constants.js';
+import { useViewport } from '@contexts/ViewportProvider';
+import usePagination from '@hooks/usePagination';
 
 const style = {
   paginationBar: css`
     height: 4rem;
 
-    .pagination.productOnSale {
+    .pagination {
       margin: 0 auto;
       width: 30.4rem;
       height: 100%;
@@ -44,25 +43,28 @@ const style = {
 
 export default function PaginationBar({ totalCount, pageSize, onPageChange }) {
   const viewport = useViewport();
-  const { currentPage, bundle, bundleCount, totalBundleCounts, goToPage, nextBundle, prevBundle } = usePagination(
+  const { currentPage, bundlePages, goToPage, getNextBundle, getPrevBundle, canGoPrev, canGoNext } = usePagination(
     totalCount,
     pageSize,
-    c.BUNDLE_SIZE,
-    onPageChange,
   );
+
+  const handlePageChange = page => {
+    goToPage(page);
+    onPageChange?.(page);
+  };
 
   return (
     <div id="paginationBar" css={style.paginationBar}>
-      <div className={'pagination productOnSale'}>
-        <button onClick={prevBundle} disabled={bundleCount <= 1}>
+      <div className={'pagination'}>
+        <button onClick={getPrevBundle} disabled={!canGoPrev}>
           &lt;
         </button>
-        {bundle.map(p => (
-          <button key={p} onClick={() => goToPage(p)} className={p === currentPage ? 'now' : ''}>
-            {p}
+        {bundlePages.map(page => (
+          <button key={page} onClick={() => handlePageChange(page)} className={page === currentPage ? 'now' : ''}>
+            {page}
           </button>
         ))}
-        <button onClick={nextBundle} disabled={bundleCount >= totalBundleCounts}>
+        <button onClick={getNextBundle} disabled={!canGoNext}>
           &gt;
         </button>
       </div>

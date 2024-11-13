@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import { toDateString } from '@utils/utils';
 
 const style = {
   article: css`
@@ -97,8 +98,6 @@ const style = {
 };
 
 export default function Article({ item, best = false }) {
-  const createdDate = new Date(item.createdAt);
-
   return best ? (
     <div className="article" css={style.BestArticle}>
       <div className="best">
@@ -116,7 +115,7 @@ export default function Article({ item, best = false }) {
           <span className="heart">{item.likeCount}</span>
         </div>
         <div>
-          <p className="date">{`${createdDate.getFullYear()}. ${createdDate.getMonth()}. ${createdDate.getDate()}`}</p>
+          <p className="date">{toDateString(item?.createdAt)}</p>
         </div>
       </div>
     </div>
@@ -130,7 +129,7 @@ export default function Article({ item, best = false }) {
         <div>
           <Image src="/Image/ic_profile.png" alt="profile image" width={24} height={24} />
           <span className="nickname">{item.owner.nickname}</span>
-          <span className="date">{`${createdDate.getFullYear()}. ${createdDate.getMonth()}. ${createdDate.getDate()}`}</span>
+          <span className="date">{toDateString(item?.createdAt)}</span>
         </div>
         <div>
           <Image src="/Image/ic_heart.png" alt="favorite heart" width={16} height={16} />

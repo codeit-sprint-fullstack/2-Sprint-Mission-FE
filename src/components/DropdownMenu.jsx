@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import c from '@/src/utils/constants';
 import { useEffect, useRef } from 'react';
-import { useDropdown } from '../contexts/DropdownContext';
+import { useDropdown } from '@contexts/DropdownProvider';
+import c from '@utils/constants';
 
 const style = {
   dropdownMenu: css`
@@ -77,13 +77,11 @@ export default function DropdownMenu({ DropdownButton, list, dictionary, onClick
       {DropdownButton}
       {dropdownOpen && (
         <ul className="dropdown-menu" css={style.dropdownMenu}>
-          {Object.values(list).map(item => {
-            return (
-              <li onClick={() => handleClick(item)} key={item}>
-                {dictionary[item]}
-              </li>
-            );
-          })}
+          {Object.values(list).map(item => (
+            <li onClick={() => handleClick(item)} key={item}>
+              {dictionary[item]}
+            </li>
+          ))}
         </ul>
       )}
     </div>

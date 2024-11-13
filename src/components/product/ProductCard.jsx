@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { priceFunc } from '@/src/utils/utils.js';
-import c from '@/src/utils/constants.js';
 import Image from 'next/image';
+import c from '@utils/constants';
+import { toPriceString } from '@utils/utils';
 
 const style = {
   card: css`
@@ -60,18 +60,18 @@ const style = {
 export default function ProductCard({ item, best = false }) {
   const { likeCount, price, name, images } = item;
   const imgUrl = images?.[0] || '/Image/img_default.png';
-  const priceString = priceFunc(price);
+  const priceString = toPriceString(price);
 
   return (
     <div id="productCard" css={style.card}>
       <div className="imageWrapper">
-        <Image fill src={imgUrl} alt={name} className={best ? 'best' : ''} />
+        <Image fill src={imgUrl} alt={name} className={best ? 'best' : ''} sizes="300px, 300px" />
       </div>
       <div css={style.info}>
         <h5 css={style.title}>{name}</h5>
         <p css={style.price}>{priceString}원</p>
         <p css={style.like}>
-          <Image src="/Image/ic_heart.png" alt="favorite heart" width={16} height={16} /> {likeCount}
+          <Image src="/Image/ic_heart.png" alt="favorite heart" width={16} height={16} /> {likeCount || item?.favoriteCount}
         </p>
       </div>
     </div>

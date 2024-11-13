@@ -1,16 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useRouter } from 'next/router';
-import DropdownMenu from '@/src/components/DropdownMenu';
-import Input from '@/src/components/Input';
-import c from '@/src/utils/constants';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import useAsync from '@/src/hooks/useAsync';
-import { getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@/src/utils/api';
-import DropdownProvider, { useDropdown } from '../../src/contexts/DropdownContext';
-import Comment from '../../src/components/Comment';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import Comment from '@components/Comment';
+import DeleteModal from '@components/DeleteModal';
+import DropdownMenu from '@components/DropdownMenu';
+import Input from '@components/Input';
+import DropdownProvider, { useDropdown } from '@contexts/DropdownProvider';
+import useOwnMutation from '@hooks/useOwnMutation';
+import useOwnQuery from '@hooks/useOwnQuery';
+import { deleteArticle, getArticleById, getCommentsOfArticle, postCommentOfArticle } from '@utils/api';
+import c from '@utils/constants';
+import { toDateString } from '@utils/utils';
 
 const style = {
   articleDetailPage: css`
@@ -160,63 +163,60 @@ function ModifyButton() {
 export default function ArticleDetail() {
   const router = useRouter();
   const { id } = router.query;
-  const getArticleByIdAsync = useAsync(getArticleById);
-  const getCommentsByIdAsync = useAsync(getCommentsOfArticle);
-  const postCommentOfArticleAsync = useAsync(postCommentOfArticle);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
-  const [date, setDate] = useState(new Date());
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text' });
   const [cursor, setCursor] = useState();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const articleData = useOwnQuery({
+    queryFn: () => getArticleById(id),
+    queryKey: ['article', id],
+    onSuccess: result => setArticle(result),
+    enabled: !!id,
+  });
+  const commentsData = useOwnQuery({
+    queryFn: () => getCommentsOfArticle(id, { limit: 5 }),
+    queryKey: ['comments', id],
+    onSuccess: result => {
+      setComments(result.list);
+      setCursor(result.nextCursor);
+    },
+    enabled: !!id,
+  });
+  const postCommentMutation = useOwnMutation({
+    mutationFn: data => postCommentOfArticle(id, data),
+    invalidQueryKey: ['comments', id],
+  });
+  const deleteArticleMutation = useOwnMutation({
+    mutationFn: _ => deleteArticle(id),
+    onSuccess: () => router.push('/articles'),
+  });
 
   const handleDropdownClick = modify => {
     switch (modify) {
       case c.MODIFY.EDIT:
-        router.push('/articles/post');
+        router.push(`/articles/post/${id}`);
         break;
       case c.MODIFY.DELETE:
+        setDeleteModalOpen(true);
     }
-  };
-  const handleCommentChange = value => {
-    value
-      ? setCommentObj(old => {
-          return { ...old, value };
-        })
-      : null;
   };
   const handleSubmitComment = async () => {
     const data = { content: commentObj.value, ownerId: '186dc25d-3079-47d4-a7ed-3dd6e4e7f146' };
-    const result = await postCommentOfArticleAsync(id, data);
-
-    if (!result) return null;
-
-    router.reload();
+    postCommentMutation.mutate(data);
   };
-
-  useEffect(() => {
-    async function handleLoadArticle() {
-      const data = await getArticleByIdAsync(id);
-      if (!data) return null;
-
-      setArticle(data);
-      setDate(new Date(data.createdAt));
-    }
-    async function handleLoadComments() {
-      // const nextCursor = cursor ? { cursor } : {};
-      const data = await getCommentsByIdAsync(id, { limit: 5 });
-      if (!data) return null;
-
-      setComments(data.list);
-      setCursor(data.nextCursor);
-    }
-    if (id) {
-      handleLoadArticle();
-      handleLoadComments();
-    }
-  }, [id]);
+  const handleDeleteArticle = async () => {
+    deleteArticleMutation.mutate();
+  };
 
   return (
     <div id="articleDetailPage" css={style.articleDetailPage}>
+      <DeleteModal
+        isOpen={deleteModalOpen}
+        onConfirmClick={handleDeleteArticle}
+        onCancelClick={() => setDeleteModalOpen(false)}
+      />
       <div id="article" css={style.article}>
         <div id="articleHeader">
           <div id="title">
@@ -235,7 +235,7 @@ export default function ArticleDetail() {
             <div>
               <Image src="/Image/ic_profile.png" alt="profile image" width={40} height={40} />
               <span className="nickname">{article.owner?.nickname}</span>
-              <span className="date">{`${date.getFullYear()}. ${date.getMonth()}. ${date.getDate()}`}</span>
+              <span className="date">{toDateString(article?.createdAt)}</span>
             </div>
 
             <hr />
@@ -258,11 +258,11 @@ export default function ArticleDetail() {
             inputObj={commentObj}
             label={'댓글달기'}
             placeholder={'댓글을 입력해주세요.'}
-            onChange={handleCommentChange}
+            onChange={setCommentObj}
             textarea
             comment
           />
-          <button type="button" className="button" disabled={!commentObj.value} onClick={handleSubmitComment}>
+          <button type="button" className="button" disabled={!commentObj.value?.trim()} onClick={handleSubmitComment}>
             등록
           </button>
         </form>
@@ -271,13 +271,11 @@ export default function ArticleDetail() {
           {comments.length === 0 && (
             <Image id="noComment" src="/Image/img_no_comments.png" alt="no comment Image" width={151} height={208} />
           )}
-          {comments.map(comment => {
-            return (
-              <DropdownProvider key={comment.id}>
-                <Comment item={comment} ModifyButton={<ModifyButton />} key={comment.id} />
-              </DropdownProvider>
-            );
-          })}
+          {comments.map(comment => (
+            <DropdownProvider key={comment.id}>
+              <Comment item={comment} parentId={id} ModifyButton={<ModifyButton />} key={comment.id} />
+            </DropdownProvider>
+          ))}
         </div>
       </div>
 

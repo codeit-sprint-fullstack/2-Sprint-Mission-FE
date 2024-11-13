@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import DropdownMenu from './DropdownMenu';
-import c from '@/src/utils/constants';
-import { useDropdownItem } from '../contexts/DropdownContext';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
-import useAsync from '@/src/hooks/useAsync';
-import { patchComment, deleteComment } from '@/src/utils/api';
-import Input from '@/src/components/Input';
-import Modal from '@/src/components/Modal';
+import { useState } from 'react';
+import DropdownMenu from '@components/DropdownMenu';
+import Input from '@components/Input';
+import { useDropdownItem } from '@contexts/DropdownProvider';
+import useOwnMutation from '@hooks/useOwnMutation';
+import { deleteComment, patchComment } from '@utils/api';
+import c from '@utils/constants';
+import { toDateString } from '@utils/utils';
+import DeleteModal from './DeleteModal';
 
 const style = {
   comment: css`
@@ -69,38 +70,34 @@ const style = {
   `,
 };
 
-export default function Comment({ item, ModifyButton }) {
-  const createdDate = new Date(item.createdAt);
+export default function Comment({ item, parentId, ModifyButton }) {
+  const nickname = item.owner ? item.owner.nickname : item.writer.nickname;
   const router = useRouter();
-  const patchCommentAsync = useAsync(patchComment);
-  const deleteCommentAsync = useAsync(deleteComment);
   const { item: modify, setItem: setModify } = useDropdownItem();
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text', value: item.content });
 
-  const handleCommentChange = value => {
-    value
-      ? setCommentObj(old => {
-          return { ...old, value };
-        })
-      : null;
-  };
-  const handleSubmitComment = async () => {
-    const data = { content: commentObj.value };
-    const result = await patchCommentAsync(item.id, data);
-    if (!result) return null;
+  const patchCommentMutation = useOwnMutation({
+    mutationFn: data => patchComment(item.id, data),
+    invalidQueryKey: ['comments', parentId],
+    onSuccess: _ => setModify(null),
+  });
+  const deleteCommentMutation = useOwnMutation({
+    mutationFn: _ => deleteComment(item.id),
+    invalidQueryKey: ['comments', parentId],
+    onSuccess: _ => setModify(null),
+  });
 
-    router.reload();
+  const handleSubmitComment = async () => {
+    const data = { content: commentObj.value?.trim?.() };
+    patchCommentMutation.mutate(data);
   };
   const handleDeleteComment = async () => {
-    const result = await deleteCommentAsync(item.id);
-    if (!result) return null;
-
-    router.reload();
+    deleteCommentMutation.mutate();
   };
 
   return (
     <div className="comment" css={style.comment}>
-      {!modify && (
+      {modify !== c.MODIFY.EDIT && (
         <div className="content">
           <p>{item.content}</p>
           <DropdownMenu DropdownButton={ModifyButton} list={c.MODIFY} dictionary={c.MODIFY_MSG} onClick={setModify} />
@@ -108,28 +105,23 @@ export default function Comment({ item, ModifyButton }) {
       )}
       {modify === c.MODIFY.EDIT && (
         <form id="commentsForm">
-          <Input inputObj={commentObj} placeholder={'댓글을 입력해주세요.'} onChange={handleCommentChange} textarea comment />
-          <button type="button" className="button" disabled={!commentObj.value} onClick={handleSubmitComment}>
+          <Input inputObj={commentObj} placeholder={'댓글을 입력해주세요.'} onChange={setCommentObj} textarea comment />
+          <button type="button" className="button" disabled={!commentObj.value?.trim?.()} onClick={handleSubmitComment}>
             등록
           </button>
         </form>
       )}
-      {modify === c.MODIFY.DELETE && (
-        <Modal
-          buttons={[
-            { Msg: '확인', onClick: handleDeleteComment },
-            { Msg: '취소', onClick: () => router.reload() },
-          ]}
-        >
-          asdf
-        </Modal>
-      )}
+      <DeleteModal
+        isOpen={modify === c.MODIFY.DELETE}
+        onConfirmClick={handleDeleteComment}
+        onCancelClick={() => setModify(null)}
+      />
 
       <div className="info">
         <img src="/Image/ic_profile.png" alt="profile Image" width={32} height={32} />
         <div>
-          <span className="nickname">{item.owner?.nickname}</span>
-          <span className="time">{`${createdDate.getFullYear()}. ${createdDate.getMonth()}. ${createdDate.getDate()}`}</span>
+          <span className="nickname">{nickname}</span>
+          <span className="time">{toDateString(item?.createdAt)}</span>
         </div>
       </div>
     </div>

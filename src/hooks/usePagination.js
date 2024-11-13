@@ -1,59 +1,50 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import c from '@utils/constants';
 
-export default function usePagination(totalCounts, pageSize, bundleSize, onPageChange, initialPage = 1, initialBundleCount = 1) {
+export default function usePagination(totalCounts, pageSize, bundleSize = c.BUNDLE_SIZE, initialPage = 1) {
   const [currentPage, setCurrentPage] = useState(initialPage);
-  const [totalPages, setTotalPages] = useState(Math.ceil(totalCounts / pageSize));
-  const [bundleCount, setBundleCount] = useState(initialBundleCount);
-  const [bundle, setBundle] = useState([]);
-  const [totalBundleCounts, setTotalBundleCounts] = useState(Math.ceil(totalPages / bundleSize));
+  const [currentBundle, setCurrentBundle] = useState(1);
 
-  const goToPage = useCallback(
-    page => {
-      setCurrentPage(Math.max(Math.min(page, totalPages), 1));
-      onPageChange(page);
+  const totalPages = Math.ceil(totalCounts / pageSize);
+  const totalBundles = Math.ceil(totalPages / bundleSize);
+
+  const head = (currentBundle - 1) * bundleSize + 1;
+  const bundlePages = [];
+
+  for (let i = 0; i < bundleSize && head + i <= totalPages; i++) {
+    bundlePages.push(head + i);
+  }
+
+  const goToPage = page => setCurrentPage(Math.max(Math.min(page, totalPages), 1));
+  const getNextBundle = _ => {
+    if (currentBundle < totalBundles) {
+      setCurrentBundle(currentBundle + 1);
+      goToPage(currentBundle * bundleSize + 1);
+    }
+  };
+  const getPrevBundle = _ => {
+    if (currentBundle > 1) {
+      setCurrentBundle(currentBundle - 1);
+      goToPage((currentBundle - 2) * bundleSize + 1);
+    }
+  };
+
+  useEffect(
+    _ => {
+      const newBundle = Math.ceil(currentPage / bundleSize);
+      if (newBundle !== currentBundle) setCurrentBundle(newBundle);
     },
-    [totalPages, onPageChange],
+    [currentPage, bundleSize],
   );
 
-  const nextBundle = () => {
-    setBundleCount(prev => Math.min(prev + 1, totalBundleCounts));
+  return {
+    currentPage,
+    currentBundle,
+    bundlePages,
+    goToPage,
+    getNextBundle,
+    getPrevBundle,
+    canGoPrev: currentBundle > 1,
+    canGoNext: currentBundle < totalBundles,
   };
-
-  const prevBundle = () => {
-    setBundleCount(prev => Math.max(prev - 1, 1));
-  };
-
-  // const nextPage = () => {
-  //   setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  // };
-
-  // const prevPage = () => {
-  //   setCurrentPage((prev) => Math.max(prev - 1, 1));
-  // };
-
-  useEffect(() => {
-    // 총 아이템 or 페이지 당 개수가 변경되면 총 페이지 수 재계산
-    setTotalPages(Math.ceil(totalCounts / pageSize));
-  }, [totalCounts, pageSize]);
-
-  useEffect(() => {
-    // 총 페이지 or 번들 당 개수가 변경되면 총 번들 수 재계산
-    setTotalBundleCounts(Math.ceil(totalPages / bundleSize));
-  }, [totalPages, bundleSize]);
-
-  useEffect(() => {
-    const newBundle = [];
-    const head = (bundleCount - 1) * bundleSize + 1;
-
-    for (let i = 0; i < bundleSize; i++) {
-      const page = head + i;
-      if (page > totalPages) break;
-      newBundle.push(page);
-    }
-
-    setBundle(newBundle);
-    goToPage(head);
-  }, [bundleCount, totalPages, bundleSize, goToPage]);
-
-  return { currentPage, bundle, bundleCount, totalBundleCounts, goToPage, nextBundle, prevBundle };
 }
