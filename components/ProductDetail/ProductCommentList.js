@@ -1,7 +1,6 @@
 import styles from './ProductCommentList.module.css';
 import Image from 'next/image';
 import { useState, useRef } from 'react';
-import { useRouter } from 'next/router';
 import formatTime from '@/lib/formatTime';
 import { patchProductComment } from '@/lib/api/ProductService';
 import ProductCommentDropdown from './\bProductCommentDropdown';
@@ -13,8 +12,6 @@ export default function ProductCommentList({ productComments = [] }) {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  const router = useRouter();
 
   const handleMenuClick = (comment) => {
     setSelectedComment(comment);
