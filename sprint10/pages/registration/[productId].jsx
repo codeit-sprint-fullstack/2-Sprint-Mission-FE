@@ -2,11 +2,12 @@ import styles from '@/styles/RegisPage.module.css';
 import { useRef, useState } from "react";
 import Tags from "@/components/Tags.jsx";
 import Images from "@/components/Images.jsx";
-import { postProduct } from "@/apis/itemsService.js";
+import { getProductWithId, postProduct } from "@/apis/itemsService.js";
 import PopUp from "@/components/PopUp.jsx";
 import useAsync from "@/hooks/useAsync.js";
-import { useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export async function isImage(url) {
 	try {
@@ -19,6 +20,23 @@ export async function isImage(url) {
 	}
 }
 
+// export async function getServerSideProps(context) {
+// 	const { productId } = context.query;
+// 	if (productId) {
+// 		const product = await getProductWithId(productId);
+// 		console.log('product', product);
+// 		return {
+// 			props: {
+// 				productId,
+// 				product,
+// 			},
+// 		};
+// 	}
+// 	return {
+// 		props: {},
+// 	};
+// }
+
 const INITIAL_VALUES = {
 	name: "",
 	description: "",
@@ -30,7 +48,7 @@ const INITIAL_VALUES = {
 export default function RegisPage() {
 	const imageUrlError = useRef();
 	const tagsError = useRef();
-	const [values, setValues] = useState(INITIAL_VALUES);
+	const [values, setValues] = useState({});
 	const [imageUrl, setImageUrl] = useState("");
 	const [tag, setTag] = useState("");
 	const [validation, setValidation] = useState({
@@ -41,8 +59,20 @@ export default function RegisPage() {
 		tags: true,
 	});
 	const [isPending, error, asyncPostProduct, setError] = useAsync(postProduct);
-	const queryClient = useQueryClient();
 	const router = useRouter();
+	const { productId } = router.query;
+	const { data: product } = useQuery({
+		queryKey: ["products", productId],
+		queryFn: () => getProductWithId(productId),
+	});
+
+	useEffect(() => {
+		if (product) {
+			setValues({
+				...product,
+			});
+		}
+	}, [product]);
 
 	const handleSubmit = async () => {
 		await handleImageInput({ code: "Enter" }, imageUrl);
@@ -55,9 +85,7 @@ export default function RegisPage() {
 				setError(res);
 			}
 			else {
-				res.onClose = () => router.push("/items");
 				setError(res);
-				queryClient.invalidateQueries(['items', '*']);
 				setValues(INITIAL_VALUES);
 			}
 		}

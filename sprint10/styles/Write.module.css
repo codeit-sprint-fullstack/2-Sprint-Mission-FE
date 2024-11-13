@@ -80,3 +80,8 @@
 		background-color: var(--secondary-color-gray100);
 	}
 }
+
+.selectedImages {
+	display: inline-block;
+	margin-right: 10px;
+}

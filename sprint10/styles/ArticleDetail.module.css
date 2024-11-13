@@ -143,6 +143,13 @@
 	}
 }
 
+.articleImage {
+	position: relative;
+	width: 300px;
+	height: 300px;
+	margin-bottom: 1rem;
+}
+
 .sub {
 	& .comments {
 		& .center {

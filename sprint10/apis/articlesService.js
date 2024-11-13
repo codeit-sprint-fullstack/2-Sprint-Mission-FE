@@ -50,9 +50,13 @@ async function deleteArticleComment(commentId, articleId) {
 	}
 }
 
-async function postArticle(data = { title: "", content: "", favoriteCount: 0 }) {
+async function postArticle(formData) {
 	try {
-		const resp = await instance.post(`/articles`, data);
+		const resp = await instance.post(`/articles`, formData, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		});
 		return resp.data;
 	}
 	catch (err) {
@@ -61,9 +65,13 @@ async function postArticle(data = { title: "", content: "", favoriteCount: 0 }) 
 }
 
 // * = {images, tags, price, description, name}
-async function patchArticleWithId(id, data) {
+async function patchArticleWithId(id, formData) {
 	try {
-		const resp = await instance.patch(`/articles/${id}`, data);
+		const resp = await instance.patch(`/articles/${id}`, formData, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		});
 		return resp.data;
 	}
 	catch (err) {
@@ -81,9 +89,43 @@ async function deleteArticleWithId(id) {
 	}
 }
 
-async function postArticleComment(articleId, data = { commenterId: "", content: "" }) {
+async function postArticleWithIdComment(articleId, data = { content: "" }) {
 	try {
 		const resp = await instance.post(`/articles/${articleId}/comments`, data);
+		return resp.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
+async function likeArticleWithId(articleId) {
+	try {
+		const resp = await instance.post(`/articles/${articleId}/favorite`);
+		return resp.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
+async function unlikeArticleWithId(articleId) {
+	try {
+		const resp = await instance.delete(`/articles/${articleId}/favorite`);
+		return resp.data;
+	}
+	catch (err) {
+		return err?.response?.data || err;
+	}
+}
+
+async function uploadImages(formData) {
+	try {
+		const resp = await instance.post(`/images`, formData, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		});
 		return resp.data;
 	}
 	catch (err) {
@@ -100,5 +142,8 @@ export {
 	getArticleWithIdComments,
 	patchArticleComment,
 	deleteArticleComment,
-	postArticleComment,
+	postArticleWithIdComment,
+	likeArticleWithId,
+	unlikeArticleWithId,
+	uploadImages,
 };

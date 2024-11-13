@@ -11,6 +11,7 @@ function PopUp({ error, setError }) {
 					: <>{error?.name}{" : "}{error?.description}<br/>{error?.price}{" :: "}{error?.tags?.join("/")}<br/><Image width={50} height={50} className={styles.popup_img} src={error?.images?.[0]} alt={error?.name}/></>}
 				</div><button id="popup-button-ok" className={styles.popup_button_ok} onClick={() => {
 					setError(null);
+					error?.onClose?.();
 				}}>확인</button>
 			</div>
 		</div>

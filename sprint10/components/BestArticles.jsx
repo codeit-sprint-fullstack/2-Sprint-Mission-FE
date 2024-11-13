@@ -1,3 +1,4 @@
+import instance from '@/apis/instance';
 import { useViewport } from '@/context/ViewportProvider';
 import styles from '@/styles/Boards.module.css';
 import Image from 'next/image';
@@ -31,7 +32,7 @@ function BestArticles({ articles: initialArticles }) {
 					<div className={styles.titleWrapper}>
 						<div className={styles.title}><Link href={`/articles/${article.id}`}>{article.title}</Link></div>
 						<div className={styles.imageWrapper}>
-							<Image fill src="/images/def-img.png" alt="상품 이미지" />
+							<Image fill src={!article?.images?.length ? "/images/no_image.png" : article.images[0].startsWith('http') ? article.images[0] : `${instance.defaults.baseURL}${article.images[0]}`} alt="상품 이미지" />
 						</div>
 					</div>
 					<div className={styles.infos}>

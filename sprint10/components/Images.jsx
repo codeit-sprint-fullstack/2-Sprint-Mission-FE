@@ -9,7 +9,7 @@ function Images({ name, images, setValues }) {
 
 	return (
 		<ul className={styles.images_list}>
-			{images.map(image => {
+			{images?.map(image => {
 				return (
 					<li key={image} className={styles.img_container}><img src={image} alt={name}/><button className={styles.delete} onClick={(e) => handleDeleteImage(e, image)}><Delete/></button></li>
 				);

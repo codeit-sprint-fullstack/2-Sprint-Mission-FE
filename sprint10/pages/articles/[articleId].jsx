@@ -1,5 +1,5 @@
 import styles from '@/styles/ArticleDetail.module.css';
-import { deleteArticleWithId, getArticleWithId, getArticleWithIdComments, postArticleComment } from '@/apis/articlesService.js';
+import { deleteArticleWithId, getArticleWithId, getArticleWithIdComments, likeArticleWithId, postArticleComment, postArticleWithIdComment, unlikeArticleWithId } from '@/apis/articlesService.js';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import ArticleComments from '@/components/ArticleComments.jsx';
@@ -7,7 +7,9 @@ import Link from 'next/link';
 import PopUp from '@/components/PopUp.jsx';
 import KebabMenu from '@/components/KebabMenu';
 import { useRouter } from 'next/router';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useUser } from '@/context/UserProvider';
+import instance from '@/apis/instance';
 
 // export async function getServerSideProps(context) {
 // 	const { id } = context.params;
@@ -23,6 +25,8 @@ function ArticleDetail() {
 	const [comment, setComment] = useState("");
 	const [error, setError] = useState(null);
 	const router = useRouter();
+	const queryClient = useQueryClient();
+	const user = useUser();
 	const { articleId } = router.query;
 	const { data: article, isPending, isError } = useQuery({
 		queryKey: ["articles", articleId],
@@ -32,14 +36,34 @@ function ArticleDetail() {
 		queryKey: ["articleComments", articleId],
 		queryFn: () => getArticleWithIdComments(articleId),
 	});
+	const addCommentMutation = useMutation({
+		mutationFn: (newComment) => postArticleWithIdComment(articleId, { content: newComment }),
+		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: ["articleComments", articleId],
+			});
+		},
+	});
+	const likeMutation = useMutation({
+		mutationFn: async ({ userAction }) => {
+			if (userAction === "like") {
+				console.log("like");
+				await likeArticleWithId(articleId);
+			} else {
+				console.log("unlike");
+				await unlikeArticleWithId(articleId);
+			}
+		},
+		onSuccess: (data, err) => {
+			queryClient.invalidateQueries({
+				queryKey: ["articles", articleId],
+			});
+		},
+	});
 
 	const handleWriteComment = async () => {
-		const res = await postArticleComment(article.id, { content: comment });
-		if (res?.id) {
-			setComment("");
-		} else {
-			setError(res);
-		}
+		addCommentMutation(comment);
+		setComment("");
 	};
 
 	if (isPending || isPendingComments) return "Loading...";
@@ -51,7 +75,7 @@ function ArticleDetail() {
 			<article className={styles.sub}>
 				<div className={styles.head}>
 					<h2>{article.title}</h2>
-					<KebabMenu
+					{user && user.user.id === article.author?.id && <KebabMenu
 					onEdit={() => {
 						router.push(`/boards/write?id=${article.id}`);
 					}}
@@ -62,7 +86,10 @@ function ArticleDetail() {
 						} else {
 							router.push("/boards");
 						}
-					}}/>
+					}}/>}
+				</div>
+				<div className={styles.articleImage}>
+					<Image fill src={!article?.images?.length ? "/images/no_image.png" : article.images[0].startsWith('http') ? article.images[0] : `${instance.defaults.baseURL}${article.images[0]}`} alt={article.title} />
 				</div>
 				<div className={styles.profileAndLikes}>
 					<div className={styles.authorAndDate}>
@@ -72,9 +99,13 @@ function ArticleDetail() {
 						<div className={styles.author}>{article?.author?.nickname}</div>
 						<div className={styles.date}>{new Date(article.createdAt).toLocaleDateString("ko-KR")}</div>
 					</div>
-					<div className={styles.likes}>
+					<div className={styles.likes} onClick={() => {
+						likeMutation.mutate({
+							userAction: article.isFavorite ? "unlike" : "like",
+						});
+					}}>
 						<div className={styles.heartContainer}>
-							<Image fill src="/images/ic_heart.png" alt="heart" />
+							<Image fill src={article.isFavorite ? "/images/ic_heart.png" : "/images/ic_empty_heart.png"} alt="heart" />
 						</div>
 						{article.favoriteCount}
 					</div>

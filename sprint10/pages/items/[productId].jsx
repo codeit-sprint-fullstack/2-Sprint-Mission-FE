@@ -112,7 +112,6 @@ function ItemDetailPage() {
 					</div>
 					<div className={styles.likes} onClick={() => {
 						likeMutation.mutate({
-							productId: data.id,
 							userAction: data.isFavorite ? "unlike" : "like",
 						});
 					}}>
