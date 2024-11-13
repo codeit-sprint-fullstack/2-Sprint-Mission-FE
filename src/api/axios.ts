@@ -146,6 +146,8 @@ export async function getProduct(
     orderBy,
   });
 
+  console.log(params.toString());
+
   const res = await instance.get(`/products?${params.toString()}`);
   return res.data;
 }
