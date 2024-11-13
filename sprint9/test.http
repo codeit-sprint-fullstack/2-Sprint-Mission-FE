@@ -1,0 +1,35 @@
+POST https://panda-market-api.vercel.app/auth/signup
+Content-Type: application/json
+
+{
+  "email": "ifitwork1@email.com",
+  "nickname": "nickname123",
+  "password": "123123123",
+  "passwordConfirmation": "123123123"
+} 
+
+###
+
+POST https://panda-market-api.vercel.app/auth/signIn
+Content-Type: application/json
+
+{
+  "email": "ifitwork1@email.com",
+  "password": "123123123"
+}
+
+###
+GET https://panda-market-api.vercel.app/products/226/comments
+
+###
+PUT https://panda-market-api.vercel.app/products/226/
+Content-Type: application/json
+
+{
+  "tags": [
+    "전자제품"
+  ],
+  "price": 0,
+  "description": "string",
+  "name": "상품 이름"
+}

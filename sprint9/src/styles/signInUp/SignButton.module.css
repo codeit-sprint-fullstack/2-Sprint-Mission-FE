@@ -1,0 +1,18 @@
+.button {
+  width: 100%;
+  max-width: 64rem;
+  height: 5.6rem;
+  border-radius: 4rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.inactive {
+  background-color: var(--color-gray-400);
+}
+
+.active {
+  background-color: var(--color-primary-100);
+  cursor: pointer;
+}

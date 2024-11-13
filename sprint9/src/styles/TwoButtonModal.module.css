@@ -1,0 +1,59 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4.6rem;
+  align-items: center;
+  justify-content: center;
+  width: 41.5rem;
+  height: 25rem;
+  background-color: white;
+  border-radius: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.message {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+.cancel {
+  width: 8.8rem;
+  height: 4.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-error-red);
+  padding: 1.2rem 2.3rem;
+  border-radius: 0.8rem;
+  border: solid 0.1rem var(--color-error-red);
+  background-color: transparent;
+}
+
+.confirm {
+  width: 8.8rem;
+  height: 4.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white;
+  padding: 1.2rem 2.3rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-error-red);
+}

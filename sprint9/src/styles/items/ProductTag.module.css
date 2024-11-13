@@ -1,0 +1,8 @@
+.tag {
+  font-size: 1.6rem;
+  font-weight: 400;
+  border-radius: 2.6rem;
+  padding: 0.6rem 1.6rem;
+  background-color: var(--color-gray-100);
+}
+
