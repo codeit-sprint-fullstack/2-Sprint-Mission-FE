@@ -1,6 +1,6 @@
 import styles from './ProductCommentList.module.css';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import formatTime from '@/lib/formatTime';
 import { patchProductComment } from '@/lib/api/ProductService';
 import ProductCommentDropdown from './\bProductCommentDropdown';
@@ -11,7 +11,6 @@ export default function ProductCommentList({ productComments = [] }) {
   const [editingContent, setEditingContent] = useState('');
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
 
   const handleMenuClick = (comment) => {
     setSelectedComment(comment);
@@ -71,7 +70,7 @@ export default function ProductCommentList({ productComments = [] }) {
                         alt="메뉴 아이콘"
                       />
                       {selectedComment?.id === comment.id && dropdownOpen && (
-                        <div ref={dropdownRef} className={styles.dropdown}>
+                        <div className={styles.dropdown}>
                           <ProductCommentDropdown
                             commentId={comment.id}
                             onEditClick={() => handleEditClick(comment)}
