@@ -2,6 +2,9 @@ import styles from './ArticleReview.module.css';
 import Image from 'next/image';
 import ArticelReviewDropdown from './ArticleReviewDropdown';
 import { useState, useEffect } from 'react';
+import { instance } from '@/lib/api';
+import formatDate from '@/lib/formatDate';
+import NotArticleReview from './NotArticleReview';
 
 export default function ArticleReview({ reviews: initialReviews, articleId }) {
   const [reviews, setReviews] = useState(initialReviews);
@@ -10,10 +13,8 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
 
   useEffect(() => {
     async function getArticleReview(articleId) {
-      const res = await fetch(
-        `http://localhost:5000/articleComments/${articleId}`
-      );
-      const review = await res.json();
+      const res = await instance.get(`/articleComments/${articleId}`);
+      const review = await res.data;
       setReviews(review);
     }
     getArticleReview(articleId);
@@ -25,76 +26,56 @@ export default function ArticleReview({ reviews: initialReviews, articleId }) {
   };
 
   const handleSaveClick = async (reviewId) => {
-    const res = await fetch(
-      `http://localhost:5000/articleComments/${reviewId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          content: editValue
-        })
-      }
-    );
+    try {
+      const res = await instance.patch(`/articleComments/${reviewId}`, {
+        content: editValue
+      });
 
-    if (res.ok) {
-      await res.json();
-      setReviews((prevReviews) =>
-        prevReviews.map((review) =>
-          review.id === reviewId ? { ...review, content: editValue } : review
-        )
-      );
-      setEditingReviewId(null);
-      setEditValue('');
+      if (res.status === 201 || res.status === 200) {
+        await res.data;
+        setReviews((prevReviews) =>
+          prevReviews.map((review) =>
+            review.id === reviewId ? { ...review, content: editValue } : review
+          )
+        );
+        setEditingReviewId(null);
+        setEditValue('');
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.data);
+      } else {
+        console.error(error.message);
+      }
     }
   };
 
   const handleRemoveClick = async (reviewId) => {
-    const res = await fetch(
-      `http://localhost:5000/articleComments/${reviewId}`,
-      {
-        method: 'DELETE'
-      }
-    );
+    try {
+      const res = await instance.delete(`/articleComments/${reviewId}`);
 
-    if (res.ok) {
-      setReviews((prevReviews) =>
-        prevReviews.filter((review) => review.id !== reviewId)
-      );
+      if (res.status === 201 || res.status === 200) {
+        setReviews((prevReviews) =>
+          prevReviews.filter((review) => review.id !== reviewId)
+        );
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+      } else {
+        console.error(error.message);
+      }
     }
   };
 
   if (!reviews || reviews.length === 0) {
-    return (
-      <div className={styles.noneSection}>
-        <Image
-          width={140}
-          height={140}
-          src="/images/Img_reply_empty.svg"
-          alt="빈 이미지"
-        />
-        <span>
-          아직 댓글이 없어요.
-          <br />
-          지금 댓글을 달아보세요.
-        </span>
-      </div>
-    );
+    return <NotArticleReview />;
   }
 
   return (
     <ul className={styles.ul}>
       {reviews.map((review) => {
-        const formattedDate = new Date(review.createdAt)
-          .toLocaleDateString('ko-KR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-          })
-          .replace(/\s/g, '')
-          .replace(/\./g, '.')
-          .slice(0, -1);
+        const formattedDate = formatDate(review.createdAt);
 
         return (
           <li key={review.id} className={styles.li}>

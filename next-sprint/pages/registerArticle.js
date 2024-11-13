@@ -1,4 +1,4 @@
-import RegisterInput from '@/components/RegisterInput';
+import RegisterInput from '@/components/ArticleRegister/RegisterInput';
 
 export default function register() {
   return (

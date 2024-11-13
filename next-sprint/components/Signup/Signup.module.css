@@ -1,0 +1,143 @@
+.signupPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.main,
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main {
+  margin-bottom: 2rem;
+}
+
+.form h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+  text-align: left;
+  color: var(--secondary-black-100);
+  margin-bottom: 1.5rem;
+}
+
+.form label {
+  width: 64rem;
+  position: relative;
+}
+
+.form input {
+  width: 64rem;
+  height: 5.6rem;
+  padding: 1.6rem 2.4rem;
+  gap: 1rem;
+  border-radius: 1.2rem;
+  background-color: var(--secondary-gray-700);
+  font-weight: 400;
+  line-height: 2.6rem;
+  text-align: left;
+  border: none;
+  outline: none;
+  margin-bottom: 1.7rem;
+}
+
+.form input:focus {
+  border: 3px solid var(--primary-blue) !important;
+}
+
+.form input::placeholder {
+  color: var(--secondary-gray-300);
+}
+
+.btnVisibility {
+  position: absolute;
+  top: 5.9rem;
+  right: 2.3rem;
+}
+
+.signupBtn {
+  width: 64rem;
+  height: 5.6rem;
+  padding: 1.6rem 12.4rem;
+  gap: 1rem;
+  border-radius: 4rem;
+  border: none;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2rem;
+  text-align: center;
+  color: var(--secondary-gray-700);
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.socialLogin {
+  width: 64rem;
+  height: 7.4rem;
+  padding: 1.6rem 2.3rem;
+  gap: 1rem;
+  border-radius: 0.8rem;
+  background-color: var(--secondary-blue-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.socialLogin h4 {
+  font-weight: 500;
+  line-height: 2.6rem;
+  text-align: left;
+  color: var(--secondary-black-100);
+}
+
+.socialLoginBox {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer span {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  text-align: left;
+  color: var(--secondary-black-100);
+}
+
+.link {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.671rem;
+  text-align: left;
+  color: var(--primary-blue);
+  text-decoration: none;
+}
+
+.error {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+  text-align: left;
+  color: var(--error);
+  margin-bottom: 1.5rem;
+}

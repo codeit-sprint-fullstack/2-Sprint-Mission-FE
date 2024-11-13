@@ -1,42 +1,36 @@
 import { useState } from 'react';
 import styles from './ArticleDetail.module.css';
 import Image from 'next/image';
-import ArticleReview from './ArticleReview';
+import ArticleReview from '../ArticleReview';
 import Link from 'next/link';
 import ArticelDropdown from './ArticleDropdown';
+import { instance } from '@/lib/api';
+import formatDate from '@/lib/formatDate';
 
 export default function ArticleDetail({ article, id }) {
   const [articleReview, setArticleReview] = useState([]);
   const [value, setValue] = useState('');
 
   async function postArticleReview() {
-    const res = await fetch(`http://localhost:5000/articleComments`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
+    try {
+      const res = await instance.post('/articleComments', {
         content: value,
         articleId: id
-      })
-    });
+      });
 
-    if (res.ok) {
-      const newReview = await res.json();
+      const newReview = res.data;
       setArticleReview((prevReviews) => [...prevReviews, newReview]);
       setValue('');
-    } else {
-      console.error('Failed to post review:', await res.text());
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+      } else {
+        console.error(error.message);
+      }
     }
   }
 
-  const formattedDate = new Date(article.createdAt)
-    .toLocaleDateString('ko-KR', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    })
-    .replace(/\s/g, '')
-    .replace(/\./g, '.')
-    .slice(0, -1);
+  const formattedDate = formatDate(article.createdAt);
 
   function handleChange(e) {
     const newValue = e.target.value;

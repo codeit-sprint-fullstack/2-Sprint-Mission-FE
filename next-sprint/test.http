@@ -1,0 +1,27 @@
+POST https://panda-market-api.vercel.app/auth/signIn
+Content-Type: application/json
+
+{ 
+  "email": "example@email.com",
+  "password": "123456789"
+}
+
+###
+POST https://panda-market-api.vercel.app/auth/signUp
+Content-Type: application/json
+
+{ 
+  "email": "example123@example.com",
+  "nickname": "나나나",
+  "password": "123456789",
+  "passwordConfirmation": "123456789"
+}
+
+###
+GET https://panda-market-api.vercel.app/users/me
+
+###
+GET https://panda-market-api.vercel.app/products/1
+
+###
+GET https://panda-market-api.vercel.app/products/1/comments?limit=10

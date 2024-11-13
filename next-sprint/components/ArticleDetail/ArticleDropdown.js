@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import styles from './ArticleDropdown.module.css';
 import { useRouter } from 'next/router';
+import { instance } from '@/lib/api';
 
 export default function ArticelDropdown({ articleId }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,9 +29,7 @@ export default function ArticelDropdown({ articleId }) {
   ];
 
   async function deleteArticle(articleId) {
-    await fetch(`http://localhost:5000/articles/${articleId}`, {
-      method: 'DELETE'
-    });
+    await instance.delete(`/articles/${articleId}`);
   }
 
   const handleOptionClick = (value) => {
