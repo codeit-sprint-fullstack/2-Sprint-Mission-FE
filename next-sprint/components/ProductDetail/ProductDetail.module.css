@@ -3,6 +3,7 @@
   flex-direction: column;
 
   gap: 6.4rem;
+  margin-top: 2rem;
 }
 
 .product-comments {
@@ -21,9 +22,9 @@
 
 .product-info {
   display: flex;
-
+  justify-content: center;
   padding-bottom: 4.5rem;
-  border-bottom: 0.1rem solid #e5e7eb;
+  border-bottom: 0.1rem solid var(--secondary-gray-100);
 
   gap: 2.4rem;
 }
@@ -74,9 +75,9 @@
   flex-direction: column;
 
   padding-bottom: 1.6rem;
-  border-bottom: 0.1rem solid #e5e7eb;
+  border-bottom: 0.1rem solid var(--secondary-gray-100);
 
-  color: #1f2937;
+  color: var(--secondary-black-100);
   font-weight: 600;
 
   gap: 1.6rem;
@@ -122,7 +123,7 @@
 }
 
 .subtitle {
-  color: #4b5563;
+  color: var(--secondary-gray-500);
   font-size: 1.6rem;
   line-height: 2.6rem;
   font-weight: 600;
@@ -160,12 +161,12 @@
 }
 
 .user-info .nickname {
-  color: #4b5563;
+  color: var(--secondary-gray-500);
   font-weight: 500;
 }
 
 .user-info .date {
-  color: #9ca3af;
+  color: var(--secondary-gray-300);
   font-weight: 400;
 }
 
@@ -194,16 +195,16 @@
   padding: 0.6rem 1.6rem;
   border-radius: 2.6rem;
 
-  color: #1f2937;
+  color: var(--secondary-black-100);
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.6rem;
 
-  background-color: #f3f4f6;
+  background-color: var(--secondary-gray-700);
 }
 
 .favorite-wrap {
-  border-left: 0.1rem solid #e5e7eb;
+  border-left: 0.1rem solid var(--secondary-gray-100);
 }
 
 .favorite {
@@ -215,13 +216,13 @@
   margin-left: 3.2rem;
   padding: 0.4rem 1.2rem;
   border-radius: 3.5rem;
-  border: 0.1rem solid #e5e7eb;
+  border: 0.1rem solid var(--secondary-gray-100);
 
   gap: 1rem;
 }
 
 .favorite p {
-  color: #6b7280;
+  color: var(--secondary-gray-800);
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 2.6rem;
@@ -238,12 +239,13 @@
   padding: 1.2rem 3.95rem;
   border-radius: 4rem;
 
-  color: #f3f4f6;
+  color: var(--secondary-gray-700);
   font-size: 1.8rem;
   font-weight: 600;
   line-height: 2.6rem;
 
-  background-color: #3692ff;
+  background-color: var(--primary-blue);
+  border: none;
 
   gap: 0.8rem;
 }

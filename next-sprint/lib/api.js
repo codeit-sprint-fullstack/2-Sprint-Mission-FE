@@ -60,6 +60,15 @@ export async function getProduct(productId) {
   }
 }
 
+export async function deleteProduct(productId) {
+  try {
+    const res = await axiosInstance.delete(`/products/${productId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function getComments(productId) {
   try {
     const res = await axiosInstance.get(`/products/${productId}/comments`, {
