@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from 'react';
-import c from '@/src/utils/constants';
 import Image from 'next/image';
+import { useState } from 'react';
+import c from '@utils/constants';
 
 const style = {
   searchBar: css`
@@ -51,9 +51,8 @@ const style = {
 export default function SearchBar({ onSearch }) {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearchChange = e => {
-    setSearchQuery(e.target.value);
-  };
+  const handleSearchChange = e => setSearchQuery(e.target.value);
+
   const handleSearch = e => {
     if (e.key === 'Enter') onSearch(searchQuery);
   };

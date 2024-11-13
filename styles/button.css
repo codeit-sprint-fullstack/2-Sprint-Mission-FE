@@ -5,6 +5,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.6rem;
 
   &:hover {
     background-color: var(--Primary-200);

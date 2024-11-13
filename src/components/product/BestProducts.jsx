@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useEffect, useState } from 'react';
-import { getProducts } from '@/src/utils/api.js';
-import useAsync from '@/src/hooks/useAsync.js';
-import { useViewport } from '@/src/contexts/ViewportContext.jsx';
-import ProductCard from './ProductCard.jsx';
-import c from '@/src/utils/constants.js';
+import { useState } from 'react';
+import ProductCard from '@components/product/ProductCard';
+import { useViewport } from '@contexts/ViewportProvider';
+import useOwnQuery from '@hooks/useOwnQuery';
+import { getProducts } from '@utils/api';
+import c from '@utils/constants';
 
 const style = {
   bestProductsTitle: css`
@@ -43,22 +43,11 @@ const style = {
 export default function BestProducts() {
   const viewport = useViewport();
   const [items, setItems] = useState([]);
-  const getProductsAsync = useAsync(getProducts);
-
-  useEffect(() => {
-    async function handleLoadItem() {
-      const data = await getProductsAsync({
-        page: 1,
-        pageSize: c.BEST_PRODUCT_PAGE_SIZE[viewport],
-        orderBy: c.SORT_ORDER.LIKE,
-      });
-      if (!data) return;
-
-      setItems(data.list);
-    }
-
-    handleLoadItem();
-  }, [viewport, getProductsAsync]);
+  const getBestProductsQuery = useOwnQuery({
+    queryFn: _ => getProducts({ page: 1, pageSize: c.BEST_PRODUCT_PAGE_SIZE[viewport], orderBy: c.SORT_ORDER.LIKE }),
+    queryKey: ['bestProduct', viewport],
+    onSuccess: result => setItems(result.list),
+  });
 
   return (
     <section id="bestProduct">

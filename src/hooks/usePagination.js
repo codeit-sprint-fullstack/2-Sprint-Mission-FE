@@ -15,21 +15,13 @@ export default function usePagination(totalCounts, pageSize, bundleSize, onPageC
     [totalPages, onPageChange],
   );
 
-  const nextBundle = () => {
-    setBundleCount(prev => Math.min(prev + 1, totalBundleCounts));
-  };
+  const nextBundle = () => setBundleCount(old => Math.min(old + 1, totalBundleCounts));
 
-  const prevBundle = () => {
-    setBundleCount(prev => Math.max(prev - 1, 1));
-  };
+  const prevBundle = () => setBundleCount(old => Math.max(old - 1, 1));
 
-  // const nextPage = () => {
-  //   setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  // };
+  // const nextPage = () => setCurrentPage(old => Math.min(old + 1, totalPages));
 
-  // const prevPage = () => {
-  //   setCurrentPage((prev) => Math.max(prev - 1, 1));
-  // };
+  // const prevPage = () => setCurrentPage(old => Math.max(old - 1, 1));
 
   useEffect(() => {
     // 총 아이템 or 페이지 당 개수가 변경되면 총 페이지 수 재계산

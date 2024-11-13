@@ -1,17 +1,15 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const PendingContext = createContext();
 
-export function PendingProvider({ defaultPending = false, children }) {
+export default function PendingProvider({ defaultPending = false, children }) {
   const [pending, setPending] = useState(defaultPending);
   const [isLoading, setIsLoading] = useState(false);
 
   // 시간 경과 체크를 위한 useEffect
   useEffect(() => {
     if (!pending) return setIsLoading(false);
-    const tick = setTimeout(() => {
-      setIsLoading(true);
-    }, 2000);
+    const tick = setTimeout(() => setIsLoading(true), 2000);
 
     return () => clearTimeout(tick);
   }, [pending]);

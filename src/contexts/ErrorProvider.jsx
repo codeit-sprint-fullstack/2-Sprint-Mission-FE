@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 
 const ErrorContext = createContext();
 
-export function ErrorProvider({ defaultError = null, children }) {
+export default function ErrorProvider({ defaultError = null, children }) {
   const [error, setError] = useState(defaultError);
 
   return <ErrorContext.Provider value={{ error, setError }}>{children}</ErrorContext.Provider>;

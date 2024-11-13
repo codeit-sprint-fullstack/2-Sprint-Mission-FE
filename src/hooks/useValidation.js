@@ -32,7 +32,7 @@ function nameValidation(value) {
 
 function descriptionValidation(value) {
   let errMsg;
-  if (value?.length <= 10) {
+  if (value?.trim?.().length <= 10) {
     errMsg = '10자 이상 입력해주세요';
   } else if (value?.length > 100) {
     errMsg = '100자 이내로 입력해주세요';

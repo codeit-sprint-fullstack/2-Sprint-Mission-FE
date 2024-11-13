@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useViewport } from '../contexts/ViewportContext.jsx';
-import usePagination from '../hooks/usePagination.js';
-import c from '../utils/constants.js';
+import { useViewport } from '@contexts/ViewportProvider';
+import usePagination from '@hooks/usePagination';
+import c from '@utils/constants';
 
 const style = {
   paginationBar: css`

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import c from '../utils/constants.js';
+import c from '@utils/constants';
 
 const style = {
   signLayout: css`

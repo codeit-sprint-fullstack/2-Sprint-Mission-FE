@@ -3,6 +3,7 @@
 #manual
 .vscode
 test.js
+*.http
 
 # dependencies
 /node_modules

@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useViewport } from '../../contexts/ViewportContext.jsx';
-import c from '../../utils/constants.js';
 import Link from 'next/link';
-import SearchBar from '../SearchBar.jsx';
-import SortOrderSelect from '../SortOrderSelect';
+import SearchBar from '@components/SearchBar';
+import SortOrderSelect from '@components/SortOrderSelect';
+import { useViewport } from '@contexts/ViewportProvider';
+import c from '@utils/constants';
 
 const style = {
   productOnSaleTitle: css`
@@ -65,7 +65,7 @@ export default function ProductOnSaleTitle({ onSearch }) {
   const viewport = useViewport();
 
   const registBtn = (
-    <Link href="/registration">
+    <Link href="/items/registration">
       <button id="registButton" css={style.registButton}>
         상품 등록하기
       </button>

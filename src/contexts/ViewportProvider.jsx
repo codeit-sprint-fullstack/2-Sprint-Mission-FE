@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import c from '../utils/constants.js';
+import c from '@utils/constants';
 
 const ViewportContext = createContext();
 

@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import c from '../utils/constants';
-import Link from 'next/link';
-import { useViewport } from '../contexts/ViewportContext';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useAuth } from '@contexts/AuthProvider';
+import { useViewport } from '@contexts/ViewportProvider';
+import c from '@utils/constants';
 
 const style = {
   header: css`
@@ -48,11 +49,19 @@ const style = {
   `,
 };
 
-export default function Header() {
+export default function GNB() {
   const viewport = useViewport();
   const router = useRouter();
+  const { logout } = useAuth();
   // NOTE url path의 첫 부분을 받아와서 Nav 바 색상 변경하기 위함.
   const firstPath = router.asPath.split('/')[1] ?? '';
+
+  const handleLoginClick = () => {
+    if (!localStorage.getItem('accessToken')) return router.push('/auth/signIn');
+
+    logout();
+    router.reload();
+  };
 
   return (
     <header css={style.header}>
@@ -72,9 +81,9 @@ export default function Header() {
           중고마켓
         </Link>
       </nav>
-      <Link href="/login/" css={style.loginButton} className="button">
-        로그인
-      </Link>
+      <button onClick={handleLoginClick} css={style.loginButton} className="button">
+        {!localStorage.getItem('accessToken') ? '로그인' : '로그아웃'}
+      </button>
     </header>
   );
 }

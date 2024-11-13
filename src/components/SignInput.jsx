@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import Image from 'next/image';
+import { useRef, useState } from 'react';
 
 const style = {
   signInput: css`
@@ -32,32 +34,43 @@ const style = {
   `,
 };
 
-export default function SignInput({ label, type, placeholder }) {
+export default function SignInput({ label, type: initialType, placeholder, initialValue, onChange, onKeyDown, errorMsg }) {
+  const [value, setValue] = useState(initialValue);
+  const [type, setType] = useState(initialType);
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const eyeSrc = useRef('/Image/btn_visibility_off_24px.png');
+
+  const handleValueChange = e => {
+    setValue(e.target.value);
+    onChange(e.target.value);
+  };
+  const handleEyeClick = () => {
+    // NOTE 현상태의 반대로 변경
+    eyeSrc.current = isPasswordShown ? '/Image/btn_visibility_off_24px.png' : '/Image/btn_visibility_on_24px.png';
+    type === 'password' ? setType('text') : setType('password');
+    setIsPasswordShown(!isPasswordShown);
+  };
+
   return (
     <div id="signInput" css={style.signInput}>
-      <label htmlFor={`for_${type}`} className="label">
+      <label htmlFor={`for_${initialType}`} className="label">
         {label}
       </label>
       <div className="input-wrap">
-        <input id={`for_${type}`} type={type} placeholder={placeholder} className="input" />
-        {type === 'password' && <img src="/Image/btn_visibility_on_24px.png" alt="비밀번호 표시" />}
+        <input
+          id={`for_${initialType}`}
+          type={type}
+          placeholder={placeholder}
+          className={`input ${!!errorMsg && 'error'}`}
+          value={value}
+          onChange={handleValueChange}
+          onKeyDown={onKeyDown}
+        />
+        {initialType === 'password' && (
+          <Image src={eyeSrc.current} width={24} height={24} alt="비밀번호 표시" onClick={handleEyeClick} />
+        )}
       </div>
-      <p></p>
+      <p>{errorMsg}</p>
     </div>
   );
-}
-
-{
-  /* <div className="label-wrap">
-  <label className="input__id">
-    이메일
-    <br />
-    <input
-      type="email"
-      placeholder="이메일을 입력해주세요"
-      className="js-input__id"
-    />
-    <p className="error-msg js-error-msg"></p>
-  </label>
-</div> */
 }
