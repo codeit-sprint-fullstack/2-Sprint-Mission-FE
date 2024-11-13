@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from "@/lib/axios";
+import { postArticle } from "@/api/api";
+import { useError } from "@/contexts/ErrorProvider";
 export default function Write() {
   const writePage = `w-full flex justify-center`;
   const writeFrame = `w-[1200px] h-[512px] flex flex-col justify-between mt-[24px] mb-[794px]
@@ -19,35 +20,18 @@ export default function Write() {
   const textAreaClass = `w-full h-[282px] mt-[12px] px-[24px] py-[16px] rounded-[12px] focus:outline-none bg-f3f4f6`;
   const on = "bg-3692ff";
   const off = "bg-9ca3af";
-  const router = useRouter();
-  const { slug } = router.query;
-  const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isPost, setIsPost] = useState(false);
+  const router = useRouter();
+  const { handleError } = useError();
   const handleChangeTitle = (e) => setTitle((prev) => e.target.value);
   const handleChangeContent = (e) => setContent(e.target.value);
   const validate = () => {
     if (title === "" || content === "") setIsPost(false);
     else setIsPost(true);
   };
-  const handleSumit = async (e) => {
-    e.preventDefault();
-    const active = editMode ? axios.patch : axios.post;
-    const url = editMode ? `/articles/${slug}` : "/articles";
-    const submitData = {
-      title,
-      content,
-      ...(editMode ? {} : { userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18" })
-    };
-    try {
-      const res = await active(url, submitData);
-      router.push(`/freeboard/${res.data.id}`);
-    } catch (e) {
-      console.log(`데이터 전송 중 오류: ${e.message}`);
-    }
-  };
-  const handleSumitPost = async (e) => {
+  const handleSubmitPost = async (e) => {
     e.preventDefault();
     const submitData = {
       userId: "c2b44a5b-5d1f-4e6e-9b55-3f8e5e7e8b18",
@@ -55,33 +39,15 @@ export default function Write() {
       content
     };
     try {
-      const res = await axios.post("/articles", submitData);
-      console.log(res);
-      router.push(`/freeboard/${res.data.id}`);
+      const response = await postArticle(submitData);
+      router.push(`/freeboard/${response.data.id}`);
     } catch (e) {
-      console.log(`데이터 전송 중 오류: ${e.message}`);
+      handleError(new Error("데이터 전송중 오류"));
     }
   };
   useEffect(() => {
     validate();
   }, [title, content]);
-  useEffect(() => {
-    if (slug) {
-      // 슬러그를 기반으로 게시글 데이터를 가져오는 API 호출
-      const fetchPostData = async () => {
-        try {
-          const response = await axios.get(`/articles/${slug}`);
-          const { title, content } = response.data;
-          setTitle(title);
-          setContent(content);
-          setEditMode(true);
-        } catch (e) {
-          console.log(`데이터 가져오기 실패:${e.message}`);
-        }
-      };
-      fetchPostData();
-    }
-  }, [slug]);
   return (
     <div className={writePage}>
       <form className={writeFrame}>
@@ -90,10 +56,10 @@ export default function Write() {
           <button
             type="button"
             className={isPost ? `${postBtn} ${on}` : `${postBtn} ${off}`}
-            onClick={handleSumit}
+            onClick={handleSubmitPost}
             disabled={!isPost}
           >
-            {editMode ? "수정" : "생성"}
+            생성
           </button>
         </div>
         <div className={inputBox}>

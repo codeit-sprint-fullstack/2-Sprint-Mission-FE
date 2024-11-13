@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 const pxToRem = require("tailwindcss-convert-px-to-rem");
-console.log(pxToRem);
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -29,11 +28,15 @@ module.exports = {
         "2f80ed": "#2F80ED",
         f74747: "#F74747",
         f9fafb: "#F9FAFB",
-        d1d5d8: "#D1D5DB"
+        d1d5d8: "#D1D5DB",
+        e6f2ff: "#E6F2FF"
       },
       lineHeight: {
+        "89.56px": "89.56px",
         "56px": "56px",
+        "47.73px": "47.73px",
         "44.8px": "44.8px",
+        "44.78px": "44.78px",
         "42px": "42px",
         "33.6px": "33.6px",
         "32px": "32px",

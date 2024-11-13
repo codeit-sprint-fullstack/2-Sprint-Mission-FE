@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import EditDeleteDropDown from "./EditDeleteDropDown";
-import axios from "@/lib/axios";
-
-export default function Comment({ data, onDelete }) {
+import { useError } from "@/contexts/ErrorProvider";
+import { BUTTON_TYPE } from "@/constants";
+export default function Comment({ data, onPatch, onDelete }) {
   const commentClassWithoutHeight = `w-full bg-fcfcfc flex flex-col justify-between relative`;
-  const commentHeader = `w-full flex justify-between items-start`;
   const commentContentEditClass = `w-full h-full text-[14px] leading-24px text-1f2937 bg-f3f4f6
   bg-fcfcfc border-none resize-none outline-none`;
   const commentContentClass = `w-full h-full text-[14px] leading-24px text-1f2937
@@ -20,17 +19,17 @@ export default function Comment({ data, onDelete }) {
   const patchCompleteBtn = `w-[106px] h-[42px] px-[23px] py-[12px] flex items-center text-f3f4f6 rounded-[8px] border-none bg-3692ff`;
   const [editMode, setEditMode] = useState(false);
   const [content, setContent] = useState(data.content);
+  const { handleError } = useError();
   const isEdit = editMode;
   const handleChange = (e) => setContent(e.target.value);
   const handleDropDownChange = (chosenOption) => {
-    console.log(chosenOption);
-    if (chosenOption === "수정하기") setEditMode(true);
-    else if (chosenOption === "삭제하기") onDelete(data.id);
+    if (chosenOption === BUTTON_TYPE.edit.value) setEditMode(true);
+    else if (chosenOption === BUTTON_TYPE.delete.value) onDelete(data.id);
   };
+
   const commentClass = `${commentClassWithoutHeight} ${
     isEdit ? "h-[180px] sm:h-[176px]" : "h-[100px] sm:h-[96px]"
   }`;
-  const commentHeader1 = `${commentHeader} ${isEdit ? "h-[80px]" : "h-[48px]"}`;
   const commentContentClass1 = `${commentContentClass} ${
     isEdit ? `bg-f3f4f6 px-[24px] py-[16px] rounded-[12px]` : "bg-fcfcfc"
   }`;
@@ -38,16 +37,24 @@ export default function Comment({ data, onDelete }) {
   const handleClickPatchComplete = (e) => {
     const submitData = { content };
     try {
-      axios.patch(`/article-comments/${data.id}`, submitData);
+      onPatch({ id: data.id, formData: submitData });
       setEditMode(false);
     } catch (e) {
-      console.log(`데이터 전송중 오류: ${e.message}`);
+      handleError(e);
     }
   };
   return (
-    <div className={commentClass}>
-      <div className={commentHeader1}>
+    <form className={commentClass}>
+      <div
+        className={`w-full flex justify-between items-start ${
+          isEdit ? "h-[80px]" : "h-[48px]"
+        }`}
+      >
+        <label htmlFor={`comment ${data.id}`} className="sr-only">
+          댓글 입력
+        </label>
         <textarea
+          id={`comment ${data.id}`}
           className={commentContentClass1}
           onChange={handleChange}
           value={content}
@@ -67,18 +74,22 @@ export default function Comment({ data, onDelete }) {
           alt="프로필이미지"
         />
         <div className={commentNicknameAndCreatedAt}>
-          <span className={commentNickname}>똑똑한판다</span>
+          <span className={commentNickname}>{data?.writer?.nickname}</span>
           <span className={commentCreatedAt}>1시간 전</span>
         </div>
       </div>
       <div className={`${buttonList} ${isEdit ? "" : "hidden"}`}>
-        <button className={cancelBtn} onClick={handleClickCancel}>
+        <button type="button" className={cancelBtn} onClick={handleClickCancel}>
           취소
         </button>
-        <button className={patchCompleteBtn} onClick={handleClickPatchComplete}>
+        <button
+          type="button"
+          className={patchCompleteBtn}
+          onClick={handleClickPatchComplete}
+        >
           수정 완료
         </button>
       </div>
-    </div>
+    </form>
   );
 }

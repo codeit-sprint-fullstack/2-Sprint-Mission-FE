@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import { BUTTON_TYPE } from "@/constants";
 export default function EditDeleteDropDown({ onDropDownChange, className }) {
   const dropdown = `w-[24px] h-[24px] relative`;
   const dropdownMenuList = `w-[139px] h-[92px] absolute top-[24px] right-0 border-[1px] border-d1d5d8 rounded-[8px]`;
@@ -11,12 +12,15 @@ export default function EditDeleteDropDown({ onDropDownChange, className }) {
   const handleItemClick = (item) => {
     setSeletedItem(item);
     setIsOpen(false);
-    onDropDownChange(item);
+    onDropDownChange(item.id);
   };
-  const items = ["수정하기", "삭제하기"];
+  const items = [
+    { id: BUTTON_TYPE.edit.value, label: BUTTON_TYPE.edit.label },
+    { id: BUTTON_TYPE.delete.value, label: BUTTON_TYPE.delete.label }
+  ];
   return (
     <div className={`${dropdown} ${className}`}>
-      <button onClick={toggleDropDown}>
+      <button type="button" onClick={toggleDropDown}>
         <Image
           width={24}
           height={24}
@@ -26,13 +30,13 @@ export default function EditDeleteDropDown({ onDropDownChange, className }) {
       </button>
       {isOpen && (
         <ul className={dropdownMenuList}>
-          {items.map((item, index) => (
+          {items.map((item) => (
             <li
-              key={index}
+              key={item.id}
               onClick={() => handleItemClick(item)}
               className={dropdownMenu}
             >
-              {item}
+              {item.label}
             </li>
           ))}
         </ul>
