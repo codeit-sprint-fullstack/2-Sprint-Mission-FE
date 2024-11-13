@@ -311,7 +311,7 @@ export default function ItemDetailPage() {
             </div>
             <button type="button" onClick={handleFavorite}>
               <img src="/Image/ic_heart.png" alt="heart" width={32} height={32} />
-              <span>{item?.favoriteCount}</span>
+              <span>{item?.likeCount}</span>
             </button>
           </div>
         </div>

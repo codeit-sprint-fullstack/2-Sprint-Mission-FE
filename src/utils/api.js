@@ -23,7 +23,7 @@ export async function getMe(params = {}) {
  * @param {object} [params={}]
  */
 export async function getProducts(params = {}) {
-  return axiosGet({ base: CODEIT_SERVER, url: '/products', params });
+  return axiosGet({ base: SERVER, url: '/products', params });
 }
 
 /**
@@ -32,7 +32,7 @@ export async function getProducts(params = {}) {
  * @param {object} [params={}]
  */
 export async function getProductDetail(id, params = {}) {
-  return axiosGet({ base: CODEIT_SERVER, url: `/products/${id}`, params });
+  return axiosGet({ base: SERVER, url: `/products/${id}`, params });
 }
 
 /**
@@ -46,7 +46,7 @@ export async function getProductDetail(id, params = {}) {
  * }} [data={}]
  */
 export async function postProduct(data = {}) {
-  return axiosPost({ base: CODEIT_SERVER, url: '/products', data });
+  return axiosPost({ base: SERVER, url: '/products', data });
 }
 
 /**
@@ -61,22 +61,7 @@ export async function postProduct(data = {}) {
  * }} [data={}]
  */
 export async function patchProduct(id, data = {}) {
-  return axiosPatch({ base: CODEIT_SERVER, url: `/products/${id}`, data });
-}
-
-/**
- * @async
- * @param {uuid} id
- * @param {{
- *  images: string[]
- *  tags: string[]
- *  price: int
- *  description: string
- *  name: string
- * }} [data={}]
- */
-export async function putProduct(id, data = {}) {
-  return axiosPut({ base: CODEIT_SERVER, url: `/products/${id}`, data });
+  return axiosPatch({ base: SERVER, url: `/products/${id}`, data });
 }
 
 /**
@@ -84,7 +69,7 @@ export async function putProduct(id, data = {}) {
  * @param {uuid} id
  */
 export async function deleteProduct(id) {
-  return axiosDelete({ base: CODEIT_SERVER, url: `/products/${id}` });
+  return axiosDelete({ base: SERVER, url: `/products/${id}` });
 }
 
 /**
@@ -92,7 +77,7 @@ export async function deleteProduct(id) {
  * @param {uuid} id
  */
 export async function postProductFavorite(id) {
-  return axiosPost({ base: CODEIT_SERVER, url: `/products/${id}/favorite` });
+  return axiosPost({ base: SERVER, url: `/products/${id}/favorite` });
 }
 
 /**
@@ -100,7 +85,7 @@ export async function postProductFavorite(id) {
  * @param {uuid} id
  */
 export async function deleteProductFavorite(id) {
-  return axiosDelete({ base: CODEIT_SERVER, url: `/products/${id}/favorite` });
+  return axiosDelete({ base: SERVER, url: `/products/${id}/favorite` });
 }
 
 /**
@@ -109,7 +94,7 @@ export async function deleteProductFavorite(id) {
  * @param {object} [params={}]
  */
 export async function getCommentsOfProduct(id, params = {}) {
-  return axiosGet({ base: CODEIT_SERVER, url: `/products/${id}/comments`, params });
+  return axiosGet({ base: SERVER, url: `/products/${id}/comments`, params });
 }
 
 /**
@@ -118,7 +103,7 @@ export async function getCommentsOfProduct(id, params = {}) {
  * @param {{content: string}} [data={}]
  */
 export async function postCommentOfProduct(id, data = {}) {
-  return axiosPost({ base: CODEIT_SERVER, url: `/products/${id}/comments`, data });
+  return axiosPost({ base: SERVER, url: `/products/${id}/comments`, data });
 }
 //#endregion
 

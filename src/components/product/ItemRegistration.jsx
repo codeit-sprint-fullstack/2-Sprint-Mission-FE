@@ -149,7 +149,7 @@ export default function ItemRegistration({ productId }) {
   };
   const handleSubmit = async () => {
     if (!tokenExpireCheck()) router.push('/items');
-    const data = { name: nameObj.value, description: descriptionObj.value, price: priceObj.value, tags, images: [] };
+    const data = { name: nameObj.value, description: descriptionObj.value, price: parseInt(priceObj.value), tags, images: [] };
     productId ? patchProductMutation.mutate(data) : postProductMutation.mutate(data);
   };
 
