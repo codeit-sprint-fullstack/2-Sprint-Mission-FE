@@ -1,0 +1,128 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1200px;
+  margin: 102px auto 193px;
+}
+.articleContainer {
+  width: 100%;
+  margin-bottom: 32px;
+}
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.titleTable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  color: #1f2937;
+}
+.kebabDropdown {
+  cursor: pointer;
+}
+.dropdownMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+.dropdownMenu button {
+  background-color: transparent;
+  border: none;
+  padding: 12px 37px 8px;
+  font-size: 16px;
+  font-weight: 400;
+  border-bottom: 1px solid #d1d5db;
+  line-height: 26px;
+  color: #6b7280;
+  cursor: pointer;
+  height: 46px;
+}
+.dropdownMenu button:last-child {
+  border-bottom: none;
+  padding: 8px 37px 12px;
+}
+.authorContain {
+  display: flex;
+  width: 100%;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+.author {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.nickNames {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #4b5563;
+}
+.like {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #6b7280;
+}
+.date {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #9ca3af;
+}
+.likeContain {
+  display: flex;
+  justify-content: flex-end;
+  border-left: 1px solid #e5e7eb;
+}
+.likeTable {
+  display: flex;
+  border: 1px solid #e5e7eb;
+  padding: 4px 12px;
+  gap: 6.53px;
+  border-radius: 35px;
+  height: 40px;
+  margin-left: 32px;
+}
+.contentTable {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #1f2937;
+}
+.comeBackButton {
+  display: flex;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 64px;
+  border-radius: 40px;
+  width: 240px;
+  height: 48px;
+  background-color: #3692ff;
+  gap: 8px;
+}
+.comeBackFont {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  color: #f3f4f6;
+}
