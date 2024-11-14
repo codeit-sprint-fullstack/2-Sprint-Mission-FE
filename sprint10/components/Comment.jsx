@@ -16,17 +16,17 @@ function Comment({ comment, productId }) {
 	const patchCommentMutation = useMutation({
     mutationFn: ({ commentId, newComment }) => patchComment(commentId, productId, { content: newComment }),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["comments", productId],
-      });
+			queryClient.invalidateQueries({
+				queryKey: ["productComments", productId],
+			});
     },
   });
 	const deleteCommentMutation = useMutation({
     mutationFn: (commentId) => deleteComment(commentId, productId),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["comments", productId],
-      });
+			queryClient.invalidateQueries({
+				queryKey: ["productComments", productId],
+			});
     },
   });
 

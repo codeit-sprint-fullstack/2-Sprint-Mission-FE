@@ -62,7 +62,7 @@ function ArticleDetail() {
 	});
 
 	const handleWriteComment = async () => {
-		addCommentMutation(comment);
+		addCommentMutation.mutate(comment);
 		setComment("");
 	};
 

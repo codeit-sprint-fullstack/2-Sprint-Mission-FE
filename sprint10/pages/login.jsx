@@ -18,10 +18,10 @@ function LogInPage() {
 	const setUser = useSetUser();
 	const router = useRouter();
 	const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
 		mode: "all",
 		defaultValues: {
 			email: "",

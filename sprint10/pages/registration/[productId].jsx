@@ -2,10 +2,10 @@ import styles from '@/styles/RegisPage.module.css';
 import { useRef, useState } from "react";
 import Tags from "@/components/Tags.jsx";
 import Images from "@/components/Images.jsx";
-import { getProductWithId, postProduct } from "@/apis/itemsService.js";
+import { getProductWithId, patchProductWithId } from "@/apis/itemsService.js";
 import PopUp from "@/components/PopUp.jsx";
 import useAsync from "@/hooks/useAsync.js";
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -48,17 +48,18 @@ const INITIAL_VALUES = {
 export default function RegisPage() {
 	const imageUrlError = useRef();
 	const tagsError = useRef();
+	const queryClient = useQueryClient();
 	const [values, setValues] = useState({});
 	const [imageUrl, setImageUrl] = useState("");
 	const [tag, setTag] = useState("");
 	const [validation, setValidation] = useState({
-		name: false,
-		description: false,
+		name: true,
+		description: true,
 		price: true,
 		images: true,
 		tags: true,
 	});
-	const [isPending, error, asyncPostProduct, setError] = useAsync(postProduct);
+	const [isPending, error, asyncPatchProductWithId, setError] = useAsync(patchProductWithId);
 	const router = useRouter();
 	const { productId } = router.query;
 	const { data: product } = useQuery({
@@ -78,13 +79,19 @@ export default function RegisPage() {
 		await handleImageInput({ code: "Enter" }, imageUrl);
 		await handleTagInput({ code: "Enter" }, tag);
 		if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
-			const res = await asyncPostProduct(values);
+			const { id, favoriteCount, createdAt, updatedAt, owner, isFavorite, ...rest } = values;
+			const res = await asyncPatchProductWithId(productId, rest);
 			console.log(res);
 			if (res?.message) {
 				console.log("error: ", error);
 				setError(res);
 			}
 			else {
+				res.onClose = () => {
+					queryClient.invalidateQueries(['products', productId]);
+					queryClient.invalidateQueries(['items', '*']);
+					router.push("/items");
+				}
 				setError(res);
 				setValues(INITIAL_VALUES);
 			}
@@ -148,7 +155,7 @@ export default function RegisPage() {
 					<form className={styles.form}>
 						<div className={styles.heads}>
 							<h1>상품 등록하기</h1>
-							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || isPending}>등록</button>
+							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || isPending}>수정</button>
 						</div>
 						<label htmlFor="name">상품명</label>
 						<input id="name" name="name" placeholder="상품명을 입력해주세요." type="text" required value={values.name} onChange={(e) => {
