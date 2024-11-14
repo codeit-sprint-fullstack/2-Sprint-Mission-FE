@@ -26,7 +26,7 @@ export default function SignInPage() {
     }
 
     setErrorMsg({});
-    const user = await auth.login({ email: 'TESTKTY@email.com', password: 'password' });
+    const user = await auth.login({ email, password });
     if (user) router.push('/items');
   };
   const handleKeyDown = e => {

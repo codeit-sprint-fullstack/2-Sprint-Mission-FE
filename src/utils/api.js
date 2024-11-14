@@ -6,18 +6,16 @@ const SERVER = `http://localhost:3000`;
 const CODEIT_SERVER = 'https://panda-market-api.vercel.app';
 
 //#region user
-
 /**
  * @async
- * @param {object} [params={}]
+ * @param {object} [headers={}]
  */
-export async function getMe(params = {}) {
-  return axiosGet({ base: CODEIT_SERVER, url: '/users/me', params });
-}
+// export async function getMe(headers = {}) {
+//   return axiosGet({ base: CODEIT_SERVER, url: '/users/me', headers });
+// }
 //#endregion
 
 //#region product
-
 /**
  * @async
  * @param {object} [params={}]
@@ -46,7 +44,7 @@ export async function getProductDetail(id, params = {}) {
  * }} [data={}]
  */
 export async function postProduct(data = {}) {
-  return axiosPost({ base: SERVER, url: '/products', data });
+  return axiosPost({ base: SERVER, url: '/products', data, headers: { 'Content-Type': 'multipart/form-data' } });
 }
 
 /**
@@ -76,16 +74,16 @@ export async function deleteProduct(id) {
  * @async
  * @param {uuid} id
  */
-export async function postProductFavorite(id) {
-  return axiosPost({ base: SERVER, url: `/products/${id}/favorite` });
+export async function postProductLike(id) {
+  return axiosPost({ base: SERVER, url: `/products/${id}/like` });
 }
 
 /**
  * @async
  * @param {uuid} id
  */
-export async function deleteProductFavorite(id) {
-  return axiosDelete({ base: SERVER, url: `/products/${id}/favorite` });
+export async function deleteProductLike(id) {
+  return axiosDelete({ base: SERVER, url: `/products/${id}/like` });
 }
 
 /**
@@ -108,7 +106,6 @@ export async function postCommentOfProduct(id, data = {}) {
 //#endregion
 
 //#region article
-
 /**
  * @async
  * @param {object} [params={}]
@@ -180,7 +177,6 @@ export async function deleteArticle(id) {
 //#endregion
 
 //#region comment
-
 /**
  * @async
  * @param {uuid} id
@@ -217,13 +213,20 @@ export async function deleteComment(id) {
 //#endregion
 
 //#region auth
+/**
+ * @async
+ * @param {object} [headers={}]
+ */
+export async function getMe(headers = {}) {
+  return axiosGet({ base: SERVER, url: '/auth/me', headers });
+}
 
 /**
  * @async
  * @param {{ email: string; nickname: string; password: string; passwordConfirmation: string; }} [data={}]
  */
 export async function signUp(data = {}) {
-  return axiosPost({ base: CODEIT_SERVER, url: '/auth/signUp', data });
+  return axiosPost({ base: SERVER, url: '/auth/signUp', data });
 }
 
 /**
@@ -231,7 +234,7 @@ export async function signUp(data = {}) {
  * @param {{email: string, password: string}} [data={}]
  */
 export async function signIn(data = {}) {
-  return axiosPost({ base: CODEIT_SERVER, url: '/auth/signIn', data });
+  return axiosPost({ base: SERVER, url: '/auth/signIn', data });
 }
 
 /**
@@ -239,6 +242,10 @@ export async function signIn(data = {}) {
  * @param {{refreshToken: string}} [data={}]
  */
 export async function refreshToken(data = {}) {
-  return axiosPost({ base: CODEIT_SERVER, url: '/auth/refresh-token', data });
+  return axiosPost({ base: SERVER, url: '/auth/refresh', data });
 }
 //#endregion
+
+export async function getOneUser(params = { pageSize: 1 }) {
+  return axiosGet({ base: SERVER, url: '/dev/users', params });
+}

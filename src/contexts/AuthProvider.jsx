@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useAsync from '@hooks/useAsync';
-import { getMe as getMeApi, refreshToken as refreshTokenApi, signIn } from '@utils/api';
+import { getMe as getMeApi, refreshToken, signIn } from '@utils/api';
 import { isTokenExpired } from '@utils/utils';
 import { useSetError } from './ErrorProvider';
 
@@ -17,6 +17,7 @@ export default function AuthProvider({ children }) {
   const [userObj, setUserObj] = useState({ user: null, isPending: true });
   const router = useRouter();
   const signInAsync = useAsync(signIn);
+  const refreshTokenAsync = useAsync(refreshToken);
   const setError = useSetError();
 
   const login = async ({ email, password }) => {
@@ -24,7 +25,6 @@ export default function AuthProvider({ children }) {
     if (!res) return null;
 
     localStorage.setItem('accessToken', res.accessToken);
-    localStorage.setItem('refreshToken', res.refreshToken);
     return getMe();
   };
   const logout = () => {
@@ -34,11 +34,14 @@ export default function AuthProvider({ children }) {
   const getMe = async () => {
     await tokenExpireCheck();
 
+    const accessToken = localStorage.getItem('accessToken');
+
     setUserObj(old => ({ ...old, isPending: true }));
 
     let nextUser = null;
     try {
-      nextUser = await getMeApi();
+      nextUser = await getMeApi({ headers: { Authorization: `Bearer ${accessToken}` } });
+      console.log('🚀 ~ getMe ~ nextUser:', nextUser);
       return nextUser;
     } catch (err) {
       console.error(err);
@@ -49,7 +52,6 @@ export default function AuthProvider({ children }) {
   const updateMe = () => {};
   const tokenExpireCheck = async () => {
     const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
     // NOTE accessToken의 유효기간 검사 후 만료시
     if (accessToken && isTokenExpired(accessToken)) {
       const newAccessToken = await refreshNewAccessToken();
@@ -62,7 +64,7 @@ export default function AuthProvider({ children }) {
       logout();
       return false;
     }
-    // NOTE accessToken이 없음 = 로그인 이전이거나 직접 삭제함
+    // NOTE accessToken이 없음 = 로그아웃 상태
     if (!accessToken) {
       const newAccessToken = await refreshNewAccessToken();
       if (newAccessToken) return localStorage.setItem('accessToken', newAccessToken);
@@ -71,12 +73,13 @@ export default function AuthProvider({ children }) {
     return true;
   };
   const refreshNewAccessToken = async () => {
-    const refreshToken = localStorage.getItem('refreshToken');
-    if (!refreshToken || isTokenExpired(refreshToken)) return null;
+    refreshTokenAsync();
+    // const refreshToken = localStorage.getItem('refreshToken');
+    // if (!refreshToken || isTokenExpired(refreshToken)) return null;
 
-    const refreshResult = await refreshTokenApi({ refreshToken });
-    localStorage.setItem('accessToken', refreshResult.accessToken);
-    return refreshResult.accessToken;
+    // const refreshResult = await refreshTokenApi({ refreshToken });
+    // localStorage.setItem('accessToken', refreshResult.accessToken);
+    // return refreshResult.accessToken;
   };
 
   useEffect(() => {

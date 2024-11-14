@@ -8,7 +8,7 @@ import { useAuth } from '@contexts/AuthProvider';
 import useOwnMutation from '@hooks/useOwnMutation';
 import useOwnQuery from '@hooks/useOwnQuery';
 import useValidation from '@hooks/useValidation';
-import { getProductDetail, patchProduct, postProduct } from '@utils/api';
+import { getOneUser, getProductDetail, patchProduct, postProduct } from '@utils/api';
 import c from '@utils/constants';
 
 const style = {
@@ -68,10 +68,13 @@ export default function ItemRegistration({ productId }) {
   const { user, tokenExpireCheck } = useAuth(true);
   const validation = useValidation();
   const router = useRouter();
+  const userId = useRef('');
   const [nameObj, setNameObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'name', type: 'text' });
   const [descriptionObj, setDescriptionObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'description', type: 'text' });
   const [priceObj, setPriceObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'price', type: 'number' });
   const [tagObj, setTagObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'tag', type: 'text' });
+  const [fileObj, setFileObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'image', type: 'file' });
+  const [fileurl, setFileurl] = useState('');
   const [tags, setTags] = useState([]);
   const [validationCheck, setValidationCheck] = useState(
     productId ? { name: true, description: true, price: true, tag: true } : {},
@@ -79,6 +82,11 @@ export default function ItemRegistration({ productId }) {
   const [canSubmit, setCanSubmit] = useState(false);
   const isFirstVisit = useRef(true);
 
+  const getOneUserQuery = useOwnQuery({
+    queryFn: _ => getOneUser(),
+    queryKey: ['randomUserId'],
+    onSuccess: result => (userId.current = result.list[0].id),
+  });
   const getProductDetailQuery = useOwnQuery({
     queryFn: _ => getProductDetail(productId),
     queryKey: ['product', productId],
@@ -91,7 +99,10 @@ export default function ItemRegistration({ productId }) {
   });
   const postProductMutation = useOwnMutation({
     mutationFn: data => postProduct(data),
-    onSuccess: result => router.push(`/items/${result.id}`),
+    onSuccess: result => {
+      console.log(result);
+      router.push(`/items/${result.id}`);
+    },
   });
   const patchProductMutation = useOwnMutation({
     mutationFn: data => patchProduct(productId, data),
@@ -147,10 +158,27 @@ export default function ItemRegistration({ productId }) {
     const newTags = [...tags.slice(0, idx), ...tags.slice(idx + 1)];
     setTags(newTags);
   };
+  const handleChnageImage = e => {
+    const fileArray = Array.from(e.target.files);
+    const file = fileArray[0];
+    setFileObj(old => ({ ...old, value: file }));
+    setFileurl(URL.createObjectURL(file));
+  };
   const handleSubmit = async () => {
     if (!tokenExpireCheck()) router.push('/items');
-    const data = { name: nameObj.value, description: descriptionObj.value, price: parseInt(priceObj.value), tags, images: [] };
-    productId ? patchProductMutation.mutate(data) : postProductMutation.mutate(data);
+    const formData = new FormData();
+    formData.append('file', fileObj.value);
+
+    const data = {
+      name: nameObj.value,
+      description: descriptionObj.value,
+      price: parseInt(priceObj.value),
+      tags,
+      ownerId: userId.current,
+    };
+    formData.append('data', JSON.stringify(data));
+
+    productId ? patchProductMutation.mutate(formData) : postProductMutation.mutate(formData);
   };
 
   useEffect(() => {
@@ -201,6 +229,10 @@ export default function ItemRegistration({ productId }) {
             {tags.map(tag => (
               <TagButton name={tag} key={tag} onClick={handleRemoveTag} />
             ))}
+          </div>
+          <div className="files">
+            <img src={fileurl} alt="" />
+            <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={handleChnageImage} multiple={false} />
           </div>
         </div>
       </form>

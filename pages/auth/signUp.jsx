@@ -46,7 +46,9 @@ export default function SignupPage() {
     }
     setErrorMsg({});
 
-    signUpMutation.mutate(mockData);
+    const data = { email, nickname, password };
+
+    signUpMutation.mutate(data);
   };
   const handleKeyDown = e => {
     // NOTE Enter Key
