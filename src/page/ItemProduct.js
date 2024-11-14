@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BestProductList from "../component/BestProductList.js";
-import { getList, getListItem } from "../component/api.js";
+import { getList, getListItem } from "../component/PandaApi.js";
 import ProductList from "../component/ProductList.js";
 import PageButton from "../component/PageButton.js";
 

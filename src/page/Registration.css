@@ -51,6 +51,7 @@
 
 .RegImg{
   width: 100%;
+  margin-bottom: 32px;
 }
 .RegImg p {
   margin-bottom: 16px;
@@ -58,7 +59,25 @@
 .ImagePreview{
   display: flex;
   align-items: center;
+  gap: 24px;
   
+}
+.addImg, .prevImg {
+  width: 282px;
+  height: 282px;
+  border-radius: 12px;
+  
+}
+.ImageItem{
+  position: relative;
+
+}
+
+.Xbutton{
+position: absolute;
+right: 12px;
+top:12px;
+cursor: pointer;
 }
 .form {
   display: flex;

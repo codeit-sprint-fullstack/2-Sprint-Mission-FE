@@ -46,7 +46,6 @@ function Items() {
 
   useEffect(() => {
     handleLoadProductItems();
-    // console.log(items)
   }, [currentPage, limit]);
 
   return (

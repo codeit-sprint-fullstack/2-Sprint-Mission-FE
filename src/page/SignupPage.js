@@ -10,6 +10,7 @@ import Modal from "../component/Modal.js";
 import { useEffect, useState } from "react";
 import axios from "../lib/axios.js";
 
+
 export default function SignupPage() {
   const [values, setValues] = useState({
     email: "",
@@ -117,8 +118,7 @@ export default function SignupPage() {
       await axios.post("/auth/signUp", {
         email,
         nickname,
-        password,
-        passwordConfirmation,
+        encryptedPassword,
       });
       const response = await axios.post("/auth/signIn", {
         email,

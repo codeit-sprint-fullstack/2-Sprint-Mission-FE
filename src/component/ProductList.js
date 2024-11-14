@@ -3,22 +3,25 @@ import "../style/ProductList.css";
 import ProductMenuContainer from "./ProductMenuContainer.js";
 import { Link } from "react-router-dom";
 import defaultImg from "../imgFile/defaultProduct.png";
+import isValidImageUrl from "../utill/utill.js";
 
 function ProductListItem({ item }) {
-  const isValidImageUrl = (url) => {
-    return /\.(jpg|jpeg|png|gif|bmp|webp|svg)$/.test(url);
-  };
+  const imageUrl =
+    item.images && item.images.length > 0 && isValidImageUrl(item.images[0])
+      ? item.images[0]
+      : defaultImg;
+
   return (
     <>
       <Link to={`/items/${item.id}`}>
         <div className="ProductListItem">
           <img
-            src={
-              item.images && isValidImageUrl(item.images)
-                ? item.images
-                : defaultImg
-            }
+            src={imageUrl}
             alt={item.name}
+            onError={(e) => {
+              e.target.onerror = null; // prevent infinite loop
+              e.target.src = defaultImg; // 이미지 로드 실패 시 기본 이미지로 변경
+            }}
           />
           <div>
             <p className="ListFont1">{item.name}</p>

@@ -1,6 +1,6 @@
 import "../page/HomeStyle/global.css";
 import "../page/HomeStyle/home.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../page/images/logo/logo.svg";
 import Avatar from "./Avatar.js";
 import { useEffect, useState } from "react";
@@ -10,29 +10,9 @@ import style from "./PageNav.module.css";
 export function PublicNav() {
   const location = useLocation();
   const [user, setUser] = useState(null); // 유저 상태 관리
+  const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("accessToken");
-  // const refreshToken = localStorage.getItem("refreshToken");
-
-  // async function refreshAccessToken() {
-  //   try {
-  //     const res = await axios.post("/auth/refresh-token", {
-  //       refreshToken,
-  //     });
-  // async function refreshAccessToken() {
-  //   try {
-  //     const res = await axios.post("/auth/refresh-token", {
-  //       refreshToken,
-  //     });
-
-  //     console.log("리프레시토큰", res);
-  //     localStorage.setItem("accessToken", res.data.accessToken);
-  //     return res.data.accessToken;
-  //   } catch (error) {
-  //     console.error(error);
-  //     return alert("새로고침 혹은,다시로그인해주세요");
-  //   }
-  // }
 
   async function getMe(token) {
     try {
@@ -43,20 +23,8 @@ export function PublicNav() {
       });
       setUser(res.data);
     } catch (e) {
-      // if (e.response && e.response.status === 401) {
-      //   // JWT expired
-      //   const newAccessToken = await refreshAccessToken();
-      //   if (newAccessToken) {
-      //     await getMe(newAccessToken); // 새로운 토큰으로 다시 시도
-      //   } else {
-      //     alert("리프레시토큰이 없습니다. 다시로그인해주세요");
-      //     setUser(null); // refreshToken이 없거나 실패한 경우
-      //   }
-      // } else {
       console.error(e);
-      // alert("새로고침 혹은,다시 로그인해주세요");
       setUser(null);
-      // }
     }
   }
 

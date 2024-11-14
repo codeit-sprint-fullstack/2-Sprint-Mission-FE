@@ -18,9 +18,11 @@ function Registration() {
   const navigate = useNavigate();
   const [values, setValues] = useState(INITIAL_VALUES);
   const [inputValue, setInputValue] = useState(""); // 입력 값을 저장할 상태변수
-  const [isTagAdd, setIsTagAdd] = useState(false); //태그 추가 여부 상태
+  const [isTagAdd, setIsTagAdd] = useState(false); // 태그 추가 여부 상태
   const [selectedImages, setSelectedImages] = useState([]);
   const fileInputRef = useRef(null); // 파일 입력 참조 추가
+
+  const accessToken = localStorage.getItem("accessToken");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +34,7 @@ function Registration() {
 
   const handleTagKeyDown = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); //폼제출방지
+      e.preventDefault(); // 폼 제출 방지
       if (inputValue.trim() !== "") {
         setValues((prevValues) => ({
           ...prevValues,
@@ -46,29 +48,49 @@ function Registration() {
 
   const handleTagRemove = (tagToRemove) => {
     setValues((prevValues) => {
-      const updateTags = prevValues.tags.filter((tag) => tag !== tagToRemove);
-      if (updateTags.length === 0) {
+      const updatedTags = prevValues.tags.filter((tag) => tag !== tagToRemove);
+      if (updatedTags.length === 0) {
         setIsTagAdd(false);
       }
       return {
         ...prevValues,
-        tags: updateTags,
+        tags: updatedTags,
       };
     });
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const files = Array.from(e.target.files);
-    if (selectedImages.length + files.length > 3) {
-      alert("이미지는 최대 3개까지 업로드할 수 있습니다."); // 경고 메시지
+    if (selectedImages.length + files.length > 1) {
+      alert("이미지는 최대 1개까지 업로드할 수 있습니다."); // 경고 메시지
       return;
     }
-    const newImages = files.map((file) => URL.createObjectURL(file));
-    setSelectedImages((prevImages) => [...prevImages, ...newImages]);
-    setValues((prevValues) => ({
-      ...prevValues,
-      images: [...prevValues.images, ...files],
-    }));
+    try {
+      const uploadedImageUrls = await Promise.all(
+        files.map(async (file) => {
+          const formData = new FormData();
+          formData.append("image", file); // 이미지 파일 추가
+
+          // 이미지 업로드 요청
+          const response = await axios.post("/images/upload", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+
+          const imageUrl = response.data.url; // 업로드된 이미지 URL 반환
+          return imageUrl; // URL 반환
+        })
+      );
+      setSelectedImages((prevImages) => [...prevImages, ...uploadedImageUrls]);
+      setValues((prevValues) => ({
+        ...prevValues,
+        images: [...prevValues.images, ...uploadedImageUrls], // URL로 업데이트
+      }));
+    } catch (error) {
+      console.error("Image upload error:", error);
+    }
   };
 
   const handleImageRemove = (imageToRemove) => {
@@ -79,10 +101,9 @@ function Registration() {
       return updatedImages;
     });
     setValues((prevValues) => {
-      const updatedFiles = prevValues.images.filter((file, index) => {
-        const imageUrl = URL.createObjectURL(file);
-        return imageUrl !== imageToRemove;
-      });
+      const updatedFiles = prevValues.images.filter(
+        (url) => url !== imageToRemove
+      );
       return {
         ...prevValues,
         images: updatedFiles,
@@ -94,26 +115,26 @@ function Registration() {
     fileInputRef.current.click(); // 파일 입력 클릭
   };
 
-  const accessToken = localStorage.getItem("accessToken");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //JSON 데이터로 변환
     const formData = {
       name: values.name,
       description: values.description,
       price: values.price,
       tags: values.tags,
-      images: [], // 빈 배열 추가
+      images: selectedImages, // 이미지 URL 사용
     };
+
     try {
-      const newItem = await axios.post(`/products`, formData, {
+      const newItem = await axios.post("/products", formData, {
         headers: {
+          "Content-Type": "application/json", // JSON 형식으로 요청
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      // 데이터베이스에 전송
-      setValues(INITIAL_VALUES); // 초기값으로 리셋
-      navigate(`/items/${newItem.data.id}`); // 페이지 이동
+      setValues(INITIAL_VALUES);
+      setSelectedImages([]); // 제출 후 선택된 이미지 초기화
+      navigate(`/items/${newItem.data.id}`);
     } catch (error) {
       console.error("Submission error:", error);
     }
@@ -140,12 +161,17 @@ function Registration() {
             src={imgInput}
             alt="imgInput"
             onClick={openFileDialog}
+            className="addImg"
             style={{ cursor: "pointer" }}
           />
           {selectedImages.map((image, index) => (
             <div key={index} className="ImageItem">
-              <img src={image} alt={`preview-${index}`} />
-              <img src={XButton} onClick={() => handleImageRemove(image)} />
+              <img src={image} className="prevImg" alt={`preview-${index}`} />
+              <img
+                src={XButton}
+                className="Xbutton"
+                onClick={() => handleImageRemove(image)}
+              />
             </div>
           ))}
         </div>

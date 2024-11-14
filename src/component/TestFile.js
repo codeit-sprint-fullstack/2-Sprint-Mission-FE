@@ -8,7 +8,6 @@ function TestProject() {
   const handleLoad = async () => {
     try {
       const data = await getItemList();
-      console.log(data); // 데이터 확인용 로그
       setItems(data.items); // items가 배열인지 확인
     } catch (error) {
       console.error("Failed to load items:", error);
