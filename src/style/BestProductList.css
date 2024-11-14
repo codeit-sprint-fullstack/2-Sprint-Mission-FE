@@ -1,0 +1,89 @@
+.BestSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px; /* 최대 너비 설정 */
+  margin: 0 auto 40px; /* 가운데 정렬 */
+  width: 100%; /* 너비를 100%로 설정 */
+}
+.BestFont {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #111827;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+.leftArray {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.BestProductFrame {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.BestItemList img {
+  width: 282px;
+  height: 282px;
+  margin-bottom: 16px;
+  border-radius: 16px;
+}
+
+.ListFont1 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #1f2937;
+  margin: 0 0 6px;
+}
+.ListFont2 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #1f2937;
+  margin: 6px 0;
+}
+.ListFont3 {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #4b5563;
+  margin: 6px 0 0;
+}
+
+/* tablet Size */
+@media (max-width: 1199px) {
+  .BestItemList img {
+    width: 343px;
+    height: 343px;
+    margin-bottom: 10px;
+  }
+
+  .BestProductFrame {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .BestSection {
+    max-width: 696px;
+  }
+}
+
+/* mobile Size */
+
+@media (max-width: 743px) {
+  .BestProductFrame {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .BestSection {
+    max-width: 343px;
+  }
+}
