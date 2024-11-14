@@ -24,10 +24,10 @@ export default function ProductDetail({ id }) {
   const handleFavoriteClick = async () => {
     try {
       if (isFavorited) {
-        await deleteProductFavorite(productId);
+        await deleteProductFavorite(id);
         setFavoriteCount(favoriteCount - 1);
       } else {
-        await createProductFavorite(productId);
+        await createProductFavorite(id);
         setFavoriteCount(favoriteCount + 1);
       }
       setIsFavorited(!isFavorited);
