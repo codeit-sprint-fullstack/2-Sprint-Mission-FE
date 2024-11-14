@@ -11,6 +11,7 @@ import avatarImg from "../imgFile/김코드마크.png";
 import formatDate from "../lib/formatDate.js";
 import Comments from "../component/Comments.js";
 import backHome from "../imgFile/ic_back.png";
+import {isValidImageUrl} from "../utill/isvalidImage.js";
 
 function ItemDetailPage() {
   const { itemId } = useParams();
@@ -104,9 +105,7 @@ function ItemDetailPage() {
     getProductId();
   }, [itemId]);
 
-  const isValidImageUrl = (url) => {
-    return /^[가-힣a-zA-Z0-9\s_-]*\.(jpg|jpeg|png|gif|bmp|webp|svg)$/i.test(url);
-  };
+  
   
   return (
     <>

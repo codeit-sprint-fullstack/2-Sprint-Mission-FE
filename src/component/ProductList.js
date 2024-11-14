@@ -3,7 +3,7 @@ import "../style/ProductList.css";
 import ProductMenuContainer from "./ProductMenuContainer.js";
 import { Link } from "react-router-dom";
 import defaultImg from "../imgFile/defaultProduct.png";
-import isValidImageUrl from "../utill/utill.js";
+import {isValidImageUrl} from "../utill/isvalidImage.js";
 
 function ProductListItem({ item }) {
   const imageUrl =

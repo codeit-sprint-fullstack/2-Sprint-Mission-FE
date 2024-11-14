@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import "../style/BestProductList.css";
 import { Link } from "react-router-dom";
 import defaultImg from "../imgFile/defaultProduct.png";
-import isValidImageUrl from "../utill/utill.js";
+import {isValidImageUrl} from "../utill/isvalidImage.js";
 
 function BestProductItem({ item }) {
-  
   return (
     <>
       <Link to={`/items/${item.id}`}>
