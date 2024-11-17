@@ -31,6 +31,7 @@ export default function ProductCommentForm({ productId, initialComment = null, o
         const updatedComment = await updateProductComment(initialComment.id, { content: comment });
         onUpdateComment(updatedComment);
       } else {
+        console.log('productId', productId);
         // 새로운 댓글 등록
         await createProductComment(productId, { content: comment });
       }
