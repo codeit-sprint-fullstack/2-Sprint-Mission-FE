@@ -28,4 +28,5 @@ const Modal = ({ message, onClose, onComfirm, isAuth }) => {
     </div>
   );
 };
+
 export default Modal;
