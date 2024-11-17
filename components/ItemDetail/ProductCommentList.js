@@ -17,16 +17,19 @@ export default function ProductCommentList({ productId }) {
       if (!productId) {
         setError('유효하지 않은 제품 ID입니다.');
         setIsLoading(false);
+        setCommentList([]);
         return;
       }
       try {
         setIsLoading(true);
         setError(null);
-        const { list } = await getProductComments(productId, 10); // limit을 10으로 설정
-        //console.log(list, list);
-        setCommentList(list);
+        const response  = await getProductComments(productId, 10); // limit을 10으로 설정
+        //console.log('Fetched response', response);
+        const { list } = response;
+        setCommentList(Array.isArray(list) ? list : []);
       } catch (error) {
         setError('댓글을 불러오는 데 실패했습니다.');
+        setCommentList([]);
       } finally {
         setIsLoading(false);
       }

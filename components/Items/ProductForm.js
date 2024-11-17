@@ -28,9 +28,9 @@ export default function ProductForm({ initialData = {}, onSubmit, isEdit = false
   
     // 필요한 필드만 선택하여 payload 생성
     const payload = {
-      images: productData.images || ["https://example.com/sample-image.jpg"],  // 기본 이미지 추가
+      images: productData.images || [],  
       tags: productData.tags || [],
-      price: parseFloat(productData.price) || 0, // 숫자형 변환
+      price: parseInt(productData.price) || 0, // 숫자형 변환
       description: productData.description || "",
       name: productData.name || "상품 이름"
     };

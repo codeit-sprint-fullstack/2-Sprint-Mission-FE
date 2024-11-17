@@ -34,6 +34,13 @@ export default function ProductInfo({ productId }) {
   }, [isLoading]);
   */
 
+  // 디버깅용 코드 개발중일 때만 활성화
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Initial product:', product);
+    }
+  }, [product]);
+
   const handleDelete = () => {
     setIsModalOpen(true); // 삭제 모달 열기
   };
@@ -85,6 +92,7 @@ export default function ProductInfo({ productId }) {
     : '/images/items/img_default_product.png';
 
   return (
+    
     <div className={styles.container}>
       {/* 제품 이미지 */}
       <div className={styles.imageWrapper}>
