@@ -149,7 +149,7 @@ export default function ProductDetail({ id }) {
         </div>
         <div className={styles.comments}>
           <ProductCommentAdd />
-          <ProductCommentList />
+          <ProductCommentList productComments={productComments.list} />
         </div>
       </div>
       <button className={styles[`back-list`]} onClick={handleBackList}>

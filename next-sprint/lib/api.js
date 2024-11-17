@@ -83,6 +83,24 @@ export async function getComments(productId) {
   }
 }
 
+export async function patchProductComments(commentId, comments) {
+  try {
+    const res = await axiosInstance.patch(`/comments/${commentId}`, comments);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteProductComments(commentId) {
+  try {
+    const res = await axiosInstance.delete(`/comments/${commentId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function createProductFavorite(productId) {
   try {
     const res = await axiosInstance.post(`/products/${productId}/favorite`, {});
