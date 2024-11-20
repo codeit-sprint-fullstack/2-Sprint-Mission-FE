@@ -2,8 +2,7 @@ import styles from './ArticleCommentList.module.css';
 import Image from 'next/image';
 import { patchArticleComment } from '@/lib/api/ArticleService';
 import ArticleCommentDropdown from './ArticleCommentDropdown';
-import { useState, useRef } from 'react';
-import { useRouter } from 'next/router';
+import { useState } from 'react';
 import formatTime from '@/lib/formatTime';
 
 export default function ArticleCommentList({ articleComments = [] }) {
@@ -12,9 +11,6 @@ export default function ArticleCommentList({ articleComments = [] }) {
   const [editingContent, setEditingContent] = useState('');
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const router = useRouter();
 
   const handleMenuClick = (comment) => {
     setSelectedComment(comment);
@@ -74,7 +70,7 @@ export default function ArticleCommentList({ articleComments = [] }) {
                         alt="메뉴 아이콘"
                       />
                       {selectedComment?.id === comment.id && dropdownOpen && (
-                        <div ref={dropdownRef} className={styles.dropdown}>
+                        <div className={styles.dropdown}>
                           <ArticleCommentDropdown
                             commentId={comment.id}
                             onEditClick={() => handleEditClick(comment)}

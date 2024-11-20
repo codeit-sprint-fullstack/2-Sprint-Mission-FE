@@ -25,22 +25,23 @@ export async function getServerSideProps() {
     return {
       props: {
         articles,
-        bestArticles,
-        totalCount
+        bestArticles
       }
     };
   } catch (err) {
     console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err);
-    throw new Error(
-      '서버에서 데이터를 가져오는 중 문제가 발생했습니다.' + err.message
-    );
+    return {
+      props: {
+        error: '서버에서 데이터를 가져오는 중 문제가 발생했습니다.'
+      }
+    };
   }
 }
 
 export default function Article({
   articles,
   bestArticles: initialBestArticles,
-  totalCount
+  error: serverError
 }) {
   const [bestArticles] = useState(initialBestArticles);
   const { bestPost } = useResize();
@@ -53,26 +54,21 @@ export default function Article({
   const [sortOrder, setSortOrder] = useState('recent');
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const timer = setTimeout(() => {
       setLoading(true);
-      try {
-        const fetchedArticles = await getArticleList({
-          page: 1,
-          pageSize: totalCount
-        });
-        setFilteredArticles(fetchedArticles);
-      } catch (err) {
-        setError('상품 목록을 불러오는 데 실패했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
+    }, 2000);
 
-    fetchData();
+    return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const sortedArticles = sortArticles(filteredArticles, sortOrder);
+    setFilteredArticles(sortedArticles);
+
+    setLoading(false);
+  }, [sortOrder, filteredArticles]);
 
   const sortArticles = (articles, sortOrder) => {
     let sortedArticles = [...articles];
@@ -100,11 +96,6 @@ export default function Article({
     }
   };
 
-  useEffect(() => {
-    const sortedArticles = sortArticles(filteredArticles, sortOrder);
-    setFilteredArticles(sortedArticles);
-  }, [sortOrder]);
-
   const totalPages = Math.ceil(filteredArticles.length / pageSize);
 
   const currentArticles = filteredArticles.slice(
@@ -113,7 +104,7 @@ export default function Article({
   );
 
   if (loading) return <Spinner />;
-  if (error) return <ErrorMessage message={error} />;
+  if (serverError) return <ErrorMessage message={serverError} />;
 
   return (
     <div className={styles.wrapper}>
