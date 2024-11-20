@@ -24,14 +24,7 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
 
-  // 컴포넌트가 마운트될 때 로컬 스토리지에 accessToken이 있는지 확인
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      navigate("/items");
-    }
-  }, [navigate]);
-
+  const accessToken = localStorage.getItem("accessToken");
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
@@ -41,6 +34,12 @@ export default function LoginPage() {
     if (password.length < 8) return "비밀번호는 8자 이상이어야 합니다";
     return null;
   };
+
+  useEffect(() => {
+    if (accessToken) {
+      navigate("/items");
+    }
+  }, [navigate]);
 
   const handleBlur = (field) => {
     const newErrors = { ...values.errors };
@@ -90,12 +89,8 @@ export default function LoginPage() {
       navigate("/items"); // 성공 시 /items 페이지로 이동
     } catch (error) {
       console.log("에러", error);
-      setIsModalOpen(true); // 모달 열기
-      // if (error.response && error.response.status === 401) {
-      //   // 액세스 토큰이 만료된 경우
-      //   await refreshAccessToken();
-      // } else {
 
+      setIsModalOpen(true); // 모달 열기
       setValues((prevValues) => ({
         ...prevValues,
         errorMsg: error.response.data.message,
@@ -103,20 +98,6 @@ export default function LoginPage() {
       // }
     }
   };
-
-  // const refreshAccessToken = async () => {
-  //   try {
-  //     const refreshToken = localStorage.getItem("refreshToken");
-  //     const response = await axios.post("/auth/refresh-token", {
-  //       refreshToken,
-  //     });
-  //     const newAccessToken = response.data.accessToken; //서버에서 받은 새로운 액세스토큰
-  //     localStorage.setItem("accessToken", newAccessToken); //로컬스토리지에 저장
-  //   } catch (error) {
-  //     console.log("리프레시 토큰 요청 실패", error);
-  //     navigate("/login");
-  //   }
-  // };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);

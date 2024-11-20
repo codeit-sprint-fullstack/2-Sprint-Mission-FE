@@ -11,6 +11,7 @@ import avatarImg from "../imgFile/김코드마크.png";
 import formatDate from "../lib/formatDate.js";
 import Comments from "../component/Comments.js";
 import backHome from "../imgFile/ic_back.png";
+import {isValidImageUrl} from "../utill/isvalidImage.js";
 
 function ItemDetailPage() {
   const { itemId } = useParams();
@@ -64,7 +65,7 @@ function ItemDetailPage() {
         }
       );
       setFavoriteCount((prevCount) => prevCount + 1);
-      console.log("좋아요 활성화");
+      
     } else {
       await axios.delete(`/products/${itemId}/favorite`, {
         headers: {
@@ -72,7 +73,6 @@ function ItemDetailPage() {
         },
       });
       setFavoriteCount((prevCount) => prevCount - 1);
-      console.log("좋아요 해제");
     }
   };
 
@@ -82,26 +82,31 @@ function ItemDetailPage() {
     setItem(product);
     setFavoriteCount(product.favoriteCount); //초기 좋아요 수 설정
 
-    const res = await axios.get("/users/me/favorites", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    if (accessToken) {
+      try {
+        const res = await axios.get("/users/me/favorites", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
 
-    // 사용자의 좋아요 리스트에서 현재 상품 ID가 있는지 확인
-    const isProductLiked = res.data.list.some(
-      (favorite) => favorite.id === parseInt(itemId)
-    );
-    setIsLiked(isProductLiked); // 좋아요 상태 설정
+        const isProductLiked = res.data.list.some(
+          (favorite) => favorite.id === parseInt(itemId)
+        );
+        setIsLiked(isProductLiked);
+      } catch (error) {
+        console.error("좋아요 정보 가져오기 실패:", error);
+        setIsLiked(false);
+      }
+    }
   }
 
   useEffect(() => {
     getProductId();
   }, [itemId]);
 
-  const isValidImageUrl = (url) => {
-    return /\.(jpg|jpeg|png|gif|bmp|webp|svg)$/.test(url);
-  };
+  
+  
   return (
     <>
       <div className={style.container}>

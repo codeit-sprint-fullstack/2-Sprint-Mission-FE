@@ -14,13 +14,10 @@ export default function Dropdown({
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    console.log("수정하기");
+    
     navigate(`/items/${item.id}/patchitem`);
   };
 
-  const handleDelete = async () => {
-    console.log("삭제하기");
-  };
 
   return (
     <>

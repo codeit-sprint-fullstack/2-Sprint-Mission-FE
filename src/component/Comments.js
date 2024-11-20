@@ -46,7 +46,9 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
       await axios.delete(`/comments/${commentId}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
-      setComment((prevComments) => prevComments.filter((prevComment) => prevComment.id !== commentId)); // 댓글 목록에서 삭제
+      setComment((prevComments) =>
+        prevComments.filter((prevComment) => prevComment.id !== commentId)
+      ); // 댓글 목록에서 삭제
     } catch (error) {
       console.error("댓글 삭제 실패:", error);
       toggleDropdown(null); // 드롭다운 닫기
@@ -67,9 +69,9 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
       );
       setEditingCommentId(null); // 수정 모드 종료
       setEditedContent(""); // 입력 필드 초기화
-      toggleDropdown(null); // 드롭다운 닫기
     } catch (error) {
       console.error("댓글 수정 실패:", error);
+    } finally {
       toggleDropdown(null); // 드롭다운 닫기
     }
   };
@@ -143,8 +145,12 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
                 <div>
                   <img src={avatarImg} alt="profile" />
                   <div className={styles.nickNameTable}>
-                    <p className={styles.nickName}>{prevComment.writer.nickname}</p>
-                    <p className={styles.date}>{formatDate(new Date(prevComment.createdAt))}</p>
+                    <p className={styles.nickName}>
+                      {prevComment.writer.nickname}
+                    </p>
+                    <p className={styles.date}>
+                      {formatDate(new Date(prevComment.createdAt))}
+                    </p>
                   </div>
                 </div>
                 {editingCommentId === prevComment.id && (

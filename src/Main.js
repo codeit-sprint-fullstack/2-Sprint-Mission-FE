@@ -9,6 +9,7 @@ import { UserLayout } from "./component/Layout.js";
 import SignupPage from "./page/SignupPage.js";
 import PatchPage from "./page/PatchPage.js";
 
+
 const isAuthenticated = () => {
   return localStorage.getItem("accessToken") !== null;
 };

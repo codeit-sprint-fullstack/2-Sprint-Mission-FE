@@ -33,7 +33,7 @@
   margin-bottom: 24px;
 }
 
-.PostProductMenu p {
+.PostProductMenu p, .RegImg p {
   font-size: 20px;
   font-weight: 700;
   color: var(--black-700);
@@ -49,6 +49,36 @@
   color: var(--coolGray-100);
 }
 
+.RegImg{
+  width: 100%;
+  margin-bottom: 32px;
+}
+.RegImg p {
+  margin-bottom: 16px;
+}
+.ImagePreview{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  
+}
+.addImg, .prevImg {
+  width: 282px;
+  height: 282px;
+  border-radius: 12px;
+  
+}
+.ImageItem{
+  position: relative;
+
+}
+
+.Xbutton{
+position: absolute;
+right: 12px;
+top:12px;
+cursor: pointer;
+}
 .form {
   display: flex;
   flex-direction: column;
