@@ -44,7 +44,9 @@ export default function ProductEditPage() {
       router.push(`/items/${id}`);
     } catch (error) {
       console.error('상품 수정 실패:', error);
-      alert('상품 수정에 실패했습니다.');
+      // 백엔드에서 받은 메시지가 있는 경우 표시, 없으면 기본 메시지 출력
+      const errorMessage = error.response?.data?.message || '상품 수정에 실패했습니다.';
+      alert(errorMessage);
     }
   };
 

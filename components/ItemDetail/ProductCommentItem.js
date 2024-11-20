@@ -20,8 +20,11 @@ export default function ProductCommentItem({ comment, onDelete, onEdit }) {
       await deleteProductComment(comment.id);
       onDelete(comment.id);
     } catch (error) {
-      alert('댓글 삭제에 실패했습니다.');
+      //alert('댓글 삭제에 실패했습니다.');  
       console.error(error);
+      // 백엔드에서 받은 메시지가 있는 경우 표시, 없으면 기본 메시지 출력
+      const errorMessage = error.response?.data?.message || '상품 삭제에 실패했습니다.';
+      alert(errorMessage);
     } finally {
       setIsDeleting(false);
       setIsModalOpen(false); // 모달 닫기

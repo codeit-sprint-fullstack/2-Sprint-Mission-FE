@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from './ProductForm.module.css';
 import useValidateProductForm from '@/hooks/useValidateProductForm';
+import { useRouter } from 'next/router';
 
 export default function ProductForm({ initialData = {}, onSubmit, isEdit = false }) {
+  const router = useRouter();
   const { productData, setProductData, errors, handleChange, isFormValid } = useValidateProductForm({
     name: initialData.name || '',
     description: initialData.description || '',
@@ -28,15 +30,17 @@ export default function ProductForm({ initialData = {}, onSubmit, isEdit = false
   
     // 필요한 필드만 선택하여 payload 생성
     const payload = {
-      images: productData.images || ["https://example.com/sample-image.jpg"],  // 기본 이미지 추가
+      images: productData.images || [],  
       tags: productData.tags || [],
-      price: parseFloat(productData.price) || 0, // 숫자형 변환
+      price: parseInt(productData.price) || 0, // 숫자형 변환
       description: productData.description || "",
       name: productData.name || "상품 이름"
     };
   
     try {
       await onSubmit(payload); // onSubmit으로 전달
+      //alert('상품이 성공적으로 등록되었습니다!');
+      router.push('/items'); // 중고마켓 페이지로 이동
     } catch (error) {
       console.error(error);
       alert('상품 등록에 실패했습니다.');

@@ -34,6 +34,13 @@ export default function ProductInfo({ productId }) {
   }, [isLoading]);
   */
 
+  // 디버깅용 코드 개발중일 때만 활성화
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Initial product:', product);
+    }
+  }, [product]);
+
   const handleDelete = () => {
     setIsModalOpen(true); // 삭제 모달 열기
   };
@@ -43,7 +50,10 @@ export default function ProductInfo({ productId }) {
       await deleteProduct(productId);
       router.push('/items'); // 삭제 후 리스트 페이지로 이동
     } catch (error) {
-      alert('제품 삭제에 실패했습니다.');
+      console.error('상품 삭제 실패:', error);
+      // 백엔드에서 받은 메시지가 있는 경우 표시, 없으면 기본 메시지 출력
+      const errorMessage = error.response?.data?.message || '상품 삭제에 실패했습니다.';
+      alert(errorMessage);
     } finally {
       setIsModalOpen(false); // 모달 닫기
     }
@@ -85,6 +95,7 @@ export default function ProductInfo({ productId }) {
     : '/images/items/img_default_product.png';
 
   return (
+    
     <div className={styles.container}>
       {/* 제품 이미지 */}
       <div className={styles.imageWrapper}>

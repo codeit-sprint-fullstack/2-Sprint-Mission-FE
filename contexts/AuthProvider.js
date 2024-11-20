@@ -45,8 +45,14 @@ export function AuthProvider({ children }) {
       await getMe(); // 로그인 후 사용자 정보 갱신
       router.push('/items');
     } catch (error) {
-      console.error('로그인 오류:', error.message);
-      return error.message;    // 로그인창에서 에러를 전달 받을 수 있도록 리턴함  
+      // console.error('로그인 오류:', error.message);  // Axios 기본 오류가 전달되는 듯
+      // return error.message;    // 로그인창에서 에러를 전달 받을 수 있도록 리턴함  
+
+      // 서버에서 반환된 에러 메시지 읽기
+      const errorMessage = error.response?.data?.message || '로그인 중 알 수 없는 오류가 발생했습니다.';
+      console.error('로그인 오류:', errorMessage);
+      // 프론트엔드에서 사용할 수 있도록 에러 메시지 반환
+      return errorMessage;      
     }
   }
 
