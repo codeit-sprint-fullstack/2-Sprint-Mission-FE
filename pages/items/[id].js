@@ -11,18 +11,27 @@ import { useAuth } from "@/contexts/AuthProvider";
 import profile from "@/public/ic_profile.png";
 import defaultImg from "@/public/img_default.png";
 import LikeButton from "@/components/LikeButton";
+import Modal from "@/components/Modal";
 
 export default function ProductDetail() {
   const router = useRouter();
   const { user, isPending } = useAuth(true);
   const { id } = router.query;
   const [product, setProduct] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const handleEdit = () => {
     if (product.ownerId === user.id) {
       router.push({
-        pathname: '/registration',
-        query: { id, name: product.name, description: product.description, price: product.price, images: JSON.stringify(product.images), tags: JSON.stringify(product.tags)  },
+        pathname: "/registration",
+        query: {
+          id,
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          images: JSON.stringify(product.images),
+          tags: JSON.stringify(product.tags)
+        }
       });
     } else {
       alert("본인이 작성한 글만 수정할 수 있습니다.");
@@ -31,13 +40,15 @@ export default function ProductDetail() {
 
   const handleDelete = async () => {
     if (product.ownerId === user.id) {
-      if (confirm("정말 삭제하시겠습니까?")) {
+      setShowModal(true);
+      if (showModal) {
         try {
           await deleteProduct(id);
-          router.push('/items');
+          router.push("/items");
         } catch (error) {
           console.error(error.message);
         }
+        setShowModal(false);
       }
     } else {
       alert("본인이 작성한 글만 삭제할 수 있습니다.");
@@ -72,54 +83,74 @@ export default function ProductDetail() {
   return (
     <div className={style.container}>
       <div className={style.body}>
-      <div className={style.productGroup}>
-        <Image
-          className={style.productImg}
-          src={!product.images.includes('example.com') ? defaultImg : product.images[0] }
-          alt="product"
-          width={300}
-          height={300}
-        />
-        <div className={style.productInfo}>
-          <div className={style.productTop}>
-            <p className={style.productName}>{product.name}</p>
-            <KebabMenu className={style.kebab} onDelete={handleDelete} onEdit={handleEdit} />
-          </div>
-          <p className={style.productPrice}>{product.price}원</p>
-          <span className={style.divider} />
-          <div className={style.productDetail}>
-            <p className={style.productDetailTitle}>상품 소개</p>
-            <p className={style.productDetailContent}>{product.description}</p>
-            <p className={style.tagTitle}>상품 태그</p>
-            <div className={style.tagGroup}>
-              {product.tags.map((tag, index) => (
-                <div key={index} className={style.tag}>
-                  # {tag}
-                </div>
-              ))}
+        <div className={style.productGroup}>
+          <Image
+            className={style.productImg}
+            src={
+              !product.images.includes("example.com")
+                ? defaultImg
+                : product.images[0]
+            }
+            alt="product"
+            width={300}
+            height={300}
+          />
+          <div className={style.productInfo}>
+            <div className={style.productTop}>
+              <p className={style.productName}>{product.name}</p>
+              <KebabMenu
+                className={style.kebab}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+              />
             </div>
-            <div className={style.user}>
-              <div className={style.profileDate}>
-                <Image
-                  className={style.profileImg}
-                  src={profile}
-                  alt="profile"
-                />
-                <div className={style.nameDate}>
-                  <p className={style.userName}>{product.ownerNickname}</p>
-                  <p className={style.date}>{formatDate(product.createdAt)}</p>
-                </div>
+            <p className={style.productPrice}>{product.price}원</p>
+            <span className={style.divider} />
+            <div className={style.productDetail}>
+              <p className={style.productDetailTitle}>상품 소개</p>
+              <p className={style.productDetailContent}>
+                {product.description}
+              </p>
+              <p className={style.tagTitle}>상품 태그</p>
+              <div className={style.tagGroup}>
+                {product.tags.map((tag, index) => (
+                  <div key={index} className={style.tag}>
+                    # {tag}
+                  </div>
+                ))}
               </div>
-              <LikeButton isItem={true} id={id} liked={product.isFavorite} cnt={product.favoriteCount} />
+              <div className={style.user}>
+                <div className={style.profileDate}>
+                  <Image
+                    className={style.profileImg}
+                    src={profile}
+                    alt="profile"
+                  />
+                  <div className={style.nameDate}>
+                    <p className={style.userName}>{product.ownerNickname}</p>
+                    <p className={style.date}>
+                      {formatDate(product.createdAt)}
+                    </p>
+                  </div>
+                </div>
+                <LikeButton
+                  isItem={true}
+                  id={id}
+                  liked={product.isFavorite}
+                  cnt={product.favoriteCount}
+                />
+              </div>
             </div>
           </div>
         </div>
+        <span className={style.btmdivider} />
+        <div className={style.comment}>
+          <Comment />
+        </div>
       </div>
-      <span className={style.btmdivider} />
-      <div className={style.comment}>
-        <Comment />
-      </div>
-      </div>
+      {showModal && (
+        <Modal message="정말 삭제하시겠습니까?" onComfirm={() => setShowModal(false)} onClose={handleDelete} isAuth={false} />
+      )}
     </div>
   );
 }

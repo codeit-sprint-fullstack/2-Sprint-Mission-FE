@@ -8,7 +8,7 @@ export function validation(email, password, passwordCheck, isLoginPage, nickname
     passwordCheck: "",
   });
 
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
   const isPasswordValid = password.length >= 8;
   const isFormValid =
     isEmailValid &&

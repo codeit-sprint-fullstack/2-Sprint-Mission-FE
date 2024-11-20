@@ -7,6 +7,7 @@ export async function postSignIn(data) {
     return response.data;
   } catch (e) {
     console.error(e.message);
+    throw e;
   }
 }
 
