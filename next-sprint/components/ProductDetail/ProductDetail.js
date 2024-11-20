@@ -24,10 +24,10 @@ export default function ProductDetail({ id }) {
   const handleFavoriteClick = async () => {
     try {
       if (isFavorited) {
-        await deleteProductFavorite(productId);
+        await deleteProductFavorite(id);
         setFavoriteCount(favoriteCount - 1);
       } else {
-        await createProductFavorite(productId);
+        await createProductFavorite(id);
         setFavoriteCount(favoriteCount + 1);
       }
       setIsFavorited(!isFavorited);
@@ -149,7 +149,7 @@ export default function ProductDetail({ id }) {
         </div>
         <div className={styles.comments}>
           <ProductCommentAdd />
-          <ProductCommentList />
+          <ProductCommentList productComments={productComments.list} />
         </div>
       </div>
       <button className={styles[`back-list`]} onClick={handleBackList}>
