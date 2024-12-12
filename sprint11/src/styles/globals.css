@@ -1,0 +1,185 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
+
+:root {
+	/* Text size (Responsive font-size) */
+	--48px: 3rem;
+	/* 48px */
+	--40px: 2.5rem;
+	/* 40px */
+	--32px: 2rem;
+	/* 32px */
+	--24px: 1.5rem;
+	/* 24px */
+	--20px: 1.25rem;
+	/* 20px */
+	--18px: 1.125rem;
+	/* 18px */
+	--16px: 1rem;
+	/* 16px */
+	--14px: 0.875rem;
+	/* 14px */
+	--13px: 0.8125rem;
+	/* 13px */
+	--12px: 0.75rem;
+	/* 12px */
+	--11px: 0.6875rem;
+	/* 11px */
+	--10px: 0.625rem;
+	/* 10px */
+	--9px: 0.5625rem;
+	/* 9px */
+	--8px: 0.5rem;
+	/* 8px */
+	--7px: 0.4375rem;
+	/* 7px */
+	--6px: 0.375rem;
+	/* 6px */
+	--5px: 0.3125rem;
+	/* 5px */
+	--4px: 0.25rem;
+	/* 4px */
+	--3px: 0.1875rem;
+	/* 3px */
+	--2px: 0.125rem;
+	/* 2px */
+	--1px: 0.0625rem;
+	/* 1px */
+
+	/* Colors: #000000 이 가장 어둡고, #FFFFFF 가 가장 밝으니 숫자도 비슷하게 증감하도록. */
+	--gray-900: #ffffff;
+	--gray-800: #d8d8d8;
+	--gray-700: #747474;
+	--gray-600: #4b4b4b;
+	--gray-500: #333333;
+	--gray-400: #2e2e2e;
+	--gray-300: #282828;
+	--gray-200: #212121;
+	--gray-100: #131313;
+	--gray-0: #000000;
+	--red-error: #c41013;
+	--prime-blue: #558fff;
+	--prime-orange: #eb5230;
+
+	/* Text size (Responsive font-size) */
+	--text-4xl: 2.5rem; /* 40px */
+	--text-3xl: 2rem; /* 32px */
+	--text-2xl: 1.5rem; /* 24px */
+	--text-xl: 1.25rem;  /* 20px */
+	--text-2lg: 1.125rem;  /* 18px */
+	--text-lg: 1rem;  /* 16px */
+	--text-md: 0.875rem;  /* 14px */
+	--text-sm: 0.8125rem;  /* 13px */
+	--text-xs: 0.75rem;  /* 12px */
+
+	/* Colors */
+	--primary-color-100: #3692FF;
+	--primary-color-200: #1967D6;
+	--primary-color-300: #1251AA;
+	--error-color: #F74747;
+	--secondary-color-gray900: #111827;
+	--secondary-color-gray800: #1F2937;
+	--secondary-color-gray700: #374151;
+	--secondary-color-gray600: #4B5563;
+	--secondary-color-gray500: #6B7280;
+	--secondary-color-gray400: #9CA3AF;
+	--secondary-color-gray200: #E5E7EB;
+	--secondary-color-gray100: #F3F4F6;
+	--secondary-color-gray50: #F9FAFB;
+	--background-color: #CFE5FF;
+	--background-color-light-blue: #E6F2FF;
+	--border-color: #DFDFDF;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+	background-color: var(--gray-900);
+	color: var(--gray-400);
+	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	/* Responsive font-size */
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+img {
+	box-sizing: content-box;
+	max-width: 100%;
+}
+
+@media (max-width: 1200px) {
+	html,
+	body {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 744px) {
+	html,
+	body {
+		font-size: 12px;
+	}
+}
+
+.inline {
+	display: inline;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.left {
+	text-align: left;
+}
+
+.fLeft {
+	float: left;
+}
+
+.fRight {
+	float: right;
+}
+
+.cBoth {
+	clear: both;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.none {
+	display: none;
+}
+
+a,
+button {
+	text-decoration: none;
+}
