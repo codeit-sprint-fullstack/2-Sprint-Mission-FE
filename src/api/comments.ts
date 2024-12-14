@@ -1,6 +1,11 @@
 import axios from "./axios";
 
-export async function patchComment(commentId, { content }) {
+interface Content {
+  
+}
+
+
+export async function patchComment(commentId: number, { content }: ) {
   const response = await axios.patch(`/comments/${commentId}`, { content });
   const comment = response.data;
   return comment;
