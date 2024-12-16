@@ -1,9 +1,16 @@
 import { useState, createContext, useContext } from 'react';
 import { useEffect } from 'react';
 
-const UserContext = createContext();
+const UserContext = createContext({
+	user: null,
+	setUser: () => {}
+});
 
-export function UserProvider({ children }) {
+interface Props {
+	children: React.ReactNode;
+}
+
+export function UserProvider({ children }: Props) {
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {

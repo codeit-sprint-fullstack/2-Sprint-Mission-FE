@@ -1,6 +1,6 @@
-import instance from './instance.js';
+import instance from "./instance.ts";
 
-export async function postLogin({ email = '', password = '' }) {
+export async function postLogin({ email = "", password = "" }) {
 	const user = await instance.post(`/account/login`, { email, password });
 	return user.data;
 }
@@ -20,13 +20,17 @@ export async function postLogin({ email = '', password = '' }) {
 */
 
 export async function postSignup({
-		email = '',
-		nickname = '',
-		password = '',
-		passwordConfirmation = '',
-	},
-) {
-	const user = await instance.post(`/account/users`, { email, nickname, password, passwordConfirmation });
+	email = "",
+	nickname = "",
+	password = "",
+	passwordConfirmation = "",
+}) {
+	const user = await instance.post(`/account/users`, {
+		email,
+		nickname,
+		password,
+		passwordConfirmation,
+	});
 	return user.data;
 }
 /*
