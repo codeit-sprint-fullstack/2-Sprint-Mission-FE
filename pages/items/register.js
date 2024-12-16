@@ -20,24 +20,6 @@ export default function Register() {
   const [tags, setTags] = useState([]);
   const [error, setError] = useState('');
 
-  const handleImageChange = (e) => {
-    const selectedFiles = e.target.files;
-    if (selectedFiles.length + images.length <= 3) {
-      const newImages = [...images];
-      for (let i = 0; i < selectedFiles.length; i++) {
-        newImages.push(URL.createObjectURL(selectedFiles[i])); // 이미지 미리보기 URL 생성
-      }
-      setImages(newImages);
-    } else {
-      alert('이미지는 최대 3개까지만 등록할 수 있습니다.');
-    }
-  };
-
-  const handleRemoveImage = (index) => {
-    const updatedImages = images.filter((_, idx) => idx !== index);
-    setImages(updatedImages);
-  };
-
   const isInputEmpty = () => {
     return (
       values.name.trim() !== '' &&
