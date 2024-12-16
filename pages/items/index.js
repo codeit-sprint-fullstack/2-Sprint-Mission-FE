@@ -52,22 +52,7 @@ export default function Product({
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
 
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const sortedProducts = sortProducts(filteredProducts, sortOrder);
-    setFilteredProducts(sortedProducts);
-
-    setLoading(false);
-  }, [sortOrder, filteredProducts]);
+  const [loading, setLoading] = useState(true);
 
   const sortProducts = (products, sortOrder) => {
     let sortedProducts = [...products];
@@ -82,6 +67,17 @@ export default function Product({
 
     return sortedProducts;
   };
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      setLoading(false);
+    }
+  }, [products]);
+
+  useEffect(() => {
+    const sortedProducts = sortProducts(products, sortOrder);
+    setFilteredProducts(sortedProducts);
+  }, [sortOrder, products]);
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {

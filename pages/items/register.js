@@ -1,5 +1,6 @@
 import styles from '@/styles/ProductRegister.module.css';
-import { createProduct } from '@/lib/api/ProductService';
+import Image from 'next/image';
+import { createProduct, uploadImages } from '@/lib/api/ProductService';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useProductValidate from '@/hooks/useProductValidate';
@@ -7,18 +8,69 @@ import ProductTags from '@/components/ProductDetail/ProductTags';
 
 export default function Register() {
   const router = useRouter();
+  const [imageFiles, setImageFiles] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
 
   const { values, errors, handleChange, validate } = useProductValidate({
     name: '',
     description: '',
-    price: ''
+    price: '',
+    images: []
   });
 
-  const [images, setImages] = useState([
-    'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/36/1728458150670/heart-1776746_640.jpg'
-  ]);
   const [tags, setTags] = useState([]);
   const [error, setError] = useState('');
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+
+    const validFiles = files.filter((file) => {
+      const isValidSize = file.size <= 5 * 1024 * 1024;
+      const isValidType = ['image/jpeg', 'image/png', 'image/gif'].includes(
+        file.type
+      );
+
+      if (!isValidSize) {
+        alert('파일 크기는 5MB 이하여야 합니다.');
+      }
+      if (!isValidType) {
+        alert('JPG, PNG, GIF 형식만 지원합니다.');
+      }
+
+      return isValidSize && isValidType;
+    });
+
+    if (imageFiles.length + validFiles.length > 3) {
+      alert('이미지는 최대 3개까지만 등록 가능합니다.');
+      return;
+    }
+
+    const newPreviews = files.map((file) => URL.createObjectURL(file));
+    setImagePreviews([...imagePreviews, ...newPreviews]);
+    setImageFiles([...imageFiles, ...files]);
+
+    handleChange({
+      target: {
+        id: 'images',
+        value: [...values.images, ...newPreviews]
+      }
+    });
+  };
+
+  const removeImage = (index) => {
+    const newFiles = imageFiles.filter((_, i) => i !== index);
+    const newPreviews = imagePreviews.filter((_, i) => i !== index);
+
+    setImageFiles(newFiles);
+    setImagePreviews(newPreviews);
+
+    handleChange({
+      target: {
+        id: 'images',
+        value: newPreviews
+      }
+    });
+  };
 
   const isInputEmpty = () => {
     return (
@@ -36,16 +88,25 @@ export default function Register() {
     }
 
     try {
-      const product = {
+      const imageFormData = new FormData();
+      imageFiles.forEach((file) => {
+        imageFormData.append('image', file);
+      });
+
+      const uploadedImages = await uploadImages(imageFormData);
+
+      const productData = {
         name: values.name,
         description: values.description,
         price: parseInt(values.price),
-        images,
-        tags
+        images: Array.isArray(uploadedImages)
+          ? uploadedImages.map((img) => img.url)
+          : [uploadedImages.url],
+        tags: tags
       };
-      const res = await createProduct(product);
-      const productId = res.id;
-      return router.push(`/items/${productId}`);
+
+      await createProduct(productData);
+      return router.push(`/items`);
     } catch (err) {
       console.error('상품 등록에 실패하였습니다.', err.message);
       setError('상품 등록에 실패하였습니다.');
@@ -59,6 +120,38 @@ export default function Register() {
         <button type="submit" disabled={!isInputEmpty()} className={styles.add}>
           등록
         </button>
+      </div>
+      <div className={styles.group}>
+        <label htmlFor="images">상품 이미지</label>
+        <input
+          type="file"
+          id="images"
+          accept="image/*"
+          multiple
+          onChange={handleImageChange}
+          disabled={imageFiles.length >= 3}
+        />
+        <div className={styles.imagePreviews}>
+          {imagePreviews.map((preview, index) => (
+            <div key={index} className={styles.previewContainer}>
+              <Image
+                src={preview}
+                alt={`상품 이미지 ${index + 1}`}
+                width={100}
+                height={100}
+                objectFit="cover"
+              />
+              <button
+                type="button"
+                onClick={() => removeImage(index)}
+                className={styles.removeImage}
+              >
+                삭제
+              </button>
+            </div>
+          ))}
+        </div>
+        {errors.images && <div className={styles.error}>{errors.images}</div>}
       </div>
       <div className={styles.group}>
         <label htmlFor="name">상품명</label>

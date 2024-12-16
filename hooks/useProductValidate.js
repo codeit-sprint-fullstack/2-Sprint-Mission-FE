@@ -27,6 +27,11 @@ export default function useValidate(initialValues) {
       newError.price = '숫자로 입력해주세요';
     }
 
+    if (!values.images.length > 3) {
+      isValid = false;
+      newError.images = '이미지는 3개까지 등록 가능합니다.';
+    }
+
     setErrors(newError);
     return isValid;
   };
