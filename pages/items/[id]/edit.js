@@ -1,18 +1,23 @@
 import styles from '@/styles/ProductEdit.module.css';
-import { getProduct, patchProduct } from '@/lib/api/ProductService';
+import {
+  getProduct,
+  patchProduct,
+  uploadImages
+} from '@/lib/api/ProductService';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import useProductValidate from '@/hooks/useProductValidate';
 import ProductTags from '@/components/ProductDetail/ProductTags';
+import FileInput from '@/components/Common/FileInput';
+import Spinner from '@/components/Common/Spinner';
 
 export default function Edit() {
   const router = useRouter();
   const productId = router.query['id'];
 
   const [data, setData] = useState(null);
-  const [images, setImages] = useState([
-    'https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Sprint_Mission/user/36/1728458150670/heart-1776746_640.jpg'
-  ]);
+  const [imageFiles, setImageFiles] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
   const [tags, setTags] = useState([]);
   const [error, setError] = useState('');
 
@@ -20,7 +25,8 @@ export default function Edit() {
     useProductValidate({
       name: '',
       description: '',
-      price: ''
+      price: '',
+      images: []
     });
 
   useEffect(() => {
@@ -41,11 +47,64 @@ export default function Edit() {
       setValues({
         name: data.name,
         description: data.description,
-        price: data.price.toString()
+        price: data.price.toString(),
+        images: data.images || []
       });
       setTags(data.tags || []);
+      setImagePreviews(data.images || []);
     }
   }, [data, setValues]);
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+
+    const validFiles = files.filter((file) => {
+      const isValidSize = file.size <= 5 * 1024 * 1024;
+      const isValidType = ['image/jpeg', 'image/png', 'image/gif'].includes(
+        file.type
+      );
+
+      if (!isValidSize) {
+        alert('파일 크기는 5MB 이하여야 합니다.');
+      }
+      if (!isValidType) {
+        alert('JPG, PNG, GIF 형식만 지원합니다.');
+      }
+
+      return isValidSize && isValidType;
+    });
+
+    if (imageFiles.length + validFiles.length > 3) {
+      alert('이미지는 최대 3개까지만 등록 가능합니다.');
+      return;
+    }
+
+    const newPreviews = files.map((file) => URL.createObjectURL(file));
+    setImagePreviews([...imagePreviews, ...newPreviews]);
+    setImageFiles([...imageFiles, ...files]);
+
+    handleChange({
+      target: {
+        id: 'images',
+        value: [...values.images, ...newPreviews]
+      }
+    });
+  };
+
+  const removeImage = (index) => {
+    const newFiles = imageFiles.filter((_, i) => i !== index);
+    const newPreviews = imagePreviews.filter((_, i) => i !== index);
+
+    setImageFiles(newFiles);
+    setImagePreviews(newPreviews);
+
+    handleChange({
+      target: {
+        id: 'images',
+        value: newPreviews
+      }
+    });
+  };
 
   const isInputEmpty = () => {
     return (
@@ -63,21 +122,32 @@ export default function Edit() {
     }
 
     try {
-      const product = {
+      const imageFormData = new FormData();
+      imageFiles.forEach((file) => {
+        imageFormData.append('image', file);
+      });
+
+      const uploadedImages = await uploadImages(imageFormData);
+
+      const productData = {
         name: values.name,
         description: values.description,
         price: parseInt(values.price),
-        images,
-        tags
+        images: Array.isArray(uploadedImages)
+          ? uploadedImages.map((img) => img.url)
+          : [uploadedImages.url],
+        tags: tags
       };
-      await patchProduct(productId, product);
+
+      await patchProduct(productId, productData);
       return router.push(`/items/${productId}`);
     } catch (err) {
       console.error('상품 수정에 실패하였습니다.');
+      setError('상품 수정에 실패하였습니다.');
     }
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Spinner />;
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -87,6 +157,13 @@ export default function Edit() {
           등록
         </button>
       </div>
+      <FileInput
+        onChange={handleImageChange}
+        imagePreviews={imagePreviews}
+        removeImage={removeImage}
+      >
+        {errors.images && <div className={styles.error}>{errors.images}</div>}
+      </FileInput>
       <div className={styles.group}>
         <label htmlFor="name">상품명</label>
         <input
