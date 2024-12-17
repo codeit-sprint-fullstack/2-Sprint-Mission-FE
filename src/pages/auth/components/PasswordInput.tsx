@@ -16,6 +16,14 @@ const PasswordToggleButton = styled.button`
   position: absolute;
   right: 24px;
 `;
+interface PasswordInputProps {
+  id: string;
+  label: string;
+  error?: string;
+  register?: any;
+  placeholder?: string;
+
+}
 
 function PasswordInput({
   id,
@@ -23,7 +31,7 @@ function PasswordInput({
   error,
   register = {},
   ...inputProps
-}) {
+}: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
   const type = showPassword ? "text" : "password";
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import googleLogo from "../../../assets/images/social/google-logo.png";
 import kakaoLogo from "../../../assets/images/social/kakao-logo.png";
+import { StaticImageData } from "next/image";
 
 const Container = styled.div`
   background-color: #e6f2ff;
@@ -23,14 +24,23 @@ const SocialLoginLinksContainer = styled.div`
   gap: 16px;
 `;
 
+interface SocialLoginLinkProps {
+  name: string;
+  url: string;
+  logoSrc: string | StaticImageData;
+}
+
 function SocialLoginLink({
   name,
   url,
   logoSrc,
-}) {
+}: SocialLoginLinkProps) {
+
+  const imageSrc = typeof logoSrc === 'string' ? logoSrc : logoSrc.src;
+
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" aria-label={name}>
-      <img src={logoSrc} alt={name} width="42" />
+      <img src={imageSrc} alt={name} width="42" />
     </a>
   );
 };

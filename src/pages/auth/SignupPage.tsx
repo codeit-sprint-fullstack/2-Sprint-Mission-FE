@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import {
   AuthContainer,
   LogoHomeLink,
@@ -15,6 +15,13 @@ import PasswordInput from "./components/PasswordInput";
 import { useAuth } from "../../contexts/AuthContext";
 import SimpleModal from "../../components/UI/SimpleModal";
 
+interface SignupFormInputs {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
 const SignupPage = () => {
   const { user, signup } = useAuth();
   const navigate = useNavigate();
@@ -24,15 +31,15 @@ const SignupPage = () => {
     watch, //  폼 필드의 변경을 감지하는 함수
     trigger, // 폼의 유효성 검사를 트리거하는 함수
     formState: { errors, isValid }, // 폼의 상태를 나타내는 객체
-  } = useForm({ mode: "onBlur" });
-  const [errorMessage, setErrorMessage] = useState("");
+  } = useForm<SignupFormInputs>({ mode: "onBlur" });
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const onSubmit = async (data) => {
+  const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
     try {
       await signup(data);
       navigate("/items");
     } catch (error) {
-      if (error.message) {
+      if (error instanceof Error) {
         setErrorMessage(error.message);
       }
     }

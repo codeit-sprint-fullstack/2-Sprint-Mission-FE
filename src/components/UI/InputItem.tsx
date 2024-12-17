@@ -31,12 +31,13 @@ export const InputField = styled.input<{ $error?: boolean }>`
 interface InputItemProps {
   id?: string;
   label: string;
-  error: string;
+  error?: string;
   register?: React.InputHTMLAttributes<HTMLInputElement>;
-  value: string;
+  value?: string;
   placeholder: string;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+
 }
 function InputItem({
   id,
