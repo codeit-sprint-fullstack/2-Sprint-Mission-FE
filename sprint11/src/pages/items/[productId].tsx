@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deleteProductWithId, getProductWithId, getProductWithIdComments, likeProductWithId, postProductWithIdComment, unlikeProductWithId } from "@/apis/itemsService.js";
+import { deleteProductWithId, getProductWithId, getProductWithIdComments, likeProductWithId, postProductWithIdComment, unlikeProductWithId } from "@/apis/itemsService.ts";
 import styles from '@/styles/ItemDetailPage.module.css';
-import Comments from "@/components/Comments.jsx";
+import Comments from "@/components/Comments.tsx";
 import { useState } from 'react';
-import KebabMenu from "@/components/KebabMenu.jsx";
-import { useUser } from "@/context/UserProvider.jsx";
-import { useRouter } from "next/router.js";
-import Image from "next/image.js";
+import KebabMenu from "@/components/KebabMenu.tsx";
+import { useUser } from "@/context/UserProvider.tsx";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 // export async function getServerSideProps(context) {
 // 	const { productId } = context.params;
@@ -24,7 +24,7 @@ function ItemDetailPage() {
 	const [delModal, setDelModal] = useState(false);
 	const user = useUser();
 	const router = useRouter();
-	const { productId } = router.query;
+	const { productId }: { productId: string; } = router.query as { productId: string; };
 	const queryClient = useQueryClient();
 	const { data, isPending, isError } = useQuery({
 		queryKey: ["products", productId],
@@ -35,7 +35,7 @@ function ItemDetailPage() {
 		queryFn: () => getProductWithIdComments(productId),
 	});
 	const addCommentMutation = useMutation({
-		mutationFn: (newComment) => postProductWithIdComment(productId, { content: newComment }),
+		mutationFn: (newComment: string) => postProductWithIdComment(productId, { content: newComment }),
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["productComments", productId],
@@ -43,7 +43,9 @@ function ItemDetailPage() {
 		},
 	});
 	const likeMutation = useMutation({
-		mutationFn: async ({ userAction }) => {
+		mutationFn: async ({ userAction }: {
+			userAction: "like" | "unlike";
+		}) => {
 			if (userAction === "like") {
 				console.log("like");
 				await likeProductWithId(productId);
@@ -52,7 +54,7 @@ function ItemDetailPage() {
 				await unlikeProductWithId(productId);
 			}
 		},
-		onSuccess: (data, err) => {
+		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["products", productId],
 			});
@@ -98,7 +100,7 @@ function ItemDetailPage() {
 				<div className={styles.description}>{data.description}</div>
 				<h3>상품 태그</h3>
 				<div className={styles.tags}>
-					{data.tags.map((tag, index) => (
+					{data.tags.map((tag: string, index: number) => (
 						<span key={index} className={styles.tag}>#{tag}</span>
 					))}
 				</div>

@@ -1,8 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-const defaultValue = "PC";
+interface IViewport {
+	device: "PC" | "tablet" | "phone";
+	size: number;
+}
 
-const ViewportContext = React.createContext(defaultValue);
+const defaultValue = { device: "PC", size: 16 } as IViewport;
+
+const ViewportContext = createContext<IViewport>(defaultValue);
 
 export function useViewport() {
 	const value = useContext(ViewportContext);
@@ -12,21 +17,26 @@ export function useViewport() {
 	return value;
 }
 
-function ViewportProvider({ defValue = defaultValue, children }) {
-	const [value, setValue] = useState(defaultValue);
+interface Props {
+	defValue?: IViewport;
+	children: React.ReactNode;
+}
+
+function ViewportProvider({ defValue = defaultValue, children }: Props) {
+	const [value, setValue] = useState<IViewport>(defValue);
 
 	useEffect(() => {
 		window.addEventListener("resize", () => {
 			setValue(
-				window.innerWidth > 1200 ? "PC" :
-				window.innerWidth > 744 ? "tablet" : "phone"
+				window.innerWidth > 1200 ? { device: "PC", size : 16 } :
+				window.innerWidth > 744 ? { device: "tablet", size: 14 } : { device: "phone", size: 12 }
 			);
 		});
 		window.dispatchEvent(new Event("resize"));
 	}, []);
 
 	return (
-		<ViewportContext.Provider value={value}>{children}</ViewportContext.Provider>
+		<ViewportContext value={value}>{children}</ViewportContext>
 	);
 }
 

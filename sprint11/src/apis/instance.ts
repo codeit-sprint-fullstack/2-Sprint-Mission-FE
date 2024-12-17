@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const instance = axios.create({
 	// baseURL: `https://panda-market-api.vercel.app`,
@@ -15,6 +15,14 @@ instance.interceptors.request.use(function (config) {
 	return config;
 });
 
+interface CustomAxiosRequestConfig extends AxiosRequestConfig {
+	_retry?: boolean;
+}
+
+const retryConfig: CustomAxiosRequestConfig = {
+	_retry: true,
+};
+
 instance.interceptors.response.use(res => res, async (error) => {
 	const originalRequest = error.config;
 	const response = error.response; // 가로챈 리스폰스
@@ -22,7 +30,7 @@ instance.interceptors.response.use(res => res, async (error) => {
 	if (user && (response?.status === 401 || response?.status === 403)) {
 		const userJSON = JSON.parse(user);
 		if (!originalRequest._retry) {
-			const res = await instance.post('/account/renew-token', {}, { _retry: true });
+			const res = await instance.post('/account/renew-token', {}, retryConfig);
 			userJSON.accessToken = res.data.accessToken;
 			localStorage.setItem("user", JSON.stringify(userJSON));
 			originalRequest._retry = true;

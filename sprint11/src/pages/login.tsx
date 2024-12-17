@@ -13,7 +13,7 @@ const PWD_MIN_LENGTH = 6;
 
 function LogInPage() {
 	const [pwdIsVisible, setPwdIsVisible] = useState(false);
-	const [error, setError] = useState(null);
+	const [error, setError] = useState<null | Error>(null);
 	const user = useUser();
 	const setUser = useSetUser();
 	const router = useRouter();
@@ -29,7 +29,10 @@ function LogInPage() {
 		},
 	});
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: {
+		email: string;
+		password: string;
+	}) => {
 		console.log(data);
 		const { email, password } = data;
 		try {
@@ -44,7 +47,9 @@ function LogInPage() {
 			}
 		} catch (err) {
 			console.log(err);
-			setError(err.response.data);
+			if (err instanceof Error) {
+				setError(err);
+			}
 		}
 	};
 
@@ -66,7 +71,7 @@ function LogInPage() {
 					<div className={styles.visible}><Image fill src={pwdIsVisible ? "/images/btn_visibility_on_24px.svg" : "/images/btn_visibility_off_24px.svg"} alt="Button visibility toggle" onClick={() => setPwdIsVisible(prev => !prev)} /></div>
 				</div>
 				{errors.password && <div className={styles.error}>{errors.password.message}</div>}
-				<button id="button-login" type="submit" disabled={errors.email || errors.password}>로그인</button>
+				<button id="button-login" type="submit" disabled={!!(errors.email) || !!(errors.password)}>로그인</button>
 			</form>
 			<div className={styles.oauth}>
 				<span>간편 로그인하기</span>

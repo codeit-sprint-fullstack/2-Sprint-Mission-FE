@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from '../styles/LogInPage.module.css';
-import PopUp from "../components/PopUp.jsx";
+import PopUp from "@/components/PopUp.tsx";
 import { useForm } from "react-hook-form";
-import { postSignup } from "../apis/loginSignupService.js";
-import { useSetUser, useUser } from "../context/UserProvider.jsx";
+import { postSignup } from "@/apis/loginSignupService.ts";
+import { useSetUser, useUser } from "@/context/UserProvider.tsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";

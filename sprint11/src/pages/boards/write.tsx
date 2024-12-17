@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styles from '@/styles/Write.module.css';
 import { useRouter } from "next/router";
 import PopUp from "@/components/PopUp";
@@ -31,9 +31,9 @@ function Write() {
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
 	const router = useRouter();
-	const { id } = router.query;
-	const [selectedFiles, setSelectedFiles] = useState([]);
-	const { data: article, isPending, isError } = useQuery({
+	const { id }: { id: string; } = router.query as { id: string; };
+	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+	const { data: article } = useQuery({
 		queryKey: ["articles", id],
 		queryFn: () => getArticleWithId(id),
 	});
@@ -46,9 +46,9 @@ function Write() {
 		}
 	}, [article]);
 
-	const handleFileChange = (e) => {
-		const files = Array.from(e.target.files);
-		const validFiles = files.filter(file => file.size <= MAX_FILE_SIZE);
+	const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const files = Array.from(e.target.files as FileList);
+		const validFiles = files.filter((file: File) => file.size <= MAX_FILE_SIZE);
 		if (validFiles.length !== files.length) {
 			alert('파일 크기는 5MB를 초과할 수 없습니다.');
 		}
@@ -95,7 +95,7 @@ function Write() {
 		}
 	};
 
-	const fileToURL = (file) => {
+	const fileToURL = (file: File | string) => {
 		if (file instanceof File) {
 			return URL.createObjectURL(file);
 		}
@@ -123,7 +123,7 @@ function Write() {
 					<input type="file" accept="image/*" multiple onChange={handleFileChange}/>
 					{selectedFiles.map((file, index) => (
 						<div key={index} className={styles.selectedImages}>
-							<Image width={150} height={150} src={fileToURL(file)} alt="Article" />
+							<Image width={150} height={150} src={fileToURL(file) as string} alt="Article" />
 						</div>
 					))}
 					<h3>*제목</h3>

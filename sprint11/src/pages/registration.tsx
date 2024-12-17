@@ -1,25 +1,31 @@
 import styles from '@/styles/RegisPage.module.css';
-import { useRef, useState } from "react";
-import Tags from "@/components/Tags.jsx";
-import Images from "@/components/Images.jsx";
-import { postProduct } from "@/apis/itemsService.js";
-import PopUp from "@/components/PopUp.jsx";
-import useAsync from "@/hooks/useAsync.js";
+import Tags from "@/components/Tags.tsx";
+import Images from "@/components/Images.tsx";
+import { postProduct } from "@/apis/itemsService.ts";
+import PopUp from "@/components/PopUp.tsx";
+import useAsync from "@/hooks/useAsync.ts";
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-export async function isImage(url) {
+export async function isImage(url: string): Promise<boolean> {
 	try {
 		const response = await fetch(url);
 		const contentType = response.headers.get("content-type");
-		return contentType && contentType.startsWith("image/");
+		return (!!contentType) && contentType.startsWith("image/");
 	} catch (error) {
 		console.error("Error validating image URL:", error);
 		return false;
 	}
 }
 
-const INITIAL_VALUES = {
+const INITIAL_VALUES: {
+	name: string;
+	description: string;
+	price: number;
+	images: string[];
+	tags: string[];
+} = {
 	name: "",
 	description: "",
 	price: 0,
@@ -28,8 +34,8 @@ const INITIAL_VALUES = {
 };
 
 export default function RegisPage() {
-	const imageUrlError = useRef();
-	const tagsError = useRef();
+	const [imageUrlError, setImageUrlError] = useState("");
+	const [tagsError, setTagsError] = useState("");
 	const [values, setValues] = useState(INITIAL_VALUES);
 	const [imageUrl, setImageUrl] = useState("");
 	const [tag, setTag] = useState("");
@@ -63,24 +69,24 @@ export default function RegisPage() {
 		}
 	};
 
-	const handleImageInput = async (e, imageUrl) => {
+	const handleImageInput = async (e: { code: string; }, imageUrl: string) => {
 		if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
 			e.preventDefault?.();
 			if (!imageUrl.length) {
-				imageUrlError.current.innerHTML = "";
+				setImageUrlError("");
 				setValidation(draft => ({...draft, images: true}));
 				return;
 			}
 			if (values.images.some(img => img === imageUrl)) {
-				imageUrlError.current.innerHTML = "이미 입력한 이미지입니다.";
+				setImageUrlError("이미 입력한 이미지입니다.");
 				setValidation(draft => ({...draft, images: false}));
 			}
 			else if (!(await isImage(imageUrl))) {
-				imageUrlError.current.innerHTML = "해당 URL 은 유효한 이미지가 아닙니다.";
+				setImageUrlError("해당 URL 은 유효한 이미지가 아닙니다.");
 				setValidation(draft => ({...draft, images: false}));
 			}
 			else {
-				imageUrlError.current.innerHTML = "";
+				setImageUrlError("");
 				setImageUrl("");
 				setValues(draft => ({ ...draft, images: [...draft.images, imageUrl] }));
 				setValidation(draft => ({...draft, images: true}));
@@ -88,7 +94,7 @@ export default function RegisPage() {
 		}
 	}
 
-	const handleTagInput = async (e, tag) => {
+	const handleTagInput = async (e, tag: string) => {
 		if (e.key === "Process") {
 			return;
 		}
@@ -96,16 +102,16 @@ export default function RegisPage() {
 			e.preventDefault?.();
 			tag = tag.trim();
 			if (!tag.length) {
-				tagsError.current.innerHTML = "";
+				setTagsError("");
 				setValidation(draft => ({...draft, tags: true}));
 				return;
 			}
 			if (values.tags.some(t => t === tag)) {
-				tagsError.current.innerHTML = "이미 입력한 태그입니다.";
+				setTagsError("이미 입력한 태그입니다.");
 				setValidation(draft => ({...draft, tags: false}));
 			}
 			else {
-				tagsError.current.innerHTML = "";
+				setTagsError("");
 				setTag("");
 				setValues(draft => ({ ...draft, tags: [...draft.tags, tag] }));
 				setValidation(draft => ({...draft, tags: true}));
@@ -120,7 +126,7 @@ export default function RegisPage() {
 					<form className={styles.form}>
 						<div className={styles.heads}>
 							<h1>상품 등록하기</h1>
-							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || isPending}>등록</button>
+							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || !!isPending}>등록</button>
 						</div>
 						<label htmlFor="name">상품명</label>
 						<input id="name" name="name" placeholder="상품명을 입력해주세요." type="text" required value={values.name} onChange={(e) => {
@@ -147,11 +153,11 @@ export default function RegisPage() {
 						<input id="imageUrl" name="imageUrl" placeholder="이미지 URL 을 입력해주세요." type="text" value={imageUrl} onChange={async (e) => {
 							const val = e.target.value;
 							setImageUrl(val);
-							const isValidImageUrl = val.length ===0 || await isImage(val);
+							const isValidImageUrl = val.length === 0 || await isImage(val);
 							setValidation(draft => ({ ...draft, images: isValidImageUrl }));
 						}} onKeyDown={(e) => handleImageInput(e, imageUrl)}/>
 						<div><Images name={values.name} images={values.images} setValues={setValues}/></div>
-						<div className={styles.error} ref={imageUrlError}>{validation.images ? "" : "유효한 이미지 URL 이 아닙니다."}</div>
+						{imageUrlError && <div className={styles.error}>{imageUrlError}</div>}
 						<label htmlFor="tags">태그 (태그를 추가하시려면 <span className={styles.trigger} onClick={() => handleTagInput({ code: "Enter" }, tag)}>&quot;엔터&quot;, &quot;;&quot;, &quot;,&quot;</span> (&lt;= 를 클릭 혹은) 중 하나를 키보드로 입력해 주세요.)</label>
 						<input id="tags" name="tags" placeholder="태그를 입력해주세요." type="text" value={tag} onChange={(e) => {
 							const val = e.target.value;
@@ -159,7 +165,7 @@ export default function RegisPage() {
 							setValidation(draft => ({...draft, tags: true}));
 						}} onKeyDown={(e) => handleTagInput(e, tag)}/>
 						<div><Tags tags={values.tags} setValues={setValues}/></div>
-						<div className={styles.error} ref={tagsError}></div>
+						{tagsError && <div className={styles.error}>{tagsError}</div>}
 					</form>
 				</section>
 			</main>

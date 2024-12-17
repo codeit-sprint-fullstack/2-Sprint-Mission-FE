@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getArticles } from '@/apis/articlesService.js';
-import Articles from '@/components/Articles.jsx';
-import BestArticles from '@/components/BestArticles.jsx';
+import { getArticles } from '@/apis/articlesService.ts';
+import Articles from '@/components/Articles.tsx';
+import BestArticles from '@/components/BestArticles.tsx';
 import styles from '@/styles/Boards.module.css';
 import Image from 'next/image';
 import Link from 'next/link';

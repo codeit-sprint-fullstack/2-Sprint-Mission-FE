@@ -1,15 +1,15 @@
 import styles from '@/styles/RegisPage.module.css';
-import { useRef, useState } from "react";
-import Tags from "@/components/Tags.jsx";
-import Images from "@/components/Images.jsx";
-import { getProductWithId, patchProductWithId } from "@/apis/itemsService.js";
-import PopUp from "@/components/PopUp.jsx";
-import useAsync from "@/hooks/useAsync.js";
+import { ChangeEvent, useRef, useState } from "react";
+import Tags from "@/components/Tags.tsx";
+import Images from "@/components/Images.tsx";
+import { getProductWithId, patchProductWithId } from "@/apis/itemsService.ts";
+import PopUp from "@/components/PopUp.tsx";
+import useAsync from "@/hooks/useAsync.ts";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-export async function isImage(url) {
+export async function isImage(url: string) {
 	try {
 		const response = await fetch(url);
 		const contentType = response.headers.get("content-type");
@@ -46,8 +46,8 @@ const INITIAL_VALUES = {
 };
 
 export default function RegisPage() {
-	const imageUrlError = useRef();
-	const tagsError = useRef();
+	const imageUrlError = useRef(null);
+	const tagsError = useRef(null);
 	const queryClient = useQueryClient();
 	const [values, setValues] = useState({});
 	const [imageUrl, setImageUrl] = useState("");
@@ -61,7 +61,7 @@ export default function RegisPage() {
 	});
 	const [isPending, error, asyncPatchProductWithId, setError] = useAsync(patchProductWithId);
 	const router = useRouter();
-	const { productId } = router.query;
+	const { productId }: { productId: string; } = router.query as { productId: string; };
 	const { data: product } = useQuery({
 		queryKey: ["products", productId],
 		queryFn: () => getProductWithId(productId),
@@ -89,7 +89,7 @@ export default function RegisPage() {
 			else {
 				res.onClose = () => {
 					queryClient.invalidateQueries(['products', productId]);
-					queryClient.invalidateQueries(['items', '*']);
+					queryClient.invalidateQueries(['items']);
 					router.push("/items");
 				}
 				setError(res);
@@ -98,7 +98,7 @@ export default function RegisPage() {
 		}
 	};
 
-	const handleImageInput = async (e, imageUrl) => {
+	const handleImageInput = async (e: ChangeEvent<HTMLInputElement>, imageUrl: string) => {
 		if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
 			e.preventDefault?.();
 			if (!imageUrl.length) {
@@ -135,7 +135,7 @@ export default function RegisPage() {
 				setValidation(draft => ({...draft, tags: true}));
 				return;
 			}
-			if (values.tags.some(t => t === tag)) {
+			if (values.tags.some((t: string) => t === tag)) {
 				tagsError.current.innerHTML = "이미 입력한 태그입니다.";
 				setValidation(draft => ({...draft, tags: false}));
 			}
@@ -182,7 +182,7 @@ export default function RegisPage() {
 						<input id="imageUrl" name="imageUrl" placeholder="이미지 URL 을 입력해주세요." type="text" value={imageUrl} onChange={async (e) => {
 							const val = e.target.value;
 							setImageUrl(val);
-							const isValidImageUrl = val.length ===0 || await isImage(val);
+							const isValidImageUrl = val.length === 0 || await isImage(val);
 							setValidation(draft => ({ ...draft, images: isValidImageUrl }));
 						}} onKeyDown={(e) => handleImageInput(e, imageUrl)}/>
 						<div><Images name={values.name} images={values.images} setValues={setValues}/></div>

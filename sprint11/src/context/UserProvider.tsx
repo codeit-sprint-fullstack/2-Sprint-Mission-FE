@@ -1,7 +1,24 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, Dispatch, SetStateAction } from 'react';
 import { useEffect } from 'react';
 
-const UserContext = createContext({
+export interface UserJSON {
+	accessToken: string;
+	user: {
+		id: number;
+    email: string;
+    nickname: string | null;
+    image: string | null;
+    provider: string;
+    providerId: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+	};
+}
+
+const UserContext = createContext<{
+	user: null | UserJSON;
+	setUser: Dispatch<SetStateAction<null | UserJSON>>;
+}>({
 	user: null,
 	setUser: () => {}
 });
@@ -11,7 +28,7 @@ interface Props {
 }
 
 export function UserProvider({ children }: Props) {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<null | UserJSON>(null);
 
 	useEffect(() => {
 		const storedUser = localStorage.getItem('user');
@@ -20,7 +37,7 @@ export function UserProvider({ children }: Props) {
 		}
 	}, []);
 
-	return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
+	return <UserContext value={{ user, setUser }}>{children}</UserContext>;
 }
 
 export function useUser() {

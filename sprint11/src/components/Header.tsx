@@ -1,6 +1,6 @@
 import styles from '@/styles/CommonsPage.module.css';
-import { useViewport } from "@/context/ViewportProvider.jsx";
-import { useUser } from "@/context/UserProvider.jsx";
+import { useViewport } from "@/context/ViewportProvider.tsx";
+import { useUser } from "@/context/UserProvider.tsx";
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -18,7 +18,7 @@ function Header() {
   return (<header className={styles.header}>
 		<div className={styles.sub}>
 			<div className={styles.sub_header}>
-				<Link href="/"><Image width={153} height={40} className={styles.logo} src={viewport === "phone" ? "/images/logo-text-only.png" : "/images/Property-1=lg.png"} alt="판다마켓 Logo"/></Link>
+				<Link href="/"><Image width={153} height={40} className={styles.logo} src={viewport.device === "phone" ? "/images/logo-text-only.png" : "/images/Property-1=lg.png"} alt="판다마켓 Logo"/></Link>
 				<nav>
 					<ul>
 						<li><Link href="/boards">자유게시판</Link></li>

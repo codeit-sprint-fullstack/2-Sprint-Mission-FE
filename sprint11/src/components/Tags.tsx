@@ -1,10 +1,14 @@
+import { MouseEvent } from 'react';
 import Delete from './Delete.jsx';
 import styles from '@/styles/RegisPage.module.css';
 
-function Tags({ tags, setValues }) {
+function Tags({ tags, setValues }: {
+	tags: string[],
+	setValues: (value: any) => void
+}) {
 
-	const handleDeleteTag = (e, tagToBeDel) => {
-		setValues(draft => ({ ...draft, tags: tags.filter(tag => tag !== tagToBeDel) }));
+	const handleDeleteTag = (e: MouseEvent<HTMLButtonElement>, tagToBeDel: string) => {
+		setValues((draft: { tags: string[] }) => ({ ...draft, tags: tags.filter(tag => tag !== tagToBeDel) }));
 	};
 
 	return (

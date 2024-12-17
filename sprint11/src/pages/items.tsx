@@ -22,8 +22,8 @@ import PopUp from "@/components/PopUp.tsx";
 
 function ItemsPage() {
 	const viewport = useViewport();
-	const initialPageBestSize = viewport === "PC" ? 4 : viewport === "tablet" ? 2 : 1;
-	const initialPageSize = viewport === "PC" ? 10 : viewport === "tablet" ? 6 : 4;
+	const initialPageBestSize = viewport.device === "PC" ? 4 : viewport.device === "tablet" ? 2 : 1;
+	const initialPageSize = viewport.device === "PC" ? 10 : viewport.device === "tablet" ? 6 : 4;
 	const [pageBestSize, setPageBestSize] = useState(initialPageBestSize);
 	const [bestItems, setBestItems] = useState([]);
 	const [pageSize, setPageSize] = useState(initialPageSize);
@@ -47,11 +47,11 @@ function ItemsPage() {
 	});
 
 	useEffect(() => {
-		if (viewport === "PC") {
+		if (viewport.device === "PC") {
 			setPageBestSize(4);
 			setPageSize(10);
 		}
-		else if (viewport === "tablet") {
+		else if (viewport.device === "tablet") {
 			setPageBestSize(2);
 			setPageSize(6);
 		}

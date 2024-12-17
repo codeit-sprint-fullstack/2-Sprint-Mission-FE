@@ -7,17 +7,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 function Profile() {
-	const [error, setError] = useState(null);
+	const [error, setError] = useState<null | Error>(null);
 	const user = useUser();
 	const setUser = useSetUser();
 	const router = useRouter();
 
-	const handleLogout = e => {
+	const handleLogout = () => {
 		try {
 			localStorage.clear();
 			setUser(null);
 		} catch (err) {
-			setError(err);
+			if (err instanceof Error) {
+				setError(err);
+			}
 		}
 	};
 
@@ -35,7 +37,7 @@ function Profile() {
 					<div className={styles.profileElements}>
 						<div className={styles.profileElement}>
 							<h3>닉네임</h3>
-							<p>{user?.nickname}</p>
+							<p>{user?.user?.nickname}</p>
 						</div>
 					</div>
 					<button className={styles.logout} type="button" onClick={handleLogout}>

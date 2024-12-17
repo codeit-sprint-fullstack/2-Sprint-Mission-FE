@@ -1,15 +1,15 @@
 import styles from '@/styles/ArticleDetail.module.css';
-import { deleteArticleWithId, getArticleWithId, getArticleWithIdComments, likeArticleWithId, postArticleComment, postArticleWithIdComment, unlikeArticleWithId } from '@/apis/articlesService.js';
+import { deleteArticleWithId, getArticleWithId, getArticleWithIdComments, likeArticleWithId, postArticleWithIdComment, unlikeArticleWithId } from '@/apis/articlesService.ts';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import ArticleComments from '@/components/ArticleComments.jsx';
+import ArticleComments from '@/components/ArticleComments.tsx';
 import Link from 'next/link';
-import PopUp from '@/components/PopUp.jsx';
-import KebabMenu from '@/components/KebabMenu';
+import PopUp from '@/components/PopUp.tsx';
+import KebabMenu from '@/components/KebabMenu.tsx';
 import { useRouter } from 'next/router';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useUser } from '@/context/UserProvider';
-import instance from '@/apis/instance';
+import { useUser } from '@/context/UserProvider.tsx';
+import instance from '@/apis/instance.ts';
 
 // export async function getServerSideProps(context) {
 // 	const { id } = context.params;
@@ -27,17 +27,17 @@ function ArticleDetail() {
 	const router = useRouter();
 	const queryClient = useQueryClient();
 	const user = useUser();
-	const { articleId } = router.query;
+	const { articleId }: { articleId: string; } = router.query as { articleId: string };
 	const { data: article, isPending, isError } = useQuery({
 		queryKey: ["articles", articleId],
 		queryFn: () => getArticleWithId(articleId),
 	});
-	const { data: articleComments, isPendingComments, isErrorComments } = useQuery({
+	const { data: articleComments, isPending: isPendingComments, isError: isErrorComments } = useQuery({
 		queryKey: ["articleComments", articleId],
 		queryFn: () => getArticleWithIdComments(articleId),
 	});
 	const addCommentMutation = useMutation({
-		mutationFn: (newComment) => postArticleWithIdComment(articleId, { content: newComment }),
+		mutationFn: (newComment: string) => postArticleWithIdComment(articleId, { content: newComment }),
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["articleComments", articleId],
@@ -45,7 +45,7 @@ function ArticleDetail() {
 		},
 	});
 	const likeMutation = useMutation({
-		mutationFn: async ({ userAction }) => {
+		mutationFn: async ({ userAction }: { userAction: "like" | "unlike" }) => {
 			if (userAction === "like") {
 				console.log("like");
 				await likeArticleWithId(articleId);
@@ -54,19 +54,19 @@ function ArticleDetail() {
 				await unlikeArticleWithId(articleId);
 			}
 		},
-		onSuccess: (data, err) => {
+		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["articles", articleId],
 			});
 		},
 	});
 
-	const handleWriteComment = async () => {
+	const handleWriteComment = () => {
 		addCommentMutation.mutate(comment);
 		setComment("");
 	};
 
-	if (isPending || isPendingComments) return "Loading...";
+	if (isPending || isPendingComments ) return "Loading...";
 
 	if (isError || isErrorComments) return "Error...";
 
@@ -110,7 +110,7 @@ function ArticleDetail() {
 						{article.favoriteCount}
 					</div>
 				</div>
-				<div className={styles.content}>{article?.content?.split('\n').map((line, index) => (<React.Fragment key={index}>{line}<br /></React.Fragment>))}</div>
+				<div className={styles.content}>{article?.content?.split('\n').map((line: string, index: number) => (<React.Fragment key={index}>{line}<br /></React.Fragment>))}</div>
 			</article>
 			<div className={styles.sub}>
 				<h3>댓글달기</h3>

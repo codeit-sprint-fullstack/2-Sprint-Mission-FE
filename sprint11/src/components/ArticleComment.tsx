@@ -7,14 +7,28 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteArticleComment, patchArticleComment } from '@/apis/articlesService.js';
 import Image from 'next/image.js';
 
-function ArticleComment({ comment, articleId }) {
+function ArticleComment({ comment, articleId }: {
+	comment: {
+		id: string;
+		content: string;
+		commenter: {
+			id: number;
+			nickname: string;
+		},
+		createdAt: Date;
+	},
+	articleId: string;
+}) {
 	const [isEditting, setIsEditting] = useState(false);
 	const [error, setError] = useState(null);
 	const [content, setContent] = useState(comment.content);
 	const user = useUser();
 	const queryClient = useQueryClient();
 	const patchCommentMutation = useMutation({
-    mutationFn: ({ commentId, newComment }) => patchArticleComment(commentId, articleId, { content: newComment }),
+    mutationFn: ({ commentId, newComment }: {
+			commentId: string;
+			newComment: string;
+		}) => patchArticleComment(commentId, articleId, { content: newComment }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["articleComments", articleId],
@@ -22,7 +36,7 @@ function ArticleComment({ comment, articleId }) {
     },
   });
 	const deleteCommentMutation = useMutation({
-    mutationFn: (commentId) => deleteArticleComment(commentId, articleId),
+    mutationFn: (commentId: string) => deleteArticleComment(commentId, articleId),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["articleComments", articleId],
