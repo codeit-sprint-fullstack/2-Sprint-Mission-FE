@@ -10,10 +10,10 @@ const Textarea = styled.textarea<{ $error?: boolean }>`
 `;
 interface TextareaItemProps {
   id: string;
-  label: string;
+  label?: string;
   error?: string;
   register?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
-  value: string;
+  value?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   placeholder: string;
 }

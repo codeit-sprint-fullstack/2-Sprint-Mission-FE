@@ -16,6 +16,8 @@ import {
 } from "../../../api/products";
 import { ReactComponent as SeeMoreIcon } from "../../../assets/images/icons/ic_kebab.svg";
 import SafeImage from "./SafeImage";
+import { User } from "@/contexts/AuthContext"
+import { Product } from "../../../api/products";
 
 const SectionContainer = styled.section`
   display: flex;
@@ -106,16 +108,23 @@ const SectionLabel = styled.h3`
 const TagDisplaySection = styled.div`
   margin: 24px 0;
 `;
+interface ItemProfileSectionProps {
+  productId: number;
+}
 
-function ItemProfileSection({ productId }) {
-  const { user } = useAuth();
+const ItemProfileSection: React.FC<ItemProfileSectionProps> = ({ productId }) => {
+  const { user } = useAuth() as { user: User | null };
   const navigate = useNavigate();
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const { data: product, refetch: refetchProduct } = useQuery({
+  const { data: product, refetch: refetchProduct } = useQuery<Product | undefined>({
     queryKey: ["products", productId],
     queryFn: () => getProduct(productId),
     enabled: !!productId,
   });
+
+  if (!product) {
+    return <div>상품 정보를 불러오는 중입니다...</div>;
+  }
 
   const isOwner = !!user && !!product && product.ownerId === user.id;
 
@@ -124,7 +133,7 @@ function ItemProfileSection({ productId }) {
     { value: "delete", label: "삭제하기" },
   ];
 
-  const handleSeeMoreSelect = (option) => {
+  const handleSeeMoreSelect = (option: { value: string }) => {
     switch (option.value) {
       case "edit":
         navigate("./edit");
@@ -141,7 +150,11 @@ function ItemProfileSection({ productId }) {
     try {
       await deleteProduct(productId);
     } catch (error) {
-      throw Error(error);
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("알 수 없는 오류가 발생했습니다.");
+      }
     }
     navigate("../");
   };
@@ -172,6 +185,7 @@ function ItemProfileSection({ productId }) {
         <MainDetails>
           {isOwner && (
             <SeeMoreToggleMenu
+              className="see-more-toggle-menu"
               options={seeMoreOptions}
               onSelect={handleSeeMoreSelect}
             >

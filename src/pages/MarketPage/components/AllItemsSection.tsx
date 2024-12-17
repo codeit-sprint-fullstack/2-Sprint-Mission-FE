@@ -48,7 +48,7 @@ function AllItemsSection() {
     refetchInterval: 60 * 1000, // 1분마다 데이터를 새로 받아온다
   });
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
     /*
       검색어와 함께 없는 페이지를 요청하는 경우가 있으므로 무조건 1 페이지로 옮긴다

@@ -14,7 +14,11 @@ const Tag = styled.div`
   font-size: 16px;
 `;
 
-function TagDisplay({ tags }) {
+interface TagDisplayProps {
+  tags: string[];
+}
+
+function TagDisplay({ tags }: TagDisplayProps) {
   if (!tags || tags.length === 0) return null;
 
   return (

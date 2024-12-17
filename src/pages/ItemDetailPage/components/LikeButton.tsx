@@ -17,8 +17,13 @@ const PillButton = styled.button`
     }
   `}
 `;
+interface LikeButtonProps {
+  isFavorite: boolean | undefined;
+  favoriteCount: number;
+  onClick: () => void;
+}
 
-const StyledHeartIcon = styled(HeartIcon)`
+const StyledHeartIcon = styled(HeartIcon) <{ $active?: boolean }>`
   width: 24px;
   height: 24px;
 
@@ -29,7 +34,7 @@ const StyledHeartIcon = styled(HeartIcon)`
     `}
 `;
 
-function LikeButton({ isFavorite, favoriteCount, onClick }) {
+function LikeButton({ isFavorite, favoriteCount, onClick }: LikeButtonProps) {
   return (
     <PillButton onClick={onClick}>
       <StyledHeartIcon $active={isFavorite} />

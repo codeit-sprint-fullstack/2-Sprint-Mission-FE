@@ -53,9 +53,10 @@ const Timestamp = styled.p`
   font-size: 12px;
 `;
 
+
 function CommentItem({ comment, onSubmit }) {
   const { user } = useAuth();
-  const [mode, setMode] = useState("view"); // "view" | "edit" | "delete"
+  const [mode, setMode] = useState < "view" | "edit" | "delete" > ("view"); // "view" | "edit" | "delete"
 
   const writer = comment.writer;
   const formattedTimestamp = formatUpdatedAt(comment.updatedAt);

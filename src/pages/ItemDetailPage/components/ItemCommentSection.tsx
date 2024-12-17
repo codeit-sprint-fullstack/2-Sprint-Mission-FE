@@ -15,10 +15,10 @@ const SectionTitle = styled.h1`
   font-weight: 600;
 `;
 
-const ItemCommentSection = ({ productId }) => {
+const ItemCommentSection = ({ productId }: { productId: number }) => {
   const queryClient = useQueryClient();
 
-  const handleCommentFormSubmit = async (content) => {
+  const handleCommentFormSubmit = async (content: string) => {
     await addProductComment(productId, { content });
     queryClient.invalidateQueries({
       queryKey: ["products", productId, "comments"],

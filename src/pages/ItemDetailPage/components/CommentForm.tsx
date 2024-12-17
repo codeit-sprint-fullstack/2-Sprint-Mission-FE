@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { ConsumerProps, useEffect } from "react";
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "../../../components/UI/Button";
 import TextareaItem from "../../../components/UI/TextareaItem";
 
@@ -18,13 +18,23 @@ const Footer = styled.div`
   flex-direction: row-reverse;
   gap: 16px;
 `;
+interface CommentFormProps {
+  defaultValue: string;
+  submitLabel?: string;
+  onSubmit: (content: string) => Promise<void>,
+  onCancel: () => void,
+}
+
+interface FormValue {
+  content: string;
+}
 
 function CommentForm({
   defaultValue,
   submitLabel = "등록",
   onSubmit,
   onCancel,
-}) {
+}: CommentFormProps) {
   const {
     register,
     handleSubmit,
@@ -32,7 +42,7 @@ function CommentForm({
     formState: { isValid },
   } = useForm({ mode: "onChange", defaultValues: { content: defaultValue } });
 
-  const enhancedOnSubmit = async ({ content }) => {
+  const enhancedOnSubmit: SubmitHandler<FormValue> = async ({ content }) => {
     await onSubmit(content);
     reset({ content: defaultValue });
   };

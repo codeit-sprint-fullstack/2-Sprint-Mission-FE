@@ -1,6 +1,6 @@
 import axios from './axios';
 
-interface Product {
+export interface Product {
   id: number;
   ownerId: number;
   name: string;
@@ -11,6 +11,8 @@ interface Product {
   createdAt: string;
   updatedAt: string;
   likes: number;
+  isFavorite?: boolean | undefined;
+  favoriteCount?: number;
 }
 
 interface ProductData {

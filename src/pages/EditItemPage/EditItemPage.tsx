@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
   Container,
   FlexContainer,
@@ -28,8 +28,23 @@ const InputSection = styled.div`
     gap: 24px;
   }
 `;
+interface Product {
+  name: string;
+  description: string;
+  price: number;
+  images: string[];
+  tags: string[];
+}
 
-function pickFormValues(product) {
+interface FormValues {
+  name: string;
+  description: string;
+  price: number;
+  images: string[];
+  tags: string[];
+}
+
+function pickFormValues(product: Product): FormValues {
   const { name, description, price, images, tags } = product;
   const formValues = { name, description, price, images, tags };
   return formValues;
@@ -37,10 +52,10 @@ function pickFormValues(product) {
 
 function EditItemPage() {
   const navigate = useNavigate();
-  const { itemId: productId } = useParams();
+  const { itemId: productId } = useParams<{ itemId: string }>();
   const { data } = useQuery({
     queryKey: ["products", productId],
-    queryFn: () => getProduct(productId),
+    queryFn: () => getProduct(Number(productId)),
     enabled: !!productId,
   });
   const {
@@ -49,13 +64,13 @@ function EditItemPage() {
     reset,
     control,
     formState: { errors, isValid },
-  } = useForm({
+  } = useForm<FormValues>({
     mode: "onBlur",
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      const result = await patchProduct(productId, data);
+      const result = await patchProduct(Number(productId), data);
       navigate(`/items/${result.id}`);
     } catch (error) {
       console.error("상품 수정 실패:", error);
@@ -133,7 +148,7 @@ function EditItemPage() {
             error={errors.price?.message}
             placeholder="판매 가격을 입력해 주세요"
             register={register("price", {
-              validate: (v) => /^\d+$/.test(v) || "숫자로 입력해 주세요.",
+              validate: (v) => /^\d+$/.test(String(v)) || "숫자로 입력해 주세요.",
               valueAsNumber: true,
             })}
           />
