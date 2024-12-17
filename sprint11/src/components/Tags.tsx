@@ -4,7 +4,7 @@ import styles from '@/styles/RegisPage.module.css';
 
 function Tags({ tags, setValues }: {
 	tags: string[],
-	setValues: (value: any) => void
+	setValues: (value: (draft: {tags: string[]}) => {tags: string[]}) => void
 }) {
 
 	const handleDeleteTag = (e: MouseEvent<HTMLButtonElement>, tagToBeDel: string) => {

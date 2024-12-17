@@ -4,7 +4,7 @@ type TAsyncFunction = (...args: unknown[]) => Promise<unknown>;
 
 function useAsync(asyncFunc: TAsyncFunction) {
 	const [pending, setPending] = useState(false);
-	const [error, setError] = useState<null | Error>(null);
+	const [error, setError] = useState<null | Error | { message: string; onClose?: () => void; }>(null);
 
 	const wrappedAsyncFunc = useCallback(async (...args: unknown[]) => {
 		try {

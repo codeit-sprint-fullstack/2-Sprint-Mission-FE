@@ -1,20 +1,23 @@
 import instance from '@/apis/instance';
 import { useViewport } from '@/context/ViewportProvider';
 import styles from '@/styles/Boards.module.css';
+import { TArticle } from '@/types/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-function BestArticles({ articles: initialArticles }) {
+function BestArticles({ articles: initialArticles }: {
+	articles: TArticle[];
+}) {
 	const [articles, setArticles] = useState(initialArticles);
 	const viewport = useViewport();
 
 	useEffect(() => {
 		let maxLength;
-		if (viewport === 'PC') {
+		if (viewport.device === 'PC') {
 			maxLength = 3;
-		} else if (viewport === 'tablet') {
+		} else if (viewport.device === 'tablet') {
 			maxLength = 2;
 		} else {
 			maxLength = 1;

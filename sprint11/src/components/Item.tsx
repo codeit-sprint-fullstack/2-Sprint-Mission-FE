@@ -1,8 +1,11 @@
 import styles from '@/styles/ItemsPage.module.css';
+import { TItem } from '@/types/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-function Item({item}) {
+function Item({item}: {
+	item: TItem
+}) {
 	const { id, name, description, images, price, favoriteCount } = item;
 	return (<li>
 		<div className={styles.imageWrapper}>

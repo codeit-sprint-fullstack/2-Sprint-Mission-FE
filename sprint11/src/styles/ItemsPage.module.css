@@ -42,7 +42,7 @@
 	width: 325px;
 }
 
-.input_wrapper img {
+.input_wrapper .img {
 	position: absolute;
 	cursor: pointer;
 	left: 20px;

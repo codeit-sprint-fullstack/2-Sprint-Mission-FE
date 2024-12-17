@@ -1,9 +1,12 @@
 import instance from '@/apis/instance';
 import styles from '@/styles/Boards.module.css';
+import { TArticle } from '@/types/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-function Articles({ articles }) {
+function Articles({ articles }:
+	{ articles: TArticle[] }
+) {
 	return (<div>
 		<ul className={styles.articles}>
 			{articles.map((article) => (

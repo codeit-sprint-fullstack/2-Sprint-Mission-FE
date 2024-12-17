@@ -2,7 +2,18 @@ import styles from '@/styles/ItemDetailPage.module.css';
 import Comment from './Comment.jsx';
 import Image from 'next/image.js';
 
-function Comments({ comments, productId }) {
+function Comments({ comments, productId }: {
+	comments: {
+		id: string;
+		content: string;
+		createdAt: string;
+		commenter: {
+			id: number;
+			nickname: string;
+		};
+	}[];
+	productId: string;
+}) {
 	let res;
 	if (!comments || comments.length === 0) {
 		res = (<div className={styles.center}>

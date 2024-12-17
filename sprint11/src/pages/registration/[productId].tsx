@@ -1,5 +1,5 @@
 import styles from '@/styles/RegisPage.module.css';
-import { ChangeEvent, useRef, useState } from "react";
+import { useState } from "react";
 import Tags from "@/components/Tags.tsx";
 import Images from "@/components/Images.tsx";
 import { getProductWithId, patchProductWithId } from "@/apis/itemsService.ts";
@@ -9,11 +9,11 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-export async function isImage(url: string) {
+export async function isImage(url: string): Promise<boolean> {
 	try {
 		const response = await fetch(url);
 		const contentType = response.headers.get("content-type");
-		return contentType && contentType.startsWith("image/");
+		return !!contentType && contentType.startsWith("image/");
 	} catch (error) {
 		console.error("Error validating image URL:", error);
 		return false;
@@ -46,10 +46,25 @@ const INITIAL_VALUES = {
 };
 
 export default function RegisPage() {
-	const imageUrlError = useRef(null);
-	const tagsError = useRef(null);
+	const [imageUrlError, setImageUrlError] = useState("");
+	const [tagsError, setTagsError] = useState("");
 	const queryClient = useQueryClient();
-	const [values, setValues] = useState({});
+	const [values, setValues] = useState({
+		id: "",
+		name: "",
+		description: "",
+		price: 0,
+		images: [""],
+		tags: [""],
+		favoriteCount: 0,
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		owner: {
+			id: 0,
+			nickname: "",
+		},
+		isFavorite: false,
+	});
 	const [imageUrl, setImageUrl] = useState("");
 	const [tag, setTag] = useState("");
 	const [validation, setValidation] = useState({
@@ -77,7 +92,7 @@ export default function RegisPage() {
 
 	const handleSubmit = async () => {
 		await handleImageInput({ code: "Enter" }, imageUrl);
-		await handleTagInput({ code: "Enter" }, tag);
+		await handleTagInput({ code: "Enter", key: "" }, tag);
 		if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
 			const { id, favoriteCount, createdAt, updatedAt, owner, isFavorite, ...rest } = values;
 			const res = await asyncPatchProductWithId(productId, rest);
@@ -88,8 +103,8 @@ export default function RegisPage() {
 			}
 			else {
 				res.onClose = () => {
-					queryClient.invalidateQueries(['products', productId]);
-					queryClient.invalidateQueries(['items']);
+					queryClient.invalidateQueries({queryKey: ['products', productId]});
+					queryClient.invalidateQueries({queryKey: ['items']});
 					router.push("/items");
 				}
 				setError(res);
@@ -98,24 +113,24 @@ export default function RegisPage() {
 		}
 	};
 
-	const handleImageInput = async (e: ChangeEvent<HTMLInputElement>, imageUrl: string) => {
+	const handleImageInput = async (e: {code: string; preventDefault?: () => void;}, imageUrl: string) => {
 		if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
 			e.preventDefault?.();
 			if (!imageUrl.length) {
-				imageUrlError.current.innerHTML = "";
+				setImageUrlError("");
 				setValidation(draft => ({...draft, images: true}));
 				return;
 			}
 			if (values.images.some(img => img === imageUrl)) {
-				imageUrlError.current.innerHTML = "이미 입력한 이미지입니다.";
+				setImageUrlError("이미 입력한 이미지입니다.");
 				setValidation(draft => ({...draft, images: false}));
 			}
 			else if (!(await isImage(imageUrl))) {
-				imageUrlError.current.innerHTML = "해당 URL 은 유효한 이미지가 아닙니다.";
+				setImageUrlError("해당 URL 은 유효한 이미지가 아닙니다.");
 				setValidation(draft => ({...draft, images: false}));
 			}
 			else {
-				imageUrlError.current.innerHTML = "";
+				setImageUrlError("");
 				setImageUrl("");
 				setValues(draft => ({ ...draft, images: [...draft.images, imageUrl] }));
 				setValidation(draft => ({...draft, images: true}));
@@ -123,7 +138,7 @@ export default function RegisPage() {
 		}
 	}
 
-	const handleTagInput = async (e, tag) => {
+	const handleTagInput = async (e: {key: string; code: string; preventDefault?: () => void; }, tag: string) => {
 		if (e.key === "Process") {
 			return;
 		}
@@ -131,16 +146,16 @@ export default function RegisPage() {
 			e.preventDefault?.();
 			tag = tag.trim();
 			if (!tag.length) {
-				tagsError.current.innerHTML = "";
+				setTagsError("");
 				setValidation(draft => ({...draft, tags: true}));
 				return;
 			}
 			if (values.tags.some((t: string) => t === tag)) {
-				tagsError.current.innerHTML = "이미 입력한 태그입니다.";
+				setTagsError("이미 입력한 태그입니다.");
 				setValidation(draft => ({...draft, tags: false}));
 			}
 			else {
-				tagsError.current.innerHTML = "";
+				setTagsError("");
 				setTag("");
 				setValues(draft => ({ ...draft, tags: [...draft.tags, tag] }));
 				setValidation(draft => ({...draft, tags: true}));
@@ -155,7 +170,7 @@ export default function RegisPage() {
 					<form className={styles.form}>
 						<div className={styles.heads}>
 							<h1>상품 등록하기</h1>
-							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || isPending}>수정</button>
+							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || !!isPending}>수정</button>
 						</div>
 						<label htmlFor="name">상품명</label>
 						<input id="name" name="name" placeholder="상품명을 입력해주세요." type="text" required value={values.name} onChange={(e) => {
@@ -186,7 +201,7 @@ export default function RegisPage() {
 							setValidation(draft => ({ ...draft, images: isValidImageUrl }));
 						}} onKeyDown={(e) => handleImageInput(e, imageUrl)}/>
 						<div><Images name={values.name} images={values.images} setValues={setValues}/></div>
-						<div className={styles.error} ref={imageUrlError}>{validation.images ? "" : "유효한 이미지 URL 이 아닙니다."}</div>
+						{imageUrlError && <div className={styles.error}>{imageUrlError}</div>}
 						<label htmlFor="tags">태그 (태그를 추가하시려면 <span className={styles.trigger} onClick={() => handleTagInput({ code: "Enter" }, tag)}>&quot;엔터&quot;, &quot;;&quot;, &quot;,&quot;</span> (&lt;= 를 클릭 혹은) 중 하나를 키보드로 입력해 주세요.)</label>
 						<input id="tags" name="tags" placeholder="태그를 입력해주세요." type="text" value={tag} onChange={(e) => {
 							const val = e.target.value;

@@ -1,11 +1,21 @@
 import Link from "next/link.js";
 import Item from "./Item.jsx";
 import styles from '@/styles/ItemsPage.module.css';
+import { ChangeEvent } from "react";
+import { TItem } from "@/types/types.ts";
+import Image from "next/image.js";
 
 
 
-function ItemsList({ items, isLoadingItems, sort, setSort, keyword, setKeyword }) {
-	const handleKeywordChange = (e) => {
+function ItemsList({ items, isLoadingItems, sort, setSort, keyword, setKeyword }: {
+	items: TItem[],
+	isLoadingItems: boolean,
+	sort: string,
+	setSort: (sort: string) => void,
+	keyword: string,
+	setKeyword: (keyword: string) => void
+}) {
+	const handleKeywordChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setKeyword(e.target.value);
 	}
 
@@ -53,7 +63,7 @@ function ItemsList({ items, isLoadingItems, sort, setSort, keyword, setKeyword }
 					<div className={styles.query_heads}>
 						<div className={styles.input_wrapper}>
 							<input type="text" value={keyword} onChange={handleKeywordChange}/>
-							<img src="/images/ic_search.svg" alt="Search" disabled={isLoadingItems} />
+							<button className={styles.img} disabled={isLoadingItems}><Image fill src="/images/ic_search.svg" alt="Search" /></button>
 						</div>
 						<SelectOrder/>
 					</div>

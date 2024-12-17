@@ -7,14 +7,28 @@ import { useUser } from '../context/UserProvider.jsx';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image.js';
 
-function Comment({ comment, productId }) {
+function Comment({ comment, productId }: {
+	comment: {
+		id: string;
+		content: string;
+		createdAt: string;
+		commenter: {
+			id: number;
+			nickname: string;
+		};
+	};
+	productId: string;
+}) {
 	const [isEditting, setIsEditting] = useState(false);
 	const [error, setError] = useState(null);
 	const [content, setContent] = useState(comment.content);
 	const user = useUser();
 	const queryClient = useQueryClient();
 	const patchCommentMutation = useMutation({
-    mutationFn: ({ commentId, newComment }) => patchComment(commentId, productId, { content: newComment }),
+    mutationFn: ({ commentId, newComment }: {
+			commentId: string;
+			newComment: string;
+		}) => patchComment(commentId, productId, { content: newComment }),
     onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["productComments", productId],
@@ -22,7 +36,7 @@ function Comment({ comment, productId }) {
     },
   });
 	const deleteCommentMutation = useMutation({
-    mutationFn: (commentId) => deleteComment(commentId, productId),
+    mutationFn: (commentId: string) => deleteComment(commentId, productId),
     onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ["productComments", productId],

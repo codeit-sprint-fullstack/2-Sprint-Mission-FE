@@ -15,7 +15,10 @@ const PWD_MIN_LENGTH = 6;
 function SignUpPage() {
   const [pwdIsVisible, setPwdIsVisible] = useState(false);
   const [pwdCfmIsVisible, setPwdCfmIsVisible] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | Error | {
+		message: string;
+		onClose?: () => void;
+	}>(null);
   const user = useUser();
   const setUser = useSetUser();
   const router = useRouter();
@@ -34,7 +37,12 @@ function SignUpPage() {
     },
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: {
+		email: string;
+		nickname: string;
+		password: string;
+		passwordConfirm: string;
+	}) => {
     console.log(data);
     const { email, nickname, password, passwordConfirm } = data;
     try {
@@ -48,7 +56,9 @@ function SignUpPage() {
       }
     } catch (err) {
       console.log(err);
-      setError(err?.response?.data);
+			if (err instanceof Error) {
+				setError(err);
+			}
     }
   };
 
@@ -83,7 +93,7 @@ function SignUpPage() {
           <div className={styles.visible}><Image fill src={pwdCfmIsVisible ? "/images/btn_visibility_on_24px.svg" : "/images/btn_visibility_off_24px.svg"} alt="Button visibility off" onClick={() => setPwdCfmIsVisible(prev => !prev)} /></div>
         </div>
         {errors.passwordConfirm && <div className={styles.error}>{errors.passwordConfirm.message}</div>}
-        <button id="button-signup" type="submit" disabled={errors.email || errors.nickname || errors.password || errors.passwordConfirm}>회원가입</button>
+        <button id="button-signup" type="submit" disabled={!!errors.email || !!errors.nickname || !!errors.password || !!errors.passwordConfirm}>회원가입</button>
       </form>
       <div className={styles.oauth}>
         <span>간편 로그인하기</span>

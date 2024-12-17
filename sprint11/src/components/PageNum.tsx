@@ -1,11 +1,16 @@
 import styles from '@/styles/ItemsPage.module.css';
+import { MouseEvent } from 'react';
 
-function PageNum({page, setPage, pageMax}) {
+function PageNum({page, setPage, pageMax}: {
+	page: number;
+	setPage: React.Dispatch<React.SetStateAction<number>>;
+	pageMax: number;
+}) {
 	return (
-	<div className={styles.pagenation} onClick={function (event) {
+	<div className={styles.pagenation} onClick={function (event: MouseEvent<HTMLDivElement>) {
 		const pages = event.currentTarget.querySelectorAll("div");
-			const target = event.target;
-			const targetN = Number(target.innerText);
+			const target = event.target as HTMLDivElement;
+			let targetN = Number(target.innerText);
 			if (isNaN(targetN)) {
 				if (!target.classList.contains("disabled")) {
 					if (target.innerText === "&lt;" || target.innerText === "<") {
@@ -19,6 +24,8 @@ function PageNum({page, setPage, pageMax}) {
 				}
 			}
 			else {
+				targetN = targetN < 1 ? 1 : targetN;
+				targetN = targetN > pageMax ? pageMax : targetN;
 				setPage(targetN);
 			}
 	}}>

@@ -77,7 +77,7 @@ function ItemsPage() {
 	return (
 		<main className={styles.main}>
 			<BestItemsList bestItems={bestItems} />
-			<ItemsList items={items} isLoadingItems={isLoadingItems} sort={sort} setSort={setSort} keyword={keyword} setKeyword={setKeyword} />
+			<ItemsList items={items} isLoadingItems={!!isLoadingItems} sort={sort} setSort={setSort} keyword={keyword} setKeyword={setKeyword} />
 			<PageNum page={page} setPage={setPage} pageMax={pageMax} />
 			<PopUp error={error} setError={setError} />
 		</main>

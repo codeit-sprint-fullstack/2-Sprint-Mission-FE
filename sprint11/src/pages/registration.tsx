@@ -52,24 +52,24 @@ export default function RegisPage() {
 
 	const handleSubmit = async () => {
 		await handleImageInput({ code: "Enter" }, imageUrl);
-		await handleTagInput({ code: "Enter" }, tag);
+		await handleTagInput({ code: "Enter", key: "" }, tag);
 		if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
 			const res = await asyncPostProduct(values);
 			console.log(res);
-			if (res?.message) {
+			if ('message' in res) {
 				console.log("error: ", error);
 				setError(res);
 			}
 			else {
 				res.onClose = () => router.push("/items");
 				setError(res);
-				queryClient.invalidateQueries(['items', '*']);
+				queryClient.invalidateQueries({queryKey: ['items', '*']});
 				setValues(INITIAL_VALUES);
 			}
 		}
 	};
 
-	const handleImageInput = async (e: { code: string; }, imageUrl: string) => {
+	const handleImageInput = async (e: { code: string; preventDefault?: () => void }, imageUrl: string) => {
 		if (e.code === "Enter" || e.code === "Semicolon" || e.code === "Comma") {
 			e.preventDefault?.();
 			if (!imageUrl.length) {
@@ -94,7 +94,7 @@ export default function RegisPage() {
 		}
 	}
 
-	const handleTagInput = async (e, tag: string) => {
+	const handleTagInput = async (e: { key: string; code: string; preventDefault?: () => void}, tag: string) => {
 		if (e.key === "Process") {
 			return;
 		}
@@ -158,7 +158,7 @@ export default function RegisPage() {
 						}} onKeyDown={(e) => handleImageInput(e, imageUrl)}/>
 						<div><Images name={values.name} images={values.images} setValues={setValues}/></div>
 						{imageUrlError && <div className={styles.error}>{imageUrlError}</div>}
-						<label htmlFor="tags">태그 (태그를 추가하시려면 <span className={styles.trigger} onClick={() => handleTagInput({ code: "Enter" }, tag)}>&quot;엔터&quot;, &quot;;&quot;, &quot;,&quot;</span> (&lt;= 를 클릭 혹은) 중 하나를 키보드로 입력해 주세요.)</label>
+						<label htmlFor="tags">태그 (태그를 추가하시려면 <span className={styles.trigger} onClick={() => handleTagInput({ code: "Enter", key: "" }, tag)}>&quot;엔터&quot;, &quot;;&quot;, &quot;,&quot;</span> (&lt;= 를 클릭 혹은) 중 하나를 키보드로 입력해 주세요.)</label>
 						<input id="tags" name="tags" placeholder="태그를 입력해주세요." type="text" value={tag} onChange={(e) => {
 							const val = e.target.value;
 							setTag(val);
@@ -169,7 +169,7 @@ export default function RegisPage() {
 					</form>
 				</section>
 			</main>
-			<PopUp error={error} setError={setError}/>
+			{'message' in error && <PopUp error={error} setError={setError}/>}
 		</>
 	);
 }
