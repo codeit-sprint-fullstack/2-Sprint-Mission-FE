@@ -23,7 +23,7 @@ export default function ProductDetail() {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [isFavorited, setIsFavorited] = useState(false);
   const [favoriteCount, setFavoriteCount] = useState(0);
@@ -48,6 +48,8 @@ export default function ProductDetail() {
 
         setProduct(productData);
         setProductComments(commentsData || []);
+        setFavoriteCount(productData.favoriteCount);
+        setIsFavorited(productData.isFavorite);
         setLoading(false);
       } catch (err) {
         console.error('데이터를 가져오는 중 오류 발생:', err);
@@ -83,6 +85,12 @@ export default function ProductDetail() {
   };
 
   const handleFavoriteClick = async () => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+      router.push('/signin');
+      return;
+    }
+
     try {
       if (isFavorited) {
         await deleteProductFavorite(productId);
@@ -93,6 +101,7 @@ export default function ProductDetail() {
       }
       setIsFavorited(!isFavorited);
     } catch (err) {
+      setLoading(false);
       console.error('좋아요 처리 중 오류 발생:', err);
     }
   };
