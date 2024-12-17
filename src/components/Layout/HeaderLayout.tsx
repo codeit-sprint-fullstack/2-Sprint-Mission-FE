@@ -73,7 +73,7 @@ const LoginLink = styled(LinkButton)`
   padding: 11px 23px;
 `;
 
-const ProfileLink = styled.div`
+const ProfileLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 6px;
@@ -112,8 +112,13 @@ const Main = styled.main`
   ${fullWidthStyle}
 `;
 
-function Header() {
-  const { user } = useAuth();
+interface UserProps {
+  image?: string;
+  nickname: string;
+}
+
+const Header: React.FC = () => {
+  const { user } = useAuth() as { user: UserProps | null };
 
   return (
     <HeaderWrapper>
@@ -127,12 +132,12 @@ function Header() {
               </HeaderLogoLink>
             </li>
             <li>
-              <HeaderNavLink to="/community" activeClassName="active">
+              <HeaderNavLink to="/community">
                 자유게시판
               </HeaderNavLink>
             </li>
             <li>
-              <HeaderNavLink to="/items" activeClassName="active">
+              <HeaderNavLink to="/items">
                 중고마켓
               </HeaderNavLink>
             </li>
@@ -155,7 +160,7 @@ function Header() {
   );
 }
 
-function HeaderLayout() {
+const HeaderLayout: React.FC = () => {
   return (
     <Container>
       <Header />

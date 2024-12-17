@@ -1,41 +1,70 @@
-import React, { createContext, useCallback, useContext, useEffect } from "react";
+import React, { createContext, useCallback, useContext, useEffect, ReactNode, ReactElement } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import { signIn as requestSignIn, signUp as requestSignUp, getMe } from "../api/auth";
 import { clearTokens, setTokens } from "../utils/authToken";
 
-const AuthContext = createContext({
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+interface User {
+  id: string;
+  email: string;
+  nickname: string;
+  [key: string]: any;
+}
+
+interface SignUpParams {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+interface SignInParams {
+  email: string;
+  password: string;
+}
+
+interface AuthContextType {
+  user: User | null;
+  signup: (params: SignUpParams) => Promise<void>;
+  signin: (params: SignInParams) => Promise<void>;
+  signout: () => void;
+}
+
+const AuthContext = createContext<AuthContextType>({
   user: null,
-  signup: ({ email, nickname, password, passwordConfirmation }) => { },
-  signin: ({ email, password }) => { },
+  signup: async () => { },
+  signin: async () => { },
   signout: () => { },
 });
 
-/**
- * 소셜 로그인을 한 경우, 백엔드에서는 인증 토큰을 쿼리 스트링에 담아서 리다이렉트해 줍니다.
- * 쿼리 스트링으로 받은 Access Token과 Refresh Token을 로컬스토리지에 저장하고
- * 쿼리 스트링을 지운 주소로 이동한다.
- */
-function useTokensFromParams() {
+function useTokensFromParams(): void {
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    
-    if (searchParams.has('at') && searchParams.has('rt')) {
-      setTokens({ accessToken: searchParams.get('at'), refreshToken: searchParams.get('rt') });
+
+    if (searchParams.has("at") && searchParams.has("rt")) {
+      setTokens({
+        accessToken: searchParams.get("at")!,
+        refreshToken: searchParams.get("rt")!,
+      });
       const newPath = location.pathname; // 현재 경로에서 쿼리 파라미터를 제외한 경로만 사용
       navigate(newPath, { replace: true }); // 새 경로로 이동
     }
   }, [location.pathname, location.search, navigate]);
 }
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useTokensFromParams();
 
   const queryClient = useQueryClient();
-  const { data: user } = useQuery({
+
+  const { data: user } = useQuery<User | null>({
     queryKey: ["me"],
     queryFn: async () => {
       const user = await getMe();
@@ -45,7 +74,7 @@ export const AuthProvider = ({ children }) => {
   });
 
   const signup = useCallback(
-    async ({ email, nickname, password, passwordConfirmation }) => {
+    async ({ email, nickname, password, passwordConfirmation }: SignUpParams) => {
       await requestSignUp({
         email,
         nickname,
@@ -60,7 +89,7 @@ export const AuthProvider = ({ children }) => {
   );
 
   const signin = useCallback(
-    async ({ email, password }) => {
+    async ({ email, password }: SignInParams) => {
       await requestSignIn({
         email,
         password,
@@ -80,9 +109,10 @@ export const AuthProvider = ({ children }) => {
   }, [queryClient]);
 
   return (
-    <AuthContext.Provider value={{ user, signup, signin, signout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value= {{ user, signup, signin, signout }
+}>
+  { children }
+  </AuthContext.Provider>
   );
 };
 

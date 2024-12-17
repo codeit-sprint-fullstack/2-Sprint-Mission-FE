@@ -27,17 +27,25 @@ const InputSection = styled.div`
   }
 `;
 
+interface ProductData {
+  name: string;
+  description: string;
+  price: number;
+  tags: string[];
+  images: string[];
+}
+
 function AddItemPage() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [tags, setTags] = useState([]);
-  const [images, setImages] = useState([]);
-  const [errors, setErrors] = useState({});
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([]);
+  const [errors, setErrors] = useState<{ [key: string]: string | undefined }>({});
   const navigate = useNavigate();
 
   // 유효성 검사 함수: 각각의 입력 필드에 대해 개별 유효성 검사를 수행
-  const validateName = (value) => {
+  const validateName = (value: string) => {
     if (value.length < 2 || value.length > 10) {
       setErrors((prev) => ({
         ...prev,
@@ -48,7 +56,7 @@ function AddItemPage() {
     }
   };
 
-  const validateDescription = (value) => {
+  const validateDescription = (value: string) => {
     if (value.length < 10) {
       setErrors((prev) => ({
         ...prev,
@@ -59,7 +67,7 @@ function AddItemPage() {
     }
   };
 
-  const validatePrice = (value) => {
+  const validatePrice = (value: string) => {
     if (!/^\d+$/.test(value)) {
       setErrors((prev) => ({ ...prev, price: "숫자로 입력해주세요." }));
     } else {
@@ -68,14 +76,14 @@ function AddItemPage() {
   };
 
   // 상품 등록 API 호출 핸들러
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (Object.keys(errors).some((key) => errors[key])) {
       return;
     }
 
-    const productData = {
+    const productData: ProductData = {
       name,
       description,
       price: Number(price), // 숫자형으로 변환
@@ -84,7 +92,7 @@ function AddItemPage() {
     };
 
     try {
-      const result = await addProduct(productData); // API 호출
+      const result = await addProduct(productData);
       navigate(`/items/${result.id}`);
     } catch (error) {
       console.error("상품 등록 실패:", error);

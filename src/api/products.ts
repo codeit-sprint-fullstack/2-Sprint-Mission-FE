@@ -13,6 +13,14 @@ interface Product {
   likes: number;
 }
 
+interface ProductData {
+  name: string;
+  description: string;
+  price: number;
+  tags: string[];
+  images: string[];
+}
+
 interface GetProductsParams {
   orderBy?: string;
   page?: number;
@@ -38,8 +46,8 @@ export async function getProducts({
   return { totalCount, list };
 }
 
-export async function addProduct(product: Product): Promise<Product> {
-  const response = await axios.post('/products', product);
+export async function addProduct(productData: ProductData): Promise<Product> {
+  const response = await axios.post('/products', productData);
   const newProduct = response.data;
   return newProduct;
 }

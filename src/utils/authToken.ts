@@ -7,7 +7,7 @@ export function getTokens() {
   return { accessToken, refreshToken };
 }
 
-export function setTokens({ accessToken, refreshToken }) {
+export function setTokens({ accessToken, refreshToken }: { accessToken: string; refreshToken: string }) {
   localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
   localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 }
