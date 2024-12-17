@@ -1,6 +1,6 @@
 import styles from '@/styles/ItemDetailPage.module.css';
-import Comment from './Comment.jsx';
-import Image from 'next/image.js';
+import Comment from './Comment.tsx';
+import Image from 'next/image';
 
 function Comments({ comments, productId }: {
 	comments: {

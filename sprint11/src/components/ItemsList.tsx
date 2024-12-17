@@ -1,9 +1,9 @@
-import Link from "next/link.js";
-import Item from "./Item.jsx";
+import Link from "next/link";
+import Item from "./Item.tsx";
 import styles from '@/styles/ItemsPage.module.css';
 import { ChangeEvent } from "react";
 import { TItem } from "@/types/types.ts";
-import Image from "next/image.js";
+import Image from "next/image";
 
 
 

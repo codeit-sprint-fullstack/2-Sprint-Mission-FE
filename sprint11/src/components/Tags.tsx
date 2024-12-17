@@ -1,14 +1,35 @@
-import { MouseEvent } from 'react';
-import Delete from './Delete.jsx';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
+import Delete from './Delete.tsx';
 import styles from '@/styles/RegisPage.module.css';
 
 function Tags({ tags, setValues }: {
 	tags: string[],
-	setValues: (value: (draft: {tags: string[]}) => {tags: string[]}) => void
+	setValues: Dispatch<SetStateAction<{
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    images: string[];
+    tags: string[];
+    favoriteCount: number;
+    createdAt: Date;
+    updatedAt: Date;
+    owner: {
+        id: number;
+        nickname: string;
+    };
+    isFavorite: boolean;
+	}>> | Dispatch<SetStateAction<{
+    name: string;
+    description: string;
+    price: number;
+    images: string[];
+    tags: string[];
+	}>>;
 }) {
 
 	const handleDeleteTag = (e: MouseEvent<HTMLButtonElement>, tagToBeDel: string) => {
-		setValues((draft: { tags: string[] }) => ({ ...draft, tags: tags.filter(tag => tag !== tagToBeDel) }));
+		setValues((draft) => ({ ...draft, tags: tags.filter(tag => tag !== tagToBeDel) }));
 	};
 
 	return (

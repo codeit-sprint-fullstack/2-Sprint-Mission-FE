@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '@/styles/LogInPage.module.css';
-import { useSetUser, useUser } from '@/context/UserProvider.jsx';
-import PopUp from '@/components/PopUp.jsx';
+import { useSetUser, useUser } from '@/context/UserProvider.tsx';
+import PopUp from '@/components/PopUp.tsx';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';

@@ -1,11 +1,11 @@
 import styles from '@/styles/ItemDetailPage.module.css';
-import KebabMenu from "./KebabMenu.jsx";
+import KebabMenu from "./KebabMenu.tsx";
 import { useState } from "react";
-import { deleteComment, patchComment } from "../apis/itemsService.js";
-import PopUp from "./PopUp.jsx";
-import { useUser } from '../context/UserProvider.jsx';
+import { deleteComment, patchComment } from "../apis/itemsService.ts";
+import PopUp from "./PopUp.tsx";
+import { useUser } from '../context/UserProvider.tsx';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Image from 'next/image.js';
+import Image from 'next/image';
 
 function Comment({ comment, productId }: {
 	comment: {

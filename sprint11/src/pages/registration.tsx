@@ -2,8 +2,8 @@ import styles from '@/styles/RegisPage.module.css';
 import Tags from "@/components/Tags.tsx";
 import Images from "@/components/Images.tsx";
 import { postProduct } from "@/apis/itemsService.ts";
-import PopUp from "@/components/PopUp.tsx";
-import useAsync from "@/hooks/useAsync.ts";
+// import PopUp from "@/components/PopUp.tsx";
+// import useAsync from "@/hooks/useAsync.ts";
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -46,7 +46,7 @@ export default function RegisPage() {
 		images: true,
 		tags: true,
 	});
-	const [isPending, error, asyncPostProduct, setError] = useAsync(postProduct);
+	// const [isPending, error, asyncPostProduct, setError] = useAsync(postProduct);
 	const queryClient = useQueryClient();
 	const router = useRouter();
 
@@ -54,15 +54,15 @@ export default function RegisPage() {
 		await handleImageInput({ code: "Enter" }, imageUrl);
 		await handleTagInput({ code: "Enter", key: "" }, tag);
 		if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
-			const res = await asyncPostProduct(values);
+			const res = await postProduct(values);
 			console.log(res);
 			if ('message' in res) {
-				console.log("error: ", error);
-				setError(res);
+				// console.log("error: ", error);
+				// setError(res);
 			}
 			else {
 				res.onClose = () => router.push("/items");
-				setError(res);
+				// setError(res);
 				queryClient.invalidateQueries({queryKey: ['items', '*']});
 				setValues(INITIAL_VALUES);
 			}
@@ -126,7 +126,7 @@ export default function RegisPage() {
 					<form className={styles.form}>
 						<div className={styles.heads}>
 							<h1>상품 등록하기</h1>
-							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || !!isPending}>등록</button>
+							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || !!false}>등록</button>
 						</div>
 						<label htmlFor="name">상품명</label>
 						<input id="name" name="name" placeholder="상품명을 입력해주세요." type="text" required value={values.name} onChange={(e) => {
@@ -169,7 +169,7 @@ export default function RegisPage() {
 					</form>
 				</section>
 			</main>
-			{'message' in error && <PopUp error={error} setError={setError}/>}
+			{/* {'message' in error && <PopUp error={error} setError={setError}/>} */}
 		</>
 	);
 }

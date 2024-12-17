@@ -1,8 +1,19 @@
 import styles from '@/styles/ItemDetailPage.module.css';
-import ArticleComment from './ArticleComment.jsx';
-import Image from 'next/image.js';
+import ArticleComment from './ArticleComment.tsx';
+import Image from 'next/image';
 
-function ArticleComments({ comments, articleId }) {
+function ArticleComments({ comments, articleId }: {
+	comments: {
+		id: string;
+		content: string;
+		commenter: {
+			id: number;
+			nickname: string;
+		},
+		createdAt: Date;
+	}[];
+	articleId: string;
+}) {
 	let res;
 	if (!comments || comments.length === 0) {
 		res = (<div className={styles.center}>

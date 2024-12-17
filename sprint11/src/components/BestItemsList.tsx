@@ -1,5 +1,5 @@
-import { TItem } from '@/types/types.js';
-import Item from './Item.jsx';
+import { TItem } from '@/types/types.ts';
+import Item from './Item.tsx';
 import styles from '@/styles/ItemsPage.module.css';
 
 function BestItemsList({ bestItems }: {

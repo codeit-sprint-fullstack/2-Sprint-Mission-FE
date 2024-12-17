@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from '@/styles/ItemsPage.module.css';
-import useAsync from "@/hooks/useAsync.ts";
+// import useAsync from "@/hooks/useAsync.ts";
 import BestItemsList from "@/components/BestItemsList.tsx";
 import ItemsList from "@/components/ItemsList.tsx";
 import PageNum from "@/components/PageNum.tsx";
 import { getProducts } from "@/apis/itemsService.ts";
 import { useViewport } from "@/context/ViewportProvider.tsx";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import PopUp from "@/components/PopUp.tsx";
+// import PopUp from "@/components/PopUp.tsx";
 
 // export async function getServerSideProps() {
 // 	const { list: bestItems } = await getProducts({ page: 1, pageSize: 4, sort: "favorite", keyword: "" });
@@ -32,16 +32,16 @@ function ItemsPage() {
 	const [items, setItems] = useState([]);
 	const [sort, setSort] = useState("recent");
 	const [keyword, setKeyword] = useState("");
-	const [isLoadingItems, error, loadItemsAsync, setError] = useAsync(getProducts);
+	// const [isLoadingItems, error, loadItemsAsync, setError] = useAsync(getProducts);
 	const { data: result0 } = useQuery({
 		queryKey: ["items", page, pageBestSize, "favorite", ""],
-		queryFn: () => loadItemsAsync({ page, pageSize: pageBestSize, sort: "favorite", keyword: "" }),
+		queryFn: () => getProducts({ page, pageSize: pageBestSize, sort: "favorite", keyword: "" }),
 		placeholderData: keepPreviousData,
 		staleTime: 5 * 60 * 1000,
 	});
 	const { data: result1 } = useQuery({
 		queryKey: ["items", page, pageSize, sort, keyword],
-		queryFn: () => loadItemsAsync({ page, pageSize, sort, keyword }),
+		queryFn: () => getProducts({ page, pageSize, sort, keyword }),
 		placeholderData: keepPreviousData,
 		staleTime: 5 * 60 * 1000,
 	});
@@ -77,9 +77,9 @@ function ItemsPage() {
 	return (
 		<main className={styles.main}>
 			<BestItemsList bestItems={bestItems} />
-			<ItemsList items={items} isLoadingItems={!!isLoadingItems} sort={sort} setSort={setSort} keyword={keyword} setKeyword={setKeyword} />
+			<ItemsList items={items} isLoadingItems={!!false} sort={sort} setSort={setSort} keyword={keyword} setKeyword={setKeyword} />
 			<PageNum page={page} setPage={setPage} pageMax={pageMax} />
-			<PopUp error={error} setError={setError} />
+			{/* <PopUp error={error} setError={setError} /> */}
 		</main>
 	);
 }

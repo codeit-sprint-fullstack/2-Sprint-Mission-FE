@@ -3,8 +3,8 @@ import { useState } from "react";
 import Tags from "@/components/Tags.tsx";
 import Images from "@/components/Images.tsx";
 import { getProductWithId, patchProductWithId } from "@/apis/itemsService.ts";
-import PopUp from "@/components/PopUp.tsx";
-import useAsync from "@/hooks/useAsync.ts";
+// import PopUp from "@/components/PopUp.tsx";
+// import useAsync from "@/hooks/useAsync.ts";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -37,13 +37,13 @@ export async function isImage(url: string): Promise<boolean> {
 // 	};
 // }
 
-const INITIAL_VALUES = {
-	name: "",
-	description: "",
-	price: 0,
-	images: [],
-	tags: [],
-};
+// const INITIAL_VALUES = {
+// 	name: "",
+// 	description: "",
+// 	price: 0,
+// 	images: [],
+// 	tags: [],
+// };
 
 export default function RegisPage() {
 	const [imageUrlError, setImageUrlError] = useState("");
@@ -74,7 +74,7 @@ export default function RegisPage() {
 		images: true,
 		tags: true,
 	});
-	const [isPending, error, asyncPatchProductWithId, setError] = useAsync(patchProductWithId);
+	// const [isPending, error, asyncPatchProductWithId, setError] = useAsync(patchProductWithId);
 	const router = useRouter();
 	const { productId }: { productId: string; } = router.query as { productId: string; };
 	const { data: product } = useQuery({
@@ -94,12 +94,12 @@ export default function RegisPage() {
 		await handleImageInput({ code: "Enter" }, imageUrl);
 		await handleTagInput({ code: "Enter", key: "" }, tag);
 		if (validation.name && validation.description && validation.price && validation.images && validation.tags) {
-			const { id, favoriteCount, createdAt, updatedAt, owner, isFavorite, ...rest } = values;
-			const res = await asyncPatchProductWithId(productId, rest);
+			// const { id, favoriteCount, createdAt, updatedAt, owner, isFavorite, ...rest } = values;
+			const res = await patchProductWithId(productId, { name: values.name, description: values.description, price: values.price, images: values.images, tags: values.tags });
 			console.log(res);
 			if (res?.message) {
-				console.log("error: ", error);
-				setError(res);
+				// console.log("error: ", error);
+				// setError(res);
 			}
 			else {
 				res.onClose = () => {
@@ -107,8 +107,8 @@ export default function RegisPage() {
 					queryClient.invalidateQueries({queryKey: ['items']});
 					router.push("/items");
 				}
-				setError(res);
-				setValues(INITIAL_VALUES);
+				// setError(res);
+				// setValues(INITIAL_VALUES);
 			}
 		}
 	};
@@ -170,7 +170,7 @@ export default function RegisPage() {
 					<form className={styles.form}>
 						<div className={styles.heads}>
 							<h1>상품 등록하기</h1>
-							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || !!isPending}>수정</button>
+							<button onClick={handleSubmit} type="button" disabled={!(validation.name && validation.description && validation.price && validation.images && validation.tags) || !!false}>수정</button>
 						</div>
 						<label htmlFor="name">상품명</label>
 						<input id="name" name="name" placeholder="상품명을 입력해주세요." type="text" required value={values.name} onChange={(e) => {
@@ -202,18 +202,18 @@ export default function RegisPage() {
 						}} onKeyDown={(e) => handleImageInput(e, imageUrl)}/>
 						<div><Images name={values.name} images={values.images} setValues={setValues}/></div>
 						{imageUrlError && <div className={styles.error}>{imageUrlError}</div>}
-						<label htmlFor="tags">태그 (태그를 추가하시려면 <span className={styles.trigger} onClick={() => handleTagInput({ code: "Enter" }, tag)}>&quot;엔터&quot;, &quot;;&quot;, &quot;,&quot;</span> (&lt;= 를 클릭 혹은) 중 하나를 키보드로 입력해 주세요.)</label>
+						<label htmlFor="tags">태그 (태그를 추가하시려면 <span className={styles.trigger} onClick={() => handleTagInput({ code: "Enter", key: "" }, tag)}>&quot;엔터&quot;, &quot;;&quot;, &quot;,&quot;</span> (&lt;= 를 클릭 혹은) 중 하나를 키보드로 입력해 주세요.)</label>
 						<input id="tags" name="tags" placeholder="태그를 입력해주세요." type="text" value={tag} onChange={(e) => {
 							const val = e.target.value;
 							setTag(val);
 							setValidation(draft => ({...draft, tags: true}));
 						}} onKeyDown={(e) => handleTagInput(e, tag)}/>
 						<div><Tags tags={values.tags} setValues={setValues}/></div>
-						<div className={styles.error} ref={tagsError}></div>
+						{tagsError && <div className={styles.error}>{tagsError}</div>}
 					</form>
 				</section>
 			</main>
-			<PopUp error={error} setError={setError}/>
+			{/* <PopUp error={error} setError={setError}/> */}
 		</>
 	);
 }
