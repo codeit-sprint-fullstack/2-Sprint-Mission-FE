@@ -19,7 +19,7 @@ function Tags({ tags, setValues }: {
         nickname: string;
     };
     isFavorite: boolean;
-	}>> | Dispatch<SetStateAction<{
+	} | {
     name: string;
     description: string;
     price: number;
