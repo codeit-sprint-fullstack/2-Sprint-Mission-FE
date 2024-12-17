@@ -1,44 +1,88 @@
 import styles from '@/styles/ArticleDetail.module.css';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { getArticle, getArticleCommentList } from '@/lib/api/ArticleService';
+import {
+  getArticle,
+  getArticleCommentList,
+  createArticleLike,
+  deleteArticleLike
+} from '@/lib/api/ArticleService';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/formatDate';
 import ArticleDropdown from '@/components/ArticleDetail/ArticleDropdown';
+import Spinner from '@/components/Common/Spinner';
 
-export async function getServerSideProps(context) {
-  try {
-    const articleId = context.params['id'];
+export default function ArticleDetail() {
+  const [article, setArticle] = useState(null);
+  const [articleComments, setArticleComments] = useState([]);
 
-    const article = await getArticle(articleId);
-    const articleComments = await getArticleCommentList(articleId);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
 
-    return {
-      props: {
-        article,
-        articleComments
-      }
-    };
-  } catch (err) {
-    console.error('데이터를 불러오는 중 문제가 발생하였습니다.', err.message);
-    throw new Error(
-      '서버에서 데이터를 가져오는 중 문제가 발생했습니다.' + err.message
-    );
-  }
-}
-
-export default function ArticleDetail({ article, articleComments }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
+  const articleId = router.query['id'];
 
-  if (!article) return <div>No article found for this ID.</div>;
+  useEffect(() => {
+    if (!articleId) return;
+
+    const fetchData = async () => {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        setLoading(false);
+        router.push('/signin');
+        return;
+      }
+
+      try {
+        const articleData = await getArticle(articleId);
+        const commentsData = await getArticleCommentList(articleId);
+
+        setArticle(articleData);
+        setArticleComments(commentsData || []);
+        setLikeCount(articleData.likeCount);
+        setIsLiked(articleData.isLiked);
+        setLoading(false);
+      } catch (err) {
+        console.error('데이터를 가져오는 중 오류 발생:', err);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [articleId]);
+
+  if (loading) return <Spinner />;
+  if (!article) return <div>해당 상품을 찾을 수 없습니다.</div>;
 
   const handleBackList = () => router.push('/articles');
   const handleMenuClick = () => setDropdownOpen((prev) => !prev);
+
+  const handleLikeClick = async () => {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+      router.push('/signin');
+      return;
+    }
+
+    try {
+      if (isLiked) {
+        await deleteArticleLike(articleId);
+        setLikeCount(likeCount - 1);
+      } else {
+        await createArticleLike(articleId);
+        setLikeCount(likeCount + 1);
+      }
+      setIsLiked(!isLiked);
+    } catch (err) {
+      setLoading(false);
+      console.error('좋아요 처리 중 오류 발생:', err);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -55,7 +99,7 @@ export default function ArticleDetail({ article, articleComments }) {
                 alt="메뉴 아이콘"
               />
               {dropdownOpen && (
-                <div ref={dropdownRef} className={styles.dropdown}>
+                <div className={styles.dropdown}>
                   <ArticleDropdown />
                 </div>
               )}
@@ -74,14 +118,18 @@ export default function ArticleDetail({ article, articleComments }) {
               <p className={styles.date}>{formatDate(article.createdAt)}</p>
             </div>
             <div className={styles[`like-wrap`]}>
-              <div className={styles.like}>
+              <div className={styles.like} onClick={handleLikeClick}>
                 <Image
-                  src="/images/ic_heart.png"
+                  src={
+                    isLiked
+                      ? '/images/ic_heart_active.png'
+                      : '/images/ic_heart.png'
+                  }
                   width={32}
                   height={32}
                   alt="좋아요 아이콘"
                 />
-                <p>{article.likeCount}</p>
+                <p>{likeCount}</p>
               </div>
             </div>
           </div>

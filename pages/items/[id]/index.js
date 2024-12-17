@@ -43,8 +43,8 @@ export default function ProductDetail() {
       }
 
       try {
-        const productData = await getProduct(productId, token);
-        const commentsData = await getProductCommentList(productId, token);
+        const productData = await getProduct(productId);
+        const commentsData = await getProductCommentList(productId);
 
         setProduct(productData);
         setProductComments(commentsData || []);
