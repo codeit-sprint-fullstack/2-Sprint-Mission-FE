@@ -1,5 +1,6 @@
 import styles from '@/styles/ProductRegister.module.css';
-import { createProduct, uploadImages } from '@/lib/api/ProductService';
+import { createProduct } from '@/lib/api/ProductService';
+import { uploadImages } from '@/lib/api/ImageService';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useProductValidate from '@/hooks/useProductValidate';

@@ -3,7 +3,7 @@ import { createArticle } from '@/lib/api/ArticleService';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useArticleValidate from '@/hooks/useArticleValidate';
-import { uploadImages } from '@/lib/api/ProductService';
+import { uploadImages } from '@/lib/api/ImageService';
 import FileInput from '@/components/Common/FileInput';
 
 export default function Register() {

@@ -1,9 +1,6 @@
 import styles from '@/styles/ProductEdit.module.css';
-import {
-  getProduct,
-  patchProduct,
-  uploadImages
-} from '@/lib/api/ProductService';
+import { getProduct, patchProduct } from '@/lib/api/ProductService';
+import { uploadImages } from '@/lib/api/ImageService';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import useProductValidate from '@/hooks/useProductValidate';
