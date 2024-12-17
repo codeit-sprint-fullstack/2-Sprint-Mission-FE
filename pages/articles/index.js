@@ -53,22 +53,7 @@ export default function Article({
   const [keyword, setKeyword] = useState('');
   const [sortOrder, setSortOrder] = useState('recent');
 
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const sortedArticles = sortArticles(filteredArticles, sortOrder);
-    setFilteredArticles(sortedArticles);
-
-    setLoading(false);
-  }, [sortOrder, filteredArticles]);
+  const [loading, setLoading] = useState(true);
 
   const sortArticles = (articles, sortOrder) => {
     let sortedArticles = [...articles];
@@ -83,6 +68,19 @@ export default function Article({
 
     return sortedArticles;
   };
+
+  useEffect(() => {
+    if (articles && articles.length > 0) {
+      setLoading(false);
+    }
+  }, [articles]);
+
+  useEffect(() => {
+    const sortedArticles = sortArticles(filteredArticles, sortOrder);
+    setFilteredArticles(sortedArticles);
+
+    setLoading(false);
+  }, [sortOrder, articles]);
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {

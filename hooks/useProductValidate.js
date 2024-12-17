@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function useValidate(initialValues) {
+export default function useProductValidate(initialValues) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
 
