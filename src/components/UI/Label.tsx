@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Label = styled.label`
+const Label = styled.label<React.LabelHTMLAttributes<HTMLLabelElement>>`
   display: block;
   font-size: 14px;
   font-weight: bold;

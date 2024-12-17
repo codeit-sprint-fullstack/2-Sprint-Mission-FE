@@ -1,12 +1,19 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 
+interface ToggleMenuProps {
+  className?: string;
+  children: React.ReactNode;
+  options: { value: string; label: string }[];
+  onSelect: (option: { value: string; label: string }) => void;
+}
+
 const Wrapper = styled.div`
   position: relative;
   z-index: 0;
 `;
 
-const Menu = styled.ul`
+const Menu = styled.ul<{ $isOpen: boolean}>`
   ${({ $isOpen }) =>
     !$isOpen &&
     css`
@@ -35,10 +42,10 @@ const MenuItem = styled.li`
   cursor: pointer;
 `;
 
-function ToggleMenu({ className, children, options, onSelect }) {
+function ToggleMenu({ className, children, options, onSelect }: ToggleMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelectOption = (option) => {
+  const handleSelectOption = (option: {value: string; label: string;}) => {
     onSelect(option);
     setIsOpen(false);
   };

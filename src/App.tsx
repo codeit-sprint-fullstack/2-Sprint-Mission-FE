@@ -16,7 +16,7 @@ import "nprogress/nprogress.css";
 NProgress.configure({ showSpinner: false });
 const queryClient = new QueryClient();
 
-function Providers({ children }) {
+function Providers({ children }: {children: React.ReactNode}) {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>

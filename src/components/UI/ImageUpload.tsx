@@ -4,6 +4,14 @@ import Label from './Label';
 import { ReactComponent as PlusIcon } from '../../assets/images/icons/ic_plus.svg';
 import { uploadImage } from '../../api/images';
 
+
+interface ImageUploadProps {
+  id: string;
+  label?: string;
+  value?: string[];
+  onChange: (value: string[]) => void;
+}
+
 const ImageUploadContainer = styled.div`
   display: flex;
   gap: 8px;
@@ -50,7 +58,7 @@ const UploadButton = styled.label`
   ${squareStyles}
 `;
 
-const ImagePreview = styled.div`
+const ImagePreview = styled.div<{src: string}>`
   background-image: url('${({ src }) => src}');
   background-size: cover;
   background-position: center;
@@ -69,8 +77,8 @@ const HiddenFileInput = styled.input`
   display: none;
 `;
 
-function ImageUpload({ id, label, value = [], onChange }) {
-  const handleImageChange = async (event) => {
+function ImageUpload({ id, label, value = [], onChange }: ImageUploadProps) {
+  const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
     if (file) {
@@ -79,7 +87,7 @@ function ImageUpload({ id, label, value = [], onChange }) {
     }
   };
 
-  const handleDelete = (idx) => {
+  const handleDelete = (idx: number) => {
     const nextValue = [...value.slice(0, idx), ...value.slice(idx + 1)];
     onChange(nextValue);
   };

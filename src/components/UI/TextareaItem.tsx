@@ -3,7 +3,19 @@ import { inputStyle } from "./InputItem";
 import Label from "./Label";
 import ErrorMessage from "./ErrorMessage";
 
-const Textarea = styled.textarea`
+interface InputFieldProps {
+  $error?: boolean;
+  id: string;
+}
+
+interface TextareaItemProps {
+  id: string;
+  label: string;
+  error?: string;
+  register: Record<string, any>;
+}
+
+const Textarea = styled.textarea<InputFieldProps>`
   ${inputStyle}
   height: 200px;
   resize: none;
@@ -15,7 +27,7 @@ function TextareaItem({
   error,
   register = {},
   ...inputProps
-}) {
+}: TextareaItemProps) {
   return (<div>
     {label && <Label htmlFor={id}>{label}</Label>}
     <Textarea

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const LineDivider = styled.hr`
+interface InputFieldProps {
+  $margin?: string;
+}
+
+const LineDivider = styled.hr<InputFieldProps>`
   width: 100%;
   border: none;
   height: 1px;

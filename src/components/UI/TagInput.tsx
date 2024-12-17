@@ -4,6 +4,11 @@ import InputItem from "./InputItem";
 import { FlexContainer } from "../../styles/CommonStyles";
 import DeleteButton from "./DeleteButton";
 
+interface TagInputProps {
+  value: string[];
+  onChange: (tags: string[]) => void;
+}
+
 const TagButtonsSection = styled.div`
   display: flex;
   gap: 12px;
@@ -30,13 +35,13 @@ const TagText = styled.span`
   white-space: nowrap;
 `;
 
-function TagInput({ value, onChange }) {
+function TagInput({ value, onChange }: TagInputProps) {
   const [text, setText] = useState("");
   const [tags, setTags] = useState(value);
   const [error, setErrors] = useState("");
 
   // 중복 등록 막기 위해 tags 배열에 없는 것 확인하고 삽입
-  const addTag = (tag) => {
+  const addTag = (tag: string) => {
     const nextTags = [...tags];
     if (!tags.includes(tag)) {
       nextTags.push(tag);
@@ -44,13 +49,13 @@ function TagInput({ value, onChange }) {
     onChange(nextTags);
   };
 
-  const removeTag = (tagToRemove) => {
+  const removeTag = (tagToRemove: string) => {
     const nextTags = tags.filter((tag) => tag !== tagToRemove);
     onChange(nextTags);
   };
 
   // 엔터 키 누르면 tags 배열에 input 값을 추가
-  const handlePressEnter = (event) => {
+  const handlePressEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     // 여러 자모를 결합해 하나의 글자를 만드는 아시아 언어권에서는 IME(입력 메소드 에디터)를 통해 브라우저에 글자를 입력해요.
     // 사용자가 글자를 완전히 조합하기 전에는 isComposing의 값이 true로 설정됩니다.
     // 한글 입력 시에 마지막 글자가 하이라이트되는 현상을 보신 적 있을 거예요. 이게 바로 isComposing이 true인 상태로, 아직 입력이 확정되지 않았음을 시각적으로 나타내는 거예요.
@@ -69,7 +74,7 @@ function TagInput({ value, onChange }) {
     }
   };
 
-  const validateTag = (newTag) => {
+  const validateTag = (newTag: string) => {
     if (newTag.length > 5) {
       setErrors((prev) => "태그는 5글자 이내로 입력해주세요.");
     } else {
@@ -84,6 +89,7 @@ function TagInput({ value, onChange }) {
   return (
     <div>
       <InputItem
+        id="tag-input"
         label="태그"
         value={text}
         placeholder="태그를 입력해 주세요"

@@ -1,7 +1,15 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as Spinner } from "../../assets/images/ui/spinner.svg";
+import React from "react"
 
-export const buttonStyle = css`
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  isLoading?: boolean;
+  $pill?: boolean;
+  $appearance?: "primary" | "secondary";
+}
+
+
+export const buttonStyle = css<ButtonProps>`
   background-color: ${({ theme }) => theme.colors.blue[0]};
   color: #ffffff;
   border-radius: ${({ $pill }) => ($pill ? "999px" : "8px")};
@@ -39,7 +47,7 @@ export const buttonStyle = css`
     `}
 `;
 
-function BaseButton({ isLoading, children, onClick, ...props }) {
+function BaseButton({ isLoading, children, onClick, ...props }: ButtonProps): React.JSX.Element {
   return (
     <button onClick={onClick} {...props}>
       {isLoading ? <Spinner /> : children}

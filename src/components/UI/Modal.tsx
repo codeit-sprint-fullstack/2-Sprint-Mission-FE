@@ -1,6 +1,13 @@
-import React, { useEffect } from "react";
+import React, { MouseEvent, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+
+interface ModalProps {
+  isOpen: boolean;
+  closeButton?: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
 
 const Overlay = styled.div`
   position: fixed;
@@ -36,21 +43,21 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-function useScrollLock(enabled) {
+function useScrollLock(enabled: Boolean) {
   useEffect(() => {
     if (enabled) {
-      document.body.style.overflow = "hidden"; // 스크롤 고정
+      document.body.style.overflow = "hidden";
       return () => {
-        document.body.style.overflow = ""; // 스크롤 고정 해제
+        document.body.style.overflow = "";
       };
     }
   }, [enabled]);
 }
 
-function Modal({ isOpen, closeButton = false, onClose, children }) {
+function Modal({ isOpen, closeButton = false, onClose, children }: ModalProps) {
   useScrollLock(isOpen);
 
-  const preventOverlayClick = (e) => e.stopPropagation();
+  const preventOverlayClick = (e: MouseEvent<HTMLDivElement>) => e.stopPropagation();
 
   if (!isOpen) return null;
 
@@ -61,7 +68,7 @@ function Modal({ isOpen, closeButton = false, onClose, children }) {
         {children}
       </ModalWrapper>
     </Overlay>,
-    document.getElementById("modal-root")
+    document.getElementById("modal-root") as HTMLElement
   );
 }
 

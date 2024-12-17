@@ -3,7 +3,18 @@ import styled, { css } from "styled-components";
 import ErrorMessage from "./ErrorMessage";
 import Label from "./Label";
 
-export const inputStyle = css`
+interface InputItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  id: string;
+  label?: string;
+  error?: string;
+  register?: Record<string, any>;
+}
+
+interface InputFieldProps {
+  $error?: boolean;
+}
+
+export const inputStyle = css<InputFieldProps>`
   padding: 16px 24px;
   background-color: ${({ theme }) => theme.colors.gray[1]};
   color: ${({ theme }) => theme.colors.black};
@@ -24,7 +35,7 @@ export const inputStyle = css`
   }
 `;
 
-export const InputField = styled.input`
+export const InputField = styled.input<InputFieldProps>`
   ${inputStyle}
 `;
 
@@ -34,7 +45,7 @@ function InputItem({
   error,
   register = {},
   ...inputProps
-}) {
+}: InputItemProps) {
   return (
     <div>
       {label && <Label htmlFor={id}>{label}</Label>}

@@ -4,17 +4,42 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { signIn as requestSignIn, signUp as requestSignUp, getMe } from "../api/auth";
 import { clearTokens, setTokens } from "../utils/authToken";
 
-const AuthContext = createContext({
+interface User {
+  id: string;
+  email: string;
+  nickname: string;
+}
+
+interface SignUpParams {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+interface SignInParams {
+  email: string;
+  password: string;
+}
+
+interface AuthContextType {
+  user: User | null;
+  signup: (params: SignUpParams) => Promise<void>;
+  signin: (params: SignInParams) => Promise<void>;
+  signout: () => void;
+}
+
+const AuthContext = createContext<AuthContextType>({
   user: null,
-  signup: ({ email, nickname, password, passwordConfirmation }) => { },
-  signin: ({ email, password }) => { },
+  signup: async ({ email, nickname, password, passwordConfirmation }) => { },
+  signin: async ({ email, password }) => { },
   signout: () => { },
 });
 
 /**
  * 소셜 로그인을 한 경우, 백엔드에서는 인증 토큰을 쿼리 스트링에 담아서 리다이렉트해 줍니다.
  * 쿼리 스트링으로 받은 Access Token과 Refresh Token을 로컬스토리지에 저장하고
- * 쿼리 스트링을 지운 주소로 이동한다.
+ * 쿼리 스트링을 지운 주소로 이동한다.dd
  */
 function useTokensFromParams() {
   const location = useLocation();
