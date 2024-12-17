@@ -123,19 +123,28 @@ export default function Edit() {
 
     try {
       const imageFormData = new FormData();
+
       imageFiles.forEach((file) => {
         imageFormData.append('image', file);
       });
 
-      const uploadedImages = await uploadImages(imageFormData);
+      let uploadedImages = [];
+      if (imageFormData.has('image')) {
+        uploadedImages = await uploadImages(imageFormData);
+      }
+
+      const allImages = [
+        ...values.images,
+        ...(Array.isArray(uploadedImages)
+          ? uploadedImages.map((img) => img.url)
+          : [uploadedImages.url])
+      ];
 
       const productData = {
         name: values.name,
         description: values.description,
         price: parseInt(values.price),
-        images: Array.isArray(uploadedImages)
-          ? uploadedImages.map((img) => img.url)
-          : [uploadedImages.url],
+        images: allImages,
         tags: tags
       };
 
