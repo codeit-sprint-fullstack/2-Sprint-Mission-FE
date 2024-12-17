@@ -1,10 +1,10 @@
 import styles from '@/styles/ProductRegister.module.css';
-import Image from 'next/image';
 import { createProduct, uploadImages } from '@/lib/api/ProductService';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useProductValidate from '@/hooks/useProductValidate';
 import ProductTags from '@/components/ProductDetail/ProductTags';
+import FileInput from '@/components/Common/FileInput';
 
 export default function Register() {
   const router = useRouter();
@@ -121,38 +121,13 @@ export default function Register() {
           등록
         </button>
       </div>
-      <div className={styles.group}>
-        <label htmlFor="images">상품 이미지</label>
-        <input
-          type="file"
-          id="images"
-          accept="image/*"
-          multiple
-          onChange={handleImageChange}
-          disabled={imageFiles.length >= 3}
-        />
-        <div className={styles.imagePreviews}>
-          {imagePreviews.map((preview, index) => (
-            <div key={index} className={styles.previewContainer}>
-              <Image
-                src={preview}
-                alt={`상품 이미지 ${index + 1}`}
-                width={100}
-                height={100}
-                objectFit="cover"
-              />
-              <button
-                type="button"
-                onClick={() => removeImage(index)}
-                className={styles.removeImage}
-              >
-                삭제
-              </button>
-            </div>
-          ))}
-        </div>
+      <FileInput
+        onChange={handleImageChange}
+        imagePreviews={imagePreviews}
+        removeImage={removeImage}
+      >
         {errors.images && <div className={styles.error}>{errors.images}</div>}
-      </div>
+      </FileInput>
       <div className={styles.group}>
         <label htmlFor="name">상품명</label>
         <input
