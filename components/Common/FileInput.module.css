@@ -30,7 +30,7 @@
 
     gap: 1.2rem;
 
-    background-color: #F3F4F6;
+    background-color: var(--gray-100);
 }
 
 .add-file img {
@@ -38,7 +38,7 @@
 }
 
 .add-file p {
-    color: #9CA3AF;
+    color: var(--gray-400);
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 2.6rem;

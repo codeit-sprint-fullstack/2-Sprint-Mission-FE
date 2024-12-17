@@ -18,12 +18,12 @@
     padding: 1.2rem 3.95rem;
     border-radius: 4rem;
 
-    color: #F3F4F6;
+    color: var(--gray-100);
     font-size: 1.8rem;
     font-weight: 600;
     line-height: 2.6rem;
 
-    background-color: #3692FF;
+    background-color: var(--primary-100);
 
     gap: 0.8rem;
 }
@@ -36,7 +36,7 @@
 }
 
 .article p {
-    color: #1F2937;
+    color: var(--gray-800);
     font-size: 1.8rem;
     font-weight: 400;
     line-height: 2.6rem;
@@ -47,7 +47,7 @@
     flex-direction: column;
 
     padding-bottom: 1.6rem;
-    border-bottom: 0.1rem solid #E5E7EB;
+    border-bottom: 0.1rem solid var(--gray-200);
 
     gap: 1.6rem;
 }
@@ -100,17 +100,17 @@
 }
 
 .user-info .name {
-    color: #4B5563;
+    color: var(--gray-600);
     font-weight: 500;
 }
 
 .user-info .date {
-    color: #9CA3AF;
+    color: var(--gray-400);
     font-weight: 400;
 }
 
 .like-wrap {
-    border-left: 0.1rem solid #E5E7EB;
+    border-left: 0.1rem solid var(--gray-200);
 }
 
 .like {
@@ -122,13 +122,13 @@
     margin-left: 3.2rem;
     padding: 0.4rem 1.2rem;
     border-radius: 3.5rem;
-    border: 0.1rem solid #E5E7EB;
+    border: 0.1rem solid var(--gray-200);
 
     gap: 1rem;
 }
 
 .like p {
-    color: #6B7280;
+    color: var(--gray-500);
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 2.6rem;
@@ -137,14 +137,14 @@
 /* -- Mobile -- */
 @media screen and (max-width:743px) {
     .user-info>:nth-child(2) {
-        color: #4B5563;
+        color: var(--gray-600);
         font-size: 1.2rem;
         font-weight: 500;
         line-height: 2.4rem;
     }
 
     .user-info>:last-child {
-        color: #9CA3AF;
+        color: var(--gray-400);
         font-size: 1.2rem;
         font-weight: 400;
         line-height: 2.4rem;

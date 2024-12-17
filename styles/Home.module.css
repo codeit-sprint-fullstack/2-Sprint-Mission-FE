@@ -48,7 +48,7 @@
 }
 
 .heading {
-    color: #374151;
+    color: var(--gray-700);
     font-size: 4rem;
     font-weight: 700;
     line-height: 5.6rem;
@@ -66,11 +66,11 @@
     padding: 1.6rem 12.4rem;
     border-radius: 4rem;
 
-    background-color: #3292FF;
+    background-color: var(--primary-100);
 }
 
 .button a {
-    color: #F3F4F6;
+    color: var(--gray-100);
     font-size: 2rem;
     font-weight: 600;
     line-height: 3.2rem;
@@ -122,7 +122,7 @@
 }
 
 .bg {
-    color: #3692FF;
+    color: var(--primary-100);
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 2.6rem;

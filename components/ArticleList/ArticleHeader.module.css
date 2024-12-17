@@ -5,7 +5,7 @@
 }
 
 .wrapper h1 {
-    color: #1F2937;
+    color: var(--gray-800);
     font-size: 2rem;
     font-weight: 700;
     line-height: 3.2rem;
@@ -22,5 +22,5 @@
     font-weight: 600;
     line-height: 1.909rem;
 
-    background-color: #3692FF;
+    background-color: var(--primary-100);
 }

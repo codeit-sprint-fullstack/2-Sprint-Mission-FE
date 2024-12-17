@@ -32,12 +32,12 @@
     padding: 1.2rem 3.95rem;
     border-radius: 4rem;
 
-    color: #F3F4F6;
+    color: var(--gray-100);
     font-size: 1.8rem;
     font-weight: 600;
     line-height: 2.6rem;
 
-    background-color: #3692FF;
+    background-color: var(--primary-100);
 
     gap: 0.8rem;
 }

@@ -14,7 +14,7 @@
 }
 
 .form-header h1 {
-    color: #1F2937;
+    color: var(--gray-800);
     font-size: 2rem;
     font-weight: 700;
     line-height: 3.2rem;
@@ -30,16 +30,16 @@
     padding: 1.2rem 2.3rem;
     border-radius: 0.8rem;
 
-    color: #F3F4F6;
+    color: var(--gray-100);
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 2.6rem;
 
-    background-color: #3692FF;
+    background-color: var(--primary-100);
 }
 
 .form-header button:disabled {
-    background-color: #9CA3AF;
+    background-color: var(--gray-400);
 }
 
 .group {
@@ -50,7 +50,7 @@
 }
 
 .group label {
-    color: #1F2937;
+    color: var(--gray-800);
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 2.6rem;
@@ -66,7 +66,7 @@
     font-weight: 400;
     line-height: 2.6rem;
 
-    background-color: #F3F4F6;
+    background-color: var(--gray-100);
 }
 
 .group input {
@@ -84,5 +84,5 @@
 
 .group input::placeholder,
 .group textarea::placeholder {
-    color: #9CA3AF;
+    color: var(--gray-400);
 }

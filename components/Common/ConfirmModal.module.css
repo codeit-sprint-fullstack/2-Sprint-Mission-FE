@@ -27,7 +27,7 @@
     padding: 2.4rem;
     border-radius: 1.2rem;
 
-    background-color: #F9FAFB;
+    background-color: var(--gray-50);
 
     gap: 2.4rem;
 
@@ -67,12 +67,12 @@
 }
 
 .cancel {
-    border: 0.1rem solid #F74747;
-    color: #F74747;
-    background-color: #F9FAFB;
+    border: 0.1rem solid var(--error-red);
+    color: var(--error-red);
+    background-color: var(--gray-50);
 }
 
 .delete {
-    color: #F9FAFB;
-    background-color: #F74747;
+    color: var(--gray-50);
+    background-color: var(--error-red);
 }
