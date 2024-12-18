@@ -2,32 +2,12 @@ import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import Delete from './Delete.tsx';
 import styles from '@/styles/RegisPage.module.css';
 import Image from 'next/image';
+import { TProduct } from '@/types/types.ts';
 
 function Images({ name, images, setValues }: {
 	name: string;
 	images: string[];
-	setValues: Dispatch<SetStateAction<{
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    images: string[];
-    tags: string[];
-    favoriteCount: number;
-    createdAt: Date;
-    updatedAt: Date;
-    owner: {
-        id: number;
-        nickname: string;
-    };
-    isFavorite: boolean;
-}>> | Dispatch<SetStateAction<{
-    name: string;
-    description: string;
-    price: number;
-    images: string[];
-    tags: string[];
-}>>
+	setValues: Dispatch<SetStateAction<TProduct>>
 }) {
 
 	const handleDeleteImage = (e: MouseEvent, image: string) => {

@@ -1,5 +1,5 @@
 import styles from '@/styles/RegisPage.module.css';
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Tags from "@/components/Tags.tsx";
 import Images from "@/components/Images.tsx";
 import { getProductWithId, patchProductWithId } from "@/apis/itemsService.ts";
@@ -8,6 +8,7 @@ import { getProductWithId, patchProductWithId } from "@/apis/itemsService.ts";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { TProduct } from '@/types/types';
 
 export async function isImage(url: string): Promise<boolean> {
 	try {
@@ -49,21 +50,12 @@ export default function RegisPage() {
 	const [imageUrlError, setImageUrlError] = useState("");
 	const [tagsError, setTagsError] = useState("");
 	const queryClient = useQueryClient();
-	const [values, setValues] = useState({
-		id: "",
+	const [values, setValues]: [TProduct, Dispatch<SetStateAction<TProduct>>] = useState({
 		name: "",
 		description: "",
 		price: 0,
 		images: [""],
 		tags: [""],
-		favoriteCount: 0,
-		createdAt: new Date(),
-		updatedAt: new Date(),
-		owner: {
-			id: 0,
-			nickname: "",
-		},
-		isFavorite: false,
 	});
 	const [imageUrl, setImageUrl] = useState("");
 	const [tag, setTag] = useState("");

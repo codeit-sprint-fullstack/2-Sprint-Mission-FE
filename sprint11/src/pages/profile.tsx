@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '@/styles/LogInPage.module.css';
 import { useSetUser, useUser } from '@/context/UserProvider.tsx';
 import PopUp from '@/components/PopUp.tsx';
@@ -14,7 +14,7 @@ function Profile() {
 
 	const handleLogout = () => {
 		try {
-			localStorage.clear();
+			localStorage.removeItem("user");
 			setUser(null);
 		} catch (err) {
 			if (err instanceof Error) {
@@ -23,9 +23,12 @@ function Profile() {
 		}
 	};
 
-	if (!user && !error) {
-		return router.push('/login');
-	}
+	useEffect(() => {
+		if (!user && !error) {
+			router.push('/login');
+			return;
+		}
+	}, [user, error, router]);
 
 	return (
 		<>
