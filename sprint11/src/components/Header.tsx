@@ -18,7 +18,7 @@ function Header() {
   return (<header className={styles.header}>
 		<div className={styles.sub}>
 			<div className={styles.sub_header}>
-				<Link href="/"><Image width={153} height={40} className={styles.logo} src={viewport.device === "phone" ? "/images/logo-text-only.png" : "/images/Property-1=lg.png"} alt="판다마켓 Logo"/></Link>
+				<Link href="/"><Image width={viewport.device === "phone" ? 116 : 120} height={40} className={styles.logo} src={viewport.device === "phone" ? "/images/logo-text-only.png" : "/images/Property-1=lg.png"} alt="판다마켓 Logo"/></Link>
 				<nav>
 					<ul>
 						<li><Link href="/boards">자유게시판</Link></li>
