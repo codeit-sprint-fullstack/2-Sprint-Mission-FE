@@ -45,6 +45,8 @@
 .input_wrapper .img {
 	position: absolute;
 	cursor: pointer;
+	border: 0;
+	background-color: transparent;
 	left: 20px;
 	top: 14px;
 	bottom: 14px;
