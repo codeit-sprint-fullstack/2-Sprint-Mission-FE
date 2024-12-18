@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #111827;
+  font-family: Pretendard;
+}
+
+html {
+  font-size: 62.5%;
+}
