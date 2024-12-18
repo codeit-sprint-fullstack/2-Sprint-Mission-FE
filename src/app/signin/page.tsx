@@ -6,15 +6,49 @@ import vis_on from "@/../public/assets/btn_visibility_on_24px.svg";
 import vis_off from "@/../public/assets/btn_visibility_off_24px.svg";
 import google from "@/../public/assets/google.svg";
 import kakao from "@/../public/assets/kakao.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function SignIn() {
-  const [pw, setPw] = useState(false);
+  const [showPw, setShowPw] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [pw, setPw] = useState("");
+  const [pwError, setPwError] = useState("");
 
   const handleClick = () => {
-    setPw((prev) => !prev);
+    setShowPw((prev) => !prev);
   };
+
+  const validateEmail = (email: string) => {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      setEmailError("");
+    } else if (!pattern.test(email)) {
+      setEmailError("유효한 이메일 주소를 입력해주세요.");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  useEffect(() => {
+    validateEmail(email);
+  }, [email]);
+
+  const validatePw = (pw: string) => {
+    if (!pw) {
+      setPwError("");
+    } else if (pw.length < 8) {
+      setPwError("비밀번호를 8자 이상 입력해주세요");
+    } else {
+      setPwError("");
+    }
+  };
+
+  useEffect(() => {
+    validatePw(pw);
+  }, [pw]);
 
   return (
     <div className="w-full flex flex-col gap-[4rem] items-center justify-center h-[100vh]">
@@ -24,29 +58,57 @@ export default function SignIn() {
           <div className="w-full gap-[1.6rem] flex flex-col justify-center">
             <p className="font-bold text-[1.8rem] leading-[2.6rem]">이메일</p>
             <input
-              className="w-full h-[5.6rem] rounded-[1.2rem] py-[1.6rem] px-[2.4rem] gap-[1rem] bg-[#F3F4F6] font-normal text-[1.6rem] leading-[2.6rem] placeholder-text-[#9CA3AF]"
+              className={`w-full h-[5.6rem] rounded-[1.2rem] py-[1.6rem] px-[2.4rem] gap-[1rem] bg-[#F3F4F6] font-normal text-[1.6rem] leading-[2.6rem] placeholder-text-[#9CA3AF] ${
+                emailError
+                  ? "focus:outline-[#F74747]"
+                  : "focus:outline-[#3692FF]"
+              }`}
               placeholder="이메일을 입력해주세요"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
+            {emailError && (
+              <p className="text-red-500 text-[1.4rem] mt-1">{emailError}</p>
+            )}
           </div>
           <div className="w-full gap-[1.6rem] flex flex-col justify-center">
             <p className="font-bold text-[1.8rem] leading-[2.6rem]">비밀번호</p>
             <div
-              className="w-full h-[5.6rem] py-[1.6rem] px-[2.4rem] bg-[#F3F4F6] rounded-[1.2rem] flex justify-between"
-              onClick={handleClick}
+              className={`w-full h-[5.6rem] py-[1.6rem] px-[2.4rem] bg-[#F3F4F6] rounded-[1.2rem] flex justify-between focus-within:outline focus-within:outline-2 ${
+                pwError
+                  ? "focus-within:outline-[#F74747]"
+                  : "focus-within:outline-[#3692FF]"
+              }`}
             >
               <input
-                className="w-full bg-[#F3F4F6] gap-[1rem] font-normal text-[1.6rem] leading-[2.6rem] placeholder-text-[#9CA3AF]"
+                className="w-full bg-[#F3F4F6] gap-[1rem] font-normal text-[1.6rem] leading-[2.6rem] placeholder-text-[#9CA3AF] focus:outline-none"
                 placeholder="비밀번호를 입력해주세요"
+                type={!showPw ? "password" : "text"}
+                value={pw}
+                onChange={(e) => setPw(e.target.value)}
               />
-              {!pw ? (
-                <Image src={vis_off} alt="eye" width={24} height={24} />
-              ) : (
-                <Image src={vis_on} alt="eye" width={24} height={24} />
-              )}
+              <Image
+                src={!showPw ? vis_off : vis_on}
+                alt="eye"
+                width={24}
+                height={24}
+                onClick={handleClick}
+              />
             </div>
+            {pwError && (
+              <p className="text-red-500 text-[1.4rem] mt-1">{pwError}</p>
+            )}
           </div>
         </div>
-        <button className="w-full h-[5.6rem] rounded-[4rem] py-[1.6rem] px-[12.4rem] gap-[1rem] bg-[#9CA3AF] font-semibold text-[2rem] leading-[3.2rem] items-center text-[#F3F4F6] flex justify-center">
+        <button
+          type="submit"
+          disabled={!emailError && !pwError}
+          className={`w-full h-[5.6rem] rounded-[4rem] py-[1.6rem] px-[12.4rem] gap-[1rem] font-semibold text-[2rem] leading-[3.2rem] items-center text-[#F3F4F6] flex justify-center ${
+            pw && email && !emailError && !pwError
+              ? "bg-[#3692FF]"
+              : "bg-[#9CA3AF]"
+          }`}
+        >
           로그인
         </button>
         <div className="w-full h-[7.4rem] rounded-[0.8rem] py-[1.6rem] px-[2.3rem] gap-[1rem] bg-[#E6F2FF] flex justify-between items-center">
