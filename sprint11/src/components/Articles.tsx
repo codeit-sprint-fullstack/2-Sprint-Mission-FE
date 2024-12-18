@@ -5,11 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 function Articles({ articles }:
-	{ articles: TArticle[] }
+	{ articles: { pages: Array<{list: TArticle[]; totalCount: string}> } }
 ) {
 	return (<div>
 		<ul className={styles.articles}>
-			{articles.map((article) => (
+			{articles.pages.map((page: {list: TArticle[]; totalCount: string}) => page.list.map((article) => (
 				<li key={article.id}>
 					<div className={styles.titleWrapper}>
 						<div className={styles.title}><Link href={`/articles/${article.id}`}>{article.title}</Link></div>
@@ -27,7 +27,7 @@ function Articles({ articles }:
 						<div className={styles.likes}>♡ {article.favoriteCount}</div>
 					</div>
 				</li>
-			))}
+			)))}
 		</ul>
 	</div>);
 }

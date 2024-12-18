@@ -5,6 +5,8 @@ import BestArticles from '@/components/BestArticles.tsx';
 import styles from '@/styles/Boards.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { TArticle } from '@/types/types';
 
 // export async function getServerSideProps() {
 // 	const { list: bestArticles } = await getArticles({ page: 1, pageSize: 3, sort: 'recent' });
@@ -21,8 +23,21 @@ import Link from 'next/link';
 function Boards() {
 	const [sort, setSort] = useState('recent');
 	const [bestArticles, setBestArticles] = useState([]);
-	const [articles, setArticles] = useState([]);
 	const [keyword, setKeyword] = useState('');
+	const {
+		data: articlesData,
+		isPending,
+		isError,
+		hasNextPage,
+		fetchNextPage,
+		isFetchingNextPage,
+	} = useInfiniteQuery({
+		queryKey: ['articles', sort, keyword],
+		queryFn: ({ pageParam }) => getArticles({ page: pageParam, pageSize: 10, sort, keyword }),
+		initialPageParam: 1,
+		getNextPageParam: (lastPage, allPages, lastPageParam) =>
+			lastPageParam < Math.ceil(lastPage.totalCount/10) ? lastPageParam + 1 : undefined,
+	});
 
 	useEffect(() => {
 		const fetchBestArticles = async () => {
@@ -32,13 +47,20 @@ function Boards() {
 		fetchBestArticles();
 	}, []);
 
-	useEffect(() => {
-		const fetchArticles = async () => {
-			const data = await getArticles({ page: 1, pageSize: 10, sort, keyword });
-			setArticles(data.list);
-		};
-		fetchArticles();
-	}, [sort, keyword]);
+	// useEffect(() => {
+	// 	const fetchArticles = async () => {
+	// 		const data = await getArticles({ page: 1, pageSize: 10, sort, keyword });
+	// 		setArticles(data.list);
+	// 	};
+	// 	fetchArticles();
+	// }, [sort, keyword]);
+
+	if (isPending) {
+		return <div>Loading...</div>;
+	}
+	if (isError) {
+		return <div>Error fetching data</div>;
+	}
 
 	return (
 		<main className={styles.main}>
@@ -63,7 +85,8 @@ function Boards() {
 						<option value="favorite">좋아요 순</option>
 					</select>
 				</div>
-				<Articles articles={articles}/>
+				<Articles articles={articlesData as { pages: Array<{list: TArticle[]; totalCount: string}> }}/>
+				{hasNextPage && <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>더 불러오기</button>}
 			</article>
 		</main>
 	)
