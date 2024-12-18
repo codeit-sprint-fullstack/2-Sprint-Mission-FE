@@ -5,6 +5,7 @@ import LandingCard from "@/components/landingCard";
 import home1 from "@/../public/assets/Img_home_01.svg";
 import home2 from "@/../public/assets/Img_home_02.svg";
 import home3 from "@/../public/assets/Img_home_03.svg";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -71,6 +72,7 @@ export default function Home() {
           <Image src={home_bottom} alt="home-bottom" width={746} height={397} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

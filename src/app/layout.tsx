@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "@/styles/globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "@/components/Header";
 
 const pretendard = localFont({
   src: "../../public/fonts/PretendardVariable.woff2",
@@ -29,7 +28,6 @@ export default function RootLayout({
         <div className="min-h-screen">
           <Header />
           {children}
-          <Footer />
         </div>
       </body>
     </html>
