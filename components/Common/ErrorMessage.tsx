@@ -2,7 +2,7 @@ import styles from './ErrorMessage.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function ErrorMessage({ message }) {
+export default function ErrorMessage({ message }: { message: string }) {
   return (
     <div className={styles.wrapper}>
       <Image

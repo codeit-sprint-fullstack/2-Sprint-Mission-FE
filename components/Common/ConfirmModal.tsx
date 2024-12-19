@@ -1,7 +1,17 @@
 import styles from './ConfirmModal.module.css';
 import Image from 'next/image';
 
-export default function ConfirmModal({ onCancel, onDelete, loading }) {
+interface ConfirmModalProps {
+  onCancel: () => void;
+  onDelete: () => void;
+  loading: boolean;
+}
+
+export default function ConfirmModal({
+  onCancel,
+  onDelete,
+  loading
+}: ConfirmModalProps) {
   return (
     <div className={styles.overlay}>
       <div className={styles.wrapper}>

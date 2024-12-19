@@ -1,8 +1,18 @@
 import styles from './Pagination.module.css';
 import Image from 'next/image';
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const handleClick = (page) => {
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Pagination = ({
+  currentPage,
+  totalPages,
+  onPageChange
+}: PaginationProps) => {
+  const handleClick = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       onPageChange(page);
     }

@@ -1,6 +1,16 @@
 import styles from './ErrorModal.module.css';
 
-export default function ErrorModal({ isOpen, onClose, message }) {
+interface ErrorModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  message: string;
+}
+
+export default function ErrorModal({
+  isOpen,
+  onClose,
+  message
+}: ErrorModalProps) {
   if (!isOpen) return null;
 
   return (

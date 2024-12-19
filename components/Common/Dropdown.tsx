@@ -2,7 +2,17 @@ import styles from './Dropdown.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function Dropdown({ sortOrder, setSortOrder, type }) {
+interface DropdownProps {
+  sortOrder: string;
+  setSortOrder: React.Dispatch<React.SetStateAction<string>>;
+  type: string;
+}
+
+export default function Dropdown({
+  sortOrder,
+  setSortOrder,
+  type
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const options = [
@@ -10,7 +20,7 @@ export default function Dropdown({ sortOrder, setSortOrder, type }) {
     { value: type === 'product' ? 'favorite' : 'like', label: '좋아요 순' }
   ];
 
-  const handleOptionClick = (val) => {
+  const handleOptionClick = (val: string) => {
     setSortOrder(val);
     setIsOpen(false);
   };

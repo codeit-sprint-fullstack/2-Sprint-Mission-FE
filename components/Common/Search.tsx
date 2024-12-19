@@ -1,7 +1,20 @@
+import { ChangeEvent } from 'react';
 import styles from './Search.module.css';
 import Image from 'next/image';
 
-export default function Search({ keyword, onSearch, onKeyDown, width }) {
+interface SearchProps {
+  keyword: string;
+  onSearch: React.Dispatch<React.SetStateAction<string>>;
+  onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  width: string;
+}
+
+export default function Search({
+  keyword,
+  onSearch,
+  onKeyDown,
+  width
+}: SearchProps) {
   return (
     <div className={styles.search} style={{ width: width }}>
       <Image
