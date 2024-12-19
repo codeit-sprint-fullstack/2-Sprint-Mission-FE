@@ -67,9 +67,14 @@ export default function SignIn() {
         throw new Error("로그인 응답 데이터가 올바르지 않습니다.");
       }
       setUserData(response);
-      router.push("/used-goods-market");
+      console.log(response);
+      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
+      localStorage.setItem("name", response.user.nickname);
+      localStorage.setItem("image", response.user.image);
+
+      window.location.assign("/used-goods-market");
     } catch (error) {
-      // alert("비밀번호가 일치하지 않습니다.");
       setShowModal(true);
     }
   };
