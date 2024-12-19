@@ -1,3 +1,14 @@
+export interface SignIn {
+  email: string;
+  password: string;
+}
+
+export interface SignUp {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation: string;
+}
 export interface User {
   id: number;
   nickname: string;
@@ -35,9 +46,10 @@ export interface ArticleType {
   writer: Writer;
 }
 
-export interface ArticleListType {
-  totalCount: number;
-  list: ArticleType[];
+export interface ArticleData {
+  title: string;
+  content: string;
+  image: string;
 }
 
 export interface ProductType {
@@ -52,12 +64,6 @@ export interface ProductType {
   ownerNickname: string;
   favoriteCount: number;
   isFavorite: boolean;
-}
-
-export interface ArticleData {
-  title: string;
-  content: string;
-  image: string;
 }
 
 export interface ProductData {

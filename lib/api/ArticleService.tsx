@@ -75,7 +75,7 @@ export async function deleteArticleComment(commentId: number) {
 
 // 자유게시판 좋아요 API
 export async function createArticleLike(articleId: number) {
-  const res = await post(`/articles/${articleId}/like`);
+  const res = await post(`/articles/${articleId}/like`, {});
   return res.data;
 }
 
