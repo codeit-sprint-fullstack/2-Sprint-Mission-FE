@@ -6,7 +6,7 @@ import useArticleValidate from '@/hooks/useArticleValidate';
 import { uploadImages } from '@/lib/api/ImageService';
 import FileInput from '@/components/Common/FileInput';
 
-interface ArticleData {
+export interface ArticleData {
   title: string;
   content: string;
   image: string;

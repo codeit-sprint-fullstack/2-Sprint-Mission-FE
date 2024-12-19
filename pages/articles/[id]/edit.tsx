@@ -1,18 +1,35 @@
 import styles from '@/styles/ArticleEdit.module.css';
 import { getArticle, patchArticle } from '@/lib/api/ArticleService';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/router';
 import useArticleValidate from '@/hooks/useArticleValidate';
 import { uploadImages } from '@/lib/api/ImageService';
 import FileInput from '@/components/Common/FileInput';
+import { ArticleData } from '../register';
+
+interface Writer {
+  nickname: string;
+  id: number;
+}
+
+interface Article {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  likeCount: number;
+  createdAt: string;
+  updatedAt: string;
+  writer: Writer;
+}
 
 export default function Edit() {
   const router = useRouter();
   const articleId = router.query['id'];
 
-  const [data, setData] = useState(null);
-  const [imageFiles, setImageFiles] = useState([]);
-  const [imagePreviews, setImagePreviews] = useState([]);
+  const [data, setData] = useState<Article | null>(null);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
   const { values, setValues, errors, handleChange, validate } =
     useArticleValidate({
@@ -45,8 +62,8 @@ export default function Edit() {
     }
   }, [data, setValues]);
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
 
     const validFiles = files.filter((file) => {
       const isValidSize = file.size <= 5 * 1024 * 1024;
@@ -72,31 +89,28 @@ export default function Edit() {
     const newPreviews = files.map((file) => URL.createObjectURL(file));
     setImagePreviews(newPreviews);
     setImageFiles(validFiles);
-    handleChange({
-      target: {
-        id: 'image',
-        value: newPreviews[0] || ''
-      }
-    });
+
+    setValues((prevValues) => ({
+      ...prevValues,
+      image: newPreviews[0]
+    }));
   };
 
   const removeImage = () => {
     setImageFiles([]);
     setImagePreviews([]);
 
-    handleChange({
-      target: {
-        id: 'image',
-        value: ''
-      }
-    });
+    setValues((prevValues) => ({
+      ...prevValues,
+      image: ''
+    }));
   };
 
-  const isInputEmpty = () => {
+  const isInputEmpty = (): boolean => {
     return values.title.trim() !== '' && values.content.trim() !== '';
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validate()) {
@@ -122,7 +136,7 @@ export default function Edit() {
         }
       }
 
-      const articleData = {
+      const articleData: ArticleData = {
         title: values.title,
         content: values.content,
         image: uploadedImageUrl
@@ -158,7 +172,6 @@ export default function Edit() {
         <div className={styles.group}>
           <label htmlFor="content">* 내용</label>
           <textarea
-            type="text"
             id="content"
             value={values.content}
             onChange={handleChange}

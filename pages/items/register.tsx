@@ -7,7 +7,7 @@ import useProductValidate from '@/hooks/useProductValidate';
 import ProductTags from '@/components/ProductDetail/ProductTags';
 import FileInput from '@/components/Common/FileInput';
 
-interface ProductData {
+export interface ProductData {
   name: string;
   description: string;
   price: number;
