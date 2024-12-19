@@ -6,7 +6,8 @@ import {
   ReactNode
 } from 'react';
 import { signIn } from '../api/AuthService';
-import { getUser, User } from '../api/UserService';
+import { getUser } from '../api/UserService';
+import { User } from '@/types/type';
 
 interface AuthContextType {
   user: User | null;

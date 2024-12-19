@@ -16,10 +16,10 @@ import formatDate from '@/lib/utils/formatDate';
 import formatPrice from '@/lib/utils/formatPrice';
 import ConfirmModal from '@/components/Common/ConfirmModal';
 import Spinner from '@/components/Common/Spinner';
-import { Product, Comments } from '@/types/type';
+import { ProductType, Comments } from '@/types/type';
 
 export default function ProductDetail() {
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<ProductType | null>(null);
   const [productComments, setProductComments] = useState<Comments>({
     nextCursor: 0,
     list: []
@@ -33,7 +33,7 @@ export default function ProductDetail() {
   const [favoriteCount, setFavoriteCount] = useState<number>(0);
 
   const router = useRouter();
-  const productId = router.query['id'];
+  const productId = parseInt(router.query['id'] as string, 10);
 
   useEffect(() => {
     if (!productId) return;

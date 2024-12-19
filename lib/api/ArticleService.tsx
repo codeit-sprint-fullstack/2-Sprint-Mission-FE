@@ -1,5 +1,5 @@
 import { get, post, patch, remove } from './axios';
-import { QueryParams, ArticleData, Comment } from '@/types/type';
+import { QueryParams, ArticleData } from '@/types/type';
 
 // 자유게시판 API
 export async function getArticleList({
@@ -55,15 +55,12 @@ export async function getArticleCommentList(articleId: number) {
   return res.data;
 }
 
-export async function createArticleComment(
-  articleId: number,
-  comment: Comment
-) {
+export async function createArticleComment(articleId: number, comment: string) {
   const res = await post(`/articles/${articleId}/comments`, comment);
   return res.data;
 }
 
-export async function patchArticleComment(commentId: number, comment: Comment) {
+export async function patchArticleComment(commentId: number, comment: string) {
   const res = await patch(`/comments/${commentId}`, comment);
   return res.data;
 }

@@ -84,7 +84,8 @@ export default function Register() {
 
       const uploadedImages = await uploadImages(imageFormData);
 
-      const imageUrl = uploadedImages.url;
+      const imageUrl = uploadedImages[0]?.url;
+
       const articleData: ArticleData = {
         title: values.title,
         content: values.content,

@@ -80,3 +80,7 @@ export interface QueryParams {
   orderBy?: string;
   keyword?: string;
 }
+
+export interface UploadedImage {
+  url: string;
+}

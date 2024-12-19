@@ -1,7 +1,18 @@
 import styles from './ArticleCommentDropdown.module.css';
 import { deleteArticleComment } from '@/lib/api/ArticleService';
+import { Comment } from '@/types/type';
 
-export default function ArticleCommentDropdown({ commentId, onEditClick }) {
+interface ArticleCommentDropdownProps {
+  commentId: number;
+  comment: Comment;
+  onEditClick: (comment: Comment) => void;
+}
+
+export default function ArticleCommentDropdown({
+  commentId,
+  comment,
+  onEditClick
+}: ArticleCommentDropdownProps) {
   const handleDelete = async () => {
     try {
       await deleteArticleComment(commentId);
@@ -12,7 +23,7 @@ export default function ArticleCommentDropdown({ commentId, onEditClick }) {
   };
   return (
     <div className={styles.menu}>
-      <div onClick={() => onEditClick(commentId)}>수정하기</div>
+      <div onClick={() => onEditClick(comment)}>수정하기</div>
       <div onClick={handleDelete}>삭제하기</div>
     </div>
   );

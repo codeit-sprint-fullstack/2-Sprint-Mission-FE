@@ -100,7 +100,7 @@ export default function Register() {
         price: parseInt(values.price),
         images: Array.isArray(uploadedImages)
           ? uploadedImages.map((img) => img.url)
-          : [uploadedImages.url],
+          : [],
         tags: tags
       };
 

@@ -7,7 +7,7 @@ import useProductValidate from '@/hooks/useProductValidate';
 import ProductTags from '@/components/ProductDetail/ProductTags';
 import FileInput from '@/components/Common/FileInput';
 import Spinner from '@/components/Common/Spinner';
-import { ProductData } from '../register';
+import { ProductData, UploadedImage } from '@/types/type';
 
 interface Product {
   id: number;
@@ -25,7 +25,7 @@ interface Product {
 
 export default function Edit() {
   const router = useRouter();
-  const productId = router.query['id'];
+  const productId = parseInt(router.query['id'] as string, 10);
 
   const [data, setData] = useState<Product | null>(null);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
@@ -136,7 +136,7 @@ export default function Edit() {
         imageFormData.append('image', file);
       });
 
-      let uploadedImages = [];
+      let uploadedImages: UploadedImage[] = [];
       if (imageFormData.has('image')) {
         uploadedImages = await uploadImages(imageFormData);
       }
@@ -145,7 +145,7 @@ export default function Edit() {
         ...values.images,
         ...(Array.isArray(uploadedImages)
           ? uploadedImages.map((img) => img.url)
-          : [uploadedImages.url])
+          : [])
       ];
 
       const productData: ProductData = {

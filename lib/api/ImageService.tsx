@@ -1,7 +1,10 @@
 import { AxiosError } from 'axios';
 import { post } from './axios';
+import { UploadedImage } from '@/types/type';
 
-export async function uploadImages(imageFormData: string) {
+export async function uploadImages(
+  imageFormData: FormData
+): Promise<UploadedImage[]> {
   try {
     const res = await post('/images/upload', imageFormData, {
       headers: {
