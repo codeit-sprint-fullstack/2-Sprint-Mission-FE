@@ -32,9 +32,7 @@ export default function ProductCommentList({
 
   const handleEdit = async (commentId: number) => {
     try {
-      await patchProductComment(commentId, {
-        content: editingContent
-      });
+      await patchProductComment(commentId, editingContent);
       setEditingCommentId(null);
       window.location.reload();
     } catch (err) {
@@ -79,6 +77,7 @@ export default function ProductCommentList({
                         <div className={styles.dropdown}>
                           <ProductCommentDropdown
                             commentId={comment.id}
+                            comment={comment}
                             onEditClick={() => handleEditClick(comment)}
                           />
                         </div>

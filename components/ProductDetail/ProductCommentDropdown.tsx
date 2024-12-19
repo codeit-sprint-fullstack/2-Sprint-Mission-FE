@@ -1,7 +1,18 @@
+import { Comment } from '@/types/type';
 import styles from './ProductCommentDropdown.module.css';
 import { deleteProductComment } from '@/lib/api/ProductService';
 
-export default function ProductCommentDropdown({ commentId, onEditClick }) {
+interface ProductCommentDropdownProps {
+  commentId: number;
+  comment: Comment;
+  onEditClick: (comment: Comment) => void;
+}
+
+export default function ProductCommentDropdown({
+  commentId,
+  comment,
+  onEditClick
+}: ProductCommentDropdownProps) {
   const handleDelete = async () => {
     try {
       await deleteProductComment(commentId);
@@ -12,7 +23,7 @@ export default function ProductCommentDropdown({ commentId, onEditClick }) {
   };
   return (
     <div className={styles.menu}>
-      <div onClick={() => onEditClick(commentId)}>수정하기</div>
+      <div onClick={() => onEditClick(comment)}>수정하기</div>
       <div onClick={handleDelete}>삭제하기</div>
     </div>
   );

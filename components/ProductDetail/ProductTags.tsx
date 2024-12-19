@@ -1,13 +1,18 @@
 import styles from './ProductTags.module.css';
 import Image from 'next/image';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-export default function ProductTags({ tags, setTags }) {
-  const [inputValue, setInputValue] = useState('');
-  const [isComposing, setIsComposing] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+interface ProductTagsProps {
+  tags: string[];
+  setTags: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
-  const handleInputChange = (e) => {
+export default function ProductTags({ tags, setTags }: ProductTagsProps) {
+  const [inputValue, setInputValue] = useState<string>('');
+  const [isComposing, setIsComposing] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
 
@@ -18,7 +23,7 @@ export default function ProductTags({ tags, setTags }) {
     }
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && inputValue.trim() && !isComposing) {
       e.preventDefault();
       if (inputValue.length <= 5) {
@@ -31,7 +36,7 @@ export default function ProductTags({ tags, setTags }) {
     }
   };
 
-  const handleTagRemove = (index) => {
+  const handleTagRemove = (index: number) => {
     setTags(tags.filter((_, i) => i !== index));
   };
 

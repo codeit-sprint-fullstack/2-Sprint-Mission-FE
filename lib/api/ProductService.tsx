@@ -55,15 +55,12 @@ export async function getProductCommentList(productId: number) {
   return res.data;
 }
 
-export async function createProductComment(
-  productId: number,
-  comment: Comment
-) {
+export async function createProductComment(productId: number, comment: string) {
   const res = await post(`/products/${productId}/comments`, comment);
   return res.data;
 }
 
-export async function patchProductComment(commentId: number, comment: Comment) {
+export async function patchProductComment(commentId: number, comment: string) {
   try {
     const res = await patch(`/comments/${commentId}`, comment);
     return res.data;
