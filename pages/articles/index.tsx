@@ -10,6 +10,7 @@ import Pagination from '@/components/Common/Pagination';
 import { useResize } from '@/lib/contexts/useResize';
 import Spinner from '@/components/Common/Spinner';
 import ErrorMessage from '@/components/Common/ErrorMessage';
+import { ArticleType } from '@/types/type';
 
 export async function getServerSideProps() {
   try {
@@ -38,29 +39,44 @@ export async function getServerSideProps() {
   }
 }
 
+interface ArticleProps {
+  articles: ArticleType[];
+  bestArticles: ArticleType[];
+  error: string;
+}
+
 export default function Article({
   articles,
   bestArticles: initialBestArticles,
   error: serverError
-}) {
-  const [bestArticles] = useState(initialBestArticles);
-  const { bestPost } = useResize();
-  const bestPageSize = bestPost;
-  const [filteredArticles, setFilteredArticles] = useState(articles);
+}: ArticleProps) {
+  const [bestArticles] = useState<ArticleType[]>(initialBestArticles);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
-  const [keyword, setKeyword] = useState('');
-  const [sortOrder, setSortOrder] = useState('recent');
+  const resizeContext = useResize();
+  if (!resizeContext) return <div>Error: Resize context is not available!</div>;
+
+  const { bestPost } = resizeContext;
+  const bestPageSize: number = bestPost;
+  const [filteredArticles, setFilteredArticles] =
+    useState<ArticleType[]>(articles);
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pageSize: number = 5;
+  const [keyword, setKeyword] = useState<string>('');
+  const [sortOrder, setSortOrder] = useState<string>('recent');
 
   const [loading, setLoading] = useState(true);
 
-  const sortArticles = (articles, sortOrder) => {
+  const sortArticles = (
+    articles: ArticleType[],
+    sortOrder: string
+  ): ArticleType[] => {
     let sortedArticles = [...articles];
 
     if (sortOrder === 'recent') {
       sortedArticles.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
     } else if (sortOrder === 'like') {
       sortedArticles.sort((a, b) => b.likeCount - a.likeCount);
@@ -82,7 +98,7 @@ export default function Article({
     setLoading(false);
   }, [sortOrder, articles]);
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       const filtered = articles.filter((article) =>
         article.title.toLowerCase().includes(keyword.toLowerCase())

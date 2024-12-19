@@ -1,9 +1,10 @@
 import styles from './ArticleList.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import formatDate from '@/lib/formatDate';
+import formatDate from '@/lib/utils/formatDate';
+import { ArticleType } from '@/types/type';
 
-export default function ArticleList({ articles = [] }) {
+export default function ArticleList({ articles }: { articles: ArticleType[] }) {
   return (
     <>
       <ul className={styles[`article-list`]}>

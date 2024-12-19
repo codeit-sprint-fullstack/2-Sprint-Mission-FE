@@ -1,3 +1,11 @@
+export interface User {
+  id: number;
+  nickname: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface Comment {
   id: number;
   content: string;
@@ -16,7 +24,7 @@ export interface Writer {
   id: number;
 }
 
-export interface Article {
+export interface ArticleType {
   id: number;
   title: string;
   content: string;
@@ -25,6 +33,11 @@ export interface Article {
   createdAt: string;
   updatedAt: string;
   writer: Writer;
+}
+
+export interface ArticleListType {
+  totalCount: number;
+  list: ArticleType[];
 }
 
 export interface Product {
@@ -53,4 +66,11 @@ export interface ProductData {
   price: number;
   images: string[];
   tags: string[];
+}
+
+export interface QueryParams {
+  page?: number;
+  pageSize?: number;
+  orderBy?: string;
+  keyword?: string;
 }

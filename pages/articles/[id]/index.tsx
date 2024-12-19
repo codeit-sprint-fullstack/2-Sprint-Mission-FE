@@ -13,10 +13,10 @@ import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
 import formatDate from '@/lib/utils/formatDate';
 import ArticleDropdown from '@/components/ArticleDetail/ArticleDropdown';
 import Spinner from '@/components/Common/Spinner';
-import { Article, Comments } from '@/types/type';
+import { ArticleType, Comments } from '@/types/type';
 
 export default function ArticleDetail() {
-  const [article, setArticle] = useState<Article | null>(null);
+  const [article, setArticle] = useState<ArticleType | null>(null);
   const [articleComments, setArticleComments] = useState<Comments>({
     nextCursor: 0,
     list: []
@@ -29,7 +29,7 @@ export default function ArticleDetail() {
   const [loading, setLoading] = useState<boolean>(true);
 
   const router = useRouter();
-  const articleId = router.query['id'];
+  const articleId = parseInt(router.query['id'] as string, 10);
 
   useEffect(() => {
     if (!articleId) return;

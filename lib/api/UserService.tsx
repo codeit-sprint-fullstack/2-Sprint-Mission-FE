@@ -1,12 +1,5 @@
 import { get, patch } from './axios';
-
-export interface User {
-  id: number;
-  nickname: string;
-  image: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { User } from '@/types/type';
 
 export async function getUser(): Promise<User> {
   const res = await get('/users/me');

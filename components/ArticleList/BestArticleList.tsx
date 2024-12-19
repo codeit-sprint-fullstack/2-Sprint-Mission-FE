@@ -1,9 +1,18 @@
 import styles from './BestArticleList.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import formatDate from '@/lib/formatDate';
+import formatDate from '@/lib/utils/formatDate';
+import { ArticleType } from '@/types/type';
 
-export default function BestArticleList({ bestArticles = [], bestPageSize }) {
+interface BestArticleListProps {
+  bestArticles: ArticleType[];
+  bestPageSize: number;
+}
+
+export default function BestArticleList({
+  bestArticles,
+  bestPageSize
+}: BestArticleListProps) {
   return (
     <div className={styles.wrapper}>
       <h1>베스트 게시글</h1>

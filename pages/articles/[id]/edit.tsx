@@ -5,14 +5,13 @@ import { useRouter } from 'next/router';
 import useArticleValidate from '@/hooks/useArticleValidate';
 import { uploadImages } from '@/lib/api/ImageService';
 import FileInput from '@/components/Common/FileInput';
-import { ArticleData } from '../register';
-import { Article } from '@/types/type';
+import { ArticleType, ArticleData } from '@/types/type';
 
 export default function Edit() {
   const router = useRouter();
-  const articleId = router.query['id'];
+  const articleId = parseInt(router.query['id'] as string, 10);
 
-  const [data, setData] = useState<Article | null>(null);
+  const [data, setData] = useState<ArticleType | null>(null);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
