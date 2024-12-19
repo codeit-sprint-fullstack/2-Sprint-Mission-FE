@@ -1,11 +1,29 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  ReactNode
+} from 'react';
 
 const VIEWPORT = Object.freeze({
   DESKTOP: 1200,
   TABLET: 744
 });
 
-const ResizeContext = createContext();
+interface PageSize {
+  bestPost: number;
+  bestProduct: number;
+  defaultProduct: number;
+}
+
+interface ResizeContextType {
+  bestPost: number;
+  bestProduct: number;
+  defaultProduct: number;
+}
+
+const ResizeContext = createContext<ResizeContextType | undefined>(undefined);
 
 const DESKTOP_SIZE_BEST_POST_LIST = 3;
 const TABLET_SIZE_BEST_POST_LIST = 2;
@@ -19,8 +37,12 @@ const DESKTOP_SIZE_DEFAULT_PRODUCT_LIST = 10;
 const TABLET_SIZE_DEFAULT_PRODUCT_LIST = 6;
 const MOBILE_SIZE_DEFAULT_PRODUCT_LIST = 4;
 
-export const ResizeProvider = ({ children }) => {
-  const [pageSize, setPageSize] = useState({
+interface ResizeProviderProps {
+  children: ReactNode;
+}
+
+export const ResizeProvider = ({ children }: ResizeProviderProps) => {
+  const [pageSize, setPageSize] = useState<PageSize>({
     bestPost: DESKTOP_SIZE_BEST_POST_LIST,
     bestProduct: DESKTOP_SIZE_BEST_PRODUCT_LIST,
     defaultProduct: DESKTOP_SIZE_DEFAULT_PRODUCT_LIST

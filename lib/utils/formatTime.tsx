@@ -1,7 +1,7 @@
-export default function formatTime(timestamp) {
+export default function formatTime(timestamp: string) {
   const date = new Date(timestamp);
   const now = new Date();
-  const seconds = Math.floor((now - date) / 1000);
+  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
   if (seconds < 60) {
     return `${seconds}초 전`;
