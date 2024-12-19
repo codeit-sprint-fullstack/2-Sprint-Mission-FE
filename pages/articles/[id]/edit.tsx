@@ -6,22 +6,7 @@ import useArticleValidate from '@/hooks/useArticleValidate';
 import { uploadImages } from '@/lib/api/ImageService';
 import FileInput from '@/components/Common/FileInput';
 import { ArticleData } from '../register';
-
-interface Writer {
-  nickname: string;
-  id: number;
-}
-
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  image: string;
-  likeCount: number;
-  createdAt: string;
-  updatedAt: string;
-  writer: Writer;
-}
+import { Article } from '@/types/type';
 
 export default function Edit() {
   const router = useRouter();

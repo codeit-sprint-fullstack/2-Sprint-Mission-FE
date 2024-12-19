@@ -10,19 +10,23 @@ import {
 } from '@/lib/api/ArticleService';
 import ArticleCommentAdd from '@/components/ArticleDetail/ArticleCommentAdd';
 import ArticleCommentList from '@/components/ArticleDetail/ArticleCommentList';
-import formatDate from '@/lib/formatDate';
+import formatDate from '@/lib/utils/formatDate';
 import ArticleDropdown from '@/components/ArticleDetail/ArticleDropdown';
 import Spinner from '@/components/Common/Spinner';
+import { Article, Comments } from '@/types/type';
 
 export default function ArticleDetail() {
-  const [article, setArticle] = useState(null);
-  const [articleComments, setArticleComments] = useState([]);
+  const [article, setArticle] = useState<Article | null>(null);
+  const [articleComments, setArticleComments] = useState<Comments>({
+    nextCursor: 0,
+    list: []
+  });
 
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [likeCount, setLikeCount] = useState<number>(0);
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const router = useRouter();
   const articleId = router.query['id'];
@@ -95,7 +99,7 @@ export default function ArticleDetail() {
                 src="/images/ic_kebab.png"
                 width={24}
                 height={24}
-                onClick={() => handleMenuClick(!dropdownOpen)}
+                onClick={handleMenuClick}
                 alt="메뉴 아이콘"
               />
               {dropdownOpen && (

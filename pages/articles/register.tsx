@@ -5,12 +5,7 @@ import { useRouter } from 'next/router';
 import useArticleValidate from '@/hooks/useArticleValidate';
 import { uploadImages } from '@/lib/api/ImageService';
 import FileInput from '@/components/Common/FileInput';
-
-export interface ArticleData {
-  title: string;
-  content: string;
-  image: string;
-}
+import { ArticleData } from '@/types/type';
 
 export default function Register() {
   const router = useRouter();

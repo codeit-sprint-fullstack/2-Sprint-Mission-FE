@@ -12,21 +12,25 @@ import {
 import ProductCommentAdd from '@/components/ProductDetail/ProductCommentAdd';
 import ProductCommentList from '@/components/ProductDetail/ProductCommentList';
 import ProductDropdown from '@/components/ProductDetail/ProductDropdown';
-import formatDate from '@/lib/formatDate';
-import formatPrice from '@/lib/formatPrice';
+import formatDate from '@/lib/utils/formatDate';
+import formatPrice from '@/lib/utils/formatPrice';
 import ConfirmModal from '@/components/Common/ConfirmModal';
 import Spinner from '@/components/Common/Spinner';
+import { Product, Comments } from '@/types/type';
 
 export default function ProductDetail() {
-  const [product, setProduct] = useState(null);
-  const [productComments, setProductComments] = useState([]);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [productComments, setProductComments] = useState<Comments>({
+    nextCursor: 0,
+    list: []
+  });
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [isFavorited, setIsFavorited] = useState(false);
-  const [favoriteCount, setFavoriteCount] = useState(0);
+  const [isFavorited, setIsFavorited] = useState<boolean>(false);
+  const [favoriteCount, setFavoriteCount] = useState<number>(0);
 
   const router = useRouter();
   const productId = router.query['id'];
@@ -72,7 +76,7 @@ export default function ProductDetail() {
   };
 
   const handleCancel = () => setIsModalOpen(false);
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: number) => {
     setLoading(true);
     try {
       await deleteProduct(id);

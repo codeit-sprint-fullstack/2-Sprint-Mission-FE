@@ -6,14 +6,7 @@ import { useRouter } from 'next/router';
 import useProductValidate from '@/hooks/useProductValidate';
 import ProductTags from '@/components/ProductDetail/ProductTags';
 import FileInput from '@/components/Common/FileInput';
-
-export interface ProductData {
-  name: string;
-  description: string;
-  price: number;
-  images: string[];
-  tags: string[];
-}
+import { ProductData } from '@/types/type';
 
 export default function Register() {
   const router = useRouter();

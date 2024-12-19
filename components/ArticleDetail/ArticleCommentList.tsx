@@ -3,27 +3,34 @@ import Image from 'next/image';
 import { patchArticleComment } from '@/lib/api/ArticleService';
 import ArticleCommentDropdown from './ArticleCommentDropdown';
 import { useState } from 'react';
-import formatTime from '@/lib/formatTime';
+import formatTime from '@/lib/utils/formatTime';
+import { Comment } from '@/types/type';
 
-export default function ArticleCommentList({ articleComments = [] }) {
-  const [selectedComment, setSelectedComment] = useState(false);
-  const [editingCommentId, setEditingCommentId] = useState('');
-  const [editingContent, setEditingContent] = useState('');
+interface ArticleCommentListProps {
+  articleComments: Comment[];
+}
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+export default function ArticleCommentList({
+  articleComments
+}: ArticleCommentListProps) {
+  const [selectedComment, setSelectedComment] = useState<Comment | null>(null);
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
+  const [editingContent, setEditingContent] = useState<string>('');
 
-  const handleMenuClick = (comment) => {
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+
+  const handleMenuClick = (comment: Comment) => {
     setSelectedComment(comment);
     setDropdownOpen((prev) => !prev);
   };
 
-  const handleEditClick = (comment) => {
+  const handleEditClick = (comment: Comment) => {
     setEditingCommentId(comment.id);
     setEditingContent(comment.content);
     setDropdownOpen(false);
   };
 
-  const handleEdit = async (commentId) => {
+  const handleEdit = async (commentId: number) => {
     try {
       await patchArticleComment(commentId, {
         content: editingContent
@@ -45,7 +52,6 @@ export default function ArticleCommentList({ articleComments = [] }) {
                 {editingCommentId === comment.id ? (
                   <div className={styles.edit}>
                     <textarea
-                      type="text"
                       value={editingContent}
                       onChange={(e) => setEditingContent(e.target.value)}
                     />

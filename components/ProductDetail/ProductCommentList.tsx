@@ -1,29 +1,36 @@
 import styles from './ProductCommentList.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
-import formatTime from '@/lib/formatTime';
+import formatTime from '@/lib/utils/formatTime';
 import { patchProductComment } from '@/lib/api/ProductService';
 import ProductCommentDropdown from './\bProductCommentDropdown';
+import { Comment } from '@/types/type';
 
-export default function ProductCommentList({ productComments = [] }) {
-  const [selectedComment, setSelectedComment] = useState(false);
-  const [editingCommentId, setEditingCommentId] = useState('');
-  const [editingContent, setEditingContent] = useState('');
+interface ProductCommentListProps {
+  productComments: Comment[];
+}
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+export default function ProductCommentList({
+  productComments
+}: ProductCommentListProps) {
+  const [selectedComment, setSelectedComment] = useState<Comment | null>(null);
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
+  const [editingContent, setEditingContent] = useState<string>('');
 
-  const handleMenuClick = (comment) => {
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+
+  const handleMenuClick = (comment: Comment) => {
     setSelectedComment(comment);
     setDropdownOpen((prev) => !prev);
   };
 
-  const handleEditClick = (comment) => {
+  const handleEditClick = (comment: Comment) => {
     setEditingCommentId(comment.id);
     setEditingContent(comment.content);
     setDropdownOpen(false);
   };
 
-  const handleEdit = async (commentId) => {
+  const handleEdit = async (commentId: number) => {
     try {
       await patchProductComment(commentId, {
         content: editingContent
@@ -39,13 +46,12 @@ export default function ProductCommentList({ productComments = [] }) {
     <div>
       {productComments && productComments.length > 0 ? (
         <ul className={styles[`comment-list`]}>
-          {productComments.map((comment) => (
+          {productComments.map((comment: Comment) => (
             <li className={styles.container} key={comment.id}>
               <div className={styles.content}>
                 {editingCommentId === comment.id ? (
                   <div className={styles.edit}>
                     <textarea
-                      type="text"
                       value={editingContent}
                       onChange={(e) => setEditingContent(e.target.value)}
                     />
