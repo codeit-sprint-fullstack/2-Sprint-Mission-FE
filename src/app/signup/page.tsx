@@ -9,11 +9,9 @@ import kakao from "@/../public/assets/kakao.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { signup } from "@/api/SignService";
-import { useRouter } from "next/navigation";
+import ValidationModal from "@/components/ValidationModal";
 
 export default function SignUp() {
-  const router = useRouter();
-
   const [showPw, setShowPw] = useState(false);
   const [showPwChk, setShowPwChk] = useState(false);
 
@@ -26,6 +24,9 @@ export default function SignUp() {
   const [pwChkError, setPwChkError] = useState("");
 
   const [userData, setUserData] = useState();
+
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handlePwClick = () => {
     setShowPw((prev) => !prev);
@@ -81,11 +82,12 @@ export default function SignUp() {
   const handleSignUp = async () => {
     try {
       const response = await signup(email, nick, pw, pwChk);
-      alert("가입 완료되었습니다.");
+      setMessage("가입 완료되었습니다.");
+      setShowModal(true);
       setUserData(response);
-      router.push("/signin");
     } catch (error) {
-      alert("사용 중인 이메일입니다.");
+      setMessage("사용 중인 이메일입니다.");
+      setShowModal(true);
     }
   };
 
@@ -207,6 +209,12 @@ export default function SignUp() {
           </p>
         </div>
       </div>
+      {showModal && (
+        <ValidationModal
+          message={message}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 }

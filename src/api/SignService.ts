@@ -18,7 +18,7 @@ export const signin = async (email: string, password: string) => {
         data: error.response?.data,
       });
     }
-    // throw new Error("Login failed");
+    throw new Error("Login failed");
   }
 };
 

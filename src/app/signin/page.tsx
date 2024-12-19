@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { signin } from "@/api/SignService";
 import { useRouter } from "next/navigation";
+import ValidationModal from "@/components/ValidationModal";
 
 export default function SignIn() {
   const router = useRouter();
@@ -22,6 +23,8 @@ export default function SignIn() {
   const [pwError, setPwError] = useState("");
 
   const [userData, setUserData] = useState();
+
+  const [showModal, setShowModal] = useState(false);
 
   const handleClick = () => {
     setShowPw((prev) => !prev);
@@ -66,7 +69,8 @@ export default function SignIn() {
       setUserData(response);
       router.push("/used-goods-market");
     } catch (error) {
-      alert("비밀번호가 일치하지 않습니다.");
+      // alert("비밀번호가 일치하지 않습니다.");
+      setShowModal(true);
     }
   };
 
@@ -149,6 +153,12 @@ export default function SignIn() {
           </p>
         </div>
       </div>
+      {showModal && (
+        <ValidationModal
+          message="비밀번호가 일치하지 않습니다."
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 }
