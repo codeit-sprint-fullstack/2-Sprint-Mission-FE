@@ -1,12 +1,16 @@
-import { useMutation } from '@tanstack/react-query';
 import styles from '@/styles/Login.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent, KeyboardEventHandler } from 'react';
 import { useRouter } from 'next/router';
+import { useMutation } from '@tanstack/react-query';
+import { useAuth } from '@/lib/contexts/useAuth';
 import useLoginValidate from '@/hooks/useLoginValidate';
 import ErrorModal from '@/components/Common/ErrorModal';
-import { useAuth } from '@/lib/contexts/useAuth';
+
+interface LoginError {
+  message: string;
+}
 
 export default function Login() {
   const router = useRouter();
@@ -15,9 +19,9 @@ export default function Login() {
     password: ''
   });
   const { login } = useAuth();
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>('');
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
@@ -26,26 +30,23 @@ export default function Login() {
     }
   }, [router]);
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (): void => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const isInputEmpty = () => {
+  const isInputEmpty = (): boolean => {
     return values.email.trim() !== '' && values.password.trim() !== '';
   };
 
   const mutation = useMutation({
-    mutationFn: () =>
-      login({
-        email: values.email,
-        password: values.password
-      }),
+    mutationFn: (credentials: { email: string; password: string }) =>
+      login(credentials),
     onSuccess: (data) => {
       if (data) {
         router.push('/items');
       }
     },
-    onError: (err) => {
+    onError: (err: { response: { data: LoginError } }) => {
       if (err.response.data.message === '비밀번호가 일치하지 않습니다.') {
         setModalMessage('비밀번호가 일치하지 않습니다.');
         setIsModalOpen(true);
@@ -58,7 +59,7 @@ export default function Login() {
     }
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
     if (!isInputEmpty() || !validate()) {
@@ -71,13 +72,13 @@ export default function Login() {
     });
   };
 
-  const handleButton = (e) => {
+  const handleButton: KeyboardEventHandler<HTMLButtonElement> = (e) => {
     if (e.key === 'Enter') {
-      handleSubmit(e);
+      handleSubmit(e as unknown as FormEvent<HTMLFormElement>);
     }
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setIsModalOpen(false);
   };
 

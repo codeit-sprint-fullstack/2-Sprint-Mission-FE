@@ -1,13 +1,27 @@
 import { useState } from 'react';
 
-export default function useSignUpValidate(initialValues) {
-  const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+interface InitialValuesProps {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+interface Errors {
+  email?: string;
+  nickname?: string;
+  password?: string;
+  passwordConfirmation?: string;
+}
+
+export default function useSignUpValidate(initialValues: InitialValuesProps) {
+  const [values, setValues] = useState<InitialValuesProps>(initialValues);
+  const [errors, setErrors] = useState<Errors>({});
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  const validate = () => {
+  const validate = (): boolean => {
     let isValid = true;
-    let newError = {};
+    let newError: Errors = {};
 
     if (!values.email || !emailPattern.test(values.email)) {
       isValid = false;
@@ -48,7 +62,7 @@ export default function useSignUpValidate(initialValues) {
     return isValid;
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,
       [e.target.id]: e.target.value

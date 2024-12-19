@@ -1,12 +1,33 @@
-import { useMutation } from '@tanstack/react-query';
 import styles from '@/styles/Signup.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent, KeyboardEventHandler } from 'react';
 import { useRouter } from 'next/router';
+import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { signUp } from '@/lib/api/AuthService';
 import useSignUpValidate from '@/hooks/useSignUpValidate';
 import ErrorModal from '@/components/Common/ErrorModal';
+
+interface SingUpError {
+  message: string;
+}
+
+interface SignUpResponse {
+  accessToken: string;
+}
+
+interface UserData {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+interface SignUpErrorResponse {
+  response: {
+    data: SingUpError;
+  };
+}
 
 export default function SingUp() {
   const router = useRouter();
@@ -16,10 +37,11 @@ export default function SingUp() {
     password: '',
     passwordConfirmation: ''
   });
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isPasswordCheckVisible, setIsPasswordCheckVisible] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isPasswordCheckVisible, setIsPasswordCheckVisible] =
+    useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>('');
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
@@ -28,15 +50,15 @@ export default function SingUp() {
     }
   }, [router]);
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (): void => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const toggleCheckPasswordVisibility = () => {
+  const toggleCheckPasswordVisibility = (): void => {
     setIsPasswordCheckVisible(!isPasswordCheckVisible);
   };
 
-  const isInputEmpty = () => {
+  const isInputEmpty = (): boolean => {
     return (
       values.email.trim() !== '' &&
       values.nickname.trim() !== '' &&
@@ -45,8 +67,12 @@ export default function SingUp() {
     );
   };
 
-  const mutation = useMutation({
-    mutationFn: async (userData) => {
+  const mutation: UseMutationResult<
+    SignUpResponse,
+    SignUpErrorResponse,
+    UserData
+  > = useMutation({
+    mutationFn: async (userData: UserData) => {
       const res = await signUp(userData);
       return res;
     },
@@ -56,17 +82,17 @@ export default function SingUp() {
         router.push('/items');
       }
     },
-    onError: (error) => {
-      if (error.response?.data?.message === '이미 사용중인 이메일입니다.') {
+    onError: (err: SignUpErrorResponse) => {
+      if (err.response?.data?.message === '이미 사용중인 이메일입니다.') {
         setModalMessage('사용 중인 이메일입니다.');
         setIsModalOpen(true);
       } else {
-        console.error('회원가입에 실패하였습니다.', error.response.data);
+        console.error('회원가입에 실패하였습니다.', err.response.data);
       }
     }
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!isInputEmpty() || !validate()) {
@@ -81,9 +107,9 @@ export default function SingUp() {
     });
   };
 
-  const handleButton = (e) => {
+  const handleButton: KeyboardEventHandler<HTMLButtonElement> = (e) => {
     if (e.key === 'Enter') {
-      handleSubmit(e);
+      handleSubmit(e as unknown as FormEvent<HTMLFormElement>);
     }
   };
 
@@ -195,10 +221,10 @@ export default function SingUp() {
 
         <button
           type="submit"
-          disabled={!isInputEmpty() || mutation.isLoading}
+          disabled={!isInputEmpty() || mutation.status === 'pending'}
           onKeyDown={handleButton}
         >
-          {mutation.isLoading ? '가입 중...' : '회원가입'}
+          {mutation.status === 'pending' ? '가입 중...' : '회원가입'}
         </button>
       </form>
 
