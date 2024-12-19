@@ -2,8 +2,26 @@ import styles from './FileInput.module.css';
 import Image from 'next/image';
 import x from '@/public/images/ic_X.png';
 import addFile from '@/public/images/ic_plus@2x-1.png';
+import { ChangeEvent, MouseEvent, ReactNode } from 'react';
 
-export default function FileInput({ onChange, imagePreviews, removeImage }) {
+interface FileInputProps {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  imagePreviews: string[];
+  removeImage: (index: number) => void;
+  children?: ReactNode;
+}
+
+export default function FileInput({
+  onChange,
+  imagePreviews,
+  removeImage
+}: FileInputProps) {
+  const handleAddImage = (e: MouseEvent<HTMLDivElement>) => {
+    const inputElement = document.getElementById('images') as HTMLInputElement;
+    if (inputElement) {
+      inputElement.click();
+    }
+  };
   return (
     <div className={styles.group}>
       <label htmlFor="images">상품 이미지</label>
@@ -21,7 +39,7 @@ export default function FileInput({ onChange, imagePreviews, removeImage }) {
             src={addFile}
             width={48}
             height={48}
-            onClick={() => document.getElementById('images').click()}
+            onClick={handleAddImage}
             alt="파일 추가"
           />
           <p>이미지 등록</p>

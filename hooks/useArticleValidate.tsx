@@ -1,12 +1,24 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-export default function useArticleValidate(initialValues) {
-  const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+interface InitialValuesProps {
+  title: string;
+  content: string;
+  image: string;
+}
 
-  const validate = () => {
+interface Errors {
+  title?: string;
+  content?: string;
+  image?: string;
+}
+
+export default function useArticleValidate(initialValues: InitialValuesProps) {
+  const [values, setValues] = useState<InitialValuesProps>(initialValues);
+  const [errors, setErrors] = useState<Errors>({});
+
+  const validate = (): boolean => {
     let isValid = true;
-    let newError = {};
+    let newError: Errors = {};
 
     if (!values.title || values.title.length < 1 || values.title.length > 50) {
       isValid = false;
@@ -31,7 +43,9 @@ export default function useArticleValidate(initialValues) {
     return isValid;
   };
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setValues({
       ...values,
       [e.target.id]: e.target.value

@@ -1,29 +1,38 @@
 import styles from '@/styles/ProductRegister.module.css';
 import { createProduct } from '@/lib/api/ProductService';
 import { uploadImages } from '@/lib/api/ImageService';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import useProductValidate from '@/hooks/useProductValidate';
 import ProductTags from '@/components/ProductDetail/ProductTags';
 import FileInput from '@/components/Common/FileInput';
 
+interface ProductData {
+  name: string;
+  description: string;
+  price: number;
+  images: string[];
+  tags: string[];
+}
+
 export default function Register() {
   const router = useRouter();
-  const [imageFiles, setImageFiles] = useState([]);
-  const [imagePreviews, setImagePreviews] = useState([]);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
-  const { values, errors, handleChange, validate } = useProductValidate({
-    name: '',
-    description: '',
-    price: '',
-    images: []
-  });
+  const { values, setValues, errors, handleChange, validate } =
+    useProductValidate({
+      name: '',
+      description: '',
+      price: '',
+      images: []
+    });
 
-  const [tags, setTags] = useState([]);
-  const [error, setError] = useState('');
+  const [tags, setTags] = useState<string[]>([]);
+  const [error, setError] = useState<string>('');
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
 
     const validFiles = files.filter((file) => {
       const isValidSize = file.size <= 5 * 1024 * 1024;
@@ -50,30 +59,26 @@ export default function Register() {
     setImagePreviews([...imagePreviews, ...newPreviews]);
     setImageFiles([...imageFiles, ...files]);
 
-    handleChange({
-      target: {
-        id: 'images',
-        value: [...values.images, ...newPreviews]
-      }
+    setValues({
+      ...values,
+      images: [...values.images, ...newPreviews]
     });
   };
 
-  const removeImage = (index) => {
+  const removeImage = (index: number) => {
     const newFiles = imageFiles.filter((_, i) => i !== index);
     const newPreviews = imagePreviews.filter((_, i) => i !== index);
 
     setImageFiles(newFiles);
     setImagePreviews(newPreviews);
 
-    handleChange({
-      target: {
-        id: 'images',
-        value: newPreviews
-      }
+    setValues({
+      ...values,
+      images: newPreviews
     });
   };
 
-  const isInputEmpty = () => {
+  const isInputEmpty = (): boolean => {
     return (
       values.name.trim() !== '' &&
       values.description.trim() !== '' &&
@@ -81,7 +86,7 @@ export default function Register() {
     );
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validate()) {
@@ -96,7 +101,7 @@ export default function Register() {
 
       const uploadedImages = await uploadImages(imageFormData);
 
-      const productData = {
+      const productData: ProductData = {
         name: values.name,
         description: values.description,
         price: parseInt(values.price),
@@ -108,7 +113,7 @@ export default function Register() {
 
       await createProduct(productData);
       return router.push(`/items`);
-    } catch (err) {
+    } catch (err: any) {
       console.error('상품 등록에 실패하였습니다.', err.message);
       setError('상품 등록에 실패하였습니다.');
     }
@@ -159,7 +164,7 @@ export default function Register() {
         <input
           type="text"
           id="price"
-          value={values.group}
+          value={values.price}
           onChange={handleChange}
           placeholder="판매 가격을 입력해주세요"
           style={{ border: errors.price ? '0.1rem solid red' : 'none' }}
@@ -169,7 +174,6 @@ export default function Register() {
       <div className={styles.group}>
         <label htmlFor="tags">태그</label>
         <ProductTags tags={tags} setTags={setTags} />
-        {errors.tags && <div className={styles.error}>{errors.tags}</div>}
       </div>
       {error && <div className={styles.error}>{error}</div>}
     </form>

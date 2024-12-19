@@ -1,26 +1,33 @@
 import styles from '@/styles/ArticleRegister.module.css';
 import { createArticle } from '@/lib/api/ArticleService';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import useArticleValidate from '@/hooks/useArticleValidate';
 import { uploadImages } from '@/lib/api/ImageService';
 import FileInput from '@/components/Common/FileInput';
 
+interface ArticleData {
+  title: string;
+  content: string;
+  image: string;
+}
+
 export default function Register() {
   const router = useRouter();
-  const [imageFiles, setImageFiles] = useState([]);
-  const [imagePreviews, setImagePreviews] = useState([]);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
-  const { values, errors, handleChange, validate } = useArticleValidate({
-    title: '',
-    content: '',
-    image: []
-  });
+  const { values, setValues, errors, handleChange, validate } =
+    useArticleValidate({
+      title: '',
+      content: '',
+      image: ''
+    });
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState<string>('');
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
 
     const validFiles = files.filter((file) => {
       const isValidSize = file.size <= 5 * 1024 * 1024;
@@ -44,37 +51,30 @@ export default function Register() {
     }
 
     const newPreviews = files.map((file) => URL.createObjectURL(file));
-    setImagePreviews([...imagePreviews, ...newPreviews]);
-    setImageFiles([...imageFiles, ...files]);
-
-    handleChange({
-      target: {
-        id: 'image',
-        value: [...values.image, ...newPreviews]
-      }
-    });
-  };
-
-  const removeImage = (index) => {
-    const newFiles = imageFiles.filter((_, i) => i !== index);
-    const newPreviews = imagePreviews.filter((_, i) => i !== index);
-
-    setImageFiles(newFiles);
     setImagePreviews(newPreviews);
+    setImageFiles(validFiles);
 
-    handleChange({
-      target: {
-        id: 'image',
-        value: newPreviews
-      }
-    });
+    setValues((prevValues) => ({
+      ...prevValues,
+      image: newPreviews[0]
+    }));
   };
 
-  const isInputEmpty = () => {
+  const removeImage = (index: number) => {
+    setImageFiles([]);
+    setImagePreviews([]);
+
+    setValues((prevValues) => ({
+      ...prevValues,
+      image: ''
+    }));
+  };
+
+  const isInputEmpty = (): boolean => {
     return values.title.trim() !== '' && values.content.trim() !== '';
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validate()) {
@@ -90,7 +90,7 @@ export default function Register() {
       const uploadedImages = await uploadImages(imageFormData);
 
       const imageUrl = uploadedImages.url;
-      const articleData = {
+      const articleData: ArticleData = {
         title: values.title,
         content: values.content,
         image: imageUrl
@@ -128,7 +128,6 @@ export default function Register() {
         <div className={styles.group}>
           <label htmlFor="content">* 내용</label>
           <textarea
-            type="text"
             id="content"
             value={values.content}
             onChange={handleChange}
