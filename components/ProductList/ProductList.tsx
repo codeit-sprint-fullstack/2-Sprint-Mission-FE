@@ -1,8 +1,9 @@
 import styles from './ProductList.module.css';
 import Link from 'next/link';
 import ProductCard from './ProductCard';
+import { ProductType } from '@/types/type';
 
-export default function ProductList({ products = [] }) {
+export default function ProductList({ products }: { products: ProductType[] }) {
   return (
     <div className={styles.products}>
       {products.map((product) => (

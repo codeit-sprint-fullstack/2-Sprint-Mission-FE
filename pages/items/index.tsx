@@ -8,6 +8,7 @@ import Pagination from '@/components/Common/Pagination';
 import { useResize } from '@/lib/contexts/useResize';
 import Spinner from '@/components/Common/Spinner';
 import ErrorMessage from '@/components/Common/ErrorMessage';
+import { ProductType } from '@/types/type';
 
 export async function getServerSideProps() {
   try {
@@ -36,30 +37,41 @@ export async function getServerSideProps() {
   }
 }
 
+interface ProductProps {
+  products: ProductType[];
+  bestProducts: ProductType[];
+  error: string;
+}
+
 export default function Product({
   products,
   bestProducts: initialBestProducts,
   error: serverError
-}) {
-  const [bestProducts] = useState(initialBestProducts);
-  const [filteredProducts, setFilteredProducts] = useState(products);
+}: ProductProps) {
+  const [bestProducts] = useState<ProductType[]>(initialBestProducts);
+  const [filteredProducts, setFilteredProducts] =
+    useState<ProductType[]>(products);
 
-  const { bestProduct, defaultProduct } = useResize();
-  const pageSize = defaultProduct;
-  const bestPageSize = bestProduct;
+  const resizeContext = useResize();
+  if (!resizeContext) return <div>Error: Resize context is not available!</div>;
+  const { bestProduct, defaultProduct } = resizeContext;
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [keyword, setKeyword] = useState('');
-  const [sortOrder, setSortOrder] = useState('recent');
+  const pageSize: number = defaultProduct;
+  const bestPageSize: number = bestProduct;
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [keyword, setKeyword] = useState<string>('');
+  const [sortOrder, setSortOrder] = useState<string>('recent');
 
   const [loading, setLoading] = useState(true);
 
-  const sortProducts = (products, sortOrder) => {
+  const sortProducts = (products: ProductType[], sortOrder: string) => {
     let sortedProducts = [...products];
 
     if (sortOrder === 'recent') {
       sortedProducts.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
     } else if (sortOrder === 'favorite') {
       sortedProducts.sort((a, b) => b.favoriteCount - a.favoriteCount);
@@ -79,7 +91,7 @@ export default function Product({
     setFilteredProducts(sortedProducts);
   }, [sortOrder, products]);
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       const filtered = products.filter((product) =>
         product.name.toLowerCase().includes(keyword.toLowerCase())

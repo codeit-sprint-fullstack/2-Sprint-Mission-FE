@@ -40,7 +40,7 @@ export interface ArticleListType {
   list: ArticleType[];
 }
 
-export interface Product {
+export interface ProductType {
   id: number;
   name: string;
   description: string;

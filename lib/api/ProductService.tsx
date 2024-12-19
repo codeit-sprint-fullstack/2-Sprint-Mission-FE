@@ -1,7 +1,14 @@
+import { AxiosError } from 'axios';
 import { get, post, patch, remove } from './axios';
+import { QueryParams, ProductData, Comment } from '@/types/type';
 
 // 상품 목록 API
-export async function getProductList({ page, pageSize, orderBy, keyword }) {
+export async function getProductList({
+  page,
+  pageSize,
+  orderBy,
+  keyword
+}: QueryParams) {
   const res = await get('/products', {
     page,
     pageSize,
@@ -19,62 +26,73 @@ export async function getProductCount() {
   return res.data.totalCount;
 }
 
-export async function getProduct(productId) {
+export async function getProduct(productId: number) {
   const res = await get(`/products/${productId}`);
   return res.data;
 }
 
-export async function createProduct(productData) {
+export async function createProduct(productData: ProductData) {
   const res = await post('/products', productData);
   return res.data;
 }
 
-export async function patchProduct(productId, productData) {
+export async function patchProduct(
+  productId: number,
+  productData: ProductData
+) {
   const res = await patch(`/products/${productId}`, productData);
   return res.data;
 }
 
-export async function deleteProduct(productId) {
+export async function deleteProduct(productId: number) {
   const res = await remove(`/products/${productId}`);
   return res.data;
 }
 
 // 상품 상세 댓글 API
-export async function getProductCommentList(productId) {
+export async function getProductCommentList(productId: number) {
   const res = await get(`/products/${productId}/comments`, { limit: 10 });
   return res.data;
 }
 
-export async function createProductComment(productId, comment) {
+export async function createProductComment(
+  productId: number,
+  comment: Comment
+) {
   const res = await post(`/products/${productId}/comments`, comment);
   return res.data;
 }
 
-export async function patchProductComment(commentId, comment) {
+export async function patchProductComment(commentId: number, comment: Comment) {
   try {
     const res = await patch(`/comments/${commentId}`, comment);
     return res.data;
   } catch (error) {
-    console.error(
-      '댓글 수정 중 오류 발생:',
-      error.response ? error.response.data : error.message
-    );
-    throw error;
+    if (error instanceof AxiosError) {
+      console.error(
+        '댓글 수정 중 오류 발생:',
+        error.response ? error.response.data : error.message
+      );
+      throw error;
+    } else {
+      console.error('알 수 없는 오류 발생:', error);
+      throw error;
+    }
   }
 }
 
-export async function deleteProductComment(commentId) {
+export async function deleteProductComment(commentId: number) {
   const res = await remove(`/comments/${commentId}`);
   return res.data;
 }
 
 // 상품 좋아요 API
-export async function createProductFavorite(productId) {
-  const res = await post(`/products/${productId}/favorite`);
+export async function createProductFavorite(productId: number) {
+  const res = await post(`/products/${productId}/favorite`, {});
   return res.data;
 }
 
-export async function deleteProductFavorite(productId) {
+export async function deleteProductFavorite(productId: number) {
   const res = await remove(`/products/${productId}/favorite`);
   return res.data;
 }

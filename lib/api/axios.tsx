@@ -1,4 +1,8 @@
-import axios from 'axios';
+import axios, {
+  InternalAxiosRequestConfig,
+  AxiosResponse,
+  AxiosError
+} from 'axios';
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -8,24 +12,27 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  (config) => {
+  (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     if (typeof window !== 'undefined') {
       const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
+        config.headers = config.headers || {};
         config.headers.Authorization = `Bearer ${accessToken}`;
       }
     }
     return config;
   },
-  (error) => {
+  (error: AxiosError) => {
     return Promise.reject(error);
   }
 );
 
 instance.interceptors.response.use(
-  (res) => res,
-  async (err) => {
-    const originalRequest = err.config;
+  (res: AxiosResponse) => res,
+  async (err: AxiosError) => {
+    const originalRequest = err.config as InternalAxiosRequestConfig & {
+      _retry?: boolean;
+    };
 
     if (err.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
@@ -56,7 +63,11 @@ instance.interceptors.response.use(
     // 상태 코드에 따른 에러 처리
     const status = err.response?.status;
     const message =
-      err.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      err.response?.data &&
+      typeof err.response.data === 'object' &&
+      'message' in err.response.data
+        ? (err.response.data as { message: string }).message
+        : '알 수 없는 오류가 발생했습니다.';
 
     switch (status) {
       case 400:
@@ -85,38 +96,46 @@ instance.interceptors.response.use(
   }
 );
 
-export async function get(url, params = {}) {
+export async function get(url: string, params = {}) {
   try {
     return await instance.get(url, { params });
   } catch (error) {
-    console.error(`GET 요청 에러: ${error.message}`);
+    console.error(
+      `GET 요청 에러: ${error instanceof Error ? error.message : error}`
+    );
     throw error;
   }
 }
 
-export async function post(url, body, config = {}) {
+export async function post<T>(url: string, body: T, config = {}) {
   try {
     return await instance.post(url, body, config);
   } catch (error) {
-    console.error(`POST 요청 에러: ${error.message}`);
+    console.error(
+      `POST 요청 에러: ${error instanceof Error ? error.message : error}`
+    );
     throw error;
   }
 }
 
-export async function patch(url, body) {
+export async function patch<T>(url: string, body: T) {
   try {
     return await instance.patch(url, body);
   } catch (error) {
-    console.error(`PATCH 요청 에러: ${error.message}`);
+    console.error(
+      `PATCH 요청 에러: ${error instanceof Error ? error.message : error}`
+    );
     throw error;
   }
 }
 
-export async function remove(url) {
+export async function remove(url: string) {
   try {
     return await instance.delete(url);
   } catch (error) {
-    console.error(`DELETE 요청 에러: ${error.message}`);
+    console.error(
+      `DELETE 요청 에러: ${error instanceof Error ? error.message : error}`
+    );
     throw error;
   }
 }

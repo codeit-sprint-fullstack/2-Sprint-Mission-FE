@@ -1,9 +1,10 @@
 import styles from './ProductCard.module.css';
 import Image from 'next/image';
-import formatPrice from '@/lib/formatPrice';
+import formatPrice from '@/lib/utils/formatPrice';
 import { useState } from 'react';
+import { ProductType } from '@/types/type';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product }: { product: ProductType }) {
   const [imageSrc, setImageSrc] = useState(
     product?.images?.[0] || '/images/Property 1=md-1.png'
   );

@@ -1,8 +1,16 @@
 import styles from './BestProductList.module.css';
 import ProductCard from './ProductCard';
 import Link from 'next/link';
+import { ProductType } from '@/types/type';
 
-export default function BestProductList({ bestProducts = [], bestPageSize }) {
+interface BestProductListProps {
+  bestProducts: ProductType[];
+  bestPageSize: number;
+}
+export default function BestProductList({
+  bestProducts,
+  bestPageSize
+}: BestProductListProps) {
   return (
     <div className={styles.wrapper}>
       <h1>베스트 상품</h1>
