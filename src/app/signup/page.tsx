@@ -8,8 +8,12 @@ import google from "@/../public/assets/google.svg";
 import kakao from "@/../public/assets/kakao.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { signup } from "@/api/SignService";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
+  const router = useRouter();
+
   const [showPw, setShowPw] = useState(false);
   const [showPwChk, setShowPwChk] = useState(false);
 
@@ -20,6 +24,8 @@ export default function SignUp() {
   const [pwError, setPwError] = useState("");
   const [pwChk, setPwChk] = useState("");
   const [pwChkError, setPwChkError] = useState("");
+
+  const [userData, setUserData] = useState();
 
   const handlePwClick = () => {
     setShowPw((prev) => !prev);
@@ -71,6 +77,17 @@ export default function SignUp() {
   useEffect(() => {
     validatePwChk(pwChk);
   }, [pwChk]);
+
+  const handleSignUp = async () => {
+    try {
+      const response = await signup(email, nick, pw, pwChk);
+      alert("가입 완료되었습니다.");
+      setUserData(response);
+      router.push("/signin");
+    } catch (error) {
+      alert("사용 중인 이메일입니다.");
+    }
+  };
 
   return (
     <div className="w-full flex flex-col gap-[4rem] items-center justify-center h-[100vh]">
@@ -168,6 +185,7 @@ export default function SignUp() {
               ? "bg-[#3692FF]"
               : "bg-[#9CA3AF]"
           }`}
+          onClick={handleSignUp}
         >
           회원가입
         </button>

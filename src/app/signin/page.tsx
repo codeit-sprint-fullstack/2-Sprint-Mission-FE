@@ -9,8 +9,11 @@ import kakao from "@/../public/assets/kakao.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { signin } from "@/api/SignService";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
+  const router = useRouter();
+
   const [showPw, setShowPw] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -54,8 +57,17 @@ export default function SignIn() {
   }, [pw]);
 
   const handleSignIn = async () => {
-    const data = await signin(email, pw);
-    setUserData(data);
+    try {
+      const response = await signin(email, pw);
+      console.log(response);
+      if (!response || !response.accessToken || !response.user) {
+        throw new Error("로그인 응답 데이터가 올바르지 않습니다.");
+      }
+      setUserData(response);
+      router.push("/used-goods-market");
+    } catch (error) {
+      alert("비밀번호가 일치하지 않습니다.");
+    }
   };
 
   return (

@@ -6,6 +6,7 @@ import home1 from "@/../public/assets/Img_home_01.svg";
 import home2 from "@/../public/assets/Img_home_02.svg";
 import home3 from "@/../public/assets/Img_home_03.svg";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,9 +17,11 @@ export default function Home() {
             <p className="font-bold text-[4rem] leading-[5.6rem] text-[#374151]">
               일상의 모든 물건을 <br /> 거래해 보세요
             </p>
-            <button className="h-[5.6rem] rounded-[4rem] py-[1.6rem] px-[12.4rem] gap-[1rem] bg-[#3692FF] font-semibold text-[2rem] leading-[3.2rem] flex items-center text-[#F9FAFB]">
-              구경하러 가기
-            </button>
+            <Link href="used-goods-market">
+              <button className="h-[5.6rem] rounded-[4rem] py-[1.6rem] px-[12.4rem] gap-[1rem] bg-[#3692FF] font-semibold text-[2rem] leading-[3.2rem] flex items-center text-[#F9FAFB]">
+                구경하러 가기
+              </button>
+            </Link>
           </div>
           <Image src={home_top} alt="home-top" width={746} height={340} />
         </div>
