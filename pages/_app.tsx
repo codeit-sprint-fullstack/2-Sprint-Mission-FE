@@ -8,6 +8,7 @@ import localFont from 'next/font/local';
 import { useRouter } from 'next/router';
 import { AuthProvider } from '@/lib/contexts/useAuth';
 import { ResizeProvider } from '@/lib/contexts/useResize';
+import { AppProps } from 'next/app';
 
 const pretendard = localFont({
   src: '../public/fonts/PretendardVariable.woff2',
@@ -17,7 +18,7 @@ const pretendard = localFont({
 
 const queryClient = new QueryClient();
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   const isLandingPage = router.pathname === '/';

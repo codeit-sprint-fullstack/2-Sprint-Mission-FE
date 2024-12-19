@@ -1,24 +1,39 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  ReactNode
+} from 'react';
 import { signIn } from '../api/AuthService';
-import { getUser } from '../api/UserService';
+import { getUser, User } from '../api/UserService';
 
-const AuthContext = createContext({
-  user: null,
-  login: () => {},
-  logout: () => {},
-  updateMe: () => {}
-});
+interface AuthContextType {
+  user: User | null;
+  login: (credentials: {
+    email: string;
+    password: string;
+  }) => Promise<User | void>;
+  logout: () => void;
+  updateMe: () => Promise<User | void>;
+}
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-  async function getMe() {
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<User | null>(null);
+
+  async function getMe(): Promise<User | void> {
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
       return;
     }
     try {
-      const res = await getUser(accessToken);
+      const res = await getUser();
       setUser(res);
       return res;
     } catch (err) {
@@ -27,7 +42,13 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function login({ email, password }) {
+  async function login({
+    email,
+    password
+  }: {
+    email: string;
+    password: string;
+  }): Promise<User | void> {
     try {
       const { accessToken, refreshToken } = await signIn({ email, password });
 
@@ -56,7 +77,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, updateMe: getMe }}>
       {children}
     </AuthContext.Provider>
   );

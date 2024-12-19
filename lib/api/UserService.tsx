@@ -1,11 +1,19 @@
 import { get, patch } from './axios';
 
-export async function getUser() {
+export interface User {
+  id: number;
+  nickname: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export async function getUser(): Promise<User> {
   const res = await get('/users/me');
   return res.data;
 }
 
-export async function patchUserImage({ image }) {
+export async function patchUserImage({ image }: { image: string }) {
   const res = await patch('/users/me', { image });
   return res.data;
 }
@@ -14,6 +22,10 @@ export async function patchUserPassword({
   passwordConfirmation,
   password,
   currentPassword
+}: {
+  passwordConfirmation: string;
+  password: string;
+  currentPassword: string;
 }) {
   const res = await patch('/users/me', {
     passwordConfirmation,
