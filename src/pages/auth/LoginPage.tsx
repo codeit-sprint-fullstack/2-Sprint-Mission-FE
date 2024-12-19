@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import {
   AuthContainer,
   LogoHomeLink,
@@ -15,22 +15,27 @@ import PasswordInput from "./components/PasswordInput";
 import { useAuth } from "../../contexts/AuthContext";
 import SimpleModal from "../../components/UI/SimpleModal";
 
+interface LoginFormInputs {
+  email: string;
+  password: string;
+}
+
 function LoginPage() {
   const { user, signin } = useAuth();
   const navigate = useNavigate();
   const {
-    register, // 각 입력 필드를 폼에 등록하고 유효성 검사 규칙을 설정하는 함수
-    handleSubmit, // 폼 제출을 처리하는 함수
-    trigger, // 폼의 유효성 검사를 트리거하는 함수
-    formState: { errors, isValid }, // 폼의 상태를 나타내는 객체
-  } = useForm({ mode: "onBlur" });
+    register,
+    handleSubmit,
+    trigger,
+    formState: { errors, isValid },
+  } = useForm<LoginFormInputs>({ mode: "onBlur" });
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = async (data) => {
+  const onSubmit: SubmitHandler<LoginFormInputs>= async (data) => {
     try {
       await signin(data);
       navigate("/items");
-    } catch (error) {
+    } catch (error: any) {
       if (error.message) {
         setErrorMessage(error.message);
       }
@@ -53,7 +58,11 @@ function LoginPage() {
             id="email"
             label="이메일"
             placeholder="이메일을 입력해 주세요"
-            error={errors.email?.message}
+            error={
+              typeof errors.email?.message === "string"
+                ? errors.email.message
+                : undefined
+            }
             register={register("email", {
               required: "이메일을 입력해 주세요",
               pattern: {
@@ -67,7 +76,9 @@ function LoginPage() {
             id="password"
             label="비밀번호"
             placeholder="비밀번호를 입력해 주세요"
-            error={errors.password?.message}
+            error={typeof errors.password?.message === "string"
+              ? errors.password.message
+              : undefined}
             register={register("password", {
               required: "비밀번호를 입력해 주세요",
               minLength: {

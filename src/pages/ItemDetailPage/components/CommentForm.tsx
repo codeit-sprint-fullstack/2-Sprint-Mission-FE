@@ -32,7 +32,7 @@ function CommentForm({
     formState: { isValid },
   } = useForm({ mode: "onChange", defaultValues: { content: defaultValue } });
 
-  const enhancedOnSubmit = async ({ content }) => {
+  const enhancedOnSubmit = async ({ content }: {content: string}) => {
     await onSubmit(content);
     reset({ content: defaultValue });
   };

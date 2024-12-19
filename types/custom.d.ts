@@ -4,3 +4,10 @@ declare module "*.svg" {
     export { ReactComponent };
     export default string;
   }
+
+declare module "*.png" {
+  import React from "react";
+    const ReactComponent: React.FunctionComponent<React.PNGProps<PNGPNGElement>>;
+    export { ReactComponent };
+    export default string;
+}

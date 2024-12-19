@@ -2,6 +2,12 @@ import styled from "styled-components";
 import googleLogo from "../../../assets/images/social/google-logo.png";
 import kakaoLogo from "../../../assets/images/social/kakao-logo.png";
 
+interface SocialLoginLinkProps {
+  name: string;
+  url: string;
+  logoSrc: string;
+}
+
 const Container = styled.div`
   background-color: #e6f2ff;
   border-radius: 8px;
@@ -27,7 +33,7 @@ function SocialLoginLink({
   name,
   url,
   logoSrc,
-}) {
+}: SocialLoginLinkProps) {
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" aria-label={name}>
       <img src={logoSrc} alt={name} width="42" />

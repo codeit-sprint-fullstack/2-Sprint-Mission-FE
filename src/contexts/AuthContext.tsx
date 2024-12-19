@@ -5,7 +5,7 @@ import { signIn as requestSignIn, signUp as requestSignUp, getMe } from "../api/
 import { clearTokens, setTokens } from "../utils/authToken";
 
 interface User {
-  id: string;
+  id: number;
   email: string;
   nickname: string;
 }
@@ -23,14 +23,14 @@ interface SignInParams {
 }
 
 interface AuthContextType {
-  user: User | null;
+  user: User | undefined;
   signup: (params: SignUpParams) => Promise<void>;
   signin: (params: SignInParams) => Promise<void>;
   signout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
-  user: null,
+  user: undefined,
   signup: async ({ email, nickname, password, passwordConfirmation }) => { },
   signin: async ({ email, password }) => { },
   signout: () => { },
@@ -49,17 +49,18 @@ function useTokensFromParams() {
     const searchParams = new URLSearchParams(location.search);
     
     if (searchParams.has('at') && searchParams.has('rt')) {
-      setTokens({ accessToken: searchParams.get('at'), refreshToken: searchParams.get('rt') });
+      setTokens({ accessToken: searchParams.get('at') as string, refreshToken: searchParams.get('rt') as string});
       const newPath = location.pathname; // 현재 경로에서 쿼리 파라미터를 제외한 경로만 사용
       navigate(newPath, { replace: true }); // 새 경로로 이동
     }
   }, [location.pathname, location.search, navigate]);
 }
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: {children: React.ReactNode}) => {
   useTokensFromParams();
 
   const queryClient = useQueryClient();
+  
   const { data: user } = useQuery({
     queryKey: ["me"],
     queryFn: async () => {
@@ -69,8 +70,9 @@ export const AuthProvider = ({ children }) => {
     retry: 2,
   });
 
+
   const signup = useCallback(
-    async ({ email, nickname, password, passwordConfirmation }) => {
+    async ({ email, nickname, password, passwordConfirmation }: SignUpParams) => {
       await requestSignUp({
         email,
         nickname,
@@ -85,7 +87,7 @@ export const AuthProvider = ({ children }) => {
   );
 
   const signin = useCallback(
-    async ({ email, password }) => {
+    async ({ email, password }: SignInParams) => {
       await requestSignIn({
         email,
         password,

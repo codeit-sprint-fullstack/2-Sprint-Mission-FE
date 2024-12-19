@@ -9,7 +9,7 @@ interface signupParams {
 
 interface User {
   id: number;
-  email?: string;
+  email: string;
   nickname: string;
 }
 

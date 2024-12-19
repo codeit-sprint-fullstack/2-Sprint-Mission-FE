@@ -3,16 +3,18 @@ import { inputStyle } from "./InputItem";
 import Label from "./Label";
 import ErrorMessage from "./ErrorMessage";
 
+
 interface InputFieldProps {
   $error?: boolean;
   id: string;
 }
 
-interface TextareaItemProps {
+interface TextareaItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label: string;
   error?: string;
-  register: Record<string, any>;
+  register?: any;
+  placeholder: string;
 }
 
 const Textarea = styled.textarea<InputFieldProps>`

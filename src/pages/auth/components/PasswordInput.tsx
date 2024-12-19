@@ -6,6 +6,13 @@ import ErrorMessage from "../../../components/UI/ErrorMessage";
 import eyeInvisibleIcon from "../../../assets/images/icons/eye-invisible.svg";
 import eyeVisibleIcon from "../../../assets/images/icons/eye-visible.svg";
 
+interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  id: string;
+  label: string;
+  error?: string;
+  register: Record<string, any>
+}
+
 const InputWrapper = styled.div`
   position: relative;
   display: flex;
@@ -23,7 +30,7 @@ function PasswordInput({
   error,
   register = {},
   ...inputProps
-}) {
+}: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
   const type = showPassword ? "text" : "password";
 

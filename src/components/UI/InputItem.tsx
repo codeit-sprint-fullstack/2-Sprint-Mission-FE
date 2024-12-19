@@ -2,11 +2,12 @@ import React from "react";
 import styled, { css } from "styled-components";
 import ErrorMessage from "./ErrorMessage";
 import Label from "./Label";
+import { FieldError } from "react-hook-form";
 
 interface InputItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label?: string;
-  error?: string;
+  error?: string | FieldError | undefined;
   register?: Record<string, any>;
 }
 
@@ -46,6 +47,8 @@ function InputItem({
   register = {},
   ...inputProps
 }: InputItemProps) {
+  const errorMessage = typeof error === "string" ? error : error?.message;
+
   return (
     <div>
       {label && <Label htmlFor={id}>{label}</Label>}
@@ -55,7 +58,7 @@ function InputItem({
         {...inputProps}
         {...register}
       />
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {error && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </div>
   );
 }

@@ -13,6 +13,12 @@ import TextareaItem from "../../components/UI/TextareaItem";
 import Button from "../../components/UI/Button";
 import ImageUpload from "../../components/UI/ImageUpload";
 
+interface Errors {
+  name?: string;
+  description?: string;
+  price?: string;
+}
+
 const TitleSection = styled(FlexContainer)`
   margin-bottom: 16px;
 `;
@@ -31,12 +37,12 @@ function AddItemPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [tags, setTags] = useState([]);
-  const [images, setImages] = useState([]);
-  const [errors, setErrors] = useState({});
+  const [tags, setTags] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([]);
+  const [errors, setErrors] = useState<Errors>({});
   const navigate = useNavigate();
 
-  const validateName = (value) => {
+  const validateName = (value: string) => {
     if (value.length < 2 || value.length > 10) {
       setErrors((prev) => ({
         ...prev,
@@ -47,7 +53,7 @@ function AddItemPage() {
     }
   };
 
-  const validateDescription = (value) => {
+  const validateDescription = (value: string) => {
     if (value.length < 10) {
       setErrors((prev) => ({
         ...prev,
@@ -58,17 +64,18 @@ function AddItemPage() {
     }
   };
 
-  const validatePrice = (value) => {
+  const validatePrice = (value: string) => {
     if (!/^\d+$/.test(value)) {
       setErrors((prev) => ({ ...prev, price: "숫자로 입력해주세요." }));
     } else {
       setErrors((prev) => ({ ...prev, price: undefined }));
     }
-  };
-  const handleSubmit = async (e) => {
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (Object.keys(errors).some((key) => errors[key])) {
+    if (Object.keys(errors).some((key) => errors[key as keyof Errors])) {
       return;
     }
 
