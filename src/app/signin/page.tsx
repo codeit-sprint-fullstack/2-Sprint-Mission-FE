@@ -8,6 +8,7 @@ import google from "@/../public/assets/google.svg";
 import kakao from "@/../public/assets/kakao.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { signin } from "@/api/SignService";
 
 export default function SignIn() {
   const [showPw, setShowPw] = useState(false);
@@ -16,6 +17,8 @@ export default function SignIn() {
   const [emailError, setEmailError] = useState("");
   const [pw, setPw] = useState("");
   const [pwError, setPwError] = useState("");
+
+  const [userData, setUserData] = useState();
 
   const handleClick = () => {
     setShowPw((prev) => !prev);
@@ -26,7 +29,7 @@ export default function SignIn() {
     if (!email) {
       setEmailError("");
     } else if (!pattern.test(email)) {
-      setEmailError("유효한 이메일 주소를 입력해주세요.");
+      setEmailError("잘못된 이메일입니다.");
     } else {
       setEmailError("");
     }
@@ -49,6 +52,11 @@ export default function SignIn() {
   useEffect(() => {
     validatePw(pw);
   }, [pw]);
+
+  const handleSignIn = async () => {
+    const data = await signin(email, pw);
+    setUserData(data);
+  };
 
   return (
     <div className="w-full flex flex-col gap-[4rem] items-center justify-center h-[100vh]">
@@ -102,12 +110,12 @@ export default function SignIn() {
         </div>
         <button
           type="submit"
-          disabled={!emailError && !pwError}
           className={`w-full h-[5.6rem] rounded-[4rem] py-[1.6rem] px-[12.4rem] gap-[1rem] font-semibold text-[2rem] leading-[3.2rem] items-center text-[#F3F4F6] flex justify-center ${
             pw && email && !emailError && !pwError
               ? "bg-[#3692FF]"
               : "bg-[#9CA3AF]"
           }`}
+          onClick={handleSignIn}
         >
           로그인
         </button>
