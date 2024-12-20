@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_container,
+.signup_container {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  max-width: 640px;
+  align-items: center;
+}
+
+.login_container {
+  padding-top: 200px;
+}
+
+.form_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+}
+.input {
+  margin: 20px 0;
+  padding: 16px 0;
+  width: 100%;
+  border: none;
+  background-color: #f3f4f6;
+  border-radius: 10px;
+  outline-color: #3692ff;
+  text-indent: 20px;
+}
+
+.easy_login_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f2ff;
+  border-radius: 10px;
+  width: 100%;
+  padding: 15px 0px;
+  margin-bottom: 20px;
+}
+
+.social {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.input_password_container {
+  position: relative;
+}
+
+.password_active_toggle {
+  position: absolute;
+  right: 15px;
+  bottom: 35px;
+}
+
+.signup_btn,
+.login_btn {
+  color: #f3f4f6;
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+}
+
+.btn_disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn_active {
+  background-color: #3692ff;
+  cursor: pointer;
+}
+
+.login_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.error_message {
+  color: red;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  text-indent: 15px;
+}
+
+.input_error {
+  outline-color: red;
+}
+
+.space_left {
+  margin-left: 30px;
+}
+.space_right {
+  margin-right: 30px;
+}
+.link_wrapper a {
+  color: #3692ff;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .form_wrapper {
+    max-width: 640px;
+  }
+  .login_container {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 743px) {
+  .form_wrapper {
+    max-width: 343px;
+  }
+}
+
+/**TODO
+*모바일일 때 판다마켓 로고 작은 이미지
+*/
