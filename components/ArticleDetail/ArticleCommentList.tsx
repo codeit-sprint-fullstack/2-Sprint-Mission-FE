@@ -32,7 +32,7 @@ export default function ArticleCommentList({
 
   const handleEdit = async (commentId: number) => {
     try {
-      await patchArticleComment(commentId, editingContent);
+      await patchArticleComment(commentId, { content: editingContent });
       setEditingCommentId(null);
       window.location.reload();
     } catch (err) {
@@ -94,7 +94,7 @@ export default function ArticleCommentList({
                   alt="유저 아이콘"
                 />
                 <div className={styles.user}>
-                  <p>귀여운판다</p>
+                  <p>{comment.writer.nickname}</p>
                   <p>{formatTime(comment.createdAt)}</p>
                 </div>
               </div>

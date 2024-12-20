@@ -7,27 +7,13 @@ import useProductValidate from '@/hooks/useProductValidate';
 import ProductTags from '@/components/ProductDetail/ProductTags';
 import FileInput from '@/components/Common/FileInput';
 import Spinner from '@/components/Common/Spinner';
-import { ProductData, UploadedImage } from '@/types/type';
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  tags: string[];
-  images: string[];
-  createdAt: string;
-  ownerId: number;
-  ownerNickname: string;
-  favoriteCount: number;
-  isFavorite: boolean;
-}
+import { ProductType, ProductData, UploadedImage } from '@/types/type';
 
 export default function Edit() {
   const router = useRouter();
   const productId = parseInt(router.query['id'] as string, 10);
 
-  const [data, setData] = useState<Product | null>(null);
+  const [data, setData] = useState<ProductType | null>(null);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -92,8 +78,8 @@ export default function Edit() {
     }
 
     const newPreviews = files.map((file) => URL.createObjectURL(file));
-    setImagePreviews([...imagePreviews, ...newPreviews]);
-    setImageFiles([...imageFiles, ...files]);
+    setImagePreviews((prev) => [...prev, ...newPreviews]);
+    setImageFiles((prev) => [...prev, ...validFiles]);
 
     setValues({
       ...values,
@@ -131,28 +117,24 @@ export default function Edit() {
 
     try {
       const imageFormData = new FormData();
-
       imageFiles.forEach((file) => {
         imageFormData.append('image', file);
       });
 
       let uploadedImages: UploadedImage[] = [];
-      if (imageFormData.has('image')) {
+      if (imageFiles.length > 0) {
         uploadedImages = await uploadImages(imageFormData);
       }
 
-      const allImages = [
-        ...values.images,
-        ...(Array.isArray(uploadedImages)
-          ? uploadedImages.map((img) => img.url)
-          : [])
+      const allImageUrls = [
+        ...values.images.filter((url: string) => !url.startsWith('blob:')),
+        ...uploadedImages.map((img) => img.url)
       ];
-
       const productData: ProductData = {
         name: values.name,
         description: values.description,
         price: parseInt(values.price),
-        images: allImages,
+        images: allImageUrls,
         tags: tags
       };
 

@@ -50,15 +50,3 @@ input,
 textarea {
   border: none;
 }
-
-@media (min-width: 744px) and (max-width: 1199px) {
-  body {
-    padding: 0 2rem;
-  }
-}
-
-@media (max-width: 743px) {
-  body {
-    padding: 0 1.5rem;
-  }
-}

@@ -10,3 +10,15 @@
     margin: 0 auto;
     padding: 0;
 }
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 743px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+}

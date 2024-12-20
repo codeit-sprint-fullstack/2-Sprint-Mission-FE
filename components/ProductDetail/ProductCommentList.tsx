@@ -32,7 +32,7 @@ export default function ProductCommentList({
 
   const handleEdit = async (commentId: number) => {
     try {
-      await patchProductComment(commentId, editingContent);
+      await patchProductComment(commentId, { content: editingContent });
       setEditingCommentId(null);
       window.location.reload();
     } catch (err) {

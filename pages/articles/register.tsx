@@ -55,7 +55,7 @@ export default function Register() {
     }));
   };
 
-  const removeImage = (index: number) => {
+  const removeImage = () => {
     setImageFiles([]);
     setImagePreviews([]);
 

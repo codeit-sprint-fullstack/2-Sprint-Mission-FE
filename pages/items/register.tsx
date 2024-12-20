@@ -26,8 +26,15 @@ export default function Register() {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
+    const validFiles: File[] = [];
+    const newPreviews: string[] = [];
 
-    const validFiles = files.filter((file) => {
+    for (let file of files) {
+      if (imageFiles.length + validFiles.length >= 3) {
+        alert('이미지는 최대 3개까지만 등록 가능합니다.');
+        break;
+      }
+
       const isValidSize = file.size <= 5 * 1024 * 1024;
       const isValidType = ['image/jpeg', 'image/png', 'image/gif'].includes(
         file.type
@@ -35,22 +42,19 @@ export default function Register() {
 
       if (!isValidSize) {
         alert('파일 크기는 5MB 이하여야 합니다.');
+        continue;
       }
       if (!isValidType) {
         alert('JPG, PNG, GIF 형식만 지원합니다.');
+        continue;
       }
 
-      return isValidSize && isValidType;
-    });
-
-    if (imageFiles.length + validFiles.length > 3) {
-      alert('이미지는 최대 3개까지만 등록 가능합니다.');
-      return;
+      validFiles.push(file);
+      newPreviews.push(URL.createObjectURL(file));
     }
 
-    const newPreviews = files.map((file) => URL.createObjectURL(file));
+    setImageFiles([...imageFiles, ...validFiles]);
     setImagePreviews([...imagePreviews, ...newPreviews]);
-    setImageFiles([...imageFiles, ...files]);
 
     setValues({
       ...values,
@@ -98,9 +102,7 @@ export default function Register() {
         name: values.name,
         description: values.description,
         price: parseInt(values.price),
-        images: Array.isArray(uploadedImages)
-          ? uploadedImages.map((img) => img.url)
-          : [],
+        images: uploadedImages.map((img) => img.url),
         tags: tags
       };
 
