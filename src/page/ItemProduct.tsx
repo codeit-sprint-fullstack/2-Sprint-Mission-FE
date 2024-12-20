@@ -5,12 +5,12 @@ import ProductList from "../component/ProductList.js";
 import PageButton from "../component/PageButton.js";
 
 function ItemProduct() {
-  const [bestItems, setBestItems] = useState([]);
-  const [productItems, setProductItems] = useState([]);
-  const [order, setOrder] = useState("recent");
-  const [totalItems, setTotalItems] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10); // 페이지당 아이템 수
+  const [bestItems, setBestItems] = useState<any[]>([]);
+  const [productItems, setProductItems] = useState<any[]>([]);
+  const [order, setOrder] = useState<string>("recent");
+  const [totalItems, setTotalItems] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(10); // 페이지당 아이템 수
 
   // 화면 크기에 따라 페이지당 아이템 수 조정하기
   useEffect(() => {
@@ -30,20 +30,20 @@ function ItemProduct() {
     return () => window.removeEventListener("resize", updatePageSize);
   }, []); // 빈 배열로 초기 로드 시 실행
 
-  const handleLoadBestItems = async () => {
+  const handleLoadBestItems = async (): Promise<void> => {
     try {
       const data = await getList({ pageSize: 4 });
-      const sortedItems = data.list.sort((a, b) => b.favorite - a.favorite);
+      const sortedItems = data.list.sort((a: any, b: any) => b.favorite - a.favorite);
       setBestItems(sortedItems);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
   };
 
-  const handleLoadProductItems = async (page = currentPage) => {
+  const handleLoadProductItems = async (page: number = currentPage): Promise<void> => {
     try {
       const data = await getListItem({ order, pageSize, page });
-      const sortedItems = data.list.sort((a, b) => b[order] - a[order]);
+      const sortedItems = data.list.sort((a:any, b:any) => b[order] - a[order]);
       setProductItems(sortedItems);
       setTotalItems(data.totalCount);
     } catch (error) {
@@ -51,7 +51,7 @@ function ItemProduct() {
     }
   };
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number): void => {
     setCurrentPage(page);
     handleLoadProductItems(page);
   };
