@@ -8,6 +8,7 @@ import { fetchProduct } from "@/api/ProductService";
 import BestProduct from "@/components/BestProduct";
 import ProductCard from "@/components/ProductCard";
 import Pagination from "@/components/pagination";
+import { useRouter } from "next/navigation";
 
 interface ProductData {
   totalCount: number;
@@ -15,6 +16,7 @@ interface ProductData {
 }
 
 export default function UsedGoodsMarket() {
+  const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const [productData, setProductData] = useState<ProductData | null>(null);
@@ -56,6 +58,10 @@ export default function UsedGoodsMarket() {
     setCurrentPage(page);
   };
 
+  const handleProductClick = (id: string) => {
+    router.push(`/used-goods-market/${id}`);
+  };
+
   return (
     <div className="w-full flex items-center justify-center pb-[7rem]">
       <div className="w-[120rem] flex flex-col justify-center gap-[4rem] items-center">
@@ -66,7 +72,11 @@ export default function UsedGoodsMarket() {
           <div className="flex gap-[2.4rem]">
             {bestProductData &&
               bestProductData.slice(0, 4).map((item: any, index: number) => (
-                <div key={index}>
+                <div
+                  key={index}
+                  onClick={() => handleProductClick(item.id)}
+                  className="cursor-pointer"
+                >
                   <BestProduct
                     image={item.images[0]}
                     title={item.name}
@@ -120,7 +130,11 @@ export default function UsedGoodsMarket() {
             <div className="flex gap-[2.4rem]">
               {productData?.list &&
                 productData.list.slice(0, 5).map((item: any, index: number) => (
-                  <div key={index}>
+                  <div
+                    key={index}
+                    onClick={() => handleProductClick(item.id)}
+                    className="cursor-pointer"
+                  >
                     <ProductCard
                       image={item.images[0]}
                       title={item.name}
@@ -135,7 +149,11 @@ export default function UsedGoodsMarket() {
                 productData.list
                   .slice(5, 10)
                   .map((item: any, index: number) => (
-                    <div key={index}>
+                    <div
+                      key={index}
+                      onClick={() => handleProductClick(item.id)}
+                      className="cursor-pointer"
+                    >
                       <ProductCard
                         image={item.images[0]}
                         title={item.name}
