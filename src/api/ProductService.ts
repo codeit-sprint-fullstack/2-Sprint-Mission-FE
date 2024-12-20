@@ -19,3 +19,12 @@ export const fetchProduct = async (
     throw new Error("get product failed");
   }
 };
+
+export const fetchProductDetail = async (id: string) => {
+  try {
+    const response = await getRequest(`/products/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("get product detail data failed");
+  }
+};
