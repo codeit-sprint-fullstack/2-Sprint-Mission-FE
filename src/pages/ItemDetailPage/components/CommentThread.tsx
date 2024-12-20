@@ -184,17 +184,9 @@ function CommentThread({ productId }: CommentThreadProps) {
   } else {
     return (
       <ThreadContainer>
-        {comments
-          .filter((comment): comment is Comment =>
-            typeof comment.id === 'number' &&
-            typeof comment.content === 'string' &&
-            comment.writer &&
-            typeof comment.writer.id === 'number' &&
-            typeof comment.writer.nickname === 'string'
-          ) // 필터링 추가
-          .map((comment) => (
-            <CommentItem key={comment.id} comment={comment} onSubmit={refetch} />
-          ))}
+        {comments.map((comment) => (
+          <CommentItem key={comment.id} comment={comment} onSubmit={refetch} />
+        ))}
       </ThreadContainer>
     );
   }
