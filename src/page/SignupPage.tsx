@@ -6,13 +6,36 @@ import closeEye from "./images/icons/eye-invisible.svg";
 import openEye from "./images/icons/eye-visible.svg";
 import kakaoTalk from "./images/social/kakao-logo.png";
 import google from "./images/social/google-logo.png";
-import Modal from "../component/Modal.js";
+import Modal from "../component/Modal";
 import { useEffect, useState } from "react";
-import axios from "../lib/axios.js";
+import axios from "../lib/axios";
 
+// 상태의 타입 정의
+export interface SignupValues {
+  email: string;
+  nickname: string;
+  password: string;
+  passwordConfirmation?: string;
+  errorMsg: string;
+  errors: {
+    email?: string;
+    nickname?: string;
+    password?: string;
+    passwordConfirmation?: string;
+  };
+}
+
+// ErrorResponse 타입 정의 추가
+export interface ErrorResponse {
+  response: {
+    data: {
+      message: string;
+    };
+  };
+}
 
 export default function SignupPage() {
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<SignupValues>({
     email: "",
     nickname: "",
     password: "",
@@ -20,46 +43,47 @@ export default function SignupPage() {
     errorMsg: "",
     errors: {},
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // 버튼 비활성화 상태
-  const [togglePassword, setTogglePassword] = useState(false); // 비밀번호 보기 토글 상태
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
+  const [togglePassword, setTogglePassword] = useState<boolean>(false);
   const [togglePasswordConfirmation, setTogglePasswordConfirmation] =
-    useState(false); // 비밀번호 확인 보기 토글 상태
+    useState<boolean>(false);
   const navigate = useNavigate();
 
-  // 컴포넌트가 마운트될 때 로컬 스토리지에 accessToken이 있는지 확인
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      navigate("/folder"); // accessToken이 있으면 /folder 페이지로 이동
+      navigate("/folder");
     }
   }, [navigate]);
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string): boolean => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
 
-  const validateNickname = (nickname) => {
+  const validateNickname = (nickname: string): string | null => {
     if (!nickname) return "닉네임을 입력해 주세요";
     if (nickname.length < 2) return "닉네임은 2글자 이상이어야 합니다";
     return null;
   };
 
-  const validatePassword = (password) => {
+  const validatePassword = (password: string): string | null => {
     if (!password) return "비밀번호를 입력해 주세요";
     if (password.length < 8) return "비밀번호는 8자 이상이어야 합니다";
     return null;
   };
 
-  const validatepasswordConfirmation = (passwordConfirmation) => {
+  const validatepasswordConfirmation = (
+    passwordConfirmation: string
+  ): string | null => {
     if (!passwordConfirmation) return "비밀번호 확인을 입력해 주세요";
     if (passwordConfirmation !== values.password)
       return "비밀번호가 일치하지 않습니다";
     return null;
   };
 
-  const handleBlur = (field) => {
+  const handleBlur = (field: keyof SignupValues["errors"]): void => {
     const newErrors = { ...values.errors };
 
     switch (field) {
@@ -74,7 +98,7 @@ export default function SignupPage() {
         break;
 
       case "nickname":
-        const nicknameError = validateNickname(values.nickname);
+        const nicknameError = validateNickname(values.nickname || "");
         if (nicknameError) {
           newErrors.nickname = nicknameError;
         } else {
@@ -93,7 +117,7 @@ export default function SignupPage() {
 
       case "passwordConfirmation":
         const passwordConfirmationError = validatepasswordConfirmation(
-          values.passwordConfirmation
+          values.passwordConfirmation || ""
         );
         if (passwordConfirmationError) {
           newErrors.passwordConfirmation = passwordConfirmationError;
@@ -109,12 +133,15 @@ export default function SignupPage() {
     setValues((prevValues) => ({ ...prevValues, errors: newErrors }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
-    const newErrors = {};
+    const newErrors: Partial<SignupValues["errors"]> = {};
     setValues((prevValues) => ({ ...prevValues, errors: newErrors }));
     try {
-      const { email, nickname, password, passwordConfirmation } = values;
+      const { email, nickname, password } = values;
+      const encryptedPassword = password;
       await axios.post("/auth/signUp", {
         email,
         nickname,
@@ -125,17 +152,17 @@ export default function SignupPage() {
         password,
       });
 
-      const accessToken = response.data.accessToken; // 서버에서 받은 accessToken
-      const refreshToken = response.data.refreshToken; // 서버에서 받은 refreshToken
-      localStorage.setItem("accessToken", accessToken); // 로컬 스토리지에 저장
-      localStorage.setItem("refreshToken", refreshToken); // 리프레시 토큰도 로컬 스토리지에 저장
+      const accessToken = response.data.accessToken;
+      const refreshToken = response.data.refreshToken;
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
 
-      navigate("/items"); // 성공 시 /items 페이지로 이동
+      navigate("/items");
     } catch (error) {
-      setIsModalOpen(true); // 모달 열기
+      setIsModalOpen(true);
       setValues((prevValues) => ({
         ...prevValues,
-        errorMsg: error.response.data.message,
+        errorMsg: (error as ErrorResponse).response.data.message,
       }));
     }
   };

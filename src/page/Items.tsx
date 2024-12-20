@@ -5,12 +5,14 @@ import PageButton from "../component/PageButton.js";
 import ItemList from "../component/ItemList.js";
 import "../style/ProductList.css";
 
+
+
 function Items() {
-  const [sort, setSort] = useState("recent");
-  const [items, setItems] = useState([]);
-  const [totalItems, setTotalItems] = useState(0);
-  const [limit, setLimit] = useState(10); //페이지당 아이템수
-  const [currentPage, setCurrentPage] = useState(1);
+  const [sort, setSort] = useState<string>("recent");
+  const [items, setItems] = useState<any[]>([]);
+  const [totalItems, setTotalItems] = useState<number>(0);
+  const [limit, setLimit] = useState<number>(10); //페이지당 아이템수
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
     const updateLimit = () => {
@@ -29,7 +31,7 @@ function Items() {
     return () => window.removeEventListener("resize", updateLimit);
   }, []); // 빈 배열로 초기 로드 시 실행
 
-  const handleLoadProductItems = async (page = currentPage) => {
+  const handleLoadProductItems = async (page:number = currentPage):Promise<void> => {
     try {
       const data = await getItemList({ sort, limit, page }); //limit = pageSize
       setItems(data.items);
@@ -39,7 +41,7 @@ function Items() {
     }
   };
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page:number):void => {
     setCurrentPage(page);
     handleLoadProductItems(page);
   };

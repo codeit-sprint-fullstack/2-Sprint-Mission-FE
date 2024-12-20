@@ -3,11 +3,15 @@ import { useState } from "react";
 import "../style/ProductList.css";
 import { Link } from "react-router-dom";
 
-function ProductMenuContainer({ onChange }) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState("최신순");
+interface ProductMenuContainerProps {
+  onChange: (order: string) => void;
+}
 
-  const handleOrderSelect = (order) => {
+function ProductMenuContainer({ onChange }: ProductMenuContainerProps) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [selectedOrder, setSelectedOrder] = useState<string>("최신순");
+
+  const handleOrderSelect = (order: string) => {
     setSelectedOrder(order === "recent" ? "최신순" : "좋아요순");
     onChange(order);
     setIsDropdownOpen(false);
@@ -32,7 +36,7 @@ function ProductMenuContainer({ onChange }) {
           <ul
             className="ProductDropdown"
             onClick={() => {
-              setIsDropdownOpen(!isDropdownOpen); //true가 됨.그래서 화면에 보여짐.
+              setIsDropdownOpen(!isDropdownOpen); // true가 됨. 그래서 화면에 보여짐.
             }}
           >
             {selectedOrder}

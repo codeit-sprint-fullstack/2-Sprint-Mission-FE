@@ -11,19 +11,32 @@ import avatarImg from "../imgFile/김코드마크.png";
 import formatDate from "../lib/formatDate.js";
 import Comments from "../component/Comments.js";
 import backHome from "../imgFile/ic_back.png";
-import {isValidImageUrl} from "../utill/isvalidImage.js";
+import { isValidImageUrl } from "../utill/isvalidImage";
+
+// 아이템 타입 정의
+interface Item {
+  id: string;
+  name: string;
+  images: string;
+  price: string;
+  description: string;
+  tags: string[];
+  ownerNickname: string;
+  createdAt: string;
+  favoriteCount: number;
+}
 
 function ItemDetailPage() {
-  const { itemId } = useParams();
-  const [item, setItem] = useState([]);
-  const [isLiked, setIsLiked] = useState(false); // 좋아요 상태
-  const [favoriteCount, setFavoriteCount] = useState(0);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const { itemId } = useParams<{ itemId: string }>();
+  const [item, setItem] = useState<Item | null>(null);
+  const [isLiked, setIsLiked] = useState<boolean>(false); // 좋아요 상태
+  const [favoriteCount, setFavoriteCount] = useState<number>(0);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("accessToken");
 
-  const toggleDropdown = (id) => {
+  const toggleDropdown = (id: string | null): void => {
     if (activeDropdown === id) {
       setActiveDropdown(null);
     } else {
@@ -31,7 +44,8 @@ function ItemDetailPage() {
     }
   };
 
-  const handleDeleteItem = async () => {
+  const handleDeleteItem = async (): Promise<void> => {
+    if (!item) return;
     try {
       await axios.delete(`/products/${item.id}`, {
         headers: {
@@ -44,12 +58,12 @@ function ItemDetailPage() {
       toggleDropdown(null); // 드롭다운 닫기 (삭제 실패 시)
     }
     toggleDropdown(null);
-    setItem([]); // 상품 삭제 시 item을 null로 설정
+    setItem(null); // 상품 삭제 시 item을 null로 설정
     setActiveDropdown(null); // 드롭다운 닫기
     navigate("/items");
   };
 
-  const handleClickFavoriteToggle = async () => {
+  const handleClickFavoriteToggle = async (): Promise<void> => {
     setIsLiked(!isLiked); //좋아요 상태 토글
 
     if (isLiked === false) {
@@ -65,7 +79,6 @@ function ItemDetailPage() {
         }
       );
       setFavoriteCount((prevCount) => prevCount + 1);
-      
     } else {
       await axios.delete(`/products/${itemId}/favorite`, {
         headers: {
@@ -76,7 +89,7 @@ function ItemDetailPage() {
     }
   };
 
-  async function getProductId() {
+  async function getProductId(): Promise<void> {
     const response = await axios.get(`/products/${itemId}`);
     const product = response.data;
     setItem(product);
@@ -91,7 +104,7 @@ function ItemDetailPage() {
         });
 
         const isProductLiked = res.data.list.some(
-          (favorite) => favorite.id === parseInt(itemId)
+          (favorite: { id: number }) => favorite.id === parseInt(itemId || "")
         );
         setIsLiked(isProductLiked);
       } catch (error) {
@@ -105,8 +118,6 @@ function ItemDetailPage() {
     getProductId();
   }, [itemId]);
 
-  
-  
   return (
     <>
       <div className={style.container}>
@@ -114,23 +125,23 @@ function ItemDetailPage() {
           <img
             className={style.itemImg}
             src={
-              item.images && isValidImageUrl(item.images)
+              item && item.images && isValidImageUrl(item.images)
                 ? item.images
                 : defaultImg
             }
-            alt={item.name}
+            alt={item ? item.name : "default"}
           />
           <div className={style.itemContent}>
             <div className={style.contentTop}>
               <div className={style.itemTitle}>
-                <p className={style.itemName}>{item.name}</p>
+                <p className={style.itemName}>{item?.name}</p>
                 <img
                   src={kebab}
                   className={style.kebabBt}
-                  onClick={() => toggleDropdown(item.id)}
+                  onClick={() => toggleDropdown(item?.id || "")}
                   alt="kebabBt"
                 />
-                {activeDropdown === item.id && (
+                {activeDropdown === item?.id && (
                   <Dropdown
                     item={item}
                     handleDeleteItem={handleDeleteItem}
@@ -139,11 +150,11 @@ function ItemDetailPage() {
                   />
                 )}
               </div>
-              <p className={style.itemPrice}>{item.price}</p>
+              <p className={style.itemPrice}>{item?.price}</p>
             </div>
             <div className={style.contentMid}>
               <p className={style.itemIntro}>상품소개</p>
-              <p className={style.itemDescription}>{item.description}</p>
+              <p className={style.itemDescription}>{item?.description}</p>
             </div>
             <p className={style.tagIntro}>상품 태그</p>
             <div className={style.tagBox}>
@@ -160,12 +171,12 @@ function ItemDetailPage() {
                 <img
                   className={style.avatar}
                   src={avatarImg}
-                  alt={item.ownerNicname}
+                  alt={item?.ownerNickname}
                 />
                 <div className={style.ownerInfo}>
-                  <p className={style.userNickname}>{item.ownerNickname}</p>
+                  <p className={style.userNickname}>{item?.ownerNickname}</p>
                   <p className={style.date}>
-                    {formatDate(new Date(item.createdAt))}
+                    {item ? formatDate(new Date(item.createdAt)) : ""}
                   </p>
                 </div>
               </div>
@@ -184,7 +195,7 @@ function ItemDetailPage() {
           </div>
         </div>
         <Comments
-          itemId={itemId}
+          itemId={itemId || ""}
           toggleDropdown={toggleDropdown}
           activeDropdown={activeDropdown}
         />

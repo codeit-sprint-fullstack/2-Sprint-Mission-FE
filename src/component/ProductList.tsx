@@ -1,11 +1,24 @@
 import { useEffect, useState } from "react";
 import "../style/ProductList.css";
-import ProductMenuContainer from "./ProductMenuContainer.js";
+import ProductMenuContainer from "./ProductMenuContainer";
 import { Link } from "react-router-dom";
 import defaultImg from "../imgFile/defaultProduct.png";
-import {isValidImageUrl} from "../utill/isvalidImage.js";
+import { isValidImageUrl } from "../utill/isvalidImage";
 
-function ProductListItem({ item }) {
+// 아이템 타입 정의
+interface Item {
+  id: string;
+  name: string;
+  price: string;
+  images: string[];
+  favoriteCount: number;
+}
+
+interface ProductListItemProps {
+  item: Item;
+}
+
+function ProductListItem({ item }: ProductListItemProps) {
   const imageUrl =
     item.images && item.images.length > 0 && isValidImageUrl(item.images[0])
       ? item.images[0]
@@ -19,8 +32,9 @@ function ProductListItem({ item }) {
             src={imageUrl}
             alt={item.name}
             onError={(e) => {
-              e.target.onerror = null; // prevent infinite loop
-              e.target.src = defaultImg; // 이미지 로드 실패 시 기본 이미지로 변경
+              const target = e.target as HTMLImageElement;
+              target.onerror = null; // prevent infinite loop
+              target.src = defaultImg; // 이미지 로드 실패 시 기본 이미지로 변경
             }}
           />
           <div>
@@ -34,28 +48,33 @@ function ProductListItem({ item }) {
   );
 }
 
-function ProductList({ items, onChange }) {
-  const [displayCount, setDisplayCount] = useState(10);
-  const [order, setOrder] = useState("recent");
+interface ProductListProps {
+  items: Item[];
+  onChange: (order: string) => void;
+}
+
+function ProductList({ items, onChange }: ProductListProps) {
+  const [displayCount, setDisplayCount] = useState<number>(10);
+  const [order, setOrder] = useState<string>("recent");
 
   useEffect(() => {
     const updateDisplayCount = () => {
       const width = window.innerWidth;
       if (width <= 743) {
-        setDisplayCount(4); //모바일 4개
+        setDisplayCount(4); // 모바일 4개
       } else if (width <= 1199) {
-        setDisplayCount(6); //태블릿 6개
+        setDisplayCount(6); // 태블릿 6개
       } else {
-        setDisplayCount(10); //pc 10개
+        setDisplayCount(10); // PC 10개
       }
     };
 
     window.addEventListener("resize", updateDisplayCount);
-    updateDisplayCount(); //초기 로드 시 실행
+    updateDisplayCount(); // 초기 로드 시 실행
     return () => window.removeEventListener("resize", updateDisplayCount);
   }, []);
 
-  const handleOrderChange = (order) => {
+  const handleOrderChange = (order: string) => {
     setOrder(order);
     onChange(order);
   };
