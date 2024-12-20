@@ -1,0 +1,25 @@
+.searchTable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:16px;
+    margin-bottom: 24px;
+  }
+  .searchInput{
+    padding: 9px 20px 9px 44px;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    width: 1054px;
+    height: 42px;
+    border: none;
+  }
+  .inputBox{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    position: relative;
+  }
+  .searchIcon{
+    position: absolute;
+    left: 16px;
+  }
