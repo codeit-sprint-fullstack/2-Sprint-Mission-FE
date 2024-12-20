@@ -7,13 +7,22 @@ import { useEffect, useState } from "react";
 import { fetchProduct } from "@/api/ProductService";
 import BestProduct from "@/components/BestProduct";
 import ProductCard from "@/components/ProductCard";
+import Pagination from "@/components/pagination";
+
+interface ProductData {
+  totalCount: number;
+  list: string[];
+}
 
 export default function UsedGoodsMarket() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [productData, setProductData] = useState();
+
+  const [productData, setProductData] = useState<ProductData | null>(null);
   const [bestProductData, setBestProductData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalCount, setTotalCount] = useState<number>();
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 10;
 
   const handleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -30,18 +39,27 @@ export default function UsedGoodsMarket() {
 
   useEffect(() => {
     const getProduct = async () => {
-      const response = await fetchProduct(page, 10);
+      console.log(currentPage);
+      const response = await fetchProduct(currentPage, 10);
       console.log(response);
       setProductData(response);
-      setTotalCount(response.totalCount);
     };
 
     getProduct();
-  }, []);
+  }, [currentPage]);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil((productData?.totalCount ?? 0) / itemsPerPage)
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
-    <div className="w-full flex items-center justify-center">
-      <div className="w-[120rem] flex flex-col justify-center gap-[4rem]">
+    <div className="w-full flex items-center justify-center pb-[7rem]">
+      <div className="w-[120rem] flex flex-col justify-center gap-[4rem] items-center">
         <div className="flex flex-col gap-[1.2rem] mt-[2rem]">
           <p className="font-bold text-[2rem] leading-[3.2rem] text-[#111827]">
             베스트 상품
@@ -87,10 +105,7 @@ export default function UsedGoodsMarket() {
                   <Image src={dropdown} alt="dropdown" width={24} height={24} />
                 </div>
                 {dropdownOpen && (
-                  <div
-                    className="flex flex-col w-[13rem] border border-[#E5E7EB] rounded-[1.2rem] items-center justify-center absolute z-10 mt-[5rem] bg-[#ffffff]"
-                    // style={{ top: "calc(100% + 0.4rem)", left: 0 }}
-                  >
+                  <div className="flex flex-col w-[13rem] border border-[#E5E7EB] rounded-[1.2rem] items-center justify-center absolute z-10 mt-[5rem] bg-[#ffffff]">
                     <p className="w-full h-[4.2rem] font-normal text-[1.6rem] leading-[2.6rem] text-[#1F2937] border-b border-[E5E7EB] flex items-center justify-center">
                       최신순
                     </p>
@@ -104,8 +119,8 @@ export default function UsedGoodsMarket() {
           </div>
           <div className="flex flex-col gap-[4rem]">
             <div className="flex gap-[2.4rem]">
-              {bestProductData &&
-                bestProductData.slice(0, 5).map((item: any, index: number) => (
+              {productData?.list &&
+                productData.list.slice(0, 5).map((item: any, index: number) => (
                   <div key={index}>
                     <ProductCard
                       image={item.images[0]}
@@ -117,20 +132,28 @@ export default function UsedGoodsMarket() {
                 ))}
             </div>
             <div className="flex gap-[2.4rem]">
-              {bestProductData &&
-                bestProductData.slice(5, 10).map((item: any, index: number) => (
-                  <div key={index}>
-                    <ProductCard
-                      image={item.images[0]}
-                      title={item.name}
-                      price={item.price}
-                      heartNum={item.favoriteCount}
-                    />
-                  </div>
-                ))}
+              {productData?.list &&
+                productData.list
+                  .slice(5, 10)
+                  .map((item: any, index: number) => (
+                    <div key={index}>
+                      <ProductCard
+                        image={item.images[0]}
+                        title={item.name}
+                        price={item.price}
+                        heartNum={item.favoriteCount}
+                      />
+                    </div>
+                  ))}
             </div>
           </div>
         </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          hasNext={currentPage < totalPages}
+        />
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export default function BestProduct({
   return (
     <div>
       <div className="flex gap-[1.6rem] flex-col">
-        <Image
+        <img
           src={image}
           alt="image"
           width={282}

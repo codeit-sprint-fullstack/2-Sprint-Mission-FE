@@ -17,7 +17,7 @@ export default function ProductCard({
   return (
     <div>
       <div className="flex gap-[1.6rem] flex-col">
-        <Image
+        <img
           src={image}
           alt="image"
           width={221}
