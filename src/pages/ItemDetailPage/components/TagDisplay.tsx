@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { TagDisplayProps } from "../../../../types/products";
 const TagsDisplaySection = styled.div`
   display: flex;
   gap: 8px;
@@ -13,10 +13,6 @@ const Tag = styled.div`
   border-radius: 999px;
   font-size: 16px;
 `;
-
-interface TagDisplayProps {
-  tags: string[];
-}
 
 function TagDisplay({ tags }: TagDisplayProps) {
   if (!tags || tags.length === 0) return null;

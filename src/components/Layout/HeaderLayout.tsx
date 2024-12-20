@@ -6,6 +6,7 @@ import LinkButton from "../UI/LinkButton";
 import defaultProfileImage from "../../assets/images/ui/ic_profile.svg";
 import { ReactComponent as Logo } from "../../assets/images/logo/logo.svg";
 import { ReactComponent as TextLogo } from "../../assets/images/logo/text_logo.svg";
+import { User } from "../../../types/user";
 
 const fullWidthStyle = css`
   max-width: 1200px;
@@ -112,13 +113,9 @@ const Main = styled.main`
   ${fullWidthStyle}
 `;
 
-interface UserProps {
-  image?: string;
-  nickname: string;
-}
 
 const Header: React.FC = () => {
-  const { user } = useAuth() as { user: UserProps | null };
+  const { user } = useAuth() as { user: User | null };
 
   return (
     <HeaderWrapper>

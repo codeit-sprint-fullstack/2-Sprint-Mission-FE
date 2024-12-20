@@ -1,34 +1,7 @@
 import axios from './axios';
-
-export interface Product {
-  id: number;
-  ownerId: number;
-  name: string;
-  description: string;
-  price: number;
-  tags: string[];
-  images: string[];
-  createdAt: string;
-  updatedAt: string;
-  likes: number;
-  isFavorite?: boolean | undefined;
-  favoriteCount?: number;
-}
-
-interface ProductData {
-  name: string;
-  description: string;
-  price: number;
-  tags: string[];
-  images: string[];
-}
-
-interface GetProductsParams {
-  orderBy?: string;
-  page?: number;
-  pageSize?: number;
-  keyword?: string;
-}
+import { GetProductsParams } from '../../types/products';
+import { ProductData } from '../../types/products';
+import { Product } from '../../types/products';
 
 export async function getProducts({
   orderBy = 'recent',

@@ -1,8 +1,6 @@
 import styled from "styled-components";
+import { LineDividerProps } from "../../../types/components";
 
-interface LineDividerProps {
-  $margin?: string;
-}
 
 const LineDivider = styled.hr<LineDividerProps>`
   width: 100%;

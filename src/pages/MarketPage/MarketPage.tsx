@@ -1,5 +1,5 @@
 import React from 'react';
-import AllItemsSection from './components/AllItemsSection.tsx';
+import AllItemsSection from './components/AllItemsSection.jsx';
 import './MarketPage.css';
 import BestItemsSection from './components/BestItemsSection';
 

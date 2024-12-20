@@ -12,6 +12,7 @@ import { addProduct } from "../../api/products";
 import TextareaItem from "../../components/UI/TextareaItem";
 import Button from "../../components/UI/Button";
 import ImageUpload from "../../components/UI/ImageUpload";
+import { ProductData } from "../../../types/products";
 
 const TitleSection = styled(FlexContainer)`
   margin-bottom: 16px;
@@ -27,13 +28,6 @@ const InputSection = styled.div`
   }
 `;
 
-interface ProductData {
-  name: string;
-  description: string;
-  price: number;
-  tags: string[];
-  images: string[];
-}
 
 function AddItemPage() {
   const [name, setName] = useState<string>("");

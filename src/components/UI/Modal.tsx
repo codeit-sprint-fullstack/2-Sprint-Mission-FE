@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import { ModalProps } from "../../../types/components";
 
 const Overlay = styled.div`
   position: fixed;
@@ -45,13 +46,6 @@ function useScrollLock(enabled: boolean) {
       };
     }
   }, [enabled]);
-}
-
-interface ModalProps {
-  isOpen: boolean;
-  closeButton?: boolean;
-  onClose: () => void;
-  children: ReactNode;
 }
 
 function Modal({ isOpen, closeButton = false, onClose, children }: ModalProps) {

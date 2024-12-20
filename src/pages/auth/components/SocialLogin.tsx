@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import googleLogo from "../../../assets/images/social/google-logo.png";
 import kakaoLogo from "../../../assets/images/social/kakao-logo.png";
-import { StaticImageData } from "next/image";
+import { SocialLoginLinkProps } from "../../../../types/components";
 
 const Container = styled.div`
   background-color: #e6f2ff;
@@ -23,12 +23,6 @@ const SocialLoginLinksContainer = styled.div`
   display: flex;
   gap: 16px;
 `;
-
-interface SocialLoginLinkProps {
-  name: string;
-  url: string;
-  logoSrc: string | StaticImageData;
-}
 
 function SocialLoginLink({
   name,

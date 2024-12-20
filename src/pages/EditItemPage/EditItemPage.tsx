@@ -14,6 +14,7 @@ import { getProduct, patchProduct } from "../../api/products";
 import TextareaItem from "../../components/UI/TextareaItem";
 import Button from "../../components/UI/Button";
 import ImageUpload from "../../components/UI/ImageUpload";
+import { ProductData } from "../../../types/products";
 
 const TitleSection = styled(FlexContainer)`
   margin-bottom: 16px;
@@ -28,23 +29,10 @@ const InputSection = styled.div`
     gap: 24px;
   }
 `;
-interface Product {
-  name: string;
-  description: string;
-  price: number;
-  images: string[];
-  tags: string[];
-}
 
-interface FormValues {
-  name: string;
-  description: string;
-  price: number;
-  images: string[];
-  tags: string[];
-}
 
-function pickFormValues(product: Product): FormValues {
+
+function pickFormValues(product: ProductData): ProductData {
   const { name, description, price, images, tags } = product;
   const formValues = { name, description, price, images, tags };
   return formValues;
@@ -64,11 +52,11 @@ function EditItemPage() {
     reset,
     control,
     formState: { errors, isValid },
-  } = useForm<FormValues>({
+  } = useForm<ProductData>({
     mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<ProductData> = async (data) => {
     try {
       const result = await patchProduct(Number(productId), data);
       navigate(`/items/${result.id}`);

@@ -1,17 +1,12 @@
 import axios from "./axios";
-interface SignUpData {
-  email: string;
-  nickname: string;
-  password: string;
-  passwordConfirmation: string;
-}
+import { SignUpParams } from "../../types/user";
 
 export async function signUp({
   email,
   nickname,
   password,
   passwordConfirmation,
-}: SignUpData) {
+}: SignUpParams) {
   const response = await axios.post(`/auth/signUp`, {
     email,
     nickname,

@@ -1,13 +1,9 @@
 import { Link, LinkProps } from "react-router-dom";
 import styled from "styled-components";
 import { buttonStyle } from "./Button";
+import { ButtonProps } from "../../../types/components";
 
-interface LinkButtonProps extends LinkProps {
-  $pill?: boolean;
-  $appearance?: string;
-}
-
-const LinkButton = styled(Link) <LinkButtonProps>`
+const LinkButton = styled(Link) <ButtonProps>`
   ${buttonStyle}
 `;
 

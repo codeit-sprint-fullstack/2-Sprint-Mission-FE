@@ -14,11 +14,7 @@ import SocialLogin from "./components/SocialLogin";
 import PasswordInput from "./components/PasswordInput";
 import { useAuth } from "../../contexts/AuthContext";
 import SimpleModal from "../../components/UI/SimpleModal";
-
-interface LoginFormInputs {
-  email: string;
-  password: string;
-}
+import { SignInParams } from "../../../types/user";
 
 function LoginPage() {
   const { user, signin } = useAuth();
@@ -28,10 +24,10 @@ function LoginPage() {
     handleSubmit, // 폼 제출을 처리하는 함수
     trigger, // 폼의 유효성 검사를 트리거하는 함수
     formState: { errors, isValid }, // 폼의 상태를 나타내는 객체
-  } = useForm<LoginFormInputs>({ mode: "onBlur" });
+  } = useForm<SignInParams>({ mode: "onBlur" });
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<SignInParams> = async (data) => {
     try {
       await signin(data);
       navigate("/items");

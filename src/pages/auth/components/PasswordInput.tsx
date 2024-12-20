@@ -5,6 +5,7 @@ import Label from "../../../components/UI/Label";
 import ErrorMessage from "../../../components/UI/ErrorMessage";
 import eyeInvisibleIcon from "../../../assets/images/icons/eye-invisible.svg";
 import eyeVisibleIcon from "../../../assets/images/icons/eye-visible.svg";
+import { PasswordInputProps } from "../../../../types/components";
 
 const InputWrapper = styled.div`
   position: relative;
@@ -16,14 +17,7 @@ const PasswordToggleButton = styled.button`
   position: absolute;
   right: 24px;
 `;
-interface PasswordInputProps {
-  id: string;
-  label: string;
-  error?: string;
-  register?: any;
-  placeholder?: string;
 
-}
 
 function PasswordInput({
   id,

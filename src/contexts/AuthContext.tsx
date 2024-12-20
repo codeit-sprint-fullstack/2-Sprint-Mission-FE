@@ -3,14 +3,9 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import { signIn as requestSignIn, signUp as requestSignUp, getMe } from "../api/auth";
 import { clearTokens, setTokens } from "../utils/authToken";
-
-// 유저 정보 타입 정의
-interface User {
-  id: string;
-  email: string;
-  nickname: string;
-  [key: string]: any;
-}
+import { User } from "../../types/user";
+import { SignUpParams } from "../../types/user";
+import { SignInParams } from "../../types/user";
 
 
 interface AuthContextType {
@@ -20,17 +15,6 @@ interface AuthContextType {
   signout: () => void;
 }
 
-interface SignUpParams {
-  email: string;
-  nickname: string;
-  password: string;
-  passwordConfirmation: string;
-}
-
-interface SignInParams {
-  email: string;
-  password: string;
-}
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,

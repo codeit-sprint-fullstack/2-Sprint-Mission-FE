@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "../../../components/UI/Button";
 import TextareaItem from "../../../components/UI/TextareaItem";
+import { CommentFormProps } from "../../../../types/comments";
+import { CommentFormValue } from "../../../../types/comments";
 
 const COMMENT_PLACEHOLDER =
   "개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.";
@@ -18,16 +20,6 @@ const Footer = styled.div`
   flex-direction: row-reverse;
   gap: 16px;
 `;
-interface CommentFormProps {
-  defaultValue: string;
-  submitLabel?: string;
-  onSubmit: (content: string) => Promise<void>,
-  onCancel: () => void,
-}
-
-interface FormValue {
-  content: string;
-}
 
 function CommentForm({
   defaultValue,
@@ -42,7 +34,7 @@ function CommentForm({
     formState: { isValid },
   } = useForm({ mode: "onChange", defaultValues: { content: defaultValue } });
 
-  const enhancedOnSubmit: SubmitHandler<FormValue> = async ({ content }) => {
+  const enhancedOnSubmit: SubmitHandler<CommentFormValue> = async ({ content }) => {
     await onSubmit(content);
     reset({ content: defaultValue });
   };

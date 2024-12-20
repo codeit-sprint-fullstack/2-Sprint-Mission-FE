@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Modal from "./Modal";
 import Button from "./Button";
 import { ReactComponent as CheckIcon } from "../../assets/images/icons/ic_check.svg";
+import { ConfirmModalProps } from "../../../types/components";
 
 const Container = styled.div`
   display: flex;
@@ -23,13 +24,7 @@ const Footer = styled.div`
   gap: 8px;
 `;
 
-interface ConfirmModalProps {
-  content: string;
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  onReject: () => void;
-}
+
 
 function ConfirmModal({
   content,

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import InputItem from "./InputItem";
 import { FlexContainer } from "../../styles/CommonStyles";
 import DeleteButton from "./DeleteButton";
+import { TagInputProps } from "../../../types/components";
 
 const TagButtonsSection = styled.div`
   display: flex;
@@ -29,11 +30,6 @@ const TagText = styled.span`
   white-space: nowrap;
 `;
 
-interface TagInputProps {
-  label?: string;
-  value: string[];
-  onChange: (tags: string[]) => void;
-}
 
 function TagInput({ value, onChange }: TagInputProps) {
   const [text, setText] = useState<string>("");

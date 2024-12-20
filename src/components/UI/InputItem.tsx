@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import ErrorMessage from "./ErrorMessage";
 import Label from "./Label";
+import { InputItemProps } from "../../../types/components";
 
 export const inputStyle = css<{ $error?: boolean }>`
   padding: 16px 24px;
@@ -28,17 +29,6 @@ export const InputField = styled.input<{ $error?: boolean }>`
   ${inputStyle}
 `;
 
-interface InputItemProps {
-  id?: string;
-  label: string;
-  error?: string;
-  register?: React.InputHTMLAttributes<HTMLInputElement>;
-  value?: string;
-  placeholder: string;
-  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-
-}
 function InputItem({
   id,
   label,

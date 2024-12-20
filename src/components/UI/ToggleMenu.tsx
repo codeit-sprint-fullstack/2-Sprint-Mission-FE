@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
+import { Option } from "../../../types/components";
+import { ToggleMenuProps } from "../../../types/components";
 
 const Wrapper = styled.div`
   position: relative;
@@ -34,17 +36,7 @@ const MenuItem = styled.li`
   color: #1f2937;
   cursor: pointer;
 `;
-interface Option {
-  value: string;
-  label: string;
-}
 
-interface ToggleMenuProps {
-  className: string;
-  children: React.ReactNode;
-  options: Option[];
-  onSelect: (option: Option) => void;
-}
 
 function ToggleMenu({ className, children, options, onSelect }: ToggleMenuProps) {
   const [isOpen, setIsOpen] = useState(false);

@@ -3,6 +3,7 @@ import DeleteButton from './DeleteButton';
 import Label from './Label';
 import { ReactComponent as PlusIcon } from '../../assets/images/icons/ic_plus.svg';
 import { uploadImage } from '../../api/images';
+import { ImageUploadProps } from '../../../types/components';
 
 const ImageUploadContainer = styled.div`
   display: flex;
@@ -68,13 +69,6 @@ const DeleteButtonWrapper = styled.div`
 const HiddenFileInput = styled.input`
   display: none;
 `;
-
-interface ImageUploadProps {
-  id: string;
-  label: string;
-  value: string[];
-  onChange: (newValue: string[]) => void;
-}
 
 function ImageUpload({ id, label, value = [], onChange }: ImageUploadProps) {
   const handleImageChange = async (event: any) => {

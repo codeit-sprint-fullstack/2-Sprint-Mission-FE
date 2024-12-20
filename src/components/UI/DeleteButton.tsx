@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as CloseIcon } from "../../assets/images/icons/ic_x.svg";
+import { DeleteButtonProps } from "../../../types/components";
 
 const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.gray[0]};
@@ -15,11 +16,6 @@ const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.blue[0]};
   }
 `;
-
-interface DeleteButtonProps {
-  onClick: () => void;
-  label: string;
-}
 
 function DeleteButton({ onClick, label }: DeleteButtonProps) {
   return (

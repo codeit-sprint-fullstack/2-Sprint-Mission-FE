@@ -34,11 +34,11 @@
     "src/pages/api/axios.js",
     "src/api/axios.js",
     "src/api/axios.js",
-    "src/contexts/AuthContext.ts",
+    "src/contexts/AuthContext.tsxxx",
     "src/pages/MarketPage/components/AllItemsSection.tsx",
-    "src/pages/ItemDetailPage/components/CommentThread.jsx",
+    "src/pages/ItemDetailPage/components/CommentThread.tsx",
     "src/pages/ItemDetailPage/components/ItemProfileSection.jsx",
-    "src/pages/ItemDetailPage/components/CommentThread.jsx"
+    "src/pages/ItemDetailPage/components/CommentThread.tsx"
   ],
   "exclude": [
     "node_modules"

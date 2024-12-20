@@ -17,17 +17,17 @@ const BackToMarketPageLink = styled(LinkButton)`
 `;
 
 function ItemDetailPage() {
-  const { itemId: productId } = useParams();
-
+  const { itemId: productId } = useParams<{ itemId: string }>();
+  const productIdNumber = Number(productId);
   if (!productId) return null;
 
   return (
     <Container>
-      <ItemProfileSection productId={productId} />
+      <ItemProfileSection productId={productIdNumber} />
 
       <LineDivider />
 
-      <ItemCommentSection productId={productId} />
+      <ItemCommentSection productId={productIdNumber} />
 
       {/* BackToMarketPageLink의 베이스인 LinkButton에 $pill boolean 값을 전달 */}
       <BackToMarketPageLink $pill to="/items">

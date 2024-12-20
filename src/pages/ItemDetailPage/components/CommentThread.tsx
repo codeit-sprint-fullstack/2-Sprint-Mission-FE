@@ -12,7 +12,9 @@ import { formatUpdatedAt } from "../../../utils/dateUtils";
 import { ReactComponent as EmptyStateImage } from "../../../assets/images/ui/empty-comments.svg";
 import { ReactComponent as SeeMoreIcon } from "../../../assets/images/icons/ic_kebab.svg";
 import DefaultProfileImage from "../../../assets/images/ui/ic_profile.svg";
-
+import { CommentItemProps } from "../../../../types/comments";
+import { CommentThreadProps } from "../../../../types/comments";
+import { Option } from "../../../../types/components";
 const CommentContainer = styled.div`
   padding: 24px 0;
   position: relative;
@@ -53,26 +55,26 @@ const Timestamp = styled.p`
   font-size: 12px;
 `;
 
-
-function CommentItem({ comment, onSubmit }) {
+function CommentItem({ comment, onSubmit }: CommentItemProps) {
   const { user } = useAuth();
-  const [mode, setMode] = useState < "view" | "edit" | "delete" > ("view"); // "view" | "edit" | "delete"
+  const [mode, setMode] = useState<"view" | "edit" | "delete">("view"); // "view" | "edit" | "delete"
 
   const writer = comment.writer;
   const formattedTimestamp = formatUpdatedAt(comment.updatedAt);
   const isWriter = user && user.id === writer.id;
-  const seeMoreOptions = [
+  const seeMoreOptions: Array<{ value: "edit" | "delete"; label: string }> = [
     { value: "edit", label: "수정" },
     { value: "delete", label: "삭제" },
   ];
 
-  const handleToggleMenuSelect = (option) => setMode(option.value);
+
+  const handleToggleMenuSelect = (option: Option) => setMode(option.value as "edit" | "delete");
 
   const handleFormCancel = () => {
     setMode("view");
   };
 
-  const handleFormSubmit = async (content) => {
+  const handleFormSubmit = async (content: string) => {
     await patchComment(comment.id, { content });
     onSubmit();
     setMode("view");
@@ -100,6 +102,7 @@ function CommentItem({ comment, onSubmit }) {
           <>
             {isWriter && (
               <StyledToggleMenu
+                className="styeldToggle"
                 options={seeMoreOptions}
                 onSelect={handleToggleMenuSelect}
               >
@@ -128,7 +131,7 @@ function CommentItem({ comment, onSubmit }) {
         content="정말 삭제하시겠습니까?"
         isOpen={mode === "delete"}
         onConfirm={handleCommentDelete}
-        onClose={() => setMode()}
+        onClose={() => setMode("view")}
       />
 
       <LineDivider $margin="0" />
@@ -163,8 +166,8 @@ const ThreadContainer = styled.div`
   margin-bottom: 40px;
 `;
 
-function CommentThread({ productId }) {
-  const { data: comments, refetch } = useQuery({
+function CommentThread({ productId }: CommentThreadProps) {
+  const { data: comments, refetch } = useQuery<Comment[], Error>({
     queryKey: ["products", productId, "comments"],
     queryFn: () =>
       getProductComments({
@@ -181,9 +184,17 @@ function CommentThread({ productId }) {
   } else {
     return (
       <ThreadContainer>
-        {comments.map((comment) => (
-          <CommentItem key={comment.id} comment={comment} onSubmit={refetch} />
-        ))}
+        {comments
+          .filter((comment): comment is Comment =>
+            typeof comment.id === 'number' &&
+            typeof comment.content === 'string' &&
+            comment.writer &&
+            typeof comment.writer.id === 'number' &&
+            typeof comment.writer.nickname === 'string'
+          ) // 필터링 추가
+          .map((comment) => (
+            <CommentItem key={comment.id} comment={comment} onSubmit={refetch} />
+          ))}
       </ThreadContainer>
     );
   }

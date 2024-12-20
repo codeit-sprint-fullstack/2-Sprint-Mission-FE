@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SafeImage from "../../ItemDetailPage/components/SafeImage";
 import { ReactComponent as HeartIcon } from "../../../assets/images/icons/ic_heart.svg";
-import { Product } from "@/api/products";
+import { Product } from "../../../../types/products";
 
 const StyledSafeImage = styled(SafeImage)`
   width: 100%;
@@ -16,7 +16,7 @@ export interface ItemCardProps {
 
 }
 
-const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
+const ItemCard = ({ item }: ItemCardProps) => {
   return (
     <div className="itemCard">
       <StyledSafeImage

@@ -1,10 +1,7 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as Spinner } from "../../assets/images/ui/spinner.svg";
+import { ButtonProps } from "../../../types/components";
 
-interface ButtonProps {
-  $pill?: boolean,
-  $appearance?: string,
-}
 
 export const buttonStyle = css<ButtonProps>`
   background-color: ${({ theme }) => theme.colors.blue[0]};

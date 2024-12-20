@@ -14,13 +14,8 @@ import SocialLogin from "./components/SocialLogin";
 import PasswordInput from "./components/PasswordInput";
 import { useAuth } from "../../contexts/AuthContext";
 import SimpleModal from "../../components/UI/SimpleModal";
+import { SignUpParams } from "../../../types/user";
 
-interface SignupFormInputs {
-  email: string;
-  nickname: string;
-  password: string;
-  passwordConfirmation: string;
-}
 
 const SignupPage = () => {
   const { user, signup } = useAuth();
@@ -31,10 +26,10 @@ const SignupPage = () => {
     watch, //  폼 필드의 변경을 감지하는 함수
     trigger, // 폼의 유효성 검사를 트리거하는 함수
     formState: { errors, isValid }, // 폼의 상태를 나타내는 객체
-  } = useForm<SignupFormInputs>({ mode: "onBlur" });
+  } = useForm<SignUpParams>({ mode: "onBlur" });
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<SignUpParams> = async (data) => {
     try {
       await signup(data);
       navigate("/items");

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Modal from "./Modal";
 import Button from "./Button";
+import { SimpleModalProps } from "../../../types/components";
 
 const ModalContent = styled.div`
   padding: 47px;
@@ -13,12 +14,6 @@ const ModalFooter = styled.div`
     margin-left: auto;
   }
 `;
-
-interface SimpleModalProps {
-  isOpen: boolean;
-  text: string;
-  onClose: () => void;
-}
 
 function SimpleModal({ isOpen, text = "", onClose }: SimpleModalProps) {
   return (

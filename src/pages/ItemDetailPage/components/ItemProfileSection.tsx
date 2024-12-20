@@ -16,8 +16,8 @@ import {
 } from "../../../api/products";
 import { ReactComponent as SeeMoreIcon } from "../../../assets/images/icons/ic_kebab.svg";
 import SafeImage from "./SafeImage";
-import { User } from "@/contexts/AuthContext"
-import { Product } from "../../../api/products";
+import { User } from "../../../../types/user";
+import { Product } from "../../../../types/products";
 
 const SectionContainer = styled.section`
   display: flex;

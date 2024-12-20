@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as HeartIcon } from "../../../assets/images/icons/ic_heart.svg";
-
+import { LikeButtonProps } from "../../../../types/components";
 const PillButton = styled.button`
   display: flex;
   gap: 4px;
@@ -17,11 +17,6 @@ const PillButton = styled.button`
     }
   `}
 `;
-interface LikeButtonProps {
-  isFavorite: boolean | undefined;
-  favoriteCount: number;
-  onClick: () => void;
-}
 
 const StyledHeartIcon = styled(HeartIcon) <{ $active?: boolean }>`
   width: 24px;
