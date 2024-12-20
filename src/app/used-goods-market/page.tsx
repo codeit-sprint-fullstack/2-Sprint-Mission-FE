@@ -6,12 +6,14 @@ import dropdown from "@/../public/assets/ic_arrow_down.svg";
 import { useEffect, useState } from "react";
 import { fetchProduct } from "@/api/ProductService";
 import BestProduct from "@/components/BestProduct";
+import ProductCard from "@/components/ProductCard";
 
 export default function UsedGoodsMarket() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [productData, setProductData] = useState();
   const [bestProductData, setBestProductData] = useState([]);
   const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState<number>();
 
   const handleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -20,11 +22,21 @@ export default function UsedGoodsMarket() {
   useEffect(() => {
     const getBestProduct = async () => {
       const response = await fetchProduct(1, 4);
-      console.log(response.list);
       setBestProductData(response.list);
     };
 
     getBestProduct();
+  }, []);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      const response = await fetchProduct(page, 10);
+      console.log(response);
+      setProductData(response);
+      setTotalCount(response.totalCount);
+    };
+
+    getProduct();
   }, []);
 
   return (
@@ -48,7 +60,7 @@ export default function UsedGoodsMarket() {
               ))}
           </div>
         </div>
-        <div>
+        <div className="flex gap-[2.4rem] flex-col">
           <div className="flex gap-[2.4rem] justify-between w-full">
             <p className="font-bold text-[2rem] leading-[3.2rem] text-[#111827]">
               판매 중인 상품
@@ -90,7 +102,34 @@ export default function UsedGoodsMarket() {
               </div>
             </div>
           </div>
-          <h1>HIII</h1>
+          <div className="flex flex-col gap-[4rem]">
+            <div className="flex gap-[2.4rem]">
+              {bestProductData &&
+                bestProductData.slice(0, 5).map((item: any, index: number) => (
+                  <div key={index}>
+                    <ProductCard
+                      image={item.images[0]}
+                      title={item.name}
+                      price={item.price}
+                      heartNum={item.favoriteCount}
+                    />
+                  </div>
+                ))}
+            </div>
+            <div className="flex gap-[2.4rem]">
+              {bestProductData &&
+                bestProductData.slice(5, 10).map((item: any, index: number) => (
+                  <div key={index}>
+                    <ProductCard
+                      image={item.images[0]}
+                      title={item.name}
+                      price={item.price}
+                      heartNum={item.favoriteCount}
+                    />
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

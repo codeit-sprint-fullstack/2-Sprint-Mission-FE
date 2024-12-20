@@ -1,28 +1,28 @@
 import Image from "next/image";
 import heart from "@/../public/assets/ic_heart.svg";
 
-interface BestProductProps {
+interface ProductCardProps {
   image: string;
   title: string;
   price: string;
   heartNum: number;
 }
 
-export default function BestProduct({
+export default function ProductCard({
   image,
   title,
   price,
   heartNum,
-}: BestProductProps) {
+}: ProductCardProps) {
   return (
     <div>
       <div className="flex gap-[1.6rem] flex-col">
         <Image
           src={image}
           alt="image"
-          width={282}
-          height={282}
-          className="object-cover w-[28.2rem] h-[28.2rem]"
+          width={221}
+          height={221}
+          className="object-cover w-[22.1rem] h-[22.1rem]"
         />
         <div className="flex gap-[1rem] flex-col">
           <p className="font-medium text-[1.4rem] leading-[2.4rem] text-[#1F2937]">
