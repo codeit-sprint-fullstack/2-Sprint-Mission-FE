@@ -9,8 +9,12 @@ export async function getRequest(url: string, params: object = {}) {
   return instance.get(url, config);
 }
 
-export async function postRequest(url: string, body: object = {}) {
-  return instance.post(url, body);
+export async function postRequest(
+  url: string,
+  body: object = {},
+  config?: any
+) {
+  return instance.post(url, body, config);
 }
 
 export async function patchRequest(url: string, body: object = {}) {
