@@ -1,7 +1,3 @@
-POST https://panda-market-api.vercel.app/products/482/comments
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTUwLCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczNDcxOTQ5MiwiZXhwIjoxNzM0NzIxMjkyLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.2SIggiW-0Tv33N6zqlwg5WT1jm3QUbaPkviPZiw8Sk8
+DELETE https://panda-market-api.vercel.app/products/482/favorite
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTUwLCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczNDcyMTc0NSwiZXhwIjoxNzM0NzIzNTQ1LCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.hJYZe6ncrBdYh5iy02g8MQpF58hap9ghzdLbMVY0sQI
 Content-Type: application/json
-
-{
-  "content": "개굴개구리"
-}

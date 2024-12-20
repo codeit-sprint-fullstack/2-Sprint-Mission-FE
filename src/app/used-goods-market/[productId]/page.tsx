@@ -1,19 +1,26 @@
 "use client";
 
-import { fetchProductDetail } from "@/api/ProductService";
+import {
+  fetchProductDetail,
+  fetchProductFavorite,
+  fetchProductUnFavorite,
+} from "@/api/ProductService";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import kebab from "@/../public/assets/ic_kebab.svg";
 import Image from "next/image";
 import defProfile from "@/../public/assets/default_profile.svg";
 import { formatDate } from "@/utils/UtilDate";
-import heart from "@/../public/assets/ic_heart.svg";
+import inactHeart from "@/../public/assets/ic_inact_heart.svg";
+import actHeart from "@/../public/assets/ic_heart.svg";
 import {
   fetchProductComment,
   fetchProductCommentWrite,
 } from "@/api/CommentService";
 import Comment from "@/components/Comment";
 import back from "@/../public/assets/ic_back.svg";
+import emptyComment from "@/../public/assets/Img_inquiry_empty.svg";
+import Link from "next/link";
 
 interface DetailData {
   createdAt: string;
@@ -46,6 +53,13 @@ interface WriterData {
 
 export default function UsedGoodsMarketDetail() {
   const { productId } = useParams();
+
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setAccessToken(token);
+  }, []);
 
   const [detailData, setDetailData] = useState<DetailData | null>(null);
   const [commentData, setCommentData] = useState<CommentData[]>([]);
@@ -81,6 +95,31 @@ export default function UsedGoodsMarketDetail() {
     } catch (error) {
       console.error("Error registering comment:", error);
       alert("댓글 등록 중 오류가 발생했습니다. 다시 한 번 시도해주세요.");
+    }
+  };
+
+  const handleFavorite = async () => {
+    if (!accessToken || !detailData) return;
+
+    try {
+      if (detailData.isFavorite) {
+        await fetchProductUnFavorite(String(productId));
+        setDetailData({
+          ...detailData,
+          isFavorite: false,
+          favoriteCount: detailData.favoriteCount - 1,
+        });
+      } else {
+        await fetchProductFavorite(String(productId));
+        setDetailData({
+          ...detailData,
+          isFavorite: true,
+          favoriteCount: detailData.favoriteCount + 1,
+        });
+      }
+    } catch (error) {
+      console.error("Error handling favorite:", error);
+      alert("즐겨찾기 요청 중 오류가 발생했습니다.");
     }
   };
 
@@ -157,7 +196,13 @@ export default function UsedGoodsMarketDetail() {
                 <div className="flex gap-[2.4rem] items-center">
                   <div className="border border-[#E5E7EB] h-[3.4rem]" />
                   <div className="h-[4rem] rounded-[3.5rem] border border-[#E5E7EB] py-[0.4rem] px-[1.2rem] gap-[0.4rem] flex items-center">
-                    <Image src={heart} alt="heart" width={32} height={32} />
+                    <Image
+                      src={detailData.isFavorite ? actHeart : inactHeart}
+                      alt="heart"
+                      width={32}
+                      height={32}
+                      onClick={handleFavorite}
+                    />
                     <p className="font-medium text-[1.6rem] leading-[2.6rem] text-[#6B7280]">
                       {detailData.favoriteCount}
                     </p>
@@ -190,23 +235,34 @@ export default function UsedGoodsMarketDetail() {
               등록
             </button>
           </div>
-          <div className="flex flex-col gap-[4rem]">
-            {commentData.map((item: CommentData, index: number) => (
-              <div key={index}>
-                <Comment
-                  content={item.content}
-                  image={item.writer.image}
-                  name={item.writer.nickname}
-                  updatedAt={item.updatedAt}
-                />
-              </div>
-            ))}
-          </div>
+          {commentData.length ? (
+            <div className="flex flex-col gap-[4rem]">
+              {commentData.map((item: CommentData, index: number) => (
+                <div key={index}>
+                  <Comment
+                    content={item.content}
+                    image={item.writer.image}
+                    name={item.writer.nickname}
+                    updatedAt={item.updatedAt}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="w-full flex flex-col items-center justify-center">
+              <Image src={emptyComment} alt="empty comment" />
+              <p className="font-normal text-[1.6rem] leading-[2.6rem] text-[#9CA3AF]">
+                아직 문의가 없어요
+              </p>
+            </div>
+          )}
         </div>
-        <button className="w-[24rem] h-[4.8rem] rounded-[4rem] gap-[0.8rem] bg-[#3692FF] font-semibold text-[1.8rem] leading-[2.6rem] text-[#F3F4F6] flex items-center justify-center">
-          목록으로 돌아가기
-          <Image src={back} alt="back" width={24} height={24} />
-        </button>
+        <Link href="./">
+          <button className="w-[24rem] h-[4.8rem] rounded-[4rem] gap-[0.8rem] bg-[#3692FF] font-semibold text-[1.8rem] leading-[2.6rem] text-[#F3F4F6] flex items-center justify-center">
+            목록으로 돌아가기
+            <Image src={back} alt="back" width={24} height={24} />
+          </button>
+        </Link>
       </div>
     </div>
   );

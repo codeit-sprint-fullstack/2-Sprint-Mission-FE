@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heart from "@/../public/assets/ic_heart.svg";
+import inactHeart from "@/../public/assets/ic_inact_heart.svg";
 
 interface ProductCardProps {
   image: string;
@@ -32,7 +32,7 @@ export default function ProductCard({
             {price}원
           </p>
           <div className="flex gap-[0.4rem]">
-            <Image src={heart} alt="heart" width={16} height={16} />
+            <Image src={inactHeart} alt="heart" width={16} height={16} />
             <p className="text-medium text-[1.2rem] leading-[1.8rem] text-[#4B5563]">
               {heartNum}
             </p>

@@ -1,4 +1,4 @@
-import { getRequest } from "@/utils/UtilApi";
+import { deleteRequest, getRequest, postRequest } from "@/utils/UtilApi";
 
 export const fetchProduct = async (
   page?: number,
@@ -26,5 +26,49 @@ export const fetchProductDetail = async (id: string) => {
     return response.data;
   } catch (error) {
     throw new Error("get product detail data failed");
+  }
+};
+
+export const fetchProductFavorite = async (id: string) => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (!accessToken) {
+      throw new Error("Access token is missing");
+    }
+
+    const response = await postRequest(
+      `/products/${id}/favorite`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("post product favorite failed");
+  }
+};
+
+export const fetchProductUnFavorite = async (id: string) => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (!accessToken) {
+      throw new Error("Access token is missing");
+    }
+
+    const response = await deleteRequest(`/products/${id}/favorite`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("delete product favorite failed");
   }
 };

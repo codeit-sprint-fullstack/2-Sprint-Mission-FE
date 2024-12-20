@@ -33,7 +33,6 @@ export default function UsedGoodsMarket() {
   useEffect(() => {
     const getBestProduct = async () => {
       const response = await fetchProduct(1, 4);
-      console.log(response.list);
       setBestProductData(response.list);
     };
 

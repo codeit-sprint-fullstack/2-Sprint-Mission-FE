@@ -17,10 +17,14 @@ export async function postRequest(
   return instance.post(url, body, config);
 }
 
-export async function patchRequest(url: string, body: object = {}) {
-  return instance.patch(url, body);
+export async function patchRequest(
+  url: string,
+  body: object = {},
+  config?: any
+) {
+  return instance.patch(url, body, config);
 }
 
-export async function deleteRequest(url: string) {
-  return instance.delete(url);
+export async function deleteRequest(url: string, config?: any) {
+  return instance.delete(url, config);
 }
