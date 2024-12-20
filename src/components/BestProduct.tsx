@@ -1,5 +1,7 @@
 import Image from "next/image";
 import heart from "@/../public/assets/ic_heart.svg";
+import defaultImg from "@/../public/assets/img_default.svg";
+import { SyntheticEvent, useEffect, useState } from "react";
 
 interface BestProductProps {
   image: string;

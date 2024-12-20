@@ -31,6 +31,7 @@ export default function UsedGoodsMarket() {
   useEffect(() => {
     const getBestProduct = async () => {
       const response = await fetchProduct(1, 4);
+      console.log(response.list);
       setBestProductData(response.list);
     };
 
@@ -39,9 +40,7 @@ export default function UsedGoodsMarket() {
 
   useEffect(() => {
     const getProduct = async () => {
-      console.log(currentPage);
       const response = await fetchProduct(currentPage, 10);
-      console.log(response);
       setProductData(response);
     };
 
