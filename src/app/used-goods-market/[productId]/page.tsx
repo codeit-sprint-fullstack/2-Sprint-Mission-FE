@@ -43,77 +43,98 @@ export default function UsedGoodsMarketDetail() {
 
   return (
     <div className="w-full items-center justify-center flex mt-[2.6rem]">
-      <div className="flex w-[120rem] gap-[2.4rem]">
-        <img
-          src={detailData.images[0]}
-          alt="image"
-          width={486}
-          height={486}
-          className="w-[48.6rem] h-[48.6rem] rounded-[1.6rem]"
-        />
-        <div className="flex flex-col w-full gap-[6.2rem]">
-          <div className="flex gap-[2.4rem] flex-col">
-            <div className="flex justify-between items-start">
-              <div className="flex flex-col gap-[1.6rem]">
-                <p className="font-semibold text-[2.4rem] leading-[3.2rem] text-[#1F2937]">
-                  {detailData.name}
-                </p>
-                <p className="flex-semibold text-[4rem] leading-[4.773rem] text-[#1F2937]">
-                  {detailData.price}원
-                </p>
-              </div>
-              <Image src={kebab} alt="kebab" width={24} height={24} />
-            </div>
-            <div className="border border-[#E5E7EB]" />
-            <div className="flex flex-col gap-[2.4rem]">
-              <div className="flex flex-col gap-[1.6rem]">
-                <p className="font-semibold text-[1.6rem] leading-[2.6rem] text-[#4B5563]">
-                  상품 소개
-                </p>
-                <p className="font-normal text-[1.6rem] leading-[2.6rem] text-[#4B5563]">
-                  {detailData.description}
-                </p>
-              </div>
-              <div className="flex flex-col gap-[1.6rem]">
-                <p className="font-semibold text-[1.6rem] leading-[2.6rem] text-[#4B5563]">
-                  상품 태그
-                </p>
-                <div className="flex gap-[0.8rem]">
-                  {detailData.tags.map((item: string, index: number) => (
-                    <div
-                      key={index}
-                      className="rounded-[2.6rem] py-[0.6rem] px-[1.6rem] gap-[1rem] bg-[#F3F4F6]"
-                    >
-                      <p className="font-normal text-[1.6rem] leading-[2.6rem] text-[#1F2937]">
-                        #{item}
-                      </p>
+      <div className="flex flex-col w-[120rem] gap-[4rem]">
+        <div className="flex w-full flex-col gap-[4rem]">
+          <div className="flex gap-[2.4rem]">
+            <img
+              src={detailData.images[0]}
+              alt="image"
+              width={486}
+              height={486}
+              className="w-[48.6rem] h-[48.6rem] rounded-[1.6rem]"
+            />
+            <div className="flex flex-col w-full gap-[6.2rem]">
+              <div className="flex gap-[2.4rem] flex-col">
+                <div className="flex justify-between items-start">
+                  <div className="flex flex-col gap-[1.6rem]">
+                    <p className="font-semibold text-[2.4rem] leading-[3.2rem] text-[#1F2937]">
+                      {detailData.name}
+                    </p>
+                    <p className="flex-semibold text-[4rem] leading-[4.773rem] text-[#1F2937]">
+                      {detailData.price}원
+                    </p>
+                  </div>
+                  <Image src={kebab} alt="kebab" width={24} height={24} />
+                </div>
+                <div className="border border-[#E5E7EB]" />
+                <div className="flex flex-col gap-[2.4rem]">
+                  <div className="flex flex-col gap-[1.6rem]">
+                    <p className="font-semibold text-[1.6rem] leading-[2.6rem] text-[#4B5563]">
+                      상품 소개
+                    </p>
+                    <p className="font-normal text-[1.6rem] leading-[2.6rem] text-[#4B5563]">
+                      {detailData.description}
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-[1.6rem]">
+                    <p className="font-semibold text-[1.6rem] leading-[2.6rem] text-[#4B5563]">
+                      상품 태그
+                    </p>
+                    <div className="flex gap-[0.8rem]">
+                      {detailData.tags.map((item: string, index: number) => (
+                        <div
+                          key={index}
+                          className="rounded-[2.6rem] py-[0.6rem] px-[1.6rem] gap-[1rem] bg-[#F3F4F6]"
+                        >
+                          <p className="font-normal text-[1.6rem] leading-[2.6rem] text-[#1F2937]">
+                            #{item}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-between w-full">
+                <div className="flex gap-[1.6rem]">
+                  <Image src={defProfile} alt="profile" />
+                  <div className="flex flex-col gap-[0.2rem]">
+                    <p className="font-medium text-[1.4rem] leading-[2.4rem] text-[#4B5563]">
+                      {detailData.ownerNickname}
+                    </p>
+                    <p className="font-normal text-[1.4rem] leading-[2.4rem] text-[#9CA3AF]">
+                      {formatDate(detailData.updatedAt)}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-[2.4rem] items-center">
+                  <div className="border border-[#E5E7EB] h-[3.4rem]" />
+                  <div className="h-[4rem] rounded-[3.5rem] border border-[#E5E7EB] py-[0.4rem] px-[1.2rem] gap-[0.4rem] flex items-center">
+                    <Image src={heart} alt="heart" width={32} height={32} />
+                    <p className="font-medium text-[1.6rem] leading-[2.6rem] text-[#6B7280]">
+                      {detailData.favoriteCount}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-between w-full">
-            <div className="flex gap-[1.6rem]">
-              <Image src={defProfile} alt="profile" />
-              <div className="flex flex-col gap-[0.2rem]">
-                <p className="font-medium text-[1.4rem] leading-[2.4rem] text-[#4B5563]">
-                  {detailData.ownerNickname}
-                </p>
-                <p className="font-normal text-[1.4rem] leading-[2.4rem] text-[#9CA3AF]">
-                  {formatDate(detailData.updatedAt)}
-                </p>
-              </div>
+          <div className="border border-[#E5E7EB] w-full" />
+        </div>
+        <div className="flex flex-col gap-[2.4rem] w-full">
+          <div className="w-full flex flex-col items-end gap-[1.6rem]">
+            <div className="w-full flex flex-col gap-[1rem]">
+              <p className="font-semibold text-[1.6rem] leading-[2.6rem] text-[#111827]">
+                문의하기
+              </p>
+              <textarea
+                className="w-full h-[10.4rem] rounded-[1.2rem] py-[1.6rem] px-[2.4rem] bg-[#F3F4F6] resize-none gap-[1rem] font-normal text-[1.6rem] leading-[2.6rem] placeholder:text-[#9CA3AF] focus:outline-none"
+                placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 읻에 대한 민형사상 책임은 게시자에게 있습니다."
+              />
             </div>
-            <div className="flex gap-[2.4rem] items-center">
-              <div className="border border-[#E5E7EB] h-[3.4rem]" />
-              <div className="h-[4rem] rounded-[3.5rem] border border-[#E5E7EB] py-[0.4rem] px-[1.2rem] gap-[0.4rem] flex items-center">
-                <Image src={heart} alt="heart" width={32} height={32} />
-                <p className="font-medium text-[1.6rem] leading-[2.6rem] text-[#6B7280]">
-                  {detailData.favoriteCount}
-                </p>
-              </div>
-            </div>
+            <button className="h-[4.2rem] rounded-[0.8rem] py-[1.2rem] px-[2.3rem] gap-[1rem] bg-[#9CA3AF] font-semibold text-[1.6rem] leading-[2.6rem] text-[#F3F4F6] items-center flex">
+              등록
+            </button>
           </div>
         </div>
       </div>
