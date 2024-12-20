@@ -38,16 +38,16 @@
     padding: 1.6rem 12.4rem;
     border-radius: 4rem;
 
-    color: #F3F4F6;
+    color: var(--gray-100);
     font-size: 2rem;
     font-weight: 600;
     line-height: 3.2rem;
 
-    background-color: #3692FF;
+    background-color: var(--primary-100);
 }
 
 .form button:disabled {
-    background-color: #9CA3AF;
+    background-color: var(--gray-400);
     cursor: default;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .group label {
-    color: #1F2937;
+    color: var(--gray-800);
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 2.6rem;
@@ -72,21 +72,21 @@
     padding: 1.6rem 2.4rem;
     border-radius: 1.2rem;
 
-    color: #1F2937;
+    color: var(--gray-800);
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 2.4rem;
 
-    background-color: #F3F4F6;
+    background-color: var(--gray-100);
 }
 
 .group input:focus {
-    outline: 0.1rem solid #3692FF;
-    background-color: #F3F4F6;
+    outline: 0.1rem solid var(--primary-100);
+    background-color: var(--gray-100);
 }
 
 .group input::placeholder {
-    color: #9CA3AF;
+    color: var(--gray-400);
 }
 
 .password {
@@ -109,11 +109,11 @@
     padding: 1.6rem 2.3rem;
     border-radius: 0.8rem;
 
-    background-color: #E6F2FF;
+    background-color: var(--gray-200);
 }
 
 .oauth span {
-    color: #1F2937;
+    color: var(--gray-800);
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 2.6rem;
@@ -140,22 +140,22 @@
 }
 
 .signup span {
-    color: #1F2937;
+    color: var(--gray-800);
     line-height: 2.4rem;
 }
 
 .signup a {
-    color: #3692FF;
+    color: var(--primary-100);
     line-height: 1.671rem;
     text-decoration: underline;
 }
 
 .input-error {
-    border: 0.1rem solid #F74747;
+    border: 0.1rem solid var(--error-red);
 }
 
 .error {
-    color: #F74747;
+    color: var(--error-red);
     font-size: 1.4rem;
     font-weight: 600;
     line-height: 2.4rem;

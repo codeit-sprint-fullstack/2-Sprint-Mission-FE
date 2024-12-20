@@ -30,7 +30,7 @@
     border-radius: 0.8rem;
 
     line-height: 2.6rem;
-    background-color: #ffffff;
+    background-color: white;
 
     gap: 4rem;
 }
@@ -47,9 +47,9 @@
     padding: 1.2rem 2.3rem;
     border-radius: 0.8rem;
 
-    color: #F3F4F6;
+    color: var(--gray-100);
     font-size: 1.6rem;
     font-weight: 600;
 
-    background-color: #3692FF;
+    background-color: var(--primary-100);
 }

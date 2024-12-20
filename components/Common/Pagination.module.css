@@ -12,7 +12,7 @@
     height: 4rem;
 
     border-radius: 100%;
-    border: 0.1rem solid #E5E7EB;
+    border: 0.1rem solid var(--gray-200);
 
     color: #1F2937;
     font-size: 1.6rem;
@@ -22,7 +22,7 @@
 }
 
 .button:hover {
-    background-color: #2F80ED;
+    background-color: var(--primary-200);
     color: white;
 }
 
@@ -40,8 +40,8 @@
     height: 4rem;
 
     border-radius: 6.25rem;
-    border: 0.1rem solid #E5E7EB;
+    border: 0.1rem solid var(--gray-200);
 
-    background-color: #2F80ED;
+    background-color: var(--primary-200);
     color: white;
 }

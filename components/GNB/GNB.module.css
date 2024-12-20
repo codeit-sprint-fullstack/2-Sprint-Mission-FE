@@ -12,7 +12,7 @@
     margin: auto;
     border-bottom: 0.1rem solid #DFDFDF;
 
-    background-color: #ffffff;
+    background-color: white;
 }
 
 .container {
@@ -53,11 +53,11 @@
 }
 
 .menu a {
-    color: #4B5563;
+    color: var(--gray-600);
 }
 
 .menu .active a {
-    color: #3692ff;
+    color: var(--primary-100);
 }
 
 .auth {
@@ -77,7 +77,7 @@
     font-weight: 600;
     line-height: 1.909rem;
 
-    background-color: #3292FF;
+    background-color: var(--primary-100);
 }
 
 .login-success {
@@ -94,7 +94,7 @@
 }
 
 .user span {
-    color: #4B5563;
+    color: var(--gray-600);
     font-size: 1.8rem;
     font-weight: 400;
     line-height: 2.178rem;
