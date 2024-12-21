@@ -1,6 +1,11 @@
 import "../page/HomeStyle/modal.css";
 
-export default function Modal({ message, onClose }) {
+interface ModalProps {
+  message: string;
+  onClose: () => void;
+}
+
+export default function Modal({ message, onClose }: ModalProps) {
   return (
     <div id="error-modal" className="modal">
       <div className="modal-content">

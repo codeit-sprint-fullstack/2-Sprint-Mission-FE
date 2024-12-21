@@ -2,38 +2,55 @@ import { useEffect, useState } from "react";
 import "../style/BestProductList.css";
 import { Link } from "react-router-dom";
 import defaultImg from "../imgFile/defaultProduct.png";
-import {isValidImageUrl} from "../utill/isvalidImage.js";
+import { isValidImageUrl } from "../utill/isvalidImage.js";
 
-function BestProductItem({ item }) {
+// Item 타입 정의
+interface Item {
+  id: number;
+  name: string;
+  price: number; 
+  favoriteCount: number;
+  images?: string; 
+}
+
+// BestProductItem Props 타입 정의
+interface BestProductItemProps {
+  item: Item;
+}
+
+function BestProductItem({ item }: BestProductItemProps) {
   return (
-    <>
-      <Link to={`/items/${item.id}`}>
-        <div className="BestItemList">
-          <img
-            src={
-              item.images && isValidImageUrl(item.images)
-                ? item.images
-                : defaultImg
-            }
-            alt={item.name}
-          />
-          <div>
-            <p className="ListFont1">{item.name}</p>
-            <p className="ListFont2">{item.price}</p>
-            <p className="ListFont3">♡ {item.favoriteCount}</p>
-          </div>
+    <Link to={`/items/${item.id}`}>
+      <div className="BestItemList">
+        <img
+          src={
+            item.images && isValidImageUrl(item.images)
+              ? item.images
+              : defaultImg
+          }
+          alt={item.name}
+        />
+        <div>
+          <p className="ListFont1">{item.name}</p>
+          <p className="ListFont2">{item.price}</p>
+          <p className="ListFont3">♡ {item.favoriteCount}</p>
         </div>
-      </Link>
-    </>
+      </div>
+    </Link>
   );
 }
 
-function BestProductList({ items }) {
-  const [displayCount, setDisplayCount] = useState(4);
+// BestProductList Props 타입 정의
+interface BestProductListProps {
+  items: Item[];
+}
+
+function BestProductList({ items }: BestProductListProps) {
+  const [displayCount, setDisplayCount] = useState<number>(4);
 
   useEffect(() => {
     const updateDisplayCount = () => {
-      const width = window.innerWidth; // window는 브라우저 크기 에 변화에따라.
+      const width = window.innerWidth; // window는 브라우저 크기 변화에 따라.
       if (width <= 743) {
         setDisplayCount(1); // 모바일: 1개
       } else if (width <= 1199) {

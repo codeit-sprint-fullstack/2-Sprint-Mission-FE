@@ -3,7 +3,13 @@ import "../style/ProductList.css";
 import itemImg from '../imgFile/디폴트이미지.png'
 import './ItemList.css'
 
-function ProductListItem({ item }) {
+interface Item {
+  id: number;
+  name: string;
+  price: number;
+}
+
+function ProductListItem({ item }: { item: Item }) {
   return (
     <div className="ProductListItem">
       <img src={itemImg} alt={item.name} />
@@ -16,7 +22,7 @@ function ProductListItem({ item }) {
   );
 }
 
-function ItemList({ items}) {
+function ItemList({ items }: { items: Item[] }) {
   const [displayCount, setDisplayCount] = useState(10);
   
 

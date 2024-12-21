@@ -4,12 +4,19 @@ import axios from "../lib/axios.js";
 import DeleteModal from "./DeleteModal.js";
 import { useState } from "react";
 
+interface DropdownProps {
+  item: { id: number };
+  handleDeleteItem: () => void;
+  isOpen: boolean;
+  toggleDropdown: () => void;
+}
+
 export default function Dropdown({
   item,
   handleDeleteItem,
   isOpen,
   toggleDropdown,
-}) {
+}: DropdownProps) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // 모달 열기 상태
   const navigate = useNavigate();
 
