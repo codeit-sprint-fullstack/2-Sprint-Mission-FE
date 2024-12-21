@@ -1,21 +1,12 @@
-import {
-  useState,
-  useEffect,
-  useRef,
-  ChangeEvent,
-  KeyboardEvent,
-  FormEvent,
-} from "react";
+import { useRef, useState } from "react";
 import "./Registration.css";
-import { updateProductItem } from "../component/PandaApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import closeButton from "../imgFile/닫기X버튼.png";
-import axios from "../lib/axios";
+import axios from "../lib/axios.js";
 import imgInput from "../imgFile/imgInput.png";
 import XButton from "../imgFile/ic_X.png";
-import { RegistrationValues } from "./Registration";
 
-const INITIAL_VALUES: RegistrationValues = {
+const INITIAL_VALUES = {
   name: "",
   description: "",
   price: "",
@@ -23,63 +14,64 @@ const INITIAL_VALUES: RegistrationValues = {
   images: [], // 빈 배열 추가
 };
 
-function PatchPage() {
+function Registration() {
   const navigate = useNavigate();
-  const [values, setValues] = useState<RegistrationValues>(INITIAL_VALUES);
-  const [inputValue, setInputValue] = useState<string>(""); // 입력 값을 저장할 상태변수
-  const [isTagAdd, setIsTagAdd] = useState<boolean>(false); //태그 추가 여부 상태
-  const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const { itemId } = useParams();
+  const [values, setValues] = useState(INITIAL_VALUES);
+  const [inputValue, setInputValue] = useState(""); // 입력 값을 저장할 상태변수
+  const [isTagAdd, setIsTagAdd] = useState(false); // 태그 추가 여부 상태
+  const [selectedImages, setSelectedImages] = useState([]);
+  const fileInputRef = useRef(null); // 파일 입력 참조 추가
 
   const accessToken = localStorage.getItem("accessToken");
 
-  useEffect(() => {
-    const fetchProductItem = async () => {
-      try {
-        const response = await axios.get(`/products/${itemId}`); // 상품 정보 가져오기
-        const product = response.data;
-        setValues({
-          name: product.name,
-          description: product.description,
-          price: product.price,
-          tags: product.tags || [], // 태그가 없을 경우 빈 배열로 설정
-          images: product.images || [], // 이미지가 없을 경우 빈 배열로 설정
-        });
-        setSelectedImages(product.images || []);
-        setIsTagAdd(product.tags && product.tags.length > 0); // 기존 태그가 있을 경우 true로 설정
-      } catch (error) {
-        console.error("상품 정보를 불러오는 데 실패했습니다:", error);
-      }
-    };
-
-    fetchProductItem();
-  }, [itemId]); // id가 변경될 때마다 이펙트 실행
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
     }));
   };
-  const handleImageChange = async (
-    e: ChangeEvent<HTMLInputElement>
-  ): Promise<void> => {
-    const files = Array.from(e.target.files || []);
+
+  const handleTagKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // 폼 제출 방지
+      if (inputValue.trim() !== "") {
+        setValues((prevValues) => ({
+          ...prevValues,
+          tags: [...prevValues.tags, inputValue.trim()],
+        }));
+        setInputValue("");
+        setIsTagAdd(true);
+      }
+    }
+  };
+
+  const handleTagRemove = (tagToRemove) => {
+    setValues((prevValues) => {
+      const updatedTags = prevValues.tags.filter((tag) => tag !== tagToRemove);
+      if (updatedTags.length === 0) {
+        setIsTagAdd(false);
+      }
+      return {
+        ...prevValues,
+        tags: updatedTags,
+      };
+    });
+  };
+
+  const handleImageChange = async (e) => {
+    const files = Array.from(e.target.files);
     if (selectedImages.length + files.length > 1) {
-      alert("이미지는 최대 1개까지 업로드할 수 있습니다.");
+      alert("이미지는 최대 1개까지 업로드할 수 있습니다."); // 경고 메시지
       return;
     }
     try {
       const uploadedImageUrls = await Promise.all(
         files.map(async (file) => {
           const formData = new FormData();
-          formData.append("image", file);
+          formData.append("image", file); // 이미지 파일 추가
 
+          // 이미지 업로드 요청
           const response = await axios.post("/images/upload", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -87,21 +79,21 @@ function PatchPage() {
             },
           });
 
-          const imageUrl = response.data.url;
-          return imageUrl;
+          const imageUrl = response.data.url; // 업로드된 이미지 URL 반환
+          return imageUrl; // URL 반환
         })
       );
       setSelectedImages((prevImages) => [...prevImages, ...uploadedImageUrls]);
       setValues((prevValues) => ({
         ...prevValues,
-        images: [...prevValues.images, ...uploadedImageUrls],
+        images: [...prevValues.images, ...uploadedImageUrls], // URL로 업데이트
       }));
     } catch (error) {
       console.error("Image upload error:", error);
     }
   };
 
-  const handleImageRemove = (imageToRemove: string): void => {
+  const handleImageRemove = (imageToRemove) => {
     setSelectedImages((prevImages) => {
       const updatedImages = prevImages.filter(
         (image) => image !== imageToRemove
@@ -118,65 +110,41 @@ function PatchPage() {
       };
     });
   };
+
   const openFileDialog = () => {
-    fileInputRef.current?.click();
+    fileInputRef.current.click(); // 파일 입력 클릭
   };
 
-  const handleTagKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === "Enter") {
-      e.preventDefault(); // 폼 제출 방지
-      const trimmedInput = inputValue.trim();
-
-      // 입력한 태그가 비어있지 않고, 이미 존재하지 않을 때만 추가
-      if (trimmedInput !== "" && !values.tags.includes(trimmedInput)) {
-        setValues((prevValues) => ({
-          ...prevValues,
-          tags: [...prevValues.tags, trimmedInput],
-        }));
-        setInputValue("");
-        setIsTagAdd(true);
-      } else if (values.tags.includes(trimmedInput)) {
-        alert("이미 존재하는 태그입니다."); // 사용자에게 알림
-      }
-    }
-  };
-
-  const handleTagRemove = (tagToRemove: string): void => {
-    setValues((prevValues) => {
-      const updateTags = prevValues.tags.filter((tag) => tag !== tagToRemove);
-      if (updateTags.length === 0) {
-        setIsTagAdd(false);
-      }
-      return {
-        ...prevValues,
-        tags: updateTags,
-      };
-    });
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //JSON 데이터로 변환
     const formData = {
       name: values.name,
       description: values.description,
       price: values.price,
       tags: values.tags,
-      images: selectedImages,
+      images: selectedImages, // 이미지 URL 사용
     };
+
     try {
-      await updateProductItem(itemId, formData); // 데이터베이스에 전송
-      setValues(INITIAL_VALUES); // 초기값으로 리셋
-      navigate(`/items/${itemId}`); // 페이지 이동
+      const newItem = await axios.post("/products", formData, {
+        headers: {
+          "Content-Type": "application/json", // JSON 형식으로 요청
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setValues(INITIAL_VALUES);
+      setSelectedImages([]); // 제출 후 선택된 이미지 초기화
+      navigate(`/items/${newItem.data.id}`);
     } catch (error) {
       console.error("Submission error:", error);
     }
   };
+
   return (
     <form className="Main" onSubmit={handleSubmit}>
       <div className="PostProductMenu">
-        <p> 상품수정하기</p>
-        <button type="submit">수정</button>
+        <p> 상품등록하기</p>
+        <button type="submit">등록</button>
       </div>
       <div className="RegImg">
         <p> 상품 이미지</p>
@@ -185,8 +153,8 @@ function PatchPage() {
           multiple
           accept="image/*"
           onChange={handleImageChange}
-          ref={fileInputRef}
-          style={{ display: "none" }}
+          ref={fileInputRef} // ref 추가
+          style={{ display: "none" }} // input 숨김
         />
         <div className="ImagePreview">
           <img
@@ -262,4 +230,4 @@ function PatchPage() {
   );
 }
 
-export default PatchPage;
+export default Registration;

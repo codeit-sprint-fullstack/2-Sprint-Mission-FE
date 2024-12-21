@@ -1,47 +1,35 @@
 import { Link, useNavigate } from "react-router-dom"; // Link 컴포넌트 임포트
 import "./HomeStyle/auth.css";
 import "./HomeStyle/global.css";
+
 import logo from "./images/logo/logo.svg";
 import closeEye from "./images/icons/eye-invisible.svg";
 import openEye from "./images/icons/eye-visible.svg";
 import kakaoTalk from "./images/social/kakao-logo.png";
 import google from "./images/social/google-logo.png";
-import { FormEvent, useEffect, useState } from "react";
-import Modal from "../component/Modal";
-import axios from "../lib/axios";
-import { ErrorResponse } from "./SignupPage";
-
-interface SignupValues {
-  email: string;
-  password: string;
-  errorMsg: string;
-  errors: {
-    email?: string;
-    nickname?: string;
-    password?: string;
-    passwordConfirmation?: string;
-  };
-}
+import { useEffect, useState } from "react";
+import Modal from "../component/Modal.js";
+import axios from "../lib/axios.js";
 
 export default function LoginPage() {
-  const [values, setValues] = useState<SignupValues>({
+  const [values, setValues] = useState({
     email: "",
     password: "",
     errorMsg: "",
     errors: {},
   });
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true); // 버튼 비활성화 상태
-  const [togglePassword, setTogglePassword] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // 버튼 비활성화 상태
+  const [togglePassword, setTogglePassword] = useState(false);
 
   const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("accessToken");
-  const validateEmail = (email: string): boolean => {
+  const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
-  const validatePassword = (password: string): string | null => {
+  const validatePassword = (password) => {
     if (!password) return "비밀번호를 입력해 주세요";
     if (password.length < 8) return "비밀번호는 8자 이상이어야 합니다";
     return null;
@@ -53,7 +41,7 @@ export default function LoginPage() {
     }
   }, [navigate]);
 
-  const handleBlur = (field: keyof SignupValues["errors"]) => {
+  const handleBlur = (field) => {
     const newErrors = { ...values.errors };
 
     switch (field) {
@@ -82,9 +70,9 @@ export default function LoginPage() {
     setValues((prevValues) => ({ ...prevValues, errors: newErrors }));
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors: Partial<SignupValues["errors"]> = {};
+    const newErrors = {};
     setValues((prevValues) => ({ ...prevValues, errors: newErrors }));
     try {
       const { email, password } = values;
@@ -105,7 +93,7 @@ export default function LoginPage() {
       setIsModalOpen(true); // 모달 열기
       setValues((prevValues) => ({
         ...prevValues,
-        errorMsg: (error as ErrorResponse).response.data.message,
+        errorMsg: error.response.data.message,
       }));
       // }
     }

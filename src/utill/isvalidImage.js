@@ -1,4 +1,4 @@
-export const isValidImageUrl = (url: string): boolean => {
+export const isValidImageUrl = (url) => {
   return /(https?:\/\/.*\.(?:jpg|jpeg|png|gif|bmp|webp|svg))/i.test(url);
 };
 
