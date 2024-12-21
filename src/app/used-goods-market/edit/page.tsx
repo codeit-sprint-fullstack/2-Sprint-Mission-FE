@@ -3,6 +3,7 @@
 import { useState } from "react";
 import close from "@/../public/assets/ic_X.svg";
 import Image from "next/image";
+import plus from "@/../public/assets/ic_plus.svg";
 
 export default function ProductDetailPage() {
   const [name, setName] = useState("");
@@ -10,6 +11,7 @@ export default function ProductDetailPage() {
   const [price, setPrice] = useState("");
   const [tag, setTag] = useState("");
   const [tagsArray, setTagsArray] = useState<string[]>([]);
+  const [images, setImages] = useState<File[]>([]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -19,6 +21,17 @@ export default function ProductDetailPage() {
         e.preventDefault();
       }
       setTag("");
+    }
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const selectedFiles = Array.from(e.target.files);
+      if (images.length + selectedFiles.length > 3) {
+        alert("이미지는 최대 3개까지 등록할 수 있습니다.");
+        return;
+      }
+      setImages([...images, ...selectedFiles]);
     }
   };
 
@@ -38,6 +51,50 @@ export default function ProductDetailPage() {
             <p className="font-bold text-[1.8rem] leading-[2.6rem] text-[#1F2937]">
               상품 이미지
             </p>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageChange}
+              className="hidden"
+              id="image-upload"
+            />
+            <div className="flex gap-[2.4rem]">
+              {images.length < 3 && (
+                <label htmlFor="image-upload" className="cursor-pointer">
+                  <div className="w-[28.2rem] h-[28.2rem] rounded-[1.2rem] bg-[#F3F4F6] flex items-center justify-center flex-col gap-[1.2rem]">
+                    <Image src={plus} alt="plus" />
+                    <p className="font-normal text-[1.6rem] leading-[2.6rem] text-[#9CA3AF]">
+                      이미지 등록
+                    </p>
+                  </div>
+                </label>
+              )}
+              <div className="flex gap-[1.2rem]">
+                {images.map((image, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center justify-center w-[28.2rem] h-[28.2rem] rounded-[1.2rem] bg-[#F3F4F6] relative border border-[#F9FAFB]"
+                  >
+                    <Image
+                      src={URL.createObjectURL(image)}
+                      alt={`preview-${index}`}
+                      width={282}
+                      height={282}
+                      className="h-full w-full object-cover rounded-[1.2rem]"
+                    />
+                    <Image
+                      src={close}
+                      alt="close"
+                      onClick={() =>
+                        setImages(images.filter((_, i) => i !== index))
+                      }
+                      className="absolute top-[1.2rem] right-[1.2rem] cursor-pointer"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="flex flex-col gap-[1.6rem] w-full">
             <p className="font-bold text-[1.8rem] leading-[2.6rem] text-[#1F2937]">
