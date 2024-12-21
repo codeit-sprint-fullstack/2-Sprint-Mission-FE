@@ -73,6 +73,10 @@ export default function UsedGoodsMarket() {
     router.push(`/used-goods-market/${id}`);
   };
 
+  const handleProductEdit = () => {
+    router.push("/used-goods-market/edit");
+  };
+
   return (
     <div className="w-full flex items-center justify-center pb-[7rem]">
       <div className="w-[120rem] flex flex-col justify-center gap-[4rem] items-center">
@@ -111,7 +115,10 @@ export default function UsedGoodsMarket() {
                   placeholder="검색할 상품을 입력해주세요"
                 />
               </div>
-              <button className="h-[4.2rem] rounded-[0.8rem] py-[1.2rem] px-[2.3rem] gap-[1rem] flex bg-[#3692FF] font-semibold text-[1.6rem] leading-[2.6rem] text-[#F3F4F6] items-center justify-center">
+              <button
+                className="h-[4.2rem] rounded-[0.8rem] py-[1.2rem] px-[2.3rem] gap-[1rem] flex bg-[#3692FF] font-semibold text-[1.6rem] leading-[2.6rem] text-[#F3F4F6] items-center justify-center"
+                onClick={handleProductEdit}
+              >
                 상품 등록하기
               </button>
               <div className="flex flex-col">
