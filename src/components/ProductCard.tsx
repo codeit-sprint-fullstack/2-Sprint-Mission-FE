@@ -22,7 +22,7 @@ export default function ProductCard({
           alt="image"
           width={221}
           height={221}
-          className="object-cover w-[22.1rem] h-[22.1rem]"
+          className="object-cover w-[22.1rem] h-[22.1rem] rounded-[1.6rem]"
         />
         <div className="flex gap-[1rem] flex-col">
           <p className="font-medium text-[1.4rem] leading-[2.4rem] text-[#1F2937]">

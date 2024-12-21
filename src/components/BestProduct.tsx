@@ -22,7 +22,7 @@ export default function BestProduct({
           alt="image"
           width={282}
           height={282}
-          className="object-cover w-[28.2rem] h-[28.2rem]"
+          className="object-cover w-[28.2rem] h-[28.2rem] rounded-[1.6rem]"
         />
         <div className="flex gap-[1rem] flex-col">
           <p className="font-medium text-[1.4rem] leading-[2.4rem] text-[#1F2937]">

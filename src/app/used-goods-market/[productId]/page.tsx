@@ -65,6 +65,12 @@ export default function UsedGoodsMarketDetail() {
   const [commentData, setCommentData] = useState<CommentData[]>([]);
   const [text, setText] = useState("");
 
+  const [productToggleOpen, setProductToggleOpen] = useState(false);
+
+  const handleProductToggle = () => {
+    setProductToggleOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     const getProductDetail = async () => {
       const response = await fetchProductDetail(String(productId));
@@ -128,7 +134,7 @@ export default function UsedGoodsMarketDetail() {
   }
 
   return (
-    <div className="w-full items-center justify-center flex mt-[2.6rem] pb-[7rem]">
+    <div className="w-full justify-center flex mt-[2.6rem] pb-[7rem]">
       <div className="flex flex-col w-[120rem] gap-[4rem] items-center">
         <div className="flex w-full flex-col gap-[4rem]">
           <div className="flex gap-[2.4rem]">
@@ -150,7 +156,13 @@ export default function UsedGoodsMarketDetail() {
                       {detailData.price}원
                     </p>
                   </div>
-                  <Image src={kebab} alt="kebab" width={24} height={24} />
+                  <Image
+                    src={kebab}
+                    alt="kebab"
+                    width={24}
+                    height={24}
+                    onClick={handleProductToggle}
+                  />
                 </div>
                 <div className="border border-[#E5E7EB]" />
                 <div className="flex flex-col gap-[2.4rem]">
@@ -264,6 +276,16 @@ export default function UsedGoodsMarketDetail() {
           </button>
         </Link>
       </div>
+      {productToggleOpen && (
+        <div className="translate-x-[67.5rem] translate-y-[0.2rem] absolute bg-[#ffffff] flex items-center flex-col w-[13.9rem] h-[9.2rem] border border-[#D1D5DB] rounded-[0.8rem]">
+          <p className="h-[4.6rem] flex items-center justify-center font-normal text-[1.6rem] leading-[2.6rem] text-[#6B7280]">
+            수정하기
+          </p>
+          <p className="h-[4.6rem] flex items-center justify-center font-normal text-[1.6rem] leading-[2.6rem] text-[#6B7280]">
+            삭제하기
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -21,6 +21,8 @@ export default function UsedGoodsMarket() {
 
   const [productData, setProductData] = useState<ProductData | null>(null);
   const [bestProductData, setBestProductData] = useState([]);
+  const [dropdownOption, setDropdownOption] = useState("recent");
+  const [selectedOption, setSelectedOption] = useState("최신순");
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -30,9 +32,19 @@ export default function UsedGoodsMarket() {
     setDropdownOpen((prev) => !prev);
   };
 
+  const handleOption = (option: string) => {
+    setDropdownOption(option);
+    if (option === "recent") {
+      setSelectedOption("최신순");
+    } else {
+      setSelectedOption("좋아요순");
+    }
+    setDropdownOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     const getBestProduct = async () => {
-      const response = await fetchProduct(1, 4);
+      const response = await fetchProduct(1, 4, "favorite");
       setBestProductData(response.list);
     };
 
@@ -41,12 +53,12 @@ export default function UsedGoodsMarket() {
 
   useEffect(() => {
     const getProduct = async () => {
-      const response = await fetchProduct(currentPage, 10);
+      const response = await fetchProduct(currentPage, 10, dropdownOption);
       setProductData(response);
     };
 
     getProduct();
-  }, [currentPage]);
+  }, [currentPage, dropdownOption]);
 
   const totalPages = Math.max(
     1,
@@ -104,20 +116,26 @@ export default function UsedGoodsMarket() {
               </button>
               <div className="flex flex-col">
                 <div
-                  className="w-[13rem] h-[4.2rem] rounded-[1.2rem] border border-[#E5E7EB] py-[1.2rem] px-[2rem] items-center justify-between flex relative"
+                  className="w-[13rem] h-[4.2rem] rounded-[1.2rem] border border-[#E5E7EB] py-[1.2rem] px-[2rem] items-center justify-between flex relative cursor-pointer"
                   onClick={handleDropdown}
                 >
                   <p className="font-normal text-[1.6rem] leading-[2.6rem] text-[#1F2937]">
-                    최신순
+                    {selectedOption}
                   </p>
                   <Image src={dropdown} alt="dropdown" width={24} height={24} />
                 </div>
                 {dropdownOpen && (
                   <div className="flex flex-col w-[13rem] border border-[#E5E7EB] rounded-[1.2rem] items-center justify-center absolute z-10 mt-[5rem] bg-[#ffffff]">
-                    <p className="w-full h-[4.2rem] font-normal text-[1.6rem] leading-[2.6rem] text-[#1F2937] border-b border-[E5E7EB] flex items-center justify-center">
+                    <p
+                      className="w-full h-[4.2rem] font-normal text-[1.6rem] leading-[2.6rem] text-[#1F2937] border-b border-[E5E7EB] flex items-center justify-center cursor-pointer"
+                      onClick={() => handleOption("recent")}
+                    >
                       최신순
                     </p>
-                    <p className="w-full h-[4.2rem] font-normal text-[1.6rem] leading-[2.6rem] text-[#1F2937] flex items-center justify-center">
+                    <p
+                      className="w-full h-[4.2rem] font-normal text-[1.6rem] leading-[2.6rem] text-[#1F2937] flex items-center justify-center cursor-pointer"
+                      onClick={() => handleOption("favorite")}
+                    >
                       좋아요순
                     </p>
                   </div>

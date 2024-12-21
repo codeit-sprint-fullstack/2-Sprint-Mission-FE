@@ -31,9 +31,19 @@ export default function Header() {
   return (
     <div className="w-full py-[0.9rem] px-[20rem] gap-[1rem] border-b border-[#DFDFDF]">
       <div className="w-full flex justify-between items-center">
-        <Link href="/">
-          <Image src={logo} alt="logo" />
-        </Link>
+        <div className="flex gap-[3.2rem]">
+          <Link href="/">
+            <Image src={logo} alt="logo" />
+          </Link>
+          <div className="flex gap-[3rem]">
+            <p className="items-center gap-[1rem] flex font-bold text-[1.8rem] leading-[2.6rem] text-[#4B5563] cursor-pointer">
+              자유게시판
+            </p>
+            <p className="items-center gap-[1rem] flex font-bold text-[1.8rem] leading-[2.6rem] text-[#4B5563] cursor-pointer">
+              중고마켓
+            </p>
+          </div>
+        </div>
         {!name ? (
           <button
             className="w-[12.8rem] h-[4.8rem] rounded-[0.8rem] py-[1.2rem] px-[2.3rem] flex items-center justify-center gap-[1rem] bg-[#3692FF] font-semibold text-[1.6rem] leading-[2.6rem] text-[#F3F4F6]"
