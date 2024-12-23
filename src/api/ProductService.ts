@@ -72,3 +72,41 @@ export const fetchProductUnFavorite = async (id: string) => {
     throw new Error("delete product favorite failed");
   }
 };
+
+export const fetchProductRegister = async (
+  images: File[],
+  tags: string[],
+  price: string,
+  description: string,
+  name: string
+) => {
+  try {
+    const params = {
+      images,
+      tags,
+      price,
+      description,
+      name,
+    };
+
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (!accessToken) {
+      throw new Error("Access token is missing");
+    }
+
+    const response = await postRequest(
+      `/products`,
+      { params },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("post product register failed");
+  }
+};

@@ -4,6 +4,7 @@ import { useState } from "react";
 import close from "@/../public/assets/ic_X.svg";
 import Image from "next/image";
 import plus from "@/../public/assets/ic_plus.svg";
+import { fetchProductRegister } from "@/api/ProductService";
 
 export default function ProductDetailPage() {
   const [name, setName] = useState("");
@@ -12,6 +13,7 @@ export default function ProductDetailPage() {
   const [tag, setTag] = useState("");
   const [tagsArray, setTagsArray] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
+  const [imagesArray, setImagesArray] = useState<string[]>([]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -35,14 +37,26 @@ export default function ProductDetailPage() {
     }
   };
 
+  const handleSubmit = async () => {
+    await fetchProductRegister(images, tagsArray, price, description, name);
+  };
+
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full mb-[7rem]">
       <div className="flex w-[120rem] flex-col mt-[2.6rem] gap-[2.4rem]">
         <div className="flex justify-between">
           <p className="font-bold text-[2rem] leading-[3.2rem] text-[#1F2937]">
             상품 등록하기
           </p>
-          <button className="h-[4.2rem] rounded-[0.8rem] px-[2.3rem] bg-[#9CA3AF] text-semibold text-[1.6rem] leading-[2.6rem] text-[#F3F4F6]">
+          <button
+            disabled
+            className={`h-[4.2rem] rounded-[0.8rem] px-[2.3rem] text-semibold text-[1.6rem] leading-[2.6rem] text-[#F3F4F6] ${
+              name && description && price && tagsArray
+                ? "bg-[#3692FF]"
+                : "bg-[#9CA3AF]"
+            }`}
+            onClick={handleSubmit}
+          >
             등록
           </button>
         </div>
