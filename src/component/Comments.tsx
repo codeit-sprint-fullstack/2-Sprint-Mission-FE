@@ -5,22 +5,41 @@ import axios from "../lib/axios.js";
 import kebab from "../imgFile/ic_kebab.png";
 import avatarImg from "../imgFile/김코드마크.png";
 import nocomment from "../imgFile/nocomment.png";
+import { AxiosError } from "axios";
 
-export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
-  const [comment, setComment] = useState([]);
-  const [newComment, setNewComment] = useState("");
-  const [editingCommentId, setEditingCommentId] = useState(null); // 수정할 댓글 ID
-  const [editedContent, setEditedContent] = useState(""); // 수정된 내용
+// 댓글 타입 정의
+interface Comment {
+  id: number;
+  content: string;
+  writer: {
+    nickname: string;
+  };
+  createdAt: string;
+}
+
+// Props 타입 정의
+interface CommentsProps {
+  itemId: number;
+  toggleDropdown: (id: number | null) => void;
+  activeDropdown: number | null;
+}
+
+export default function Comments({ itemId, toggleDropdown, activeDropdown }: CommentsProps) {
+  const [comment, setComment] = useState<Comment[]>([]);
+  const [newComment, setNewComment] = useState<string>("");
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null); // 수정할 댓글 ID
+  const [editedContent, setEditedContent] = useState<string>(""); // 수정된 내용
 
   const accessToken = localStorage.getItem("accessToken");
 
   async function getComment() {
     try {
       const res = await axios.get(`/products/${itemId}/comments?limit=3`);
-      const comments = res.data.list;
+      const comments: Comment[] = res.data.list; // 댓글 타입 지정
       setComment(comments);
     } catch (error) {
-      if (error.response && error.response.status === 404) {
+      const err = error as AxiosError;
+      if (err.response && err.response.status === 404) {
         console.error("댓글을 찾을 수 없거나, 상품이 삭제되었습니다.");
         setComment([]); // 댓글을 비웁니다.
       }
@@ -41,7 +60,7 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
     }
   };
 
-  const handleDelete = async (commentId) => {
+  const handleDelete = async (commentId: number) => {
     try {
       await axios.delete(`/comments/${commentId}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -55,7 +74,7 @@ export default function Comments({ itemId, toggleDropdown, activeDropdown }) {
     }
   };
 
-  const handleEdit = async (commentId) => {
+  const handleEdit = async (commentId: number) => {
     try {
       const response = await axios.patch(
         `/comments/${commentId}`,

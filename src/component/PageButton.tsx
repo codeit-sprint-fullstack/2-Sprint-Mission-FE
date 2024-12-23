@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import "../style/PageButton.css";
 import RightArrow from "../imgFile/오른쪽화살표.png";
 import LeftArrow from "../imgFile/왼쪽화살표.png";
 
-const ITEMS_PER_PAGE = 10;
 const PAGE_BUTTON_COUNT = 5;
 
-function PageButton({ totalItems, currentPage, onPageChange, pageSize }) {
+interface PageButtonProps {
+  totalItems: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+  pageSize: number;
+}
+
+function PageButton({
+  totalItems,
+  currentPage,
+  onPageChange,
+  pageSize,
+}: PageButtonProps) {
   const totalPages = Math.ceil(totalItems / pageSize);
   const startPage =
     Math.floor((currentPage - 1) / PAGE_BUTTON_COUNT) * PAGE_BUTTON_COUNT + 1;
   const endPage = Math.min(startPage + PAGE_BUTTON_COUNT - 1, totalPages);
 
-  const handlePageClick = (pageNum) => {
+  const handlePageClick = (pageNum: number) => {
     onPageChange(pageNum); // 페이지 클릭 시 부모 컴포넌트로 페이지 전달
   };
 

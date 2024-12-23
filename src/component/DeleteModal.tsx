@@ -1,7 +1,13 @@
 import check from "../imgFile/ic_deleteCheck.png";
 import style from "./DeleteModal.module.css";
 
-export default function DeleteModal({ isOpen, onDelete, onClose }) {
+interface DeleteModalProps {
+  isOpen: boolean;
+  onDelete: () => void;
+  onClose: () => void;
+}
+
+export default function DeleteModal({ isOpen, onDelete, onClose }: DeleteModalProps) {
   // 모달이 열려 있지 않으면 아무것도 렌더링하지 않음
   if (!isOpen) return null;
 

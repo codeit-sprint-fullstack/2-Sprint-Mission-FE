@@ -7,14 +7,19 @@ import { useEffect, useState } from "react";
 import axios from "../lib/axios.js";
 import style from "./PageNav.module.css";
 
+interface User {
+  image: string;
+  nickname: string;
+}
+
 export function PublicNav() {
   const location = useLocation();
-  const [user, setUser] = useState(null); // 유저 상태 관리
+  const [user, setUser] = useState<User | null>(null); // 유저 상태 관리
   const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("accessToken");
 
-  async function getMe(token) {
+  async function getMe(token: string) {
     try {
       const res = await axios.get("/users/me", {
         headers: {
