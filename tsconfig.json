@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/api/auth.js",
+    "src/pages/api/axios.js",
+    "src/api/axios.js",
+    "src/api/axios.js",
+    "src/contexts/AuthContext.tsxxx",
+    "src/pages/MarketPage/components/AllItemsSection.tsx",
+    "src/pages/ItemDetailPage/components/CommentThread.tsx",
+    "src/pages/ItemDetailPage/components/ItemProfileSection.jsx",
+    "src/pages/ItemDetailPage/components/CommentThread.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
