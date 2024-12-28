@@ -1,0 +1,66 @@
+import React from "react";
+import styled, { css } from "styled-components";
+import ErrorMessage from "./ErrorMessage";
+import Label from "./Label";
+import { FieldError } from "react-hook-form";
+
+interface InputItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  id: string;
+  label?: string;
+  error?: string | FieldError | undefined;
+  register?: Record<string, any>;
+}
+
+interface InputFieldProps {
+  $error?: boolean;
+}
+
+export const inputStyle = css<InputFieldProps>`
+  padding: 16px 24px;
+  background-color: ${({ theme }) => theme.colors.gray[1]};
+  color: ${({ theme }) => theme.colors.black};
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  outline: none;
+  border: 1px solid transparent;
+  ${({ $error, theme }) => $error && css`border-color: ${theme.colors.red[0]};`}
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.gray[0]};
+  }
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.blue[0]};
+  }
+`;
+
+export const InputField = styled.input<InputFieldProps>`
+  ${inputStyle}
+`;
+
+function InputItem({
+  id,
+  label,
+  error,
+  register = {},
+  ...inputProps
+}: InputItemProps) {
+  const errorMessage = typeof error === "string" ? error : error?.message;
+
+  return (
+    <div>
+      {label && <Label htmlFor={id}>{label}</Label>}
+      <InputField
+        id={id}
+        $error={!!error} // 비표준 속성이기 때문에 `$`를 붙인 이름으로 styled-components에서만 사용
+        {...inputProps}
+        {...register}
+      />
+      {error && <ErrorMessage>{errorMessage}</ErrorMessage>}
+    </div>
+  );
+}
+
+export default InputItem;
